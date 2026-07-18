@@ -12,8 +12,8 @@
 
 | Feature | Description |
 |---------|-------------|
-| 🔴 **Live SRO Feed** | Real-time property registration ticker across all Sub-Registrar Offices in AP & TS |
-| ✅ **Verified Listings** | Geospatially verified properties for sale/rent with one-click agent contact |
+| 🔴 **Live SRO Feed** | Real-time property registration ticker across AP & TS Sub-Registrar Offices with colony and block/unit info |
+| ✅ **Verified Listings** | Geospatially verified properties for sale/rent filterable down to colony and block level |
 | 🗺 **Boundary Explorer** | Village-level LGD coordinate drill-down with PMTiles vector cadastral overlays |
 | 🧮 **Stamp Duty Calculator** | Accurate registration tax breakdown (AP 7.5%, TS 6.0%) |
 | 📔 **Guide Value Directory** | Official SRO government guidance valuations by district & mandal |
