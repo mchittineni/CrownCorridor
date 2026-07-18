@@ -476,6 +476,23 @@ class RealEstatePortal {
     const regFee = Math.round(considerationValue * tax.regFee);
     const totalDuty = stampDuty + transferDuty + regFee;
     
+    const coloniesAP = ["MVP Colony", "Seethammadhara Layout", "Amaravati Heights", "Vidhya Nagar Colony", "Labbipet Enclave", "Kanuru Greenfields", "Balaji Nagar Layout", "Bhavani Nagar Society"];
+    const coloniesTG = ["Rainbow Vistas Colony", "Kavuri Hills Colony", "Lanco Hills Towers", "My Home Jewel Complex", "Gachibowli Financial Enclave", "Pragathi Nagar Layout", "Jubilee Hills Sector-3", "Srinagar Colony"];
+    const colony = state === 'Andhra Pradesh' ? coloniesAP[Math.floor(Math.random() * coloniesAP.length)] : coloniesTG[Math.floor(Math.random() * coloniesTG.length)];
+    
+    let blockUnit = '';
+    if (propType.name === 'Residential Flat') {
+      blockUnit = `Block ${['A', 'B', 'C', 'D'][Math.floor(Math.random() * 4)]}, Flat ${100 + Math.floor(Math.random() * 400)}`;
+    } else if (propType.name === 'Commercial Space') {
+      blockUnit = `Tower ${1 + Math.floor(Math.random() * 4)}, Suite ${Math.floor(100 + Math.random() * 900)}`;
+    } else if (propType.name === 'Residential Plot') {
+      blockUnit = `Plot No ${1 + Math.floor(Math.random() * 150)}, Sector ${1 + Math.floor(Math.random() * 4)}`;
+    } else if (propType.name === 'Independent Villa') {
+      blockUnit = `Villa ${1 + Math.floor(Math.random() * 80)}, Phase ${1 + Math.floor(Math.random() * 3)}`;
+    } else {
+      blockUnit = `Survey Part-${['A', 'B', 'C'][Math.floor(Math.random() * 3)]}`;
+    }
+
     const seller = "Seller Name";
     const buyer = "Buyer Name";
     
@@ -499,6 +516,8 @@ class RealEstatePortal {
       district,
       mandal,
       village,
+      colony,
+      blockUnit,
       propertyType: propType.name,
       sroName,
       surveyNo,
@@ -572,9 +591,26 @@ class RealEstatePortal {
         }
       }
 
+      const coloniesAP = ["MVP Colony", "Seethammadhara Layout", "Amaravati Heights", "Vidhya Nagar Colony", "Labbipet Enclave", "Kanuru Greenfields", "Balaji Nagar Layout", "Bhavani Nagar Society"];
+      const coloniesTG = ["Rainbow Vistas Colony", "Kavuri Hills Colony", "Lanco Hills Towers", "My Home Jewel Complex", "Gachibowli Financial Enclave", "Pragathi Nagar Layout", "Jubilee Hills Sector-3", "Srinagar Colony"];
+      const colony = state === 'Andhra Pradesh' ? coloniesAP[i % coloniesAP.length] : coloniesTG[i % coloniesTG.length];
+      
+      let blockUnit = '';
+      if (propType.name === 'Residential Flat') {
+        blockUnit = `Block ${['A', 'B', 'C', 'D'][i % 4]}, Flat ${100 + (i * 7) % 400}`;
+      } else if (propType.name === 'Commercial Space') {
+        blockUnit = `Tower ${1 + i % 4}, Suite ${Math.floor(100 + i * 23) % 900}`;
+      } else if (propType.name === 'Residential Plot') {
+        blockUnit = `Plot No ${1 + (i * 11) % 150}, Sector ${1 + i % 4}`;
+      } else if (propType.name === 'Independent Villa') {
+        blockUnit = `Villa ${1 + (i * 3) % 80}, Phase ${1 + i % 3}`;
+      } else {
+        blockUnit = `Survey Part-${['A', 'B', 'C'][i % 3]}`;
+      }
+
       this.listings.push({
         id: `PROP-${1000 + i}`,
-        title: `${area} ${propType.unit} Verified ${propType.name} in ${mandal}`,
+        title: `${area} ${propType.unit} ${propType.name} @ ${colony} (${blockUnit})`,
         type: propType.name,
         price,
         area,
@@ -583,6 +619,8 @@ class RealEstatePortal {
         district,
         mandal,
         village: mandal + " Sector " + (i % 5 + 1),
+        colony,
+        blockUnit,
         surveyNo: `${Math.floor(50 + Math.random() * 250)}/A`,
         facing: orientations[i % orientations.length],
         status: i % 4 === 3 ? 'Rent' : 'Sale',
@@ -682,6 +720,7 @@ class RealEstatePortal {
       if (searchVal) {
         return p.district.toLowerCase().includes(searchVal) || 
                p.mandal.toLowerCase().includes(searchVal) ||
+               (p.colony && p.colony.toLowerCase().includes(searchVal)) ||
                p.title.toLowerCase().includes(searchVal);
       }
       return true;
@@ -708,7 +747,8 @@ class RealEstatePortal {
         <div class="property-content">
           <div class="property-type">${p.type}</div>
           <h4 class="property-title" title="${p.title}">${p.title}</h4>
-          <div class="property-geo">📍 ${p.district}, ${p.mandal} (Surv: ${p.surveyNo})</div>
+          <div class="property-geo">📍 ${p.district}, ${p.mandal}, ${p.village}</div>
+          <div class="property-colony" style="color: #60a5fa; font-size: 0.85rem; font-weight: 500; margin: 4px 0;">🏢 ${p.colony} · ${p.blockUnit}</div>
           
           <div class="property-specs">
             <div class="property-spec-item">📐 ${p.area} ${p.unit}</div>
@@ -1444,7 +1484,8 @@ class RealEstatePortal {
       </div>
       <div class="card-middle">${tx.propertyType}</div>
       <div class="card-details">
-        <span>📍 ${tx.district}, ${tx.mandal}</span>
+        <span>📍 ${tx.district}, ${tx.mandal}, ${tx.village}</span>
+        ${tx.colony ? `<span class="colony-info" style="color: #60a5fa; font-weight: 500; font-size: 0.8rem; display: block; margin: 2px 0;">🏢 ${tx.colony} ${tx.blockUnit ? `· ${tx.blockUnit}` : ''}</span>` : ''}
         <span>📐 Size: ${tx.area} ${tx.areaUnit} · Surv: ${tx.surveyNo}</span>
       </div>
       <div class="card-bottom">
