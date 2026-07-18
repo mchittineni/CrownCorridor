@@ -1,0 +1,8 @@
+.DS_Store
+.obsidian/
+scraper/.venv/
+scraper/__pycache__/
+scraper/tests/__pycache__/
+docs/api/
+scraper/.cache/
+*.log
