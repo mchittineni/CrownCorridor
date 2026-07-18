@@ -1,0 +1,74 @@
+name: Publish Release Blog
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  publish-devto:
+    name: Post to dev.to
+    runs-on: ubuntu-latest
+    if: "!github.event.release.prerelease"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build dev.to Article Draft
+        id: build-article
+        run: |
+          TAG="${{ github.event.release.tag_name }}"
+          RELEASE_URL="${{ github.event.release.html_url }}"
+          
+          BODY=$(cat <<EOF
+          ---
+          title: "Crown Corridor ${TAG} — AP & Telangana Real-Time Real Estate Monitor"
+          published: false
+          tags: ["realestate", "india", "andhra-pradesh", "telangana", "opendata"]
+          cover_image: ""
+          ---
+
+          ## Crown Corridor ${TAG} Released 🏠
+
+          We've just published **Crown Corridor ${TAG}**, our next-generation real-time real estate monitoring portal for Andhra Pradesh and Telangana.
+
+          ### What is Crown Corridor?
+
+          Crown Corridor tracks Sub-Registrar Office (SRO) property registrations across all **26 districts of Andhra Pradesh** and **33 districts of Telangana** in real time. It features:
+
+          - **Live SRO feed** — property registrations streamed as they happen
+          - **Verified property listings** — 45+ geospatially verified listings across AP & TS
+          - **Geospatial boundary explorer** — drill down to village level with LGD coordinate data
+          - **Stamp duty calculator** — accurate registration tax breakdowns for both states
+          - **Government guidance value directory** — official SRO guide valuations by mandal
+
+          ### Open Data
+
+          All geographic data is sourced from the Government of India's [Local Government Directory (LGD)](https://lgdirectory.gov.in). Download the datasets from the [release page](${RELEASE_URL}).
+
+          ---
+
+          *Crown Corridor is open source — contributions welcome!*
+          EOF
+          )
+          echo "article_body<<EOARTICLE" >> $GITHUB_OUTPUT
+          echo "$BODY" >> $GITHUB_OUTPUT
+          echo "EOARTICLE" >> $GITHUB_OUTPUT
+
+      - name: Post Draft to dev.to API
+        if: env.DEVTO_API_KEY != ''
+        run: |
+          curl -s -X POST "https://dev.to/api/articles" \
+            -H "api-key: ${{ secrets.DEVTO_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"article\":{\"body_markdown\":$(echo '${{ steps.build-article.outputs.article_body }}' | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read()))')}}"
+        env:
+          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
+
+      - name: Skip dev.to (no API key)
+        if: env.DEVTO_API_KEY == ''
+        run: echo "DEVTO_API_KEY not configured — skipping dev.to publication. Add the secret to enable."
+        env:
+          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}

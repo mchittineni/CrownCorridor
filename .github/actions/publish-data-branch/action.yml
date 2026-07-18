@@ -1,0 +1,59 @@
+name: 'Publish Data Branch'
+description: 'Commits and pushes generated files directly to a data branch without raising a PR'
+inputs:
+  branch:
+    description: 'The target data/* branch to push to'
+    required: true
+  source-directory:
+    description: 'Local directory whose contents are committed to the data branch'
+    required: true
+  github-token:
+    description: 'GitHub token for auth'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Commit to Data Branch
+      run: |
+        TARGET_BRANCH="${{ inputs.branch }}"
+        SRC_DIR="${{ inputs.source-directory }}"
+        
+        echo "Pushing generated data directly to branch: $TARGET_BRANCH"
+        
+        # Configure Git
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        
+        # Create a temp workspace directory to clone the target data branch
+        TEMP_CLONE="../temp_data_clone"
+        rm -rf $TEMP_CLONE
+        
+        # Clone target data branch or create it if not exists
+        if git ls-remote --heads origin "$TARGET_BRANCH" | grep -q "$TARGET_BRANCH"; then
+          git clone --depth 1 --branch "$TARGET_BRANCH" "https://x-access-token:${{ inputs.github-token }}@github.com/${{ github.repository }}.git" $TEMP_CLONE
+        else
+          git clone --depth 1 "https://x-access-token:${{ inputs.github-token }}@github.com/${{ github.repository }}.git" $TEMP_CLONE
+          cd $TEMP_CLONE
+          git checkout --orphan "$TARGET_BRANCH"
+          git rm -rf .
+          cd -
+        fi
+        
+        # Copy source contents into temp clone
+        mkdir -p $TEMP_CLONE
+        cp -r $SRC_DIR/* $TEMP_CLONE/
+        
+        cd $TEMP_CLONE
+        git add -A
+        
+        # Check if there are changes to commit
+        if git diff --cached --quiet; then
+          echo "No modifications detected in data branch assets. Skipping push."
+        else
+          git commit -m "data: scheduled automated boundary refresh $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          git push origin "$TARGET_BRANCH"
+        fi
+        
+        cd -
+        rm -rf $TEMP_CLONE
+      shell: bash

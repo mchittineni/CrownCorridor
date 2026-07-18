@@ -1,0 +1,28 @@
+name: CI — Data Validity Tests
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [develop]
+
+permissions:
+  contents: read
+
+jobs:
+  data-validity:
+    name: Data Integrity & Pipeline Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pipeline Toolchain
+        uses: ./.github/actions/setup-pipeline
+
+      - name: Run Data Integrity Validator
+        run: python pipeline/validate_data.py
+
+      - name: Run Pytest Suite
+        run: pytest pipeline/tests/ -v --tb=short

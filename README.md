@@ -1,83 +1,114 @@
-# Crown Corridor — Next-Gen Real Estate & Geospatial Portal
+# Crown Corridor
 
-Crown Corridor is a next-generation real estate and property discovery portal for **Andhra Pradesh** (26 districts) and **Telangana** (33 districts).
+> A next-generation real estate and property discovery portal for Andhra Pradesh & Telangana.  
+> Features verified listings, interactive geospatial maps, government guidance value estimation, and real-time SRO transaction analytics.
 
-The portal integrates verified listings, interactive geospatial maps, local government guidance value estimations, and historical SRO market registration analytics within a single, unified analytical dashboard.
+[![CI](https://github.com/mchittineni/CrownCorridor/actions/workflows/ci.yml/badge.svg)](https://github.com/mchittineni/CrownCorridor/actions/workflows/ci.yml)
+[![Deploy](https://github.com/mchittineni/CrownCorridor/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/mchittineni/CrownCorridor/actions/workflows/deploy-pages.yml)
 
 ---
 
-## 📂 Repository Layout
+## Features
 
-The project is structured cleanly to separate the core dashboard application, raw administrative boundaries datasets, documentation vaults, and auxiliary ingestion scrapers:
+| Feature | Description |
+|---------|-------------|
+| 🔴 **Live SRO Feed** | Real-time property registration ticker across all Sub-Registrar Offices in AP & TS |
+| ✅ **Verified Listings** | Geospatially verified properties for sale/rent with one-click agent contact |
+| 🗺 **Boundary Explorer** | Village-level LGD coordinate drill-down with PMTiles vector cadastral overlays |
+| 🧮 **Stamp Duty Calculator** | Accurate registration tax breakdown (AP 7.5%, TS 6.0%) |
+| 📔 **Guide Value Directory** | Official SRO government guidance valuations by district & mandal |
+| 💻 **Developer API Console** | Queryable JSON sandbox and webhook alert configuration |
+
+---
+
+## Project Structure
 
 ```
-├── index.html                   # Core dashboard portal layout (HTML5 entrypoint)
-├── real_estate_portal.js        # Main JavaScript portal logic, listings, and PMTiles map protocol
-├── real_estate_styles.css       # Premium CSS design system (Dark mode & glassmorphism)
+CrownCorridor/
+├── app/                     # Front-end web application
+│   ├── index.html           # Dashboard entry point
+│   ├── portal.js            # Portal logic — maps, charts, listings, API
+│   └── styles.css           # Design system (glassmorphism dark-theme)
 │
-├── data/                        # Consolidated Geographic datasets
-│   ├── andhra_pradesh/          # AP specific regions, geoJSON maps, and coordinate metrics
-│   │   ├── regions.json
-│   │   ├── villages.json
-│   │   ├── districts.geojson
-│   │   ├── mandals.geojson
-│   │   └── coords.json
-│   └── telangana/               # TS specific regions, geoJSON maps, and coordinate metrics
-│       ├── regions.json
-│       ├── villages.json
-│       ├── districts.geojson
-│       ├── mandals.geojson
-│       └── coords.json
+├── data/                    # Geographic reference datasets (LGD)
+│   ├── andhra_pradesh/      # regions, villages, coords, GeoJSON boundaries
+│   └── telangana/           # regions, villages, coords, GeoJSON boundaries
 │
-├── docs/                        # Project documentation files
-├── notes/                       # Institutional knowledge vault (Obsidian compatible)
-└── scraper/                     # Ingestion scripts used to parse raw LGD directories
+├── pipeline/                # Lean AP/TS data pipeline
+│   ├── fetch_sro.py         # SRO registration data fetcher (exit-75 skip contract)
+│   ├── validate_data.py     # Data integrity validator (runs in CI)
+│   ├── requirements.txt     # requests, pytest
+│   └── tests/
+│       └── test_validate.py # pytest suite
+│
+├── docs/
+│   └── cadastral-hosting.md # R2 cadastral PMTile hosting reference
+│
+└── .github/
+    ├── actions/             # Shared composite steps
+    │   ├── setup-pipeline/
+    │   ├── datagov-fetch/
+    │   ├── publish-data-branch/
+    │   └── overlay-data-branches/
+    └── workflows/
+        ├── ci.yml           # PR tests (data validity + pytest)
+        ├── deploy-pages.yml # GitHub Pages deployment
+        ├── update-data.yml  # Weekly SRO data refresh → reviewed PR
+        ├── release.yml      # Versioned release with data archives
+        ├── publish-blog.yml # dev.to article on release
+        └── docs.yml         # JSDoc build-check on PRs
 ```
 
 ---
 
-## ⚡ Core Features
-
-1. **Verified Property Listings**:
-   - High-fidelity search and filter gallery for villas, apartments, commercial spaces, plots, and agricultural land.
-   - Interactive contact forms enabling direct inquiries to SRO verification agents.
-2. **Interactive Map Overview**:
-   - Bounding district choropleth showing real-time transaction density heat maps. Hover coordinates display metrics; clicking district outlines updates filters.
-3. **Geospatial Boundary Explorer**:
-   - Integrated drill-down navigation (State → District → Mandal → Village) that flies the map directly to LGD coordinates.
-   - Embeds Leaflet PMTiles protocol and MapLibre GL to render high-resolution vector tile cadastral land parcels and survey numbers (Andhra Pradesh BhuNaksha and Telangana BhuBharati) when zoom level >= 11.
-   - Evaluates nearby amenities (hospitals, schools, bank branches) using OpenStreetMap data context.
-4. **Stamp Duty Calculator**:
-   - Computes registration fees dynamically based on state stamp acts (AP combined levy 7.5%, TS combined levy 6.0%).
-5. **Government Guidance Directory**:
-   - Official valuation guide price directory estimation.
-6. **API Console & Webhook Alerts**:
-   - Sandbox console fetching simulated JSON transaction data.
-   - Alert forms to register webhook emails/SMS triggers for high-value properties.
-
----
-
-## 🚀 Running Locally
-
-To run the portal locally and enable AJAX queries (`fetch`) to load local GeoJSON files without browser CORS restrictions, start a local HTTP server:
+## Running Locally
 
 ```bash
-# Start python local server in the repository root
+# Serve from the repo root (data/ must be at the same level as app/)
 python3 -m http.server 8080
 ```
 
-Now, navigate to:
-👉 **[http://localhost:8080/index.html](http://localhost:8080/index.html)**
+Open **[http://localhost:8080/app/](http://localhost:8080/app/)**.
 
 ---
 
-## 📔 Documentation and Standards
+## Running Tests
 
-- **API References**: Auto-generated modules reference sheets are compiled using JSDoc (JS) and `pdoc` (Python):
-  ```bash
-  npm run docs
-  ```
-- **Formatting Guidelines**: Plain JS, CSS, HTML, and Markdown are formatted using `Prettier`. Python backend scraper scripts are formatted using `Black`:
-  ```bash
-  npm run format
-  ```
+```bash
+pip install -r pipeline/requirements.txt
+python pipeline/validate_data.py      # standalone data integrity check
+pytest pipeline/tests/ -v             # full test suite
+```
+
+---
+
+## Data Sources
+
+Geographic data is sourced from the **Government of India's [Local Government Directory (LGD)](https://lgdirectory.gov.in)** via the [Open Government Data platform](https://data.gov.in).
+
+Data may lag recent administrative reorganisations — verify critical records directly against the LGD portal.
+
+---
+
+## GitHub Pages Deployment
+
+GitHub Pages is deployed automatically on every push to `main` via the `deploy-pages.yml` workflow.  
+The deployment assembles `_site/` containing `app/` + `data/` overlays so relative paths resolve correctly.
+
+To enable Pages for the first time:
+1. Go to **Settings → Pages** in the repository.
+2. Set **Source** to `GitHub Actions`.
+
+---
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Security
+
+See [SECURITY.md](SECURITY.md).
+
+## License
+
+Data: [DATA_LICENSE.md](DATA_LICENSE.md) · Code: [LICENSE](LICENSE)

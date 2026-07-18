@@ -1,0 +1,67 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build Site for Pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Overlay Data Branches
+        uses: ./.github/actions/overlay-data-branches
+        with:
+          branches: 'data/andhra_pradesh,data/telangana'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Assemble Site Root
+        # GitHub Pages serves from a single directory.
+        # We build a _site/ folder containing app/ + data/ so that
+        # relative paths (../data/) resolve correctly.
+        run: |
+          mkdir -p _site
+          cp -r app/ _site/app
+          cp -r data/ _site/data
+          # Place a redirect at the site root → /app/
+          cat > _site/index.html <<'EOF'
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="UTF-8" />
+              <meta http-equiv="refresh" content="0; url=app/" />
+              <title>Crown Corridor</title>
+            </head>
+            <body><a href="app/">Crown Corridor Portal →</a></body>
+          </html>
+          EOF
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

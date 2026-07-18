@@ -1,0 +1,22 @@
+{
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "source": {
+    "include": ["app"],
+    "includePattern": ".+\\.js$",
+    "excludePattern": "(node_modules/|docs/)"
+  },
+  "plugins": ["plugins/markdown"],
+  "opts": {
+    "destination": "docs/api/js",
+    "recurse": true,
+    "template": "node_modules/docdash"
+  },
+  "docdash": {
+    "search": true,
+    "collapse": true,
+    "typedefs": true,
+    "sectionOrder": ["Classes", "Namespaces", "Modules", "Global"]
+  }
+}

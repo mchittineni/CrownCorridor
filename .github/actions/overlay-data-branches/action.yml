@@ -1,0 +1,45 @@
+name: 'Overlay Data Branches'
+description: 'Clones and overlays data branch contents onto the active workspace'
+inputs:
+  branches:
+    description: 'Comma separated list of data branches to overlay (e.g. data/andhra_pradesh,data/telangana)'
+    required: true
+  github-token:
+    description: 'GitHub token for auth'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Overlay Data Folders
+      run: |
+        IFS=',' read -ra BRANCH_ARR <<< "${{ inputs.branches }}"
+        for BRANCH in "${BRANCH_ARR[@]}"; do
+          echo "Overlaying assets from branch: $BRANCH"
+          
+          # Clean name for folder
+          CLEAN_NAME=$(echo "$BRANCH" | sed 's/\//_/g')
+          TEMP_DIR="../temp_overlay_$CLEAN_NAME"
+          rm -rf $TEMP_DIR
+          
+          # Check if the branch exists on remote
+          if git ls-remote --heads origin "$BRANCH" | grep -q "$BRANCH"; then
+            git clone --depth 1 --branch "$BRANCH" "https://x-access-token:${{ inputs.github-token }}@github.com/${{ github.repository }}.git" $TEMP_DIR
+            
+            # Recreate target path
+            # Example: data/andhra_pradesh is branch name. The contents should copy into data/andhra_pradesh/ in current workspace.
+            # We parse the branch structure. If branch is "data/andhra_pradesh", target is "./data/andhra_pradesh/"
+            TARGET_PATH="./$BRANCH"
+            mkdir -p $TARGET_PATH
+            cp -r $TEMP_DIR/* $TARGET_PATH/
+            
+            # Clean up cloned git files from temp directory
+            rm -rf $TARGET_PATH/.git
+            
+            echo "Successfully overlaid $BRANCH into $TARGET_PATH"
+          else
+            echo "Branch $BRANCH does not exist on remote. Skipping overlay."
+          fi
+          
+          rm -rf $TEMP_DIR
+        done
+      shell: bash

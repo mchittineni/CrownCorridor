@@ -1,0 +1,25 @@
+name: 'DataGov Fetch with Exit-75 Skip'
+description: 'Runs data.gov.in fetching pipelines and gracefully skips on upstream server outages (exit 75)'
+inputs:
+  run-command:
+    description: 'The python command to run'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Run Fetch Script
+      run: |
+        echo "Executing fetch: ${{ inputs.run-command }}"
+        set +e
+        ${{ inputs.run-command }}
+        EXIT_CODE=$?
+        set -e
+        
+        if [ $EXIT_CODE -eq 75 ]; then
+          echo "::warning title=Outage Skip::Upstream data.gov.in API is currently down (exited with code 75). Skipping this run contractually."
+          exit 0
+        elif [ $EXIT_CODE -ne 0 ]; then
+          echo "::error title=Fetch Failed::Pipeline failed with exit code $EXIT_CODE"
+          exit $EXIT_CODE
+        fi
+      shell: bash

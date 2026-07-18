@@ -159,10 +159,10 @@ class RealEstatePortal {
     try {
       // Fetch regions and coords
       const [apRes, tgRes, apCoords, tgCoords] = await Promise.all([
-        fetch('./data/andhra_pradesh/regions.json').then(r => r.json()),
-        fetch('./data/telangana/regions.json').then(r => r.json()),
-        fetch('./data/andhra_pradesh/coords.json').then(r => r.json()),
-        fetch('./data/telangana/coords.json').then(r => r.json())
+        fetch('../data/andhra_pradesh/regions.json').then(r => r.json()),
+        fetch('../data/telangana/regions.json').then(r => r.json()),
+        fetch('../data/andhra_pradesh/coords.json').then(r => r.json()),
+        fetch('../data/telangana/coords.json').then(r => r.json())
       ]);
       
       this.regions.ap = apRes;
@@ -176,8 +176,8 @@ class RealEstatePortal {
       
       // Load boundary GeoJSONs
       const [apGeo, tgGeo] = await Promise.all([
-        fetch('./data/andhra_pradesh/districts.geojson').then(r => r.json()),
-        fetch('./data/telangana/districts.geojson').then(r => r.json())
+        fetch('../data/andhra_pradesh/districts.geojson').then(r => r.json()),
+        fetch('../data/telangana/districts.geojson').then(r => r.json())
       ]);
 
       const combinedFeatures = [...apGeo.features, ...tgGeo.features];
@@ -658,7 +658,7 @@ class RealEstatePortal {
       
       try {
         const slug = state === 'Andhra Pradesh' ? 'andhra_pradesh' : 'telangana';
-        const villagesRes = await fetch(`./data/${slug}/villages.json`).then(r => r.json());
+        const villagesRes = await fetch(`../data/${slug}/villages.json`).then(r => r.json());
         
         // Filter villages by district and mandal names matching
         const filtered = villagesRes.filter(v => v[1] === district && v[2] === mandal);
