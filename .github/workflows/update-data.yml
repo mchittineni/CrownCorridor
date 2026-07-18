@@ -37,6 +37,7 @@ jobs:
           run-command: >-
             python pipeline/fetch_sro.py
             --state andhra_pradesh
+            --dry-run
             ${{ github.event.inputs.date && format('--date {0}', github.event.inputs.date) || '' }}
 
       - name: Fetch TS SRO Records
@@ -45,6 +46,7 @@ jobs:
           run-command: >-
             python pipeline/fetch_sro.py
             --state telangana
+            --dry-run
             ${{ github.event.inputs.date && format('--date {0}', github.event.inputs.date) || '' }}
 
       - name: Run Data Validator
