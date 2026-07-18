@@ -1,0 +1,89 @@
+name: Scheduled Data Update
+
+on:
+  schedule:
+    - cron: '0 1 * * 0'   # Every Sunday at 01:00 UTC (data.gov.in less busy)
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Date to fetch (YYYY-MM-DD, defaults to today)'
+        required: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-data:
+    name: Fetch & Refresh SRO Data
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+
+      - name: Setup Toolchain
+        uses: ./.github/actions/setup-pipeline
+
+      - name: Overlay Data Branches
+        uses: ./.github/actions/overlay-data-branches
+        with:
+          branches: 'data/andhra_pradesh,data/telangana'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fetch AP SRO Records
+        uses: ./.github/actions/datagov-fetch
+        with:
+          run-command: >-
+            python pipeline/fetch_sro.py
+            --state andhra_pradesh
+            ${{ github.event.inputs.date && format('--date {0}', github.event.inputs.date) || '' }}
+
+      - name: Fetch TS SRO Records
+        uses: ./.github/actions/datagov-fetch
+        with:
+          run-command: >-
+            python pipeline/fetch_sro.py
+            --state telangana
+            ${{ github.event.inputs.date && format('--date {0}', github.event.inputs.date) || '' }}
+
+      - name: Run Data Validator
+        run: python pipeline/validate_data.py
+
+      - name: Sync AP Data Branch
+        uses: ./.github/actions/publish-data-branch
+        with:
+          branch: 'data/andhra_pradesh'
+          source-directory: 'data/andhra_pradesh'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sync TS Data Branch
+        uses: ./.github/actions/publish-data-branch
+        with:
+          branch: 'data/telangana'
+          source-directory: 'data/telangana'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Open Reviewed PR for Updated Data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          PR_BRANCH="update/sro-data-$(date +'%Y-%m-%d')"
+          git checkout -b "$PR_BRANCH"
+          git add data/
+          
+          if git diff --cached --quiet; then
+            echo "No data changes detected. No PR needed."
+          else
+            git commit -m "data: automated SRO data refresh $(date -u +'%Y-%m-%d')"
+            git push origin "$PR_BRANCH"
+            gh pr create \
+              --title "data: scheduled SRO data refresh $(date +'%Y-%m-%d')" \
+              --body "Automated weekly refresh of AP & Telangana SRO registration records. Please review before merging to main." \
+              --base main \
+              --head "$PR_BRANCH"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash

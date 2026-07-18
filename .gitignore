@@ -6,3 +6,7 @@ scraper/tests/__pycache__/
 docs/api/
 scraper/.cache/
 *.log
+.venv/
+pipeline/__pycache__/
+pipeline/tests/__pycache__/
+__pycache__/

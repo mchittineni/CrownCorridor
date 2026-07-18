@@ -1,0 +1,46 @@
+name: Docs Build Check
+
+on:
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - 'app/portal.js'
+      - 'jsdoc.json'
+      - 'docs/**'
+      - '.github/workflows/docs.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  jsdoc-build:
+    name: JSDoc Build Verification
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
+        with:
+          node-version: '20'
+
+      - name: Install JSDoc + docdash
+        run: npm install --save-dev jsdoc docdash
+
+      - name: Build JSDoc API Reference
+        run: npx jsdoc -c jsdoc.json --pedantic
+        continue-on-error: false  # fail the PR check if JSDoc errors out
+
+      - name: Verify Output Exists
+        run: |
+          if [ ! -d "docs/api/js" ]; then
+            echo "::error::JSDoc output directory docs/api/js was not created"
+            exit 1
+          fi
+          FILE_COUNT=$(find docs/api/js -name "*.html" | wc -l)
+          echo "JSDoc generated $FILE_COUNT HTML files"
+          if [ "$FILE_COUNT" -eq 0 ]; then
+            echo "::warning::JSDoc produced no HTML output — check that app/portal.js has JSDoc comments"
+          fi

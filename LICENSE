@@ -1,14 +1,18 @@
 This project has TWO licences, because it combines original software with
 Government of India open data:
 
-  • SOFTWARE (all code in scraper/ and the web apps) ....... MIT License (below)
-  • DATA (everything derived from the Local Government Directory and the
-    boundary datasets, i.e. the CSV / JSON / GeoJSON files) .. Government Open
-    Data License – India (GODL-India). See DATA_LICENSE.md.
+  • SOFTWARE (all code in app/ and pipeline/) ............... MIT License (below)
+  • DATA (everything derived from the Local Government Directory and boundary
+    datasets, i.e. the JSON / GeoJSON files under data/) ...... Government Open
+    Data License – India (GODL-India).
+    Canonical text: https://data.gov.in/government-open-data-license-india
 
-You must comply with GODL-India (including its attribution requirement) when you
-reuse the data files. See DATA_LICENSE.md for the full terms and the required
-attribution statement.
+When reusing the data files, you must attribute the source:
+
+  Contains administrative data from the Local Government Directory (LGD),
+  Ministry of Panchayati Raj, Government of India, used under the Government
+  Open Data License – India (GODL-India), accessed via the data.gov.in
+  open-data API.
 
 --------------------------------------------------------------------------------
 MIT License (software)
