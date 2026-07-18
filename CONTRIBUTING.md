@@ -1,66 +1,46 @@
-# Contributing
+# Contributing to Crown Corridor
 
-Thanks for your interest in improving **Village Finder**! 🇮🇳🗺️
+Thank you for your interest in improving Crown Corridor! 🇮🇳🏙️
 
-There are two kinds of contributions, and they work a little differently.
+We welcome contributions to enhance the next-generation property discovery portal, verified listings database, interactive Leaflet PMTiles overlays, and developer API consoles.
 
-## 1. Report a data problem (no coding needed)
+---
 
-The village / mandal / district / pincode data comes from the **Local Government
-Directory (LGD)**. If something is wrong or missing:
+## Getting Started
 
-- Open a **[Data correction issue](../../issues/new?template=data_correction.yml)**: tell us
-  the state, district, mandal, village, and what's wrong vs. what it should be.
-- For errors in the _source_ records, please also report them to
-  [lgdirectory.gov.in](https://lgdirectory.gov.in) so they're fixed upstream for everyone.
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/mchittineni/CrownCorridor
+   cd CrownCorridor
+   ```
 
-We don't hand-edit data files (they're regenerated automatically); instead we fix the
-mapping logic or flag the upstream record.
+2. **Run Local Server**:
+   To preview the app locally and prevent browser CORS blocks when loading GeoJSON files:
+   ```bash
+   python3 -m http.server 8080
+   ```
+   Now, open `http://localhost:8080` in your web browser.
 
-## 2. Contribute code
+---
 
-```bash
-git clone https://github.com/mchittineni/india-village-finder
-cd india-village-finder/scraper
-python3 -m venv .venv
-./.venv/bin/pip install -r requirements-dev.txt
-./.venv/bin/python -m pytest tests -v      # make sure tests pass
-```
+## Project Structure
 
-- The map UI lives in **`scraper/web_template/`** (single source of truth); never edit
-  `*/web/*.js|css|html` directly; they're generated copies. Run
-  `python scraper/pipeline.py --offline --no-verify` to regenerate them.
-- The data pipeline is in **`scraper/`**; see [`scraper/README.md`](scraper/README.md).
-- CI follows an **actions/ + workflows/ split**: steps shared by several workflows
-  (toolchain setup, the data.gov.in outage-skip contract, publishing to and
-  overlaying from `data/*` branches) live as local composite actions in
-  **`.github/actions/`**; each workflow in `.github/workflows/` keeps only its
-  unique logic. Conventions: third-party actions are SHA-pinned, and inputs are
-  bound to `env:` rather than interpolated into `run:` scripts (injection).
-- **Where outputs land:** the LGD village data and neural native names go through
-  reviewed PRs to `main`; regenerable artifacts (boundary tiles, parcel indexes,
-  OSM name seeds, mandi prices) are published to dedicated `data/*` branches and
-  overlaid at deploy/build time; see the README's review-flow section.
-- Preview locally: `python3 -m http.server 8777` from the repo root, then open
-  `http://localhost:8777/`.
+- **Portal Front-End**: 
+  - `index.html` — The structural layout for the tabbed dashboard.
+  - `real_estate_portal.js` — Core logical script. Manages verified listings database, MapLibre GL cadastral vector overlays, interactive graphs, SRO simulation tickers, and tax calculator.
+  - `real_estate_styles.css` — Premium dark-mode styling and listings card grids.
+- **Root Datasets**: Cleaned geographic files are stored under `data/andhra_pradesh/` and `data/telangana/`.
+- **Scraper scripts**: Located in `scraper/`. Used for raw data collection and compilation from the Local Government Directory (LGD).
 
-### Pull requests
+---
 
-1. Branch off `main` (`feat/…`, `fix/…`, `docs/…`).
-2. Use clear, imperative commit messages with a type prefix: `feat:`, `fix:`,
-   `docs:`, `ci:`, `chore:`.
-3. Keep changes focused; update docs/tests as needed.
-4. Make sure the **`data-validation`** check passes.
-5. Open a PR using the template. PRs are **auto-labelled** by the paths they touch.
-   A maintainer (and/or GitHub Copilot) reviews before merge; `main` is protected,
-   so everything lands via a reviewed PR.
+## Pull Request Guidelines
 
-### Good places to start
-
-Look for [`good first issue`](../../issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
-and [`help wanted`](../../issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) labels.
-Ideas: adding a new state, improving village coordinate coverage, accessibility, or a public API.
-
-## Code of conduct
-
-By participating you agree to our [Code of Conduct](CODE_OF_CONDUCT.md).
+1. Branch off `main` (e.g., `feat/add-listing-sort`, `fix/maplibre-error`).
+2. Implement clean code following existing conventions:
+   - Use plain Vanilla CSS and Vanilla Javascript in the root portal.
+   - Comment code cleanly.
+3. Commit using clear, imperative messages with a type prefix: `feat:`, `fix:`, `docs:`, `chore:`.
+4. Ensure files are properly formatted before opening a PR:
+   - Run Prettier to format JS, CSS, and HTML.
+5. Submit your PR for review. A maintainer will review and test before merging.
