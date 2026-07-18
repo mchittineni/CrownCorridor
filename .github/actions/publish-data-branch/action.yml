@@ -1,5 +1,7 @@
-name: 'Publish Data Branch'
+name: Publish Data Branch
+
 description: 'Commits and pushes generated files directly to a data branch without raising a PR'
+
 inputs:
   branch:
     description: 'The target data/* branch to push to'
@@ -10,8 +12,10 @@ inputs:
   github-token:
     description: 'GitHub token for auth'
     required: true
+
 runs:
   using: 'composite'
+  
   steps:
     - name: Commit to Data Branch
       run: |

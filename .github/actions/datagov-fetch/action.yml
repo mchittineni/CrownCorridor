@@ -1,11 +1,15 @@
-name: 'DataGov Fetch with Exit-75 Skip'
+name: DataGov Fetch
+
 description: 'Runs data.gov.in fetching pipelines and gracefully skips on upstream server outages (exit 75)'
+
 inputs:
   run-command:
     description: 'The python command to run'
     required: true
+
 runs:
   using: 'composite'
+  
   steps:
     - name: Run Fetch Script
       run: |

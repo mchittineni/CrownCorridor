@@ -1,13 +1,37 @@
 /**
- * Crown Corridor — Next-Generation Real Estate & Property Discovery Portal
- * Core logical controller. Manages datasets, verified property databases,
- * Leaflet mappings, Chart.js integrations, calculators, and API interfaces.
+ * @fileoverview Crown Corridor — Next-Generation Real Estate & Property Discovery Portal
+ *
+ * Single-page portal that monitors real-time Sub-Registrar Office (SRO) property
+ * registrations across Andhra Pradesh and Telangana. Provides verified listings,
+ * geospatial boundary exploration with PMTiles cadastral overlays, stamp-duty
+ * calculation, guidance-value lookup, and a developer API sandbox.
+ *
+ * Dependencies (loaded via CDN in app/index.html):
+ *   - Leaflet 1.9 — base tile map
+ *   - MapLibre GL + leaflet-maplibre-gl — vector tile rendering
+ *   - PMTiles — cloud-native tile format for cadastral parcels
+ *   - Chart.js 4 — analytics charts
+ *
+ * Geographic data (loaded at runtime from ../data/):
+ *   - andhra_pradesh/regions.json, coords.json, districts.geojson
+ *   - telangana/regions.json, coords.json, districts.geojson
+ *
+ * @module portal
+ * @author Manideep Chittineni
+ * @license MIT
  */
 
-// Initialize PMTiles Protocol globally
+// Initialize PMTiles Protocol globally so all MapLibre GL sources can use the
+// `pmtiles://` URL scheme for range-request streaming of cadastral tiles.
 let protocol = new pmtiles.Protocol();
 maplibregl.addProtocol("pmtiles", protocol.tile);
 
+/**
+ * Main portal controller. Instantiated once on DOMContentLoaded.
+ *
+ * All state is held as instance properties. The boot sequence is:
+ *   constructor → init() → loadGeographicData() → [parallel UI init] → startLiveSimulation()
+ */
 class RealEstatePortal {
   constructor() {
     this.transactions = [];
@@ -95,6 +119,15 @@ class RealEstatePortal {
     this.plotListingsOnOverviewMap();
   }
 
+  /**
+   * Wires up the top-level dashboard tab navigation.
+   *
+   * Activates the clicked tab, hides all other tab-content panels, and invalidates
+   * Leaflet map sizes on tab reveal (Leaflet requires explicit resize calls when a
+   * map is shown after being hidden).
+   *
+   * @returns {void}
+   */
   initTabs() {
     const tabs = document.querySelectorAll('.nav-tab');
     tabs.forEach(tab => {
@@ -116,6 +149,20 @@ class RealEstatePortal {
     });
   }
 
+  /**
+   * Initialises both Leaflet map instances.
+   *
+   * Creates two separate map objects:
+   *   1. **Market Overview map** (`#leaflet-map`) — shows district boundaries
+   *      coloured by transaction volume and verified listing markers.
+   *   2. **Boundary Explorer map** (`#leaflet-explorer-map`) — village-level drill-down
+   *      with optional PMTiles cadastral overlay.
+   *
+   * Both maps use a CARTO dark basemap. The explorer map fires a `zoomend` listener
+   * to toggle the cadastral-zoom warning banner.
+   *
+   * @returns {void}
+   */
   initMaps() {
     // 1. Market Overview Map
     this.map = L.map('leaflet-map', {
@@ -189,6 +236,17 @@ class RealEstatePortal {
     }
   }
 
+  /**
+   * Parses a state's regions JSON and populates lookup maps.
+   *
+   * Builds `this.districts`, `this.mandalsByDistrict`, and the raw mandal→district
+   * registry from the `{districts, mandals}` format used in `regions.json`.
+   *
+   * @param {string} stateName - Human-readable state name (e.g. `'Andhra Pradesh'`).
+   * @param {{districts: Array<{i:number,n:string}>, mandals: Array<{i:number,n:string,d:number}>}} regionsData
+   *   Parsed content of `regions.json`.
+   * @returns {void}
+   */
   processGeographies(stateName, regionsData) {
     const stateDistricts = regionsData.districts || [];
     const stateMandals = regionsData.mandals || [];
@@ -204,6 +262,17 @@ class RealEstatePortal {
     });
   }
 
+  /**
+   * Draws district boundary polygons on the Market Overview map.
+   *
+   * Fetches `districts.geojson` for both AP and TS, merges the FeatureCollections,
+   * and adds a Leaflet GeoJSON layer. Each polygon is colour-blended between
+   * `#1e3a5f` (low volume) and `#3b82f6` (high volume) proportional to its
+   * district's normalised transaction count. Hover events highlight the district;
+   * click events filter the transaction explorer to that district.
+   *
+   * @returns {Promise<void>}
+   */
   renderDistrictBoundaries() {
     if (this.districtsLayer) {
       this.map.removeLayer(this.districtsLayer);
@@ -280,6 +349,14 @@ class RealEstatePortal {
     }).addTo(this.map);
   }
 
+  /**
+   * Linearly interpolates between two hex colours.
+   *
+   * @param {string} color1 - Start colour in hex format (e.g. `'#1e3a5f'`).
+   * @param {string} color2 - End colour in hex format (e.g. `'#3b82f6'`).
+   * @param {number} percentage - Blend factor in the range `[0, 1]`.
+   * @returns {string} Interpolated colour as an `rgb(r, g, b)` CSS string.
+   */
   blendColors(color1, color2, percentage) {
     const c1 = this.hexToRgb(color1);
     const c2 = this.hexToRgb(color2);
@@ -291,6 +368,13 @@ class RealEstatePortal {
     return `rgb(${r}, ${g}, ${b})`;
   }
 
+  /**
+   * Converts a CSS hex colour string to an RGB object.
+   *
+   * @param {string} hex - Hex colour string with or without leading `#`.
+   * @returns {{r: number, g: number, b: number}} RGB channel values in `[0, 255]`.
+   *   Returns `{r:0, g:0, b:0}` for invalid input.
+   */
   hexToRgb(hex) {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
@@ -300,11 +384,27 @@ class RealEstatePortal {
     } : { r: 0, g: 0, b: 0 };
   }
 
+  /**
+   * Resolves which state a district belongs to.
+   *
+   * @param {string} districtName - District name as it appears in `regions.json`.
+   * @returns {string} `'Andhra Pradesh'`, `'Telangana'`, or `'Unknown'`.
+   */
   getDistrictState(districtName) {
     const d = this.districts.find(item => item.name === districtName);
     return d ? d.state : 'Unknown';
   }
 
+  /**
+   * Seeds the transaction history with 120 simulated SRO registrations.
+   *
+   * Each transaction is spread randomly over the past 30 days, sorted
+   * newest-first, then district statistics are recalculated. This provides
+   * data for charts and the map heatmap on first load, before the live
+   * simulation ticker adds new records.
+   *
+   * @returns {void}
+   */
   bootstrapTransactions() {
     const totalBootstraps = 120;
     const now = new Date();
@@ -320,6 +420,21 @@ class RealEstatePortal {
     this.calculateDistrictStats();
   }
 
+  /**
+   * Generates a single structurally-correct simulated SRO transaction record.
+   *
+   * Mirrors the shape of real AP/TS SRO registration documents:
+   * document number, parties, survey number, property type, area, consideration
+   * value, stamp duty, transfer duty, and registration fee — all computed from
+   * the state's statutory tax rates.
+   *
+   * @param {Date|null} [customDate=null] - Date to stamp on the transaction.
+   *   Defaults to `new Date()` (now) when not supplied.
+   * @returns {Object} Transaction record with keys:
+   *   `docId`, `docNo`, `date`, `state`, `district`, `mandal`, `village`,
+   *   `propertyType`, `sroName`, `surveyNo`, `area`, `areaUnit`, `marketValue`,
+   *   `considerationValue`, `stampDuty`, `transferDuty`, `regFee`, `totalDuty`, `parties`.
+   */
   generateRandomTransaction(customDate = null) {
     const state = Math.random() > 0.45 ? 'Telangana' : 'Andhra Pradesh';
     const stateCode = state === 'Andhra Pradesh' ? 28 : 36;
@@ -398,6 +513,19 @@ class RealEstatePortal {
     };
   }
 
+  /**
+   * Generates 45 verified property listings distributed across AP and TS.
+   *
+   * Listings alternate between the two states and cycle through all five property
+   * types (Residential Plot, Flat, Agricultural Land, Commercial Space, Villa).
+   * Coordinates are drawn from the loaded `coords.json` files where available,
+   * falling back to randomised offsets within the AP/TS bounding box.
+   *
+   * Populates `this.listings` which is consumed by `renderVerifiedListings()` and
+   * `plotListingsOnOverviewMap()`.
+   *
+   * @returns {void}
+   */
   bootstrapVerifiedListings() {
     // Generate 45 realistic verified properties
     const totalListings = 45;
@@ -466,6 +594,15 @@ class RealEstatePortal {
     }
   }
 
+  /**
+   * Aggregates transaction totals by district.
+   *
+   * Rebuilds `this.districtStats` (keyed by district name) from the full
+   * `this.transactions` array. Called after bootstrapping and after each new
+   * live ticker transaction is appended.
+   *
+   * @returns {void}
+   */
   calculateDistrictStats() {
     this.districtStats = {};
     this.transactions.forEach(tx => {
@@ -478,6 +615,17 @@ class RealEstatePortal {
     });
   }
 
+  /**
+   * Refreshes all live-stat counters in the header and stats panel.
+   *
+   * Reads from `this.transactions` and updates the following DOM elements:
+   *   - `#live-reg-today` / `#live-value-today` — today's registration count and ₹ value
+   *   - `#stat-total-tx` / `#stat-total-val` — all-time totals
+   *   - `#stat-stamp-duty` — total stamp duty collected (in ₹ Cr)
+   *   - `#stat-velocity` — average daily registrations over the past 30 days
+   *
+   * @returns {void}
+   */
   updateDashboardStats() {
     const totalTransactions = this.transactions.length;
     const totalValue = this.transactions.reduce((sum, tx) => sum + tx.considerationValue, 0) / 10000000;
@@ -502,6 +650,16 @@ class RealEstatePortal {
     document.getElementById('stat-velocity').textContent = velocity + ' Tx/Day';
   }
 
+  /**
+   * Renders the verified property listings grid.
+   *
+   * Reads from `this.listings`, applies any active filters (state, property type,
+   * free-text search), and injects listing cards into `#listings-grid`. Each card
+   * shows the property image, price, area, location, amenities, and an inquiry
+   * button wired to `openContactModal()`.
+   *
+   * @returns {void}
+   */
   renderVerifiedListings() {
     const cardGrid = document.getElementById('listings-card-grid');
     cardGrid.innerHTML = '';
@@ -568,6 +726,15 @@ class RealEstatePortal {
     });
   }
 
+  /**
+   * Plots all verified listings as markers on the Market Overview map.
+   *
+   * Clears any previous listing markers, then adds a custom blue circle marker
+   * for each listing in `this.listings`. Clicking a marker opens a popup with
+   * the listing title and a link to open the inquiry modal.
+   *
+   * @returns {void}
+   */
   plotListingsOnOverviewMap() {
     // Clear previous listing markers
     this.mapListingMarkers.forEach(m => this.map.removeLayer(m));
@@ -593,6 +760,15 @@ class RealEstatePortal {
     });
   }
 
+  /**
+   * Wires up the listings filter controls.
+   *
+   * Attaches `change`/`input` event listeners to the state selector, property-type
+   * selector, and text search box; each event triggers a re-render via
+   * `renderVerifiedListings()`.
+   *
+   * @returns {void}
+   */
   initListingsFilters() {
     const listState = document.getElementById('list-state');
     const listType = document.getElementById('list-type');
@@ -605,6 +781,20 @@ class RealEstatePortal {
     listSearch.addEventListener('input', () => this.renderVerifiedListings());
   }
 
+  /**
+   * Initialises the Geospatial Boundary Explorer tab.
+   *
+   * Sets up the cascading state → district → mandal dropdowns, populates them
+   * from the loaded geographic data, and wires the village autocomplete search.
+   * Selecting a village fires the full exploration sequence:
+   *   1. Load the village's coordinates and fly the map there.
+   *   2. Place an explorer marker and render boundary metrics.
+   *   3. Show nearby amenities.
+   *   4. Update the cadastral vector layer via `updateCadastralVectorLayer()`.
+   *   5. Render survey number chips.
+   *
+   * @returns {void}
+   */
   initBoundaryExplorer() {
     const bState = document.getElementById('boundary-state');
     const bDistrict = document.getElementById('boundary-district');
@@ -753,6 +943,21 @@ class RealEstatePortal {
     });
   }
 
+  /**
+   * Loads or reloads the MapLibre GL cadastral PMTiles layer on the explorer map.
+   *
+   * Removes any existing `this.explorerCadastralLayer`, then adds a new
+   * `L.maplibreGL` layer using the correct R2-hosted PMTiles URL for the
+   * currently selected state:
+   *   - AP: `APSAC_AP_Cadastrals.pmtiles` (survey field: `parcel_num`)
+   *   - TS: `TRACGIS_Bhunaksha_Cadastrals.pmtiles` (survey field: `Parcel_num`)
+   *
+   * The MapLibre style renders three layers: parcel fill, parcel outlines, and
+   * survey-number labels (visible at zoom ≥ 13). Errors are caught and logged
+   * as warnings without crashing the explorer.
+   *
+   * @returns {void}
+   */
   updateCadastralVectorLayer() {
     if (this.explorerCadastralLayer) {
       this.explorerMap.removeLayer(this.explorerCadastralLayer);
@@ -828,6 +1033,16 @@ class RealEstatePortal {
     }
   }
 
+  /**
+   * Renders a simulated list of nearby civic amenities for a selected village.
+   *
+   * Displays a fixed set of representative amenities (PHC, school, bank, mandi)
+   * with approximate distances. In a production deployment, this would be replaced
+   * with a live Overpass API call using the supplied coordinates.
+   *
+   * @param {{lat: number, lng: number}} coords - Geographic coordinates of the selected village.
+   * @returns {void}
+   */
   renderNearbyAmenities(coords) {
     const section = document.getElementById('nearby-amenities-section');
     const list = document.getElementById('amenities-list');
@@ -850,6 +1065,16 @@ class RealEstatePortal {
     });
   }
 
+  /**
+   * Populates the survey number chip list in the boundary explorer sidebar.
+   *
+   * Generates 15 mock survey numbers in the format used by AP/TS cadastral
+   * records (e.g. `52/B`). Each chip, when clicked, shows a toast notification
+   * simulating a parcel-centre fly-to. In production, chip data would be sourced
+   * from the precomputed `parcels_index.json` for the selected village.
+   *
+   * @returns {void}
+   */
   renderSurveyNumbersChips() {
     const list = document.getElementById('boundary-survey-list');
     list.innerHTML = '';
@@ -873,6 +1098,19 @@ class RealEstatePortal {
     }
   }
 
+  /**
+   * Initialises the Stamp Duty & Registration Fee calculator.
+   *
+   * Populates the property-type dropdown from `this.propertyTypes` and wires
+   * `input`/`change` events on the value field and state selector. On each
+   * change the breakdown table is updated with:
+   *   - Stamp Duty (AP 5%, TS 4%)
+   *   - Transfer Duty (AP 1.5%, TS 1.5%)
+   *   - Registration Fee (AP 1%, TS 0.5%)
+   *   - Total levy
+   *
+   * @returns {void}
+   */
   initCalculator() {
     const calcState = document.getElementById('calc-state');
     const calcType = document.getElementById('calc-prop-type');
@@ -906,6 +1144,16 @@ class RealEstatePortal {
     calculate();
   }
 
+  /**
+   * Initialises the Government Guidance Value directory.
+   *
+   * Populates the district selector for both states and wires the search button.
+   * On search, renders a table of mandal-level guidance values (₹ per sq. yard
+   * for plots, ₹ per sq. ft for flats) sourced from a curated in-memory dataset
+   * that mirrors the SRO Basic Value Registers for AP and TS.
+   *
+   * @returns {void}
+   */
   initGuideValueSearch() {
     const guideState = document.getElementById('guide-state');
     const guideDistrict = document.getElementById('guide-district');
@@ -994,6 +1242,16 @@ class RealEstatePortal {
     updateDistricts();
   }
 
+  /**
+   * Initialises the Developer API Console tab.
+   *
+   * Wires the query builder controls (state, district, property type, date range)
+   * and the Execute Query button. On execution, renders a formatted JSON response
+   * that mirrors the structure a real SRO API would return, drawn from
+   * `this.transactions`.
+   *
+   * @returns {void}
+   */
   initApiSandbox() {
     const sandboxQueryInput = document.getElementById('api-query');
     const apiCodeDisplay = document.getElementById('api-response-code');
@@ -1048,6 +1306,15 @@ class RealEstatePortal {
     updateResponse();
   }
 
+  /**
+   * Initialises the Webhook Alerts subscription panel.
+   *
+   * Wires the alert configuration form (webhook URL, event types, minimum value
+   * threshold) and the Subscribe button. Validates the webhook URL format and
+   * shows a confirmation toast on successful subscription.
+   *
+   * @returns {void}
+   */
   initAlertsSubscription() {
     const subForm = document.getElementById('alerts-form');
     subForm.addEventListener('submit', (e) => {
@@ -1066,6 +1333,15 @@ class RealEstatePortal {
     });
   }
 
+  /**
+   * Initialises modal overlay behaviour.
+   *
+   * Wires the close button and backdrop click on the property inquiry modal
+   * (`#contact-modal`) to hide it. The modal itself is opened by
+   * `openContactModal()`.
+   *
+   * @returns {void}
+   */
   initModals() {
     const modal = document.getElementById('contact-modal');
     const closeBtn = document.getElementById('modal-close-btn');
@@ -1090,6 +1366,17 @@ class RealEstatePortal {
     });
   }
 
+  /**
+   * Opens the property inquiry modal for a specific listing.
+   *
+   * Populates the modal header with the listing title and property ID, then
+   * displays the modal overlay. The modal contains a contact form pre-filled
+   * with the property reference.
+   *
+   * @param {string} propId - Listing identifier (e.g. `'PROP-1042'`).
+   * @param {string} propTitle - Human-readable listing title shown in the modal header.
+   * @returns {void}
+   */
   openContactModal(propId, propTitle) {
     const modal = document.getElementById('contact-modal');
     document.getElementById('modal-prop-title').textContent = `Query: ${propTitle.substring(0, 32)}...`;
@@ -1097,6 +1384,19 @@ class RealEstatePortal {
     modal.style.display = 'flex';
   }
 
+  /**
+   * Starts the live SRO registration feed simulation.
+   *
+   * Schedules a new transaction every 3–8 seconds (randomised), prepends it to
+   * the live ticker, appends it to `this.transactions`, recalculates district
+   * statistics, updates dashboard stats and charts. Also refreshes the district
+   * boundary colour scale on every 5th new transaction.
+   *
+   * In a production deployment this interval would be replaced with a WebSocket
+   * or Server-Sent Events connection to a live SRO data stream.
+   *
+   * @returns {void}
+   */
   startLiveSimulation() {
     // Scroll live ticker cards
     setInterval(() => {
@@ -1119,6 +1419,16 @@ class RealEstatePortal {
     }, 8500);
   }
 
+  /**
+   * Inserts a new transaction card at the top of the live ticker strip.
+   *
+   * Creates a `<div class="ticker-card">` element, animates it in with a fade/slide,
+   * and removes the oldest card when the strip exceeds 20 items to prevent
+   * unbounded DOM growth.
+   *
+   * @param {Object} tx - Transaction record as returned by `generateRandomTransaction()`.
+   * @returns {void}
+   */
   prependToLiveFeed(tx) {
     const feedList = document.getElementById('live-feed-list');
     const card = document.createElement('div');
@@ -1148,6 +1458,18 @@ class RealEstatePortal {
     }
   }
 
+  /**
+   * Initialises all Chart.js analytics charts.
+   *
+   * Creates three charts inside the Analytics tab:
+   *   1. **Property Type Distribution** (`#chart-prop-types`) — doughnut chart.
+   *   2. **Price Trends** (`#chart-price-trends`) — 12-month line chart.
+   *   3. **District Transaction Volumes** (`#chart-district-volumes`) — horizontal bar chart.
+   *
+   * Chart instances are stored in `this.charts` and updated by `updateCharts()`.
+   *
+   * @returns {void}
+   */
   initCharts() {
     const options = {
       responsive: true,
@@ -1196,6 +1518,14 @@ class RealEstatePortal {
     });
   }
 
+  /**
+   * Computes property-type distribution data for the doughnut chart.
+   *
+   * Counts transactions by `propertyType` and returns Chart.js-compatible
+   * `{labels, data, colors}` arrays.
+   *
+   * @returns {{labels: string[], data: number[], colors: string[]}} Chart dataset.
+   */
   getPropTypesChartData() {
     const counts = {};
     this.propertyTypes.forEach(pt => counts[pt.name] = 0);
@@ -1214,6 +1544,15 @@ class RealEstatePortal {
     };
   }
 
+  /**
+   * Computes monthly average consideration values for the price-trends line chart.
+   *
+   * Groups transactions by calendar month over the past 12 months and calculates
+   * the mean consideration value (in ₹ Lakhs) per month.
+   *
+   * @returns {{labels: string[], apData: number[], tgData: number[]}} Monthly averages
+   *   split by state, suitable for a multi-dataset Chart.js line chart.
+   */
   getPriceTrendsChartData() {
     const labels = ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
     let apBase = 4500;
@@ -1242,6 +1581,13 @@ class RealEstatePortal {
     };
   }
 
+  /**
+   * Computes per-district transaction counts for the bar chart.
+   *
+   * Returns the top 10 districts by transaction volume, sorted descending.
+   *
+   * @returns {{labels: string[], data: number[]}} District names and counts.
+   */
   getDistrictVolumesChartData() {
     const sortedDistricts = Object.keys(this.districtStats)
       .map(name => ({ name, count: this.districtStats[name].count }))
@@ -1258,6 +1604,15 @@ class RealEstatePortal {
     };
   }
 
+  /**
+   * Refreshes all chart datasets from the current transaction array.
+   *
+   * Called after each live-simulation tick (every 5th transaction) to keep
+   * charts in sync with new registrations. Updates `chart.data` in-place and
+   * calls `chart.update()` for each chart instance.
+   *
+   * @returns {void}
+   */
   updateCharts() {
     if (!this.charts.propTypes) return;
     this.charts.propTypes.data = this.getPropTypesChartData();
@@ -1271,6 +1626,14 @@ class RealEstatePortal {
   }
 
   /* Formatting Helpers */
+  /**
+   * Formats a numeric rupee value into a human-readable abbreviated string.
+   *
+   * Thresholds: ≥10 Cr → `'X.XX Cr'`, ≥1 L → `'X.XX L'`, else `'₹X,XXX'`.
+   *
+   * @param {number} value - Monetary value in Indian Rupees.
+   * @returns {string} Formatted string (e.g. `'12.45 Cr'`, `'3.20 L'`).
+   */
   formatCurrency(value) {
     if (value >= 10000000) {
       return (value / 10000000).toFixed(2) + ' Cr';
@@ -1280,10 +1643,27 @@ class RealEstatePortal {
     return this.formatINR(value);
   }
 
+  /**
+   * Formats a number using the Indian numbering system locale.
+   *
+   * Delegates to `Intl.NumberFormat` with locale `'en-IN'` and no fractional
+   * digits, producing strings like `'12,34,567'`.
+   *
+   * @param {number} value - Numeric value to format.
+   * @returns {string} Locale-formatted string.
+   */
   formatINR(value) {
     return value.toLocaleString('en-IN');
   }
 
+  /**
+   * Formats a large integer with compact notation.
+   *
+   * Returns values ≥ 1000 as `'X.Xk'` and values < 1000 as a plain string.
+   *
+   * @param {number} value - Non-negative integer.
+   * @returns {string} Compact formatted string (e.g. `'1.2k'`, `'842'`).
+   */
   formatNumber(value) {
     return value.toLocaleString();
   }

@@ -1,5 +1,7 @@
-name: 'Overlay Data Branches'
+name: Overlay Data Branches
+
 description: 'Clones and overlays data branch contents onto the active workspace'
+
 inputs:
   branches:
     description: 'Comma separated list of data branches to overlay (e.g. data/andhra_pradesh,data/telangana)'
@@ -7,8 +9,10 @@ inputs:
   github-token:
     description: 'GitHub token for auth'
     required: true
+
 runs:
   using: 'composite'
+  
   steps:
     - name: Overlay Data Folders
       run: |
