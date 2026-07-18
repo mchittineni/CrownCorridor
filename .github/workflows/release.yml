@@ -1,0 +1,69 @@
+name: Publish Versioned Release
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build & Publish GitHub Release
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+
+      - name: Overlay Data Branches
+        uses: ./.github/actions/overlay-data-branches
+        with:
+          branches: 'data/andhra_pradesh,data/telangana'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Toolchain
+        uses: ./.github/actions/setup-pipeline
+
+      - name: Run Data Validator
+        run: python pipeline/validate_data.py
+
+      - name: Build Data Archives
+        run: |
+          mkdir -p release-artifacts
+          
+          # AP data archive
+          cd data/andhra_pradesh
+          zip -r ../../release-artifacts/crown-corridor-ap-${{ github.ref_name }}.zip .
+          cd ../..
+          
+          # TS data archive
+          cd data/telangana
+          zip -r ../../release-artifacts/crown-corridor-ts-${{ github.ref_name }}.zip .
+          cd ../..
+          
+          # Combined archive
+          zip -r release-artifacts/crown-corridor-all-${{ github.ref_name }}.zip data/
+          
+          echo "Release artifacts:"
+          ls -lh release-artifacts/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228 # v3
+        with:
+          name: "Crown Corridor ${{ github.ref_name }}"
+          body: |
+            ## Crown Corridor ${{ github.ref_name }}
+            
+            Next-generation real estate monitoring portal for Andhra Pradesh & Telangana.
+            
+            ### Downloadable Data Archives
+            - `crown-corridor-ap-${{ github.ref_name }}.zip` — Andhra Pradesh geographic datasets
+            - `crown-corridor-ts-${{ github.ref_name }}.zip` — Telangana geographic datasets
+            - `crown-corridor-all-${{ github.ref_name }}.zip` — Combined archive (both states)
+            
+            All datasets sourced from the Government of India's Local Government Directory (LGD).
+          files: release-artifacts/*.zip
+          draft: false
+          prerelease: ${{ contains(github.ref_name, '-rc') || contains(github.ref_name, '-beta') }}
