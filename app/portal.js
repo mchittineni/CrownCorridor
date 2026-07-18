@@ -19,6 +19,7 @@
  * @module portal
  * @author Manideep Chittineni
  * @license MIT
+ * 
  */
 
 // Initialize PMTiles Protocol globally so all MapLibre GL sources can use the
