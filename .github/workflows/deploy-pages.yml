@@ -29,14 +29,27 @@ jobs:
           branches: 'data/andhra_pradesh,data/telangana'
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: '24'
+
+      - name: Install JSDoc + docdash
+        run: npm install --save-dev jsdoc docdash
+
+      - name: Build JSDoc API Reference
+        run: npx jsdoc -c jsdoc.json --pedantic
+
       - name: Assemble Site Root
         # GitHub Pages serves from a single directory.
-        # We build a _site/ folder containing app/ + data/ so that
-        # relative paths (../data/) resolve correctly.
+        # We build a _site/ folder containing app/ + data/ + docs/ so that
+        # relative paths resolve correctly.
         run: |
           mkdir -p _site
           cp -r app/ _site/app
           cp -r data/ _site/data
+          cp -r docs/ _site/docs
+          touch _site/.nojekyll
           # Place a redirect at the site root → /app/
           cat > _site/index.html <<'EOF'
           <!doctype html>
