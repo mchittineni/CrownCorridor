@@ -42,7 +42,7 @@ CrownCorridor/
 │       └── test_validate.py # pytest suite
 │
 ├── docs/
-│   └── cadastral-hosting.md # R2 cadastral PMTile hosting reference
+│   └── index.md             # Documentation hub and architecture overview
 │
 └── .github/
     ├── actions/             # Shared composite steps
@@ -111,4 +111,4 @@ See [SECURITY.md](SECURITY.md).
 
 ## License
 
-Data: [DATA_LICENSE.md](DATA_LICENSE.md) · Code: [LICENSE](LICENSE)
+Code: [LICENSE](LICENSE)

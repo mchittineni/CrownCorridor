@@ -73,7 +73,6 @@ Four shared composite actions: `setup-pipeline`, `datagov-fetch`,
 #### Documentation (`docs/`)
 
 - `docs/index.md` — architecture overview and navigation hub.
-- `docs/cadastral-hosting.md` — R2 cadastral PMTile hosting reference for AP & TS.
 - `jsdoc.json` — JSDoc config targeting `app/portal.js`.
 
 #### Project Files
@@ -82,7 +81,6 @@ Four shared composite actions: `setup-pipeline`, `datagov-fetch`,
   data attribution, and GitHub Pages setup guide.
 - `CHANGELOG.md` (this file).
 - `LICENSE` — MIT for code, GODL-India for data.
-- `DATA_LICENSE.md` — full GODL-India terms and required attribution.
 - `CONTRIBUTING.md`, `SECURITY.md` — community-health files.
 - `.gitignore` — excludes `.venv/`, `__pycache__/`, `data/sro_feed/`, `.pytest_cache/`.
 
