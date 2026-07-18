@@ -79,7 +79,7 @@ jobs:
             echo "No data changes detected. No PR needed."
           else
             git commit -m "data: automated SRO data refresh $(date -u +'%Y-%m-%d')"
-            git push origin "$PR_BRANCH"
+            git push -f origin "$PR_BRANCH"
             gh pr create \
               --title "data: scheduled SRO data refresh $(date +'%Y-%m-%d')" \
               --body "Automated weekly refresh of AP & Telangana SRO registration records. Please review before merging to main." \
