@@ -1,0 +1,62 @@
+[
+  {
+    "document_id": "DOC-20260718-592197",
+    "registered_date": "2026-07-18",
+    "state": "Telangana",
+    "district": "Ranga Reddy",
+    "property_type": "Agricultural Land",
+    "colony": "My Home Jewel Complex",
+    "block_unit": "Survey Part-A",
+    "consideration_value_inr": 44486718,
+    "total_duty_inr": 2669203,
+    "source": "stub"
+  },
+  {
+    "document_id": "DOC-20260718-419426",
+    "registered_date": "2026-07-18",
+    "state": "Telangana",
+    "district": "Sangareddy",
+    "property_type": "Residential Flat",
+    "colony": "Kavuri Hills Colony",
+    "block_unit": "Block C, Flat 200",
+    "consideration_value_inr": 49051295,
+    "total_duty_inr": 2943077,
+    "source": "stub"
+  },
+  {
+    "document_id": "DOC-20260718-589372",
+    "registered_date": "2026-07-18",
+    "state": "Telangana",
+    "district": "Ranga Reddy",
+    "property_type": "Residential Plot",
+    "colony": "My Home Jewel Complex",
+    "block_unit": "Plot No 122, Sector 1",
+    "consideration_value_inr": 5101952,
+    "total_duty_inr": 306117,
+    "source": "stub"
+  },
+  {
+    "document_id": "DOC-20260718-825265",
+    "registered_date": "2026-07-18",
+    "state": "Telangana",
+    "district": "Hyderabad",
+    "property_type": "Agricultural Land",
+    "colony": "Pragathi Nagar Layout",
+    "block_unit": "Survey Part-A",
+    "consideration_value_inr": 7114360,
+    "total_duty_inr": 426861,
+    "source": "stub"
+  },
+  {
+    "document_id": "DOC-20260718-511073",
+    "registered_date": "2026-07-18",
+    "state": "Telangana",
+    "district": "Ranga Reddy",
+    "property_type": "Independent Villa",
+    "colony": "Jubilee Hills Sector-3",
+    "block_unit": "Villa 50, Phase 1",
+    "consideration_value_inr": 39980442,
+    "total_duty_inr": 2398826,
+    "source": "stub"
+  }
+]

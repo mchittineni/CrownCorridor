@@ -1,0 +1,62 @@
+[
+  {
+    "document_id": "DOC-20260718-453357",
+    "registered_date": "2026-07-18",
+    "state": "Andhra Pradesh",
+    "district": "Tirupati",
+    "property_type": "Residential Plot",
+    "colony": "Amaravati Heights",
+    "block_unit": "Plot No 72, Sector 2",
+    "consideration_value_inr": 20507515,
+    "total_duty_inr": 1538063,
+    "source": "stub"
+  },
+  {
+    "document_id": "DOC-20260718-384203",
+    "registered_date": "2026-07-18",
+    "state": "Andhra Pradesh",
+    "district": "Visakhapatnam",
+    "property_type": "Residential Flat",
+    "colony": "Vidhya Nagar Colony",
+    "block_unit": "Block A, Flat 149",
+    "consideration_value_inr": 22477504,
+    "total_duty_inr": 1685812,
+    "source": "stub"
+  },
+  {
+    "document_id": "DOC-20260718-555820",
+    "registered_date": "2026-07-18",
+    "state": "Andhra Pradesh",
+    "district": "Guntur",
+    "property_type": "Independent Villa",
+    "colony": "Amaravati Heights",
+    "block_unit": "Villa 17, Phase 3",
+    "consideration_value_inr": 12902939,
+    "total_duty_inr": 967720,
+    "source": "stub"
+  },
+  {
+    "document_id": "DOC-20260718-892566",
+    "registered_date": "2026-07-18",
+    "state": "Andhra Pradesh",
+    "district": "Krishna",
+    "property_type": "Independent Villa",
+    "colony": "MVP Colony",
+    "block_unit": "Villa 76, Phase 2",
+    "consideration_value_inr": 7619532,
+    "total_duty_inr": 571464,
+    "source": "stub"
+  },
+  {
+    "document_id": "DOC-20260718-707142",
+    "registered_date": "2026-07-18",
+    "state": "Andhra Pradesh",
+    "district": "Visakhapatnam",
+    "property_type": "Agricultural Land",
+    "colony": "Bhavani Nagar Society",
+    "block_unit": "Survey Part-B",
+    "consideration_value_inr": 34701360,
+    "total_duty_inr": 2602602,
+    "source": "stub"
+  }
+]
