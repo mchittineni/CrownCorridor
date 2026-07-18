@@ -120,16 +120,36 @@ def _stub_records(state: str, date: str, count: int = 3) -> list[dict]:
     prop_types = ["Residential Plot", "Residential Flat", "Agricultural Land",
                   "Commercial Space", "Independent Villa"]
 
+    colonies_ap = ["MVP Colony", "Seethammadhara Layout", "Amaravati Heights", "Vidhya Nagar Colony", "Labbipet Enclave", "Kanuru Greenfields", "Balaji Nagar Layout", "Bhavani Nagar Society"]
+    colonies_tg = ["Rainbow Vistas Colony", "Kavuri Hills Colony", "Lanco Hills Towers", "My Home Jewel Complex", "Gachibowli Financial Enclave", "Pragathi Nagar Layout", "Jubilee Hills Sector-3", "Srinagar Colony"]
+    colonies = colonies_ap if state == "Andhra Pradesh" else colonies_tg
+
     records = []
     for i in range(count):
         consideration = random.randint(500_000, 50_000_000)
         tax_rate = 0.075 if state == "Andhra Pradesh" else 0.06
+        ptype = random.choice(prop_types)
+        colony = random.choice(colonies)
+        
+        if ptype == "Residential Flat":
+            block_unit = f"Block {random.choice(['A', 'B', 'C', 'D'])}, Flat {random.randint(100, 499)}"
+        elif ptype == "Commercial Space":
+            block_unit = f"Tower {random.randint(1, 4)}, Suite {random.randint(100, 999)}"
+        elif ptype == "Residential Plot":
+            block_unit = f"Plot No {random.randint(1, 150)}, Sector {random.randint(1, 4)}"
+        elif ptype == "Independent Villa":
+            block_unit = f"Villa {random.randint(1, 80)}, Phase {random.randint(1, 3)}"
+        else:
+            block_unit = f"Survey Part-{random.choice(['A', 'B', 'C'])}"
+
         records.append({
             "document_id": f"DOC-{date.replace('-', '')}-{random.randint(100000, 999999)}",
             "registered_date": date,
             "state": state,
             "district": random.choice(districts),
-            "property_type": random.choice(prop_types),
+            "property_type": ptype,
+            "colony": colony,
+            "block_unit": block_unit,
             "consideration_value_inr": consideration,
             "total_duty_inr": int(consideration * tax_rate),
             "source": "stub",
