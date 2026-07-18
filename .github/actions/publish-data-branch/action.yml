@@ -35,6 +35,9 @@ runs:
         # Clone target data branch or create it if not exists
         if git ls-remote --heads origin "$TARGET_BRANCH" | grep -q "$TARGET_BRANCH"; then
           git clone --depth 1 --branch "$TARGET_BRANCH" "https://x-access-token:${{ inputs.github-token }}@github.com/${{ github.repository }}.git" $TEMP_CLONE
+          cd $TEMP_CLONE
+          git rm -rf . || rm -rf *
+          cd -
         else
           git clone --depth 1 "https://x-access-token:${{ inputs.github-token }}@github.com/${{ github.repository }}.git" $TEMP_CLONE
           cd $TEMP_CLONE
