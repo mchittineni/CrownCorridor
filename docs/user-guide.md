@@ -31,8 +31,8 @@ The portal is split into **five main tabs** located in the sidebar (or top menu 
 * **What you see**: A grid of property cards showing plots, flats, villas, agricultural land, and commercial spaces.
 * **How to use it**:
   * **Filters**: Use the dropdown menus at the top to filter by State (Andhra Pradesh vs. Telangana) or Property Type.
-  * **Search Bar**: Type the name of a district or locality (e.g., "Visakhapatnam" or "Guntur") to filter listings matching that text.
-  * **Verification Badges**: Every listing has a green checkmark indicating that its location and survey number have been validated.
+  * **Search Bar**: Type the name of a colony (e.g., "MVP Colony", "Rainbow Vistas Colony"), block/flat unit (e.g., "Flat 302", "Villa 24"), district, or locality to instantly filter matching properties.
+  * **Verification Badges**: Every listing has a green checkmark indicating that its location, colony block, and survey number have been validated by SRO representatives.
   * **Contacting an Agent**: Click **Contact Agent** on any property card to open a pre-filled inquiry form. Submitting this form sends an inquiry toast indicating the broker has been notified.
 
 ### 3. Geospatial Boundary Explorer (Verify Plot Survey Numbers)

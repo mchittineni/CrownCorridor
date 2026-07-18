@@ -73,7 +73,7 @@ jobs:
           
           PR_BRANCH="update/sro-data-$(date +'%Y-%m-%d')"
           git checkout -b "$PR_BRANCH"
-          git add data/
+          git add data/sro_feed/
           
           if git diff --cached --quiet; then
             echo "No data changes detected. No PR needed."
