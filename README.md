@@ -55,7 +55,6 @@ CrownCorridor/
         ├── deploy-pages.yml # GitHub Pages deployment
         ├── update-data.yml  # Weekly SRO data refresh → reviewed PR
         ├── release.yml      # Versioned release with data archives
-        ├── publish-blog.yml # dev.to article on release
         └── docs.yml         # JSDoc build-check on PRs
 ```
 
