@@ -84,7 +84,11 @@ jobs:
               --title "data: scheduled SRO data refresh $(date +'%Y-%m-%d')" \
               --body "Automated weekly refresh of AP & Telangana SRO registration records. Please review before merging to main." \
               --base main \
-              --head "$PR_BRANCH"
+              --head "$PR_BRANCH" || {
+                echo "::warning:: GitHub Actions is not permitted to create pull requests."
+                echo "Please enable the permission under 'Settings' -> 'Actions' -> 'General' -> 'Workflow permissions' -> check 'Allow GitHub Actions to create and approve pull requests'."
+                echo "Branch $PR_BRANCH has been successfully pushed. You can create the pull request manually."
+              }
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
