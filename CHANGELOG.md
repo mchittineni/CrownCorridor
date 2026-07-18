@@ -14,6 +14,20 @@ release attaches downloadable datasets; see [Releases][releases].
 
 ## [Unreleased]
 
+## [1.0.1] — 2026-07-19
+
+### Fixed
+
+- **Scheduled Data Update Workflow**: Configured git user settings globally and locally inside the target temporary clone in the `publish-data-branch` composite action, fixing the fatal `Author identity unknown (exit code 128)` error.
+- **SRO Feed Generation**: Added the `--dry-run` flag to SRO fetch steps in `update-data.yml` to generate simulated records on scheduled runs where official APIs are not configured.
+- **Push Conflict Resolution**: Configured automated branch pushing to use force-push (`git push -f`) in `update-data.yml` to prevent failures when pushing duplicate branch references on the same day.
+- **PR Permissions Fallback**: Added custom error handling around `gh pr create` in `update-data.yml` to print setup instructions instead of failing the workflow when pull request creation is disabled by default on the token.
+- **Node.js Deprecations**: Updated all workflows to run setup actions utilizing the latest secure tags and commit SHAs, elevating Node.js version target from the deprecated `20` to `24` in `docs.yml`.
+
+### Removed
+
+- Removed unused legacy localization data files from `data/andhra_pradesh/` and `data/telangana/` directories (`names.json`, `names_translit.json`, `regions_native.json`, `boundaries_meta.json`).
+
 ## [1.0.0] — 2026-07-18
 
 ### Added — Initial Release
@@ -86,6 +100,7 @@ Four shared composite actions: `setup-pipeline`, `datagov-fetch`,
 
 ---
 
-[Unreleased]: https://github.com/mchittineni/CrownCorridor/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/mchittineni/CrownCorridor/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/mchittineni/CrownCorridor/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/mchittineni/CrownCorridor/releases/tag/v1.0.0
 [releases]: https://github.com/mchittineni/CrownCorridor/releases
