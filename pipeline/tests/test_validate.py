@@ -164,3 +164,65 @@ class TestFetchSROScaffold:
         for rec in records:
             missing = required_keys - set(rec.keys())
             assert missing == set(), f"Stub record missing fields: {missing}"
+
+
+class TestPropertyHistory:
+    def test_file_exists_and_valid(self):
+        import json
+        files = [
+            DATA_ROOT / "andhra_pradesh" / "property_history.json",
+            DATA_ROOT / "telangana" / "property_history.json",
+            DATA_ROOT / "property_history.json"
+        ]
+        found = [f for f in files if f.exists()]
+        assert len(found) >= 2, "Expected state-modular property_history.json files in AP and TS"
+
+        for fpath in found:
+            data = json.loads(fpath.read_text())
+            assert "properties" in data, f"{fpath} missing 'properties' key"
+            assert len(data["properties"]) >= 1, f"{fpath} expected at least 1 property record"
+
+    def test_sale_history_and_poi_categories(self):
+        import json
+        files = [
+            DATA_ROOT / "andhra_pradesh" / "property_history.json",
+            DATA_ROOT / "telangana" / "property_history.json",
+            DATA_ROOT / "property_history.json"
+        ]
+        required_cats = {"schools", "hospitals", "metro_railways"}
+        for fpath in files:
+            if not fpath.exists():
+                continue
+            data = json.loads(fpath.read_text())
+            for prop in data["properties"]:
+                sales = prop.get("sale_history", [])
+                assert len(sales) >= 2, f"Property {prop.get('property_id')} in {fpath.name} needs at least 2 sales records"
+                for sale in sales:
+                    assert sale.get("sale_price_inr", 0) > 0, f"Sale price must be positive in {prop.get('property_id')}"
+                    assert "registration_doc_no" in sale, f"Sale doc no missing in {prop.get('property_id')}"
+
+                services = prop.get("nearby_services", [])
+                cats = {s.get("category") for s in services}
+                assert required_cats.issubset(cats), f"Property {prop.get('property_id')} in {fpath.name} missing service categories: {required_cats - cats}"
+
+    def test_cagr_calculation_accuracy(self):
+        import json
+        files = [
+            DATA_ROOT / "andhra_pradesh" / "property_history.json",
+            DATA_ROOT / "telangana" / "property_history.json",
+            DATA_ROOT / "property_history.json"
+        ]
+        for fpath in files:
+            if not fpath.exists():
+                continue
+            data = json.loads(fpath.read_text())
+            for prop in data["properties"]:
+                summary = prop["price_summary"]
+                initial = summary["initial_price_inr"]
+                latest = summary["latest_price_inr"]
+                years = summary["holding_period_years"]
+                expected_cagr = ((latest / initial) ** (1.0 / years) - 1.0) * 100.0
+                actual_cagr = summary["cagr_pct"]
+                assert abs(expected_cagr - actual_cagr) < 0.5, \
+                    f"Property {prop.get('property_id')} in {fpath.name} CAGR mismatch: expected {expected_cagr:.2f}%, got {actual_cagr:.2f}%"
+

@@ -1,0 +1,44 @@
+name: "✨ Feature request"
+
+description: Suggest a new feature, dataset addition, or UX improvement for Crown Corridor
+
+labels: ["enhancement"]
+
+body:
+  - type: markdown
+    attributes:
+      value: "Thank you for suggesting an enhancement! Ideas from the community make Crown Corridor better."
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Is your feature request related to a problem?
+      description: A clear description of what the problem or limitation is.
+      placeholder: "I find it difficult to track property price trends over a 15-year period…"
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Describe the proposed solution
+      description: Describe what you would like to see happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Describe alternatives you've considered
+      description: Any alternative solutions or features you've thought about.
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Target Component
+      options:
+        - Portal Web App (app/portal.js)
+        - SRO Data Pipeline (pipeline/)
+        - State Datasets (data/)
+        - CI/CD Workflows (.github/)
+        - Documentation (docs/)

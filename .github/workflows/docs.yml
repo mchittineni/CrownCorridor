@@ -1,6 +1,13 @@
 name: Docs Build Check
 
 on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'app/portal.js'
+      - 'jsdoc.json'
+      - 'docs/**'
+      - '.github/workflows/docs.yml'
   pull_request:
     branches: [main, develop]
     paths:
@@ -14,15 +21,15 @@ permissions:
 
 jobs:
   jsdoc-build:
-    name: JSDoc Build Verification
+    name: JSDoc Build & Artifact Upload
     runs-on: ubuntu-latest
     
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v4.2.2
 
       - name: Setup Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v4.2.0
         with:
           node-version: '24'
 
@@ -33,7 +40,7 @@ jobs:
         run: npx jsdoc -c jsdoc.json --pedantic
         continue-on-error: false  # fail the PR check if JSDoc errors out
 
-      - name: Verify Output Exists
+      - name: Verify Output & Structure for /docs Path Hosting
         run: |
           if [ ! -d "docs/api/js" ]; then
             echo "::error::JSDoc output directory docs/api/js was not created"
@@ -44,3 +51,12 @@ jobs:
           if [ "$FILE_COUNT" -eq 0 ]; then
             echo "::warning::JSDoc produced no HTML output — check that app/portal.js has JSDoc comments"
           fi
+          echo "✓ Documentation built successfully for GitHub Pages hosting under /docs path"
+
+      - name: Upload Documentation Build Artifact
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4.6.0
+        with:
+          name: docs-website-artifact
+          path: docs/
+          retention-days: 14
+

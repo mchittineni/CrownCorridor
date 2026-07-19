@@ -1,12 +1,52 @@
+# Operating System Files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE & Editor Configs
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.sublime-project
+*.sublime-workspace
 .obsidian/
-scraper/.venv/
-scraper/__pycache__/
-scraper/tests/__pycache__/
-docs/api/
-scraper/.cache/
-*.log
+*.swp
+*.swo
+
+# Node.js & Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json.bak
+
+# Python Virtual Environment & Caches
 .venv/
-pipeline/__pycache__/
-pipeline/tests/__pycache__/
+venv/
+ENV/
+env/
 __pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# JSDoc & Documentation Build Artifacts
+docs/api/js/
+_site/
+
+# Logs & Temporary Scratch Files
+*.log
+tmp/
+.cache/
+data/sro_feed/tmp/

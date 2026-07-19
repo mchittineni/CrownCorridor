@@ -1,69 +1,72 @@
 # Crown Corridor
 
 > A next-generation real estate and property discovery portal for Andhra Pradesh & Telangana.  
-> Features verified listings, interactive geospatial maps, government guidance value estimation, and real-time SRO transaction analytics.
+> Features verified listings, interactive geospatial maps, state-modular SRO property sale histories, CAGR analytics, nearby infrastructure scoring, zero-PII privacy compliance, and strict code quality standards.
 
 [![CI](https://github.com/mchittineni/CrownCorridor/actions/workflows/ci.yml/badge.svg)](https://github.com/mchittineni/CrownCorridor/actions/workflows/ci.yml)
 [![Deploy](https://github.com/mchittineni/CrownCorridor/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/mchittineni/CrownCorridor/actions/workflows/deploy-pages.yml)
 
 ---
 
-## Features
+## ✨ Features
 
-| Feature | Description |
-|---------|-------------|
-| 🔴 **Live SRO Feed** | Real-time property registration ticker across AP & TS Sub-Registrar Offices with colony and block/unit info |
-| ✅ **Verified Listings** | Geospatially verified properties for sale/rent filterable down to colony and block level |
-| 🗺 **Boundary Explorer** | Village-level LGD coordinate drill-down with PMTiles vector cadastral overlays |
-| 🧮 **Stamp Duty Calculator** | Accurate registration tax breakdown (AP 7.5%, TS 6.0%) |
-| 📔 **Guide Value Directory** | Official SRO government guidance valuations by district & mandal |
-| 💻 **Developer API Console** | Queryable JSON sandbox and webhook alert configuration |
+| Feature                        | Description                                                                                    |
+| ------------------------------ | ---------------------------------------------------------------------------------------------- |
+| 🔴 **Live SRO Feed**           | Real-time property registration ticker with pause/resume and speed controls                    |
+| 🔍 **Global Smart Search**     | Persistent header bar with instant autocomplete for properties, listings, and districts        |
+| ⚖️ **Property Comparison**     | Side-by-side spec comparison modal for up to 3 properties (Valuation, CAGR, Rate/SqFt, Metro)  |
+| 🏰 **Property Sale History**   | State-modular chronological registry audit since construction with price growth CAGR analytics |
+| 🖨️ **Valuation Audit Report**  | One-click printable PDF/audit summary with transaction logs and infrastructure scores          |
+| 📍 **Infrastructure Explorer** | Nearby schools, hospitals, metro/railway stations, parks with drive times and ratings          |
+| 🎛️ **Visual Filter Presets**   | Quick filter pills (_"Near Metro"_, _"High CAGR > 10%"_, _"Luxury Villas"_, _"AP"_, _"TS"_)    |
+| 🧭 **GPS "Locate Me"**         | Geolocation finder calculating real-time distance from user to properties and POIs             |
+| 🔒 **Zero-PII Compliance**     | Strict privacy protections — no customer names or personal data stored (automated CI check)    |
+| ☀️ **Theme Switcher**          | Glassmorphic Dark Mode and Light Mode theme toggle                                             |
+| 🧮 **Stamp Duty Calculator**   | Registration tax breakdown (AP 7.5%, TS 6.0%)                                                  |
+| 📔 **Guide Value Directory**   | Official SRO government guidance valuations by district & mandal                               |
+| 💻 **Developer API Sandbox**   | Queryable JSON sandbox and webhook alert configuration                                         |
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 CrownCorridor/
-├── app/                     # Front-end web application
+├── app/                     # Front-end web application (SPA)
 │   ├── index.html           # Dashboard entry point
-│   ├── portal.js            # Portal logic — maps, charts, listings, API
-│   └── styles.css           # Design system (glassmorphism dark-theme)
+│   ├── portal.js            # Main application logic (maps, search, comparison, audit report)
+│   └── styles.css           # Glassmorphism dark & light theme design system
 │
-├── data/                    # Geographic reference datasets (LGD)
-│   ├── andhra_pradesh/      # regions, villages, coords, GeoJSON boundaries
-│   └── telangana/           # regions, villages, coords, GeoJSON boundaries
+├── data/                    # State-Modular Datasets
+│   ├── andhra_pradesh/      # AP regions, villages, coords, GeoJSON, property_history.json
+│   ├── telangana/           # TS regions, villages, coords, GeoJSON, property_history.json
+│   └── sro_feed/            # Daily SRO registration archives
 │
-├── pipeline/                # Lean AP/TS data pipeline
-│   ├── fetch_sro.py         # SRO registration data fetcher (exit-75 skip contract)
-│   ├── validate_data.py     # Data integrity validator (runs in CI)
-│   ├── requirements.txt     # requests, pytest
-│   └── tests/
-│       └── test_validate.py # pytest suite
+├── pipeline/                # Python Data Pipeline & Validation
+│   ├── fetch_sro.py         # SRO data fetcher & state-modular history aggregator (--generate-history)
+│   ├── validate_data.py     # Data integrity & zero-PII validator
+│   ├── requirements.txt     # Python dependencies
+│   └── tests/               # pytest test suite
 │
-├── docs/
-│   └── index.md             # Documentation hub and architecture overview
+├── docs/                    # Hosted Documentation Website (/docs path)
+│   ├── index.md             # Architecture overview & documentation hub
+│   ├── user-guide.md        # Step-by-step non-technical user guide
+│   └── api/                 # JSDoc generated API documentation
 │
 └── .github/
-    ├── actions/             # Shared composite steps
-    │   ├── setup-pipeline/
-    │   ├── datagov-fetch/
-    │   ├── publish-data-branch/
-    │   └── overlay-data-branches/
-    └── workflows/
-        ├── ci.yml           # PR tests (data validity + pytest)
-        ├── deploy-pages.yml # GitHub Pages deployment
-        ├── update-data.yml  # Weekly SRO data refresh → reviewed PR
-        ├── release.yml      # Versioned release with data archives
-        └── docs.yml         # JSDoc build-check on PRs
+    ├── ISSUE_TEMPLATE/      # Structured issue forms (bug, feature, config, data correction)
+    ├── PULL_REQUEST_TEMPLATE.md # Pull request checklist & guide
+    ├── dependabot.yml       # Weekly dependency update rules (actions, npm, pip)
+    ├── actions/             # Shared composite GitHub Actions
+    └── workflows/           # CI/CD workflows with SHA-pinned actions
 ```
 
 ---
 
-## Running Locally
+## 💻 Running Locally
 
 ```bash
-# Serve from the repo root (data/ must be at the same level as app/)
+# Serve from the repo root
 python3 -m http.server 8080
 ```
 
@@ -71,43 +74,48 @@ Open **[http://localhost:8080/app/](http://localhost:8080/app/)**.
 
 ---
 
-## Running Tests
+## 🧪 Development, Code Quality & Testing
 
 ```bash
+# Install Node dev dependencies (Prettier, ESLint, JSDoc)
+npm install
+
+# Run ESLint JavaScript code quality check
+npm run lint
+
+# Run Prettier code formatting check
+npm run format:check
+
+# Format code automatically
+npm run format
+
+# Install Python dependencies & run data validator
 pip install -r pipeline/requirements.txt
-python pipeline/validate_data.py      # standalone data integrity check
-pytest pipeline/tests/ -v             # full test suite
+python pipeline/validate_data.py
+
+# Run pytest test suite
+.venv/bin/pytest pipeline/tests/ -v
 ```
 
 ---
 
-## Data Sources
+## 🔒 Privacy & Zero-PII Compliance
 
-Geographic data is sourced from the **Government of India's [Local Government Directory (LGD)](https://lgdirectory.gov.in)** via the [Open Government Data platform](https://data.gov.in).
+Crown Corridor adheres strictly to zero-PII privacy rules:
 
-Data may lag recent administrative reorganisations — verify critical records directly against the LGD portal.
-
----
-
-## GitHub Pages Deployment
-
-GitHub Pages is deployed automatically on every push to `main` via the `deploy-pages.yml` workflow.  
-The deployment assembles `_site/` containing `app/` + `data/` overlays so relative paths resolve correctly.
-
-To enable Pages for the first time:
-1. Go to **Settings → Pages** in the repository.
-2. Set **Source** to `GitHub Actions`.
+- **No Customer PII**: Customer personal names and personal identity numbers are strictly scrubbed from dataset files.
+- **Anonymized Classifications**: Transactions exclusively use role-based classifications (`Private Individual Owner`, `Commercial Property Developer`, `Institutional Realty Fund`).
+- **Automated CI PII Guard**: `pipeline/validate_data.py` inspects all datasets on pull requests to block personal data commits.
 
 ---
 
-## Contributing
+## 🌐 Data Sources & Documentation Hosting
 
-See [CONTRIBUTING.md](CONTRIBUTING.md).
+- **Geographic Data**: Sourced from the **Government of India's [Local Government Directory (LGD)](https://lgdirectory.gov.in)** via [data.gov.in](https://data.gov.in).
+- **Documentation Website**: Deployed to GitHub Pages under the **`/docs`** path.
 
-## Security
+---
 
-See [SECURITY.md](SECURITY.md).
-
-## License
+## 📄 License
 
 Code: [LICENSE](LICENSE)

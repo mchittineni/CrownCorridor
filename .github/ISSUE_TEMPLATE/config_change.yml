@@ -1,0 +1,39 @@
+name: "⚙️ Config & CI/CD change"
+
+description: Request changes to repository configurations, linters, GitHub Actions, or deployment rules
+
+labels: ["config", "maintenance"]
+
+body:
+  - type: markdown
+    attributes:
+      value: "Use this template for repository infrastructure, linting rules, GitHub Actions workflows, or deployment setup."
+
+  - type: dropdown
+    id: config-type
+    attributes:
+      label: Config Area
+      options:
+        - GitHub Actions Workflow (.github/workflows/)
+        - Composite Actions (.github/actions/)
+        - ESLint / Prettier Rules (.eslintrc.json, .prettierrc)
+        - Python Tooling (pyproject.toml)
+        - Dependabot & Dependencies
+        - Other Configuration
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Proposed Configuration Change
+      description: Detail the changes needed and why.
+      placeholder: "Update Dependabot schedule to check for GitHub Actions updates weekly…"
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Security & Reliability Impact
+      description: How will this change improve repository security, build speed, or reliability?
