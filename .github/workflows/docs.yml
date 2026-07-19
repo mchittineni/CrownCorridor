@@ -23,7 +23,7 @@ jobs:
   jsdoc-build:
     name: JSDoc Build & Artifact Upload
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v4.2.2
@@ -32,13 +32,14 @@ jobs:
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v4.2.0
         with:
           node-version: '24'
+          cache: 'npm'
 
-      - name: Install JSDoc + docdash
-        run: npm install --save-dev jsdoc docdash
+      - name: Install Dependencies
+        run: npm ci || npm install
 
       - name: Build JSDoc API Reference
         run: npx jsdoc -c jsdoc.json --pedantic
-        continue-on-error: false  # fail the PR check if JSDoc errors out
+        continue-on-error: false # fail the PR check if JSDoc errors out
 
       - name: Verify Output & Structure for /docs Path Hosting
         run: |
@@ -54,9 +55,8 @@ jobs:
           echo "✓ Documentation built successfully for GitHub Pages hosting under /docs path"
 
       - name: Upload Documentation Build Artifact
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4.6.0
         with:
           name: docs-website-artifact
           path: docs/
           retention-days: 14
-
