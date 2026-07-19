@@ -45,7 +45,24 @@ It combines:
   - Select up to 3 properties. A floating **Compare Bar** appears at the bottom.
   - Click **Compare Side-by-Side** to open a modal comparing Valuation, Rate / SqFt, Total Area, Built Year, CAGR ROI, RERA ID, and nearest Metro/School distances.
 
-### 4. ✨ Verified Listings & Visual Filters
+### 4. 🚗 Search by Commute (Commute Time Finder)
+
+- **Where to find it**: Top of the **Verified Listings** tab in the **Search by Commute** bar.
+- **How it works**:
+  - Select your workplace hub (e.g. _HITECH City & Cyber Towers_, _Financial District Nanakramguda_, _Gachibowli Knowledge City_, _Rushikonda IT Hill_, _Amaravati Admin Core_).
+  - Select max acceptable driving time (_Within 15 mins_, _Within 30 mins_, _Within 45 mins_).
+  - Listings automatically filter to show properties within your desired driving radius with a **`🚗 Commute Badge`** (e.g. `🚗 18 mins to HITECH City (5.6 km)`).
+
+### 5. 📈 Regional Market Trends & Price Index Charts
+
+- **Where to find it**: Click the **📈 Regional Market Trends** tab.
+- **How it works**:
+  - View quarterly price per sqft trajectories (2016-2026) across top localities in AP and Telangana.
+  - Filter trends using state toggle pills (_Combined Regional_, _Telangana Hubs_, _Andhra Pradesh Hubs_).
+  - Inspect macro benchmark cards: **Average Rate / SqFt**, **5-Year Avg CAGR Return**, and **Annual Tx Volume**.
+  - Review the **Top Appreciating Localities Leaderboard** ranked by 5-year CAGR appreciation % and rental yield %.
+
+### 6. ✨ Verified Listings & Visual Filters
 
 - **Where to find it**: Click the **Verified Listings** tab.
 - **How it works**: Use preset pills (_"Near Metro"_, _"High CAGR > 10%"_, _"Luxury Villas"_, _"AP"_, _"TS"_) or standard dropdowns to filter properties by budget and category.

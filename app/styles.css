@@ -1280,6 +1280,28 @@ header.portal-header {
   color: #f8fafc;
 }
 
+/* Commute Badge & Filter Styling */
+.commute-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 12px;
+  margin-top: 6px;
+}
+
+.commute-filter-bar label {
+  color: var(--text-dim);
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+}
+
 /* Light Theme Overrides */
 body.light-theme {
   --bg-dark: #f8fafc;
