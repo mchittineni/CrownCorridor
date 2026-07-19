@@ -1,101 +1,81 @@
 # Crown Corridor — User Guide
 
-> Welcome to **Crown Corridor**! This guide is written for home buyers, landowners, real estate agents, and anyone who wants to understand how the platform works without needing to understand code. 🇮🇳🏙️
+> Welcome to **Crown Corridor**! This guide explains all platform features, property history tracking, side-by-side comparison, valuation reports, and search tools. 🇮🇳🏙️
 
 ---
 
 ## 🌟 What is Crown Corridor?
 
-Crown Corridor is a real-time portal that helps you monitor, search, and verify real estate transactions and property boundaries across **Andhra Pradesh** and **Telangana**. 
+Crown Corridor is a real-time discovery portal designed to help buyers, investors, and agents evaluate real estate across **Andhra Pradesh** and **Telangana**.
 
-Think of it as a **digital control room** for property. It combines:
-1. **Live SRO Ticker**: A live-updating list of property registrations happening right now at Sub-Registrar Offices (SROs).
-2. **Verified Property Grid**: A list of actual properties for sale/rent that have been cross-checked by SRO agents for validity.
-3. **Interactive Map**: A visual map showing where transaction volumes are highest (hot spots) and where individual properties are located.
-4. **Official Boundary Explorer**: A tool that lets you look up a specific village and see the exact shape of land parcels (plots) with their official government survey numbers.
+It combines:
 
----
-
-## 🧭 How to Use the Portal (Tab by Tab)
-
-The portal is split into **five main tabs** located in the sidebar (or top menu on mobile). Here is how you can use each one:
-
-### 1. Market Overview (Dashboard & Map)
-* **What you see**: A large interactive map on the left and a live transaction ticker on the right.
-* **How to use it**:
-  * **Map Color Coding**: Districts on the map are shaded in blue. **Darker blue** districts have higher transaction activity, while **lighter blue** districts have less. This helps you identify real estate hotspots instantly.
-  * **Listings on Map**: Blue circular markers on the map indicate verified property listings. Click any marker to see details and contact an agent.
-  * **Live Ticker**: Watch the right-hand panel update in real-time as property registrations are simulated from various Sub-Registrar Offices.
-
-### 2. Verified Listings (Find Properties)
-* **What you see**: A grid of property cards showing plots, flats, villas, agricultural land, and commercial spaces.
-* **How to use it**:
-  * **Filters**: Use the dropdown menus at the top to filter by State (Andhra Pradesh vs. Telangana) or Property Type.
-  * **Search Bar**: Type the name of a colony (e.g., "MVP Colony", "Rainbow Vistas Colony"), block/flat unit (e.g., "Flat 302", "Villa 24"), district, or locality to instantly filter matching properties.
-  * **Verification Badges**: Every listing has a green checkmark indicating that its location, colony block, and survey number have been validated by SRO representatives.
-  * **Contacting an Agent**: Click **Contact Agent** on any property card to open a pre-filled inquiry form. Submitting this form sends an inquiry toast indicating the broker has been notified.
-
-### 3. Geospatial Boundary Explorer (Verify Plot Survey Numbers)
-* **What you see**: A cascading location selector and a dedicated map showing land boundaries.
-* **How to use it**:
-  * **Drill Down Selector**: Select a State → Select a District → Select a Mandal (sub-district) → Select a Village.
-  * **Automatic Navigation**: Once you select a village, the map automatically flies directly to that village's center.
-  * **Official Land Parcels (Cadastral Layer)**: Zoom in past level 11. You will see thin blue outline borders showing the exact physical shapes of individual land plots. When zoomed in further, the government survey numbers (e.g. `124/1`) appear inside the shapes.
-  * **Civic Amenities**: Look at the sidebar to see how close the selected village is to essential public resources like Primary Health Centers, High Schools, Banks, and agricultural Mandi markets.
-  * **Survey Number Chip List**: Click any of the survey chips in the sidebar to simulate highlighting and centering on that specific plot.
-
-### 4. Stamp Duty & Guidance Values (Financial Calculators)
-* **What you see**: Two tools to help you calculate official registration fees and look up land value estimates.
-* **How to use them**:
-  * **Stamp Duty Calculator**: Select your state, select your property type, and enter the property transaction value (in Rupees). The tool automatically calculates:
-    * **Stamp Duty**: The tax paid to the state government.
-    * **Transfer Duty**: Local body transfer charges.
-    * **Registration Fee**: The fee to record the deed.
-    * *Notice*: AP has a combined rate of **7.5%**, while Telangana has a rate of **6.0%**.
-  * **Government Guidance Value Directory**: Select a state and a district, then click **Search**. The table displays the official minimum guidance value per square yard (for plots) or per square foot (for flats) in each mandal. This is the minimum value at which a property can legally be registered.
-
-### 5. Developer API Console (For Software Developers)
-* **What you see**: A query builder and a console displaying code.
-* **How to understand it**: 
-  * If you are a business or software developer wanting to feed this real estate data into your own company website, you can use this tab to test data queries and configure instant notifications (webhooks) for high-value transactions.
+1. **🔍 Global Header Smart Search**: Instant search with autocomplete for properties, colonies, districts, and RERA IDs.
+2. **⚖️ Property Comparison Tool**: Side-by-side spec comparison modal for up to 3 properties.
+3. **🏰 Complete Property Sale History**: State-modular registry audit tracking every sale since construction with CAGR returns.
+4. **🖨️ One-Click Valuation Report**: Printable audit summary with historical price charts, SRO document numbers, and infrastructure scores.
+5. **📍 Nearby Infrastructure Explorer**: Proximity ratings and driving times for schools, hospitals, metro stations, and parks.
+6. **🔴 Live SRO Ticker**: Real-time property registration stream with pause/resume and speed controls.
+7. **🔒 Zero-PII Privacy Protection**: Scrubbed, anonymized transaction data with strict role-based classifications.
 
 ---
 
-## ⚙️ How the System Works in the Background
+## 🧭 How to Use the Portal
 
-To keep the platform updated without humans having to manually type in new files every week, Crown Corridor uses **automation pipelines** run by GitHub Actions:
+### 1. 🔍 Global Smart Search Bar (Header)
 
+- **Where to find it**: Located prominently at the top of the header.
+- **How it works**: Type any property name (e.g. _"Cyber Heights"_, _"Sea Breeze"_), colony (e.g. _"Gachibowli"_, _"Beach Road"_), or district (_"Visakhapatnam"_, _"Rangareddy"_). Click any autocomplete item to jump directly to its tab and focus the property.
+
+### 2. 🏰 Property Sale History & Infrastructure Explorer
+
+- **Where to find it**: Click the **Property Sale History & Infrastructure** tab.
+- **How it works**:
+  - Select a property from the dropdown.
+  - **Metric Highlight Card**: View construction year, total area (sq ft), RERA ID, initial booking price, current valuation, and total appreciation %.
+  - **Price Growth Chart**: Interactive Chart.js timeline graph showing per-sqft price trajectory over time.
+  - **SRO Registration Audit Table**: Complete list of all historical sales with document numbers, transaction dates, sale prices, per-sqft rates, and anonymized buyer/seller types.
+  - **Nearby Infrastructure List**: Filter by _Schools_, _Hospitals_, _Metro/Railways_, or _Parks/Shopping_ to view distance in km, commute times, and ratings.
+  - **🖨️ Export Audit Report**: Click to open a clean, print-ready valuation report.
+
+### 3. ⚖️ Property Comparison Tool
+
+- **Where to find it**: Click **`+ Compare`** on any verified listing card.
+- **How it works**:
+  - Select up to 3 properties. A floating **Compare Bar** appears at the bottom.
+  - Click **Compare Side-by-Side** to open a modal comparing Valuation, Rate / SqFt, Total Area, Built Year, CAGR ROI, RERA ID, and nearest Metro/School distances.
+
+### 4. ✨ Verified Listings & Visual Filters
+
+- **Where to find it**: Click the **Verified Listings** tab.
+- **How it works**: Use preset pills (_"Near Metro"_, _"High CAGR > 10%"_, _"Luxury Villas"_, _"AP"_, _"TS"_) or standard dropdowns to filter properties by budget and category.
+
+### 5. 📍 GPS "Find Near Me"
+
+- **Where to find it**: Click **📍 Find Near Me** on the map overlay.
+- **How it works**: Requests browser geolocation to center the map on your current coordinates and calculate real-time distances to properties and nearby services.
+
+### 6. 🧮 Stamp Duty & Guidance Values
+
+- **Stamp Duty Calculator**: Calculates exact tax breakdown (AP combined 7.5%, TS combined 6.0%).
+- **Government Guidance Value Directory**: Look up official minimum guidance rates per sq yard or sq ft by mandal.
+
+---
+
+## 🔒 Privacy & Data Protection
+
+Crown Corridor strictly enforces privacy compliance:
+
+- **No Customer PII**: Customer personal names and personal identity numbers are strictly excluded from dataset files.
+- **Role-Based Classifications**: Transactions exclusively display anonymized role types (e.g. `Private Individual Owner`, `Commercial Property Developer`, `Institutional Realty Fund`).
+
+---
+
+## 💻 Running Locally
+
+```bash
+# Serve from repo root
+python3 -m http.server 8080
 ```
-[Government Open Data (data.gov.in)]
-                │
-                ▼ (Weekly Automatic Fetch)
-    [Background Data Pipeline] ──► (Validates Structure & Coordinates)
-                │
-                ▼ (Auto-Sync)
-      [GitHub Pages Server] ──► (Updates Deployed Web App)
-```
 
-1. **Scheduled Fetcher (`pipeline/fetch_sro.py`)**: Every week, a script automatically runs to check for updates.
-2. **Validator (`pipeline/validate_data.py`)**: Before any new data is published, a data integrity checker runs 23 separate automated tests to make sure there are no typos, missing files, or incorrect coordinates.
-3. **Auto-Deployment**: Once the tests pass, the updated data is pushed to the server, and the live map updates automatically.
-
----
-
-## 🚀 How to Run the Portal on Your Computer
-
-You do not need to install complex databases or programming tools to run the portal locally. Follow these 2 simple steps:
-
-1. **Download the Repository**:
-   Click the green **Code** button on the GitHub page and select **Download ZIP**, then extract the folder on your computer.
-2. **Start a Local Server**:
-   Because web browsers block files from loading directly from your hard drive for security reasons (CORS blocks), you must serve the folder. 
-   * On **Mac/Linux**, open Terminal, navigate to the folder, and run:
-     ```bash
-     python3 -m http.server 8080
-     ```
-   * On **Windows**, open Command Prompt, navigate to the folder, and run the same command:
-     ```cmd
-     python -m http.server 8080
-     ```
-3. **Open Your Browser**:
-   Go to **[http://localhost:8080/app/](http://localhost:8080/app/)** to view and interact with the portal live.
+Open **[http://localhost:8080/app/](http://localhost:8080/app/)**.

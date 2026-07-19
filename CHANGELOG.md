@@ -52,10 +52,10 @@ portal for **Andhra Pradesh & Telangana**. This is the first release.
 
 #### Geographic Data (`data/`)
 
-| State | Districts | Mandals | Villages | Source |
-|-------|-----------|---------|----------|--------|
-| Andhra Pradesh | 28 | 684 | 15,197 | LGD via data.gov.in (15 Jul 2026) |
-| Telangana | 33 | 616 | 9,287 | LGD via data.gov.in (15 Jul 2026) |
+| State          | Districts | Mandals | Villages | Source                            |
+| -------------- | --------- | ------- | -------- | --------------------------------- |
+| Andhra Pradesh | 28        | 684     | 15,197   | LGD via data.gov.in (15 Jul 2026) |
+| Telangana      | 33        | 616     | 9,287    | LGD via data.gov.in (15 Jul 2026) |
 
 Files per state: `regions.json`, `villages.json`, `coords.json`,
 `districts.geojson`, `mandals.geojson`, `meta.json`.
@@ -73,13 +73,13 @@ Files per state: `regions.json`, `villages.json`, `coords.json`,
 
 #### CI/CD (`.github/`)
 
-| Workflow | Trigger | Purpose |
-|----------|---------|---------|
-| `ci.yml` | Every PR → `main`/`develop` | Data validator + 23 pytest cases |
-| `deploy-pages.yml` | Push to `main` | Build `_site/` and publish to GitHub Pages |
-| `update-data.yml` | Weekly Sun 01:00 UTC | SRO data refresh → reviewed PR |
-| `release.yml` | Tag `v*.*.*` | Versioned release + AP/TS/combined zip archives |
-| `docs.yml` | PR touching `app/portal.js` | JSDoc build-check |
+| Workflow           | Trigger                     | Purpose                                         |
+| ------------------ | --------------------------- | ----------------------------------------------- |
+| `ci.yml`           | Every PR → `main`/`develop` | Data validator + 23 pytest cases                |
+| `deploy-pages.yml` | Push to `main`              | Build `_site/` and publish to GitHub Pages      |
+| `update-data.yml`  | Weekly Sun 01:00 UTC        | SRO data refresh → reviewed PR                  |
+| `release.yml`      | Tag `v*.*.*`                | Versioned release + AP/TS/combined zip archives |
+| `docs.yml`         | PR touching `app/portal.js` | JSDoc build-check                               |
 
 Four shared composite actions: `setup-pipeline`, `datagov-fetch`,
 `publish-data-branch`, `overlay-data-branches`.

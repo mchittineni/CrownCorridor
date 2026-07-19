@@ -171,6 +171,203 @@ def save_records(records: list[dict], state: str, date: str) -> pathlib.Path:
     return out_file
 
 
+def generate_state_property_history(state_slug: str) -> pathlib.Path:
+    """
+    Generate/update state-modular property sale history dataset under data/{state_slug}/property_history.json.
+    Synthesizes multi-year transaction timeline, CAGR %, and nearby POIs for properties in the state.
+    """
+    state_dir = ROOT / "data" / state_slug
+    state_dir.mkdir(parents=True, exist_ok=True)
+    target_file = state_dir / "property_history.json"
+
+    # If dataset already exists, read and validate it
+    if target_file.exists():
+        try:
+            existing_data = json.loads(target_file.read_text())
+            print(f"  ✓ {state_slug}/property_history.json already exists with {len(existing_data.get('properties', []))} properties")
+            return target_file
+        except Exception:
+            pass
+
+    # Stub data generation for state if missing
+    properties = []
+    if state_slug == "andhra_pradesh":
+        properties = [
+            {
+                "property_id": "PROP-AP-VIZ-01",
+                "name": "Sea Breeze Towers",
+                "type": "Apartment",
+                "construction_year": 2015,
+                "address": "Beach Road, Pandurangapuram, Visakhapatnam",
+                "mandal": "Visakhapatnam Urban",
+                "district": "Visakhapatnam",
+                "state": "andhra_pradesh",
+                "total_sqft": 2100,
+                "bedrooms": 3,
+                "bathrooms": 3,
+                "rera_id": "P03200000411",
+                "lat": 17.7123,
+                "lng": 83.3214,
+                "price_summary": {
+                    "initial_price_inr": 7350000,
+                    "latest_price_inr": 21000000,
+                    "total_appreciation_pct": 185.71,
+                    "cagr_pct": 10.02,
+                    "holding_period_years": 11
+                },
+                "sale_history": [
+                    {
+                        "year": 2015,
+                        "sale_date": "2015-02-14",
+                        "sale_price_inr": 7350000,
+                        "price_per_sqft_inr": 3500,
+                        "seller_type": "Coastal Apex Infra Ltd",
+                        "buyer_type": "Private Individual Owner",
+                        "registration_doc_no": "SRO-VIZ-2015-3301",
+                        "growth_over_initial_pct": 0.0,
+                        "cagr_pct": 0.0
+                    },
+                    {
+                        "year": 2026,
+                        "sale_date": "2026-07-01",
+                        "sale_price_inr": 21000000,
+                        "price_per_sqft_inr": 10000,
+                        "seller_type": "Private Individual Owner",
+                        "buyer_type": "Current Valuation (Coastal Prime Corridor)",
+                        "registration_doc_no": "VALUATION-EST-2026",
+                        "growth_over_initial_pct": 185.71,
+                        "cagr_pct": 10.02
+                    }
+                ],
+                "nearby_services": [
+                    {
+                        "name": "Timpany Senior Secondary School",
+                        "category": "schools",
+                        "type": "ICSE & CBSE Co-Ed School",
+                        "distance_km": 1.8,
+                        "travel_time_mins": 5,
+                        "rating": 4.6,
+                        "lat": 17.7198,
+                        "lng": 83.3150
+                    },
+                    {
+                        "name": "KIMS ICON Hospital",
+                        "category": "hospitals",
+                        "type": "Multi-Specialty Super Hospital",
+                        "distance_km": 1.5,
+                        "travel_time_mins": 5,
+                        "rating": 4.7,
+                        "lat": 17.7082,
+                        "lng": 83.3105
+                    },
+                    {
+                        "name": "Visakhapatnam Junction Station",
+                        "category": "metro_railways",
+                        "type": "Waltair Railway Division HQ",
+                        "distance_km": 4.2,
+                        "travel_time_mins": 12,
+                        "rating": 4.5,
+                        "lat": 17.7210,
+                        "lng": 83.2891
+                    }
+                ]
+            }
+        ]
+    else:
+        properties = [
+            {
+                "property_id": "PROP-TG-HYD-01",
+                "name": "Cyber Heights Residency",
+                "type": "Apartment",
+                "construction_year": 2012,
+                "address": "Plot 42-45, Hitec City Main Road, Gachibowli",
+                "mandal": "Serilingampally",
+                "district": "Rangareddy",
+                "state": "telangana",
+                "total_sqft": 1850,
+                "bedrooms": 3,
+                "bathrooms": 3,
+                "rera_id": "P02400001209",
+                "lat": 17.4401,
+                "lng": 78.3489,
+                "price_summary": {
+                    "initial_price_inr": 4255000,
+                    "latest_price_inr": 19425000,
+                    "total_appreciation_pct": 356.52,
+                    "cagr_pct": 11.42,
+                    "holding_period_years": 14
+                },
+                "sale_history": [
+                    {
+                        "year": 2012,
+                        "sale_date": "2012-04-15",
+                        "sale_price_inr": 4255000,
+                        "price_per_sqft_inr": 2300,
+                        "seller_type": "Cyber City Developers Ltd",
+                        "buyer_type": "Private Individual Owner",
+                        "registration_doc_no": "SRO-HYD-2012-4412",
+                        "growth_over_initial_pct": 0.0,
+                        "cagr_pct": 0.0
+                    },
+                    {
+                        "year": 2026,
+                        "sale_date": "2026-07-01",
+                        "sale_price_inr": 19425000,
+                        "price_per_sqft_inr": 10500,
+                        "seller_type": "Private Individual Owner",
+                        "buyer_type": "Current Valuation (SRO Benchmark)",
+                        "registration_doc_no": "VALUATION-EST-2026",
+                        "growth_over_initial_pct": 356.52,
+                        "cagr_pct": 11.42
+                    }
+                ],
+                "nearby_services": [
+                    {
+                        "name": "Oakridge International School",
+                        "category": "schools",
+                        "type": "K-12 IB World School",
+                        "distance_km": 0.8,
+                        "travel_time_mins": 3,
+                        "rating": 4.8,
+                        "lat": 17.4435,
+                        "lng": 78.3521
+                    },
+                    {
+                        "name": "Continental Hospitals",
+                        "category": "hospitals",
+                        "type": "Multi-Specialty Super Tertiary Hospital",
+                        "distance_km": 1.2,
+                        "travel_time_mins": 4,
+                        "rating": 4.6,
+                        "lat": 17.4365,
+                        "lng": 78.3412
+                    },
+                    {
+                        "name": "Raidurg Metro Station",
+                        "category": "metro_railways",
+                        "type": "Hyderabad Metro Blue Line Terminal",
+                        "distance_km": 1.9,
+                        "travel_time_mins": 6,
+                        "rating": 4.9,
+                        "lat": 17.4412,
+                        "lng": 78.3641
+                    }
+                ]
+            }
+        ]
+
+    data = {
+        "version": "1.0.0",
+        "state": state_slug,
+        "updated_at": str(datetime.date.today()),
+        "properties": properties
+    }
+
+    target_file.write_text(json.dumps(data, indent=2, ensure_ascii=False))
+    print(f"  Saved {len(properties)} history records → {target_file.relative_to(ROOT)}")
+    return target_file
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # CLI
 # ─────────────────────────────────────────────────────────────────────────────
@@ -188,6 +385,11 @@ def main() -> None:
         help="Return stub data without making real HTTP calls",
     )
     parser.add_argument(
+        "--generate-history",
+        action="store_true",
+        help="Generate state-modular property sale history datasets under data/{state}/property_history.json",
+    )
+    parser.add_argument(
         "--state",
         choices=["andhra_pradesh", "telangana", "all"],
         default="all",
@@ -195,7 +397,13 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    print(f"Crown Corridor SRO Fetcher — date={args.date}, dry_run={args.dry_run}")
+    print(f"Crown Corridor SRO Fetcher — date={args.date}, dry_run={args.dry_run}, generate_history={args.generate_history}")
+
+    if args.generate_history:
+        if args.state in ("andhra_pradesh", "all"):
+            generate_state_property_history("andhra_pradesh")
+        if args.state in ("telangana", "all"):
+            generate_state_property_history("telangana")
 
     if args.state in ("andhra_pradesh", "all"):
         print("\nFetching Andhra Pradesh SRO records…")
@@ -214,3 +422,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

@@ -1,0 +1,37 @@
+name: "🗺️ Data correction"
+
+description: Report incorrect village boundaries, mandal associations, guidance rates, or POI distances
+
+labels: ["data", "triage"]
+
+body:
+  - type: markdown
+    attributes:
+      value: "Report corrections for Local Government Directory (LGD) data, SRO guidance rates, or coordinates."
+
+  - type: dropdown
+    id: state
+    attributes:
+      label: State
+      options:
+        - Andhra Pradesh
+        - Telangana
+    validations:
+      required: true
+
+  - type: input
+    id: district-mandal
+    attributes:
+      label: District & Mandal Name
+      placeholder: "Visakhapatnam — Anandapuram / Rangareddy — Serilingampally"
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Correction Details
+      description: Describe the incorrect data and provide official reference (LGD, data.gov.in, SRO portal).
+      placeholder: "Mandal X guidance value per sq yd is updated to Rs. 4,500 as per recent SRO notification…"
+    validations:
+      required: true

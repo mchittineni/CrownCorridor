@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v4.2.2
 
       - name: Overlay Data Branches
         uses: ./.github/actions/overlay-data-branches
@@ -30,12 +30,13 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v4.2.0
         with:
           node-version: '24'
+          cache: 'npm'
 
-      - name: Install JSDoc + docdash
-        run: npm install --save-dev jsdoc docdash
+      - name: Install Node Dependencies
+        run: npm ci || npm install
 
       - name: Build JSDoc API Reference
         run: npx jsdoc -c jsdoc.json --pedantic
@@ -64,7 +65,7 @@ jobs:
           EOF
 
       - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v3.0.1
         with:
           path: _site
 
@@ -79,4 +80,4 @@ jobs:
     steps:
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v4.0.5

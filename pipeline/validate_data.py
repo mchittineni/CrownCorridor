@@ -221,6 +221,103 @@ def check_geojson() -> None:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# property_history.json validator
+# ─────────────────────────────────────────────────────────────────────────────
+
+def check_property_history() -> None:
+    print("\n[7] property_history.json integrity & nearby services")
+    target_files = [
+        DATA_ROOT / "andhra_pradesh" / "property_history.json",
+        DATA_ROOT / "telangana" / "property_history.json",
+        DATA_ROOT / "property_history.json"
+    ]
+
+    found_any = False
+    for fpath in target_files:
+        if not fpath.exists():
+            continue
+
+        found_any = True
+        rel_path = fpath.relative_to(DATA_ROOT)
+
+        try:
+            data = json.loads(fpath.read_text())
+        except json.JSONDecodeError as exc:
+            err(f"{rel_path} — invalid JSON: {exc}")
+            continue
+
+        properties = data.get("properties", [])
+        if not properties or not isinstance(properties, list):
+            err(f"{rel_path} — 'properties' array is missing or empty")
+            continue
+
+        BOUNDS = {
+            "andhra_pradesh": {"lat": (12.5, 20.5), "lng": (76.7, 84.8)},
+            "telangana":       {"lat": (15.8, 19.9), "lng": (77.3, 81.3)},
+        }
+        REQUIRED_PROP_KEYS = {
+            "property_id", "name", "type", "construction_year", "address",
+            "state", "total_sqft", "lat", "lng", "sale_history",
+            "price_summary", "nearby_services"
+        }
+        REQUIRED_SERVICE_CATS = {"schools", "hospitals", "metro_railways"}
+
+        for idx, prop in enumerate(properties):
+            pid = prop.get("property_id", f"INDEX-{idx}")
+            missing = REQUIRED_PROP_KEYS - set(prop.keys())
+            if missing:
+                err(f"{rel_path} property {pid} missing keys: {missing}")
+                continue
+
+            state = prop.get("state")
+            if state not in BOUNDS:
+                err(f"{rel_path} property {pid} has invalid state: '{state}'")
+                continue
+
+            # Check bounds
+            lat, lng = prop.get("lat"), prop.get("lng")
+            b = BOUNDS[state]
+            if not (b["lat"][0] <= lat <= b["lat"][1] and b["lng"][0] <= lng <= b["lng"][1]):
+                err(f"{rel_path} property {pid} coordinates ({lat}, {lng}) out of bounds for {state}")
+
+            # Check sale history chronological order & valid prices & no PII
+            sales = prop.get("sale_history", [])
+            if not sales or not isinstance(sales, list):
+                err(f"{rel_path} property {pid} sale_history must be a non-empty list")
+            else:
+                prev_year = 0
+                for sale in sales:
+                    year = sale.get("year", 0)
+                    price = sale.get("sale_price_inr", 0)
+                    seller = sale.get("seller_type", "")
+                    buyer = sale.get("buyer_type", "")
+
+                    if year < prev_year:
+                        err(f"{rel_path} property {pid} sale_history out of chronological order: {year} < {prev_year}")
+                    if price <= 0:
+                        err(f"{rel_path} property {pid} sale history year {year} has non-positive price: {price}")
+                    
+                    # PII protection check
+                    import re
+                    if re.search(r'\([A-Z]\.|\b(Mr|Mrs|Dr|Cmdr)\b', seller + buyer, re.I):
+                        err(f"{rel_path} property {pid} sale history contains potential customer PII in buyer/seller fields: '{seller}' / '{buyer}'")
+
+                    prev_year = year
+
+            # Check nearby services categories
+            services = prop.get("nearby_services", [])
+            found_cats = {s.get("category") for s in services if isinstance(s, dict)}
+            missing_cats = REQUIRED_SERVICE_CATS - found_cats
+            if missing_cats:
+                err(f"{rel_path} property {pid} nearby_services missing required categories: {missing_cats}")
+
+        ok(f"{rel_path} — {len(properties)} properties with complete sale histories and POIs")
+
+    if not found_any:
+        err("No property_history.json files found across state directories")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Entry point
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -235,6 +332,7 @@ if __name__ == "__main__":
     check_coords()
     check_meta()
     check_geojson()
+    check_property_history()
 
     print("\n" + "=" * 60)
     if ERRORS:
@@ -245,3 +343,4 @@ if __name__ == "__main__":
     else:
         print("ALL CHECKS PASSED ✓")
         sys.exit(0)
+

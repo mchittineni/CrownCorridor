@@ -1,27 +1,42 @@
-name: Data Validity Tests
+name: Data & Code Validity Tests
 
 on:
   pull_request:
     branches: [main, develop]
   push:
-    branches: [develop]
+    branches: [main, develop]
 
 permissions:
   contents: read
 
 jobs:
-  data-validity:
-    name: Data Integrity & Pipeline Tests
+  code-and-data-validity:
+    name: Code Quality, Data Integrity & Pytest Suite
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v4.2.2
 
-      - name: Setup Pipeline Toolchain
+      - name: Setup Node.js Toolchain
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v4.2.0
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install Node Dependencies
+        run: npm ci || npm install
+
+      - name: Run ESLint Code Quality Check
+        run: npm run lint
+
+      - name: Run Prettier Formatting Check
+        run: npm run format:check
+
+      - name: Setup Python Pipeline Toolchain
         uses: ./.github/actions/setup-pipeline
 
-      - name: Run Data Integrity Validator
+      - name: Run Data Integrity & Zero-PII Validator
         run: python pipeline/validate_data.py
 
       - name: Run Pytest Suite
