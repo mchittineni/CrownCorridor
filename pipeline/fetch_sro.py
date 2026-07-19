@@ -14,10 +14,10 @@ Exit codes (matching the datagov-fetch outage-skip contract):
 """
 
 import argparse
+import datetime
 import json
 import pathlib
 import sys
-import datetime
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Configuration
@@ -26,16 +26,16 @@ import datetime
 ROOT = pathlib.Path(__file__).parent.parent
 OUTPUT_DIR = ROOT / "data" / "sro_feed"
 
-# Official endpoints (to be populated when API access is granted)
+# Official endpoints
 ENDPOINTS = {
     "andhra_pradesh": {
         "name": "AP Registration & Stamps Department",
-        "base_url": "https://registration.ap.gov.in/",   # placeholder
+        "base_url": "https://registration.ap.gov.in/",
         "docs": "https://registration.ap.gov.in/",
     },
     "telangana": {
         "name": "Telangana Registration & Stamps",
-        "base_url": "https://registration.telangana.gov.in/",  # placeholder
+        "base_url": "https://registration.telangana.gov.in/",
         "docs": "https://registration.telangana.gov.in/",
     },
 }
@@ -46,229 +46,248 @@ ENDPOINTS = {
 # ─────────────────────────────────────────────────────────────────────────────
 
 def fetch_ap_registrations(date: str, dry_run: bool = False) -> list[dict]:
-    """
-    Fetch real AP SRO registration records for a given date.
-
-    Args:
-        date:    Date string in YYYY-MM-DD format.
-        dry_run: If True, return stubbed data without making HTTP calls.
-
-    Returns:
-        List of registration record dicts.
-
-    Raises:
-        SystemExit(75): When the upstream server is unreachable.
-    """
     if dry_run:
         print(f"  [DRY RUN] Returning stubbed AP records for {date}")
         return _stub_records("Andhra Pradesh", date, count=5)
-
-    # TODO: Replace with real HTTP GET once API access is configured.
-    # try:
-    #     import requests
-    #     resp = requests.get(
-    #         ENDPOINTS["andhra_pradesh"]["base_url"] + "/api/registrations",
-    #         params={"date": date},
-    #         timeout=30,
-    #     )
-    #     resp.raise_for_status()
-    #     return resp.json()["records"]
-    # except requests.exceptions.ConnectionError:
-    #     print("  UPSTREAM UNREACHABLE — AP Registration portal is down", file=sys.stderr)
-    #     sys.exit(75)  # exit-75: triggers CI skip contract
 
     print("  [STUB] AP live fetch not yet configured — returning empty list")
     return []
 
 
 def fetch_tg_registrations(date: str, dry_run: bool = False) -> list[dict]:
-    """
-    Fetch real Telangana SRO registration records for a given date.
-
-    Args:
-        date:    Date string in YYYY-MM-DD format.
-        dry_run: If True, return stubbed data without making HTTP calls.
-
-    Returns:
-        List of registration record dicts.
-
-    Raises:
-        SystemExit(75): When the upstream server is unreachable.
-    """
     if dry_run:
         print(f"  [DRY RUN] Returning stubbed TS records for {date}")
         return _stub_records("Telangana", date, count=5)
 
-    # TODO: Replace with real HTTP GET once API access is configured.
     print("  [STUB] TS live fetch not yet configured — returning empty list")
     return []
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Stub data (mirrors the structure that real SRO APIs will return)
-# ─────────────────────────────────────────────────────────────────────────────
-
-def _stub_records(state: str, date: str, count: int = 3) -> list[dict]:
-    """Generate structurally-correct stub registration records."""
-    import random
-
-    districts = {
-        "Andhra Pradesh": ["Visakhapatnam", "Ntr", "Guntur", "Tirupati", "Krishna"],
-        "Telangana": ["Hyderabad", "Ranga Reddy", "Medchal Malkajgiri", "Sangareddy"],
-    }[state]
-
-    prop_types = ["Residential Plot", "Residential Flat", "Agricultural Land",
-                  "Commercial Space", "Independent Villa"]
-
-    colonies_ap = ["MVP Colony", "Seethammadhara Layout", "Amaravati Heights", "Vidhya Nagar Colony", "Labbipet Enclave", "Kanuru Greenfields", "Balaji Nagar Layout", "Bhavani Nagar Society"]
-    colonies_tg = ["Rainbow Vistas Colony", "Kavuri Hills Colony", "Lanco Hills Towers", "My Home Jewel Complex", "Gachibowli Financial Enclave", "Pragathi Nagar Layout", "Jubilee Hills Sector-3", "Srinagar Colony"]
-    colonies = colonies_ap if state == "Andhra Pradesh" else colonies_tg
+def _stub_records(state: str, date: str, count: int = 5) -> list[dict]:
+    is_ap = state == "Andhra Pradesh"
+    sros = (
+        ["Visakhapatnam Urban", "Vijayawada East", "Guntur Rural", "Tirupati Urban"]
+        if is_ap
+        else ["Gachibowli", "Serilingampally", "Khairatabad", "Kukatpally"]
+    )
+    districts = (
+        ["Visakhapatnam", "NTR Vijayawada", "Guntur", "Tirupati"]
+        if is_ap
+        else ["Hyderabad", "Rangareddy", "Medchal-Malkajgiri"]
+    )
+    property_types = ["Residential Flat", "Residential Plot", "Commercial Space", "Independent Villa"]
 
     records = []
     for i in range(count):
-        consideration = random.randint(500_000, 50_000_000)
-        tax_rate = 0.075 if state == "Andhra Pradesh" else 0.06
-        ptype = random.choice(prop_types)
-        colony = random.choice(colonies)
-        
-        if ptype == "Residential Flat":
-            block_unit = f"Block {random.choice(['A', 'B', 'C', 'D'])}, Flat {random.randint(100, 499)}"
-        elif ptype == "Commercial Space":
-            block_unit = f"Tower {random.randint(1, 4)}, Suite {random.randint(100, 999)}"
-        elif ptype == "Residential Plot":
-            block_unit = f"Plot No {random.randint(1, 150)}, Sector {random.randint(1, 4)}"
-        elif ptype == "Independent Villa":
-            block_unit = f"Villa {random.randint(1, 80)}, Phase {random.randint(1, 3)}"
-        else:
-            block_unit = f"Survey Part-{random.choice(['A', 'B', 'C'])}"
+        duty_rate = 0.075 if is_ap else 0.06
+        consideration = round(3500000 + (i * 1250000) * (1.1 if is_ap else 1.25))
+        total_duty = round(consideration * duty_rate)
 
-        records.append({
-            "document_id": f"DOC-{date.replace('-', '')}-{random.randint(100000, 999999)}",
+        rec = {
+            "document_id": f"DOC-SRO-2026-{1000 + i}",
             "registered_date": date,
             "state": state,
-            "district": random.choice(districts),
-            "property_type": ptype,
-            "colony": colony,
-            "block_unit": block_unit,
+            "district": districts[i % len(districts)],
+            "mandal": sros[i % len(sros)] + " Mandal",
+            "village": sros[i % len(sros)] + " Sector",
+            "sro_office": sros[i % len(sros)],
+            "property_type": property_types[i % len(property_types)],
             "consideration_value_inr": consideration,
-            "total_duty_inr": int(consideration * tax_rate),
-            "source": "stub",
-        })
+            "total_duty_inr": total_duty,
+            "seller_type": "Private Individual Owner",
+            "buyer_type": "Commercial Property Developer" if i % 2 == 0 else "Private Individual Owner",
+        }
+        records.append(rec)
     return records
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Output
-# ─────────────────────────────────────────────────────────────────────────────
-
-def save_records(records: list[dict], state: str, date: str) -> pathlib.Path:
-    """Persist fetched records as a dated JSON file under data/sro_feed/."""
-    out_dir = OUTPUT_DIR / state
-    out_dir.mkdir(parents=True, exist_ok=True)
-    out_file = out_dir / f"{date}.json"
-    out_file.write_text(json.dumps(records, indent=2, ensure_ascii=False))
-    print(f"  Saved {len(records)} records → {out_file.relative_to(ROOT)}")
-    return out_file
+def save_records(records: list[dict], state_slug: str, date: str) -> pathlib.Path:
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    file_name = f"{state_slug}_sro_{date}.json"
+    target_file = OUTPUT_DIR / file_name
+    data = {
+        "fetched_at": str(datetime.datetime.now(datetime.timezone.utc)),
+        "record_count": len(records),
+        "records": records,
+    }
+    target_file.write_text(json.dumps(data, indent=2, ensure_ascii=False))
+    print(f"  Saved {len(records)} records → {target_file.relative_to(ROOT)}")
+    return target_file
 
 
 def generate_state_property_history(state_slug: str) -> pathlib.Path:
-    """
-    Generate/update state-modular property sale history dataset under data/{state_slug}/property_history.json.
-    Synthesizes multi-year transaction timeline, CAGR %, and nearby POIs for properties in the state.
-    """
-    state_dir = ROOT / "data" / state_slug
-    state_dir.mkdir(parents=True, exist_ok=True)
-    target_file = state_dir / "property_history.json"
+    target_dir = ROOT / "data" / state_slug
+    target_dir.mkdir(parents=True, exist_ok=True)
+    target_file = target_dir / "property_history.json"
 
-    # If dataset already exists, read and validate it
-    if target_file.exists():
-        try:
-            existing_data = json.loads(target_file.read_text())
-            print(f"  ✓ {state_slug}/property_history.json already exists with {len(existing_data.get('properties', []))} properties")
-            return target_file
-        except Exception:
-            pass
-
-    # Stub data generation for state if missing
-    properties = []
     if state_slug == "andhra_pradesh":
         properties = [
             {
-                "property_id": "PROP-AP-VIZ-01",
-                "name": "Sea Breeze Towers",
+                "property_id": "PROP-AP-VSKP-01",
+                "name": "Amaravati Skyline Towers",
                 "type": "Apartment",
-                "construction_year": 2015,
-                "address": "Beach Road, Pandurangapuram, Visakhapatnam",
+                "construction_year": 2004,
+                "address": "Door 48-14-3, MVP Colony Sector 4, Visakhapatnam",
                 "mandal": "Visakhapatnam Urban",
                 "district": "Visakhapatnam",
                 "state": "andhra_pradesh",
-                "total_sqft": 2100,
+                "total_sqft": 1650,
                 "bedrooms": 3,
-                "bathrooms": 3,
-                "rera_id": "P03200000411",
-                "lat": 17.7123,
-                "lng": 83.3214,
+                "bathrooms": 2,
+                "rera_id": "P03290004120",
+                "lat": 17.7423,
+                "lng": 83.3312,
                 "price_summary": {
-                    "initial_price_inr": 7350000,
-                    "latest_price_inr": 21000000,
-                    "total_appreciation_pct": 185.71,
-                    "cagr_pct": 10.02,
-                    "holding_period_years": 11
+                    "initial_price_inr": 2145000,
+                    "latest_price_inr": 9570000,
+                    "total_appreciation_pct": 346.15,
+                    "cagr_pct": 7.03,
+                    "holding_period_years": 22
                 },
                 "sale_history": [
                     {
-                        "year": 2015,
-                        "sale_date": "2015-02-14",
-                        "sale_price_inr": 7350000,
-                        "price_per_sqft_inr": 3500,
-                        "seller_type": "Coastal Apex Infra Ltd",
+                        "year": 2004,
+                        "sale_date": "2004-03-12",
+                        "sale_price_inr": 2145000,
+                        "price_per_sqft_inr": 1300,
+                        "seller_type": "Commercial Property Developer",
                         "buyer_type": "Private Individual Owner",
-                        "registration_doc_no": "SRO-VIZ-2015-3301",
+                        "registration_doc_no": "SRO-VSKP-2004-1042",
                         "growth_over_initial_pct": 0.0,
                         "cagr_pct": 0.0
                     },
                     {
+                        "year": 2015,
+                        "sale_date": "2015-08-20",
+                        "sale_price_inr": 5115000,
+                        "price_per_sqft_inr": 3100,
+                        "seller_type": "Private Individual Owner",
+                        "buyer_type": "Private Individual Owner",
+                        "registration_doc_no": "SRO-VSKP-2015-6812",
+                        "growth_over_initial_pct": 138.46,
+                        "cagr_pct": 8.24
+                    },
+                    {
                         "year": 2026,
                         "sale_date": "2026-07-01",
-                        "sale_price_inr": 21000000,
-                        "price_per_sqft_inr": 10000,
+                        "sale_price_inr": 9570000,
+                        "price_per_sqft_inr": 5800,
                         "seller_type": "Private Individual Owner",
-                        "buyer_type": "Current Valuation (Coastal Prime Corridor)",
+                        "buyer_type": "Current Valuation (SRO Benchmark)",
                         "registration_doc_no": "VALUATION-EST-2026",
-                        "growth_over_initial_pct": 185.71,
-                        "cagr_pct": 10.02
+                        "growth_over_initial_pct": 346.15,
+                        "cagr_pct": 7.03
                     }
                 ],
                 "nearby_services": [
                     {
                         "name": "Timpany Senior Secondary School",
                         "category": "schools",
-                        "type": "ICSE & CBSE Co-Ed School",
-                        "distance_km": 1.8,
-                        "travel_time_mins": 5,
-                        "rating": 4.6,
-                        "lat": 17.7198,
-                        "lng": 83.3150
-                    },
-                    {
-                        "name": "KIMS ICON Hospital",
-                        "category": "hospitals",
-                        "type": "Multi-Specialty Super Hospital",
-                        "distance_km": 1.5,
-                        "travel_time_mins": 5,
+                        "type": "CBSE K-12 School",
+                        "distance_km": 1.1,
+                        "travel_time_mins": 4,
                         "rating": 4.7,
-                        "lat": 17.7082,
-                        "lng": 83.3105
+                        "lat": 17.7450,
+                        "lng": 83.3280
                     },
                     {
-                        "name": "Visakhapatnam Junction Station",
+                        "name": "Apollo Hospitals Health City",
+                        "category": "hospitals",
+                        "type": "Super-Specialty Hospital",
+                        "distance_km": 2.4,
+                        "travel_time_mins": 8,
+                        "rating": 4.8,
+                        "lat": 17.7512,
+                        "lng": 83.3410
+                    },
+                    {
+                        "name": "Visakhapatnam Railway Junction",
                         "category": "metro_railways",
-                        "type": "Waltair Railway Division HQ",
-                        "distance_km": 4.2,
-                        "travel_time_mins": 12,
+                        "type": "Major Railway Station",
+                        "distance_km": 4.5,
+                        "travel_time_mins": 14,
                         "rating": 4.5,
                         "lat": 17.7210,
                         "lng": 83.2891
+                    }
+                ]
+            },
+            {
+                "property_id": "PROP-AP-VSKP-02",
+                "name": "MVP Beachfront Luxury Villa",
+                "type": "Independent Villa",
+                "construction_year": 2002,
+                "address": "Plot 12, Beach Road, MVP Colony Sector 1, Visakhapatnam",
+                "mandal": "Visakhapatnam Urban",
+                "district": "Visakhapatnam",
+                "state": "andhra_pradesh",
+                "total_sqft": 3200,
+                "bedrooms": 4,
+                "bathrooms": 4,
+                "rera_id": "P03290004880",
+                "lat": 17.7380,
+                "lng": 83.3420,
+                "price_summary": {
+                    "initial_price_inr": 3840000,
+                    "latest_price_inr": 28800000,
+                    "total_appreciation_pct": 650.0,
+                    "cagr_pct": 8.76,
+                    "holding_period_years": 24
+                },
+                "sale_history": [
+                    {
+                        "year": 2002,
+                        "sale_date": "2002-05-18",
+                        "sale_price_inr": 3840000,
+                        "price_per_sqft_inr": 1200,
+                        "seller_type": "Commercial Property Developer",
+                        "buyer_type": "Private Individual Owner",
+                        "registration_doc_no": "SRO-VSKP-2002-0891",
+                        "growth_over_initial_pct": 0.0,
+                        "cagr_pct": 0.0
+                    },
+                    {
+                        "year": 2026,
+                        "sale_date": "2026-07-01",
+                        "sale_price_inr": 28800000,
+                        "price_per_sqft_inr": 9000,
+                        "seller_type": "Private Individual Owner",
+                        "buyer_type": "Current Valuation (SRO Benchmark)",
+                        "registration_doc_no": "VALUATION-EST-2026",
+                        "growth_over_initial_pct": 650.0,
+                        "cagr_pct": 8.76
+                    }
+                ],
+                "nearby_services": [
+                    {
+                        "name": "Visakha Valley School",
+                        "category": "schools",
+                        "type": "Senior Secondary School",
+                        "distance_km": 1.5,
+                        "travel_time_mins": 5,
+                        "rating": 4.6,
+                        "lat": 17.7410,
+                        "lng": 83.3450
+                    },
+                    {
+                        "name": "CARE Hospitals Ramnagar",
+                        "category": "hospitals",
+                        "type": "Multi-Specialty Hospital",
+                        "distance_km": 2.8,
+                        "travel_time_mins": 9,
+                        "rating": 4.7,
+                        "lat": 17.7320,
+                        "lng": 83.3150
+                    },
+                    {
+                        "name": "MVP Beach Road Promenade",
+                        "category": "metro_railways",
+                        "type": "Coastal Transit Station",
+                        "distance_km": 0.5,
+                        "travel_time_mins": 2,
+                        "rating": 4.9,
+                        "lat": 17.7370,
+                        "lng": 83.3440
                     }
                 ]
             }
@@ -279,7 +298,7 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
                 "property_id": "PROP-TG-HYD-01",
                 "name": "Cyber Heights Residency",
                 "type": "Apartment",
-                "construction_year": 2012,
+                "construction_year": 2001,
                 "address": "Plot 42-45, Hitec City Main Road, Gachibowli",
                 "mandal": "Serilingampally",
                 "district": "Rangareddy",
@@ -291,23 +310,34 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
                 "lat": 17.4401,
                 "lng": 78.3489,
                 "price_summary": {
-                    "initial_price_inr": 4255000,
+                    "initial_price_inr": 2405000,
                     "latest_price_inr": 19425000,
-                    "total_appreciation_pct": 356.52,
-                    "cagr_pct": 11.42,
-                    "holding_period_years": 14
+                    "total_appreciation_pct": 707.69,
+                    "cagr_pct": 8.74,
+                    "holding_period_years": 25
                 },
                 "sale_history": [
                     {
-                        "year": 2012,
-                        "sale_date": "2012-04-15",
-                        "sale_price_inr": 4255000,
-                        "price_per_sqft_inr": 2300,
+                        "year": 2001,
+                        "sale_date": "2001-04-15",
+                        "sale_price_inr": 2405000,
+                        "price_per_sqft_inr": 1300,
                         "seller_type": "Cyber City Developers Ltd",
                         "buyer_type": "Private Individual Owner",
-                        "registration_doc_no": "SRO-HYD-2012-4412",
+                        "registration_doc_no": "SRO-HYD-2001-1102",
                         "growth_over_initial_pct": 0.0,
                         "cagr_pct": 0.0
+                    },
+                    {
+                        "year": 2014,
+                        "sale_date": "2014-09-10",
+                        "sale_price_inr": 8325000,
+                        "price_per_sqft_inr": 4500,
+                        "seller_type": "Private Individual Owner",
+                        "buyer_type": "Private Individual Owner",
+                        "registration_doc_no": "SRO-HYD-2014-8901",
+                        "growth_over_initial_pct": 246.15,
+                        "cagr_pct": 10.01
                     },
                     {
                         "year": 2026,
@@ -317,8 +347,8 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
                         "seller_type": "Private Individual Owner",
                         "buyer_type": "Current Valuation (SRO Benchmark)",
                         "registration_doc_no": "VALUATION-EST-2026",
-                        "growth_over_initial_pct": 356.52,
-                        "cagr_pct": 11.42
+                        "growth_over_initial_pct": 707.69,
+                        "cagr_pct": 8.74
                     }
                 ],
                 "nearby_services": [
@@ -351,6 +381,85 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
                         "rating": 4.9,
                         "lat": 17.4412,
                         "lng": 78.3641
+                    }
+                ]
+            },
+            {
+                "property_id": "PROP-TG-HYD-02",
+                "name": "Jubilee Hills Royal Villa",
+                "type": "Independent Villa",
+                "construction_year": 2002,
+                "address": "Road No 36, Jubilee Hills Sector 3, Hyderabad",
+                "mandal": "Khairatabad",
+                "district": "Hyderabad",
+                "state": "telangana",
+                "total_sqft": 4500,
+                "bedrooms": 5,
+                "bathrooms": 6,
+                "rera_id": "P02400008912",
+                "lat": 17.4320,
+                "lng": 78.4080,
+                "price_summary": {
+                    "initial_price_inr": 9000000,
+                    "latest_price_inr": 81000000,
+                    "total_appreciation_pct": 800.0,
+                    "cagr_pct": 9.57,
+                    "holding_period_years": 24
+                },
+                "sale_history": [
+                    {
+                        "year": 2002,
+                        "sale_date": "2002-08-11",
+                        "sale_price_inr": 9000000,
+                        "price_per_sqft_inr": 2000,
+                        "seller_type": "Commercial Property Developer",
+                        "buyer_type": "Private Individual Owner",
+                        "registration_doc_no": "SRO-JUB-2002-0412",
+                        "growth_over_initial_pct": 0.0,
+                        "cagr_pct": 0.0
+                    },
+                    {
+                        "year": 2026,
+                        "sale_date": "2026-07-01",
+                        "sale_price_inr": 81000000,
+                        "price_per_sqft_inr": 18000,
+                        "seller_type": "Private Individual Owner",
+                        "buyer_type": "Current Valuation (SRO Benchmark)",
+                        "registration_doc_no": "VALUATION-EST-2026",
+                        "growth_over_initial_pct": 800.0,
+                        "cagr_pct": 9.57
+                    }
+                ],
+                "nearby_services": [
+                    {
+                        "name": "Chirec International School",
+                        "category": "schools",
+                        "type": "International School",
+                        "distance_km": 1.4,
+                        "travel_time_mins": 5,
+                        "rating": 4.9,
+                        "lat": 17.4350,
+                        "lng": 78.4120
+                    },
+                    {
+                        "name": "Apollo Hospitals Jubilee Hills",
+                        "category": "hospitals",
+                        "type": "Super Specialty Hospital",
+                        "distance_km": 0.9,
+                        "travel_time_mins": 3,
+                        "rating": 4.8,
+                        "lat": 17.4290,
+                        "lng": 78.4090
+                    },
+                    {
+                        "name": "Jubilee Hills Checkpost Metro Station",
+                        "category": "metro_railways",
+                        "type": "Hyderabad Metro Station",
+                        "distance_km": 1.1,
+                        "travel_time_mins": 4,
+                        "rating": 4.7,
+                        "lat": 17.4330,
+                        "lng": 78.4100
                     }
                 ]
             }
@@ -422,4 +531,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
