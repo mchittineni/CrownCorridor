@@ -17,7 +17,6 @@ import argparse
 import datetime
 import json
 import pathlib
-import sys
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Configuration
@@ -126,7 +125,7 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
                 "property_id": "PROP-AP-VSKP-01",
                 "name": "Amaravati Skyline Towers",
                 "type": "Apartment",
-                "construction_year": 2004,
+                "construction_year": 2001,
                 "address": "Door 48-14-3, MVP Colony Sector 4, Visakhapatnam",
                 "mandal": "Visakhapatnam Urban",
                 "district": "Visakhapatnam",
@@ -138,34 +137,34 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
                 "lat": 17.7423,
                 "lng": 83.3312,
                 "price_summary": {
-                    "initial_price_inr": 2145000,
+                    "initial_price_inr": 1815000,
                     "latest_price_inr": 9570000,
-                    "total_appreciation_pct": 346.15,
-                    "cagr_pct": 7.03,
-                    "holding_period_years": 22
+                    "total_appreciation_pct": 427.27,
+                    "cagr_pct": 6.87,
+                    "holding_period_years": 25
                 },
                 "sale_history": [
                     {
-                        "year": 2004,
-                        "sale_date": "2004-03-12",
-                        "sale_price_inr": 2145000,
-                        "price_per_sqft_inr": 1300,
+                        "year": 2001,
+                        "sale_date": "2001-03-12",
+                        "sale_price_inr": 1815000,
+                        "price_per_sqft_inr": 1100,
                         "seller_type": "Commercial Property Developer",
                         "buyer_type": "Private Individual Owner",
-                        "registration_doc_no": "SRO-VSKP-2004-1042",
+                        "registration_doc_no": "SRO-VSKP-2001-1042",
                         "growth_over_initial_pct": 0.0,
                         "cagr_pct": 0.0
                     },
                     {
-                        "year": 2015,
-                        "sale_date": "2015-08-20",
-                        "sale_price_inr": 5115000,
-                        "price_per_sqft_inr": 3100,
+                        "year": 2013,
+                        "sale_date": "2013-08-20",
+                        "sale_price_inr": 4620000,
+                        "price_per_sqft_inr": 2800,
                         "seller_type": "Private Individual Owner",
                         "buyer_type": "Private Individual Owner",
-                        "registration_doc_no": "SRO-VSKP-2015-6812",
-                        "growth_over_initial_pct": 138.46,
-                        "cagr_pct": 8.24
+                        "registration_doc_no": "SRO-VSKP-2013-6812",
+                        "growth_over_initial_pct": 154.55,
+                        "cagr_pct": 8.12
                     },
                     {
                         "year": 2026,
@@ -175,8 +174,8 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
                         "seller_type": "Private Individual Owner",
                         "buyer_type": "Current Valuation (SRO Benchmark)",
                         "registration_doc_no": "VALUATION-EST-2026",
-                        "growth_over_initial_pct": 346.15,
-                        "cagr_pct": 7.03
+                        "growth_over_initial_pct": 427.27,
+                        "cagr_pct": 6.87
                     }
                 ],
                 "nearby_services": [
@@ -288,6 +287,96 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
                         "rating": 4.9,
                         "lat": 17.7370,
                         "lng": 83.3440
+                    }
+                ]
+            },
+            {
+                "property_id": "PROP-AP-VJA-01",
+                "name": "Benz Circle Commercial Hub",
+                "type": "Commercial Space",
+                "construction_year": 2001,
+                "address": "Plot 5, M.G. Road, Benz Circle, Vijayawada",
+                "mandal": "Vijayawada East",
+                "district": "NTR Vijayawada",
+                "state": "andhra_pradesh",
+                "total_sqft": 2400,
+                "bedrooms": 0,
+                "bathrooms": 2,
+                "rera_id": "P03290009102",
+                "lat": 16.5062,
+                "lng": 80.6480,
+                "price_summary": {
+                    "initial_price_inr": 3600000,
+                    "latest_price_inr": 23520000,
+                    "total_appreciation_pct": 553.33,
+                    "cagr_pct": 7.82,
+                    "holding_period_years": 25
+                },
+                "sale_history": [
+                    {
+                        "year": 2001,
+                        "sale_date": "2001-02-10",
+                        "sale_price_inr": 3600000,
+                        "price_per_sqft_inr": 1500,
+                        "seller_type": "Commercial Property Developer",
+                        "buyer_type": "Institutional Realty Fund",
+                        "registration_doc_no": "SRO-VJA-2001-0120",
+                        "growth_over_initial_pct": 0.0,
+                        "cagr_pct": 0.0
+                    },
+                    {
+                        "year": 2014,
+                        "sale_date": "2014-11-05",
+                        "sale_price_inr": 11520000,
+                        "price_per_sqft_inr": 4800,
+                        "seller_type": "Institutional Realty Fund",
+                        "buyer_type": "Private Individual Owner",
+                        "registration_doc_no": "SRO-VJA-2014-5510",
+                        "growth_over_initial_pct": 220.0,
+                        "cagr_pct": 9.35
+                    },
+                    {
+                        "year": 2026,
+                        "sale_date": "2026-07-01",
+                        "sale_price_inr": 23520000,
+                        "price_per_sqft_inr": 9800,
+                        "seller_type": "Private Individual Owner",
+                        "buyer_type": "Current Valuation (SRO Benchmark)",
+                        "registration_doc_no": "VALUATION-EST-2026",
+                        "growth_over_initial_pct": 553.33,
+                        "cagr_pct": 7.82
+                    }
+                ],
+                "nearby_services": [
+                    {
+                        "name": "Atkinson High School",
+                        "category": "schools",
+                        "type": "Senior Secondary School",
+                        "distance_km": 0.9,
+                        "travel_time_mins": 3,
+                        "rating": 4.7,
+                        "lat": 16.5080,
+                        "lng": 80.6500
+                    },
+                    {
+                        "name": "Ramesh Hospitals Benz Circle",
+                        "category": "hospitals",
+                        "type": "Super Specialty Hospital",
+                        "distance_km": 0.6,
+                        "travel_time_mins": 2,
+                        "rating": 4.9,
+                        "lat": 16.5050,
+                        "lng": 80.6460
+                    },
+                    {
+                        "name": "Vijayawada Bus Terminal",
+                        "category": "metro_railways",
+                        "type": "Central Transit Hub",
+                        "distance_km": 3.2,
+                        "travel_time_mins": 10,
+                        "rating": 4.6,
+                        "lat": 16.5120,
+                        "lng": 80.6210
                     }
                 ]
             }
@@ -460,6 +549,96 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
                         "rating": 4.7,
                         "lat": 17.4330,
                         "lng": 78.4100
+                    }
+                ]
+            },
+            {
+                "property_id": "PROP-TG-HYD-03",
+                "name": "Financial District Tech Park Suite",
+                "type": "Commercial Space",
+                "construction_year": 2001,
+                "address": "Tower 2, Nanakramguda Financial District, Serilingampally",
+                "mandal": "Serilingampally",
+                "district": "Rangareddy",
+                "state": "telangana",
+                "total_sqft": 3000,
+                "bedrooms": 0,
+                "bathrooms": 3,
+                "rera_id": "P02400009941",
+                "lat": 17.4156,
+                "lng": 78.3428,
+                "price_summary": {
+                    "initial_price_inr": 4500000,
+                    "latest_price_inr": 44400000,
+                    "total_appreciation_pct": 886.67,
+                    "cagr_pct": 9.61,
+                    "holding_period_years": 25
+                },
+                "sale_history": [
+                    {
+                        "year": 2001,
+                        "sale_date": "2001-05-22",
+                        "sale_price_inr": 4500000,
+                        "price_per_sqft_inr": 1500,
+                        "seller_type": "Commercial Property Developer",
+                        "buyer_type": "Institutional Realty Fund",
+                        "registration_doc_no": "SRO-FD-2001-0301",
+                        "growth_over_initial_pct": 0.0,
+                        "cagr_pct": 0.0
+                    },
+                    {
+                        "year": 2015,
+                        "sale_date": "2015-10-14",
+                        "sale_price_inr": 20700000,
+                        "price_per_sqft_inr": 6900,
+                        "seller_type": "Institutional Realty Fund",
+                        "buyer_type": "Private Individual Owner",
+                        "registration_doc_no": "SRO-FD-2015-7720",
+                        "growth_over_initial_pct": 360.0,
+                        "cagr_pct": 11.53
+                    },
+                    {
+                        "year": 2026,
+                        "sale_date": "2026-07-01",
+                        "sale_price_inr": 44400000,
+                        "price_per_sqft_inr": 14800,
+                        "seller_type": "Private Individual Owner",
+                        "buyer_type": "Current Valuation (SRO Benchmark)",
+                        "registration_doc_no": "VALUATION-EST-2026",
+                        "growth_over_initial_pct": 886.67,
+                        "cagr_pct": 9.61
+                    }
+                ],
+                "nearby_services": [
+                    {
+                        "name": "Keystone International School",
+                        "category": "schools",
+                        "type": "International School",
+                        "distance_km": 1.1,
+                        "travel_time_mins": 4,
+                        "rating": 4.8,
+                        "lat": 17.4180,
+                        "lng": 78.3450
+                    },
+                    {
+                        "name": "Star Hospitals Nanakramguda",
+                        "category": "hospitals",
+                        "type": "Super Specialty Hospital",
+                        "distance_km": 0.7,
+                        "travel_time_mins": 2,
+                        "rating": 4.9,
+                        "lat": 17.4140,
+                        "lng": 78.3410
+                    },
+                    {
+                        "name": "Financial District Metro Line",
+                        "category": "metro_railways",
+                        "type": "Metro Station",
+                        "distance_km": 0.8,
+                        "travel_time_mins": 3,
+                        "rating": 4.8,
+                        "lat": 17.4160,
+                        "lng": 78.3440
                     }
                 ]
             }
