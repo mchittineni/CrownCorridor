@@ -318,6 +318,38 @@ def check_property_history() -> None:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# market_trends.json validator
+# ─────────────────────────────────────────────────────────────────────────────
+
+def check_market_trends() -> None:
+    print("\n[8] market_trends.json integrity")
+    for state in STATES:
+        fpath = DATA_ROOT / state / "market_trends.json"
+        if not fpath.exists():
+            err(f"Cannot validate {state}/market_trends.json — file missing")
+            continue
+
+        try:
+            data = json.loads(fpath.read_text())
+        except json.JSONDecodeError as exc:
+            err(f"{state}/market_trends.json — invalid JSON: {exc}")
+            continue
+
+        hubs = data.get("employment_hubs", [])
+        if not hubs or not isinstance(hubs, list):
+            err(f"{state}/market_trends.json — 'employment_hubs' array missing or empty")
+
+        time_series = data.get("time_series", {})
+        quarters = time_series.get("quarters", [])
+        localities = time_series.get("localities", [])
+
+        if not quarters or not localities:
+            err(f"{state}/market_trends.json — 'time_series' missing quarters or localities")
+        else:
+            ok(f"{state}/market_trends.json — {len(hubs)} employment hubs, {len(localities)} localities across {len(quarters)} quarters")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Entry point
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -333,6 +365,7 @@ if __name__ == "__main__":
     check_meta()
     check_geojson()
     check_property_history()
+    check_market_trends()
 
     print("\n" + "=" * 60)
     if ERRORS:
@@ -343,4 +376,5 @@ if __name__ == "__main__":
     else:
         print("ALL CHECKS PASSED ✓")
         sys.exit(0)
+
 

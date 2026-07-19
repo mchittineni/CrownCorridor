@@ -226,3 +226,19 @@ class TestPropertyHistory:
                 assert abs(expected_cagr - actual_cagr) < 0.5, \
                     f"Property {prop.get('property_id')} in {fpath.name} CAGR mismatch: expected {expected_cagr:.2f}%, got {actual_cagr:.2f}%"
 
+
+class TestMarketTrends:
+    @pytest.mark.parametrize("state", STATES)
+    def test_file_exists_and_valid(self, state):
+        import json
+        fpath = DATA_ROOT / state / "market_trends.json"
+        assert fpath.exists(), f"Missing {state}/market_trends.json"
+        data = json.loads(fpath.read_text())
+        assert "employment_hubs" in data, f"{state}/market_trends.json missing 'employment_hubs'"
+        assert len(data["employment_hubs"]) >= 4, f"{state}/market_trends.json expected at least 4 hubs"
+        assert "time_series" in data, f"{state}/market_trends.json missing 'time_series'"
+        ts = data["time_series"]
+        assert len(ts.get("quarters", [])) >= 5, f"{state} expected at least 5 quarters"
+        assert len(ts.get("localities", [])) >= 4, f"{state} expected at least 4 localities"
+
+

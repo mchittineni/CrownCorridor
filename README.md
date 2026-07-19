@@ -10,21 +10,23 @@
 
 ## ✨ Features
 
-| Feature                        | Description                                                                                    |
-| ------------------------------ | ---------------------------------------------------------------------------------------------- |
-| 🔴 **Live SRO Feed**           | Real-time property registration ticker with pause/resume and speed controls                    |
-| 🔍 **Global Smart Search**     | Persistent header bar with instant autocomplete for properties, listings, and districts        |
-| ⚖️ **Property Comparison**     | Side-by-side spec comparison modal for up to 3 properties (Valuation, CAGR, Rate/SqFt, Metro)  |
-| 🏰 **Property Sale History**   | State-modular chronological registry audit since construction with price growth CAGR analytics |
-| 🖨️ **Valuation Audit Report**  | One-click printable PDF/audit summary with transaction logs and infrastructure scores          |
-| 📍 **Infrastructure Explorer** | Nearby schools, hospitals, metro/railway stations, parks with drive times and ratings          |
-| 🎛️ **Visual Filter Presets**   | Quick filter pills (_"Near Metro"_, _"High CAGR > 10%"_, _"Luxury Villas"_, _"AP"_, _"TS"_)    |
-| 🧭 **GPS "Locate Me"**         | Geolocation finder calculating real-time distance from user to properties and POIs             |
-| 🔒 **Zero-PII Compliance**     | Strict privacy protections — no customer names or personal data stored (automated CI check)    |
-| ☀️ **Theme Switcher**          | Glassmorphic Dark Mode and Light Mode theme toggle                                             |
-| 🧮 **Stamp Duty Calculator**   | Registration tax breakdown (AP 7.5%, TS 6.0%)                                                  |
-| 📔 **Guide Value Directory**   | Official SRO government guidance valuations by district & mandal                               |
-| 💻 **Developer API Sandbox**   | Queryable JSON sandbox and webhook alert configuration                                         |
+| Feature                        | Description                                                                                      |
+| ------------------------------ | ------------------------------------------------------------------------------------------------ |
+| 🔴 **Live SRO Feed**           | Real-time property registration ticker with pause/resume and speed controls                      |
+| 🚗 **Search by Commute**       | Filter properties by driving time to workplace hubs (HITECH City, Financial District, Amaravati) |
+| 📈 **Regional Market Trends**  | Time-series price trajectory charts (2016-2026) and top appreciating localities leaderboard      |
+| 🔍 **Global Smart Search**     | Persistent header bar with instant autocomplete for properties, listings, and districts          |
+| ⚖️ **Property Comparison**     | Side-by-side spec comparison modal for up to 3 properties (Valuation, CAGR, Rate/SqFt, Metro)    |
+| 🏰 **Property Sale History**   | State-modular chronological registry audit since construction with price growth CAGR analytics   |
+| 🖨️ **Valuation Audit Report**  | One-click printable PDF/audit summary with transaction logs and infrastructure scores            |
+| 📍 **Infrastructure Explorer** | Nearby schools, hospitals, metro/railway stations, parks with drive times and ratings            |
+| 🎛️ **Visual Filter Presets**   | Quick filter pills (_"Near Metro"_, _"High CAGR > 10%"_, _"Luxury Villas"_, _"AP"_, _"TS"_)      |
+| 🧭 **GPS "Locate Me"**         | Geolocation finder calculating real-time distance from user to properties and POIs               |
+| 🔒 **Zero-PII Compliance**     | Strict privacy protections — no customer names or personal data stored (automated CI check)      |
+| ☀️ **Theme Switcher**          | Glassmorphic Dark Mode and Light Mode theme toggle                                               |
+| 🧮 **Stamp Duty Calculator**   | Registration tax breakdown (AP 7.5%, TS 6.0%)                                                    |
+| 📔 **Guide Value Directory**   | Official SRO government guidance valuations by district & mandal                                 |
+| 💻 **Developer API Sandbox**   | Queryable JSON sandbox and webhook alert configuration                                           |
 
 ---
 

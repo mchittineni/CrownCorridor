@@ -135,6 +135,7 @@
           <button class="nav-tab active" data-tab="map-panel">Market Overview</button>
           <button class="nav-tab" data-tab="listings-panel">Verified Listings</button>
           <button class="nav-tab" data-tab="property-history-panel">Property Sale History &amp; Infrastructure</button>
+          <button class="nav-tab" data-tab="market-trends-panel">📈 Regional Market Trends</button>
           <button class="nav-tab" data-tab="calc-panel">Valuation &amp; Taxes</button>
           <button class="nav-tab" data-tab="dev-panel">Developer API Console</button>
         </nav>
@@ -234,6 +235,64 @@
               <button class="btn-pill" data-preset="luxury-villas">🏰 Luxury Villas</button>
               <button class="btn-pill" data-preset="telangana">🏛️ Telangana</button>
               <button class="btn-pill" data-preset="andhra">🏖️ Andhra Pradesh</button>
+            </div>
+
+            <!-- Search by Commute Bar -->
+            <div
+              class="commute-filter-bar"
+              style="
+                background: rgba(30, 41, 59, 0.5);
+                padding: 12px 16px;
+                border-radius: 8px;
+                border: 1px solid var(--border);
+                margin-bottom: 16px;
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                flex-wrap: wrap;
+              "
+            >
+              <span
+                style="
+                  font-size: 0.85rem;
+                  font-weight: 700;
+                  color: var(--ap-color);
+                  display: flex;
+                  align-items: center;
+                  gap: 6px;
+                "
+              >
+                🚗 Search by Commute:
+              </span>
+              <div class="filter-group" style="margin: 0">
+                <label for="commute-hub-select" style="font-size: 0.72rem">Workplace Hub</label>
+                <select id="commute-hub-select" style="padding: 6px 10px; font-size: 0.82rem">
+                  <option value="all">Any Work Hub / Location</option>
+                  <optgroup label="Telangana Hubs">
+                    <option value="ts_hub_1">HITECH City &amp; Cyber Towers</option>
+                    <option value="ts_hub_2">Financial District &amp; Nanakramguda</option>
+                    <option value="ts_hub_3">Gachibowli Knowledge City</option>
+                    <option value="ts_hub_4">Begumpet Business District</option>
+                  </optgroup>
+                  <optgroup label="Andhra Pradesh Hubs">
+                    <option value="ap_hub_1">Rushikonda IT Hill &amp; Fintech Valley</option>
+                    <option value="ap_hub_2">Benz Circle Commercial Hub</option>
+                    <option value="ap_hub_3">Amaravati Admin Core</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="filter-group" style="margin: 0">
+                <label for="commute-max-time" style="font-size: 0.72rem">Max Drive Time</label>
+                <select id="commute-max-time" style="padding: 6px 10px; font-size: 0.82rem">
+                  <option value="999">Any Drive Time</option>
+                  <option value="15">Within 15 mins</option>
+                  <option value="30">Within 30 mins</option>
+                  <option value="45">Within 45 mins</option>
+                </select>
+              </div>
+              <div id="commute-status-tag" style="font-size: 0.75rem; color: var(--text-dim); margin-left: auto">
+                Filter properties by driving proximity to key employment clusters
+              </div>
             </div>
 
             <!-- Listings Filters -->
@@ -489,7 +548,81 @@
           </div>
         </section>
 
-        <!-- Tab 4: Valuation & Calculator -->
+        <!-- Tab 4: Regional Market Trends & Price Index Charts -->
+        <section class="tab-content" id="market-trends-panel">
+          <div class="dashboard-panel" style="margin-bottom: 24px">
+            <div class="panel-header" style="flex-wrap: wrap; gap: 12px">
+              <h3 class="panel-title">📈 Regional Market Trends &amp; Price Index (AP &amp; Telangana)</h3>
+
+              <!-- State Selector Pills -->
+              <div class="preset-filter-row" id="trends-state-pills" style="display: flex; gap: 8px">
+                <button class="btn-pill active" data-trends-state="all">🌐 Combined Regional</button>
+                <button class="btn-pill" data-trends-state="telangana">🏛️ Telangana Hubs</button>
+                <button class="btn-pill" data-trends-state="andhra_pradesh">🏖️ Andhra Pradesh Hubs</button>
+              </div>
+            </div>
+
+            <!-- Macro Benchmark Summary Cards -->
+            <div class="stats-mini-grid" style="margin-bottom: 20px">
+              <div class="stat-box">
+                <span class="stat-box-title">Average Rate / SqFt</span>
+                <span class="stat-box-value" id="trends-avg-rate" style="color: var(--ap-color)">₹12,450 / sqft</span>
+                <span class="stat-box-trend trend-up">▲ 12.8% YoY Growth</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-box-title">5-Year Avg CAGR Return</span>
+                <span class="stat-box-value" id="trends-cagr-avg" style="color: var(--tg-color)">13.6%</span>
+                <span class="stat-box-trend trend-up">Top Locality: Kokapet (17.2%)</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-box-title">Annual Tx Volume</span>
+                <span class="stat-box-value" id="trends-total-volume">6,040 Deals</span>
+                <span class="stat-box-trend trend-up">Active Registrations</span>
+              </div>
+            </div>
+
+            <!-- Price Trajectory Chart -->
+            <div class="dashboard-panel" style="margin-bottom: 24px">
+              <div class="panel-header">
+                <h4 style="margin: 0; font-size: 0.95rem; color: var(--text-muted)">
+                  📈 Price Trajectory (₹ / SqFt) Since 2016
+                </h4>
+              </div>
+              <div style="position: relative; height: 320px; width: 100%">
+                <canvas id="marketTrendsChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Top Localities Leaderboard Table -->
+            <div class="dashboard-panel">
+              <div class="panel-header">
+                <h4 style="margin: 0; font-size: 0.95rem; color: var(--text-muted)">
+                  🏆 Top Appreciating Localities Leaderboard
+                </h4>
+              </div>
+              <div style="overflow-x: auto">
+                <table class="api-endpoint-table" id="trends-leaderboard-table">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>Locality</th>
+                      <th>District</th>
+                      <th>Current Rate (₹/SqFt)</th>
+                      <th>5-Year CAGR %</th>
+                      <th>Rental Yield %</th>
+                      <th>Annual Volume</th>
+                    </tr>
+                  </thead>
+                  <tbody id="trends-leaderboard-body">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab 5: Valuation & Calculator -->
         <section class="tab-content" id="calc-panel">
           <div class="dashboard-panel" style="margin-bottom: 24px">
             <div class="panel-header">

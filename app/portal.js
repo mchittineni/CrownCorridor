@@ -71,6 +71,12 @@ class RealEstatePortal {
     this.userLocation = null;
     this.currentTheme = 'dark';
 
+    // Commute & Market Trends State
+    this.marketTrendsData = { ap: null, tg: null };
+    this.selectedTrendsState = 'all';
+    this.selectedCommuteHub = 'all';
+    this.selectedCommuteMaxTime = 999;
+
     // Tax Rates
     this.taxRates = {
       'Andhra Pradesh': { stampDuty: 0.05, transferDuty: 0.015, regFee: 0.01, total: 0.075 },
@@ -177,6 +183,7 @@ class RealEstatePortal {
     this.initMaps();
     await this.loadGeographicData();
     await this.loadPropertyHistoryData();
+    await this.loadMarketTrendsData();
     this.bootstrapTransactions();
     this.bootstrapVerifiedListings();
     this.initCharts();
@@ -196,6 +203,11 @@ class RealEstatePortal {
     this.initGeolocation();
     this.initThemeSwitcher();
     this.initTickerControls();
+
+    // Initialize Commute & Market Trends
+    this.initCommuteSearch();
+    this.initMarketTrends();
+    this.renderMarketTrends();
 
     this.startLiveSimulation();
     this.updateDashboardStats();
@@ -835,13 +847,22 @@ class RealEstatePortal {
       }
 
       if (searchVal) {
-        return (
+        const matchesSearch =
           p.district.toLowerCase().includes(searchVal) ||
           p.mandal.toLowerCase().includes(searchVal) ||
           (p.colony && p.colony.toLowerCase().includes(searchVal)) ||
-          p.title.toLowerCase().includes(searchVal)
-        );
+          p.title.toLowerCase().includes(searchVal);
+        if (!matchesSearch) return false;
       }
+
+      // Commute Filter
+      if (this.selectedCommuteHub !== 'all') {
+        const commute = this.calculateCommuteTime(p.lat, p.lng, this.selectedCommuteHub);
+        if (commute && commute.driveMins > this.selectedCommuteMaxTime) {
+          return false;
+        }
+      }
+
       return true;
     });
 
@@ -857,6 +878,10 @@ class RealEstatePortal {
       const imgUrl = this.propertyImages[p.image];
       const rentText = p.status === 'Rent' ? '/month' : '';
       const isCompared = this.comparedPropertyIds.includes(p.code);
+      const commuteInfo = this.calculateCommuteTime(p.lat, p.lng, this.selectedCommuteHub);
+      const commuteBadgeHtml = commuteInfo
+        ? `<div class="commute-badge">🚗 ${commuteInfo.driveMins} mins to ${commuteInfo.hubName} (${commuteInfo.distanceKm} km)</div>`
+        : '';
 
       card.innerHTML = `
         <div class="property-img-wrap" style="background-image: url('${imgUrl}')">
@@ -869,8 +894,9 @@ class RealEstatePortal {
           <h4 class="property-title" title="${p.title}">${p.title}</h4>
           <div class="property-geo">📍 ${p.district}, ${p.mandal}, ${p.village}</div>
           <div class="property-colony" style="color: #60a5fa; font-size: 0.85rem; font-weight: 500; margin: 4px 0;">🏢 ${p.colony} · ${p.blockUnit}</div>
+          ${commuteBadgeHtml}
           
-          <div class="property-specs">
+          <div class="property-specs" style="margin-top: 6px;">
             <div class="property-spec-item">📐 ${p.area} ${p.unit}</div>
             <div class="property-spec-item">🧭 ${p.facing} Facing</div>
           </div>
@@ -2623,6 +2649,232 @@ class RealEstatePortal {
    */
   formatNumber(value) {
     return value.toLocaleString();
+  }
+
+  /**
+   * Loads state-modular market trends datasets.
+   *
+   * Fetches `andhra_pradesh/market_trends.json` and `telangana/market_trends.json`
+   * containing historical per-sqft price trajectories and employment hubs.
+   *
+   * @returns {Promise<void>}
+   */
+  async loadMarketTrendsData() {
+    try {
+      const [apData, tgData] = await Promise.all([
+        fetch('../data/andhra_pradesh/market_trends.json').then((res) =>
+          res.ok ? res.json() : null
+        ),
+        fetch('../data/telangana/market_trends.json').then((res) => (res.ok ? res.json() : null)),
+      ]);
+      this.marketTrendsData = { ap: apData, tg: tgData };
+    } catch (e) {
+      console.warn('Could not load market trends datasets:', e);
+    }
+  }
+
+  /**
+   * Initialises the Search by Commute event handlers.
+   *
+   * @returns {void}
+   */
+  initCommuteSearch() {
+    const hubSelect = document.getElementById('commute-hub-select');
+    const timeSelect = document.getElementById('commute-max-time');
+    if (!hubSelect || !timeSelect) return;
+
+    hubSelect.addEventListener('change', () => {
+      this.selectedCommuteHub = hubSelect.value;
+      this.renderVerifiedListings();
+    });
+
+    timeSelect.addEventListener('change', () => {
+      this.selectedCommuteMaxTime = parseInt(timeSelect.value, 10) || 999;
+      this.renderVerifiedListings();
+    });
+  }
+
+  /**
+   * Calculates driving commute distance and estimated drive time to a workplace hub.
+   *
+   * @param {number} lat - Property latitude.
+   * @param {number} lng - Property longitude.
+   * @param {string} hubId - Employment hub identifier.
+   * @returns {Object|null} Commute metadata or null if invalid.
+   */
+  calculateCommuteTime(lat, lng, hubId) {
+    if (!lat || !lng || !hubId || hubId === 'all') return null;
+
+    const allHubs = [
+      ...(this.marketTrendsData.ap?.employment_hubs || []),
+      ...(this.marketTrendsData.tg?.employment_hubs || []),
+    ];
+
+    const targetHub = allHubs.find((h) => h.id === hubId);
+    if (!targetHub) return null;
+
+    const distKm = this.calculateDistanceKm(lat, lng, targetHub.lat, targetHub.lng);
+    const driveMins = Math.round(distKm * 3.2);
+    return {
+      hubName: targetHub.name,
+      distanceKm: parseFloat(distKm.toFixed(1)),
+      driveMins: Math.max(5, driveMins),
+    };
+  }
+
+  /**
+   * Initialises the Regional Market Trends tab state and pills.
+   *
+   * @returns {void}
+   */
+  initMarketTrends() {
+    const pillsRow = document.getElementById('trends-state-pills');
+    if (!pillsRow) return;
+
+    pillsRow.querySelectorAll('.btn-pill').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        pillsRow.querySelectorAll('.btn-pill').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        this.selectedTrendsState = btn.dataset.trendsState || 'all';
+        this.renderMarketTrends();
+      });
+    });
+  }
+
+  /**
+   * Renders the Regional Market Trends line chart and leaderboard table.
+   *
+   * @returns {void}
+   */
+  renderMarketTrends() {
+    const apTrends = this.marketTrendsData.ap;
+    const tgTrends = this.marketTrendsData.tg;
+    if (!apTrends && !tgTrends) return;
+
+    let localities = [];
+    let quarters = [];
+
+    if (this.selectedTrendsState === 'telangana' && tgTrends) {
+      localities = tgTrends.time_series.localities;
+      quarters = tgTrends.time_series.quarters;
+    } else if (this.selectedTrendsState === 'andhra_pradesh' && apTrends) {
+      localities = apTrends.time_series.localities;
+      quarters = apTrends.time_series.quarters;
+    } else {
+      localities = [
+        ...(tgTrends?.time_series.localities || []),
+        ...(apTrends?.time_series.localities || []),
+      ];
+      quarters = tgTrends?.time_series.quarters || apTrends?.time_series.quarters || [];
+    }
+
+    const avgRateEl = document.getElementById('trends-avg-rate');
+    const cagrAvgEl = document.getElementById('trends-cagr-avg');
+    const volumeEl = document.getElementById('trends-total-volume');
+
+    if (localities.length > 0) {
+      const avgRate = Math.round(
+        localities.reduce(
+          (s, l) => s + l.avg_price_sqft_trajectory[l.avg_price_sqft_trajectory.length - 1],
+          0
+        ) / localities.length
+      );
+      const avgCagr = (localities.reduce((s, l) => s + l.cagr_5yr, 0) / localities.length).toFixed(
+        1
+      );
+      const totalVol = localities.reduce((s, l) => s + l.annual_volume, 0);
+
+      if (avgRateEl) avgRateEl.textContent = `₹${avgRate.toLocaleString('en-IN')} / sqft`;
+      if (cagrAvgEl) cagrAvgEl.textContent = `${avgCagr}%`;
+      if (volumeEl) volumeEl.textContent = `${totalVol.toLocaleString('en-IN')} Deals`;
+    }
+
+    const ctx = document.getElementById('marketTrendsChart');
+    if (ctx && typeof Chart !== 'undefined') {
+      if (this.charts.marketTrends) {
+        this.charts.marketTrends.destroy();
+      }
+
+      const colors = [
+        '#38bdf8',
+        '#10b981',
+        '#f59e0b',
+        '#ec4899',
+        '#8b5cf6',
+        '#3b82f6',
+        '#f43f5e',
+        '#14b8a6',
+      ];
+      const datasets = localities.map((loc, idx) => ({
+        label: loc.locality,
+        data: loc.avg_price_sqft_trajectory,
+        borderColor: colors[idx % colors.length],
+        backgroundColor: colors[idx % colors.length] + '22',
+        borderWidth: 2,
+        tension: 0.3,
+        fill: false,
+        pointRadius: 3,
+      }));
+
+      this.charts.marketTrends = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: quarters,
+          datasets: datasets,
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: {
+                color: this.currentTheme === 'light' ? '#0f172a' : '#94a3b8',
+                font: { size: 11 },
+              },
+            },
+            tooltip: {
+              callbacks: {
+                label: (ctx) =>
+                  `${ctx.dataset.label}: ₹${ctx.parsed.y.toLocaleString('en-IN')} / sqft`,
+              },
+            },
+          },
+          scales: {
+            x: {
+              grid: { color: 'rgba(255, 255, 255, 0.05)' },
+              ticks: { color: this.currentTheme === 'light' ? '#0f172a' : '#94a3b8' },
+            },
+            y: {
+              grid: { color: 'rgba(255, 255, 255, 0.05)' },
+              ticks: {
+                color: this.currentTheme === 'light' ? '#0f172a' : '#94a3b8',
+                callback: (val) => `₹${val.toLocaleString('en-IN')}`,
+              },
+            },
+          },
+        },
+      });
+    }
+
+    const tableBody = document.getElementById('trends-leaderboard-body');
+    if (tableBody) {
+      const sorted = [...localities].sort((a, b) => b.cagr_5yr - a.cagr_5yr);
+      tableBody.innerHTML = sorted
+        .map(
+          (loc, idx) => `
+        <tr>
+          <td><strong style="color: var(--ap-color)">#${idx + 1}</strong></td>
+          <td><strong>${loc.locality}</strong></td>
+          <td>${loc.district}</td>
+          <td>₹${loc.avg_price_sqft_trajectory[loc.avg_price_sqft_trajectory.length - 1].toLocaleString('en-IN')}</td>
+          <td><span style="color: var(--tg-color); font-weight:700;">▲ ${loc.cagr_5yr}%</span></td>
+          <td>${loc.rental_yield_pct}%</td>
+          <td>${loc.annual_volume.toLocaleString('en-IN')}</td>
+        </tr>
+      `
+        )
+        .join('');
+    }
   }
 }
 
