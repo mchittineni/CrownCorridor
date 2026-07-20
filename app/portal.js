@@ -2211,7 +2211,8 @@ class RealEstatePortal {
 
     const renderResults = (results) => {
       if (results.length === 0) {
-        dropdown.innerHTML = '<div class="search-drop-item" style="color:var(--text-dim); text-align:center;">No matching properties or locations found</div>';
+        dropdown.innerHTML =
+          '<div class="search-drop-item" style="color:var(--text-dim); text-align:center;">No matching properties or locations found</div>';
       } else {
         dropdown.innerHTML = results
           .slice(0, 8)
@@ -2301,9 +2302,12 @@ class RealEstatePortal {
       debounceTimer = setTimeout(async () => {
         try {
           const apiHost = window.location.hostname || 'localhost';
-          const res = await fetch(`http://${apiHost}:8000/api/v1/search?q=${encodeURIComponent(q)}&per_page=8`, {
-            signal: AbortSignal.timeout(1500)
-          });
+          const res = await fetch(
+            `http://${apiHost}:8000/api/v1/search?q=${encodeURIComponent(q)}&per_page=8`,
+            {
+              signal: AbortSignal.timeout(1500),
+            }
+          );
           if (res.ok) {
             const data = await res.json();
             if (data.results && data.results.length > 0) {

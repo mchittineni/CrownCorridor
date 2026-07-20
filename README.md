@@ -36,8 +36,13 @@
 CrownCorridor/
 ├── app/                     # Front-end web application (SPA)
 │   ├── index.html           # Dashboard entry point
-│   ├── portal.js            # Main application logic (maps, search, comparison, audit report)
+│   ├── portal.js            # Main application logic (maps, API search & fallback, comparison)
 │   └── styles.css           # Glassmorphism dark & light theme design system
+│
+├── api/                     # Fast-Read API Microservice (FastAPI)
+│   ├── main.py              # Async FastAPI search, health, and property endpoints
+│   ├── search.py            # Typesense connection wrapper & query builder
+│   └── requirements.txt     # API microservice dependencies
 │
 ├── data/                    # State-Modular Datasets
 │   ├── andhra_pradesh/      # AP regions, villages, coords, GeoJSON, property_history.json
@@ -46,9 +51,10 @@ CrownCorridor/
 │
 ├── pipeline/                # Python Data Pipeline & Validation
 │   ├── fetch_sro.py         # SRO data fetcher & state-modular history aggregator (--generate-history)
+│   ├── index_to_typesense.py# Syncs property records to Typesense index (--dry-run)
 │   ├── validate_data.py     # Data integrity & zero-PII validator
 │   ├── requirements.txt     # Python dependencies
-│   └── tests/               # pytest test suite
+│   └── tests/               # pytest test suite (includes test_api.py)
 │
 ├── docs/                    # Hosted Documentation Website (/docs path)
 │   ├── index.md             # Architecture overview & documentation hub
@@ -68,11 +74,15 @@ CrownCorridor/
 ## 💻 Running Locally
 
 ```bash
-# Serve from the repo root
+# Option 1: Serve web app from repo root
 python3 -m http.server 8080
+
+# Option 2: Start Fast-Read Search API microservice
+pip install -r api/requirements.txt
+uvicorn api.main:app --reload --port 8000
 ```
 
-Open **[http://localhost:8080/app/](http://localhost:8080/app/)**.
+Open **[http://localhost:8080/app/](http://localhost:8080/app/)** for the Web Portal and **[http://localhost:8000/docs](http://localhost:8000/docs)** for Interactive OpenAPI Docs.
 
 ---
 
@@ -92,8 +102,11 @@ npm run format:check
 npm run format
 
 # Install Python dependencies & run data validator
-pip install -r pipeline/requirements.txt
+pip install -r pipeline/requirements.txt -r api/requirements.txt
 python pipeline/validate_data.py
+
+# Run Typesense index dry-run
+python pipeline/index_to_typesense.py --dry-run
 
 # Run pytest test suite
 .venv/bin/pytest pipeline/tests/ -v
