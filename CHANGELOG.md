@@ -14,6 +14,17 @@ release attaches downloadable datasets; see [Releases][releases].
 
 ## [Unreleased]
 
+### Added
+
+- **Fast-Read Search API (`api/`)**: Added async FastAPI microservice (`api/main.py` & `api/search.py`) providing sub-100ms search endpoints (`/api/v1/search`, `/api/v1/properties/{id}`, `/health`) with fuzzy search, state-level filtering (`TS` / `AP`), price bounds, and CAGR filters.
+- **Typesense Ingestion Pipeline**: Added `pipeline/index_to_typesense.py` to index property records and SRO feeds into Typesense search engine collections.
+- **API Test Suite**: Added `pipeline/tests/test_api.py` with unit tests for API endpoints, Pydantic data model validation, and indexing dry-runs.
+
+### Changed
+
+- **Global Header Search**: Refactored `initGlobalSearch()` in `app/portal.js` with debounced queries to the fast-read API endpoint and automatic fallback to in-memory dataset searching.
+- **CI Toolchain Workflow**: Updated `.github/actions/setup-pipeline/action.yml` to install and cache dependencies from both `pipeline/requirements.txt` and `api/requirements.txt`.
+
 ## [1.0.1] — 2026-07-19
 
 ### Fixed

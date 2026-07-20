@@ -20,7 +20,7 @@ Browser
   └── app/index.html            Dashboard entry point
         ├── app/styles.css      Glassmorphism dark & light theme design system
         └── app/portal.js       All portal logic:
-              ├── Global Search Real-time header search with instant autocomplete dropdown
+              ├── Global Search Real-time API query with debounced autocomplete & local fallback
               ├── Compare Tool  Side-by-side spec comparison modal for up to 3 properties
               ├── SRO Ticker    Live registration feed with pause/resume and speed control
               ├── Map Explorer  Leaflet map + GPS "Locate Me" distance calculation
@@ -29,8 +29,12 @@ Browser
               ├── Calculators   Stamp duty (AP 7.5%, TS 6.0%) and guidance-value estimator
               └── API Console   JSON query sandbox and webhook configuration
 
+Fast-Read API & Search Service (api/)
+  ├── api/main.py               Async FastAPI endpoints (/health, /api/v1/search, /api/v1/properties)
+  └── api/search.py             Typesense connection pool manager & multi-field query builder
+
 GitHub Workflows & Governance
-  ├── ci.yml              PR gate: ESLint + Prettier + Zero-PII check + 26 pytest cases
+  ├── ci.yml              PR gate: ESLint + Prettier + Zero-PII check + 36 pytest cases
   ├── deploy-pages.yml    Builds _site/ (app/ + data/ + docs/) → GitHub Pages (/docs path)
   ├── update-data.yml     Weekly SRO data refresh with --generate-history
   ├── release.yml         Versioned release with downloadable data archives
@@ -44,9 +48,10 @@ Data (state-modular static datasets)
   └── data/telangana/        33 districts · 616 mandals · 9,287 villages · property_history.json
 
 Pipeline (server-side)
-  ├── pipeline/validate_data.py    Data integrity & zero-PII checks (7 sections, both states)
+  ├── pipeline/validate_data.py    Data integrity & zero-PII checks (8 sections, both states)
   ├── pipeline/fetch_sro.py        SRO fetcher & history aggregator (--generate-history)
-  └── pipeline/tests/              pytest suite (26 cases)
+  ├── pipeline/index_to_typesense.py Transforms and indexes records into Typesense (--dry-run)
+  └── pipeline/tests/              pytest suite (36 cases including test_api.py)
 ```
 
 ---
