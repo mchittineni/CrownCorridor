@@ -2194,23 +2194,44 @@ class RealEstatePortal {
    * User-Friendliness Enhancements Logic
    * ───────────────────────────────────────────────────────────────────────── */
 
-  /* 1. Global Header Smart Search */
+  /**
+   * Initializes global smart search in the header. Queries the fast-read search API
+   * (http://localhost:8000/api/v1/search) with debounce, falling back to local dataset
+   * search if the API endpoint is unavailable.
+   *
+   * @returns {void}
+   */
   initGlobalSearch() {
     const input = document.getElementById('global-search-input');
     const dropdown = document.getElementById('global-search-dropdown');
     const clearBtn = document.getElementById('global-search-clear');
     if (!input || !dropdown) return;
 
-    input.addEventListener('input', (e) => {
-      const q = e.target.value.trim().toLowerCase();
-      if (clearBtn) clearBtn.style.display = q ? 'block' : 'none';
+    let debounceTimer = null;
 
-      if (q.length < 2) {
-        dropdown.style.display = 'none';
-        dropdown.innerHTML = '';
-        return;
+    const renderResults = (results) => {
+      if (results.length === 0) {
+        dropdown.innerHTML = '<div class="search-drop-item" style="color:var(--text-dim); text-align:center;">No matching properties or locations found</div>';
+      } else {
+        dropdown.innerHTML = results
+          .slice(0, 8)
+          .map(
+            (r) => `
+          <div class="search-drop-item" data-type="${r.type}" data-id="${r.id}">
+            <div>
+              <div style="font-weight:700; color:#f8fafc; font-size:0.88rem;">${r.title}</div>
+              <div style="font-size:0.75rem; color:var(--text-dim);">${r.subtitle}</div>
+            </div>
+            <span class="search-drop-badge">${r.badge}</span>
+          </div>
+        `
+          )
+          .join('');
       }
+      dropdown.style.display = 'block';
+    };
 
+    const performLocalSearch = (q) => {
       const results = [];
 
       // Search Property History DB
@@ -2262,26 +2283,47 @@ class RealEstatePortal {
         }
       });
 
-      if (results.length === 0) {
-        dropdown.innerHTML = `<div class="search-drop-item" style="color:var(--text-dim); text-align:center;">No matching properties or locations found</div>`;
-      } else {
-        dropdown.innerHTML = results
-          .slice(0, 8)
-          .map(
-            (r) => `
-          <div class="search-drop-item" data-type="${r.type}" data-id="${r.id}">
-            <div>
-              <div style="font-weight:700; color:#f8fafc; font-size:0.88rem;">${r.title}</div>
-              <div style="font-size:0.75rem; color:var(--text-dim);">${r.subtitle}</div>
-            </div>
-            <span class="search-drop-badge">${r.badge}</span>
-          </div>
-        `
-          )
-          .join('');
+      renderResults(results);
+    };
+
+    input.addEventListener('input', (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      if (clearBtn) clearBtn.style.display = q ? 'block' : 'none';
+
+      if (debounceTimer) clearTimeout(debounceTimer);
+
+      if (q.length < 2) {
+        dropdown.style.display = 'none';
+        dropdown.innerHTML = '';
+        return;
       }
 
-      dropdown.style.display = 'block';
+      debounceTimer = setTimeout(async () => {
+        try {
+          const apiHost = window.location.hostname || 'localhost';
+          const res = await fetch(`http://${apiHost}:8000/api/v1/search?q=${encodeURIComponent(q)}&per_page=8`, {
+            signal: AbortSignal.timeout(1500)
+          });
+          if (res.ok) {
+            const data = await res.json();
+            if (data.results && data.results.length > 0) {
+              const apiResults = data.results.map((hit) => ({
+                type: 'property',
+                title: hit.property_title || hit.locality,
+                subtitle: `${hit.locality}, ${hit.district} [${hit.state_code}]`,
+                id: hit.id,
+                badge: '⚡ Fast Read API',
+              }));
+              renderResults(apiResults);
+              return;
+            }
+          }
+          performLocalSearch(q);
+        } catch (_err) {
+          // Fallback gracefully to client-side search if API microservice is offline
+          performLocalSearch(q);
+        }
+      }, 150);
     });
 
     if (clearBtn) {
