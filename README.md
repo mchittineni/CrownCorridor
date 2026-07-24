@@ -11,21 +11,21 @@
 
 ## ✨ Features
 
-| Feature                        | Description                                                                                      |
-| ------------------------------ | ------------------------------------------------------------------------------------------------ |
-| 🔴 **Live SRO Feed**           | Real-time property registration ticker with pause/resume and speed controls                      |
-| 🚗 **Search by Commute**       | Filter properties by driving time to workplace hubs (HITECH City, Financial District, Amaravati) |
-| 📈 **Regional Market Trends**  | Time-series price trajectory charts (2016-2026) and top appreciating localities leaderboard      |
-| 🔍 **Global Smart Search**     | Persistent header bar with instant autocomplete for properties, listings, and districts          |
-| ⚖️ **Property Comparison**     | Side-by-side spec comparison modal for up to 3 properties (Valuation, CAGR, Rate/SqFt, Metro)    |
-| 🏰 **Property Sale History**   | State-modular chronological registry audit since construction with price growth CAGR analytics   |
-| 🖨️ **Valuation Audit Report**  | One-click printable PDF/audit summary with transaction logs and infrastructure scores            |
-| 📍 **Infrastructure Explorer** | Nearby schools, hospitals, metro/railway stations, parks with drive times and ratings            |
-| 🎛️ **Visual Filter Presets**   | Quick filter pills (_"Near Metro"_, _"High CAGR > 10%"_, _"Luxury Villas"_, _"AP"_, _"TS"_)      |
-| 🔒 **Zero-PII Compliance**     | Strict privacy protections — no customer names or personal data stored (automated CI check)      |
-| 🏗️ **AWS Terraform Infrastructure**| Production-ready modular Terraform (>= 1.15.0, AWS ~> 6.56.0) with WAF, API Gateway, Fargate & PostGIS |
-| 🛡️ **CIS AWS Benchmark Security** | OPA / Rego policy engine, VPC Flow Logs, S3 TLS-Only, ALB Header Dropping, and native `.tftest.hcl` suites |
-| 📐 **Draw.io AWS Architecture** | Full Draw.io XML diagram using official AWS Architecture Icons (`docs/architecture.drawio`) |
+| Feature                             | Description                                                                                                |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| 🔴 **Live SRO Feed**                | Real-time property registration ticker with pause/resume and speed controls                                |
+| 🚗 **Search by Commute**            | Filter properties by driving time to workplace hubs (HITECH City, Financial District, Amaravati)           |
+| 📈 **Regional Market Trends**       | Time-series price trajectory charts (2016-2026) and top appreciating localities leaderboard                |
+| 🔍 **Global Smart Search**          | Persistent header bar with instant autocomplete for properties, listings, and districts                    |
+| ⚖️ **Property Comparison**          | Side-by-side spec comparison modal for up to 3 properties (Valuation, CAGR, Rate/SqFt, Metro)              |
+| 🏰 **Property Sale History**        | State-modular chronological registry audit since construction with price growth CAGR analytics             |
+| 🖨️ **Valuation Audit Report**       | One-click printable PDF/audit summary with transaction logs and infrastructure scores                      |
+| 📍 **Infrastructure Explorer**      | Nearby schools, hospitals, metro/railway stations, parks with drive times and ratings                      |
+| 🎛️ **Visual Filter Presets**        | Quick filter pills (_"Near Metro"_, _"High CAGR > 10%"_, _"Luxury Villas"_, _"AP"_, _"TS"_)                |
+| 🔒 **Zero-PII Compliance**          | Strict privacy protections — no customer names or personal data stored (automated CI check)                |
+| 🏗️ **AWS Terraform Infrastructure** | Production-ready modular Terraform (>= 1.15.0, AWS ~> 6.56.0) with WAF, API Gateway, Fargate & PostGIS     |
+| 🛡️ **CIS AWS Benchmark Security**   | OPA / Rego policy engine, VPC Flow Logs, S3 TLS-Only, ALB Header Dropping, and native `.tftest.hcl` suites |
+| 📐 **Draw.io AWS Architecture**     | Full Draw.io XML diagram using official AWS Architecture Icons (`docs/architecture.drawio`)                |
 
 ---
 
