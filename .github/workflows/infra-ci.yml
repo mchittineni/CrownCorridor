@@ -25,10 +25,10 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Setup Terraform CLI
-        uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e88815257bd2741b2f73398 # v3.1.2
+        uses: hashicorp/setup-terraform@96f9e6a37b5cf8d55f34c903a3a05eb5f5f1c41f # v3.1.2
         with:
           terraform_version: "1.15.0"
 
