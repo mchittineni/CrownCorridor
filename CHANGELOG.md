@@ -24,6 +24,7 @@ release attaches downloadable datasets; see [Releases][releases].
 
 - **Global Header Search**: Refactored `initGlobalSearch()` in `app/portal.js` with debounced queries to the fast-read API endpoint and automatic fallback to in-memory dataset searching.
 - **CI Toolchain Workflow**: Updated `.github/actions/setup-pipeline/action.yml` to install and cache dependencies from both `pipeline/requirements.txt` and `api/requirements.txt`.
+- **GitHub Actions Infrastructure**: Upgraded all workflows to use latest action versions with validated commit SHAs for improved security and reproducibility. Updated `hashicorp/setup-terraform` from v3.1.2 to v4.0.1. Standardized `actions/checkout` (v7.0.1), `actions/setup-node` (v7.0.0), `actions/upload-artifact` (v7.0.1), `actions/upload-pages-artifact` (v5.0.0), `actions/deploy-pages` (v5.0.0), and `softprops/action-gh-release` (v3.0.2) across all 6 CI/CD workflows.
 
 ## [1.0.1] — 2026-07-19
 
