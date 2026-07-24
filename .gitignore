@@ -45,6 +45,19 @@ htmlcov/
 docs/api/js/
 _site/
 
+# Terraform Local Cache & Binary Providers
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
 # Logs & Temporary Scratch Files
 *.log
 tmp/

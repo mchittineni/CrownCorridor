@@ -1,0 +1,57 @@
+name: Infrastructure & Policy Validation (IaC CI)
+
+on:
+  pull_request:
+    paths:
+      - 'terraform/**'
+      - 'pipeline/validate_iac.py'
+      - 'pipeline/tests/test_validate_iac.py'
+      - '.github/workflows/infra-ci.yml'
+    branches: [main, develop]
+  push:
+    paths:
+      - 'terraform/**'
+      - 'pipeline/validate_iac.py'
+      - 'pipeline/tests/test_validate_iac.py'
+      - '.github/workflows/infra-ci.yml'
+    branches: [main, develop]
+
+permissions:
+  contents: read
+
+jobs:
+  iac-validation:
+    name: Terraform Validation, Policy Checks & IaC Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Setup Terraform CLI
+        uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e88815257bd2741b2f73398 # v3.1.2
+        with:
+          terraform_version: "1.15.0"
+
+      - name: Setup Python Toolchain
+        uses: ./.github/actions/setup-pipeline
+
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive terraform/
+
+      - name: Terraform Init & Validate
+        run: |
+          cd terraform
+          terraform init -backend=false
+          terraform validate
+
+      - name: Run Native Terraform Tests
+        run: |
+          cd terraform
+          terraform test
+
+      - name: Run IaC & CIS Benchmark Policy Validator
+        run: python pipeline/validate_iac.py
+
+      - name: Run Full Pytest Suite (Includes IaC & Policy Unit Tests)
+        run: pytest pipeline/tests/ -v --tb=short

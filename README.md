@@ -1,9 +1,10 @@
 # Crown Corridor
 
-> A next-generation real estate and property discovery portal for Andhra Pradesh & Telangana.  
-> Features verified listings, interactive geospatial maps, state-modular SRO property sale histories, CAGR analytics, nearby infrastructure scoring, zero-PII privacy compliance, and strict code quality standards.
+> **Real Estate at Your Fingertips** — A next-generation property discovery portal for Andhra Pradesh & Telangana.  
+> Features verified listings, interactive geospatial maps, state-modular SRO property sale histories, CAGR analytics, nearby infrastructure scoring, zero-PII privacy compliance, reusable Terraform AWS infrastructure, and strict code quality standards.
 
 [![CI](https://github.com/mchittineni/CrownCorridor/actions/workflows/ci.yml/badge.svg)](https://github.com/mchittineni/CrownCorridor/actions/workflows/ci.yml)
+[![Infra CI](https://github.com/mchittineni/CrownCorridor/actions/workflows/infra-ci.yml/badge.svg)](https://github.com/mchittineni/CrownCorridor/actions/workflows/infra-ci.yml)
 [![Deploy](https://github.com/mchittineni/CrownCorridor/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/mchittineni/CrownCorridor/actions/workflows/deploy-pages.yml)
 
 ---
@@ -21,12 +22,56 @@
 | 🖨️ **Valuation Audit Report**  | One-click printable PDF/audit summary with transaction logs and infrastructure scores            |
 | 📍 **Infrastructure Explorer** | Nearby schools, hospitals, metro/railway stations, parks with drive times and ratings            |
 | 🎛️ **Visual Filter Presets**   | Quick filter pills (_"Near Metro"_, _"High CAGR > 10%"_, _"Luxury Villas"_, _"AP"_, _"TS"_)      |
-| 🧭 **GPS "Locate Me"**         | Geolocation finder calculating real-time distance from user to properties and POIs               |
 | 🔒 **Zero-PII Compliance**     | Strict privacy protections — no customer names or personal data stored (automated CI check)      |
-| ☀️ **Theme Switcher**          | Glassmorphic Dark Mode and Light Mode theme toggle                                               |
-| 🧮 **Stamp Duty Calculator**   | Registration tax breakdown (AP 7.5%, TS 6.0%)                                                    |
-| 📔 **Guide Value Directory**   | Official SRO government guidance valuations by district & mandal                                 |
-| 💻 **Developer API Sandbox**   | Queryable JSON sandbox and webhook alert configuration                                           |
+| 🏗️ **AWS Terraform Infrastructure**| Production-ready modular Terraform (>= 1.15.0, AWS ~> 6.56.0) with WAF, API Gateway, Fargate & PostGIS |
+| 🛡️ **CIS AWS Benchmark Security** | OPA / Rego policy engine, VPC Flow Logs, S3 TLS-Only, ALB Header Dropping, and native `.tftest.hcl` suites |
+| 📐 **Draw.io AWS Architecture** | Full Draw.io XML diagram using official AWS Architecture Icons (`docs/architecture.drawio`) |
+
+---
+
+## 🏛️ Infrastructure Architecture Diagram
+
+```
+[ Web / Mobile Clients ]
+           │
+           ▼
+[ AWS WAF Web ACL ] (Rate Limiting, OWASP Top 10)
+           │
+           ▼
+[ Amazon CloudFront CDN ] (TLS 1.3, HTTPS Redirection)
+           │
+ ┌─────────┴─────────────────────────────┐
+ ▼                                       ▼
+[ Amazon S3 (Web UI) ]        [ Amazon API Gateway v2 ]
+(KMS Encrypted, OAC, TLS)     (Cognito JWT Authorizer, Throttling, CORS)
+                                         │
+                                         ▼
+                            [ AWS ECS Fargate Cluster ]
+                            ┌────────────────────────────┐
+                            │ • FastAPI Microservice     │
+                            │ • Typesense (EFS Volume)   │
+                            └────────────┬───────────────┘
+                                         │
+                                         ▼
+                           [ Amazon RDS PostGIS (Private) ]
+                           (Multi-AZ Subnet Group, KMS Encrypted)
+
+─────────────────────────────────────────────────────────────────────────────────────────────
+                             SECURITY, AUDITING & EVENT LAYER
+─────────────────────────────────────────────────────────────────────────────────────────────
+┌──────────────────┐  ┌─────────────────┐  ┌──────────────────┐  ┌──────────────────┐
+│  AWS CloudTrail  │  │  AWS GuardDuty  │  │ AWS Security Hub │  │ AWS Secrets Mgr  │
+│ (API Audit Logs) │  │(Threat Detection│  │ (Posture & CIS)  │  │ (DB Creds + KMS) │
+└────────┬─────────┘  └────────┬────────┘  └────────┬─────────┘  └────────┬─────────┘
+         │                     │                    │                     │
+         └─────────────────────┴─────────┬──────────┴─────────────────────┘
+                                         ▼
+                              [ Amazon EventBridge ]
+                                         │
+                 ┌───────────────────────┴───────────────────────┐
+                 ▼                                               ▼
+   [ Weekly ETL Pipeline Cron ]                    [ SNS Alerting Topic ]
+```
 
 ---
 
@@ -49,16 +94,31 @@ CrownCorridor/
 │   ├── telangana/           # TS regions, villages, coords, GeoJSON, property_history.json
 │   └── sro_feed/            # Daily SRO registration archives
 │
-├── pipeline/                # Python Data Pipeline & Validation
+├── pipeline/                # Python Data Pipeline, Validation & IaC Security
 │   ├── fetch_sro.py         # SRO data fetcher & state-modular history aggregator (--generate-history)
 │   ├── index_to_typesense.py# Syncs property records to Typesense index (--dry-run)
 │   ├── validate_data.py     # Data integrity & zero-PII validator
+│   ├── validate_iac.py      # Infrastructure as Code, HCL syntax & CIS AWS Benchmark validator
 │   ├── requirements.txt     # Python dependencies
-│   └── tests/               # pytest test suite (includes test_api.py)
+│   └── tests/               # pytest test suite (includes test_api.py & test_validate_iac.py)
+│
+├── terraform/               # Production-Ready AWS Terraform Infrastructure (>= 1.15.0, AWS ~> 6.56.0)
+│   ├── main.tf              # Master module orchestrator
+│   ├── providers.tf         # HashiCorp AWS provider (~> 6.56.0) & local offline testing configuration
+│   ├── variables.tf         # Global input variables
+│   ├── outputs.tf           # Endpoints, CDN URLs, User Pool IDs, DB connections
+│   ├── terraform.tfvars.example # Sample environment variable settings
+│   ├── graph.dot / graph.png# Terraform visual execution plan graph
+│   ├── architecture.drawio  # Official AWS Icons Draw.io XML diagram file
+│   ├── policies/            # Open Policy Agent (OPA) Rego CIS AWS Foundations Benchmark policies
+│   ├── tests/               # Centralized Native Terraform test directory (11 .tftest.hcl suites, 100% coverage)
+│   └── modules/             # Reusable child modules (vpc, security, waf, cdn, auth, api_gateway, compute, database, secrets_ssm, events_alerting)
 │
 ├── docs/                    # Hosted Documentation Website (/docs path)
 │   ├── index.md             # Architecture overview & documentation hub
 │   ├── user-guide.md        # Step-by-step non-technical user guide
+│   ├── graph.png / graph.svg# Visual Terraform execution plan graph
+│   ├── architecture.drawio  # Official AWS Icons Draw.io XML diagram file
 │   └── api/                 # JSDoc generated API documentation
 │
 └── .github/
@@ -66,7 +126,7 @@ CrownCorridor/
     ├── PULL_REQUEST_TEMPLATE.md # Pull request checklist & guide
     ├── dependabot.yml       # Weekly dependency update rules (actions, npm, pip)
     ├── actions/             # Shared composite GitHub Actions
-    └── workflows/           # CI/CD workflows with SHA-pinned actions
+    └── workflows/           # CI/CD workflows (ci.yml, infra-ci.yml, deploy-pages.yml, etc.)
 ```
 
 ---
@@ -86,7 +146,7 @@ Open **[http://localhost:8080/app/](http://localhost:8080/app/)** for the Web Po
 
 ---
 
-## 🧪 Development, Code Quality & Testing
+## 🧪 Development, Infrastructure & Native Testing
 
 ```bash
 # Install Node dev dependencies (Prettier, ESLint, JSDoc)
@@ -98,18 +158,22 @@ npm run lint
 # Run Prettier code formatting check
 npm run format:check
 
-# Format code automatically
-npm run format
-
-# Install Python dependencies & run data validator
+# Install Python dependencies & run data validators
 pip install -r pipeline/requirements.txt -r api/requirements.txt
 python pipeline/validate_data.py
 
-# Run Typesense index dry-run
-python pipeline/index_to_typesense.py --dry-run
+# Run IaC & CIS AWS Benchmark Security Validator
+python pipeline/validate_iac.py
 
-# Run pytest test suite
+# Run pytest test suite (44 test cases)
 .venv/bin/pytest pipeline/tests/ -v
+
+# Native Terraform Tests (11 test suites with 100% coverage)
+cd terraform
+terraform fmt -check -recursive .
+terraform init -backend=false
+terraform validate
+terraform test
 ```
 
 ---
@@ -120,7 +184,7 @@ Crown Corridor adheres strictly to zero-PII privacy rules:
 
 - **No Customer PII**: Customer personal names and personal identity numbers are strictly scrubbed from dataset files.
 - **Anonymized Classifications**: Transactions exclusively use role-based classifications (`Private Individual Owner`, `Commercial Property Developer`, `Institutional Realty Fund`).
-- **Automated CI PII Guard**: `pipeline/validate_data.py` inspects all datasets on pull requests to block personal data commits.
+- **Automated CI PII & Secret Guard**: Both `pipeline/validate_data.py` and `pipeline/validate_iac.py` inspect all datasets and infrastructure files on pull requests to block personal data or secret commits.
 
 ---
 

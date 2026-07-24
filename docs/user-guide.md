@@ -1,6 +1,6 @@
 # Crown Corridor — User Guide
 
-> Welcome to **Crown Corridor**! This guide explains all platform features, property history tracking, side-by-side comparison, valuation reports, and search tools. 🇮🇳🏙️
+> **Real Estate at Your Fingertips** — Welcome to **Crown Corridor**! This guide explains all platform features, property history tracking, side-by-side comparison, valuation reports, and search tools. 🇮🇳🏙️
 
 ---
 
