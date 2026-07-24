@@ -1,212 +1,247 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crown Corridor — Real Estate at Your Fingertips (AP &amp; TS)</title>
+    <meta
+      name="description"
+      content="A next-generation property discovery portal for Andhra Pradesh &amp; Telangana. Features verified listings, interactive geospatial maps, local guidance value estimation, and historical market transaction analytics."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%233b82f6' d='M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z'/%3E%3Ccircle cx='12' cy='9' r='2.6' fill='white'/%3E%3C/svg%3E"
+    />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Crown Corridor — Real Estate at Your Fingertips (AP &amp; TS)</title>
-  <meta name="description"
-    content="A next-generation property discovery portal for Andhra Pradesh &amp; Telangana. Features verified listings, interactive geospatial maps, local guidance value estimation, and historical market transaction analytics." />
-  <link rel="icon"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%233b82f6' d='M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z'/%3E%3Ccircle cx='12' cy='9' r='2.6' fill='white'/%3E%3C/svg%3E" />
+    <!-- Leaflet CSS & JS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
 
-  <!-- Leaflet CSS & JS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- MapLibre GL + PMTiles CDNs (For vector tile cadastral parcel mapping) -->
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" crossorigin="anonymous" />
+    <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/pmtiles@3.2.1/dist/pmtiles.js" crossorigin="anonymous"></script>
+    <script
+      src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.0.22/leaflet-maplibre-gl.js"
+      crossorigin="anonymous"
+    ></script>
 
-  <!-- MapLibre GL + PMTiles CDNs (For vector tile cadastral parcel mapping) -->
-  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" crossorigin="anonymous" />
-  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/pmtiles@3.2.1/dist/pmtiles.js" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.0.22/leaflet-maplibre-gl.js"
-    crossorigin="anonymous"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <!-- Chart.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="styles.css" />
-</head>
-
-<body>
-  <!-- Top Portal Header -->
-  <header class="portal-header">
-    <div class="logo-section">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2L2 9L12 16L22 9L12 2Z" fill="#3b82f6" />
-        <path d="M2 17L12 22L22 17" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M2 13L12 18L22 13" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-      <div>
-        <h1>Crown Corridor</h1>
-      </div>
-      <span class="badge">Real Estate at Your Fingertips</span>
-    </div>
-
-    <!-- Global Smart Header Search -->
-    <div class="global-search-container">
-      <div class="global-search-box">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="global-search-input" placeholder="Search properties, colonies, districts, RERA IDs..."
-          autocomplete="off" />
-        <button id="global-search-clear" style="display: none">&times;</button>
-      </div>
-      <div class="global-search-dropdown" id="global-search-dropdown" style="display: none"></div>
-    </div>
-
-    <!-- Live Counters & Controls -->
-    <div class="header-right-controls">
-      <div class="live-counters">
-        <div class="counter-item">
-          <span class="counter-label">Registrations Today</span>
-          <span class="counter-value pulse" id="live-reg-today">0</span>
+  <body>
+    <!-- Top Portal Header -->
+    <header class="portal-header">
+      <div class="logo-section">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 9L12 16L22 9L12 2Z" fill="#3b82f6" />
+          <path
+            d="M2 17L12 22L22 17"
+            stroke="#3b82f6"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M2 13L12 18L22 13"
+            stroke="#10b981"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <div>
+          <h1>Crown Corridor</h1>
         </div>
-        <div class="counter-item">
-          <span class="counter-label">Simulated Live Valuation</span>
-          <span class="counter-value" id="live-value-today" style="color: var(--ap-color)">₹0.00 Cr</span>
+        <span class="badge">Real Estate at Your Fingertips</span>
+      </div>
+
+      <!-- Global Smart Header Search -->
+      <div class="global-search-container">
+        <div class="global-search-box">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            id="global-search-input"
+            placeholder="Search properties, colonies, districts, RERA IDs..."
+            autocomplete="off"
+          />
+          <button id="global-search-clear" style="display: none">&times;</button>
+        </div>
+        <div class="global-search-dropdown" id="global-search-dropdown" style="display: none"></div>
+      </div>
+
+      <!-- Live Counters & Controls -->
+      <div class="header-right-controls">
+        <div class="live-counters">
+          <div class="counter-item">
+            <span class="counter-label">Registrations Today</span>
+            <span class="counter-value pulse" id="live-reg-today">0</span>
+          </div>
+          <div class="counter-item">
+            <span class="counter-label">Simulated Live Valuation</span>
+            <span class="counter-value" id="live-value-today" style="color: var(--ap-color)">₹0.00 Cr</span>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button id="theme-toggle-btn" class="header-action-btn" title="Toggle Light / Dark Mode">☀️ Light</button>
+          <div class="ticker-control-group">
+            <button id="ticker-toggle-btn" class="header-action-btn pulse-green" title="Pause / Resume Live SRO Ticker">
+              ⏸ Pause
+            </button>
+            <select id="ticker-speed-select" class="header-select" title="Ticker Speed">
+              <option value="4000">4s</option>
+              <option value="8000" selected>8s</option>
+              <option value="12000">12s</option>
+            </select>
+          </div>
         </div>
       </div>
+    </header>
 
-      <div class="header-actions">
-        <button id="theme-toggle-btn" class="header-action-btn" title="Toggle Light / Dark Mode">☀️ Light</button>
-        <div class="ticker-control-group">
-          <button id="ticker-toggle-btn" class="header-action-btn pulse-green" title="Pause / Resume Live SRO Ticker">
-            ⏸ Pause
-          </button>
-          <select id="ticker-speed-select" class="header-select" title="Ticker Speed">
-            <option value="4000">4s</option>
-            <option value="8000" selected>8s</option>
-            <option value="12000">12s</option>
-          </select>
+    <!-- Portal Content Layout -->
+    <div class="portal-container">
+      <!-- Left Panel: Live SRO Registration Ticker -->
+      <aside class="ticker-sidebar">
+        <div class="ticker-header">
+          <h2 class="ticker-title"><span class="ticker-dot"></span> Live SRO Feed</h2>
+          <span class="ticker-speed">8s loop</span>
         </div>
-      </div>
-    </div>
-  </header>
 
-  <!-- Portal Content Layout -->
-  <div class="portal-container">
-    <!-- Left Panel: Live SRO Registration Ticker -->
-    <aside class="ticker-sidebar">
-      <div class="ticker-header">
-        <h2 class="ticker-title"><span class="ticker-dot"></span> Live SRO Feed</h2>
-        <span class="ticker-speed">8s loop</span>
-      </div>
-
-      <!-- Live Ticker Scrolling Container -->
-      <div class="ticker-list" id="live-feed-list">
-        <div style="text-align: center; padding: 40px 20px; color: var(--text-dim); font-size: 0.82rem">
-          Connecting SRO gateways...
+        <!-- Live Ticker Scrolling Container -->
+        <div class="ticker-list" id="live-feed-list">
+          <div style="text-align: center; padding: 40px 20px; color: var(--text-dim); font-size: 0.82rem">
+            Connecting SRO gateways...
+          </div>
         </div>
-      </div>
-    </aside>
+      </aside>
 
-    <!-- Center & Right Panel: Dashboard Operations -->
-    <main class="dashboard-main">
-      <nav class="dashboard-nav">
-        <button class="nav-tab active" data-tab="map-panel">Market Overview</button>
-        <button class="nav-tab" data-tab="listings-panel">Verified Listings</button>
-        <button class="nav-tab" data-tab="property-history-panel">Property Sale History &amp; Infrastructure</button>
-        <button class="nav-tab" data-tab="market-trends-panel">📈 Regional Market Trends</button>
-        <button class="nav-tab" data-tab="calc-panel">Valuation &amp; Taxes</button>
-        <button class="nav-tab" data-tab="dev-panel">Developer API Console</button>
-      </nav>
+      <!-- Center & Right Panel: Dashboard Operations -->
+      <main class="dashboard-main">
+        <nav class="dashboard-nav">
+          <button class="nav-tab active" data-tab="map-panel">Market Overview</button>
+          <button class="nav-tab" data-tab="listings-panel">Verified Listings</button>
+          <button class="nav-tab" data-tab="property-history-panel">Property Sale History &amp; Infrastructure</button>
+          <button class="nav-tab" data-tab="market-trends-panel">📈 Regional Market Trends</button>
+          <button class="nav-tab" data-tab="calc-panel">Valuation &amp; Taxes</button>
+          <button class="nav-tab" data-tab="dev-panel">Developer API Console</button>
+        </nav>
 
-      <!-- Tab 1: Market Overview (Interactive Map & Analytics) -->
-      <section class="tab-content active" id="map-panel">
-        <div class="panel-row">
-          <!-- Leaflet Interactive Heatmap -->
+        <!-- Tab 1: Market Overview (Interactive Map & Analytics) -->
+        <section class="tab-content active" id="map-panel">
+          <div class="panel-row">
+            <!-- Leaflet Interactive Heatmap -->
+            <div class="dashboard-panel">
+              <div class="panel-header">
+                <h3 class="panel-title">🗺️ Transaction Density Map (Andhra Pradesh &amp; Telangana)</h3>
+              </div>
+              <div class="map-container">
+                <div id="leaflet-map"></div>
+              </div>
+              <p style="font-size: 0.75rem; color: var(--text-dim); margin-top: 12px; line-height: 1.45">
+                Hover over districts to analyze local transaction counts, registered value aggregates, and average price
+                indices. Click on any district boundary to filter the transaction grid.
+              </p>
+            </div>
+
+            <!-- Statistics Grid -->
+            <div class="stats-mini-grid">
+              <div class="stat-box">
+                <span class="stat-box-title">Historical Log Pool</span>
+                <span class="stat-box-value" id="stat-total-tx">0</span>
+                <span class="stat-box-trend trend-up">▲ 14.2% this month</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-box-title">Registered Volume</span>
+                <span class="stat-box-value" id="stat-total-val">₹0.00 Cr</span>
+                <span class="stat-box-trend trend-up">▲ 8.7% this month</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-box-title">Stamp Duty Levy</span>
+                <span class="stat-box-value" id="stat-total-duty">₹0.00 Cr</span>
+                <span class="stat-box-trend trend-up">▲ 5.4% this month</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-box-title">Registry Velocity</span>
+                <span class="stat-box-value" id="stat-velocity">0.0 Tx/Day</span>
+                <span class="stat-box-trend trend-up" style="color: var(--text-dim)">Live SRO feedback loop</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-row wide-left">
+            <!-- Analytics Graphs -->
+            <div class="dashboard-panel">
+              <div class="panel-header">
+                <h3 class="panel-title">📈 Real Estate Pricing Trends (6 Months)</h3>
+              </div>
+              <div class="chart-wrapper">
+                <canvas id="chart-price-trends"></canvas>
+              </div>
+            </div>
+
+            <div class="dashboard-panel">
+              <div class="panel-header">
+                <h3 class="panel-title">📊 Property Type Distribution</h3>
+              </div>
+              <div class="chart-wrapper">
+                <canvas id="chart-prop-types"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab 2: Verified Listings -->
+        <section class="tab-content" id="listings-panel">
           <div class="dashboard-panel">
             <div class="panel-header">
-              <h3 class="panel-title">🗺️ Transaction Density Map (Andhra Pradesh &amp; Telangana)</h3>
-            </div>
-            <div class="map-container">
-              <div id="leaflet-map"></div>
-            </div>
-            <p style="font-size: 0.75rem; color: var(--text-dim); margin-top: 12px; line-height: 1.45">
-              Hover over districts to analyze local transaction counts, registered value aggregates, and average price
-              indices. Click on any district boundary to filter the transaction grid.
-            </p>
-          </div>
-
-          <!-- Statistics Grid -->
-          <div class="stats-mini-grid">
-            <div class="stat-box">
-              <span class="stat-box-title">Historical Log Pool</span>
-              <span class="stat-box-value" id="stat-total-tx">0</span>
-              <span class="stat-box-trend trend-up">▲ 14.2% this month</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-box-title">Registered Volume</span>
-              <span class="stat-box-value" id="stat-total-val">₹0.00 Cr</span>
-              <span class="stat-box-trend trend-up">▲ 8.7% this month</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-box-title">Stamp Duty Levy</span>
-              <span class="stat-box-value" id="stat-total-duty">₹0.00 Cr</span>
-              <span class="stat-box-trend trend-up">▲ 5.4% this month</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-box-title">Registry Velocity</span>
-              <span class="stat-box-value" id="stat-velocity">0.0 Tx/Day</span>
-              <span class="stat-box-trend trend-up" style="color: var(--text-dim)">Live SRO feedback loop</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="panel-row wide-left">
-          <!-- Analytics Graphs -->
-          <div class="dashboard-panel">
-            <div class="panel-header">
-              <h3 class="panel-title">📈 Real Estate Pricing Trends (6 Months)</h3>
-            </div>
-            <div class="chart-wrapper">
-              <canvas id="chart-price-trends"></canvas>
-            </div>
-          </div>
-
-          <div class="dashboard-panel">
-            <div class="panel-header">
-              <h3 class="panel-title">📊 Property Type Distribution</h3>
-            </div>
-            <div class="chart-wrapper">
-              <canvas id="chart-prop-types"></canvas>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Tab 2: Verified Listings -->
-      <section class="tab-content" id="listings-panel">
-        <div class="dashboard-panel">
-          <div class="panel-header">
-            <h3 class="panel-title">✨ Verified Property Listings</h3>
-            <div style="
+              <h3 class="panel-title">✨ Verified Property Listings</h3>
+              <div
+                style="
                   font-size: 0.78rem;
                   color: var(--tg-color);
                   font-weight: 700;
                   background: var(--tg-soft);
                   padding: 4px 10px;
                   border-radius: 4px;
-                ">
-              100% Geospatially Verified by Crown Corridor
+                "
+              >
+                100% Geospatially Verified by Crown Corridor
+              </div>
             </div>
-          </div>
 
-          <!-- Quick Preset Pills -->
-          <div class="preset-filter-row" id="preset-filter-row"
-            style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px">
-            <button class="btn-pill active" data-preset="all">All Listings</button>
-            <button class="btn-pill" data-preset="near-metro">🚆 Near Metro (< 2 km)</button>
-                <button class="btn-pill" data-preset="high-cagr">📈 High CAGR (> 10%)</button>
-                <button class="btn-pill" data-preset="luxury-villas">🏰 Luxury Villas</button>
-                <button class="btn-pill" data-preset="telangana">🏛️ Telangana</button>
-                <button class="btn-pill" data-preset="andhra">🏖️ Andhra Pradesh</button>
-          </div>
+            <!-- Quick Preset Pills -->
+            <div
+              class="preset-filter-row"
+              id="preset-filter-row"
+              style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px"
+            >
+              <button class="btn-pill active" data-preset="all">All Listings</button>
+              <button class="btn-pill" data-preset="near-metro">🚆 Near Metro (< 2 km)</button>
+              <button class="btn-pill" data-preset="high-cagr">📈 High CAGR (> 10%)</button>
+              <button class="btn-pill" data-preset="luxury-villas">🏰 Luxury Villas</button>
+              <button class="btn-pill" data-preset="telangana">🏛️ Telangana</button>
+              <button class="btn-pill" data-preset="andhra">🏖️ Andhra Pradesh</button>
+            </div>
 
-          <!-- Search by Commute Bar -->
-          <div class="commute-filter-bar" style="
+            <!-- Search by Commute Bar -->
+            <div
+              class="commute-filter-bar"
+              style="
                 background: rgba(30, 41, 59, 0.5);
                 padding: 12px 16px;
                 border-radius: 8px;
@@ -216,147 +251,159 @@
                 align-items: center;
                 gap: 14px;
                 flex-wrap: wrap;
-              ">
-            <span style="
+              "
+            >
+              <span
+                style="
                   font-size: 0.85rem;
                   font-weight: 700;
                   color: var(--ap-color);
                   display: flex;
                   align-items: center;
                   gap: 6px;
-                ">
-              🚗 Search by Commute:
-            </span>
-            <div class="filter-group" style="margin: 0">
-              <label for="commute-hub-select" style="font-size: 0.72rem">Workplace Hub</label>
-              <select id="commute-hub-select" style="padding: 6px 10px; font-size: 0.82rem">
-                <option value="all">Any Work Hub / Location</option>
-                <optgroup label="Telangana Hubs">
-                  <option value="ts_hub_1">HITECH City &amp; Cyber Towers</option>
-                  <option value="ts_hub_2">Financial District &amp; Nanakramguda</option>
-                  <option value="ts_hub_3">Gachibowli Knowledge City</option>
-                  <option value="ts_hub_4">Begumpet Business District</option>
-                </optgroup>
-                <optgroup label="Andhra Pradesh Hubs">
-                  <option value="ap_hub_1">Rushikonda IT Hill &amp; Fintech Valley</option>
-                  <option value="ap_hub_2">Benz Circle Commercial Hub</option>
-                  <option value="ap_hub_3">Amaravati Admin Core</option>
-                </optgroup>
-              </select>
+                "
+              >
+                🚗 Search by Commute:
+              </span>
+              <div class="filter-group" style="margin: 0">
+                <label for="commute-hub-select" style="font-size: 0.72rem">Workplace Hub</label>
+                <select id="commute-hub-select" style="padding: 6px 10px; font-size: 0.82rem">
+                  <option value="all">Any Work Hub / Location</option>
+                  <optgroup label="Telangana Hubs">
+                    <option value="ts_hub_1">HITECH City &amp; Cyber Towers</option>
+                    <option value="ts_hub_2">Financial District &amp; Nanakramguda</option>
+                    <option value="ts_hub_3">Gachibowli Knowledge City</option>
+                    <option value="ts_hub_4">Begumpet Business District</option>
+                  </optgroup>
+                  <optgroup label="Andhra Pradesh Hubs">
+                    <option value="ap_hub_1">Rushikonda IT Hill &amp; Fintech Valley</option>
+                    <option value="ap_hub_2">Benz Circle Commercial Hub</option>
+                    <option value="ap_hub_3">Amaravati Admin Core</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="filter-group" style="margin: 0">
+                <label for="commute-max-time" style="font-size: 0.72rem">Max Drive Time</label>
+                <select id="commute-max-time" style="padding: 6px 10px; font-size: 0.82rem">
+                  <option value="999">Any Drive Time</option>
+                  <option value="15">Within 15 mins</option>
+                  <option value="30">Within 30 mins</option>
+                  <option value="45">Within 45 mins</option>
+                </select>
+              </div>
+              <div id="commute-status-tag" style="font-size: 0.75rem; color: var(--text-dim); margin-left: auto">
+                Filter properties by driving proximity to key employment clusters
+              </div>
             </div>
-            <div class="filter-group" style="margin: 0">
-              <label for="commute-max-time" style="font-size: 0.72rem">Max Drive Time</label>
-              <select id="commute-max-time" style="padding: 6px 10px; font-size: 0.82rem">
-                <option value="999">Any Drive Time</option>
-                <option value="15">Within 15 mins</option>
-                <option value="30">Within 30 mins</option>
-                <option value="45">Within 45 mins</option>
-              </select>
+
+            <!-- Listings Filters -->
+            <div class="search-controls">
+              <div class="filter-group">
+                <label for="list-state">State</label>
+                <select id="list-state">
+                  <option value="All">All States</option>
+                  <option value="Andhra Pradesh">Andhra Pradesh</option>
+                  <option value="Telangana">Telangana</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="list-type">Category</label>
+                <select id="list-type">
+                  <option value="All">All Categories</option>
+                  <option value="Residential Flat">Apartment/Flat</option>
+                  <option value="Residential Plot">Villa Plot</option>
+                  <option value="Agricultural Land">Agricultural Land</option>
+                  <option value="Commercial Space">Commercial Space</option>
+                  <option value="Independent Villa">Independent Villa</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="list-price">Price Max (INR)</label>
+                <select id="list-price">
+                  <option value="All">Any Price</option>
+                  <option value="5000000">Up to ₹50 Lakhs</option>
+                  <option value="15000000">Up to ₹1.5 Cr</option>
+                  <option value="30000000">Up to ₹3.0 Cr</option>
+                  <option value="60000000">Up to ₹6.0 Cr</option>
+                </select>
+              </div>
+              <div class="filter-group wide">
+                <label for="list-search">Search Location / Locality</label>
+                <input id="list-search" type="text" placeholder="Search by colony, block, unit, district..." />
+              </div>
             </div>
-            <div id="commute-status-tag" style="font-size: 0.75rem; color: var(--text-dim); margin-left: auto">
-              Filter properties by driving proximity to key employment clusters
+
+            <!-- Property Card Grid -->
+            <div class="listings-grid" id="listings-card-grid">
+              <!-- Dynamically populated property cards -->
             </div>
           </div>
+        </section>
 
-          <!-- Listings Filters -->
-          <div class="search-controls">
-            <div class="filter-group">
-              <label for="list-state">State</label>
-              <select id="list-state">
-                <option value="All">All States</option>
-                <option value="Andhra Pradesh">Andhra Pradesh</option>
-                <option value="Telangana">Telangana</option>
-              </select>
-            </div>
-            <div class="filter-group">
-              <label for="list-type">Category</label>
-              <select id="list-type">
-                <option value="All">All Categories</option>
-                <option value="Residential Flat">Apartment/Flat</option>
-                <option value="Residential Plot">Villa Plot</option>
-                <option value="Agricultural Land">Agricultural Land</option>
-                <option value="Commercial Space">Commercial Space</option>
-                <option value="Independent Villa">Independent Villa</option>
-              </select>
-            </div>
-            <div class="filter-group">
-              <label for="list-price">Price Max (INR)</label>
-              <select id="list-price">
-                <option value="All">Any Price</option>
-                <option value="5000000">Up to ₹50 Lakhs</option>
-                <option value="15000000">Up to ₹1.5 Cr</option>
-                <option value="30000000">Up to ₹3.0 Cr</option>
-                <option value="60000000">Up to ₹6.0 Cr</option>
-              </select>
-            </div>
-            <div class="filter-group wide">
-              <label for="list-search">Search Location / Locality</label>
-              <input id="list-search" type="text" placeholder="Search by colony, block, unit, district..." />
-            </div>
-          </div>
-
-          <!-- Property Card Grid -->
-          <div class="listings-grid" id="listings-card-grid">
-            <!-- Dynamically populated property cards -->
-          </div>
-        </div>
-      </section>
-
-      <!-- Tab 2B: Property Sale History & Infrastructure Explorer -->
-      <section class="tab-content" id="property-history-panel">
-        <!-- Property Selector Header -->
-        <div class="dashboard-panel" style="margin-bottom: 20px">
-          <div class="panel-header">
-            <h3 class="panel-title">🏰 Complete Property Sale History &amp; Infrastructure Analytics</h3>
-            <div style="display: flex; gap: 10px; align-items: center">
-              <button id="btn-export-report" class="btn-primary" style="
+        <!-- Tab 2B: Property Sale History & Infrastructure Explorer -->
+        <section class="tab-content" id="property-history-panel">
+          <!-- Property Selector Header -->
+          <div class="dashboard-panel" style="margin-bottom: 20px">
+            <div class="panel-header">
+              <h3 class="panel-title">🏰 Complete Property Sale History &amp; Infrastructure Analytics</h3>
+              <div style="display: flex; gap: 10px; align-items: center">
+                <button
+                  id="btn-export-report"
+                  class="btn-primary"
+                  style="
                     padding: 4px 12px;
                     font-size: 0.78rem;
                     background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
-                  ">
-                🖨️ Export Audit Report
-              </button>
-              <div style="
+                  "
+                >
+                  🖨️ Export Audit Report
+                </button>
+                <div
+                  style="
                     font-size: 0.78rem;
                     color: var(--ap-color);
                     font-weight: 700;
                     background: var(--ap-soft);
                     padding: 4px 10px;
                     border-radius: 4px;
-                  ">
-                Historical Registry Audit &amp; Proximity Ratings
+                  "
+                >
+                  Historical Registry Audit &amp; Proximity Ratings
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Property Selection Controls -->
-          <div class="search-controls">
-            <div class="filter-group wide">
-              <label for="prop-history-select">Select Property / Complex</label>
-              <select id="prop-history-select" style="font-weight: 600; color: #38bdf8">
-                <!-- Dynamically populated from property_history.json -->
-              </select>
+            <!-- Property Selection Controls -->
+            <div class="search-controls">
+              <div class="filter-group wide">
+                <label for="prop-history-select">Select Property / Complex</label>
+                <select id="prop-history-select" style="font-weight: 600; color: #38bdf8">
+                  <!-- Dynamically populated from property_history.json -->
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="prop-filter-state">State</label>
+                <select id="prop-filter-state">
+                  <option value="All">All States</option>
+                  <option value="telangana">Telangana</option>
+                  <option value="andhra_pradesh">Andhra Pradesh</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="prop-filter-type">Property Type</label>
+                <select id="prop-filter-type">
+                  <option value="All">All Types</option>
+                  <option value="Apartment">Apartment</option>
+                  <option value="Villa">Villa</option>
+                </select>
+              </div>
             </div>
-            <div class="filter-group">
-              <label for="prop-filter-state">State</label>
-              <select id="prop-filter-state">
-                <option value="All">All States</option>
-                <option value="telangana">Telangana</option>
-                <option value="andhra_pradesh">Andhra Pradesh</option>
-              </select>
-            </div>
-            <div class="filter-group">
-              <label for="prop-filter-type">Property Type</label>
-              <select id="prop-filter-type">
-                <option value="All">All Types</option>
-                <option value="Apartment">Apartment</option>
-                <option value="Villa">Villa</option>
-              </select>
-            </div>
-          </div>
 
-          <!-- Property Highlight Card -->
-          <div class="property-highlight-card" id="prop-highlight-card" style="
+            <!-- Property Highlight Card -->
+            <div
+              class="property-highlight-card"
+              id="prop-highlight-card"
+              style="
                 margin-top: 16px;
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -365,401 +412,418 @@
                 padding: 16px;
                 border-radius: 12px;
                 border: 1px solid var(--border-color);
-              ">
-            <!-- Rendered dynamically -->
-          </div>
-        </div>
-
-        <!-- Main Analysis Grid -->
-        <div class="panel-row">
-          <!-- Left Side: Price Growth Chart & Historical Sales Table -->
-          <div style="display: flex; flex-direction: column; gap: 20px; flex: 1.2">
-            <!-- Price Appreciation Trajectory -->
-            <div class="dashboard-panel">
-              <div class="panel-header">
-                <h3 class="panel-title">📈 Price Appreciation History (Since Construction)</h3>
-                <span class="badge" id="prop-appreciation-badge">+0.0% Overall Growth</span>
-              </div>
-              <div class="chart-wrapper" style="height: 300px">
-                <canvas id="chart-price-history"></canvas>
-              </div>
-            </div>
-
-            <!-- Complete Sale History Audit Table -->
-            <div class="dashboard-panel">
-              <div class="panel-header">
-                <h3 class="panel-title">📜 SRO Registration Sale History Audit Trail</h3>
-              </div>
-              <div class="table-wrapper">
-                <table class="data-table" id="table-sale-history">
-                  <thead>
-                    <tr>
-                      <th>Year &amp; Date</th>
-                      <th>Sale Price</th>
-                      <th>Price / SqFt</th>
-                      <th>Seller → Buyer</th>
-                      <th>SRO Doc #</th>
-                      <th>Growth (%)</th>
-                    </tr>
-                  </thead>
-                  <tbody id="table-sale-history-body">
-                    <!-- Dynamically rendered -->
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <!-- Investment ROI & CAGR Calculator -->
-            <div class="dashboard-panel">
-              <div class="panel-header">
-                <h3 class="panel-title">🧮 Property Investment ROI &amp; CAGR Estimator</h3>
-              </div>
-              <div class="search-controls" style="margin-bottom: 12px">
-                <div class="filter-group">
-                  <label for="cagr-buy-year">Purchase Year</label>
-                  <input type="number" id="cagr-buy-year" value="2015" min="2000" max="2026" />
-                </div>
-                <div class="filter-group">
-                  <label for="cagr-buy-price">Purchase Price (₹ Lakhs)</label>
-                  <input type="number" id="cagr-buy-price" value="50.0" min="5" step="5" />
-                </div>
-                <div class="filter-group">
-                  <label for="cagr-target-year">Target Year</label>
-                  <input type="number" id="cagr-target-year" value="2026" min="2000" max="2035" />
-                </div>
-                <div class="filter-group">
-                  <label for="cagr-annual-rate">Assumed Annual Appreciation (%)</label>
-                  <input type="number" id="cagr-annual-rate" value="10.5" step="0.5" />
-                </div>
-              </div>
-              <div class="stat-box" style="background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.3)">
-                <div style="display: flex; justify-content: space-between; align-items: center">
-                  <div>
-                    <span class="stat-box-title">Projected Valuation</span>
-                    <span class="stat-box-value" id="calc-projected-val">₹0.00 Lakhs</span>
-                  </div>
-                  <div style="text-align: right">
-                    <span class="stat-box-title">Total Estimated Return</span>
-                    <span class="stat-box-value" id="calc-total-return" style="color: #10b981">+0.0%</span>
-                  </div>
-                </div>
-              </div>
+              "
+            >
+              <!-- Rendered dynamically -->
             </div>
           </div>
 
-          <!-- Right Side: Nearby Infrastructure Explorer & Map -->
-          <div style="display: flex; flex-direction: column; gap: 20px; flex: 1">
-            <!-- Nearby Infrastructure Explorer -->
-            <div class="dashboard-panel">
-              <div class="panel-header">
-                <h3 class="panel-title">📍 Nearby Services &amp; Infrastructure</h3>
+          <!-- Main Analysis Grid -->
+          <div class="panel-row">
+            <!-- Left Side: Price Growth Chart & Historical Sales Table -->
+            <div style="display: flex; flex-direction: column; gap: 20px; flex: 1.2">
+              <!-- Price Appreciation Trajectory -->
+              <div class="dashboard-panel">
+                <div class="panel-header">
+                  <h3 class="panel-title">📈 Price Appreciation History (Since Construction)</h3>
+                  <span class="badge" id="prop-appreciation-badge">+0.0% Overall Growth</span>
+                </div>
+                <div class="chart-wrapper" style="height: 300px">
+                  <canvas id="chart-price-history"></canvas>
+                </div>
               </div>
 
-              <!-- POI Category Filter Pills -->
-              <div class="poi-filter-pills" id="poi-filter-pills"
-                style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px">
-                <button class="btn-pill active" data-cat="all">All Services</button>
-                <button class="btn-pill" data-cat="schools">🏫 Schools &amp; Colleges</button>
-                <button class="btn-pill" data-cat="hospitals">🏥 Hospitals</button>
-                <button class="btn-pill" data-cat="metro_railways">🚆 Metro / Railways</button>
-                <button class="btn-pill" data-cat="shopping_parks">🛍️ Parks &amp; Malls</button>
+              <!-- Complete Sale History Audit Table -->
+              <div class="dashboard-panel">
+                <div class="panel-header">
+                  <h3 class="panel-title">📜 SRO Registration Sale History Audit Trail</h3>
+                </div>
+                <div class="table-wrapper">
+                  <table class="data-table" id="table-sale-history">
+                    <thead>
+                      <tr>
+                        <th>Year &amp; Date</th>
+                        <th>Sale Price</th>
+                        <th>Price / SqFt</th>
+                        <th>Seller → Buyer</th>
+                        <th>SRO Doc #</th>
+                        <th>Growth (%)</th>
+                      </tr>
+                    </thead>
+                    <tbody id="table-sale-history-body">
+                      <!-- Dynamically rendered -->
+                    </tbody>
+                  </table>
+                </div>
               </div>
 
-              <!-- POI Cards Container -->
-              <div class="nearby-poi-list" id="nearby-poi-list" style="
+              <!-- Investment ROI & CAGR Calculator -->
+              <div class="dashboard-panel">
+                <div class="panel-header">
+                  <h3 class="panel-title">🧮 Property Investment ROI &amp; CAGR Estimator</h3>
+                </div>
+                <div class="search-controls" style="margin-bottom: 12px">
+                  <div class="filter-group">
+                    <label for="cagr-buy-year">Purchase Year</label>
+                    <input type="number" id="cagr-buy-year" value="2015" min="2000" max="2026" />
+                  </div>
+                  <div class="filter-group">
+                    <label for="cagr-buy-price">Purchase Price (₹ Lakhs)</label>
+                    <input type="number" id="cagr-buy-price" value="50.0" min="5" step="5" />
+                  </div>
+                  <div class="filter-group">
+                    <label for="cagr-target-year">Target Year</label>
+                    <input type="number" id="cagr-target-year" value="2026" min="2000" max="2035" />
+                  </div>
+                  <div class="filter-group">
+                    <label for="cagr-annual-rate">Assumed Annual Appreciation (%)</label>
+                    <input type="number" id="cagr-annual-rate" value="10.5" step="0.5" />
+                  </div>
+                </div>
+                <div
+                  class="stat-box"
+                  style="background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.3)"
+                >
+                  <div style="display: flex; justify-content: space-between; align-items: center">
+                    <div>
+                      <span class="stat-box-title">Projected Valuation</span>
+                      <span class="stat-box-value" id="calc-projected-val">₹0.00 Lakhs</span>
+                    </div>
+                    <div style="text-align: right">
+                      <span class="stat-box-title">Total Estimated Return</span>
+                      <span class="stat-box-value" id="calc-total-return" style="color: #10b981">+0.0%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Side: Nearby Infrastructure Explorer & Map -->
+            <div style="display: flex; flex-direction: column; gap: 20px; flex: 1">
+              <!-- Nearby Infrastructure Explorer -->
+              <div class="dashboard-panel">
+                <div class="panel-header">
+                  <h3 class="panel-title">📍 Nearby Services &amp; Infrastructure</h3>
+                </div>
+
+                <!-- POI Category Filter Pills -->
+                <div
+                  class="poi-filter-pills"
+                  id="poi-filter-pills"
+                  style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px"
+                >
+                  <button class="btn-pill active" data-cat="all">All Services</button>
+                  <button class="btn-pill" data-cat="schools">🏫 Schools &amp; Colleges</button>
+                  <button class="btn-pill" data-cat="hospitals">🏥 Hospitals</button>
+                  <button class="btn-pill" data-cat="metro_railways">🚆 Metro / Railways</button>
+                  <button class="btn-pill" data-cat="shopping_parks">🛍️ Parks &amp; Malls</button>
+                </div>
+
+                <!-- POI Cards Container -->
+                <div
+                  class="nearby-poi-list"
+                  id="nearby-poi-list"
+                  style="
                     display: flex;
                     flex-direction: column;
                     gap: 10px;
                     max-height: 380px;
                     overflow-y: auto;
                     padding-right: 4px;
-                  ">
-                <!-- Rendered dynamically -->
+                  "
+                >
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+
+              <!-- Map Display for Selected Property & Nearby POIs -->
+              <div class="dashboard-panel">
+                <div class="panel-header">
+                  <h3 class="panel-title">🗺️ Property &amp; Infrastructure Geospatial View</h3>
+                </div>
+                <div class="map-container" style="height: 360px">
+                  <div id="prop-history-map"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab 4: Regional Market Trends & Price Index Charts -->
+        <section class="tab-content" id="market-trends-panel">
+          <div class="dashboard-panel" style="margin-bottom: 24px">
+            <div class="panel-header" style="flex-wrap: wrap; gap: 12px">
+              <h3 class="panel-title">📈 Regional Market Trends &amp; Price Index (AP &amp; Telangana)</h3>
+
+              <!-- State Selector Pills -->
+              <div class="preset-filter-row" id="trends-state-pills" style="display: flex; gap: 8px">
+                <button class="btn-pill active" data-trends-state="all">🌐 Combined Regional</button>
+                <button class="btn-pill" data-trends-state="telangana">🏛️ Telangana Hubs</button>
+                <button class="btn-pill" data-trends-state="andhra_pradesh">🏖️ Andhra Pradesh Hubs</button>
               </div>
             </div>
 
-            <!-- Map Display for Selected Property & Nearby POIs -->
+            <!-- Macro Benchmark Summary Cards -->
+            <div class="stats-mini-grid" style="margin-bottom: 20px">
+              <div class="stat-box">
+                <span class="stat-box-title">Average Rate / SqFt</span>
+                <span class="stat-box-value" id="trends-avg-rate" style="color: var(--ap-color)">₹12,450 / sqft</span>
+                <span class="stat-box-trend trend-up">▲ 12.8% YoY Growth</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-box-title">5-Year Avg CAGR Return</span>
+                <span class="stat-box-value" id="trends-cagr-avg" style="color: var(--tg-color)">13.6%</span>
+                <span class="stat-box-trend trend-up">Top Locality: Kokapet (17.2%)</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-box-title">Annual Tx Volume</span>
+                <span class="stat-box-value" id="trends-total-volume">6,040 Deals</span>
+                <span class="stat-box-trend trend-up">Active Registrations</span>
+              </div>
+            </div>
+
+            <!-- Price Trajectory Chart -->
+            <div class="dashboard-panel" style="margin-bottom: 24px">
+              <div class="panel-header">
+                <h4 style="margin: 0; font-size: 0.95rem; color: var(--text-muted)">
+                  📈 Price Trajectory (₹ / SqFt) Since 2016
+                </h4>
+              </div>
+              <div style="position: relative; height: 320px; width: 100%">
+                <canvas id="marketTrendsChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Top Localities Leaderboard Table -->
             <div class="dashboard-panel">
               <div class="panel-header">
-                <h3 class="panel-title">🗺️ Property &amp; Infrastructure Geospatial View</h3>
+                <h4 style="margin: 0; font-size: 0.95rem; color: var(--text-muted)">
+                  🏆 Top Appreciating Localities Leaderboard
+                </h4>
               </div>
-              <div class="map-container" style="height: 360px">
-                <div id="prop-history-map"></div>
+              <div style="overflow-x: auto">
+                <table class="api-endpoint-table" id="trends-leaderboard-table">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>Locality</th>
+                      <th>District</th>
+                      <th>Current Rate (₹/SqFt)</th>
+                      <th>5-Year CAGR %</th>
+                      <th>Rental Yield %</th>
+                      <th>Annual Volume</th>
+                    </tr>
+                  </thead>
+                  <tbody id="trends-leaderboard-body">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Tab 4: Regional Market Trends & Price Index Charts -->
-      <section class="tab-content" id="market-trends-panel">
-        <div class="dashboard-panel" style="margin-bottom: 24px">
-          <div class="panel-header" style="flex-wrap: wrap; gap: 12px">
-            <h3 class="panel-title">📈 Regional Market Trends &amp; Price Index (AP &amp; Telangana)</h3>
-
-            <!-- State Selector Pills -->
-            <div class="preset-filter-row" id="trends-state-pills" style="display: flex; gap: 8px">
-              <button class="btn-pill active" data-trends-state="all">🌐 Combined Regional</button>
-              <button class="btn-pill" data-trends-state="telangana">🏛️ Telangana Hubs</button>
-              <button class="btn-pill" data-trends-state="andhra_pradesh">🏖️ Andhra Pradesh Hubs</button>
-            </div>
-          </div>
-
-          <!-- Macro Benchmark Summary Cards -->
-          <div class="stats-mini-grid" style="margin-bottom: 20px">
-            <div class="stat-box">
-              <span class="stat-box-title">Average Rate / SqFt</span>
-              <span class="stat-box-value" id="trends-avg-rate" style="color: var(--ap-color)">₹12,450 / sqft</span>
-              <span class="stat-box-trend trend-up">▲ 12.8% YoY Growth</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-box-title">5-Year Avg CAGR Return</span>
-              <span class="stat-box-value" id="trends-cagr-avg" style="color: var(--tg-color)">13.6%</span>
-              <span class="stat-box-trend trend-up">Top Locality: Kokapet (17.2%)</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-box-title">Annual Tx Volume</span>
-              <span class="stat-box-value" id="trends-total-volume">6,040 Deals</span>
-              <span class="stat-box-trend trend-up">Active Registrations</span>
-            </div>
-          </div>
-
-          <!-- Price Trajectory Chart -->
+        <!-- Tab 5: Valuation & Calculator -->
+        <section class="tab-content" id="calc-panel">
           <div class="dashboard-panel" style="margin-bottom: 24px">
             <div class="panel-header">
-              <h4 style="margin: 0; font-size: 0.95rem; color: var(--text-muted)">
-                📈 Price Trajectory (₹ / SqFt) Since 2016
-              </h4>
+              <h3 class="panel-title">🧮 Stamp Duty &amp; Registration Fee Calculator</h3>
             </div>
-            <div style="position: relative; height: 320px; width: 100%">
-              <canvas id="marketTrendsChart"></canvas>
+
+            <div class="calc-container">
+              <div class="calc-inputs">
+                <div class="filter-group">
+                  <label for="calc-state">Target State</label>
+                  <select id="calc-state">
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Telangana">Telangana</option>
+                  </select>
+                </div>
+
+                <div class="filter-group">
+                  <label for="calc-prop-type">Property Classification</label>
+                  <select id="calc-prop-type">
+                    <!-- Populated dynamically -->
+                  </select>
+                </div>
+
+                <div class="filter-group">
+                  <label for="calc-value">Property Consideration Amount (INR)</label>
+                  <input id="calc-value" type="number" value="5000000" step="50000" min="100000" />
+                </div>
+              </div>
+
+              <div class="calc-results">
+                <div>
+                  <h4 style="font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 16px">
+                    Tax Levy Estimation Breakdown
+                  </h4>
+
+                  <div class="calc-breakdown-row">
+                    <span>Stamp Duty Charge</span>
+                    <span id="calc-breakdown-stamp" style="font-weight: 600">₹0</span>
+                  </div>
+
+                  <div class="calc-breakdown-row">
+                    <span>Transfer Duty Levy</span>
+                    <span id="calc-breakdown-transfer" style="font-weight: 600">₹0</span>
+                  </div>
+
+                  <div class="calc-breakdown-row">
+                    <span>Sub-Registrar Office (SRO) Fee</span>
+                    <span id="calc-breakdown-reg" style="font-weight: 600">₹0</span>
+                  </div>
+
+                  <div class="calc-breakdown-row total">
+                    <span>Total Registration Cost</span>
+                    <span id="calc-breakdown-total" style="color: var(--tg-color)">₹0</span>
+                  </div>
+                </div>
+
+                <p
+                  id="calc-details"
+                  style="font-size: 0.75rem; color: var(--text-dim); margin-top: 20px; line-height: 1.4"
+                >
+                  Calculations based on prevailing state stamp acts. Telangana enforces 6.0% combined levy; Andhra
+                  Pradesh enforces 7.5% combined levy.
+                </p>
+              </div>
             </div>
           </div>
 
-          <!-- Top Localities Leaderboard Table -->
           <div class="dashboard-panel">
             <div class="panel-header">
-              <h4 style="margin: 0; font-size: 0.95rem; color: var(--text-muted)">
-                🏆 Top Appreciating Localities Leaderboard
-              </h4>
+              <h3 class="panel-title">📔 Official Sub-Registrar Guide Value Directory</h3>
             </div>
-            <div style="overflow-x: auto">
-              <table class="api-endpoint-table" id="trends-leaderboard-table">
-                <thead>
-                  <tr>
-                    <th>Rank</th>
-                    <th>Locality</th>
-                    <th>District</th>
-                    <th>Current Rate (₹/SqFt)</th>
-                    <th>5-Year CAGR %</th>
-                    <th>Rental Yield %</th>
-                    <th>Annual Volume</th>
-                  </tr>
-                </thead>
-                <tbody id="trends-leaderboard-body">
-                  <!-- Populated dynamically -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <!-- Tab 5: Valuation & Calculator -->
-      <section class="tab-content" id="calc-panel">
-        <div class="dashboard-panel" style="margin-bottom: 24px">
-          <div class="panel-header">
-            <h3 class="panel-title">🧮 Stamp Duty &amp; Registration Fee Calculator</h3>
-          </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px">
+              Lookup estimated government guidance rates (official valuation) by drill-down regional SRO parameters.
+              Actual properties cannot be registered below SRO guide value rates.
+            </p>
 
-          <div class="calc-container">
-            <div class="calc-inputs">
+            <div class="guide-search-wrap">
               <div class="filter-group">
-                <label for="calc-state">Target State</label>
-                <select id="calc-state">
+                <label for="guide-state">State</label>
+                <select id="guide-state">
                   <option value="Andhra Pradesh">Andhra Pradesh</option>
                   <option value="Telangana">Telangana</option>
                 </select>
               </div>
 
               <div class="filter-group">
-                <label for="calc-prop-type">Property Classification</label>
-                <select id="calc-prop-type">
-                  <!-- Populated dynamically -->
+                <label for="guide-district">District</label>
+                <select id="guide-district">
+                  <option value="">Select District</option>
                 </select>
               </div>
 
               <div class="filter-group">
-                <label for="calc-value">Property Consideration Amount (INR)</label>
-                <input id="calc-value" type="number" value="5000000" step="50000" min="100000" />
+                <label for="guide-mandal">Mandal</label>
+                <select id="guide-mandal">
+                  <option value="">Select Mandal</option>
+                </select>
               </div>
             </div>
 
-            <div class="calc-results">
-              <div>
-                <h4 style="font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 16px">
-                  Tax Levy Estimation Breakdown
-                </h4>
-
-                <div class="calc-breakdown-row">
-                  <span>Stamp Duty Charge</span>
-                  <span id="calc-breakdown-stamp" style="font-weight: 600">₹0</span>
-                </div>
-
-                <div class="calc-breakdown-row">
-                  <span>Transfer Duty Levy</span>
-                  <span id="calc-breakdown-transfer" style="font-weight: 600">₹0</span>
-                </div>
-
-                <div class="calc-breakdown-row">
-                  <span>Sub-Registrar Office (SRO) Fee</span>
-                  <span id="calc-breakdown-reg" style="font-weight: 600">₹0</span>
-                </div>
-
-                <div class="calc-breakdown-row total">
-                  <span>Total Registration Cost</span>
-                  <span id="calc-breakdown-total" style="color: var(--tg-color)">₹0</span>
-                </div>
+            <div class="guide-search-wrap">
+              <div class="filter-group" style="grid-column: span 3">
+                <label for="guide-prop-type">Property Category</label>
+                <select id="guide-prop-type">
+                  <!-- Populated dynamically -->
+                </select>
               </div>
+            </div>
 
-              <p id="calc-details"
-                style="font-size: 0.75rem; color: var(--text-dim); margin-top: 20px; line-height: 1.4">
-                Calculations based on prevailing state stamp acts. Telangana enforces 6.0% combined levy; Andhra
-                Pradesh enforces 7.5% combined levy.
-              </p>
+            <div class="guide-result-box">
+              <span class="stat-box-title">Estimated Government Guidance Value</span>
+              <div class="guide-result-val" id="guide-result-val">₹ --</div>
+              <span id="guide-result-unit" style="font-size: 0.75rem; color: var(--text-dim); margin-top: 8px">
+                Select geographic boundaries above to query local register values
+              </span>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div class="dashboard-panel">
-          <div class="panel-header">
-            <h3 class="panel-title">📔 Official Sub-Registrar Guide Value Directory</h3>
-          </div>
-
-          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px">
-            Lookup estimated government guidance rates (official valuation) by drill-down regional SRO parameters.
-            Actual properties cannot be registered below SRO guide value rates.
-          </p>
-
-          <div class="guide-search-wrap">
-            <div class="filter-group">
-              <label for="guide-state">State</label>
-              <select id="guide-state">
-                <option value="Andhra Pradesh">Andhra Pradesh</option>
-                <option value="Telangana">Telangana</option>
-              </select>
-            </div>
-
-            <div class="filter-group">
-              <label for="guide-district">District</label>
-              <select id="guide-district">
-                <option value="">Select District</option>
-              </select>
-            </div>
-
-            <div class="filter-group">
-              <label for="guide-mandal">Mandal</label>
-              <select id="guide-mandal">
-                <option value="">Select Mandal</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="guide-search-wrap">
-            <div class="filter-group" style="grid-column: span 3">
-              <label for="guide-prop-type">Property Category</label>
-              <select id="guide-prop-type">
-                <!-- Populated dynamically -->
-              </select>
-            </div>
-          </div>
-
-          <div class="guide-result-box">
-            <span class="stat-box-title">Estimated Government Guidance Value</span>
-            <div class="guide-result-val" id="guide-result-val">₹ --</div>
-            <span id="guide-result-unit" style="font-size: 0.75rem; color: var(--text-dim); margin-top: 8px">
-              Select geographic boundaries above to query local register values
-            </span>
-          </div>
-        </div>
-      </section>
-
-      <!-- Tab 5: API Console & Webhook Alerts -->
-      <section class="tab-content" id="dev-panel">
-        <div class="panel-row">
-          <!-- Interactive API Console -->
-          <div class="dashboard-panel">
-            <div class="panel-header">
-              <h3 class="panel-title">💻 Developer API Endpoint Sandbox</h3>
-            </div>
-            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px">
-              Crown Corridor exposes real-time endpoints for developers. Customize query filters below to fetch clean
-              simulated JSON transaction payloads:
-            </p>
-
-            <div class="api-sandbox">
-              <div class="api-bar">
-                <span class="api-dot red"></span>
-                <span class="api-dot yellow"></span>
-                <span class="api-dot green"></span>
-                <span style="font-size: 0.72rem; color: var(--text-dim); font-weight: 700; margin-left: 6px">GET</span>
-                <input class="api-url-input" id="api-query" type="text" value="?state=Telangana&limit=3" />
-              </div>
-              <pre class="api-response-code" id="api-response-code">
-                  Loading sandbox...
-                </pre>
-            </div>
-          </div>
-
-          <!-- Alert Subscription Form -->
-          <div class="dashboard-panel" style="display: flex; flex-direction: column; justify-content: space-between">
-            <div>
+        <!-- Tab 5: API Console & Webhook Alerts -->
+        <section class="tab-content" id="dev-panel">
+          <div class="panel-row">
+            <!-- Interactive API Console -->
+            <div class="dashboard-panel">
               <div class="panel-header">
-                <h3 class="panel-title">🔔 Real-Time Webhook Transaction Alerts</h3>
+                <h3 class="panel-title">💻 Developer API Endpoint Sandbox</h3>
               </div>
               <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px">
-                Configure notifications when transactions of specified magnitude get registered in real-time.
+                Crown Corridor exposes real-time endpoints for developers. Customize query filters below to fetch clean
+                simulated JSON transaction payloads:
               </p>
 
-              <form class="alert-form" id="alerts-form">
-                <div class="filter-group">
-                  <label for="alert-email">Destination E-mail</label>
-                  <input id="alert-email" type="email" placeholder="dev@crowncorridor.io" required />
+              <div class="api-sandbox">
+                <div class="api-bar">
+                  <span class="api-dot red"></span>
+                  <span class="api-dot yellow"></span>
+                  <span class="api-dot green"></span>
+                  <span style="font-size: 0.72rem; color: var(--text-dim); font-weight: 700; margin-left: 6px"
+                    >GET</span
+                  >
+                  <input class="api-url-input" id="api-query" type="text" value="?state=Telangana&limit=3" />
                 </div>
+                <pre class="api-response-code" id="api-response-code">
+                  Loading sandbox...
+                </pre>
+              </div>
+            </div>
 
-                <div class="filter-group">
-                  <label for="alert-threshold">Value Threshold (Crores)</label>
-                  <input id="alert-threshold" type="number" min="0.5" step="0.5" value="2.5" required />
+            <!-- Alert Subscription Form -->
+            <div class="dashboard-panel" style="display: flex; flex-direction: column; justify-content: space-between">
+              <div>
+                <div class="panel-header">
+                  <h3 class="panel-title">🔔 Real-Time Webhook Transaction Alerts</h3>
                 </div>
+                <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px">
+                  Configure notifications when transactions of specified magnitude get registered in real-time.
+                </p>
 
-                <div class="checkbox-group">
-                  <input type="checkbox" id="alert-chk-sms" />
-                  <label for="alert-chk-sms">Push live notifications to phone via SMS</label>
-                </div>
+                <form class="alert-form" id="alerts-form">
+                  <div class="filter-group">
+                    <label for="alert-email">Destination E-mail</label>
+                    <input id="alert-email" type="email" placeholder="dev@crowncorridor.io" required />
+                  </div>
 
-                <button type="submit" class="btn-primary">Register Webhook Trigger</button>
-              </form>
+                  <div class="filter-group">
+                    <label for="alert-threshold">Value Threshold (Crores)</label>
+                    <input id="alert-threshold" type="number" min="0.5" step="0.5" value="2.5" required />
+                  </div>
+
+                  <div class="checkbox-group">
+                    <input type="checkbox" id="alert-chk-sms" />
+                    <label for="alert-chk-sms">Push live notifications to phone via SMS</label>
+                  </div>
+
+                  <button type="submit" class="btn-primary">Register Webhook Trigger</button>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Hidden Section: Top Active Districts Chart -->
-      <section class="tab-content" id="analytics-panel">
-        <div class="dashboard-panel">
-          <div class="panel-header">
-            <h3 class="panel-title">📊 Top Active Districts by Registration Count</h3>
+        <!-- Hidden Section: Top Active Districts Chart -->
+        <section class="tab-content" id="analytics-panel">
+          <div class="dashboard-panel">
+            <div class="panel-header">
+              <h3 class="panel-title">📊 Top Active Districts by Registration Count</h3>
+            </div>
+            <div class="chart-wrapper" style="height: 380px">
+              <canvas id="chart-district-volumes"></canvas>
+            </div>
           </div>
-          <div class="chart-wrapper" style="height: 380px">
-            <canvas id="chart-district-volumes"></canvas>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
+        </section>
+      </main>
+    </div>
 
-  <!-- Contact Modal for Property Listings -->
-  <div id="contact-modal" style="
+    <!-- Contact Modal for Property Listings -->
+    <div
+      id="contact-modal"
+      style="
         display: none;
         position: fixed;
         inset: 0;
@@ -769,53 +833,73 @@
         align-items: center;
         justify-content: center;
         padding: 24px;
-      ">
-    <div class="dashboard-panel" style="
+      "
+    >
+      <div
+        class="dashboard-panel"
+        style="
           width: 100%;
           max-width: 460px;
           background: #0f172a;
           border-radius: 16px;
           border: 1px solid var(--border-color);
           animation: slideIn 0.3s ease-out;
-        ">
-      <div class="panel-header" style="margin-bottom: 16px">
-        <h3 class="panel-title" id="modal-prop-title">Contact Listing Agent</h3>
-        <button id="modal-close-btn"
-          style="background: none; border: none; color: var(--text-dim); font-size: 1.5rem; cursor: pointer">
-          &times;
-        </button>
-      </div>
-      <div id="modal-prop-details" style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 20px">
-        Property code: <strong id="modal-prop-code">PROP-0000</strong>
-      </div>
-      <form id="contact-agent-form" class="alert-form">
-        <div class="filter-group">
-          <label for="contact-name">Your Name</label>
-          <input type="text" id="contact-name" placeholder="John Doe" required style="
+        "
+      >
+        <div class="panel-header" style="margin-bottom: 16px">
+          <h3 class="panel-title" id="modal-prop-title">Contact Listing Agent</h3>
+          <button
+            id="modal-close-btn"
+            style="background: none; border: none; color: var(--text-dim); font-size: 1.5rem; cursor: pointer"
+          >
+            &times;
+          </button>
+        </div>
+        <div id="modal-prop-details" style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 20px">
+          Property code: <strong id="modal-prop-code">PROP-0000</strong>
+        </div>
+        <form id="contact-agent-form" class="alert-form">
+          <div class="filter-group">
+            <label for="contact-name">Your Name</label>
+            <input
+              type="text"
+              id="contact-name"
+              placeholder="John Doe"
+              required
+              style="
                 background: rgba(11, 15, 25, 0.6);
                 border: 1px solid var(--border-color);
                 color: white;
                 padding: 8px;
                 border-radius: 6px;
                 outline: none;
-              " />
-        </div>
-        <div class="filter-group">
-          <label for="contact-phone">Contact Number</label>
-          <input type="tel" id="contact-phone" placeholder="+91 98765 43210" required style="
+              "
+            />
+          </div>
+          <div class="filter-group">
+            <label for="contact-phone">Contact Number</label>
+            <input
+              type="tel"
+              id="contact-phone"
+              placeholder="+91 98765 43210"
+              required
+              style="
                 background: rgba(11, 15, 25, 0.6);
                 border: 1px solid var(--border-color);
                 color: white;
                 padding: 8px;
                 border-radius: 6px;
                 outline: none;
-              " />
-        </div>
-        <div class="filter-group">
-          <label for="contact-message">Message</label>
-          <textarea id="contact-message"
-            placeholder="I am interested in this verified listing. Please share SRO document validation details."
-            rows="3" style="
+              "
+            />
+          </div>
+          <div class="filter-group">
+            <label for="contact-message">Message</label>
+            <textarea
+              id="contact-message"
+              placeholder="I am interested in this verified listing. Please share SRO document validation details."
+              rows="3"
+              style="
                 background: rgba(11, 15, 25, 0.6);
                 border: 1px solid var(--border-color);
                 color: white;
@@ -824,25 +908,29 @@
                 outline: none;
                 font-family: var(--font-body);
                 font-size: 0.8rem;
-              "></textarea>
-        </div>
-        <button type="submit" class="btn-primary" style="margin-top: 10px">Send Verification Request</button>
-      </form>
+              "
+            ></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="margin-top: 10px">Send Verification Request</button>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <!-- Floating Compare Bar -->
-  <div id="compare-floating-bar" class="compare-floating-bar" style="display: none">
-    <div style="display: flex; align-items: center; gap: 14px">
-      <span style="font-weight: 700; font-size: 0.9rem; color: #38bdf8">⚖️ Compare Properties (<span
-          id="compare-count">0</span>/3)</span>
-      <div id="compare-thumbnails" style="display: flex; gap: 8px"></div>
-    </div>
-    <div style="display: flex; gap: 8px">
-      <button id="btn-open-compare-modal" class="btn-primary" style="padding: 6px 16px; font-size: 0.82rem">
-        Compare Side-by-Side
-      </button>
-      <button id="btn-clear-compare" style="
+    <!-- Floating Compare Bar -->
+    <div id="compare-floating-bar" class="compare-floating-bar" style="display: none">
+      <div style="display: flex; align-items: center; gap: 14px">
+        <span style="font-weight: 700; font-size: 0.9rem; color: #38bdf8"
+          >⚖️ Compare Properties (<span id="compare-count">0</span>/3)</span
+        >
+        <div id="compare-thumbnails" style="display: flex; gap: 8px"></div>
+      </div>
+      <div style="display: flex; gap: 8px">
+        <button id="btn-open-compare-modal" class="btn-primary" style="padding: 6px 16px; font-size: 0.82rem">
+          Compare Side-by-Side
+        </button>
+        <button
+          id="btn-clear-compare"
+          style="
             background: none;
             border: 1px solid var(--border-color);
             color: var(--text-dim);
@@ -850,14 +938,17 @@
             border-radius: 8px;
             cursor: pointer;
             font-size: 0.82rem;
-          ">
-        Clear
-      </button>
+          "
+        >
+          Clear
+        </button>
+      </div>
     </div>
-  </div>
 
-  <!-- Side-by-Side Property Comparison Modal -->
-  <div id="comparison-modal" style="
+    <!-- Side-by-Side Property Comparison Modal -->
+    <div
+      id="comparison-modal"
+      style="
         display: none;
         position: fixed;
         inset: 0;
@@ -867,8 +958,11 @@
         align-items: center;
         justify-content: center;
         padding: 24px;
-      ">
-    <div class="dashboard-panel" style="
+      "
+    >
+      <div
+        class="dashboard-panel"
+        style="
           width: 100%;
           max-width: 900px;
           max-height: 90vh;
@@ -877,24 +971,30 @@
           border-radius: 16px;
           border: 1px solid var(--border-color);
           animation: slideIn 0.3s ease-out;
-        ">
-      <div class="panel-header"
-        style="margin-bottom: 16px; position: sticky; top: 0; background: #0f172a; padding: 8px 0; z-index: 10">
-        <h3 class="panel-title">⚖️ Side-by-Side Property Comparison</h3>
-        <button id="modal-compare-close-btn"
-          style="background: none; border: none; color: var(--text-dim); font-size: 1.5rem; cursor: pointer">
-          &times;
-        </button>
-      </div>
-      <div id="comparison-modal-body"
-        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
-        <!-- Dynamically populated comparison columns -->
+        "
+      >
+        <div
+          class="panel-header"
+          style="margin-bottom: 16px; position: sticky; top: 0; background: #0f172a; padding: 8px 0; z-index: 10"
+        >
+          <h3 class="panel-title">⚖️ Side-by-Side Property Comparison</h3>
+          <button
+            id="modal-compare-close-btn"
+            style="background: none; border: none; color: var(--text-dim); font-size: 1.5rem; cursor: pointer"
+          >
+            &times;
+          </button>
+        </div>
+        <div
+          id="comparison-modal-body"
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px"
+        >
+          <!-- Dynamically populated comparison columns -->
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Logic Script File -->
-  <script src="portal.js"></script>
-</body>
-
+    <!-- Logic Script File -->
+    <script src="portal.js"></script>
+  </body>
 </html>

@@ -7,14 +7,13 @@ on:
       - 'pipeline/validate_iac.py'
       - 'pipeline/tests/test_validate_iac.py'
       - '.github/workflows/infra-ci.yml'
-    branches: [main, develop]
   push:
     paths:
       - 'terraform/**'
       - 'pipeline/validate_iac.py'
       - 'pipeline/tests/test_validate_iac.py'
       - '.github/workflows/infra-ci.yml'
-    branches: [main, develop]
+    branches: [main]
 
 permissions:
   contents: read

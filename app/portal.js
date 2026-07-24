@@ -2323,7 +2323,7 @@ class RealEstatePortal {
             }
           }
           performLocalSearch(q);
-        } catch (_err) {
+        } catch {
           // Fallback gracefully to client-side search if API microservice is offline
           performLocalSearch(q);
         }
