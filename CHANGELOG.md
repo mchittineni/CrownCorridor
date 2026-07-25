@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 Releases are published automatically by [`release.yml`](.github/workflows/release.yml) adhering to CrownCorridor Semantic Versioning:
+
 - **`MINOR` (x.Y.0)** — SRO dataset updates & historical data expansions (`data/**`).
 - **`PATCH` (x.y.Z)** — Pipeline, validator, and ETL infrastructure changes (`pipeline/**`, `api/**`).
 - **`MAJOR` (X.0.0)** — Web application features, layout, and UI frontend changes (`app/**`).
