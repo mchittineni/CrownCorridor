@@ -268,12 +268,19 @@ class RealEstatePortal {
 
   async loadGeographicData() {
     try {
+      const fetchFile = (path) =>
+        fetch(`../data/${path}`)
+          .then((r) => (r.ok ? r.json() : Promise.reject(r)))
+          .catch(() => fetch(`data/${path}`).then((r) => (r.ok ? r.json() : Promise.reject(r))))
+          .catch(() => fetch(`./data/${path}`).then((r) => (r.ok ? r.json() : Promise.reject(r))))
+          .catch(() => fetch(`../_site/data/${path}`).then((r) => r.json()));
+
       // Fetch regions and coords
       const [apRes, tgRes, apCoords, tgCoords] = await Promise.all([
-        fetch('../data/andhra_pradesh/regions.json').then((r) => r.json()),
-        fetch('../data/telangana/regions.json').then((r) => r.json()),
-        fetch('../data/andhra_pradesh/coords.json').then((r) => r.json()),
-        fetch('../data/telangana/coords.json').then((r) => r.json()),
+        fetchFile('andhra_pradesh/regions.json'),
+        fetchFile('telangana/regions.json'),
+        fetchFile('andhra_pradesh/coords.json'),
+        fetchFile('telangana/coords.json'),
       ]);
 
       this.regions.ap = apRes;
@@ -287,8 +294,8 @@ class RealEstatePortal {
 
       // Load boundary GeoJSONs
       const [apGeo, tgGeo] = await Promise.all([
-        fetch('../data/andhra_pradesh/districts.geojson').then((r) => r.json()),
-        fetch('../data/telangana/districts.geojson').then((r) => r.json()),
+        fetchFile('andhra_pradesh/districts.geojson'),
+        fetchFile('telangana/districts.geojson'),
       ]);
 
       const combinedFeatures = [...apGeo.features, ...tgGeo.features];
@@ -2892,11 +2899,16 @@ class RealEstatePortal {
    */
   async loadMarketTrendsData() {
     try {
+      const fetchFile = (path) =>
+        fetch(`../data/${path}`)
+          .then((r) => (r.ok ? r.json() : Promise.reject(r)))
+          .catch(() => fetch(`data/${path}`).then((r) => (r.ok ? r.json() : Promise.reject(r))))
+          .catch(() => fetch(`./data/${path}`).then((r) => (r.ok ? r.json() : Promise.reject(r))))
+          .catch(() => null);
+
       const [apData, tgData] = await Promise.all([
-        fetch('../data/andhra_pradesh/market_trends.json').then((res) =>
-          res.ok ? res.json() : null
-        ),
-        fetch('../data/telangana/market_trends.json').then((res) => (res.ok ? res.json() : null)),
+        fetchFile('andhra_pradesh/market_trends.json'),
+        fetchFile('telangana/market_trends.json'),
       ]);
       this.marketTrendsData = { ap: apData, tg: tgData };
     } catch (e) {
