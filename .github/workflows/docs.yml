@@ -2,14 +2,14 @@ name: Docs Build Check
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main]
     paths:
       - 'app/portal.js'
       - 'jsdoc.json'
       - 'docs/**'
       - '.github/workflows/docs.yml'
   pull_request:
-    branches: [main, develop]
+    branches: [main]
     paths:
       - 'app/portal.js'
       - 'jsdoc.json'
