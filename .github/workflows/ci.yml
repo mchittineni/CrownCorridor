@@ -2,7 +2,7 @@ name: Data & Code Validity Tests
 
 on:
   pull_request:
-    branches: [main, develop]
+    branches: [main]
     paths:
       - 'app/**'
       - 'api/**'
@@ -10,7 +10,7 @@ on:
       - 'pipeline/**'
       - '.github/workflows/ci.yml'
   push:
-    branches: [main, develop]
+    branches: [main]
     paths:
       - 'app/**'
       - 'api/**'
