@@ -14,6 +14,22 @@ Releases are published automatically by [`release.yml`](.github/workflows/releas
 
 ## [Unreleased]
 
+## [2.0.0] — 2026-07-25
+
+### Added
+
+- **Hierarchical Location Query API & UI**: Implemented State ➔ District ➔ Mandal / Taluk ➔ Property List location scoping across the web portal (`app/index.html` & `app/portal.js`) and Fast-Read Search API (`/api/v1/hierarchy/{state_code}` and `/api/v1/hierarchy/{state_code}/{district}/{mandal}/properties`).
+- **Interactive POI Map Focus & Google Maps Directions**: Added `📍 Focus Map` interactive POI centering and direct `🗺️ Google Maps ↗` turn-by-turn driving directions links for all nearby infrastructure services (schools, hospitals, metro stations, parks).
+- **Statewide Village Property History Dataset Expansion**: Generated complete 25-year property histories covering **every official village** across all 61 districts in Telangana (9,287 properties) and Andhra Pradesh (15,197 properties), totaling **24,484 property records**.
+- **Zero-PII Compliance Pipeline Safeguards**: Added `sanitize_and_anonymize_record()` to `pipeline/fetch_sro.py` to scrub personal buyer/seller names, phone numbers, and identity hashes while enforcing anonymized role classifications (`Private Individual Owner`, `Commercial Property Developer`, `Institutional Realty Fund`).
+- **Automated Data Release Workflow**: Configured `.github/workflows/release.yml` with path-based triggers (`app/**`, `api/**`, `data/**`, `pipeline/**`) to automatically build and attach downloadable zip archives (`crown-corridor-ap-*.zip`, `crown-corridor-ts-*.zip`, `crown-corridor-all-*.zip`) on versioned releases.
+
+### Changed
+
+- **Native System Typography**: Switched default UI typography across the portal to the clean, native system font stack (`-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif`) for optimized legibility.
+- **Hierarchical Selector Controls**: Replaced flat property selector in Property Sale History tab with cascading **State**, **District**, and **Mandal / Taluk** selection dropdowns.
+- **Documentation & User Guide**: Updated `README.md` and `docs/user-guide.md` to reflect the v2.0.0 major release, location hierarchy, map navigation tools, and semantic versioning rules.
+
 ## [1.1.0] — 2026-07-25
 
 ### Added
