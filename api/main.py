@@ -51,6 +51,32 @@ class PropertyItem(BaseModel):
     )
 
 
+class HierarchyMandalItem(BaseModel):
+    """Pydantic model for mandal summary in hierarchy query."""
+    mandal_name: str = Field(..., description="Mandal or SRO jurisdiction name")
+    property_count: int = Field(..., description="Number of properties in mandal")
+
+class HierarchyDistrictItem(BaseModel):
+    """Pydantic model for district summary in hierarchy query."""
+    district_name: str = Field(..., description="District name")
+    property_count: int = Field(..., description="Number of properties in district")
+    mandals: List[HierarchyMandalItem] = Field(default_factory=list, description="List of mandals")
+
+class HierarchyStateResponse(BaseModel):
+    """Pydantic model for state-level hierarchical structure response."""
+    state_code: str = Field(..., description="State code ('TS' or 'AP')")
+    total_properties: int = Field(..., description="Total properties in state")
+    districts: List[HierarchyDistrictItem] = Field(..., description="List of districts in state")
+
+class HierarchyPropertyListResponse(BaseModel):
+    """Pydantic model for properties under a specific mandal/district."""
+    state_code: str = Field(..., description="State code ('TS' or 'AP')")
+    district: str = Field(..., description="District name")
+    mandal: str = Field(..., description="Mandal name")
+    total_properties: int = Field(..., description="Total properties under mandal")
+    properties: List[PropertyItem] = Field(..., description="List of properties")
+
+
 class SearchResponse(BaseModel):
     """Pydantic model representing global search response."""
 
@@ -122,6 +148,62 @@ async def search_endpoint(
         "search_time_ms": data.get("search_time_ms", 0),
         "execution_time_ms": execution_time_ms,
         "results": data["results"]
+    }
+
+
+@app.get("/api/v1/hierarchy/{state_code}", response_model=HierarchyStateResponse, tags=["Hierarchy"])
+async def get_state_hierarchy(state_code: str):
+    """Retrieves the nested District -> Mandal hierarchy for a state.
+
+    Args:
+        state_code (str): State code ('TS' or 'AP').
+
+    Returns:
+        HierarchyStateResponse: Hierarchical district & mandal summary with property counts.
+    """
+    from api.search import get_hierarchical_structure
+    data = get_hierarchical_structure(state_code)
+    return data
+
+
+@app.get(
+    "/api/v1/hierarchy/{state_code}/{district}/{mandal}/properties",
+    response_model=HierarchyPropertyListResponse,
+    tags=["Hierarchy"]
+)
+async def get_properties_for_mandal(
+    state_code: str,
+    district: str,
+    mandal: str,
+    page: int = Query(1, ge=1),
+    per_page: int = Query(20, ge=1, le=100)
+):
+    """Retrieves properties strictly scoped under a specific State -> District -> Mandal node.
+
+    Args:
+        state_code (str): State code ('TS' or 'AP').
+        district (str): District name.
+        mandal (str): Mandal name.
+        page (int): Page number.
+        per_page (int): Page size.
+
+    Returns:
+        HierarchyPropertyListResponse: Filtered property list under specified mandal.
+    """
+    from api.search import get_properties_by_hierarchy
+    data = get_properties_by_hierarchy(
+        state_code=state_code,
+        district=district,
+        mandal=mandal,
+        page=page,
+        per_page=per_page
+    )
+    return {
+        "state_code": state_code.upper(),
+        "district": district,
+        "mandal": mandal,
+        "total_properties": data["total_found"],
+        "properties": data["results"]
     }
 
 

@@ -31,11 +31,13 @@ It combines:
 
 - **Where to find it**: Click the **Property Sale History & Infrastructure** tab.
 - **How it works**:
-  - Select a property from the dropdown.
+  - **Cascading Hierarchy Selector**: Select **State** (`Telangana` or `Andhra Pradesh`) ➔ **District** ➔ **Mandal / Taluk** ➔ **Property List**.
   - **Metric Highlight Card**: View construction year, total area (sq ft), RERA ID, initial booking price, current valuation, and total appreciation %.
   - **Price Growth Chart**: Interactive Chart.js timeline graph showing per-sqft price trajectory over time.
   - **SRO Registration Audit Table**: Complete list of all historical sales with document numbers, transaction dates, sale prices, per-sqft rates, and anonymized buyer/seller types.
-  - **Nearby Infrastructure List**: Filter by _Schools_, _Hospitals_, _Metro/Railways_, or _Parks/Shopping_ to view distance in km, commute times, and ratings.
+  - **Nearby Infrastructure List**: Filter by _Schools_, _Hospitals_, _Metro/Railways_, or _Parks/Shopping_ to view distance in km, commute times, and ratings:
+    - **`📍 Focus Map`**: Instantly centers and zooms the interactive map on the selected POI.
+    - **`🗺️ Google Maps ↗`**: Opens turn-by-turn driving directions in a new tab on Google Maps.
   - **🖨️ Export Audit Report**: Click to open a clean, print-ready valuation report.
 
 ### 3. ⚖️ Property Comparison Tool

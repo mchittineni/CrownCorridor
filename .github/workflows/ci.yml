@@ -3,8 +3,20 @@ name: Data & Code Validity Tests
 on:
   pull_request:
     branches: [main, develop]
+    paths:
+      - 'app/**'
+      - 'api/**'
+      - 'data/**'
+      - 'pipeline/**'
+      - '.github/workflows/ci.yml'
   push:
     branches: [main, develop]
+    paths:
+      - 'app/**'
+      - 'api/**'
+      - 'data/**'
+      - 'pipeline/**'
+      - '.github/workflows/ci.yml'
 
 permissions:
   contents: read

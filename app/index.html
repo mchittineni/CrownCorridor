@@ -373,28 +373,32 @@
               </div>
             </div>
 
-            <!-- Property Selection Controls -->
+            <!-- Property Selection Controls (Hierarchical State -> District -> Mandal -> Property) -->
             <div class="search-controls">
-              <div class="filter-group wide">
-                <label for="prop-history-select">Select Property / Complex</label>
-                <select id="prop-history-select" style="font-weight: 600; color: #38bdf8">
-                  <!-- Dynamically populated from property_history.json -->
-                </select>
-              </div>
               <div class="filter-group">
                 <label for="prop-filter-state">State</label>
-                <select id="prop-filter-state">
+                <select id="prop-filter-state" style="font-weight: 600; color: #38bdf8">
                   <option value="All">All States</option>
                   <option value="telangana">Telangana</option>
                   <option value="andhra_pradesh">Andhra Pradesh</option>
                 </select>
               </div>
               <div class="filter-group">
-                <label for="prop-filter-type">Property Type</label>
-                <select id="prop-filter-type">
-                  <option value="All">All Types</option>
-                  <option value="Apartment">Apartment</option>
-                  <option value="Villa">Villa</option>
+                <label for="prop-filter-district">District</label>
+                <select id="prop-filter-district">
+                  <option value="All">All Districts</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="prop-filter-mandal">Mandal / Taluk</label>
+                <select id="prop-filter-mandal">
+                  <option value="All">All Mandals / Taluks</option>
+                </select>
+              </div>
+              <div class="filter-group wide">
+                <label for="prop-history-select">Select Property / Complex</label>
+                <select id="prop-history-select" style="font-weight: 600; color: #38bdf8">
+                  <!-- Dynamically populated hierarchically from state -> district -> mandal -->
                 </select>
               </div>
             </div>

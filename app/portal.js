@@ -1720,20 +1720,27 @@ class RealEstatePortal {
       }).addTo(this.propertyHistoryMap);
     }
 
-    // 2. Setup Filter Listeners
+    // 2. Setup Hierarchical Filter Listeners (State -> District -> Mandal -> Property)
     const stateFilter = document.getElementById('prop-filter-state');
-    const typeFilter = document.getElementById('prop-filter-type');
+    const districtFilter = document.getElementById('prop-filter-district');
+    const mandalFilter = document.getElementById('prop-filter-mandal');
     const selectProp = document.getElementById('prop-history-select');
 
     if (stateFilter) {
       stateFilter.addEventListener('change', () => {
-        this.populatePropertySelect(stateFilter.value, typeFilter ? typeFilter.value : 'All');
+        this.populateDistrictSelect();
       });
     }
 
-    if (typeFilter) {
-      typeFilter.addEventListener('change', () => {
-        this.populatePropertySelect(stateFilter ? stateFilter.value : 'All', typeFilter.value);
+    if (districtFilter) {
+      districtFilter.addEventListener('change', () => {
+        this.populateMandalSelect();
+      });
+    }
+
+    if (mandalFilter) {
+      mandalFilter.addEventListener('change', () => {
+        this.populatePropertySelect();
       });
     }
 
@@ -1765,23 +1772,82 @@ class RealEstatePortal {
       }
     });
 
-    // Initial population
-    this.populatePropertySelect('All', 'All');
+    // Initial hierarchical population
+    this.populateDistrictSelect();
   }
 
-  populatePropertySelect(stateFilter, typeFilter) {
+  populateDistrictSelect() {
+    const stateFilter = document.getElementById('prop-filter-state');
+    const districtFilter = document.getElementById('prop-filter-district');
+    if (!districtFilter) return;
+
+    const stateVal = stateFilter ? stateFilter.value : 'All';
+    districtFilter.innerHTML = '<option value="All">All Districts</option>';
+
+    const filtered = this.propertyHistoryData.filter((p) => {
+      return (
+        stateVal === 'All' ||
+        p.state === stateVal ||
+        (stateVal === 'telangana' && p.state === 'telangana') ||
+        (stateVal === 'andhra_pradesh' && p.state === 'andhra_pradesh')
+      );
+    });
+
+    const districts = Array.from(new Set(filtered.map((p) => p.district).filter(Boolean))).sort();
+    districts.forEach((d) => {
+      const opt = document.createElement('option');
+      opt.value = d;
+      opt.textContent = d;
+      districtFilter.appendChild(opt);
+    });
+
+    this.populateMandalSelect();
+  }
+
+  populateMandalSelect() {
+    const stateFilter = document.getElementById('prop-filter-state');
+    const districtFilter = document.getElementById('prop-filter-district');
+    const mandalFilter = document.getElementById('prop-filter-mandal');
+    if (!mandalFilter) return;
+
+    const stateVal = stateFilter ? stateFilter.value : 'All';
+    const districtVal = districtFilter ? districtFilter.value : 'All';
+    mandalFilter.innerHTML = '<option value="All">All Mandals</option>';
+
+    const filtered = this.propertyHistoryData.filter((p) => {
+      const sMatch = stateVal === 'All' || p.state === stateVal;
+      const dMatch = districtVal === 'All' || p.district === districtVal;
+      return sMatch && dMatch;
+    });
+
+    const mandals = Array.from(new Set(filtered.map((p) => p.mandal).filter(Boolean))).sort();
+    mandals.forEach((m) => {
+      const opt = document.createElement('option');
+      opt.value = m;
+      opt.textContent = m;
+      mandalFilter.appendChild(opt);
+    });
+
+    this.populatePropertySelect();
+  }
+
+  populatePropertySelect() {
+    const stateFilter = document.getElementById('prop-filter-state');
+    const districtFilter = document.getElementById('prop-filter-district');
+    const mandalFilter = document.getElementById('prop-filter-mandal');
     const selectProp = document.getElementById('prop-history-select');
     if (!selectProp) return;
 
+    const stateVal = stateFilter ? stateFilter.value : 'All';
+    const districtVal = districtFilter ? districtFilter.value : 'All';
+    const mandalVal = mandalFilter ? mandalFilter.value : 'All';
+
     selectProp.innerHTML = '';
     const filtered = this.propertyHistoryData.filter((p) => {
-      const stateMatch =
-        stateFilter === 'All' ||
-        p.state === stateFilter ||
-        (stateFilter === 'telangana' && p.state === 'telangana') ||
-        (stateFilter === 'andhra_pradesh' && p.state === 'andhra_pradesh');
-      const typeMatch = typeFilter === 'All' || p.type === typeFilter;
-      return stateMatch && typeMatch;
+      const stateMatch = stateVal === 'All' || p.state === stateVal;
+      const districtMatch = districtVal === 'All' || p.district === districtVal;
+      const mandalMatch = mandalVal === 'All' || p.mandal === mandalVal;
+      return stateMatch && districtMatch && mandalMatch;
     });
 
     if (filtered.length === 0) {
@@ -1796,13 +1862,13 @@ class RealEstatePortal {
       const opt = document.createElement('option');
       opt.value = p.property_id;
       const stateLabel = p.state === 'telangana' ? 'TS' : 'AP';
-      opt.textContent = `[${stateLabel}] ${p.name} (${p.type}, Built ${p.construction_year}) — ${p.address}`;
+      opt.textContent = `[${stateLabel}] ${p.name} (${p.district} -> ${p.mandal}) — ${p.address}`;
       selectProp.appendChild(opt);
     });
 
-    // Select first property by default
-    selectProp.value = filtered[0].property_id;
-    this.selectProperty(filtered[0].property_id);
+    if (filtered.length > 0) {
+      this.selectProperty(filtered[0].property_id);
+    }
   }
 
   selectProperty(propertyId) {
@@ -2044,6 +2110,8 @@ class RealEstatePortal {
 
       const stars = '★'.repeat(Math.floor(s.rating)) + (s.rating % 1 >= 0.5 ? '½' : '');
 
+      const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${s.lat},${s.lng}&destination_place_id=${encodeURIComponent(s.name)}`;
+
       item.innerHTML = `
         <div style="display: flex; align-items: center; gap: 12px;">
           <span style="font-size: 1.5rem; background: rgba(56, 189, 248, 0.1); padding: 8px; border-radius: 8px;">${icon}</span>
@@ -2053,16 +2121,25 @@ class RealEstatePortal {
             <div style="font-size: 0.72rem; color: var(--accent-gold); margin-top: 2px;">${stars} ${s.rating} / 5.0</div>
           </div>
         </div>
-        <div style="text-align: right;">
+        <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 2px;">
           <div style="font-weight: 800; font-size: 0.95rem; color: #38bdf8;">${s.distance_km} km</div>
           <div style="font-size: 0.72rem; color: #a7f3d0;">⏱ ${s.travel_time_mins} mins drive</div>
-          <button class="btn-focus-poi" style="margin-top:4px; background:none; border:none; color:#38bdf8; font-size:0.72rem; cursor:pointer; text-decoration:underline;">View on Map</button>
+          <div style="display: flex; gap: 8px; margin-top: 4px; align-items: center;">
+            <button class="btn-focus-poi" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; cursor: pointer; font-weight: 600;">📍 Focus Map</button>
+            <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; font-size: 0.72rem; text-decoration: underline; font-weight: 600; display: inline-flex; align-items: center; gap: 2px;">🗺️ Google Maps ↗</a>
+          </div>
         </div>
       `;
 
-      item.querySelector('.btn-focus-poi').addEventListener('click', () => {
+      item.querySelector('.btn-focus-poi').addEventListener('click', (e) => {
+        e.preventDefault();
         if (this.propertyHistoryMap) {
           this.propertyHistoryMap.setView([s.lat, s.lng], 16);
+          const marker = this.propertyHistoryMarkers.find((m) => {
+            const pos = m.getLatLng();
+            return Math.abs(pos.lat - s.lat) < 0.0001 && Math.abs(pos.lng - s.lng) < 0.0001;
+          });
+          if (marker) marker.openPopup();
         }
       });
 

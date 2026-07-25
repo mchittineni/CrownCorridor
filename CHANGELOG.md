@@ -5,20 +5,27 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-Releases are published automatically by
-[`release.yml`](.github/workflows/release.yml): a **data refresh** is a _patch_,
-a **new feature** is a _minor_, and a breaking change is a _major_. Every
-release attaches downloadable datasets; see [Releases][releases].
+Releases are published automatically by [`release.yml`](.github/workflows/release.yml) adhering to CrownCorridor Semantic Versioning:
+- **`MINOR` (x.Y.0)** — SRO dataset updates & historical data expansions (`data/**`).
+- **`PATCH` (x.y.Z)** — Pipeline, validator, and ETL infrastructure changes (`pipeline/**`, `api/**`).
+- **`MAJOR` (X.0.0)** — Web application features, layout, and UI frontend changes (`app/**`).
 
 ---
 
 ## [Unreleased]
 
+## [1.1.0] — 2026-07-25
+
 ### Added
 
-- **Fast-Read Search API (`api/`)**: Added async FastAPI microservice (`api/main.py` & `api/search.py`) providing sub-100ms search endpoints (`/api/v1/search`, `/api/v1/properties/{id}`, `/health`) with fuzzy search, state-level filtering (`TS` / `AP`), price bounds, and CAGR filters.
-- **Typesense Ingestion Pipeline**: Added `pipeline/index_to_typesense.py` to index property records and SRO feeds into Typesense search engine collections.
-- **API Test Suite**: Added `pipeline/tests/test_api.py` with unit tests for API endpoints, Pydantic data model validation, and indexing dry-runs.
+- **Statewide Village Property Histories**: Generated complete property history datasets covering **every official village** across all 61 districts in Telangana (9,287 properties) and Andhra Pradesh (15,197 properties), totaling **24,484 property records**.
+- **Automated Data Release Triggers**: Configured `.github/workflows/release.yml` with `data/**` path triggers to automatically publish versioned release artifacts whenever data updates are pushed to `main`.
+- **Zero-PII Sanitization Helper**: Added `sanitize_and_anonymize_record()` in `pipeline/fetch_sro.py` to enforce role mapping and strip personal customer names, phone numbers, and identity hashes.
+
+### Changed
+
+- **All 61 District Support**: Updated `_stub_records()` in `pipeline/fetch_sro.py` to cover all 28 AP districts and all 33 TS districts.
+- **Documentation**: Updated `README.md` feature matrix and JSDoc documentation to reflect statewide coverage.
 
 ### Changed
 
