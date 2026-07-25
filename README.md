@@ -18,8 +18,8 @@
 | 📈 **Regional Market Trends**          | Time-series price trajectory charts (2016-2026) and top appreciating localities leaderboard                |
 | 🔍 **Global Smart Search**             | Persistent header bar with instant autocomplete for properties, listings, and districts                    |
 | ⚖️ **Property Comparison**             | Side-by-side spec comparison modal for up to 3 properties (Valuation, CAGR, Rate/SqFt, Metro)              |
-| 🏰 **Complete State Property History** | Full state historical property records for 24,484 villages (15,197 AP, 9,287 TS) across all 61 districts |
-| 🗂️ **Hierarchical Location Query**     | Filter properties via State ➔ District ➔ Mandal / Taluk ➔ Property List (Fast-Read API & Web UI)          |
+| 🏰 **Complete State Property History** | Full state historical property records for 24,484 villages (15,197 AP, 9,287 TS) across all 61 districts   |
+| 🗂️ **Hierarchical Location Query**     | Filter properties via State ➔ District ➔ Mandal / Taluk ➔ Property List (Fast-Read API & Web UI)           |
 | 🖨️ **Valuation Audit Report**          | One-click printable PDF/audit summary with transaction logs and infrastructure scores                      |
 | 📍 **Infrastructure Explorer**         | Nearby schools, hospitals, metro/railway stations with Focus Map and Google Maps turn-by-turn links        |
 | 🎛️ **Visual Filter Presets**           | Quick filter pills (_"Near Metro"_, _"High CAGR > 10%"_, _"Luxury Villas"_, _"AP"_, _"TS"_)                |
