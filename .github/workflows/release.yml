@@ -14,9 +14,9 @@ on:
   workflow_dispatch:
     inputs:
       tag_name:
-        description: 'The tag name for the release (e.g. v1.1.0)'
+        description: 'The tag name for the release (e.g. v2.1.0)'
         required: true
-        default: 'v1.1.0'
+        default: 'v2.1.0'
 
 permissions:
   contents: write
@@ -57,7 +57,7 @@ jobs:
             if [ -n "$VERSION" ]; then
               REF_NAME="v$VERSION"
             else
-              REF_NAME="v2.0.1"
+              REF_NAME="v2.1.0"
             fi
           fi
           
