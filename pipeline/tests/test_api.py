@@ -117,6 +117,31 @@ class TestPropertyDetailsEndpoint:
         assert data["state_code"] == "AP"
 
 
+class TestHierarchyEndpoints:
+    """Tests for state -> district -> mandal -> properties hierarchical endpoints."""
+
+    def test_state_hierarchy_endpoint(self):
+        """Verifies /api/v1/hierarchy/{state_code} returns districts and mandals."""
+        response = client.get("/api/v1/hierarchy/TS")
+        assert response.status_code == 200
+        data = response.json()
+        assert data["state_code"] == "TS"
+        assert "districts" in data
+        assert isinstance(data["districts"], list)
+
+    def test_mandal_properties_hierarchy_endpoint(self):
+        """Verifies /api/v1/hierarchy/{state_code}/{district}/{mandal}/properties endpoint."""
+        url = "/api/v1/hierarchy/TS/Rangareddy/Serilingampally/properties"
+        response = client.get(url)
+        assert response.status_code == 200
+        data = response.json()
+        assert data["state_code"] == "TS"
+        assert data["district"] == "Rangareddy"
+        assert data["mandal"] == "Serilingampally"
+        assert "properties" in data
+        assert isinstance(data["properties"], list)
+
+
 
 class TestTypesenseIndexingPipeline:
     """Tests for Typesense data loading and indexing pipeline."""

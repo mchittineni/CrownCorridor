@@ -44,10 +44,46 @@ ENDPOINTS = {
 # Fetch helpers
 # ─────────────────────────────────────────────────────────────────────────────
 
+def sanitize_and_anonymize_record(raw_record: dict) -> dict:
+    """Enforces Zero-PII compliance by stripping personal names/numbers and mapping to anonymized role classifications."""
+    ALLOWED_ROLES = {
+        "Private Individual Owner",
+        "Commercial Property Developer",
+        "Institutional Realty Fund",
+        "Government / Municipal Entity",
+        "Current Valuation (SRO Benchmark)",
+    }
+    
+    seller_raw = str(raw_record.get("seller_type") or raw_record.get("seller_name") or "")
+    buyer_raw = str(raw_record.get("buyer_type") or raw_record.get("buyer_name") or "")
+
+    seller_role = (
+        seller_raw if seller_raw in ALLOWED_ROLES else (
+            "Commercial Property Developer" if "ltd" in seller_raw.lower() or "inc" in seller_raw.lower() else "Private Individual Owner"
+        )
+    )
+    buyer_role = (
+        buyer_raw if buyer_raw in ALLOWED_ROLES else (
+            "Commercial Property Developer" if "ltd" in buyer_raw.lower() or "inc" in buyer_raw.lower() else "Private Individual Owner"
+        )
+    )
+
+    clean_record = dict(raw_record)
+    clean_record["seller_type"] = seller_role
+    clean_record["buyer_type"] = buyer_role
+
+    # Remove any potential PII fields if present
+    for pii_key in ("seller_name", "buyer_name", "phone", "email", "aadhaar_hash", "pan_hash"):
+        clean_record.pop(pii_key, None)
+
+    return clean_record
+
+
 def fetch_ap_registrations(date: str, dry_run: bool = False) -> list[dict]:
     if dry_run:
         print(f"  [DRY RUN] Returning stubbed AP records for {date}")
-        return _stub_records("Andhra Pradesh", date, count=5)
+        records = _stub_records("Andhra Pradesh", date, count=5)
+        return [sanitize_and_anonymize_record(r) for r in records]
 
     print("  [STUB] AP live fetch not yet configured — returning empty list")
     return []
@@ -56,7 +92,8 @@ def fetch_ap_registrations(date: str, dry_run: bool = False) -> list[dict]:
 def fetch_tg_registrations(date: str, dry_run: bool = False) -> list[dict]:
     if dry_run:
         print(f"  [DRY RUN] Returning stubbed TS records for {date}")
-        return _stub_records("Telangana", date, count=5)
+        records = _stub_records("Telangana", date, count=5)
+        return [sanitize_and_anonymize_record(r) for r in records]
 
     print("  [STUB] TS live fetch not yet configured — returning empty list")
     return []
@@ -65,14 +102,28 @@ def fetch_tg_registrations(date: str, dry_run: bool = False) -> list[dict]:
 def _stub_records(state: str, date: str, count: int = 5) -> list[dict]:
     is_ap = state == "Andhra Pradesh"
     sros = (
-        ["Visakhapatnam Urban", "Vijayawada East", "Guntur Rural", "Tirupati Urban"]
+        ["Visakhapatnam Urban", "Vijayawada East", "Guntur Rural", "Tirupati Urban", "Kakinada", "Ananthapuramu", "Nellore", "Kurnool"]
         if is_ap
-        else ["Gachibowli", "Serilingampally", "Khairatabad", "Kukatpally"]
+        else ["Gachibowli", "Serilingampally", "Khairatabad", "Kukatpally", "Karimnagar", "Warangal", "Nizamabad", "Khammam"]
     )
+    # Complete list of 28 AP Districts & 33 Telangana Districts
     districts = (
-        ["Visakhapatnam", "NTR Vijayawada", "Guntur", "Tirupati"]
+        [
+            "Alluri Sitharama Raju", "Anakapalli", "Ananthapuramu", "Annamayya", "Bapatla", "Chittoor",
+            "Dr. B.R. Ambedkar Konaseema", "East Godavari", "Eluru", "Guntur", "Kakinada", "Krishna",
+            "Kurnool", "Markapuram", "Nandyal", "Ntr", "Palnadu", "Parvathipuram Manyam", "Polavaram",
+            "Prakasam", "Sri Potti Sriramulu Nellore", "Sri Sathya Sai", "Srikakulam", "Tirupati",
+            "Visakhapatnam", "Vizianagaram", "West Godavari", "Y.S.R. Kadapa"
+        ]
         if is_ap
-        else ["Hyderabad", "Rangareddy", "Medchal-Malkajgiri"]
+        else [
+            "Adilabad", "Bhadradri Kothagudem", "Hanumakonda", "Hyderabad", "Jagitial", "Jangoan",
+            "Jayashankar Bhupalapally", "Jogulamba Gadwal", "Kamareddy", "Karimnagar", "Khammam",
+            "Kumuram Bheem Asifabad", "Mahabubabad", "Mahabubnagar", "Mancherial", "Medak",
+            "Medchal Malkajgiri", "Mulugu", "Nagarkurnool", "Nalgonda", "Narayanpet", "Nirmal",
+            "Nizamabad", "Peddapalli", "Rajanna Sircilla", "Ranga Reddy", "Sangareddy", "Siddipet",
+            "Suryapet", "Vikarabad", "Wanaparthy", "Warangal", "Yadadri Bhuvanagiri"
+        ]
     )
     property_types = ["Residential Flat", "Residential Plot", "Commercial Space", "Independent Villa"]
 
@@ -119,530 +170,131 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
     target_dir.mkdir(parents=True, exist_ok=True)
     target_file = target_dir / "property_history.json"
 
-    if state_slug == "andhra_pradesh":
-        properties = [
-            {
-                "property_id": "PROP-AP-VSKP-01",
-                "name": "Amaravati Skyline Towers",
-                "type": "Apartment",
-                "construction_year": 2001,
-                "address": "Door 48-14-3, MVP Colony Sector 4, Visakhapatnam",
-                "mandal": "Visakhapatnam Urban",
-                "district": "Visakhapatnam",
-                "state": "andhra_pradesh",
-                "total_sqft": 1650,
-                "bedrooms": 3,
-                "bathrooms": 2,
-                "rera_id": "P03290004120",
-                "lat": 17.7423,
-                "lng": 83.3312,
-                "price_summary": {
-                    "initial_price_inr": 1815000,
-                    "latest_price_inr": 9570000,
-                    "total_appreciation_pct": 427.27,
-                    "cagr_pct": 6.87,
-                    "holding_period_years": 25
-                },
-                "sale_history": [
-                    {
-                        "year": 2001,
-                        "sale_date": "2001-03-12",
-                        "sale_price_inr": 1815000,
-                        "price_per_sqft_inr": 1100,
-                        "seller_type": "Commercial Property Developer",
-                        "buyer_type": "Private Individual Owner",
-                        "registration_doc_no": "SRO-VSKP-2001-1042",
-                        "growth_over_initial_pct": 0.0,
-                        "cagr_pct": 0.0
+    properties = []
+    villages_file = ROOT / "data" / state_slug / "villages.json"
+    regions_file = ROOT / "data" / state_slug / "regions.json"
+
+    mandal_district_map = {}
+    if regions_file.exists():
+        try:
+            rdata = json.loads(regions_file.read_text(encoding="utf-8"))
+            districts_by_id = {d["i"]: d["n"] for d in rdata.get("districts", [])}
+            for m in rdata.get("mandals", []):
+                mandal_district_map[m["i"]] = {
+                    "mandal_name": m["n"],
+                    "district_name": districts_by_id.get(m.get("d"), "State District")
+                }
+        except Exception as e:
+            print(f"Warning loading regions for {state_slug}: {e}")
+
+    if villages_file.exists():
+        try:
+            vdata = json.loads(villages_file.read_text(encoding="utf-8"))
+            rows = vdata.get("rows", [])
+            is_ap = state_slug == "andhra_pradesh"
+            prefix = "AP" if is_ap else "TG"
+
+            for idx, row in enumerate(rows):
+                v_name = row[0]
+                m_id = row[1]
+                v_code = row[2]
+                pin = row[4] if len(row) > 4 else ("520001" if is_ap else "500001")
+
+                m_info = mandal_district_map.get(m_id, {"mandal_name": f"Mandal-{m_id}", "district_name": "General"})
+                mandal_name = m_info["mandal_name"]
+                district_name = m_info["district_name"]
+
+                prop_id = f"PROP-{prefix}-{idx + 1:05d}"
+                holding_years = 15 + (idx % 10)
+                initial_price = 1500000 + (idx % 100) * 50000
+                total_sqft = 1200 + (idx % 8) * 150
+                
+                latest_price = round(initial_price * (1.065 ** holding_years))
+                cagr_val = round((((latest_price / initial_price) ** (1.0 / holding_years)) - 1.0) * 100.0, 2)
+                apprec_pct = round(((latest_price - initial_price) / initial_price) * 100.0, 2)
+
+                prop = {
+                    "property_id": prop_id,
+                    "name": f"{v_name} Corridor Residency",
+                    "type": "Apartment" if idx % 2 == 0 else "Residential Plot",
+                    "construction_year": 2026 - holding_years,
+                    "address": f"Survey No {101 + (idx % 200)}, {v_name}, PIN {pin}",
+                    "mandal": mandal_name,
+                    "district": district_name,
+                    "state": state_slug,
+                    "total_sqft": total_sqft,
+                    "bedrooms": 2 + (idx % 3),
+                    "bathrooms": 2,
+                    "rera_id": f"P{prefix}{v_code}",
+                    "lat": 16.5000 + (idx % 500) * 0.002 if is_ap else 17.3850 + (idx % 500) * 0.002,
+                    "lng": 80.6400 + (idx % 500) * 0.002 if is_ap else 78.4867 + (idx % 500) * 0.002,
+                    "price_summary": {
+                        "initial_price_inr": initial_price,
+                        "latest_price_inr": latest_price,
+                        "total_appreciation_pct": apprec_pct,
+                        "cagr_pct": cagr_val,
+                        "holding_period_years": holding_years
                     },
-                    {
-                        "year": 2013,
-                        "sale_date": "2013-08-20",
-                        "sale_price_inr": 4620000,
-                        "price_per_sqft_inr": 2800,
-                        "seller_type": "Private Individual Owner",
-                        "buyer_type": "Private Individual Owner",
-                        "registration_doc_no": "SRO-VSKP-2013-6812",
-                        "growth_over_initial_pct": 154.55,
-                        "cagr_pct": 8.12
-                    },
-                    {
-                        "year": 2026,
-                        "sale_date": "2026-07-01",
-                        "sale_price_inr": 9570000,
-                        "price_per_sqft_inr": 5800,
-                        "seller_type": "Private Individual Owner",
-                        "buyer_type": "Current Valuation (SRO Benchmark)",
-                        "registration_doc_no": "VALUATION-EST-2026",
-                        "growth_over_initial_pct": 427.27,
-                        "cagr_pct": 6.87
-                    }
-                ],
-                "nearby_services": [
-                    {
-                        "name": "Timpany Senior Secondary School",
-                        "category": "schools",
-                        "type": "CBSE K-12 School",
-                        "distance_km": 1.1,
-                        "travel_time_mins": 4,
-                        "rating": 4.7,
-                        "lat": 17.7450,
-                        "lng": 83.3280
-                    },
-                    {
-                        "name": "Apollo Hospitals Health City",
-                        "category": "hospitals",
-                        "type": "Super-Specialty Hospital",
-                        "distance_km": 2.4,
-                        "travel_time_mins": 8,
-                        "rating": 4.8,
-                        "lat": 17.7512,
-                        "lng": 83.3410
-                    },
-                    {
-                        "name": "Visakhapatnam Railway Junction",
-                        "category": "metro_railways",
-                        "type": "Major Railway Station",
-                        "distance_km": 4.5,
-                        "travel_time_mins": 14,
-                        "rating": 4.5,
-                        "lat": 17.7210,
-                        "lng": 83.2891
-                    }
-                ]
-            },
-            {
-                "property_id": "PROP-AP-VSKP-02",
-                "name": "MVP Beachfront Luxury Villa",
-                "type": "Independent Villa",
-                "construction_year": 2002,
-                "address": "Plot 12, Beach Road, MVP Colony Sector 1, Visakhapatnam",
-                "mandal": "Visakhapatnam Urban",
-                "district": "Visakhapatnam",
-                "state": "andhra_pradesh",
-                "total_sqft": 3200,
-                "bedrooms": 4,
-                "bathrooms": 4,
-                "rera_id": "P03290004880",
-                "lat": 17.7380,
-                "lng": 83.3420,
-                "price_summary": {
-                    "initial_price_inr": 3840000,
-                    "latest_price_inr": 28800000,
-                    "total_appreciation_pct": 650.0,
-                    "cagr_pct": 8.76,
-                    "holding_period_years": 24
-                },
-                "sale_history": [
-                    {
-                        "year": 2002,
-                        "sale_date": "2002-05-18",
-                        "sale_price_inr": 3840000,
-                        "price_per_sqft_inr": 1200,
-                        "seller_type": "Commercial Property Developer",
-                        "buyer_type": "Private Individual Owner",
-                        "registration_doc_no": "SRO-VSKP-2002-0891",
-                        "growth_over_initial_pct": 0.0,
-                        "cagr_pct": 0.0
-                    },
-                    {
-                        "year": 2026,
-                        "sale_date": "2026-07-01",
-                        "sale_price_inr": 28800000,
-                        "price_per_sqft_inr": 9000,
-                        "seller_type": "Private Individual Owner",
-                        "buyer_type": "Current Valuation (SRO Benchmark)",
-                        "registration_doc_no": "VALUATION-EST-2026",
-                        "growth_over_initial_pct": 650.0,
-                        "cagr_pct": 8.76
-                    }
-                ],
-                "nearby_services": [
-                    {
-                        "name": "Visakha Valley School",
-                        "category": "schools",
-                        "type": "Senior Secondary School",
-                        "distance_km": 1.5,
-                        "travel_time_mins": 5,
-                        "rating": 4.6,
-                        "lat": 17.7410,
-                        "lng": 83.3450
-                    },
-                    {
-                        "name": "CARE Hospitals Ramnagar",
-                        "category": "hospitals",
-                        "type": "Multi-Specialty Hospital",
-                        "distance_km": 2.8,
-                        "travel_time_mins": 9,
-                        "rating": 4.7,
-                        "lat": 17.7320,
-                        "lng": 83.3150
-                    },
-                    {
-                        "name": "MVP Beach Road Promenade",
-                        "category": "metro_railways",
-                        "type": "Coastal Transit Station",
-                        "distance_km": 0.5,
-                        "travel_time_mins": 2,
-                        "rating": 4.9,
-                        "lat": 17.7370,
-                        "lng": 83.3440
-                    }
-                ]
-            },
-            {
-                "property_id": "PROP-AP-VJA-01",
-                "name": "Benz Circle Commercial Hub",
-                "type": "Commercial Space",
-                "construction_year": 2001,
-                "address": "Plot 5, M.G. Road, Benz Circle, Vijayawada",
-                "mandal": "Vijayawada East",
-                "district": "NTR Vijayawada",
-                "state": "andhra_pradesh",
-                "total_sqft": 2400,
-                "bedrooms": 0,
-                "bathrooms": 2,
-                "rera_id": "P03290009102",
-                "lat": 16.5062,
-                "lng": 80.6480,
-                "price_summary": {
-                    "initial_price_inr": 3600000,
-                    "latest_price_inr": 23520000,
-                    "total_appreciation_pct": 553.33,
-                    "cagr_pct": 7.82,
-                    "holding_period_years": 25
-                },
-                "sale_history": [
-                    {
-                        "year": 2001,
-                        "sale_date": "2001-02-10",
-                        "sale_price_inr": 3600000,
-                        "price_per_sqft_inr": 1500,
-                        "seller_type": "Commercial Property Developer",
-                        "buyer_type": "Institutional Realty Fund",
-                        "registration_doc_no": "SRO-VJA-2001-0120",
-                        "growth_over_initial_pct": 0.0,
-                        "cagr_pct": 0.0
-                    },
-                    {
-                        "year": 2014,
-                        "sale_date": "2014-11-05",
-                        "sale_price_inr": 11520000,
-                        "price_per_sqft_inr": 4800,
-                        "seller_type": "Institutional Realty Fund",
-                        "buyer_type": "Private Individual Owner",
-                        "registration_doc_no": "SRO-VJA-2014-5510",
-                        "growth_over_initial_pct": 220.0,
-                        "cagr_pct": 9.35
-                    },
-                    {
-                        "year": 2026,
-                        "sale_date": "2026-07-01",
-                        "sale_price_inr": 23520000,
-                        "price_per_sqft_inr": 9800,
-                        "seller_type": "Private Individual Owner",
-                        "buyer_type": "Current Valuation (SRO Benchmark)",
-                        "registration_doc_no": "VALUATION-EST-2026",
-                        "growth_over_initial_pct": 553.33,
-                        "cagr_pct": 7.82
-                    }
-                ],
-                "nearby_services": [
-                    {
-                        "name": "Atkinson High School",
-                        "category": "schools",
-                        "type": "Senior Secondary School",
-                        "distance_km": 0.9,
-                        "travel_time_mins": 3,
-                        "rating": 4.7,
-                        "lat": 16.5080,
-                        "lng": 80.6500
-                    },
-                    {
-                        "name": "Ramesh Hospitals Benz Circle",
-                        "category": "hospitals",
-                        "type": "Super Specialty Hospital",
-                        "distance_km": 0.6,
-                        "travel_time_mins": 2,
-                        "rating": 4.9,
-                        "lat": 16.5050,
-                        "lng": 80.6460
-                    },
-                    {
-                        "name": "Vijayawada Bus Terminal",
-                        "category": "metro_railways",
-                        "type": "Central Transit Hub",
-                        "distance_km": 3.2,
-                        "travel_time_mins": 10,
-                        "rating": 4.6,
-                        "lat": 16.5120,
-                        "lng": 80.6210
-                    }
-                ]
-            }
-        ]
-    else:
-        properties = [
-            {
-                "property_id": "PROP-TG-HYD-01",
-                "name": "Cyber Heights Residency",
-                "type": "Apartment",
-                "construction_year": 2001,
-                "address": "Plot 42-45, Hitec City Main Road, Gachibowli",
-                "mandal": "Serilingampally",
-                "district": "Rangareddy",
-                "state": "telangana",
-                "total_sqft": 1850,
-                "bedrooms": 3,
-                "bathrooms": 3,
-                "rera_id": "P02400001209",
-                "lat": 17.4401,
-                "lng": 78.3489,
-                "price_summary": {
-                    "initial_price_inr": 2405000,
-                    "latest_price_inr": 19425000,
-                    "total_appreciation_pct": 707.69,
-                    "cagr_pct": 8.74,
-                    "holding_period_years": 25
-                },
-                "sale_history": [
-                    {
-                        "year": 2001,
-                        "sale_date": "2001-04-15",
-                        "sale_price_inr": 2405000,
-                        "price_per_sqft_inr": 1300,
-                        "seller_type": "Cyber City Developers Ltd",
-                        "buyer_type": "Private Individual Owner",
-                        "registration_doc_no": "SRO-HYD-2001-1102",
-                        "growth_over_initial_pct": 0.0,
-                        "cagr_pct": 0.0
-                    },
-                    {
-                        "year": 2014,
-                        "sale_date": "2014-09-10",
-                        "sale_price_inr": 8325000,
-                        "price_per_sqft_inr": 4500,
-                        "seller_type": "Private Individual Owner",
-                        "buyer_type": "Private Individual Owner",
-                        "registration_doc_no": "SRO-HYD-2014-8901",
-                        "growth_over_initial_pct": 246.15,
-                        "cagr_pct": 10.01
-                    },
-                    {
-                        "year": 2026,
-                        "sale_date": "2026-07-01",
-                        "sale_price_inr": 19425000,
-                        "price_per_sqft_inr": 10500,
-                        "seller_type": "Private Individual Owner",
-                        "buyer_type": "Current Valuation (SRO Benchmark)",
-                        "registration_doc_no": "VALUATION-EST-2026",
-                        "growth_over_initial_pct": 707.69,
-                        "cagr_pct": 8.74
-                    }
-                ],
-                "nearby_services": [
-                    {
-                        "name": "Oakridge International School",
-                        "category": "schools",
-                        "type": "K-12 IB World School",
-                        "distance_km": 0.8,
-                        "travel_time_mins": 3,
-                        "rating": 4.8,
-                        "lat": 17.4435,
-                        "lng": 78.3521
-                    },
-                    {
-                        "name": "Continental Hospitals",
-                        "category": "hospitals",
-                        "type": "Multi-Specialty Super Tertiary Hospital",
-                        "distance_km": 1.2,
-                        "travel_time_mins": 4,
-                        "rating": 4.6,
-                        "lat": 17.4365,
-                        "lng": 78.3412
-                    },
-                    {
-                        "name": "Raidurg Metro Station",
-                        "category": "metro_railways",
-                        "type": "Hyderabad Metro Blue Line Terminal",
-                        "distance_km": 1.9,
-                        "travel_time_mins": 6,
-                        "rating": 4.9,
-                        "lat": 17.4412,
-                        "lng": 78.3641
-                    }
-                ]
-            },
-            {
-                "property_id": "PROP-TG-HYD-02",
-                "name": "Jubilee Hills Royal Villa",
-                "type": "Independent Villa",
-                "construction_year": 2002,
-                "address": "Road No 36, Jubilee Hills Sector 3, Hyderabad",
-                "mandal": "Khairatabad",
-                "district": "Hyderabad",
-                "state": "telangana",
-                "total_sqft": 4500,
-                "bedrooms": 5,
-                "bathrooms": 6,
-                "rera_id": "P02400008912",
-                "lat": 17.4320,
-                "lng": 78.4080,
-                "price_summary": {
-                    "initial_price_inr": 9000000,
-                    "latest_price_inr": 81000000,
-                    "total_appreciation_pct": 800.0,
-                    "cagr_pct": 9.57,
-                    "holding_period_years": 24
-                },
-                "sale_history": [
-                    {
-                        "year": 2002,
-                        "sale_date": "2002-08-11",
-                        "sale_price_inr": 9000000,
-                        "price_per_sqft_inr": 2000,
-                        "seller_type": "Commercial Property Developer",
-                        "buyer_type": "Private Individual Owner",
-                        "registration_doc_no": "SRO-JUB-2002-0412",
-                        "growth_over_initial_pct": 0.0,
-                        "cagr_pct": 0.0
-                    },
-                    {
-                        "year": 2026,
-                        "sale_date": "2026-07-01",
-                        "sale_price_inr": 81000000,
-                        "price_per_sqft_inr": 18000,
-                        "seller_type": "Private Individual Owner",
-                        "buyer_type": "Current Valuation (SRO Benchmark)",
-                        "registration_doc_no": "VALUATION-EST-2026",
-                        "growth_over_initial_pct": 800.0,
-                        "cagr_pct": 9.57
-                    }
-                ],
-                "nearby_services": [
-                    {
-                        "name": "Chirec International School",
-                        "category": "schools",
-                        "type": "International School",
-                        "distance_km": 1.4,
-                        "travel_time_mins": 5,
-                        "rating": 4.9,
-                        "lat": 17.4350,
-                        "lng": 78.4120
-                    },
-                    {
-                        "name": "Apollo Hospitals Jubilee Hills",
-                        "category": "hospitals",
-                        "type": "Super Specialty Hospital",
-                        "distance_km": 0.9,
-                        "travel_time_mins": 3,
-                        "rating": 4.8,
-                        "lat": 17.4290,
-                        "lng": 78.4090
-                    },
-                    {
-                        "name": "Jubilee Hills Checkpost Metro Station",
-                        "category": "metro_railways",
-                        "type": "Hyderabad Metro Station",
-                        "distance_km": 1.1,
-                        "travel_time_mins": 4,
-                        "rating": 4.7,
-                        "lat": 17.4330,
-                        "lng": 78.4100
-                    }
-                ]
-            },
-            {
-                "property_id": "PROP-TG-HYD-03",
-                "name": "Financial District Tech Park Suite",
-                "type": "Commercial Space",
-                "construction_year": 2001,
-                "address": "Tower 2, Nanakramguda Financial District, Serilingampally",
-                "mandal": "Serilingampally",
-                "district": "Rangareddy",
-                "state": "telangana",
-                "total_sqft": 3000,
-                "bedrooms": 0,
-                "bathrooms": 3,
-                "rera_id": "P02400009941",
-                "lat": 17.4156,
-                "lng": 78.3428,
-                "price_summary": {
-                    "initial_price_inr": 4500000,
-                    "latest_price_inr": 44400000,
-                    "total_appreciation_pct": 886.67,
-                    "cagr_pct": 9.61,
-                    "holding_period_years": 25
-                },
-                "sale_history": [
-                    {
-                        "year": 2001,
-                        "sale_date": "2001-05-22",
-                        "sale_price_inr": 4500000,
-                        "price_per_sqft_inr": 1500,
-                        "seller_type": "Commercial Property Developer",
-                        "buyer_type": "Institutional Realty Fund",
-                        "registration_doc_no": "SRO-FD-2001-0301",
-                        "growth_over_initial_pct": 0.0,
-                        "cagr_pct": 0.0
-                    },
-                    {
-                        "year": 2015,
-                        "sale_date": "2015-10-14",
-                        "sale_price_inr": 20700000,
-                        "price_per_sqft_inr": 6900,
-                        "seller_type": "Institutional Realty Fund",
-                        "buyer_type": "Private Individual Owner",
-                        "registration_doc_no": "SRO-FD-2015-7720",
-                        "growth_over_initial_pct": 360.0,
-                        "cagr_pct": 11.53
-                    },
-                    {
-                        "year": 2026,
-                        "sale_date": "2026-07-01",
-                        "sale_price_inr": 44400000,
-                        "price_per_sqft_inr": 14800,
-                        "seller_type": "Private Individual Owner",
-                        "buyer_type": "Current Valuation (SRO Benchmark)",
-                        "registration_doc_no": "VALUATION-EST-2026",
-                        "growth_over_initial_pct": 886.67,
-                        "cagr_pct": 9.61
-                    }
-                ],
-                "nearby_services": [
-                    {
-                        "name": "Keystone International School",
-                        "category": "schools",
-                        "type": "International School",
-                        "distance_km": 1.1,
-                        "travel_time_mins": 4,
-                        "rating": 4.8,
-                        "lat": 17.4180,
-                        "lng": 78.3450
-                    },
-                    {
-                        "name": "Star Hospitals Nanakramguda",
-                        "category": "hospitals",
-                        "type": "Super Specialty Hospital",
-                        "distance_km": 0.7,
-                        "travel_time_mins": 2,
-                        "rating": 4.9,
-                        "lat": 17.4140,
-                        "lng": 78.3410
-                    },
-                    {
-                        "name": "Financial District Metro Line",
-                        "category": "metro_railways",
-                        "type": "Metro Station",
-                        "distance_km": 0.8,
-                        "travel_time_mins": 3,
-                        "rating": 4.8,
-                        "lat": 17.4160,
-                        "lng": 78.3440
-                    }
-                ]
-            }
-        ]
+                    "sale_history": [
+                        {
+                            "year": 2026 - holding_years,
+                            "sale_date": f"{2026 - holding_years}-01-15",
+                            "sale_price_inr": initial_price,
+                            "price_per_sqft_inr": round(initial_price / total_sqft),
+                            "seller_type": "Commercial Property Developer",
+                            "buyer_type": "Private Individual Owner",
+                            "registration_doc_no": f"DOC-{prefix}-{2026 - holding_years}-{1000 + idx}",
+                            "growth_over_initial_pct": 0.0,
+                            "cagr_pct": 0.0
+                        },
+                        {
+                            "year": 2026,
+                            "sale_date": "2026-07-01",
+                            "sale_price_inr": latest_price,
+                            "price_per_sqft_inr": round(latest_price / total_sqft),
+                            "seller_type": "Private Individual Owner",
+                            "buyer_type": "Current Valuation (SRO Benchmark)",
+                            "registration_doc_no": f"VALUATION-EST-{prefix}-2026-{idx}",
+                            "growth_over_initial_pct": apprec_pct,
+                            "cagr_pct": cagr_val
+                        }
+                    ],
+                    "nearby_services": [
+                        {
+                            "name": f"{v_name} Primary & Secondary School",
+                            "category": "schools",
+                            "type": "State / CBSE School",
+                            "distance_km": 1.2,
+                            "travel_time_mins": 5,
+                            "rating": 4.5,
+                            "lat": 16.501 if is_ap else 17.386,
+                            "lng": 80.641 if is_ap else 78.487
+                        },
+                        {
+                            "name": f"{district_name} Area Hospital",
+                            "category": "hospitals",
+                            "type": "Community Health Center",
+                            "distance_km": 2.8,
+                            "travel_time_mins": 9,
+                            "rating": 4.6,
+                            "lat": 16.503 if is_ap else 17.388,
+                            "lng": 80.643 if is_ap else 78.489
+                        },
+                        {
+                            "name": f"{mandal_name} Transit Hub",
+                            "category": "metro_railways",
+                            "type": "Transit Railway Station",
+                            "distance_km": 3.5,
+                            "travel_time_mins": 12,
+                            "rating": 4.7,
+                            "lat": 16.505 if is_ap else 17.390,
+                            "lng": 80.645 if is_ap else 78.491
+                        }
+                    ]
+                }
+                properties.append(prop)
+        except Exception as err:
+            print(f"Error generating full property histories for {state_slug}: {err}")
 
     data = {
         "version": "1.0.0",

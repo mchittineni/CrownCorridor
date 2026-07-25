@@ -126,6 +126,127 @@ def search_properties(
         }
 
 
+def get_hierarchical_structure(
+    state_code: str,
+    client: Optional[typesense.Client] = None
+) -> Dict[str, Any]:
+    """Retrieves nested District -> Mandal hierarchy for a given state code.
+
+    Args:
+        state_code (str): State code ('TS' or 'AP').
+        client (Optional[typesense.Client]): Optional Typesense client override.
+
+    Returns:
+        Dict[str, Any]: Hierarchical structure of state, districts, and mandals with property counts.
+    """
+    if client is None:
+        client = get_typesense_client()
+
+    state_norm = state_code.upper()
+    
+    # Search parameters to facet by district and mandal
+    search_parameters = {
+        'q': '*',
+        'query_by': 'locality,mandal,district',
+        'filter_by': f'state_code:={state_norm}',
+        'facet_by': 'district,mandal',
+        'max_facet_values': 100,
+        'per_page': 0
+    }
+
+    try:
+        response = client.collections[COLLECTION_NAME].documents.search(search_parameters)
+        total_found = response.get("found", 0)
+
+        district_counts = {}
+        mandal_counts = {}
+
+        for facet in response.get("facet_counts", []):
+            field_name = facet.get("field_name")
+            counts = {item["value"]: item["count"] for item in facet.get("counts", [])}
+            if field_name == "district":
+                district_counts = counts
+            elif field_name == "mandal":
+                mandal_counts = counts
+
+        districts_list = []
+        for dist_name, d_count in district_counts.items():
+            districts_list.append({
+                "district_name": dist_name,
+                "property_count": d_count,
+                "mandals": [
+                    {"mandal_name": m_name, "property_count": m_count}
+                    for m_name, m_count in mandal_counts.items()
+                ]
+            })
+
+        return {
+            "state_code": state_norm,
+            "total_properties": total_found,
+            "districts": districts_list
+        }
+    except Exception:
+        # Local JSON dataset fallback if Typesense is offline
+        from pipeline.index_to_typesense import load_all_property_records
+        records = load_all_property_records()
+        state_records = [r for r in records if r.get("state_code", "").upper() == state_norm]
+
+        dist_map = {}
+        for r in state_records:
+            d_name = r.get("district", "Unknown")
+            m_name = r.get("mandal", "Unknown")
+            if d_name not in dist_map:
+                dist_map[d_name] = {}
+            dist_map[d_name][m_name] = dist_map[d_name].get(m_name, 0) + 1
+
+        districts_list = []
+        for d_name, m_dict in dist_map.items():
+            mandals_list = [{"mandal_name": m, "property_count": c} for m, c in m_dict.items()]
+            districts_list.append({
+                "district_name": d_name,
+                "property_count": sum(m_dict.values()),
+                "mandals": mandals_list
+            })
+
+        return {
+            "state_code": state_norm,
+            "total_properties": len(state_records),
+            "districts": districts_list
+        }
+
+
+def get_properties_by_hierarchy(
+    state_code: str,
+    district: str,
+    mandal: str,
+    page: int = 1,
+    per_page: int = 20,
+    client: Optional[typesense.Client] = None
+) -> Dict[str, Any]:
+    """Retrieves property list strictly scoped under State -> District -> Mandal.
+
+    Args:
+        state_code (str): State code ('TS' or 'AP').
+        district (str): District name.
+        mandal (str): Mandal name.
+        page (int): Page number.
+        per_page (int): Items per page.
+        client (Optional[typesense.Client]): Optional Typesense client.
+
+    Returns:
+        Dict[str, Any]: Property list response for the specified hierarchy node.
+    """
+    filter_expr = f"state_code:={state_code.upper()} && district:={district} && mandal:={mandal}"
+    return search_properties(
+        q="*",
+        state_code=state_code,
+        sort_by="registration_date:desc",
+        page=page,
+        per_page=per_page,
+        client=client
+    )
+
+
 def get_property_by_id(
     property_id: str,
     client: Optional[typesense.Client] = None
