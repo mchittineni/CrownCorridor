@@ -10,8 +10,8 @@ Exit codes:
 """
 
 import json
-import sys
 import pathlib
+import sys
 
 ROOT = pathlib.Path(__file__).parent.parent
 DATA_ROOT = ROOT / "data"
@@ -43,6 +43,7 @@ def ok(msg: str) -> None:
 # File presence
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 def check_files_present() -> None:
     print("\n[1] Required file presence")
     for state in STATES:
@@ -58,6 +59,7 @@ def check_files_present() -> None:
 # ─────────────────────────────────────────────────────────────────────────────
 # regions.json structure
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 def check_regions() -> None:
     print("\n[2] regions.json structure & counts")
@@ -93,6 +95,7 @@ def check_regions() -> None:
 # villages.json
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 def check_villages() -> None:
     print("\n[3] villages.json well-formedness")
     # villages.json uses a columnar format: {"columns": [...], "rows": [[...], ...]}
@@ -115,7 +118,9 @@ def check_villages() -> None:
             rows = data["rows"]
             min_fields = len(data["columns"])  # every row must have same width as header
         else:
-            err(f"{state}/villages.json — unrecognised structure (expected list or {{columns,rows}} dict)")
+            err(
+                f"{state}/villages.json — unrecognised structure (expected list or {{columns,rows}} dict)"
+            )
             continue
 
         if not rows:
@@ -124,7 +129,9 @@ def check_villages() -> None:
 
         malformed = [v for v in rows if not isinstance(v, list) or len(v) < min_fields]
         if malformed:
-            err(f"{state}/villages.json — {len(malformed)} malformed village records (expected ≥{min_fields} fields)")
+            err(
+                f"{state}/villages.json — {len(malformed)} malformed village records (expected ≥{min_fields} fields)"
+            )
         else:
             ok(f"{state}/villages.json — {len(rows)} villages, all records well-formed")
 
@@ -133,13 +140,14 @@ def check_villages() -> None:
 # coords.json
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 def check_coords() -> None:
     print("\n[4] coords.json coordinate ranges")
     # AP bounding box: lat 12.5–20, lng 76.7–84.8
     # TS bounding box: lat 15.8–19.9, lng 77.3–81.3
     BOUNDS = {
         "andhra_pradesh": {"lat": (12.5, 20.5), "lng": (76.7, 84.8)},
-        "telangana":       {"lat": (15.8, 19.9), "lng": (77.3, 81.3)},
+        "telangana": {"lat": (15.8, 19.9), "lng": (77.3, 81.3)},
     }
     for state in STATES:
         fpath = DATA_ROOT / state / "coords.json"
@@ -165,7 +173,9 @@ def check_coords() -> None:
                 out_of_range.append(code)
 
         if out_of_range:
-            err(f"{state}/coords.json — {len(out_of_range)} coordinates out of expected bounding box")
+            err(
+                f"{state}/coords.json — {len(out_of_range)} coordinates out of expected bounding box"
+            )
         else:
             ok(f"{state}/coords.json — {len(data)} coordinates all within bounding box")
 
@@ -173,6 +183,7 @@ def check_coords() -> None:
 # ─────────────────────────────────────────────────────────────────────────────
 # meta.json
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 def check_meta() -> None:
     print("\n[5] meta.json fields")
@@ -193,12 +204,15 @@ def check_meta() -> None:
             err(f"{state}/meta.json — missing required keys: {missing}")
         else:
             counts = data.get("counts", {})
-            ok(f"{state}/meta.json — {counts.get('villages', '?')} villages, source_date={data.get('source_date')}")
+            ok(
+                f"{state}/meta.json — {counts.get('villages', '?')} villages, source_date={data.get('source_date')}"
+            )
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 # GeoJSON districts
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 def check_geojson() -> None:
     print("\n[6] districts.geojson structure")
@@ -224,12 +238,13 @@ def check_geojson() -> None:
 # property_history.json validator
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 def check_property_history() -> None:
     print("\n[7] property_history.json integrity & nearby services")
     target_files = [
         DATA_ROOT / "andhra_pradesh" / "property_history.json",
         DATA_ROOT / "telangana" / "property_history.json",
-        DATA_ROOT / "property_history.json"
+        DATA_ROOT / "property_history.json",
     ]
 
     found_any = False
@@ -253,12 +268,21 @@ def check_property_history() -> None:
 
         BOUNDS = {
             "andhra_pradesh": {"lat": (12.5, 20.5), "lng": (76.7, 84.8)},
-            "telangana":       {"lat": (15.8, 19.9), "lng": (77.3, 81.3)},
+            "telangana": {"lat": (15.8, 19.9), "lng": (77.3, 81.3)},
         }
         REQUIRED_PROP_KEYS = {
-            "property_id", "name", "type", "construction_year", "address",
-            "state", "total_sqft", "lat", "lng", "sale_history",
-            "price_summary", "nearby_services"
+            "property_id",
+            "name",
+            "type",
+            "construction_year",
+            "address",
+            "state",
+            "total_sqft",
+            "lat",
+            "lng",
+            "sale_history",
+            "price_summary",
+            "nearby_services",
         }
         REQUIRED_SERVICE_CATS = {"schools", "hospitals", "metro_railways"}
 
@@ -278,7 +302,9 @@ def check_property_history() -> None:
             lat, lng = prop.get("lat"), prop.get("lng")
             b = BOUNDS[state]
             if not (b["lat"][0] <= lat <= b["lat"][1] and b["lng"][0] <= lng <= b["lng"][1]):
-                err(f"{rel_path} property {pid} coordinates ({lat}, {lng}) out of bounds for {state}")
+                err(
+                    f"{rel_path} property {pid} coordinates ({lat}, {lng}) out of bounds for {state}"
+                )
 
             # Check sale history chronological order & valid prices & no PII
             sales = prop.get("sale_history", [])
@@ -293,14 +319,21 @@ def check_property_history() -> None:
                     buyer = sale.get("buyer_type", "")
 
                     if year < prev_year:
-                        err(f"{rel_path} property {pid} sale_history out of chronological order: {year} < {prev_year}")
+                        err(
+                            f"{rel_path} property {pid} sale_history out of chronological order: {year} < {prev_year}"
+                        )
                     if price <= 0:
-                        err(f"{rel_path} property {pid} sale history year {year} has non-positive price: {price}")
-                    
+                        err(
+                            f"{rel_path} property {pid} sale history year {year} has non-positive price: {price}"
+                        )
+
                     # PII protection check
                     import re
-                    if re.search(r'\([A-Z]\.|\b(Mr|Mrs|Dr|Cmdr)\b', seller + buyer, re.I):
-                        err(f"{rel_path} property {pid} sale history contains potential customer PII in buyer/seller fields: '{seller}' / '{buyer}'")
+
+                    if re.search(r"\([A-Z]\.|\b(Mr|Mrs|Dr|Cmdr)\b", seller + buyer, re.I):
+                        err(
+                            f"{rel_path} property {pid} sale history contains potential customer PII in buyer/seller fields: '{seller}' / '{buyer}'"
+                        )
 
                     prev_year = year
 
@@ -309,7 +342,9 @@ def check_property_history() -> None:
             found_cats = {s.get("category") for s in services if isinstance(s, dict)}
             missing_cats = REQUIRED_SERVICE_CATS - found_cats
             if missing_cats:
-                err(f"{rel_path} property {pid} nearby_services missing required categories: {missing_cats}")
+                err(
+                    f"{rel_path} property {pid} nearby_services missing required categories: {missing_cats}"
+                )
 
         ok(f"{rel_path} — {len(properties)} properties with complete sale histories and POIs")
 
@@ -320,6 +355,7 @@ def check_property_history() -> None:
 # ─────────────────────────────────────────────────────────────────────────────
 # market_trends.json validator
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 def check_market_trends() -> None:
     print("\n[8] market_trends.json integrity")
@@ -346,7 +382,9 @@ def check_market_trends() -> None:
         if not quarters or not localities:
             err(f"{state}/market_trends.json — 'time_series' missing quarters or localities")
         else:
-            ok(f"{state}/market_trends.json — {len(hubs)} employment hubs, {len(localities)} localities across {len(quarters)} quarters")
+            ok(
+                f"{state}/market_trends.json — {len(hubs)} employment hubs, {len(localities)} localities across {len(quarters)} quarters"
+            )
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -376,5 +414,3 @@ if __name__ == "__main__":
     else:
         print("ALL CHECKS PASSED ✓")
         sys.exit(0)
-
-

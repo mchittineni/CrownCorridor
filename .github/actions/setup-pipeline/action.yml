@@ -17,9 +17,11 @@ runs:
     - name: Install Python Dependencies
       run: |
         python -m pip install --upgrade pip
+        pip install ruff black autoflake isort doc8 flake8 flake8-pytest-style flake8-bugbear flake8-comprehensions flake8-print darglint bandit pylint
         pip install -r pipeline/requirements.txt
         if [ -f api/requirements.txt ]; then pip install -r api/requirements.txt; fi
       shell: bash
+
 
     - name: Set up Node.js
       uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v4.2.0

@@ -48,8 +48,26 @@ jobs:
       - name: Setup Python Pipeline Toolchain
         uses: ./.github/actions/setup-pipeline
 
+      - name: Run Python Formatting & Imports (Black & isort)
+        run: |
+          isort --check-only api pipeline
+          black --check api pipeline
+
+      - name: Run Code Quality Linting (Flake8 & Ruff)
+        run: |
+          flake8 api pipeline
+          ruff check .
+
+      - name: Run Security Audit (Bandit)
+        run: bandit -c pyproject.toml -r api/ pipeline/
+
+      - name: Run Documentation Linter (Doc8)
+        run: doc8 --max-line-length 112 --file-encoding utf-8 docs/ README.md CONTRIBUTING.md
+
       - name: Run Data Integrity & Zero-PII Validator
         run: python pipeline/validate_data.py
 
       - name: Run Pytest Suite
-        run: pytest pipeline/tests/ -v --tb=short
+        run: pytest api/tests/ pipeline/tests/ -v --tb=short
+
+
