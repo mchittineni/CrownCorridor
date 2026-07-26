@@ -38,7 +38,11 @@ def get_typesense_client() -> typesense.Client:
     return typesense.Client(
         {
             "nodes": [
-                {"host": TYPESENSE_HOST, "port": TYPESENSE_PORT, "protocol": TYPESENSE_PROTOCOL}
+                {
+                    "host": TYPESENSE_HOST,
+                    "port": TYPESENSE_PORT,
+                    "protocol": TYPESENSE_PROTOCOL,
+                }
             ],
             "api_key": api_key,
             "connection_timeout_seconds": 2,
@@ -111,7 +115,9 @@ def search_properties(
     }
 
     try:
-        response = client.collections[COLLECTION_NAME].documents.search(search_parameters)
+        response = client.collections[COLLECTION_NAME].documents.search(
+            search_parameters
+        )
 
         hits = [
             {
@@ -140,7 +146,9 @@ def search_properties(
 
     except Exception as exc:
         logger.error(f"Typesense search query failed: {exc}", exc_info=True)
-        raise HTTPException(status_code=503, detail=f"Search service unavailable: {str(exc)}")
+        raise HTTPException(
+            status_code=503, detail=f"Search service unavailable: {str(exc)}"
+        )
 
 
 def get_hierarchical_structure(
@@ -174,16 +182,24 @@ def get_hierarchical_structure(
     }
 
     try:
-        dist_response = client.collections[COLLECTION_NAME].documents.search(district_search_params)
+        dist_response = client.collections[COLLECTION_NAME].documents.search(
+            district_search_params
+        )
         total_found = dist_response.get("found", 0)
 
         district_counts = {}
         for facet in dist_response.get("facet_counts", []):
             if facet.get("field_name") == "district":
-                district_counts = {item["value"]: item["count"] for item in facet.get("counts", [])}
+                district_counts = {
+                    item["value"]: item["count"] for item in facet.get("counts", [])
+                }
 
         if not district_counts:
-            return {"state_code": state_norm, "total_properties": total_found, "districts": []}
+            return {
+                "state_code": state_norm,
+                "total_properties": total_found,
+                "districts": [],
+            }
 
         # Step 2: Use multi_search to fetch per-district mandal facets in a single call
         districts_sorted = sorted(district_counts.keys())
@@ -222,7 +238,11 @@ def get_hierarchical_structure(
             ]
 
             districts_list.append(
-                {"district_name": d_name, "property_count": d_count, "mandals": mandals_list}
+                {
+                    "district_name": d_name,
+                    "property_count": d_count,
+                    "mandals": mandals_list,
+                }
             )
 
         return {
@@ -232,9 +252,12 @@ def get_hierarchical_structure(
         }
     except Exception as exc:
         logger.error(
-            f"Typesense hierarchy query failed for state {state_norm}: {exc}", exc_info=True
+            f"Typesense hierarchy query failed for state {state_norm}: {exc}",
+            exc_info=True,
         )
-        raise HTTPException(status_code=503, detail=f"Hierarchy service unavailable: {str(exc)}")
+        raise HTTPException(
+            status_code=503, detail=f"Hierarchy service unavailable: {str(exc)}"
+        )
 
 
 def get_properties_by_hierarchy(
@@ -258,9 +281,7 @@ def get_properties_by_hierarchy(
     Returns:
         Dict[str, Any]: Property list response for the specified hierarchy node.
     """
-    filter_expr = (
-        f"state_code:=`{state_code.upper()}` && district:=`{district}` && mandal:=`{mandal}`"
-    )
+    filter_expr = f"state_code:=`{state_code.upper()}` && district:=`{district}` && mandal:=`{mandal}`"
     return search_properties(
         q="*",
         state_code=state_code,
@@ -293,9 +314,12 @@ def get_property_by_id(
     except typesense.exceptions.ObjectNotFound:
         return None
     except Exception as exc:
-        logger.error(f"Failed to retrieve property '{property_id}': {exc}", exc_info=True)
+        logger.error(
+            f"Failed to retrieve property '{property_id}': {exc}", exc_info=True
+        )
         raise HTTPException(
-            status_code=503, detail=f"Property retrieval service unavailable: {str(exc)}"
+            status_code=503,
+            detail=f"Property retrieval service unavailable: {str(exc)}",
         )
 
 

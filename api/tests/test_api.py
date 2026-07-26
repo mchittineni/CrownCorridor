@@ -157,7 +157,9 @@ class TestHierarchyEndpoints:
     """Tests for state -> district -> mandal -> properties hierarchical endpoints."""
 
     @patch("api.search.get_typesense_client")
-    def test_state_hierarchy_endpoint_scopes_mandals_per_district(self, mock_get_client):
+    def test_state_hierarchy_endpoint_scopes_mandals_per_district(
+        self, mock_get_client
+    ):
         """Verifies state hierarchy performs multi-search so mandals belong strictly to their district."""
         mock_client = patch("typesense.Client").start()
         mock_get_client.return_value = mock_client
@@ -181,7 +183,10 @@ class TestHierarchyEndpoints:
             "results": [
                 {
                     "facet_counts": [
-                        {"field_name": "mandal", "counts": [{"value": "Kukatpally", "count": 5}]}
+                        {
+                            "field_name": "mandal",
+                            "counts": [{"value": "Kukatpally", "count": 5}],
+                        }
                     ]
                 },
                 {
@@ -212,7 +217,9 @@ class TestHierarchyEndpoints:
         assert medchal["mandals"][0]["mandal_name"] == "Kukatpally"
 
     @patch("api.search.get_typesense_client")
-    def test_mandal_properties_hierarchy_endpoint_passes_full_filter(self, mock_get_client):
+    def test_mandal_properties_hierarchy_endpoint_passes_full_filter(
+        self, mock_get_client
+    ):
         """Verifies mandal properties endpoint strictly passes state_code, district, and mandal filter to Typesense."""
         mock_client = patch("typesense.Client").start()
         mock_get_client.return_value = mock_client
@@ -243,7 +250,9 @@ class TestHierarchyEndpoints:
         # Assert that search parameters sent to Typesense contained the complete filter_by expression
         args, kwargs = mock_search.call_args
         search_params = args[0]
-        expected_filter = "state_code:=`TS` && district:=`Rangareddy` && mandal:=`Serilingampally`"
+        expected_filter = (
+            "state_code:=`TS` && district:=`Rangareddy` && mandal:=`Serilingampally`"
+        )
         assert search_params["filter_by"] == expected_filter
 
     @patch("api.search.get_typesense_client")

@@ -80,13 +80,17 @@ def check_regions() -> None:
         if not districts:
             err(f"{state}/regions.json — 'districts' array is empty")
         else:
-            ok(f"{state}/regions.json — {len(districts)} districts, {len(mandals)} mandals")
+            ok(
+                f"{state}/regions.json — {len(districts)} districts, {len(mandals)} mandals"
+            )
 
         # Every mandal should reference a valid district id
         district_ids = {d.get("i") for d in districts}
         orphaned = [m for m in mandals if m.get("d") not in district_ids]
         if orphaned:
-            err(f"{state}/regions.json — {len(orphaned)} mandals reference unknown district ids")
+            err(
+                f"{state}/regions.json — {len(orphaned)} mandals reference unknown district ids"
+            )
         else:
             ok(f"{state}/regions.json — all mandal district references valid")
 
@@ -116,7 +120,9 @@ def check_villages() -> None:
             min_fields = 4
         elif isinstance(data, dict) and "columns" in data and "rows" in data:
             rows = data["rows"]
-            min_fields = len(data["columns"])  # every row must have same width as header
+            min_fields = len(
+                data["columns"]
+            )  # every row must have same width as header
         else:
             err(
                 f"{state}/villages.json — unrecognised structure (expected list or {{columns,rows}} dict)"
@@ -228,10 +234,14 @@ def check_geojson() -> None:
             continue
 
         if data.get("type") != "FeatureCollection":
-            err(f"{state}/districts.geojson — top-level type is not 'FeatureCollection'")
+            err(
+                f"{state}/districts.geojson — top-level type is not 'FeatureCollection'"
+            )
         else:
             features = data.get("features", [])
-            ok(f"{state}/districts.geojson — valid FeatureCollection with {len(features)} features")
+            ok(
+                f"{state}/districts.geojson — valid FeatureCollection with {len(features)} features"
+            )
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -301,7 +311,9 @@ def check_property_history() -> None:
             # Check bounds
             lat, lng = prop.get("lat"), prop.get("lng")
             b = BOUNDS[state]
-            if not (b["lat"][0] <= lat <= b["lat"][1] and b["lng"][0] <= lng <= b["lng"][1]):
+            if not (
+                b["lat"][0] <= lat <= b["lat"][1] and b["lng"][0] <= lng <= b["lng"][1]
+            ):
                 err(
                     f"{rel_path} property {pid} coordinates ({lat}, {lng}) out of bounds for {state}"
                 )
@@ -330,7 +342,9 @@ def check_property_history() -> None:
                     # PII protection check
                     import re
 
-                    if re.search(r"\([A-Z]\.|\b(Mr|Mrs|Dr|Cmdr)\b", seller + buyer, re.I):
+                    if re.search(
+                        r"\([A-Z]\.|\b(Mr|Mrs|Dr|Cmdr)\b", seller + buyer, re.I
+                    ):
                         err(
                             f"{rel_path} property {pid} sale history contains potential customer PII in buyer/seller fields: '{seller}' / '{buyer}'"
                         )
@@ -346,7 +360,9 @@ def check_property_history() -> None:
                     f"{rel_path} property {pid} nearby_services missing required categories: {missing_cats}"
                 )
 
-        ok(f"{rel_path} — {len(properties)} properties with complete sale histories and POIs")
+        ok(
+            f"{rel_path} — {len(properties)} properties with complete sale histories and POIs"
+        )
 
     if not found_any:
         err("No property_history.json files found across state directories")
@@ -373,14 +389,18 @@ def check_market_trends() -> None:
 
         hubs = data.get("employment_hubs", [])
         if not hubs or not isinstance(hubs, list):
-            err(f"{state}/market_trends.json — 'employment_hubs' array missing or empty")
+            err(
+                f"{state}/market_trends.json — 'employment_hubs' array missing or empty"
+            )
 
         time_series = data.get("time_series", {})
         quarters = time_series.get("quarters", [])
         localities = time_series.get("localities", [])
 
         if not quarters or not localities:
-            err(f"{state}/market_trends.json — 'time_series' missing quarters or localities")
+            err(
+                f"{state}/market_trends.json — 'time_series' missing quarters or localities"
+            )
         else:
             ok(
                 f"{state}/market_trends.json — {len(hubs)} employment hubs, {len(localities)} localities across {len(quarters)} quarters"
