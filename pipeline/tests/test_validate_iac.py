@@ -1,4 +1,9 @@
-"""Unit tests for the Infrastructure as Code (IaC) validator script."""
+import pathlib
+import sys
+
+ROOT = pathlib.Path(__file__).parent.parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from pipeline.validate_iac import (
     check_cis_aws_benchmark_policies,
