@@ -44,6 +44,7 @@ ENDPOINTS = {
 # Fetch helpers
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 def sanitize_and_anonymize_record(raw_record: dict) -> dict:
     """Enforces Zero-PII compliance by stripping personal names/numbers and mapping to anonymized role classifications."""
     ALLOWED_ROLES = {
@@ -53,18 +54,26 @@ def sanitize_and_anonymize_record(raw_record: dict) -> dict:
         "Government / Municipal Entity",
         "Current Valuation (SRO Benchmark)",
     }
-    
+
     seller_raw = str(raw_record.get("seller_type") or raw_record.get("seller_name") or "")
     buyer_raw = str(raw_record.get("buyer_type") or raw_record.get("buyer_name") or "")
 
     seller_role = (
-        seller_raw if seller_raw in ALLOWED_ROLES else (
-            "Commercial Property Developer" if "ltd" in seller_raw.lower() or "inc" in seller_raw.lower() else "Private Individual Owner"
+        seller_raw
+        if seller_raw in ALLOWED_ROLES
+        else (
+            "Commercial Property Developer"
+            if "ltd" in seller_raw.lower() or "inc" in seller_raw.lower()
+            else "Private Individual Owner"
         )
     )
     buyer_role = (
-        buyer_raw if buyer_raw in ALLOWED_ROLES else (
-            "Commercial Property Developer" if "ltd" in buyer_raw.lower() or "inc" in buyer_raw.lower() else "Private Individual Owner"
+        buyer_raw
+        if buyer_raw in ALLOWED_ROLES
+        else (
+            "Commercial Property Developer"
+            if "ltd" in buyer_raw.lower() or "inc" in buyer_raw.lower()
+            else "Private Individual Owner"
         )
     )
 
@@ -102,30 +111,103 @@ def fetch_tg_registrations(date: str, dry_run: bool = False) -> list[dict]:
 def _stub_records(state: str, date: str, count: int = 5) -> list[dict]:
     is_ap = state == "Andhra Pradesh"
     sros = (
-        ["Visakhapatnam Urban", "Vijayawada East", "Guntur Rural", "Tirupati Urban", "Kakinada", "Ananthapuramu", "Nellore", "Kurnool"]
+        [
+            "Visakhapatnam Urban",
+            "Vijayawada East",
+            "Guntur Rural",
+            "Tirupati Urban",
+            "Kakinada",
+            "Ananthapuramu",
+            "Nellore",
+            "Kurnool",
+        ]
         if is_ap
-        else ["Gachibowli", "Serilingampally", "Khairatabad", "Kukatpally", "Karimnagar", "Warangal", "Nizamabad", "Khammam"]
+        else [
+            "Gachibowli",
+            "Serilingampally",
+            "Khairatabad",
+            "Kukatpally",
+            "Karimnagar",
+            "Warangal",
+            "Nizamabad",
+            "Khammam",
+        ]
     )
     # Complete list of 28 AP Districts & 33 Telangana Districts
     districts = (
         [
-            "Alluri Sitharama Raju", "Anakapalli", "Ananthapuramu", "Annamayya", "Bapatla", "Chittoor",
-            "Dr. B.R. Ambedkar Konaseema", "East Godavari", "Eluru", "Guntur", "Kakinada", "Krishna",
-            "Kurnool", "Markapuram", "Nandyal", "Ntr", "Palnadu", "Parvathipuram Manyam", "Polavaram",
-            "Prakasam", "Sri Potti Sriramulu Nellore", "Sri Sathya Sai", "Srikakulam", "Tirupati",
-            "Visakhapatnam", "Vizianagaram", "West Godavari", "Y.S.R. Kadapa"
+            "Alluri Sitharama Raju",
+            "Anakapalli",
+            "Ananthapuramu",
+            "Annamayya",
+            "Bapatla",
+            "Chittoor",
+            "Dr. B.R. Ambedkar Konaseema",
+            "East Godavari",
+            "Eluru",
+            "Guntur",
+            "Kakinada",
+            "Krishna",
+            "Kurnool",
+            "Markapuram",
+            "Nandyal",
+            "Ntr",
+            "Palnadu",
+            "Parvathipuram Manyam",
+            "Polavaram",
+            "Prakasam",
+            "Sri Potti Sriramulu Nellore",
+            "Sri Sathya Sai",
+            "Srikakulam",
+            "Tirupati",
+            "Visakhapatnam",
+            "Vizianagaram",
+            "West Godavari",
+            "Y.S.R. Kadapa",
         ]
         if is_ap
         else [
-            "Adilabad", "Bhadradri Kothagudem", "Hanumakonda", "Hyderabad", "Jagitial", "Jangoan",
-            "Jayashankar Bhupalapally", "Jogulamba Gadwal", "Kamareddy", "Karimnagar", "Khammam",
-            "Kumuram Bheem Asifabad", "Mahabubabad", "Mahabubnagar", "Mancherial", "Medak",
-            "Medchal Malkajgiri", "Mulugu", "Nagarkurnool", "Nalgonda", "Narayanpet", "Nirmal",
-            "Nizamabad", "Peddapalli", "Rajanna Sircilla", "Ranga Reddy", "Sangareddy", "Siddipet",
-            "Suryapet", "Vikarabad", "Wanaparthy", "Warangal", "Yadadri Bhuvanagiri"
+            "Adilabad",
+            "Bhadradri Kothagudem",
+            "Hanumakonda",
+            "Hyderabad",
+            "Jagitial",
+            "Jangoan",
+            "Jayashankar Bhupalapally",
+            "Jogulamba Gadwal",
+            "Kamareddy",
+            "Karimnagar",
+            "Khammam",
+            "Kumuram Bheem Asifabad",
+            "Mahabubabad",
+            "Mahabubnagar",
+            "Mancherial",
+            "Medak",
+            "Medchal Malkajgiri",
+            "Mulugu",
+            "Nagarkurnool",
+            "Nalgonda",
+            "Narayanpet",
+            "Nirmal",
+            "Nizamabad",
+            "Peddapalli",
+            "Rajanna Sircilla",
+            "Ranga Reddy",
+            "Sangareddy",
+            "Siddipet",
+            "Suryapet",
+            "Vikarabad",
+            "Wanaparthy",
+            "Warangal",
+            "Yadadri Bhuvanagiri",
         ]
     )
-    property_types = ["Residential Flat", "Residential Plot", "Commercial Space", "Independent Villa"]
+    property_types = [
+        "Residential Flat",
+        "Residential Plot",
+        "Commercial Space",
+        "Independent Villa",
+    ]
 
     records = []
     for i in range(count):
@@ -145,7 +227,9 @@ def _stub_records(state: str, date: str, count: int = 5) -> list[dict]:
             "consideration_value_inr": consideration,
             "total_duty_inr": total_duty,
             "seller_type": "Private Individual Owner",
-            "buyer_type": "Commercial Property Developer" if i % 2 == 0 else "Private Individual Owner",
+            "buyer_type": (
+                "Commercial Property Developer" if i % 2 == 0 else "Private Individual Owner"
+            ),
         }
         records.append(rec)
     return records
@@ -156,7 +240,7 @@ def save_records(records: list[dict], state_slug: str, date: str) -> pathlib.Pat
     file_name = f"{state_slug}_sro_{date}.json"
     target_file = OUTPUT_DIR / file_name
     data = {
-        "fetched_at": str(datetime.datetime.now(datetime.timezone.utc)),
+        "fetched_at": str(datetime.datetime.now(datetime.UTC)),
         "record_count": len(records),
         "records": records,
     }
@@ -182,7 +266,7 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
             for m in rdata.get("mandals", []):
                 mandal_district_map[m["i"]] = {
                     "mandal_name": m["n"],
-                    "district_name": districts_by_id.get(m.get("d"), "State District")
+                    "district_name": districts_by_id.get(m.get("d"), "State District"),
                 }
         except Exception as e:
             print(f"Warning loading regions for {state_slug}: {e}")
@@ -200,7 +284,9 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
                 v_code = row[2]
                 pin = row[4] if len(row) > 4 else ("520001" if is_ap else "500001")
 
-                m_info = mandal_district_map.get(m_id, {"mandal_name": f"Mandal-{m_id}", "district_name": "General"})
+                m_info = mandal_district_map.get(
+                    m_id, {"mandal_name": f"Mandal-{m_id}", "district_name": "General"}
+                )
                 mandal_name = m_info["mandal_name"]
                 district_name = m_info["district_name"]
 
@@ -208,9 +294,11 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
                 holding_years = 15 + (idx % 10)
                 initial_price = 1500000 + (idx % 100) * 50000
                 total_sqft = 1200 + (idx % 8) * 150
-                
-                latest_price = round(initial_price * (1.065 ** holding_years))
-                cagr_val = round((((latest_price / initial_price) ** (1.0 / holding_years)) - 1.0) * 100.0, 2)
+
+                latest_price = round(initial_price * (1.065**holding_years))
+                cagr_val = round(
+                    (((latest_price / initial_price) ** (1.0 / holding_years)) - 1.0) * 100.0, 2
+                )
                 apprec_pct = round(((latest_price - initial_price) / initial_price) * 100.0, 2)
 
                 prop = {
@@ -226,14 +314,18 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
                     "bedrooms": 2 + (idx % 3),
                     "bathrooms": 2,
                     "rera_id": f"P{prefix}{v_code}",
-                    "lat": 16.5000 + (idx % 500) * 0.002 if is_ap else 17.3850 + (idx % 500) * 0.002,
-                    "lng": 80.6400 + (idx % 500) * 0.002 if is_ap else 78.4867 + (idx % 500) * 0.002,
+                    "lat": (
+                        16.5000 + (idx % 500) * 0.002 if is_ap else 17.3850 + (idx % 500) * 0.002
+                    ),
+                    "lng": (
+                        80.6400 + (idx % 500) * 0.002 if is_ap else 78.4867 + (idx % 500) * 0.002
+                    ),
                     "price_summary": {
                         "initial_price_inr": initial_price,
                         "latest_price_inr": latest_price,
                         "total_appreciation_pct": apprec_pct,
                         "cagr_pct": cagr_val,
-                        "holding_period_years": holding_years
+                        "holding_period_years": holding_years,
                     },
                     "sale_history": [
                         {
@@ -245,7 +337,7 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
                             "buyer_type": "Private Individual Owner",
                             "registration_doc_no": f"DOC-{prefix}-{2026 - holding_years}-{1000 + idx}",
                             "growth_over_initial_pct": 0.0,
-                            "cagr_pct": 0.0
+                            "cagr_pct": 0.0,
                         },
                         {
                             "year": 2026,
@@ -256,8 +348,8 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
                             "buyer_type": "Current Valuation (SRO Benchmark)",
                             "registration_doc_no": f"VALUATION-EST-{prefix}-2026-{idx}",
                             "growth_over_initial_pct": apprec_pct,
-                            "cagr_pct": cagr_val
-                        }
+                            "cagr_pct": cagr_val,
+                        },
                     ],
                     "nearby_services": [
                         {
@@ -268,7 +360,7 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
                             "travel_time_mins": 5,
                             "rating": 4.5,
                             "lat": 16.501 if is_ap else 17.386,
-                            "lng": 80.641 if is_ap else 78.487
+                            "lng": 80.641 if is_ap else 78.487,
                         },
                         {
                             "name": f"{district_name} Area Hospital",
@@ -278,7 +370,7 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
                             "travel_time_mins": 9,
                             "rating": 4.6,
                             "lat": 16.503 if is_ap else 17.388,
-                            "lng": 80.643 if is_ap else 78.489
+                            "lng": 80.643 if is_ap else 78.489,
                         },
                         {
                             "name": f"{mandal_name} Transit Hub",
@@ -288,9 +380,9 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
                             "travel_time_mins": 12,
                             "rating": 4.7,
                             "lat": 16.505 if is_ap else 17.390,
-                            "lng": 80.645 if is_ap else 78.491
-                        }
-                    ]
+                            "lng": 80.645 if is_ap else 78.491,
+                        },
+                    ],
                 }
                 properties.append(prop)
         except Exception as err:
@@ -300,7 +392,7 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
         "version": "1.0.0",
         "state": state_slug,
         "updated_at": str(datetime.date.today()),
-        "properties": properties
+        "properties": properties,
     }
 
     target_file.write_text(json.dumps(data, indent=2, ensure_ascii=False))
@@ -311,6 +403,7 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
 # ─────────────────────────────────────────────────────────────────────────────
 # CLI
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Crown Corridor SRO data fetcher")
@@ -337,7 +430,9 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    print(f"Crown Corridor SRO Fetcher — date={args.date}, dry_run={args.dry_run}, generate_history={args.generate_history}")
+    print(
+        f"Crown Corridor SRO Fetcher — date={args.date}, dry_run={args.dry_run}, generate_history={args.generate_history}"
+    )
 
     if args.generate_history:
         if args.state in ("andhra_pradesh", "all"):

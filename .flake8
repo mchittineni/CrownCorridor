@@ -1,0 +1,4 @@
+[flake8]
+max-line-length = 112
+extend-ignore = E203, E501, B008, T201, DAR101, DAR201, DAR401, E402, PT018
+exclude = .git, .venv, __pycache__, node_modules

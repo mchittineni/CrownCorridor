@@ -43,6 +43,7 @@ htmlcov/
 
 # JSDoc & Documentation Build Artifacts
 docs/api/js/
+docs/review/
 _site/
 
 # Terraform Local Cache & Binary Providers

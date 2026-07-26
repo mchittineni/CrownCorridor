@@ -7,7 +7,6 @@ HCL formatting syntax, native Terraform tests (.tftest.hcl), and zero-PII / secr
 import os
 import re
 import sys
-from typing import Dict, List, Tuple
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TERRAFORM_DIR = os.path.join(PROJECT_ROOT, "terraform")
@@ -43,7 +42,7 @@ SECRET_PATTERNS = [
 ]
 
 
-def check_root_files() -> Tuple[bool, List[str]]:
+def check_root_files() -> tuple[bool, list[str]]:
     """Validates presence of all required root Terraform files."""
     errors = []
     if not os.path.exists(TERRAFORM_DIR):
@@ -57,7 +56,7 @@ def check_root_files() -> Tuple[bool, List[str]]:
     return len(errors) == 0, errors
 
 
-def check_modules_structure() -> Tuple[bool, List[str]]:
+def check_modules_structure() -> tuple[bool, list[str]]:
     """Validates presence and internal structure of all required child modules."""
     errors = []
     modules_dir = os.path.join(TERRAFORM_DIR, "modules")
@@ -79,7 +78,7 @@ def check_modules_structure() -> Tuple[bool, List[str]]:
     return len(errors) == 0, errors
 
 
-def check_version_constraints() -> Tuple[bool, List[str]]:
+def check_version_constraints() -> tuple[bool, list[str]]:
     """Validates required Terraform and AWS provider versions in providers.tf."""
     errors = []
     providers_path = os.path.join(TERRAFORM_DIR, "providers.tf")
@@ -87,7 +86,7 @@ def check_version_constraints() -> Tuple[bool, List[str]]:
     if not os.path.exists(providers_path):
         return False, ["terraform/providers.tf file not found."]
 
-    with open(providers_path, "r", encoding="utf-8") as file_obj:
+    with open(providers_path, encoding="utf-8") as file_obj:
         content = file_obj.read()
 
     if ">= 1.15.0" not in content and "1.15" not in content:
@@ -99,7 +98,7 @@ def check_version_constraints() -> Tuple[bool, List[str]]:
     return len(errors) == 0, errors
 
 
-def check_hcl_syntax_and_formatting() -> Tuple[bool, List[str]]:
+def check_hcl_syntax_and_formatting() -> tuple[bool, list[str]]:
     """Validates HCL brace balancing, quotes syntax, and formatting conventions."""
     errors = []
 
@@ -111,7 +110,7 @@ def check_hcl_syntax_and_formatting() -> Tuple[bool, List[str]]:
             file_path = os.path.join(root, file)
             rel_path = os.path.relpath(file_path, PROJECT_ROOT)
 
-            with open(file_path, "r", encoding="utf-8") as file_obj:
+            with open(file_path, encoding="utf-8") as file_obj:
                 content = file_obj.read()
 
             # Check brace balance
@@ -133,7 +132,7 @@ def check_hcl_syntax_and_formatting() -> Tuple[bool, List[str]]:
     return len(errors) == 0, errors
 
 
-def check_cis_aws_benchmark_policies() -> Tuple[bool, List[str]]:
+def check_cis_aws_benchmark_policies() -> tuple[bool, list[str]]:
     """Validates AWS configurations against highest CIS AWS Foundations Benchmark policies.
 
     Checks:
@@ -154,7 +153,7 @@ def check_cis_aws_benchmark_policies() -> Tuple[bool, List[str]]:
             if file.endswith(".tf"):
                 filepath = os.path.join(root, file)
                 rel_path = os.path.relpath(filepath, PROJECT_ROOT)
-                with open(filepath, "r", encoding="utf-8") as f:
+                with open(filepath, encoding="utf-8") as f:
                     tf_contents[rel_path] = f.read()
 
     combined_code = "\n".join(tf_contents.values())
@@ -199,7 +198,9 @@ def check_cis_aws_benchmark_policies() -> Tuple[bool, List[str]]:
 
     # CIS Rule 6: CloudFront HTTPS & ALB Header Dropping
     if not re.search(r'viewer_protocol_policy\s*=\s*"redirect-to-https"', combined_code):
-        violations.append("CIS 2.4: CloudFront must enforce viewer_protocol_policy = 'redirect-to-https'")
+        violations.append(
+            "CIS 2.4: CloudFront must enforce viewer_protocol_policy = 'redirect-to-https'"
+        )
 
     if not re.search(r"drop_invalid_header_fields\s*=\s*true", combined_code):
         violations.append("Well-Architected: ALB must enforce drop_invalid_header_fields = true")
@@ -217,7 +218,7 @@ def check_cis_aws_benchmark_policies() -> Tuple[bool, List[str]]:
     return len(violations) == 0, violations
 
 
-def check_terraform_tests_and_policies() -> Tuple[bool, List[str]]:
+def check_terraform_tests_and_policies() -> tuple[bool, list[str]]:
     """Validates existence and structure of native Terraform test files and Rego policy files."""
     errors = []
 
@@ -228,7 +229,9 @@ def check_terraform_tests_and_policies() -> Tuple[bool, List[str]]:
 
     rego_file = os.path.join(TERRAFORM_DIR, "policies", "cis_aws_benchmark.rego")
     if not os.path.exists(rego_file):
-        errors.append("Missing CIS AWS Benchmark Rego policy file: terraform/policies/cis_aws_benchmark.rego")
+        errors.append(
+            "Missing CIS AWS Benchmark Rego policy file: terraform/policies/cis_aws_benchmark.rego"
+        )
 
     # Check that all module .tftest.hcl files are present in terraform/tests/
     for module in EXPECTED_MODULES:
@@ -239,7 +242,7 @@ def check_terraform_tests_and_policies() -> Tuple[bool, List[str]]:
     return len(errors) == 0, errors
 
 
-def scan_iac_secrets_and_pii() -> Tuple[bool, List[str]]:
+def scan_iac_secrets_and_pii() -> tuple[bool, list[str]]:
     """Scans all Terraform files for hardcoded secrets, plain passwords, or PII leaks."""
     violations = []
 
@@ -251,7 +254,7 @@ def scan_iac_secrets_and_pii() -> Tuple[bool, List[str]]:
             file_path = os.path.join(root, file)
             rel_path = os.path.relpath(file_path, PROJECT_ROOT)
 
-            with open(file_path, "r", encoding="utf-8") as file_obj:
+            with open(file_path, encoding="utf-8") as file_obj:
                 lines = file_obj.readlines()
 
             for line_idx, line in enumerate(lines, 1):
@@ -260,7 +263,10 @@ def scan_iac_secrets_and_pii() -> Tuple[bool, List[str]]:
                     continue
 
                 for pattern, desc in SECRET_PATTERNS:
-                    if desc == "Personal Email Address" and "admin@crowncorridor.example.com" in line:
+                    if (
+                        desc == "Personal Email Address"
+                        and "admin@crowncorridor.example.com" in line
+                    ):
                         continue
 
                     if re.search(pattern, line):
@@ -327,7 +333,9 @@ def validate_all_iac() -> bool:
     ok, violations = check_cis_aws_benchmark_policies()
     if ok:
         print("\n[5] CIS AWS Foundations Benchmark Policies")
-        print("  ✓  100% compliant with CIS AWS Benchmark (Encryption, Private RDS, CloudTrail, GuardDuty, Security Hub, WAF)")
+        print(
+            "  ✓  100% compliant with CIS AWS Benchmark (Encryption, Private RDS, CloudTrail, GuardDuty, Security Hub, WAF)"
+        )
     else:
         print("\n[5] CIS AWS Foundations Benchmark Policies")
         for viol in violations:

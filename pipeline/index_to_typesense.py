@@ -8,7 +8,8 @@ import argparse
 import json
 import os
 import pathlib
-from typing import Any, Dict, List
+from typing import Any
+
 import typesense
 
 ROOT = pathlib.Path(__file__).parent.parent
@@ -16,7 +17,7 @@ DATA_DIR = ROOT / "data"
 
 COLLECTION_NAME = "properties"
 
-COLLECTION_SCHEMA: Dict[str, Any] = {
+COLLECTION_SCHEMA: dict[str, Any] = {
     "name": COLLECTION_NAME,
     "fields": [
         {"name": "id", "type": "string"},
@@ -32,11 +33,11 @@ COLLECTION_SCHEMA: Dict[str, Any] = {
         {"name": "registration_date", "type": "string", "optional": True, "sort": True},
         {"name": "survey_number", "type": "string", "optional": True},
     ],
-    "default_sorting_field": "sale_consideration"
+    "default_sorting_field": "sale_consideration",
 }
 
 
-def load_all_property_records() -> List[Dict[str, Any]]:
+def load_all_property_records() -> list[dict[str, Any]]:
     """Loads and transforms property history records from data files into Typesense documents.
 
     Returns:
@@ -70,27 +71,43 @@ def load_all_property_records() -> List[Dict[str, Any]]:
 
                 latest_sale = p.get("sale_history", [{}])[-1]
                 latest_price = latest_sale.get(
-                    "sale_price_inr",
-                    p.get("price_summary", {}).get("latest_price_inr", 0)
+                    "sale_price_inr", p.get("price_summary", {}).get("latest_price_inr", 0)
                 )
                 rate_sqft = latest_sale.get("price_per_sqft_inr", 0)
                 cagr_val = p.get("price_summary", {}).get("cagr_pct", 0.0)
 
+                # Address format: "Survey No {n}, {village}, PIN {pin}"
+                # Splitting by comma gives: ["Survey No n", " village", " PIN pin"]
+                addr_parts = [
+                    part.strip() for part in p.get("address", "").split(",") if part.strip()
+                ]
+                if len(addr_parts) >= 2 and addr_parts[-1].startswith("PIN"):
+                    locality_val = addr_parts[-2]
+                elif addr_parts:
+                    locality_val = addr_parts[-1]
+                else:
+                    locality_val = p.get("mandal", "")
+
                 doc = {
                     "id": prop_id,
                     "property_title": p.get("name", "Property Record"),
-                    "locality": p.get("address", "").split(",")[-1].strip() or p.get("mandal", ""),
+                    "locality": locality_val,
                     "mandal": p.get("mandal", ""),
                     "district": p.get("district", ""),
                     "state_code": state_code,
                     "sale_consideration": float(latest_price),
                     "cagr": float(cagr_val),
                     "rate_per_sqft": float(rate_sqft),
-                    "coordinates": [p.get("lat", 0.0), p.get("lng", 0.0)],
-                    "registration_date": latest_sale.get("sale_date", "2026-07-01"),
-                    "survey_number": p.get("rera_id", "N/A"),
+                    "coordinates": (
+                        [p.get("lat", 0.0), p.get("lng", 0.0)]
+                        if p.get("lat") and p.get("lng")
+                        else None
+                    ),
+                    "registration_date": latest_sale.get("sale_date") or None,
+                    "survey_number": p.get("survey_number") or p.get("rera_id") or None,
                 }
                 documents.append(doc)
+
         except Exception as err:
             print(f"Warning: Could not process {file_path}: {err}")
 
@@ -98,12 +115,12 @@ def load_all_property_records() -> List[Dict[str, Any]]:
 
 
 def index_documents(
-    documents: List[Dict[str, Any]],
+    documents: list[dict[str, Any]],
     host: str = "localhost",
     port: str = "8108",
     protocol: str = "http",
-    api_key: str = "xyz123-crowncorridor-key",
-    dry_run: bool = False
+    api_key: str | None = None,
+    dry_run: bool = False,
 ) -> int:
     """Creates schema and imports documents into Typesense.
 
@@ -112,7 +129,7 @@ def index_documents(
         host (str): Typesense host name.
         port (str): Typesense port.
         protocol (str): Protocol ('http' or 'https').
-        api_key (str): Typesense API key.
+        api_key (Optional[str]): Typesense API key.
         dry_run (bool): If True, skips network call and returns document count.
 
     Returns:
@@ -121,18 +138,23 @@ def index_documents(
     if dry_run:
         print(f"[DRY RUN] Transformed {len(documents)} documents for Typesense indexing.")
         for doc in documents:
-            print(f"  - Document ID: {doc['id']} | Title: {doc['property_title']} | State: {doc['state_code']}")
+            print(
+                f"  - Document ID: {doc['id']} | Title: {doc['property_title']} | State: {doc['state_code']}"
+            )
         return len(documents)
 
-    client = typesense.Client({
-        'nodes': [{
-            'host': host,
-            'port': port,
-            'protocol': protocol
-        }],
-        'api_key': api_key,
-        'connection_timeout_seconds': 5
-    })
+    if not api_key:
+        api_key = os.getenv("TYPESENSE_API_KEY")
+    if not api_key:
+        raise ValueError("TYPESENSE_API_KEY environment variable or argument is required.")
+
+    client = typesense.Client(
+        {
+            "nodes": [{"host": host, "port": port, "protocol": protocol}],
+            "api_key": api_key,
+            "connection_timeout_seconds": 5,
+        }
+    )
 
     try:
         client.collections[COLLECTION_NAME].retrieve()
@@ -140,23 +162,34 @@ def index_documents(
         print(f"Creating Typesense collection: {COLLECTION_NAME}")
         client.collections.create(COLLECTION_SCHEMA)
 
-    results = client.collections[COLLECTION_NAME].documents.import_(
-        documents,
-        {'action': 'upsert'}
-    )
-    indexed_count = len([r for r in results if r.get('success', True)])
+    results = client.collections[COLLECTION_NAME].documents.import_(documents, {"action": "upsert"})
+    indexed_count = len([r for r in results if r.get("success", True)])
     print(f"Successfully indexed {indexed_count}/{len(documents)} documents to Typesense.")
     return indexed_count
 
 
 def main():
     """Main execution function for CLI usage."""
-    parser = argparse.ArgumentParser(description="Index CrownCorridor property data into Typesense.")
-    parser.add_argument("--host", default=os.getenv("TYPESENSE_HOST", "localhost"), help="Typesense host")
-    parser.add_argument("--port", default=os.getenv("TYPESENSE_PORT", "8108"), help="Typesense port")
-    parser.add_argument("--protocol", default=os.getenv("TYPESENSE_PROTOCOL", "http"), help="Typesense protocol")
-    parser.add_argument("--api-key", default=os.getenv("TYPESENSE_API_KEY", "xyz123-crowncorridor-key"), help="API key")
-    parser.add_argument("--dry-run", action="store_true", help="Simulate transformation without API calls")
+    parser = argparse.ArgumentParser(
+        description="Index CrownCorridor property data into Typesense."
+    )
+    parser.add_argument(
+        "--host", default=os.getenv("TYPESENSE_HOST", "localhost"), help="Typesense host"
+    )
+    parser.add_argument(
+        "--port", default=os.getenv("TYPESENSE_PORT", "8108"), help="Typesense port"
+    )
+    parser.add_argument(
+        "--protocol", default=os.getenv("TYPESENSE_PROTOCOL", "http"), help="Typesense protocol"
+    )
+    parser.add_argument(
+        "--api-key",
+        default=os.getenv("TYPESENSE_API_KEY", "xyz123-crowncorridor-key"),
+        help="API key",
+    )
+    parser.add_argument(
+        "--dry-run", action="store_true", help="Simulate transformation without API calls"
+    )
 
     args = parser.parse_args()
 
@@ -167,7 +200,7 @@ def main():
         port=args.port,
         protocol=args.protocol,
         api_key=args.api_key,
-        dry_run=args.dry_run
+        dry_run=args.dry_run,
     )
 
 

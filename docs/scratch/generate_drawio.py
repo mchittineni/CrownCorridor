@@ -1,5 +1,6 @@
-import xml.etree.ElementTree as ET
 import os
+import xml.etree.ElementTree as ET
+
 
 def create_aws_icon_drawio_xml():
     mxfile = ET.Element("mxfile", {
@@ -9,12 +10,12 @@ def create_aws_icon_drawio_xml():
         "version": "21.6.8",
         "type": "device"
     })
-    
+
     diagram = ET.SubElement(mxfile, "diagram", {
         "id": "crown-corridor-aws-icons",
         "name": "Crown Corridor Official AWS Icons Architecture"
     })
-    
+
     model = ET.SubElement(diagram, "mxGraphModel", {
         "dx": "1800",
         "dy": "1300",
@@ -32,13 +33,13 @@ def create_aws_icon_drawio_xml():
         "math": "0",
         "shadow": "0"
     })
-    
+
     root = ET.SubElement(model, "root")
-    
+
     # Base cells required by Draw.io
     ET.SubElement(root, "mxCell", {"id": "0"})
     ET.SubElement(root, "mxCell", {"id": "1", "parent": "0"})
-    
+
     def add_node(cell_id, value, style, x, y, width, height, parent="1"):
         cell = ET.SubElement(root, "mxCell", {
             "id": cell_id,
@@ -202,16 +203,16 @@ def create_aws_icon_drawio_xml():
 
     # Write files
     xml_str = ET.tostring(mxfile, encoding="utf-8")
-    
+
     os.makedirs("docs", exist_ok=True)
     os.makedirs("terraform", exist_ok=True)
-    
+
     with open("docs/architecture.drawio", "wb") as f:
         f.write(xml_str)
-        
+
     with open("terraform/architecture.drawio", "wb") as f:
         f.write(xml_str)
-        
+
     print("Official AWS Icons Draw.io XML successfully created at docs/architecture.drawio & terraform/architecture.drawio")
 
 if __name__ == "__main__":

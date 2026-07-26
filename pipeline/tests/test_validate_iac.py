@@ -1,12 +1,12 @@
 """Unit tests for the Infrastructure as Code (IaC) validator script."""
 
 from pipeline.validate_iac import (
-    check_root_files,
-    check_modules_structure,
-    check_version_constraints,
-    check_hcl_syntax_and_formatting,
     check_cis_aws_benchmark_policies,
+    check_hcl_syntax_and_formatting,
+    check_modules_structure,
+    check_root_files,
     check_terraform_tests_and_policies,
+    check_version_constraints,
     scan_iac_secrets_and_pii,
     validate_all_iac,
 )
