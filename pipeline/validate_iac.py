@@ -35,8 +35,14 @@ EXPECTED_ROOT_FILES = [
 EXPECTED_MODULE_FILES = ["main.tf", "variables.tf", "outputs.tf"]
 
 SECRET_PATTERNS = [
-    (r"(?i)aws_secret_access_key\s*=\s*['\"](?!\$\{)[A-Za-z0-9/+=]{20,}['\"]", "AWS Secret Key"),
-    (r"(?i)password\s*=\s*['\"](?!var\.|random_|http)[^'\"]{8,}['\"]", "Hardcoded DB Password"),
+    (
+        r"(?i)aws_secret_access_key\s*=\s*['\"](?!\$\{)[A-Za-z0-9/+=]{20,}['\"]",
+        "AWS Secret Key",
+    ),
+    (
+        r"(?i)password\s*=\s*['\"](?!var\.|random_|http)[^'\"]{8,}['\"]",
+        "Hardcoded DB Password",
+    ),
     (r"(?i)api_key\s*=\s*['\"](?!var\.|random_)[^'\"]{16,}['\"]", "Hardcoded API Key"),
     (r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b", "Personal Email Address"),
 ]
@@ -73,7 +79,9 @@ def check_modules_structure() -> tuple[bool, list[str]]:
         for req_file in EXPECTED_MODULE_FILES:
             file_path = os.path.join(mod_path, req_file)
             if not os.path.exists(file_path):
-                errors.append(f"Missing module file: terraform/modules/{module}/{req_file}")
+                errors.append(
+                    f"Missing module file: terraform/modules/{module}/{req_file}"
+                )
 
     return len(errors) == 0, errors
 
@@ -93,7 +101,9 @@ def check_version_constraints() -> tuple[bool, list[str]]:
         errors.append("terraform/providers.tf must specify required_version >= 1.15.0")
 
     if "~> 6.56.0" not in content and "6.56" not in content:
-        errors.append("terraform/providers.tf must specify aws provider version ~> 6.56.0")
+        errors.append(
+            "terraform/providers.tf must specify aws provider version ~> 6.56.0"
+        )
 
     return len(errors) == 0, errors
 
@@ -160,24 +170,35 @@ def check_cis_aws_benchmark_policies() -> tuple[bool, list[str]]:
 
     # CIS Rule 1: S3 Public Access Block, Versioning & TLS Policy
     if "aws_s3_bucket_public_access_block" not in combined_code:
-        violations.append("CIS 2.1: Missing aws_s3_bucket_public_access_block configuration")
+        violations.append(
+            "CIS 2.1: Missing aws_s3_bucket_public_access_block configuration"
+        )
 
     if "aws_s3_bucket_versioning" not in combined_code:
         violations.append("CIS 2.1.3: S3 buckets must enforce object versioning")
 
-    if "aws:SecureTransport" not in combined_code and "EnforceTLSOnly" not in combined_code:
+    if (
+        "aws:SecureTransport" not in combined_code
+        and "EnforceTLSOnly" not in combined_code
+    ):
         violations.append("CIS 2.1.2: S3 buckets must enforce TLS-only access policy")
 
     # CIS Rule 2: RDS Storage Encryption & Non-Public Access
     if not re.search(r"storage_encrypted\s*=\s*true", combined_code):
-        violations.append("CIS 2.3: RDS instances must enforce storage_encrypted = true")
+        violations.append(
+            "CIS 2.3: RDS instances must enforce storage_encrypted = true"
+        )
 
     if not re.search(r"publicly_accessible\s*=\s*false", combined_code):
-        violations.append("CIS 2.3: RDS instances must enforce publicly_accessible = false")
+        violations.append(
+            "CIS 2.3: RDS instances must enforce publicly_accessible = false"
+        )
 
     # CIS Rule 3: CloudTrail Validation & KMS Rotation
     if not re.search(r"enable_log_file_validation\s*=\s*true", combined_code):
-        violations.append("CIS 3.2: CloudTrail must enforce enable_log_file_validation = true")
+        violations.append(
+            "CIS 3.2: CloudTrail must enforce enable_log_file_validation = true"
+        )
 
     if not re.search(r"enable_key_rotation\s*=\s*true", combined_code):
         violations.append("CIS 2.8: KMS Keys must enforce enable_key_rotation = true")
@@ -187,7 +208,9 @@ def check_cis_aws_benchmark_policies() -> tuple[bool, list[str]]:
         violations.append("CIS 3.9: VPC Flow Logs must be enabled")
 
     if "aws_default_security_group" not in combined_code:
-        violations.append("CIS 5.4: Default Security Group must restrict all ingress/egress")
+        violations.append(
+            "CIS 5.4: Default Security Group must restrict all ingress/egress"
+        )
 
     # CIS Rule 5: GuardDuty & Security Hub
     if "aws_guardduty_detector" not in combined_code:
@@ -197,13 +220,17 @@ def check_cis_aws_benchmark_policies() -> tuple[bool, list[str]]:
         violations.append("CIS 4.2: Security Hub account must be enabled")
 
     # CIS Rule 6: CloudFront HTTPS & ALB Header Dropping
-    if not re.search(r'viewer_protocol_policy\s*=\s*"redirect-to-https"', combined_code):
+    if not re.search(
+        r'viewer_protocol_policy\s*=\s*"redirect-to-https"', combined_code
+    ):
         violations.append(
             "CIS 2.4: CloudFront must enforce viewer_protocol_policy = 'redirect-to-https'"
         )
 
     if not re.search(r"drop_invalid_header_fields\s*=\s*true", combined_code):
-        violations.append("Well-Architected: ALB must enforce drop_invalid_header_fields = true")
+        violations.append(
+            "Well-Architected: ALB must enforce drop_invalid_header_fields = true"
+        )
 
     # CIS Rule 7: ECR Image Scanning & Tag Immutability
     if not re.search(r"scan_on_push\s*=\s*true", combined_code):
@@ -213,7 +240,9 @@ def check_cis_aws_benchmark_policies() -> tuple[bool, list[str]]:
     for path, text in tf_contents.items():
         if "from_port   = 22" in text or "from_port   = 3389" in text:
             if 'cidr_blocks = ["0.0.0.0/0"]' in text:
-                violations.append(f"CIS 5.1: {path} allows SSH/RDP ingress from 0.0.0.0/0")
+                violations.append(
+                    f"CIS 5.1: {path} allows SSH/RDP ingress from 0.0.0.0/0"
+                )
 
     return len(violations) == 0, violations
 
@@ -225,7 +254,9 @@ def check_terraform_tests_and_policies() -> tuple[bool, list[str]]:
     tests_dir = os.path.join(TERRAFORM_DIR, "tests")
     main_test_file = os.path.join(tests_dir, "main.tftest.hcl")
     if not os.path.exists(main_test_file):
-        errors.append("Missing native Terraform test file: terraform/tests/main.tftest.hcl")
+        errors.append(
+            "Missing native Terraform test file: terraform/tests/main.tftest.hcl"
+        )
 
     rego_file = os.path.join(TERRAFORM_DIR, "policies", "cis_aws_benchmark.rego")
     if not os.path.exists(rego_file):
@@ -237,7 +268,9 @@ def check_terraform_tests_and_policies() -> tuple[bool, list[str]]:
     for module in EXPECTED_MODULES:
         mod_test_file = os.path.join(tests_dir, f"{module}.tftest.hcl")
         if not os.path.exists(mod_test_file):
-            errors.append(f"Missing module native test file in terraform/tests/{module}.tftest.hcl")
+            errors.append(
+                f"Missing module native test file in terraform/tests/{module}.tftest.hcl"
+            )
 
     return len(errors) == 0, errors
 
@@ -300,7 +333,9 @@ def validate_all_iac() -> bool:
     ok, errors = check_modules_structure()
     if ok:
         print("\n[2] Modular Architecture Integrity")
-        print(f"  ✓  All {len(EXPECTED_MODULES)} child modules present with valid structure")
+        print(
+            f"  ✓  All {len(EXPECTED_MODULES)} child modules present with valid structure"
+        )
     else:
         print("\n[2] Modular Architecture Integrity")
         for err in errors:
@@ -346,7 +381,9 @@ def validate_all_iac() -> bool:
     ok, errors = check_terraform_tests_and_policies()
     if ok:
         print("\n[6] Native Terraform Tests & Policy Definitions")
-        print("  ✓  Native .tftest.hcl test suite and CIS AWS Benchmark Rego policy present")
+        print(
+            "  ✓  Native .tftest.hcl test suite and CIS AWS Benchmark Rego policy present"
+        )
     else:
         print("\n[6] Native Terraform Tests & Policy Definitions")
         for err in errors:

@@ -55,7 +55,9 @@ def sanitize_and_anonymize_record(raw_record: dict) -> dict:
         "Current Valuation (SRO Benchmark)",
     }
 
-    seller_raw = str(raw_record.get("seller_type") or raw_record.get("seller_name") or "")
+    seller_raw = str(
+        raw_record.get("seller_type") or raw_record.get("seller_name") or ""
+    )
     buyer_raw = str(raw_record.get("buyer_type") or raw_record.get("buyer_name") or "")
 
     seller_role = (
@@ -82,7 +84,14 @@ def sanitize_and_anonymize_record(raw_record: dict) -> dict:
     clean_record["buyer_type"] = buyer_role
 
     # Remove any potential PII fields if present
-    for pii_key in ("seller_name", "buyer_name", "phone", "email", "aadhaar_hash", "pan_hash"):
+    for pii_key in (
+        "seller_name",
+        "buyer_name",
+        "phone",
+        "email",
+        "aadhaar_hash",
+        "pan_hash",
+    ):
         clean_record.pop(pii_key, None)
 
     return clean_record
@@ -228,7 +237,9 @@ def _stub_records(state: str, date: str, count: int = 5) -> list[dict]:
             "total_duty_inr": total_duty,
             "seller_type": "Private Individual Owner",
             "buyer_type": (
-                "Commercial Property Developer" if i % 2 == 0 else "Private Individual Owner"
+                "Commercial Property Developer"
+                if i % 2 == 0
+                else "Private Individual Owner"
             ),
         }
         records.append(rec)
@@ -297,9 +308,13 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
 
                 latest_price = round(initial_price * (1.065**holding_years))
                 cagr_val = round(
-                    (((latest_price / initial_price) ** (1.0 / holding_years)) - 1.0) * 100.0, 2
+                    (((latest_price / initial_price) ** (1.0 / holding_years)) - 1.0)
+                    * 100.0,
+                    2,
                 )
-                apprec_pct = round(((latest_price - initial_price) / initial_price) * 100.0, 2)
+                apprec_pct = round(
+                    ((latest_price - initial_price) / initial_price) * 100.0, 2
+                )
 
                 prop = {
                     "property_id": prop_id,
@@ -315,10 +330,14 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
                     "bathrooms": 2,
                     "rera_id": f"P{prefix}{v_code}",
                     "lat": (
-                        16.5000 + (idx % 500) * 0.002 if is_ap else 17.3850 + (idx % 500) * 0.002
+                        16.5000 + (idx % 500) * 0.002
+                        if is_ap
+                        else 17.3850 + (idx % 500) * 0.002
                     ),
                     "lng": (
-                        80.6400 + (idx % 500) * 0.002 if is_ap else 78.4867 + (idx % 500) * 0.002
+                        80.6400 + (idx % 500) * 0.002
+                        if is_ap
+                        else 78.4867 + (idx % 500) * 0.002
                     ),
                     "price_summary": {
                         "initial_price_inr": initial_price,
@@ -396,7 +415,9 @@ def generate_state_property_history(state_slug: str) -> pathlib.Path:
     }
 
     target_file.write_text(json.dumps(data, indent=2, ensure_ascii=False))
-    print(f"  Saved {len(properties)} history records → {target_file.relative_to(ROOT)}")
+    print(
+        f"  Saved {len(properties)} history records → {target_file.relative_to(ROOT)}"
+    )
     return target_file
 
 

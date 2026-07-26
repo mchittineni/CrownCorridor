@@ -65,7 +65,9 @@ class PropertyItem(BaseModel):
     mandal: str = Field(..., description="Mandal or SRO jurisdiction")
     district: str = Field(..., description="District name")
     state_code: str = Field(..., description="State code ('TS' or 'AP')")
-    sale_consideration: float | None = Field(0.0, description="Latest sale consideration in INR")
+    sale_consideration: float | None = Field(
+        0.0, description="Latest sale consideration in INR"
+    )
     cagr: float | None = Field(None, description="Calculated CAGR percentage")
     rate_per_sqft: float | None = Field(None, description="Rate per square foot in INR")
     coordinates: list[float] | None = Field(
@@ -88,7 +90,9 @@ class HierarchyDistrictItem(BaseModel):
 
     district_name: str = Field(..., description="District name")
     property_count: int = Field(..., description="Number of properties in district")
-    mandals: list[HierarchyMandalItem] = Field(default_factory=list, description="List of mandals")
+    mandals: list[HierarchyMandalItem] = Field(
+        default_factory=list, description="List of mandals"
+    )
 
 
 class HierarchyStateResponse(BaseModel):
@@ -96,7 +100,9 @@ class HierarchyStateResponse(BaseModel):
 
     state_code: str = Field(..., description="State code ('TS' or 'AP')")
     total_properties: int = Field(..., description="Total properties in state")
-    districts: list[HierarchyDistrictItem] = Field(..., description="List of districts in state")
+    districts: list[HierarchyDistrictItem] = Field(
+        ..., description="List of districts in state"
+    )
 
 
 class HierarchyPropertyListResponse(BaseModel):
@@ -122,8 +128,12 @@ class SearchResponse(BaseModel):
     total_pages: int = Field(..., description="Total pages available")
     has_next: bool = Field(..., description="Whether more pages exist")
     search_time_ms: int = Field(..., description="Engine search execution time in ms")
-    execution_time_ms: float = Field(..., description="Total API handler execution time in ms")
-    results: list[PropertyItem] = Field(..., description="List of matching property items")
+    execution_time_ms: float = Field(
+        ..., description="Total API handler execution time in ms"
+    )
+    results: list[PropertyItem] = Field(
+        ..., description="List of matching property items"
+    )
 
 
 # --- API Routes ---
@@ -156,17 +166,29 @@ def readiness_check():
         tc.collections["properties"].retrieve()
         return {"status": "ready", "search_engine": "connected"}
     except Exception as exc:
-        raise HTTPException(status_code=503, detail=f"Search engine unready: {str(exc)}")
+        raise HTTPException(
+            status_code=503, detail=f"Search engine unready: {str(exc)}"
+        )
 
 
 @app.get("/api/v1/search", response_model=SearchResponse, tags=["Search"])
 def search_endpoint(
-    q: str = Query("", max_length=200, description="Search term (locality, survey number, colony)"),
-    state_code: StateCodeEnum | None = Query(None, description="State filter: 'TS' or 'AP'"),
-    min_price: float | None = Query(None, ge=0, description="Minimum sale price in INR"),
-    max_price: float | None = Query(None, ge=0, description="Maximum sale price in INR"),
+    q: str = Query(
+        "", max_length=200, description="Search term (locality, survey number, colony)"
+    ),
+    state_code: StateCodeEnum | None = Query(
+        None, description="State filter: 'TS' or 'AP'"
+    ),
+    min_price: float | None = Query(
+        None, ge=0, description="Minimum sale price in INR"
+    ),
+    max_price: float | None = Query(
+        None, ge=0, description="Maximum sale price in INR"
+    ),
     min_cagr: float | None = Query(None, description="Minimum CAGR percentage"),
-    sort_by: str = Query("registration_date:desc", description="Typesense sort order string"),
+    sort_by: str = Query(
+        "registration_date:desc", description="Typesense sort order string"
+    ),
     page: int = Query(1, ge=1, description="Page number"),
     per_page: int = Query(20, ge=1, le=100, description="Results per page"),
 ):
@@ -209,7 +231,9 @@ def search_endpoint(
 
 
 @app.get(
-    "/api/v1/hierarchy/{state_code}", response_model=HierarchyStateResponse, tags=["Hierarchy"]
+    "/api/v1/hierarchy/{state_code}",
+    response_model=HierarchyStateResponse,
+    tags=["Hierarchy"],
 )
 def get_state_hierarchy(state_code: StateCodeEnum, response: Response):
     """Retrieves the nested District -> Mandal hierarchy for a state."""
@@ -234,7 +258,11 @@ def get_properties_for_mandal(
     """Retrieves properties strictly scoped under a specific State -> District -> Mandal node."""
     response.headers["Cache-Control"] = "public, max-age=300"
     data = get_properties_by_hierarchy(
-        state_code=state_code.value, district=district, mandal=mandal, page=page, per_page=per_page
+        state_code=state_code.value,
+        district=district,
+        mandal=mandal,
+        page=page,
+        per_page=per_page,
     )
     total_found = data["total_found"]
     total_pages = math.ceil(total_found / per_page) if total_found > 0 else 0
@@ -253,16 +281,19 @@ def get_properties_for_mandal(
     }
 
 
-@app.get("/api/v1/properties/{property_id}", response_model=PropertyItem, tags=["Properties"])
+@app.get(
+    "/api/v1/properties/{property_id}", response_model=PropertyItem, tags=["Properties"]
+)
 def get_property_details(property_id: str, response: Response):
     """Returns full registration audit and sale history for a specific property."""
     doc = get_property_by_id(property_id)
     if not doc:
-        raise HTTPException(status_code=404, detail=f"Property document '{property_id}' not found.")
+        raise HTTPException(
+            status_code=404, detail=f"Property document '{property_id}' not found."
+        )
     response.headers["Cache-Control"] = "public, max-age=3600"
     return doc
 
 
 if __name__ == "__main__":
     uvicorn.run("api.main:app", host="0.0.0.0", port=8000, reload=True)  # nosec B104
-
