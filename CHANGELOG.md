@@ -36,13 +36,16 @@ Crown Corridor is a next-generation real-time real estate discovery and property
 - **Hierarchical Location API** — High-performance endpoints (`/api/v1/hierarchy/{state_code}` and `/api/v1/hierarchy/{state_code}/{district}/{mandal}/properties`) for structured geographical search.
 - **Fast-Read Search & Typesense Integration** — High-throughput property search and retrieval services.
 
-#### IaC Security & Evaluation Benchmark Framework (`pipeline/eval_framework/`, `infrastructure/`, `security_framework/`)
+#### Research-Grade IaCSecBench Framework (`benchmark/`, `evaluation/`, `leaderboard/`, `docs/`)
 
-- **Open-Source IaC Evaluation Engine** — Positioned IaC evaluation engine into a reusable Python framework package (`pipeline/eval_framework/`).
-- **Comparative Benchmarking Engine** — Built comparative benchmark driver (`pipeline/eval_framework/comparative_eval.py`) evaluating accuracy, precision, recall, and execution latency against established tools (**Checkov**, **tfsec**, **Sentinel / OPA**, and **Terratest**).
-- **Public Benchmark Datasets** — Created standardized public benchmark dataset in `data/benchmarks/benchmarks.json` across 10 cloud infrastructure modules.
-- **Reproducible Experiment Suite** — Implemented `pipeline/run_experiments.py` for automated evaluation telemetry generation saved to `data/benchmarks/experiment_results.json`.
-- **Infrastructure as Code & Rego Security Policies** — Complete HCL infrastructure modules (`infrastructure/`) and OPA Rego security policies (`security_framework/ policies/cis_aws_benchmark.rego`) updated to v1 syntax for conftest compatibility.
+- **345-Case Research Benchmark Suite** — Master catalog in `benchmark/benchmark.json` containing 345 self-contained test cases across 12 categories (`IAM`, `NET`, `STO`, `ENC`, `CMP`, `K8S`, `SRV`, `MON`, `SEC`, `ID`, `PII`, `TF`) with balanced classes (173 Pass / 172 Fail).
+- **Construct Badges & Feature Metadata** — Test cases exercise advanced Terraform syntax: `dynamic_blocks`, `locals`, `for_each`, `count`, `nested_modules`, `multiple_providers`, `variable_validation`, `depends_on`, `lifecycle_rules`, `tfvars`, `opa`, `native_tests`.
+- **Modular Case Architecture (`benchmark/cases/`)** — Individual self-contained case folders (`IAM-001/` through `TF-003/`) containing `main.tf`, `variables.tf`, `expected.json`, and `metadata.json`.
+- **Golden Baseline Outputs (`benchmark/golden_results/`)** — Reference golden JSON outputs for Checkov, tfsec, Terrascan, OPA, and IaCSecBench Engine.
+- **Automated Scoring Protocol (`evaluation/`)** — `evaluation/metrics.py` and `evaluation/score.py` calculating Recall, Precision, Accuracy, F1 Score, False Positive Rate (FPR), False Negative Rate (FNR), and Execution Latency.
+- **Published Research Leaderboard (`leaderboard/results.csv`)** — Tabular comparative baseline matrix exported across 5 static analysis engines.
+- **Research Taxonomy & Protocol Docs** — Added `docs/taxonomy.md` (5 top-level domains) and `docs/benchmark_protocol.md` (scoring methodology and reproducibility guidelines).
+- **Reproducible Experiment Suite** — Integrated scoring protocol into `./experiments/run_all.sh` and `pipeline/run_experiments.py` generating telemetry in `results/` and `benchmark/reports/`.
 
 #### Geographic Data & Zero-PII Data Pipeline (`data/`, `pipeline/`)
 
