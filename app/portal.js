@@ -582,7 +582,7 @@ class RealEstatePortal {
         ? coloniesAP[Math.floor(Math.random() * coloniesAP.length)]
         : coloniesTG[Math.floor(Math.random() * coloniesTG.length)];
 
-    let blockUnit = '';
+    let blockUnit;
     if (propType.name === 'Residential Flat') {
       blockUnit = `Block ${['A', 'B', 'C', 'D'][Math.floor(Math.random() * 4)]}, Flat ${100 + Math.floor(Math.random() * 400)}`;
     } else if (propType.name === 'Commercial Space') {
@@ -722,7 +722,7 @@ class RealEstatePortal {
           ? coloniesAP[i % coloniesAP.length]
           : coloniesTG[i % coloniesTG.length];
 
-      let blockUnit = '';
+      let blockUnit;
       if (propType.name === 'Residential Flat') {
         blockUnit = `Block ${['A', 'B', 'C', 'D'][i % 4]}, Flat ${100 + ((i * 7) % 400)}`;
       } else if (propType.name === 'Commercial Space') {
@@ -1110,8 +1110,8 @@ class RealEstatePortal {
         return;
       }
 
-      let baseRate = 0;
-      let unit = '';
+      let baseRate;
+      let unit;
       const isUrban = [
         'Hyderabad',
         'Ranga Reddy',
@@ -2994,8 +2994,8 @@ class RealEstatePortal {
     const tgTrends = this.marketTrendsData.tg;
     if (!apTrends && !tgTrends) return;
 
-    let localities = [];
-    let quarters = [];
+    let localities;
+    let quarters;
 
     if (this.selectedTrendsState === 'telangana' && tgTrends) {
       localities = tgTrends.time_series.localities;
