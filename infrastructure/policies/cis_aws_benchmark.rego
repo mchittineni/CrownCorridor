@@ -11,8 +11,15 @@ import future.keywords.in
 deny contains msg if {
     some change in input.resource_changes
     change.type == "aws_s3_bucket"
-    not change.change.after.server_side_encryption_configuration
-    msg := sprintf("S3 Bucket '%v' must enforce server-side encryption", [change.address])
+    bucket_addr := change.address
+    # Check if there is an associated aws_s3_bucket_server_side_encryption_configuration resource for this bucket
+    count([enc |
+        some enc_change in input.resource_changes
+        enc_change.type == "aws_s3_bucket_server_side_encryption_configuration"
+        startswith(enc_change.address, replace(bucket_addr, "aws_s3_bucket.", "aws_s3_bucket_server_side_encryption_configuration."))
+        enc := enc_change
+    ]) == 0
+    msg := sprintf("S3 Bucket '%v' must enforce server-side encryption", [bucket_addr])
 }
 
 deny contains msg if {
