@@ -104,9 +104,9 @@ resource "aws_ecs_task_definition" "typesense" {
     name = "typesense-data"
 
     efs_volume_configuration {
-      file_system_id          = aws_efs_file_system.typesense.id
-      root_directory           = "/"
-      transit_encryption      = "ENABLED"
+      file_system_id     = aws_efs_file_system.typesense.id
+      root_directory     = "/"
+      transit_encryption = "ENABLED"
     }
   }
 
@@ -142,7 +142,6 @@ resource "aws_ecs_task_definition" "typesense" {
         logDriver = "awslogs"
         options = {
           "awslogs-group"         = aws_cloudwatch_log_group.typesense.name
-          "awslogs-region"        = var.aws_region
           "awslogs-stream-prefix" = "typesense"
         }
       }
@@ -265,7 +264,6 @@ resource "aws_ecs_task_definition" "fastapi" {
         logDriver = "awslogs"
         options = {
           "awslogs-group"         = aws_cloudwatch_log_group.fastapi.name
-          "awslogs-region"        = var.aws_region
           "awslogs-stream-prefix" = "fastapi"
         }
       }

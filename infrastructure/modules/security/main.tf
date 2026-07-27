@@ -52,14 +52,6 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "cloudtrail" {
   }
 }
 
-data "aws_caller_identity" "current" {
-  count = var.aws_account_id == null ? 1 : 0
-}
-
-locals {
-  account_id = var.aws_account_id != null ? var.aws_account_id : (length(data.aws_caller_identity.current) > 0 ? data.aws_caller_identity.current[0].account_id : "123456789012")
-}
-
 resource "aws_s3_bucket_versioning" "cloudtrail" {
   bucket = aws_s3_bucket.cloudtrail.id
   versioning_configuration {
@@ -89,7 +81,7 @@ resource "aws_s3_bucket_policy" "cloudtrail" {
           Service = "cloudtrail.amazonaws.com"
         }
         Action   = "s3:PutObject"
-        Resource = "${aws_s3_bucket.cloudtrail.arn}/AWSLogs/${local.account_id}/*"
+        Resource = "${aws_s3_bucket.cloudtrail.arn}/AWSLogs//*"
         Condition = {
           StringEquals = {
             "s3:x-amz-acl" = "bucket-owner-full-control"
@@ -195,8 +187,8 @@ resource "aws_iam_policy" "ecs_task_kms_secrets" {
         Resource = aws_kms_key.main.arn
       },
       {
-        Effect   = "Allow"
-        Action   = ["secretsmanager:GetSecretValue", "ssm:GetParameters", "ssm:GetParameter"]
+        Effect = "Allow"
+        Action = ["secretsmanager:GetSecretValue", "ssm:GetParameters", "ssm:GetParameter"]
         Resource = [
           "arn:aws:secretsmanager:*:*:secret:${var.app_name}/*",
           "arn:aws:ssm:*:*:parameter/${var.app_name}/*"
