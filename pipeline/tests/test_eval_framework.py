@@ -5,18 +5,16 @@ and experiment runner functionality.
 """
 
 import json
-import os
 import pathlib
 import sys
-import pytest
 
 ROOT = pathlib.Path(__file__).parent.parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from security_framework.engine.engine import BenchmarkEngine, BenchmarkEngineRunner
-from security_framework.engine.comparative_eval import ComparativeEvaluator, ToolBenchmarkResult
 from pipeline.run_experiments import run_experiments
+from security_framework.engine.comparative_eval import ComparativeEvaluator
+from security_framework.engine.engine import BenchmarkEngine, BenchmarkEngineRunner
 
 
 class TestBenchmarkEngine:
@@ -84,7 +82,7 @@ class TestBenchmarkDatasetSchema:
         if not path.exists():
             path = ROOT / "data" / "benchmarks" / "benchmarks.json"
         assert path.exists()
-        with open(path, "r", encoding="utf-8") as f:
+        with open(path, encoding="utf-8") as f:
             data = json.load(f)
 
         assert "version" in data

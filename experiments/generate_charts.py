@@ -3,7 +3,6 @@
 Generates detection accuracy and runtime performance comparison charts saved into results/charts/.
 """
 
-import json
 import os
 import sys
 
@@ -30,8 +29,8 @@ def generate_charts():
     ]
     for r in results:
         bar_len = int(r.recall_pct / 10)
-        bar = "█" * bar_len
-        detection_lines.append(f"{r.tool_name:<20} {bar:<10} ({r.recall_pct:.1f}%)")
+        chart_bar = "█" * bar_len
+        detection_lines.append(f"{r.tool_name:<20} {chart_bar:<10} ({r.recall_pct:.1f}%)")
 
     detection_chart_str = "\n".join(detection_lines) + "\n"
     with open(os.path.join(charts_dir, "detection_comparison.txt"), "w", encoding="utf-8") as f:
@@ -46,8 +45,8 @@ def generate_charts():
     max_latency = max(r.execution_time_ms for r in results)
     for r in results:
         bar_len = max(1, int((r.execution_time_ms / max_latency) * 20))
-        bar = "█" * bar_len
-        runtime_lines.append(f"{r.tool_name:<20} {bar:<20} ({r.execution_time_ms:.1f} ms)")
+        chart_bar = "█" * bar_len
+        runtime_lines.append(f"{r.tool_name:<20} {chart_bar:<20} ({r.execution_time_ms:.1f} ms)")
 
     runtime_chart_str = "\n".join(runtime_lines) + "\n"
     with open(os.path.join(charts_dir, "runtime_comparison.txt"), "w", encoding="utf-8") as f:
@@ -63,7 +62,9 @@ def generate_charts():
     with open(os.path.join(PROJECT_ROOT, "results", "metrics.csv"), "w", encoding="utf-8") as f:
         f.write("\n".join(csv_lines) + "\n")
 
-    print("[Charts] Generated detection_comparison.txt, runtime_comparison.txt, and metrics.csv in results/")
+    print(
+        "[Charts] Generated detection_comparison.txt, runtime_comparison.txt, and metrics.csv in results/"
+    )
 
 
 if __name__ == "__main__":

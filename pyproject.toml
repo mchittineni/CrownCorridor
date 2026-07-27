@@ -36,7 +36,8 @@ python_files = [
     "test_*.py",
     "*_test.py",
 ]
-
+[tool.pyright]
+extraPaths = ["application"]
 
 [tool.ruff]
 line-length = 100

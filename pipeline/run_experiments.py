@@ -8,7 +8,7 @@ import json
 import os
 import sys
 import time
-from typing import Any, Dict
+from typing import Any
 
 # Ensure project root is in sys.path
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,7 +19,7 @@ from security_framework.engine.comparative_eval import ComparativeEvaluator
 from security_framework.engine.engine import BenchmarkEngineRunner
 
 
-def run_experiments() -> Dict[str, Any]:
+def run_experiments() -> dict[str, Any]:
     """Runs all benchmark experiment suites and gathers execution telemetry.
 
     Returns:
@@ -71,7 +71,9 @@ def run_experiments() -> Dict[str, Any]:
     with open(res_alt_path, "w", encoding="utf-8") as f:
         json.dump(output_data, f, indent=2)
 
-    print(f"\n[3] Experiment telemetry saved to: benchmark/reports/experiment_results.json & results/benchmark_results.json")
+    print(
+        "\n[3] Experiment telemetry saved to: benchmark/reports/experiment_results.json & results/benchmark_results.json"
+    )
     print("\n============================================================")
     print("EXPERIMENTS COMPLETED SUCCESSFULLY ✓")
     print("============================================================")
