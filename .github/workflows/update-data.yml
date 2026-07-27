@@ -17,7 +17,7 @@ jobs:
   update-data:
     name: Fetch & Refresh SRO Data
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -72,11 +72,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          
+
           PR_BRANCH="update/sro-data-$(date +'%Y-%m-%d')"
           git checkout -b "$PR_BRANCH"
           git add data/sro_feed/
-          
+
           if git diff --cached --quiet; then
             echo "No data changes detected. No PR needed."
           else

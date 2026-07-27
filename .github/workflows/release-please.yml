@@ -44,17 +44,17 @@ jobs:
         run: |
           REF_NAME="${{ steps.release.outputs.tag_name }}"
           mkdir -p release-artifacts
-          
+
           # AP data archive
           cd data/andhra_pradesh
           zip -r ../../release-artifacts/crown-corridor-ap-$REF_NAME.zip .
           cd ../..
-          
+
           # TS data archive
           cd data/telangana
           zip -r ../../release-artifacts/crown-corridor-ts-$REF_NAME.zip .
           cd ../..
-          
+
           # Combined archive
           zip -r release-artifacts/crown-corridor-all-$REF_NAME.zip data/
 

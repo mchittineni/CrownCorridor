@@ -73,5 +73,3 @@ jobs:
 
       - name: Run Pytest Suite
         run: pytest api/tests/ pipeline/tests/ -v --tb=short
-
-
