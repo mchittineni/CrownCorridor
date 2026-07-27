@@ -1,0 +1,13 @@
+{
+  "benchmark_id": "STO-003",
+  "expected_result": "FAIL",
+  "severity": "HIGH",
+  "violations": [
+    {
+      "resource": "aws_sto_resource.target_3",
+      "property": "security_configuration",
+      "rule_id": "CIS_AWS_2.1_3",
+      "description": "Security misconfiguration in Storage & S3 Buckets configuration element 3"
+    }
+  ]
+}

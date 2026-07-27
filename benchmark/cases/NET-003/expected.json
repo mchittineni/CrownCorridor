@@ -1,0 +1,13 @@
+{
+  "benchmark_id": "NET-003",
+  "expected_result": "FAIL",
+  "severity": "HIGH",
+  "violations": [
+    {
+      "resource": "aws_net_resource.target_3",
+      "property": "security_configuration",
+      "rule_id": "CIS_AWS_5.2_3",
+      "description": "Security misconfiguration in Networking & Firewalls configuration element 3"
+    }
+  ]
+}

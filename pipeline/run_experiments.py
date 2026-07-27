@@ -15,6 +15,7 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
+from evaluation.score import run_benchmark_scoring
 from security_framework.engine.comparative_eval import ComparativeEvaluator
 from security_framework.engine.engine import BenchmarkEngineRunner
 
@@ -53,11 +54,16 @@ def run_experiments() -> dict[str, Any]:
             f"      - {res.tool_name:<30} | Acc: {res.accuracy_pct:>5.1f}% | Latency: {res.execution_time_ms:>6.1f} ms"
         )
 
-    # 3. Output artifact generation
+    # 3. Leaderboard scoring protocol
+    print("\n[3] Running Evaluation Protocol & Leaderboard Scoring...")
+    leaderboard_metrics = run_benchmark_scoring()
+
+    # 4. Output artifact generation
     output_data = {
         "timestamp": start_timestamp,
         "engine_scan": engine_results,
         "comparative_benchmarks": [r.__dict__ for r in tool_results],
+        "leaderboard_metrics": leaderboard_metrics,
         "markdown_matrix": evaluator.generate_comparison_matrix_markdown(),
     }
 

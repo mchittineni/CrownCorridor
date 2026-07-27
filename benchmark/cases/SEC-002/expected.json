@@ -1,0 +1,6 @@
+{
+  "benchmark_id": "SEC-002",
+  "expected_result": "PASS",
+  "severity": "INFORMATIONAL",
+  "violations": []
+}

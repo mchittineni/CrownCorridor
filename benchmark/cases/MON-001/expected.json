@@ -1,0 +1,13 @@
+{
+  "benchmark_id": "MON-001",
+  "expected_result": "FAIL",
+  "severity": "LOW",
+  "violations": [
+    {
+      "resource": "aws_mon_resource.target_1",
+      "property": "security_configuration",
+      "rule_id": "CIS_AWS_2.9_1",
+      "description": "Security misconfiguration in Logging, Audit & GuardDuty configuration element 1"
+    }
+  ]
+}

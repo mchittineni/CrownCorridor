@@ -1,0 +1,30 @@
+{
+  "id": "ENC-002",
+  "title": "Encryption & KMS Keys Benchmark Scenario #02 (PASS)",
+  "description": "Evaluates IaC configuration for encryption & kms keys compliance under Medium difficulty constructs.",
+  "terraform_module": "infrastructure/modules/enc",
+  "terraform_version": "1.15.0",
+  "provider": "aws",
+  "expected_result": "PASS",
+  "severity": "INFORMATIONAL",
+  "benchmark_category": "ENC",
+  "cis_control": "2.3.2",
+  "mitre_attack": "T1078.002",
+  "owasp_category": "A00:Compliant",
+  "references": [
+    "https://cisecurity.org/benchmark/aws",
+    "https://attack.mitre.org"
+  ],
+  "tags": [
+    "enc",
+    "pass",
+    "medium"
+  ],
+  "difficulty": "Medium",
+  "estimated_runtime": "1.8s",
+  "benchmark_features": [
+    "dynamic_blocks",
+    "locals"
+  ],
+  "expected_violations": []
+}

@@ -1,0 +1,13 @@
+{
+  "benchmark_id": "SEC-001",
+  "expected_result": "FAIL",
+  "severity": "LOW",
+  "violations": [
+    {
+      "resource": "aws_sec_resource.target_1",
+      "property": "security_configuration",
+      "rule_id": "CIS_AWS_ZERO_PII_01_1",
+      "description": "Security misconfiguration in Zero Hardcoded Secrets & SSM configuration element 1"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "benchmark_id": "K8S-002",
+  "expected_result": "PASS",
+  "severity": "INFORMATIONAL",
+  "violations": []
+}

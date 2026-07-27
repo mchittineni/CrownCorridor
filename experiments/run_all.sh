@@ -41,7 +41,8 @@ $PYTEST security_framework/tests/ pipeline/tests/ $COV_FLAG -v
 
 # 3. Run Experiment Pipeline & Generate Benchmark Results
 echo ""
-echo "[Step 3/4] Running IaCSecBench Comparative Experiments..."
+echo "[Step 3/4] Running IaCSecBench Comparative Experiments & Evaluation Scoring Protocol..."
+$PYTHON evaluation/score.py
 $PYTHON pipeline/run_experiments.py
 
 # 4. Generate Visual Charts & CSV Telemetry

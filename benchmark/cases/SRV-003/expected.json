@@ -1,0 +1,13 @@
+{
+  "benchmark_id": "SRV-003",
+  "expected_result": "FAIL",
+  "severity": "HIGH",
+  "violations": [
+    {
+      "resource": "aws_srv_resource.target_3",
+      "property": "security_configuration",
+      "rule_id": "CIS_AWS_2.8_3",
+      "description": "Security misconfiguration in Serverless Lambda & API Gateway configuration element 3"
+    }
+  ]
+}
