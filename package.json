@@ -1,6 +1,6 @@
 {
   "name": "crown-corridor",
-  "version": "1.0.0",
+  "version": "2.2.0",
   "description": "Next-generation real estate and property discovery portal for Andhra Pradesh & Telangana.",
   "scripts": {
     "docs": "npx jsdoc -c jsdoc.json",
