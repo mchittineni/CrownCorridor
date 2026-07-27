@@ -20,6 +20,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
     "anyio>=4.0.0",
     "ruff>=0.1.0",
     "black>=24.0.0",
@@ -29,8 +30,9 @@ dev = [
 minversion = "7.0"
 addopts = "-v --strict-markers"
 testpaths = [
-    "api/tests",
+    "application/api/tests",
     "pipeline/tests",
+    "security_framework/tests",
 ]
 python_files = [
     "test_*.py",
