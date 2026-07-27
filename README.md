@@ -124,19 +124,27 @@ CrownCorridor/
 │   ├── policies/            # OPA / Rego policy definitions
 │   └── tests/               # Framework unit tests
 │
+├── evaluation/              # Evaluation Scoring & Leaderboard Protocol
+│   ├── metrics.py           # Precision, Recall, Accuracy, F1, FPR, FNR calculation engine
+│   └── score.py             # Evaluation protocol driver & leaderboard CSV exporter
+│
 ├── benchmark/               # Benchmark Datasets & Scenarios
-│   ├── datasets/            # Public dataset (benchmarks.json)
-│   ├── scenarios/           # Test case scenarios
+│   ├── benchmark.json       # Master 345 self-contained test case research dataset catalog
+│   ├── cases/               # Self-contained case folders (IAM-001/ through TF-003/)
+│   ├── golden_results/      # Golden baseline JSON outputs for Checkov, tfsec, Terrascan, OPA, IaCSecBench
 │   └── reports/             # Generated telemetry reports (experiment_results.json)
 │
+├── leaderboard/             # Published Baseline Leaderboard
+│   └── results.csv          # Exported leaderboard metrics across tools
+│
 ├── docs/                    # Architectural & Framework Documentation
-│   ├── framework/           # IaCSecBench docs (architecture.md, benchmark-methodology.md, metrics.md)
-│   └── images/              # System & benchmark visual diagrams
+│   ├── taxonomy.md          # Research taxonomy documentation (345 cases, 12 categories)
+│   ├── benchmark_protocol.md # Evaluation methodology & ground truth guidelines
+│   └── framework/           # IaCSecBench docs (architecture.md, benchmark-methodology.md, metrics.md)
 │
 ├── experiments/             # Experiment Reproducibility Package
 │   ├── run_all.sh           # One-command experiment execution script
-│   ├── generate_charts.py   # Benchmark chart generator
-│   └── requirements.txt     # Experiment dependencies
+│   └── generate_charts.py   # Benchmark chart generator
 │
 └── results/                 # Experiment Outputs & Visual Charts
     ├── benchmark_results.json
@@ -153,11 +161,11 @@ CrownCorridor/
 python3 -m http.server 8080
 
 # Option 2: Start Fast-Read Search API microservice
-pip install -r api/requirements.txt
-uvicorn api.main:app --reload --port 8000
+pip install -r application/api/requirements.txt
+uvicorn application.api.main:app --reload --port 8000
 ```
 
-Open **[http://localhost:8080/app/](http://localhost:8080/app/)** for the Web Portal and **[http://localhost:8000/docs](http://localhost:8000/docs)** for Interactive OpenAPI Docs.
+Open **[http://localhost:8080/application/app/](http://localhost:8080/application/app/)** for the Web Portal and **[http://localhost:8000/docs](http://localhost:8000/docs)** for Interactive OpenAPI Docs.
 
 ---
 
@@ -174,17 +182,20 @@ npm run lint
 npm run format:check
 
 # Install Python dependencies & run data validators
-pip install -r pipeline/requirements.txt -r api/requirements.txt
+pip install -r pipeline/requirements.txt -r application/api/requirements.txt
 python pipeline/validate_data.py
 
 # Run IaC & CIS AWS Benchmark Security Validator
 python pipeline/validate_iac.py
 
-# Run Reproducible IaC Benchmark Experiments
-python pipeline/run_experiments.py
+# Run Evaluation Scoring Protocol & Leaderboard Export
+python evaluation/score.py
 
-# Run pytest test suite (44 test cases)
-.venv/bin/pytest pipeline/tests/ -v
+# Run Reproducible IaC Benchmark Experiments
+./experiments/run_all.sh
+
+# Run pytest test suite (51 test cases)
+.venv/bin/pytest security_framework/tests/ pipeline/tests/ -v
 
 # Native Terraform Tests (11 test suites with 100% coverage)
 cd infrastructure
