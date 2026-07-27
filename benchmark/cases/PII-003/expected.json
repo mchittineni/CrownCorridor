@@ -1,0 +1,13 @@
+{
+  "benchmark_id": "PII-003",
+  "expected_result": "FAIL",
+  "severity": "HIGH",
+  "violations": [
+    {
+      "resource": "aws_pii_resource.target_3",
+      "property": "security_configuration",
+      "rule_id": "CIS_AWS_ZERO_PII_02_3",
+      "description": "Security misconfiguration in Zero-PII Compliance & Metadata configuration element 3"
+    }
+  ]
+}

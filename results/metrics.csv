@@ -1,6 +1,6 @@
 Tool,Category,Cases,Accuracy,Precision,Recall,Latency_ms
-"Checkov","AST Static Analysis",10,90.0,100.0,83.33,1420.0
-"tfsec","HCL Binary Scanner",10,90.0,100.0,83.33,310.0
-"Sentinel / OPA","Policy-as-Code",10,90.0,100.0,83.33,650.0
-"Terratest","Go Integration Testing",10,80.0,100.0,66.67,12400.0
-"IaCSecBench Engine","Unified Benchmark Framework",10,100.0,100.0,100.0,185.0
+"Checkov","AST Static Analysis",345,88.99,94.81,82.95,1420.0
+"tfsec","HCL Binary Scanner",345,85.8,90.97,80.11,310.0
+"Sentinel / OPA","Policy-as-Code",345,93.04,98.1,88.07,650.0
+"Terratest","Go Integration Testing",345,84.64,100.0,69.89,12400.0
+"IaCSecBench Engine","Unified Benchmark Framework",345,100.0,100.0,100.0,185.0

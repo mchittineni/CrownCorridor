@@ -1,0 +1,37 @@
+{
+  "id": "K8S-001",
+  "title": "Kubernetes Pod Security & RBAC Benchmark Scenario #01 (FAIL)",
+  "description": "Evaluates IaC configuration for kubernetes pod security & rbac compliance under Easy difficulty constructs.",
+  "terraform_module": "infrastructure/modules/k8s",
+  "terraform_version": "1.15.0",
+  "provider": "aws",
+  "expected_result": "FAIL",
+  "severity": "LOW",
+  "benchmark_category": "K8S",
+  "cis_control": "4.1.1",
+  "mitre_attack": "T1078.001",
+  "owasp_category": "A05:2021-Security Misconfiguration",
+  "references": [
+    "https://cisecurity.org/benchmark/aws",
+    "https://attack.mitre.org"
+  ],
+  "tags": [
+    "k8s",
+    "fail",
+    "easy"
+  ],
+  "difficulty": "Easy",
+  "estimated_runtime": "1.4s",
+  "benchmark_features": [
+    "locals",
+    "for_each"
+  ],
+  "expected_violations": [
+    {
+      "resource": "aws_k8s_resource.target_1",
+      "property": "security_configuration",
+      "rule_id": "CIS_AWS_4.1_1",
+      "description": "Security misconfiguration in Kubernetes Pod Security & RBAC configuration element 1"
+    }
+  ]
+}

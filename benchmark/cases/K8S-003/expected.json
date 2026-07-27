@@ -1,0 +1,13 @@
+{
+  "benchmark_id": "K8S-003",
+  "expected_result": "FAIL",
+  "severity": "HIGH",
+  "violations": [
+    {
+      "resource": "aws_k8s_resource.target_3",
+      "property": "security_configuration",
+      "rule_id": "CIS_AWS_4.1_3",
+      "description": "Security misconfiguration in Kubernetes Pod Security & RBAC configuration element 3"
+    }
+  ]
+}

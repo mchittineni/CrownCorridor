@@ -1,0 +1,13 @@
+{
+  "benchmark_id": "IAM-003",
+  "expected_result": "FAIL",
+  "severity": "HIGH",
+  "violations": [
+    {
+      "resource": "aws_iam_resource.target_3",
+      "property": "security_configuration",
+      "rule_id": "CIS_AWS_1.16_3",
+      "description": "Security misconfiguration in Identity & Access Management configuration element 3"
+    }
+  ]
+}

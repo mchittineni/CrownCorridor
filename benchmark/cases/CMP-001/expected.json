@@ -1,0 +1,13 @@
+{
+  "benchmark_id": "CMP-001",
+  "expected_result": "FAIL",
+  "severity": "LOW",
+  "violations": [
+    {
+      "resource": "aws_cmp_resource.target_1",
+      "property": "security_configuration",
+      "rule_id": "CIS_AWS_1.4_1",
+      "description": "Security misconfiguration in Compute & Container Security configuration element 1"
+    }
+  ]
+}

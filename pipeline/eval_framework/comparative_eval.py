@@ -9,6 +9,7 @@ Compares IaC evaluation approaches across standard security benchmarks, evaluati
 """
 
 import json
+import os
 from dataclasses import dataclass
 from typing import Any
 
@@ -42,20 +43,29 @@ class ComparativeEvaluator:
         Returns:
             List of benchmark case dictionaries.
         """
-        if self.benchmark_file:
-            try:
-                with open(self.benchmark_file, encoding="utf-8") as f:
-                    data = json.load(f)
-                    return data.get("test_cases", [])
-            except Exception:  # nosec B110
-                pass
+        paths = [
+            self.benchmark_file,
+            "benchmark/benchmark.json",
+            "benchmark/datasets/benchmarks.json",
+            "data/benchmarks/benchmarks.json",
+        ]
+        for path in paths:
+            if path and os.path.exists(path):
+                try:
+                    with open(path, encoding="utf-8") as f:
+                        data = json.load(f)
+                        cases = data.get("test_cases", [])
+                        if cases:
+                            return cases
+                except Exception:  # nosec B110
+                    pass
 
-        # Default standard benchmark dataset (10 representative test cases)
+        # Baseline fallback dataset
         return [
             {
-                "id": "TC-01",
-                "category": "ENCRYPTION",
-                "rule": "S3 Bucket Encryption Disabled",
+                "id": "IAM-001",
+                "category": "IAM",
+                "rule": "IAM Wildcard Admin Statement",
                 "has_violation": True,
             },
             {
@@ -161,7 +171,11 @@ class ComparativeEvaluator:
         ]
 
         total_cases = len(self.benchmarks)
-        true_violations = sum(1 for tc in self.benchmarks if tc["has_violation"])
+        true_violations = sum(
+            1
+            for tc in self.benchmarks
+            if tc.get("has_violation", tc.get("expected_result") == "FAIL")
+        )
         clean_cases = total_cases - true_violations
 
         results = []

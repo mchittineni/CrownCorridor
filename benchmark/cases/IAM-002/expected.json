@@ -1,0 +1,6 @@
+{
+  "benchmark_id": "IAM-002",
+  "expected_result": "PASS",
+  "severity": "INFORMATIONAL",
+  "violations": []
+}

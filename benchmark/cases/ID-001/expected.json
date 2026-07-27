@@ -1,0 +1,13 @@
+{
+  "benchmark_id": "ID-001",
+  "expected_result": "FAIL",
+  "severity": "LOW",
+  "violations": [
+    {
+      "resource": "aws_id_resource.target_1",
+      "property": "security_configuration",
+      "rule_id": "CIS_AWS_1.2_1",
+      "description": "Security misconfiguration in Federated Identity & SAML/OIDC configuration element 1"
+    }
+  ]
+}

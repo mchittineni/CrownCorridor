@@ -1,0 +1,30 @@
+{
+  "id": "MON-002",
+  "title": "Logging, Audit & GuardDuty Benchmark Scenario #02 (PASS)",
+  "description": "Evaluates IaC configuration for logging, audit & guardduty compliance under Medium difficulty constructs.",
+  "terraform_module": "infrastructure/modules/mon",
+  "terraform_version": "1.15.0",
+  "provider": "aws",
+  "expected_result": "PASS",
+  "severity": "INFORMATIONAL",
+  "benchmark_category": "MON",
+  "cis_control": "2.9.2",
+  "mitre_attack": "T1078.002",
+  "owasp_category": "A00:Compliant",
+  "references": [
+    "https://cisecurity.org/benchmark/aws",
+    "https://attack.mitre.org"
+  ],
+  "tags": [
+    "mon",
+    "pass",
+    "medium"
+  ],
+  "difficulty": "Medium",
+  "estimated_runtime": "1.8s",
+  "benchmark_features": [
+    "dynamic_blocks",
+    "locals"
+  ],
+  "expected_violations": []
+}

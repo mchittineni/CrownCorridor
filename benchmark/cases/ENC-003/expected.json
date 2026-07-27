@@ -1,0 +1,13 @@
+{
+  "benchmark_id": "ENC-003",
+  "expected_result": "FAIL",
+  "severity": "HIGH",
+  "violations": [
+    {
+      "resource": "aws_enc_resource.target_3",
+      "property": "security_configuration",
+      "rule_id": "CIS_AWS_2.3_3",
+      "description": "Security misconfiguration in Encryption & KMS Keys configuration element 3"
+    }
+  ]
+}
