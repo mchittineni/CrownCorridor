@@ -2,4 +2,4 @@ requests>=2.34.2
 pytest>=9.1.1
 typesense>=2.0.0
 fastapi>=0.140.0
-ruff>=0.1.0
+ruff>=0.16.0
