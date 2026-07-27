@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  iacsecbench:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: iacsecbench:latest
+    container_name: iacsecbench_eval
+    volumes:
+      - .:/app
+    command: python3 pipeline/run_experiments.py

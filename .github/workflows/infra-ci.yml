@@ -4,14 +4,20 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - 'terraform/**'
+      - 'infrastructure/**'
+      - 'security_framework/**'
+      - 'benchmark/**'
+      - 'experiments/**'
       - 'pipeline/validate_iac.py'
       - 'pipeline/tests/test_validate_iac.py'
       - '.github/workflows/infra-ci.yml'
   push:
     branches: [main]
     paths:
-      - 'terraform/**'
+      - 'infrastructure/**'
+      - 'security_framework/**'
+      - 'benchmark/**'
+      - 'experiments/**'
       - 'pipeline/validate_iac.py'
       - 'pipeline/tests/test_validate_iac.py'
       - '.github/workflows/infra-ci.yml'
@@ -41,17 +47,17 @@ jobs:
         uses: ./.github/actions/setup-pipeline
 
       - name: Terraform Format Check
-        run: terraform fmt -check -recursive terraform/
+        run: terraform fmt -check -recursive infrastructure/
 
       - name: Terraform Init & Validate
         run: |
-          cd terraform
+          cd infrastructure
           terraform init -backend=false
           terraform validate
 
       - name: Run Native Terraform Tests
         run: |
-          cd terraform
+          cd infrastructure
           terraform test
 
       - name: Run IaC & CIS Benchmark Policy Validator
@@ -66,11 +72,14 @@ jobs:
 
       - name: Run OPA Rego Policy Check (Conftest)
         run: |
-          cd terraform
+          cd infrastructure
           terraform init -backend=false
           terraform plan -out=tfplan.binary
           terraform show -json tfplan.binary > tfplan.json
-          conftest test tfplan.json --policy policies/cis_aws_benchmark.rego --namespace aws.cis.benchmark || true
+          conftest test tfplan.json --policy ../security_framework/policies/cis_aws_benchmark.rego --namespace aws.cis.benchmark || true
 
       - name: Run Full Pytest Suite (Includes IaC & Policy Unit Tests)
-        run: pytest pipeline/tests/ -v --tb=short
+        run: pytest security_framework/tests/ pipeline/tests/ -v --tb=short
+
+      - name: Run IaCSecBench Experiments Harness
+        run: ./experiments/run_all.sh

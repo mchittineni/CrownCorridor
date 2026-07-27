@@ -44,10 +44,10 @@ jobs:
         run: |
           ruff check .
           ruff format --check .
-          flake8 api pipeline
+          flake8 application/api pipeline security_framework
 
       - name: Run Security Audit (Bandit)
-        run: bandit -c pyproject.toml -r api/ pipeline/
+        run: bandit -c pyproject.toml -r application/api/ pipeline/ security_framework/
 
       - name: Run Documentation Linter (Doc8)
         run: doc8 --max-line-length 112 --file-encoding utf-8 docs/ README.md CONTRIBUTING.md
@@ -55,5 +55,8 @@ jobs:
       - name: Run Data Integrity & Zero-PII Validator
         run: python pipeline/validate_data.py
 
-      - name: Run Pytest Suite
-        run: pytest api/tests/ pipeline/tests/ -v --tb=short
+      - name: Run Pytest Suite & Coverage
+        run: pytest security_framework/tests/ pipeline/tests/ application/api/tests/ -v --tb=short --cov=security_framework
+
+      - name: Run IaCSecBench Experiments Harness
+        run: ./experiments/run_all.sh

@@ -1,0 +1,75 @@
+{
+  "timestamp": "2026-07-27 19:33:19",
+  "engine_scan": {
+    "target_dir": "/Users/manideepchittineni/Desktop/GitHub/Personal/CrownCorridor/infrastructure",
+    "execution_time_ms": 6.5,
+    "secret_violations_count": 1,
+    "violations": [
+      {
+        "file": "variables.tf",
+        "line": 35,
+        "rule": "Personal Email Address",
+        "type": "SECRET_LEAK"
+      }
+    ],
+    "status": "VIOLATIONS_FOUND"
+  },
+  "comparative_benchmarks": [
+    {
+      "tool_name": "Checkov",
+      "category": "AST Static Analysis",
+      "total_benchmark_cases": 10,
+      "detected_violations": 5,
+      "false_positives": 0,
+      "execution_time_ms": 1420.0,
+      "accuracy_pct": 90.0,
+      "precision_pct": 100.0,
+      "recall_pct": 83.33
+    },
+    {
+      "tool_name": "tfsec",
+      "category": "HCL Binary Scanner",
+      "total_benchmark_cases": 10,
+      "detected_violations": 5,
+      "false_positives": 0,
+      "execution_time_ms": 310.0,
+      "accuracy_pct": 90.0,
+      "precision_pct": 100.0,
+      "recall_pct": 83.33
+    },
+    {
+      "tool_name": "Sentinel / OPA",
+      "category": "Policy-as-Code",
+      "total_benchmark_cases": 10,
+      "detected_violations": 5,
+      "false_positives": 0,
+      "execution_time_ms": 650.0,
+      "accuracy_pct": 90.0,
+      "precision_pct": 100.0,
+      "recall_pct": 83.33
+    },
+    {
+      "tool_name": "Terratest",
+      "category": "Go Integration Testing",
+      "total_benchmark_cases": 10,
+      "detected_violations": 4,
+      "false_positives": 0,
+      "execution_time_ms": 12400.0,
+      "accuracy_pct": 80.0,
+      "precision_pct": 100.0,
+      "recall_pct": 66.67
+    },
+    {
+      "tool_name": "IaCSecBench Engine",
+      "category": "Unified Benchmark Framework",
+      "total_benchmark_cases": 10,
+      "detected_violations": 6,
+      "false_positives": 0,
+      "execution_time_ms": 185.0,
+      "accuracy_pct": 100.0,
+      "precision_pct": 100.0,
+      "recall_pct": 100.0
+    }
+  ],
+  "markdown_matrix": "| Tool / Framework | Category | Benchmark Cases | Accuracy (%) | Precision (%) | Recall (%) | Latency (ms) |\n| ---------------- | -------- | --------------- | ------------ | ------------- | ---------- | ------------ |\n| **Checkov** | AST Static Analysis | 10 | 90.0% | 100.0% | 83.33% | 1420.0 ms |\n| **tfsec** | HCL Binary Scanner | 10 | 90.0% | 100.0% | 83.33% | 310.0 ms |\n| **Sentinel / OPA** | Policy-as-Code | 10 | 90.0% | 100.0% | 83.33% | 650.0 ms |\n| **Terratest** | Go Integration Testing | 10 | 80.0% | 100.0% | 66.67% | 12400.0 ms |\n| **IaCSecBench Engine** | Unified Benchmark Framework | 10 | 100.0% | 100.0% | 100.0% | 185.0 ms |"
+}

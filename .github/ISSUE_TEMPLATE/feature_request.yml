@@ -37,8 +37,12 @@ body:
     attributes:
       label: Target Component
       options:
-        - Portal Web App (app/portal.js)
-        - SRO Data Pipeline (pipeline/)
-        - State Datasets (data/)
-        - CI/CD Workflows (.github/)
+        - Portal Web App (application/app/)
+        - Fast-Read API Microservice (application/api/)
+        - IaCSecBench Framework Engine & Scanners (security_framework/)
+        - Benchmark Datasets & Scenarios (benchmark/)
+        - Experiments & Reproducibility Suite (experiments/)
+        - Terraform AWS Reference Architecture (infrastructure/)
+        - Data Pipelines & Validators (pipeline/)
         - Documentation (docs/)
+        - CI/CD Workflows (.github/)

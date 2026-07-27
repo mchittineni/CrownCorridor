@@ -1,12 +1,12 @@
 {
   "name": "crown-corridor",
-  "version": "2.1.1",
+  "version": "1.0.0",
   "description": "Next-generation real estate and property discovery portal for Andhra Pradesh & Telangana.",
   "scripts": {
     "docs": "npx jsdoc -c jsdoc.json",
-    "lint": "eslint app/portal.js",
-    "format": "prettier --write \"app/**/*.{js,css,html}\" \"*.json\" \"**/*.md\"",
-    "format:check": "prettier --check \"app/**/*.{js,css,html}\" \"*.json\" \"**/*.md\""
+    "lint": "eslint application/app/portal.js",
+    "format": "prettier --write \"application/app/**/*.{js,css,html}\" \"*.json\" \"**/*.md\"",
+    "format:check": "prettier --check \"application/app/**/*.{js,css,html}\" \"*.json\" \"**/*.md\""
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

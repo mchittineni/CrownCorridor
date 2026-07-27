@@ -1,181 +1,55 @@
-# Contributing to Crown Corridor
+# Contributing to IaCSecBench & Crown Corridor
 
-Thank you for your interest in improving Crown Corridor! 🇮🇳🏙️
-
-Crown Corridor is a real-time real estate monitoring portal for Andhra Pradesh & Telangana. Contributions that improve the portal UI, data pipeline, geographic datasets, or CI/CD workflows are all welcome.
+Thank you for your interest in contributing to **IaCSecBench: An Infrastructure-as-Code Security Benchmark Framework** and the **Crown Corridor** platform!
 
 ---
 
-## Table of Contents
+## 🚀 How to Contribute
 
-1. [Project Structure](#project-structure)
-2. [Getting Started Locally](#getting-started-locally)
-3. [Running Tests](#running-tests)
-4. [Contribution Areas](#contribution-areas)
-5. [Branch & Commit Conventions](#branch--commit-conventions)
-6. [Pull Request Guidelines](#pull-request-guidelines)
-7. [Code Style](#code-style)
+We welcome contributions across several areas:
 
----
-
-## Project Structure
-
-```
-CrownCorridor/
-├── app/
-│   ├── index.html      # Dashboard entry point (tabbed SPA)
-│   ├── portal.js       # All portal logic — maps, charts, listings, calculator, API console
-│   └── styles.css      # Dark glassmorphism design system
-│
-├── data/
-│   ├── andhra_pradesh/ # regions.json, villages.json, coords.json, districts.geojson, …
-│   └── telangana/      # same structure
-│
-├── pipeline/
-│   ├── validate_data.py     # Data integrity checker — run on every PR
-│   ├── fetch_sro.py         # SRO registration data fetcher scaffold
-│   ├── requirements.txt     # pip dependencies (requests, pytest)
-│   └── tests/
-│       └── test_validate.py # pytest suite (23 cases)
-│
-├── docs/
-│   └── index.md        # Architecture overview and navigation hub
-│
-└── .github/
-    ├── actions/        # Shared composite steps (setup-pipeline, datagov-fetch, …)
-    └── workflows/      # CI, deploy-pages, update-data, release, docs
-```
+1. **Adding Benchmark Scenarios**: Adding annotated test cases to `benchmark/datasets/benchmarks.json`.
+2. **Policy Extensions**: Adding OPA / Rego security policy rules under `security_framework/policies/`.
+3. **Scanner Enhancements**: Extending static analysis and secret detection engines under `security_framework/engine/`.
+4. **Bug Reports & Feature Requests**: Submitting issues with reproducible steps.
 
 ---
 
-## Getting Started Locally
+## 🛠️ Local Development & Testing Workflow
 
-### Prerequisites
-
-- Python 3.11+ (for pipeline validation)
-- A modern browser (Chrome/Firefox/Safari)
-
-### Serving the portal
-
-The portal loads geographic data via `fetch()`, so you must serve it from a local
-HTTP server to avoid CORS issues:
+### 1. Clone & Set Up Virtual Environment
 
 ```bash
-# From the repo root
-python3 -m http.server 8080
-```
-
-Open **[http://localhost:8080/app/](http://localhost:8080/app/)**.
-
-### Installing Python dependencies
-
-```bash
+git clone https://github.com/mchittineni/CrownCorridor.git
+cd CrownCorridor
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r pipeline/requirements.txt
+pip install -r experiments/requirements.txt
 ```
 
----
+### 2. Run Quality Checks & Tests
 
-## Running Tests
+Before submitting a Pull Request, ensure all verification steps pass cleanly:
 
 ```bash
-# Standalone data integrity check (human-readable output)
-python pipeline/validate_data.py
+# 1. Run zero-PII data validator
+python3 pipeline/validate_data.py
 
-# Full pytest suite with verbose output
-pytest pipeline/tests/ -v
-```
+# 2. Run IaC security & policy validator
+python3 pipeline/validate_iac.py
 
-The CI workflow (`ci.yml`) runs both automatically on every pull request.
+# 3. Run full test suite with code coverage
+.venv/bin/pytest security_framework/tests/ pipeline/tests/ --cov=security_framework -v
 
----
-
-## Contribution Areas
-
-| Area                | What to look for                                                                              |
-| ------------------- | --------------------------------------------------------------------------------------------- |
-| **Portal UI**       | Improvements to `app/portal.js` or `app/styles.css` — maps, charts, listings, calculator      |
-| **Data pipeline**   | `pipeline/validate_data.py` checks, `fetch_sro.py` SRO integration once APIs become available |
-| **Geographic data** | Corrections to `data/andhra_pradesh/` or `data/telangana/` sourced from the LGD               |
-| **CI/CD**           | Workflow improvements in `.github/workflows/` or `.github/actions/`                           |
-| **Documentation**   | `README.md`, `docs/`, or inline comments in `app/portal.js`                                   |
-
----
-
-## Branch & Commit Conventions
-
-### Branch names
-
-| Type          | Pattern               | Example                   |
-| ------------- | --------------------- | ------------------------- |
-| Feature       | `feat/<description>`  | `feat/live-sro-websocket` |
-| Bug fix       | `fix/<description>`   | `fix/calculator-ap-rate`  |
-| Documentation | `docs/<description>`  | `docs/api-reference`      |
-| Chore         | `chore/<description>` | `chore/update-deps`       |
-
-Branch off `develop` (not `main`). `main` is for releases only.
-
-### Commit messages
-
-Use [Conventional Commits](https://www.conventionalcommits.org/):
-
-```
-feat: add real-time WebSocket SRO feed
-fix: correct Telangana stamp duty rate to 4%
-docs: add JSDoc to updateCadastralVectorLayer
-chore: bump actions/setup-node to v7
+# 4. Run reproducible experiment suite
+./experiments/run_all.sh
 ```
 
 ---
 
-## Pull Request Guidelines
+## 📋 Pull Request Submission Guidelines
 
-1. **Open PRs against `develop`**, not `main`.
-2. Describe **what** changed and **why** in the PR body.
-3. Ensure **all CI checks pass** (data validator + pytest + JSDoc build).
-4. Keep PRs focused — one logical change per PR.
-5. Reference any related issue with `Closes #<number>`.
-
----
-
-## Code Style & Formatting Standards
-
-We enforce automated code formatting and linting rules across all languages:
-
-```bash
-# Format code (Prettier)
-npm run format
-
-# Verify formatting without modifying
-npm run format:check
-
-# Run JavaScript Linter (ESLint)
-npm run lint
-
-# Python data validator & test suite
-python pipeline/validate_data.py
-pytest pipeline/tests/ -v
-```
-
-### JavaScript (`app/portal.js`)
-
-- Configured via [`.eslintrc.json`](.eslintrc.json) and [`.prettierrc`](.prettierrc).
-- Vanilla ES2021 (no build step, no bundler).
-- All public methods must have a complete JSDoc `/** */` block with `@param` and `@returns`.
-- Use strict equality (`===`) and `const`/`let`.
-
-### CSS (`app/styles.css`)
-
-- Vanilla CSS with custom properties (`--var-name`) for all design tokens.
-- Follow the glassmorphism dark & light theme conventions.
-
-### Python (`pipeline/`)
-
-- Configured via [`pyproject.toml`](pyproject.toml).
-- Python 3.11+, PEP 8 style, line length 100 characters.
-- Google-style docstrings for all functions.
-
-### EditorConfig ([`.editorconfig`](.editorconfig))
-
-- Ensures consistent 2-space indentation for JS/HTML/CSS/JSON/YAML and 4-space for Python.
+1. **Commit Message Format**: Use clear, imperative titles (e.g., `feat(benchmark): add S3 ACL vulnerability scenario`).
+2. **Zero-PII Compliance**: Ensure no customer names, personal phone numbers, or real identities are added to code or dataset files.
+3. **Tests Required**: Every bugfix or feature must include corresponding test cases under `security_framework/tests/` or `pipeline/tests/`.
+4. **Documentation**: Update markdown documentation under `docs/framework/` if introducing new CLI flags or metrics.

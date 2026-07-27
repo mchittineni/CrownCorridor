@@ -3,7 +3,7 @@
     "allowUnknownTags": true
   },
   "source": {
-    "include": ["app"],
+    "include": ["application/app/portal.js"],
     "includePattern": ".+\\.js$",
     "excludePattern": "(node_modules/|docs/)"
   },

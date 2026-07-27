@@ -19,6 +19,10 @@ body:
         - Side-by-Side Property Comparison Tool
         - Stamp Duty & Guidance Value Calculator
         - Live SRO Ticker Feed
+        - IaCSecBench Security Framework / Engine
+        - Benchmark Scenarios & Experiments Harness
+        - Docker Containerization
+        - AWS Terraform Reference Architecture
         - Andhra Pradesh Data / Map
         - Telangana Data / Map
         - Developer API Console
@@ -31,7 +35,7 @@ body:
     attributes:
       label: What happened?
       description: Describe what you did and what went wrong. Include steps to reproduce.
-      placeholder: "I selected 'Sea Breeze Heights', clicked 'Export Audit Report', and the printable modal showed empty POIs…"
+      placeholder: "I ran ./experiments/run_all.sh and encountered an unexpected exception in comparative_eval.py…"
     validations:
       required: true
 
@@ -45,7 +49,7 @@ body:
     id: url
     attributes:
       label: Page URL (if relevant)
-      placeholder: https://mchittineni.github.io/CrownCorridor/app/
+      placeholder: https://mchittineni.github.io/CrownCorridor/application/app/
 
   - type: input
     id: env
