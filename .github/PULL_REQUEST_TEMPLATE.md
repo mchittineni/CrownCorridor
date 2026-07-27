@@ -24,8 +24,9 @@ Before submitting this PR, verify that all quality checks pass locally:
 
 - [ ] `npm run lint` (ESLint clean with 0 errors)
 - [ ] `npm run format:check` (Prettier code style compliant)
+- [ ] `.venv/bin/ruff check .` && `.venv/bin/ruff format --check .` (Ruff clean)
 - [ ] `python3 pipeline/validate_data.py` (Must print `ALL CHECKS PASSED ✓` with Zero PII)
-- [ ] `.venv/bin/pytest pipeline/tests/ -v` (All 26 unit tests passing)
+- [ ] `.venv/bin/pytest pipeline/tests/ -v` (All 36 unit tests passing)
 - [ ] `npm run docs` (JSDoc API docs build cleanly)
 
 ## Testing Instructions
