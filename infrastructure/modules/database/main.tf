@@ -32,16 +32,16 @@ resource "aws_db_parameter_group" "postgis" {
 
 # RDS PostgreSQL Instance
 resource "aws_db_instance" "main" {
-  identifier                  = "${var.app_name}-${var.environment}-postgres"
-  engine                      = "postgres"
-  engine_version              = "15"
-  auto_minor_version_upgrade  = true
-  instance_class              = var.instance_class
-  allocated_storage           = var.allocated_storage
-  max_allocated_storage       = 100
-  storage_type                = "gp3"
-  storage_encrypted           = true
-  kms_key_id                  = var.kms_key_arn
+  identifier                 = "${var.app_name}-${var.environment}-postgres"
+  engine                     = "postgres"
+  engine_version             = "15"
+  auto_minor_version_upgrade = true
+  instance_class             = var.instance_class
+  allocated_storage          = var.allocated_storage
+  max_allocated_storage      = 100
+  storage_type               = "gp3"
+  storage_encrypted          = true
+  kms_key_id                 = var.kms_key_arn
 
   db_name  = var.db_name
   username = var.db_username

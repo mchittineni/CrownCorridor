@@ -1,11 +1,3 @@
-data "aws_caller_identity" "current" {
-  count = var.aws_account_id == null ? 1 : 0
-}
-
-locals {
-  account_id = var.aws_account_id != null ? var.aws_account_id : (length(data.aws_caller_identity.current) > 0 ? data.aws_caller_identity.current[0].account_id : "123456789012")
-}
-
 # SNS Topic for System & Security Alerts
 resource "aws_sns_topic" "alerts" {
   name              = "${var.app_name}-${var.environment}-alerts"
@@ -56,11 +48,11 @@ resource "aws_sns_topic_policy" "eventbridge_publish" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid    = "EnforceSSL"
-        Effect = "Deny"
+        Sid       = "EnforceSSL"
+        Effect    = "Deny"
         Principal = "*"
-        Action   = "sns:Publish"
-        Resource = aws_sns_topic.alerts.arn
+        Action    = "sns:Publish"
+        Resource  = aws_sns_topic.alerts.arn
         Condition = {
           Bool = {
             "aws:SecureTransport" = "false"
@@ -77,7 +69,6 @@ resource "aws_sns_topic_policy" "eventbridge_publish" {
         Resource = aws_sns_topic.alerts.arn
         Condition = {
           StringEquals = {
-            "aws:SourceAccount" = local.account_id
           }
         }
       }
