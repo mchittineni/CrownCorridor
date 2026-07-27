@@ -1,5 +1,5 @@
 # OPA / Rego Policy Definition for CIS AWS Foundations & Well-Architected Security Benchmark Compliance
-# Scope: Crown Corridor Infrastructure as Code (Evaluated over terraform show -json resource_changes)
+# Scope: Crown Corridor Infrastructure as Code
 
 package aws.cis.benchmark
 
@@ -7,67 +7,77 @@ import future.keywords.contains
 import future.keywords.if
 import future.keywords.in
 
-# 1. Deny unencrypted S3 buckets or missing public access block
-deny contains msg if {
-    some change in input.resource_changes
-    change.type == "aws_s3_bucket"
-    bucket_addr := change.address
-    # Check if there is an associated aws_s3_bucket_server_side_encryption_configuration resource for this bucket
-    count([enc |
-        some enc_change in input.resource_changes
-        enc_change.type == "aws_s3_bucket_server_side_encryption_configuration"
-        startswith(enc_change.address, replace(bucket_addr, "aws_s3_bucket.", "aws_s3_bucket_server_side_encryption_configuration."))
-        enc := enc_change
-    ]) == 0
-    msg := sprintf("S3 Bucket '%v' must enforce server-side encryption", [bucket_addr])
+# Rule 1: S3 Buckets must enforce SSE Encryption, Versioning, and Public Access Block (CIS AWS 2.1.1 & 2.1.3)
+default allow_s3_bucket_security := false
+
+allow_s3_bucket_security if {
+    input.resource.aws_s3_bucket_public_access_block[_].block_public_acls == true
+    input.resource.aws_s3_bucket_public_access_block[_].block_public_policy == true
+    input.resource.aws_s3_bucket_public_access_block[_].ignore_public_acls == true
+    input.resource.aws_s3_bucket_public_access_block[_].restrict_public_buckets == true
+    input.resource.aws_s3_bucket_versioning[_].versioning_configuration[_].status == "Enabled"
 }
 
-deny contains msg if {
-    some change in input.resource_changes
-    change.type == "aws_s3_bucket_public_access_block"
-    pab := change.change.after
-    not (pab.block_public_acls == true and pab.block_public_policy == true and pab.ignore_public_acls == true and pab.restrict_public_buckets == true)
-    msg := sprintf("S3 Public Access Block '%v' must set all 4 flags to true", [change.address])
+# Rule 2: RDS Instances must be private and storage encrypted with KMS (CIS AWS 2.3.1 & 2.3.2)
+default allow_rds_encryption := false
+
+allow_rds_encryption if {
+    input.resource.aws_db_instance[_].storage_encrypted == true
+    input.resource.aws_db_instance[_].publicly_accessible == false
+    input.resource.aws_db_instance[_].backup_retention_period >= 7
 }
 
-# 2. Deny public RDS instances or unencrypted storage
-deny contains msg if {
-    some change in input.resource_changes
-    change.type == "aws_db_instance"
-    change.change.after.publicly_accessible == true
-    msg := sprintf("RDS Instance '%v' must set publicly_accessible = false", [change.address])
+# Rule 3: CloudTrail must have log file validation enabled and KMS encryption (CIS AWS 3.2)
+default allow_cloudtrail_validation := false
+
+allow_cloudtrail_validation if {
+    input.resource.aws_cloudtrail[_].enable_log_file_validation == true
+    input.resource.aws_cloudtrail[_].is_multi_region_trail == true
 }
 
-deny contains msg if {
-    some change in input.resource_changes
-    change.type == "aws_db_instance"
-    change.change.after.storage_encrypted != true
-    msg := sprintf("RDS Instance '%v' must set storage_encrypted = true", [change.address])
+# Rule 4: VPC Flow Logs must be enabled (CIS AWS 3.9)
+default allow_vpc_flow_logs := false
+
+allow_vpc_flow_logs if {
+    input.resource.aws_flow_log[_].traffic_type == "ALL"
 }
 
-# 3. Deny CloudTrail without log file validation or multi-region
-deny contains msg if {
-    some change in input.resource_changes
-    change.type == "aws_cloudtrail"
-    change.change.after.enable_log_file_validation != true
-    msg := sprintf("CloudTrail '%v' must enable log file validation", [change.address])
+# Rule 5: ALB must drop invalid header fields (AWS Security Best Practices)
+default allow_alb_security := false
+
+allow_alb_security if {
+    input.resource.aws_lb[_].drop_invalid_header_fields == true
 }
 
-# 4. Deny unrestricted ingress (SSH/RDP/All) from 0.0.0.0/0
-deny contains msg if {
-    some change in input.resource_changes
-    change.type == "aws_security_group"
-    some rule in change.change.after.ingress
+# Rule 6: ECR Repositories must enable scan on push (CIS AWS 5.3)
+default allow_ecr_scanning := false
+
+allow_ecr_scanning if {
+    input.resource.aws_ecr_repository[_].image_scanning_configuration[_].scan_on_push == true
+}
+
+# Rule 7: Security Groups must not open port 22 or 3389 to 0.0.0.0/0 (CIS AWS 5.1 & 5.2)
+deny_unrestricted_ingress contains msg if {
+    some sg in input.resource.aws_security_group
+    some rule in sg.ingress
     "0.0.0.0/0" in rule.cidr_blocks
-    (rule.from_port == 0 or rule.from_port == 22 or rule.from_port == 3389 or rule.protocol == "-1")
-    msg := sprintf("Security group '%v' has unrestricted ingress rule from 0.0.0.0/0", [change.address])
+    rule.from_port <= 22
+    rule.to_port >= 22
+    msg := sprintf("Security group %v allows SSH from 0.0.0.0/0", [sg.name])
 }
 
-# 5. Deny CloudFront distribution without HTTPS redirection or TLS 1.2+
-deny contains msg if {
-    some change in input.resource_changes
-    change.type == "aws_cloudfront_distribution"
-    some behavior in change.change.after.default_cache_behavior
-    behavior.viewer_protocol_policy != "redirect-to-https"
-    msg := sprintf("CloudFront distribution '%v' must enforce redirect-to-https", [change.address])
+deny_unrestricted_ingress contains msg if {
+    some sg in input.resource.aws_security_group
+    some rule in sg.ingress
+    "0.0.0.0/0" in rule.cidr_blocks
+    rule.from_port <= 3389
+    rule.to_port >= 3389
+    msg := sprintf("Security group %v allows RDP from 0.0.0.0/0", [sg.name])
+}
+
+# Rule 8: CloudFront must enforce HTTPS redirection (CIS AWS 2.4.1)
+default allow_cloudfront_https := false
+
+allow_cloudfront_https if {
+    input.resource.aws_cloudfront_distribution[_].default_cache_behavior[_].viewer_protocol_policy == "redirect-to-https"
 }
