@@ -2,21 +2,9 @@ name: Data & Code Validity Tests
 
 on:
   pull_request:
-    branches: [main]
-    paths:
-      - 'app/**'
-      - 'api/**'
-      - 'data/**'
-      - 'pipeline/**'
-      - '.github/**'
+    types: [opened,synchronize, reopened, ready_for_review]
   push:
     branches: [main]
-    paths:
-      - 'app/**'
-      - 'api/**'
-      - 'data/**'
-      - 'pipeline/**'
-      - '.github/**'
 
 concurrency:
   group: ci-${{ github.ref }}
