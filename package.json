@@ -1,7 +1,7 @@
 {
-  "name": "crown-corridor",
-  "version": "2.2.0",
-  "description": "Next-generation real estate and property discovery portal for Andhra Pradesh & Telangana.",
+  "name": "iacsecbench",
+  "version": "1.0.0",
+  "description": "An Open Framework and Empirical Benchmark for Evaluating Infrastructure-as-Code Security Gates",
   "scripts": {
     "docs": "npx jsdoc -c jsdoc.json",
     "lint": "eslint application/app/portal.js",
