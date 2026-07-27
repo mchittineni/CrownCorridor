@@ -13,7 +13,8 @@ from fastapi import FastAPI, HTTPException, Query, Response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
-from api.search import (
+# pylint: disable=wrong-import-order
+from api.search import (  # isort: skip
     get_hierarchical_structure,
     get_properties_by_hierarchy,
     get_property_by_id,

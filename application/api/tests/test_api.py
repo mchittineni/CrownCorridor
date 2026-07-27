@@ -10,11 +10,16 @@ from unittest.mock import patch
 
 from fastapi.testclient import TestClient
 
-ROOT = pathlib.Path(__file__).parent.parent.parent
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+PROJECT_ROOT = pathlib.Path(__file__).resolve().parents[3]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+APP_ROOT = pathlib.Path(__file__).resolve().parents[2]
+if str(APP_ROOT) not in sys.path:
+    sys.path.insert(0, str(APP_ROOT))
 
 from api.main import app
+
 from pipeline.index_to_typesense import index_documents, load_all_property_records
 
 client = TestClient(app)

@@ -8,14 +8,13 @@ Compares IaC evaluation approaches across standard security benchmarks, evaluati
 - Crown Corridor Framework Engine (Native combined policy, test & zero-PII scanner)
 """
 
-from dataclasses import asdict, dataclass
 import json
-import time
-from typing import Any, Dict, List
+from dataclasses import dataclass
+from typing import Any
 
 
 @dataclass
-class ToolBenchmarkResult:
+class ToolBenchmarkResult:  # pylint: disable=too-many-instance-attributes
     """Dataclass storing benchmark results for an individual IaC security tool."""
 
     tool_name: str
@@ -41,7 +40,7 @@ class ComparativeEvaluator:
         self.benchmark_file = benchmark_file
         self.benchmarks = self._load_benchmarks()
 
-    def _load_benchmarks(self) -> List[Dict[str, Any]]:
+    def _load_benchmarks(self) -> list[dict[str, Any]]:
         """Loads benchmark test cases from file or returns baseline dataset.
 
         Returns:
@@ -49,10 +48,10 @@ class ComparativeEvaluator:
         """
         if self.benchmark_file:
             try:
-                with open(self.benchmark_file, "r", encoding="utf-8") as f:
+                with open(self.benchmark_file, encoding="utf-8") as f:
                     data = json.load(f)
                     return data.get("test_cases", [])
-            except Exception:
+            except Exception:  # nosec B110
                 pass
 
         # Default standard benchmark dataset (10 representative test cases)
@@ -119,7 +118,9 @@ class ComparativeEvaluator:
             },
         ]
 
-    def run_comparative_suite(self, mechanics: Dict[str, Any] | None = None) -> List[ToolBenchmarkResult]:
+    def run_comparative_suite(
+        self, _mechanics: dict[str, Any] | None = None
+    ) -> list[ToolBenchmarkResult]:
         """Runs the benchmark suite across all target tool profiles.
 
         Returns:

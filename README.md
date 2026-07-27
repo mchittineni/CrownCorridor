@@ -1,6 +1,6 @@
 # IaCSecBench & Crown Corridor
 
-> **An Open Framework and Empirical Benchmark for Evaluating Infrastructure-as-Code Security Gates**  
+> **An Open Framework and Empirical Benchmark for Evaluating Infrastructure-as-Code Security Gates**
 > _Validated via Crown Corridor — A Next-Generation Geospatial Property Discovery Portal for Andhra Pradesh & Telangana._
 
 [![CI](https://github.com/mchittineni/IaCSecBench/actions/workflows/ci.yml/badge.svg)](https://github.com/mchittineni/IaCSecBench/actions/workflows/ci.yml)

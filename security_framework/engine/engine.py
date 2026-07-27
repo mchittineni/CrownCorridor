@@ -8,7 +8,7 @@ import json
 import os
 import re
 import time
-from typing import Any, Dict, List, Tuple
+from typing import Any
 
 
 class BenchmarkEngine:
@@ -22,7 +22,7 @@ class BenchmarkEngine:
         """
         self.target_dir = os.path.abspath(target_dir)
 
-    def scan_secret_patterns(self) -> List[Dict[str, Any]]:
+    def scan_secret_patterns(self) -> list[dict[str, Any]]:
         """Scans all .tf and .hcl files for hardcoded secrets or PII patterns.
 
         Returns:
@@ -42,11 +42,11 @@ class BenchmarkEngine:
         ]
 
         violations = []
-        for root, _, files in os.walk(self.target_dir):
+        for root, _, files in os.walk(self.target_dir):  # pylint: disable=too-many-nested-blocks
             for file in files:
                 if file.endswith((".tf", ".tfvars", ".hcl")):
                     filepath = os.path.join(root, file)
-                    with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
+                    with open(filepath, encoding="utf-8", errors="ignore") as f:
                         lines = f.readlines()
                     for idx, line in enumerate(lines, 1):
                         for pattern, desc in secret_patterns:
@@ -61,7 +61,7 @@ class BenchmarkEngine:
                                 )
         return violations
 
-    def evaluate_cis_policies(self) -> List[Dict[str, Any]]:
+    def evaluate_cis_policies(self) -> list[dict[str, Any]]:
         """Evaluates CIS AWS benchmark policies on target IaC configuration.
 
         Returns:
@@ -81,7 +81,7 @@ class BenchmarkEngineRunner:
         """
         self.engine = BenchmarkEngine(target_dir)
 
-    def run_full_evaluation(self) -> Dict[str, Any]:
+    def run_full_evaluation(self) -> dict[str, Any]:
         """Executes full evaluation on the target directory.
 
         Returns:

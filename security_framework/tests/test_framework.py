@@ -3,14 +3,13 @@ import os
 import pathlib
 import sys
 import tempfile
-import pytest
 
 ROOT = pathlib.Path(__file__).parent.parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from security_framework.engine.engine import BenchmarkEngine, BenchmarkEngineRunner
 from security_framework.engine.comparative_eval import ComparativeEvaluator
+from security_framework.engine.engine import BenchmarkEngine, BenchmarkEngineRunner
 
 
 class TestBenchmarkEngine:
@@ -77,9 +76,11 @@ class TestBenchmarkDatasetSchema:
 
     def test_benchmarks_json_validity(self):
         """Verifies benchmark dataset JSON file validity."""
-        dataset_path = os.path.join(os.path.dirname(__file__), "../../benchmark/datasets/benchmarks.json")
+        dataset_path = os.path.join(
+            os.path.dirname(__file__), "../../benchmark/datasets/benchmarks.json"
+        )
         if os.path.exists(dataset_path):
-            with open(dataset_path, "r", encoding="utf-8") as f:
+            with open(dataset_path, encoding="utf-8") as f:
                 data = json.load(f)
             assert "test_cases" in data
             assert len(data["test_cases"]) > 0
