@@ -13,6 +13,21 @@ Releases are published automatically by [`release-please.yml`](.github/workflows
 
 ---
 
+## [2.1.1](https://github.com/mchittineni/CrownCorridor/compare/v2.1.0...v2.1.1) (2026-07-27)
+
+
+### Bug Fixes
+
+* **backend:** updated backend code to improve functionality and performance ([23bbdd9](https://github.com/mchittineni/CrownCorridor/commit/23bbdd985093fd1b48378bbf9eef8792d83b254a))
+* **backend:** updated backend to include new features and improvements ([8859bba](https://github.com/mchittineni/CrownCorridor/commit/8859bba2205a104236eab2676e956b0953b99a33))
+* **ci:** added isort black profile configuration in pyproject.toml ([dbe630b](https://github.com/mchittineni/CrownCorridor/commit/dbe630b8463828e1ac6a43b3a4ef27f9fb637c1d))
+* **ci:** added sys.path initialization in test_validate_iac.py and ruff ignore rules ([d1ff841](https://github.com/mchittineni/CrownCorridor/commit/d1ff8410f89cef4091d73436b369193898236c8b))
+* **ci:** fix conftest curl download flags and sync python formatting with black ([ff32799](https://github.com/mchittineni/CrownCorridor/commit/ff3279964d319d2d09c7972da1f5f05a1a2d39d7))
+* **ci:** format test_validate.py imports with isort and black ([4fe208c](https://github.com/mchittineni/CrownCorridor/commit/4fe208c998dbafd319d9190c41159917599b60e0))
+* **conftest:** updated conftest to use latest version ([d1dc028](https://github.com/mchittineni/CrownCorridor/commit/d1dc028d6d806db80c87591126753bd8fce2a392))
+* **devops:** update CI/CD workflows to improve reliability and maintainability ([3f2bea6](https://github.com/mchittineni/CrownCorridor/commit/3f2bea6dd563619769afd024cef2737782b52a9a))
+* **iac:** update rego policy syntax to v1 for conftest compatibility ([11bf07b](https://github.com/mchittineni/CrownCorridor/commit/11bf07b70efcfccb27426e97d3979a7940ee79ba))
+
 ## [Unreleased]
 
 ## [2.0.0] — 2026-07-25
