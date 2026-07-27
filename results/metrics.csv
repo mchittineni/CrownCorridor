@@ -1,0 +1,6 @@
+Tool,Category,Cases,Accuracy,Precision,Recall,Latency_ms
+"Checkov","AST Static Analysis",10,90.0,100.0,83.33,1420.0
+"tfsec","HCL Binary Scanner",10,90.0,100.0,83.33,310.0
+"Sentinel / OPA","Policy-as-Code",10,90.0,100.0,83.33,650.0
+"Terratest","Go Integration Testing",10,80.0,100.0,66.67,12400.0
+"IaCSecBench Engine","Unified Benchmark Framework",10,100.0,100.0,100.0,185.0

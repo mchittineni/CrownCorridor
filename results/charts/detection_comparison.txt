@@ -1,0 +1,9 @@
+============================================================
+Figure 1: Detection Rate Comparison Across IaC Security Tools
+============================================================
+
+Checkov              ████████   (83.3%)
+tfsec                ████████   (83.3%)
+Sentinel / OPA       ████████   (83.3%)
+Terratest            ██████     (66.7%)
+IaCSecBench Engine   ██████████ (100.0%)

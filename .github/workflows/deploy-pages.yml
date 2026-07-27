@@ -53,7 +53,7 @@ jobs:
         # relative paths resolve correctly.
         run: |
           mkdir -p _site
-          cp -r app/ _site/app
+          cp -r application/app/ _site/app
           cp -r data/ _site/data
           cp -r docs/ _site/docs
           touch _site/.nojekyll

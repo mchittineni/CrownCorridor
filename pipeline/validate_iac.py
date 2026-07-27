@@ -9,7 +9,7 @@ import re
 import sys
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TERRAFORM_DIR = os.path.join(PROJECT_ROOT, "terraform")
+TERRAFORM_DIR = os.path.join(PROJECT_ROOT, "infrastructure")
 
 EXPECTED_MODULES = [
     "vpc",

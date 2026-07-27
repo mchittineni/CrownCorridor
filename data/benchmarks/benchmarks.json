@@ -1,0 +1,124 @@
+{
+  "version": "1.0.0",
+  "name": "IaC Security & Quality Benchmark Dataset",
+  "description": "Standardized benchmark suite for evaluating IaC security tools, OPA policies, native tests, and zero-PII compliance.",
+  "metadata": {
+    "license": "MIT",
+    "maintainer": "Crown Corridor Framework Team",
+    "updated_at": "2026-07-27"
+  },
+  "benchmark_modules": [
+    "vpc",
+    "security",
+    "waf",
+    "cdn",
+    "auth",
+    "api_gateway",
+    "compute",
+    "database",
+    "secrets_ssm",
+    "events_alerting"
+  ],
+  "test_cases": [
+    {
+      "id": "BENCH-001",
+      "module": "database",
+      "category": "ENCRYPTION",
+      "rule_id": "CIS_AWS_2_3",
+      "name": "RDS Storage KMS Encryption",
+      "description": "Ensures RDS PostgreSQL databases are encrypted at rest with AWS KMS managed keys.",
+      "has_violation": true,
+      "severity": "HIGH"
+    },
+    {
+      "id": "BENCH-002",
+      "module": "security",
+      "category": "NETWORKING",
+      "rule_id": "CIS_AWS_5_2",
+      "name": "Security Group Ingress Restrictions",
+      "description": "Verifies no security groups allow unrestricted inbound 0.0.0.0/0 SSH/RDP access.",
+      "has_violation": true,
+      "severity": "CRITICAL"
+    },
+    {
+      "id": "BENCH-003",
+      "module": "waf",
+      "category": "NETWORKING",
+      "rule_id": "CIS_AWS_3_1",
+      "name": "ALB Header Dropping Enforcement",
+      "description": "Checks that Application Load Balancers drop invalid HTTP header fields.",
+      "has_violation": true,
+      "severity": "MEDIUM"
+    },
+    {
+      "id": "BENCH-004",
+      "module": "secrets_ssm",
+      "category": "SECRETS",
+      "rule_id": "ZERO_PII_01",
+      "name": "Hardcoded Secret & Key Prevention",
+      "description": "Scans IaC HCL source files for hardcoded AWS secret keys, DB passwords, or API tokens.",
+      "has_violation": true,
+      "severity": "CRITICAL"
+    },
+    {
+      "id": "BENCH-005",
+      "module": "infrastructure",
+      "category": "TESTING",
+      "rule_id": "IAC_TEST_01",
+      "name": "Native Terraform Test Coverage",
+      "description": "Validates presence and execution of native .tftest.hcl suites for all Terraform modules.",
+      "has_violation": true,
+      "severity": "HIGH"
+    },
+    {
+      "id": "BENCH-006",
+      "module": "data_pipeline",
+      "category": "PII",
+      "rule_id": "ZERO_PII_02",
+      "name": "Zero-PII Compliance in IaC Metadata",
+      "description": "Ensures no customer names, email addresses, or personal phone numbers exist in IaC metadata.",
+      "has_violation": true,
+      "severity": "HIGH"
+    },
+    {
+      "id": "BENCH-007",
+      "module": "cdn",
+      "category": "ENCRYPTION",
+      "rule_id": "CIS_AWS_2_1",
+      "name": "CloudFront Minimum TLS 1.2 Constraint",
+      "description": "Enforces modern TLS version standards on CloudFront CDN distributions.",
+      "has_violation": false,
+      "severity": "MEDIUM"
+    },
+    {
+      "id": "BENCH-008",
+      "module": "vpc",
+      "category": "AUDITING",
+      "rule_id": "CIS_AWS_2_9",
+      "name": "VPC Flow Logs Enabled",
+      "description": "Ensures VPC Flow Logging is configured and active across all subnets.",
+      "has_violation": false,
+      "severity": "MEDIUM"
+    },
+    {
+      "id": "BENCH-009",
+      "module": "auth",
+      "category": "AUTH",
+      "rule_id": "CIS_AWS_1_2",
+      "name": "Cognito MFA & Password Policy",
+      "description": "Enforces strict password parameters and optional multi-factor authentication.",
+      "has_violation": false,
+      "severity": "HIGH"
+    },
+    {
+      "id": "BENCH-010",
+      "module": "compute",
+      "category": "COMPUTE",
+      "rule_id": "CIS_AWS_4_1",
+      "name": "ECS Fargate Encrypted Ephemeral Storage",
+      "description": "Validates that ECS Fargate container storage is encrypted with customer managed keys.",
+      "has_violation": false,
+      "severity": "MEDIUM"
+    }
+  ]
+}
