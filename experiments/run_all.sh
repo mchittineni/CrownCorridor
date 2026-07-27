@@ -32,7 +32,12 @@ $PYTHON pipeline/validate_iac.py
 # 2. Execute Pytest Test Suite
 echo ""
 echo "[Step 2/4] Executing Framework & Unit Tests with Coverage..."
-$PYTEST security_framework/tests/ pipeline/tests/ --cov=security_framework -v
+if $PYTEST --help 2>&1 | grep -q "\--cov"; then
+  COV_FLAG="--cov=security_framework"
+else
+  COV_FLAG=""
+fi
+$PYTEST security_framework/tests/ pipeline/tests/ $COV_FLAG -v
 
 # 3. Run Experiment Pipeline & Generate Benchmark Results
 echo ""
