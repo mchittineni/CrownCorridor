@@ -18,6 +18,10 @@ on:
       - 'pipeline/**'
       - '.github/**'
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
@@ -37,7 +41,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Node Dependencies
-        run: npm ci || npm install
+        run: npm ci
 
       - name: Run ESLint Code Quality Check
         run: npm run lint

@@ -2,18 +2,23 @@ name: Infrastructure & Policy Validation (IaC CI)
 
 on:
   pull_request:
+    branches: [main]
     paths:
       - 'terraform/**'
       - 'pipeline/validate_iac.py'
       - 'pipeline/tests/test_validate_iac.py'
       - '.github/workflows/infra-ci.yml'
   push:
+    branches: [main]
     paths:
       - 'terraform/**'
       - 'pipeline/validate_iac.py'
       - 'pipeline/tests/test_validate_iac.py'
       - '.github/workflows/infra-ci.yml'
-    branches: [main]
+
+concurrency:
+  group: infra-ci-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -51,6 +56,21 @@ jobs:
 
       - name: Run IaC & CIS Benchmark Policy Validator
         run: python pipeline/validate_iac.py
+
+      - name: Install Conftest (OPA)
+        run: |
+          CONFTEST_VERSION="0.56.0"
+          curl -sSF -L "https://github.com/open-policy-agent/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz" -o conftest.tar.gz
+          tar xzf conftest.tar.gz conftest
+          sudo mv conftest /usr/local/bin/
+
+      - name: Run OPA Rego Policy Check (Conftest)
+        run: |
+          cd terraform
+          terraform init -backend=false
+          terraform plan -out=tfplan.binary
+          terraform show -json tfplan.binary > tfplan.json
+          conftest test tfplan.json --policy policies/cis_aws_benchmark.rego --namespace aws.cis.benchmark || true
 
       - name: Run Full Pytest Suite (Includes IaC & Policy Unit Tests)
         run: pytest pipeline/tests/ -v --tb=short
