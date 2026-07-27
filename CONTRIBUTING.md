@@ -8,9 +8,9 @@ Thank you for your interest in contributing to **IaCSecBench: An Infrastructure-
 
 We welcome contributions across several areas:
 
-1. **Adding Benchmark Scenarios**: Adding annotated test cases to `benchmark/datasets/benchmarks.json`.
+1. **Adding Benchmark Scenarios**: Adding self-contained test cases to `benchmark/benchmark.json` and `benchmark/cases/`.
 2. **Policy Extensions**: Adding OPA / Rego security policy rules under `security_framework/policies/`.
-3. **Scanner Enhancements**: Extending static analysis and secret detection engines under `security_framework/engine/`.
+3. **Scanner & Metric Enhancements**: Extending static analysis, scoring protocols (`evaluation/score.py`), and secret detection engines under `security_framework/engine/`.
 4. **Bug Reports & Feature Requests**: Submitting issues with reproducible steps.
 
 ---
@@ -20,11 +20,11 @@ We welcome contributions across several areas:
 ### 1. Clone & Set Up Virtual Environment
 
 ```bash
-git clone https://github.com/mchittineni/CrownCorridor.git
-cd CrownCorridor
+git clone https://github.com/mchittineni/IaCSecBench.git
+cd IaCSecBench
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r experiments/requirements.txt
+pip install -r pipeline/requirements.txt
 ```
 
 ### 2. Run Quality Checks & Tests
@@ -38,11 +38,17 @@ python3 pipeline/validate_data.py
 # 2. Run IaC security & policy validator
 python3 pipeline/validate_iac.py
 
-# 3. Run full test suite with code coverage
-.venv/bin/pytest security_framework/tests/ pipeline/tests/ --cov=security_framework -v
+# 3. Run evaluation protocol & leaderboard scoring
+python3 evaluation/score.py
 
-# 4. Run reproducible experiment suite
+# 4. Run full test suite with code coverage
+.venv/bin/pytest security_framework/tests/ pipeline/tests/ -v
+
+# 5. Run one-command reproducible experiment suite
 ./experiments/run_all.sh
+
+# 6. Run pre-commit hook checks
+.venv/bin/pre-commit run --all-files
 ```
 
 ---

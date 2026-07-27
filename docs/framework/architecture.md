@@ -21,12 +21,14 @@ The IaCSecBench engine processes target infrastructure repositories through thre
 
 ---
 
-## 2. Comparative Evaluation Engine
+## 2. Comparative Evaluation Engine & Scoring Protocol
 
-`ComparativeEvaluator` compares IaCSecBench against mainstream open-source and commercial tool profiles:
+`ComparativeEvaluator` and `evaluation/score.py` evaluate tools against the **345-case research benchmark dataset** ([benchmark/benchmark.json](file:///Users/manideepchittineni/Desktop/GitHub/Personal/CrownCorridor/benchmark/benchmark.json)):
 
 - **Checkov**: AST-based static analysis engine.
 - **tfsec**: Go-compiled HCL AST scanner.
+- **Terrascan**: Policy-as-code static scanner.
 - **Sentinel / OPA**: Policy-as-Code evaluation framework.
-- **Terratest**: Go integration testing suite.
-- **IaCSecBench Engine**: Native combined policy, testing, and secret detection engine.
+- **IaCSecBench Engine**: Native multi-engine policy, testing, and secret detection framework.
+
+Telemetry and leaderboard rankings are computed automatically via `evaluation/score.py` and exported to `leaderboard/results.csv`.
