@@ -5,7 +5,7 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-Releases are published automatically by [`release.yml`](.github/workflows/release.yml) adhering to CrownCorridor Semantic Versioning:
+Releases are published automatically by [`release-please.yml`](.github/workflows/release-please.yml) adhering to CrownCorridor Semantic Versioning:
 
 - **`MINOR` (x.Y.0)** — SRO dataset updates & historical data expansions (`data/**`).
 - **`PATCH` (x.y.Z)** — Pipeline, validator, and ETL infrastructure changes (`pipeline/**`, `api/**`).
@@ -109,13 +109,15 @@ Files per state: `regions.json`, `villages.json`, `coords.json`,
 
 #### CI/CD (`.github/`)
 
-| Workflow           | Trigger                     | Purpose                                         |
-| ------------------ | --------------------------- | ----------------------------------------------- |
-| `ci.yml`           | Every PR → `main`/`develop` | Data validator + 23 pytest cases                |
-| `deploy-pages.yml` | Push to `main`              | Build `_site/` and publish to GitHub Pages      |
-| `update-data.yml`  | Weekly Sun 01:00 UTC        | SRO data refresh → reviewed PR                  |
-| `release.yml`      | Tag `v*.*.*`                | Versioned release + AP/TS/combined zip archives |
-| `docs.yml`         | PR touching `app/portal.js` | JSDoc build-check                               |
+| Workflow             | Trigger                     | Purpose                                            |
+| -------------------- | --------------------------- | -------------------------------------------------- |
+| `ci.yml`             | Every PR → `main`           | Data validator + Ruff + ESLint + Pytest suite      |
+| `infra-ci.yml`       | PR/Push to `main` (infra)   | Terraform test + Conftest OPA Rego policy checks   |
+| `deploy-pages.yml`   | Push to `main`              | Data validation + publish _site to GitHub Pages    |
+| `update-data.yml`    | Weekly Sun 01:00 UTC        | SRO data refresh → reviewed PR                     |
+| `release-please.yml` | Merge to `main`             | Automated versioning, release PR & asset packaging |
+| `uptime-check.yml`   | Every 6 hours               | Synthetic health & dataset availability checks     |
+| `docs.yml`           | PR touching `app/portal.js` | JSDoc build-check                                  |
 
 Four shared composite actions: `setup-pipeline`, `datagov-fetch`,
 `publish-data-branch`, `overlay-data-branches`.
