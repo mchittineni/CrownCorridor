@@ -1,5 +1,5 @@
 import os
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as ET  # nosec B405
 
 
 def create_aws_icon_drawio_xml():
