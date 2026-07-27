@@ -80,9 +80,7 @@ def load_all_property_records() -> list[dict[str, Any]]:
                 # Address format: "Survey No {n}, {village}, PIN {pin}"
                 # Splitting by comma gives: ["Survey No n", " village", " PIN pin"]
                 addr_parts = [
-                    part.strip()
-                    for part in p.get("address", "").split(",")
-                    if part.strip()
+                    part.strip() for part in p.get("address", "").split(",") if part.strip()
                 ]
                 if len(addr_parts) >= 2 and addr_parts[-1].startswith("PIN"):
                     locality_val = addr_parts[-2]
@@ -139,9 +137,7 @@ def index_documents(
         int: Count of indexed documents.
     """
     if dry_run:
-        print(
-            f"[DRY RUN] Transformed {len(documents)} documents for Typesense indexing."
-        )
+        print(f"[DRY RUN] Transformed {len(documents)} documents for Typesense indexing.")
         for doc in documents:
             print(
                 f"  - Document ID: {doc['id']} | Title: {doc['property_title']} | State: {doc['state_code']}"
@@ -151,9 +147,7 @@ def index_documents(
     if not api_key:
         api_key = os.getenv("TYPESENSE_API_KEY")
     if not api_key:
-        raise ValueError(
-            "TYPESENSE_API_KEY environment variable or argument is required."
-        )
+        raise ValueError("TYPESENSE_API_KEY environment variable or argument is required.")
 
     client = typesense.Client(
         {
@@ -169,13 +163,9 @@ def index_documents(
         print(f"Creating Typesense collection: {COLLECTION_NAME}")
         client.collections.create(COLLECTION_SCHEMA)
 
-    results = client.collections[COLLECTION_NAME].documents.import_(
-        documents, {"action": "upsert"}
-    )
+    results = client.collections[COLLECTION_NAME].documents.import_(documents, {"action": "upsert"})
     indexed_count = len([r for r in results if r.get("success", True)])
-    print(
-        f"Successfully indexed {indexed_count}/{len(documents)} documents to Typesense."
-    )
+    print(f"Successfully indexed {indexed_count}/{len(documents)} documents to Typesense.")
     return indexed_count
 
 

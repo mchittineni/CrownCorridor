@@ -29,6 +29,12 @@ jobs:
           branches: 'data/andhra_pradesh,data/telangana'
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Setup Pipeline Toolchain
+        uses: ./.github/actions/setup-pipeline
+
+      - name: Validate Data PII Compliance
+        run: python pipeline/validate_data.py
+
       - name: Setup Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
@@ -36,7 +42,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Node Dependencies
-        run: npm ci || npm install
+        run: npm ci
 
       - name: Build JSDoc API Reference
         run: npx jsdoc -c jsdoc.json --pedantic

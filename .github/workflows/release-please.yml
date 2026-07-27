@@ -1,0 +1,65 @@
+name: Automated Release (release-please)
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@a02a34c4d625f9be748938186244ec5ddb209573 # v4.1.0
+        id: release
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: node
+
+      - name: Checkout Repository
+        if: ${{ steps.release.outputs.release_created }}
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Overlay Data Branches
+        if: ${{ steps.release.outputs.release_created }}
+        uses: ./.github/actions/overlay-data-branches
+        with:
+          branches: 'data/andhra_pradesh,data/telangana'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Toolchain
+        if: ${{ steps.release.outputs.release_created }}
+        uses: ./.github/actions/setup-pipeline
+
+      - name: Run Data Validator
+        if: ${{ steps.release.outputs.release_created }}
+        run: python pipeline/validate_data.py
+
+      - name: Build Data Archives
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          REF_NAME="${{ steps.release.outputs.tag_name }}"
+          mkdir -p release-artifacts
+          
+          # AP data archive
+          cd data/andhra_pradesh
+          zip -r ../../release-artifacts/crown-corridor-ap-$REF_NAME.zip .
+          cd ../..
+          
+          # TS data archive
+          cd data/telangana
+          zip -r ../../release-artifacts/crown-corridor-ts-$REF_NAME.zip .
+          cd ../..
+          
+          # Combined archive
+          zip -r release-artifacts/crown-corridor-all-$REF_NAME.zip data/
+
+      - name: Upload Data Archives to Release
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload "${{ steps.release.outputs.tag_name }}" release-artifacts/*.zip --clobber

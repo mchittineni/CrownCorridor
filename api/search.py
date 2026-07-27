@@ -115,9 +115,7 @@ def search_properties(
     }
 
     try:
-        response = client.collections[COLLECTION_NAME].documents.search(
-            search_parameters
-        )
+        response = client.collections[COLLECTION_NAME].documents.search(search_parameters)
 
         hits = [
             {
@@ -146,9 +144,7 @@ def search_properties(
 
     except Exception as exc:
         logger.error(f"Typesense search query failed: {exc}", exc_info=True)
-        raise HTTPException(
-            status_code=503, detail=f"Search service unavailable: {str(exc)}"
-        )
+        raise HTTPException(status_code=503, detail=f"Search service unavailable: {str(exc)}")
 
 
 def get_hierarchical_structure(
@@ -182,17 +178,13 @@ def get_hierarchical_structure(
     }
 
     try:
-        dist_response = client.collections[COLLECTION_NAME].documents.search(
-            district_search_params
-        )
+        dist_response = client.collections[COLLECTION_NAME].documents.search(district_search_params)
         total_found = dist_response.get("found", 0)
 
         district_counts = {}
         for facet in dist_response.get("facet_counts", []):
             if facet.get("field_name") == "district":
-                district_counts = {
-                    item["value"]: item["count"] for item in facet.get("counts", [])
-                }
+                district_counts = {item["value"]: item["count"] for item in facet.get("counts", [])}
 
         if not district_counts:
             return {
@@ -255,9 +247,7 @@ def get_hierarchical_structure(
             f"Typesense hierarchy query failed for state {state_norm}: {exc}",
             exc_info=True,
         )
-        raise HTTPException(
-            status_code=503, detail=f"Hierarchy service unavailable: {str(exc)}"
-        )
+        raise HTTPException(status_code=503, detail=f"Hierarchy service unavailable: {str(exc)}")
 
 
 def get_properties_by_hierarchy(
@@ -281,7 +271,9 @@ def get_properties_by_hierarchy(
     Returns:
         Dict[str, Any]: Property list response for the specified hierarchy node.
     """
-    filter_expr = f"state_code:=`{state_code.upper()}` && district:=`{district}` && mandal:=`{mandal}`"
+    filter_expr = (
+        f"state_code:=`{state_code.upper()}` && district:=`{district}` && mandal:=`{mandal}`"
+    )
     return search_properties(
         q="*",
         state_code=state_code,
@@ -314,9 +306,7 @@ def get_property_by_id(
     except typesense.exceptions.ObjectNotFound:
         return None
     except Exception as exc:
-        logger.error(
-            f"Failed to retrieve property '{property_id}': {exc}", exc_info=True
-        )
+        logger.error(f"Failed to retrieve property '{property_id}': {exc}", exc_info=True)
         raise HTTPException(
             status_code=503,
             detail=f"Property retrieval service unavailable: {str(exc)}",

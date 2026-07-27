@@ -49,12 +49,8 @@ class TestRegionsJson:
 
         data = json.loads((DATA_ROOT / state / "regions.json").read_text())
         district_ids = {d["i"] for d in data.get("districts", [])}
-        orphaned = [
-            m for m in data.get("mandals", []) if m.get("d") not in district_ids
-        ]
-        assert (
-            orphaned == []
-        ), f"{state}: {len(orphaned)} mandals reference unknown district ids"
+        orphaned = [m for m in data.get("mandals", []) if m.get("d") not in district_ids]
+        assert orphaned == [], f"{state}: {len(orphaned)} mandals reference unknown district ids"
 
 
 class TestVillagesJson:
@@ -72,13 +68,11 @@ class TestVillagesJson:
         import json
 
         data = json.loads((DATA_ROOT / state / "villages.json").read_text())
-        assert isinstance(
-            data, (list, dict)
-        ), f"{state}/villages.json is not a list or dict"
+        assert isinstance(data, (list, dict)), f"{state}/villages.json is not a list or dict"
         if isinstance(data, dict):
-            assert (
-                "columns" in data and "rows" in data
-            ), f"{state}/villages.json dict missing 'columns' or 'rows' keys"
+            assert "columns" in data and "rows" in data, (
+                f"{state}/villages.json dict missing 'columns' or 'rows' keys"
+            )
 
     @pytest.mark.parametrize("state", STATES)
     def test_records_have_minimum_fields(self, state):
@@ -122,9 +116,7 @@ class TestCoordsJson:
                 out_of_range.append(code)
             elif not (bounds["lng"][0] <= lng <= bounds["lng"][1]):
                 out_of_range.append(code)
-        assert (
-            out_of_range == []
-        ), f"{state}: {len(out_of_range)} coords out of bounding box"
+        assert out_of_range == [], f"{state}: {len(out_of_range)} coords out of bounding box"
 
 
 class TestMetaJson:
@@ -151,18 +143,18 @@ class TestGeoJSON:
         import json
 
         data = json.loads((DATA_ROOT / state / "districts.geojson").read_text())
-        assert (
-            data.get("type") == "FeatureCollection"
-        ), f"{state}/districts.geojson: type is not FeatureCollection"
+        assert data.get("type") == "FeatureCollection", (
+            f"{state}/districts.geojson: type is not FeatureCollection"
+        )
 
     @pytest.mark.parametrize("state", STATES)
     def test_features_not_empty(self, state):
         import json
 
         data = json.loads((DATA_ROOT / state / "districts.geojson").read_text())
-        assert (
-            len(data.get("features", [])) > 0
-        ), f"{state}/districts.geojson: features array is empty"
+        assert len(data.get("features", [])) > 0, (
+            f"{state}/districts.geojson: features array is empty"
+        )
 
 
 class TestFetchSROScaffold:
@@ -205,16 +197,12 @@ class TestPropertyHistory:
             DATA_ROOT / "property_history.json",
         ]
         found = [f for f in files if f.exists()]
-        assert (
-            len(found) >= 2
-        ), "Expected state-modular property_history.json files in AP and TS"
+        assert len(found) >= 2, "Expected state-modular property_history.json files in AP and TS"
 
         for fpath in found:
             data = json.loads(fpath.read_text())
             assert "properties" in data, f"{fpath} missing 'properties' key"
-            assert (
-                len(data["properties"]) >= 1
-            ), f"{fpath} expected at least 1 property record"
+            assert len(data["properties"]) >= 1, f"{fpath} expected at least 1 property record"
 
     def test_sale_history_and_poi_categories(self):
         import json
@@ -231,22 +219,22 @@ class TestPropertyHistory:
             data = json.loads(fpath.read_text())
             for prop in data["properties"]:
                 sales = prop.get("sale_history", [])
-                assert (
-                    len(sales) >= 2
-                ), f"Property {prop.get('property_id')} in {fpath.name} needs at least 2 sales records"
+                assert len(sales) >= 2, (
+                    f"Property {prop.get('property_id')} in {fpath.name} needs at least 2 sales records"
+                )
                 for sale in sales:
-                    assert (
-                        sale.get("sale_price_inr", 0) > 0
-                    ), f"Sale price must be positive in {prop.get('property_id')}"
-                    assert (
-                        "registration_doc_no" in sale
-                    ), f"Sale doc no missing in {prop.get('property_id')}"
+                    assert sale.get("sale_price_inr", 0) > 0, (
+                        f"Sale price must be positive in {prop.get('property_id')}"
+                    )
+                    assert "registration_doc_no" in sale, (
+                        f"Sale doc no missing in {prop.get('property_id')}"
+                    )
 
                 services = prop.get("nearby_services", [])
                 cats = {s.get("category") for s in services}
-                assert required_cats.issubset(
-                    cats
-                ), f"Property {prop.get('property_id')} in {fpath.name} missing service categories: {required_cats - cats}"
+                assert required_cats.issubset(cats), (
+                    f"Property {prop.get('property_id')} in {fpath.name} missing service categories: {required_cats - cats}"
+                )
 
     def test_cagr_calculation_accuracy(self):
         import json
@@ -267,9 +255,9 @@ class TestPropertyHistory:
                 years = summary["holding_period_years"]
                 expected_cagr = ((latest / initial) ** (1.0 / years) - 1.0) * 100.0
                 actual_cagr = summary["cagr_pct"]
-                assert (
-                    abs(expected_cagr - actual_cagr) < 0.5
-                ), f"Property {prop.get('property_id')} in {fpath.name} CAGR mismatch: expected {expected_cagr:.2f}%, got {actual_cagr:.2f}%"
+                assert abs(expected_cagr - actual_cagr) < 0.5, (
+                    f"Property {prop.get('property_id')} in {fpath.name} CAGR mismatch: expected {expected_cagr:.2f}%, got {actual_cagr:.2f}%"
+                )
 
 
 class TestMarketTrends:
@@ -280,17 +268,11 @@ class TestMarketTrends:
         fpath = DATA_ROOT / state / "market_trends.json"
         assert fpath.exists(), f"Missing {state}/market_trends.json"
         data = json.loads(fpath.read_text())
-        assert (
-            "employment_hubs" in data
-        ), f"{state}/market_trends.json missing 'employment_hubs'"
-        assert (
-            len(data["employment_hubs"]) >= 4
-        ), f"{state}/market_trends.json expected at least 4 hubs"
-        assert (
-            "time_series" in data
-        ), f"{state}/market_trends.json missing 'time_series'"
+        assert "employment_hubs" in data, f"{state}/market_trends.json missing 'employment_hubs'"
+        assert len(data["employment_hubs"]) >= 4, (
+            f"{state}/market_trends.json expected at least 4 hubs"
+        )
+        assert "time_series" in data, f"{state}/market_trends.json missing 'time_series'"
         ts = data["time_series"]
         assert len(ts.get("quarters", [])) >= 5, f"{state} expected at least 5 quarters"
-        assert (
-            len(ts.get("localities", [])) >= 4
-        ), f"{state} expected at least 4 localities"
+        assert len(ts.get("localities", [])) >= 4, f"{state} expected at least 4 localities"

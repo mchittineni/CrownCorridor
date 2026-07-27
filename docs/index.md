@@ -93,10 +93,11 @@ Pipeline & Validation (pipeline/)
   └── pipeline/tests/              pytest suite (44 test cases including test_api.py & test_validate_iac.py)
 
 GitHub Workflows & Governance (.github/workflows/)
-  ├── ci.yml              PR gate: ESLint + Prettier + Zero-PII check + pytest suite
-  ├── infra-ci.yml        Infra PR gate: terraform fmt/validate/test + validate_iac.py + pytest
-  ├── deploy-pages.yml    Builds _site/ (app/ + data/ + docs/) → GitHub Pages (/docs path)
+  ├── ci.yml              PR gate: ESLint + Prettier + Ruff + Zero-PII check + pytest suite
+  ├── infra-ci.yml        Infra PR gate: terraform fmt/validate/test + Conftest OPA Rego policy + validate_iac.py + pytest
+  ├── deploy-pages.yml    Builds _site/ (app/ + data/ + docs/) → GitHub Pages with zero-PII data validation
   ├── update-data.yml     Weekly SRO data refresh with --generate-history
-  ├── release.yml         Versioned release with downloadable data archives
-  └── docs.yml            JSDoc build verification & docs artifact builder
+  ├── release-please.yml  Automated release PR, versioning & artifact publishing
+  ├── uptime-check.yml    Synthetic health & dataset availability check every 6 hours
+  └── docs.yml            JSDoc compilation verification on PRs
 ```
