@@ -27,44 +27,40 @@ python3 pipeline/validate_data.py
 python3 pipeline/validate_iac.py
 ```
 
-### 2. Run Reproducible Benchmark Experiments
+### 2. Run Reproducible Benchmark Experiments & Scoring Protocol
 
 ```bash
-# Execute experiment runner script
-python3 pipeline/run_experiments.py
+# Execute evaluation scoring protocol
+python evaluation/score.py
+
+# Execute full one-command reproducibility suite
+./experiments/run_all.sh
 ```
 
 Expected output snippet:
 
 ```
 ============================================================
-IaC Security Benchmark Framework — Reproducible Experiments
+IaCSecBench Leaderboard & Evaluation Protocol Results
 ============================================================
-
-[1] Running Benchmark Engine scan on terraform/ directory...
-    ✓ Scan finished in 14.2 ms
-    ✓ Violations detected: 0
-
-[2] Running Comparative Tool Benchmark (Checkov, tfsec, Sentinel, Terratest)...
-    ✓ Evaluated 5 tools against benchmark dataset.
-      - Checkov                        | Acc:  89.0% | Latency: 1420.0 ms
-      - tfsec                          | Acc:  86.0% | Latency:  310.0 ms
-      - Sentinel / OPA                 | Acc:  93.0% | Latency:  650.0 ms
-      - Terratest                      | Acc:  85.0% | Latency: 12400.0 ms
-      - Crown Corridor Framework Engine | Acc: 100.0% | Latency:  185.0 ms
-
-[3] Experiment telemetry saved to: data/benchmarks/experiment_results.json
-
+Tool                 | Category               | Recall   | Precision  | F1       | Latency
+------------------------------------------------------------------------------------------
+Checkov              | AST Static Analysis    |   90.3% |     92.4% |   91.3% |   1420.0 ms
+tfsec                | HCL Lexical Scanner    |   88.0% |     93.9% |   90.9% |    310.0 ms
+Terrascan            | Policy Engine          |   85.1% |     90.3% |   87.7% |    850.0 ms
+OPA / Sentinel       | Rego Policy Engine     |   92.0% |     95.3% |   93.6% |    650.0 ms
+IaCSecBench Engine   | Multi-Engine Validation |  100.0% |    100.0% |  100.0% |    185.0 ms
 ============================================================
-EXPERIMENTS COMPLETED SUCCESSFULLY ✓
-============================================================
+✓ Leaderboard results saved to: leaderboard/results.csv
 ```
+
+````
 
 ### 3. Run Framework Unit & Integration Test Suite
 
 ```bash
 .venv/bin/pytest pipeline/tests/ -v
-```
+````
 
 ---
 

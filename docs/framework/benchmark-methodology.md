@@ -6,13 +6,20 @@ This document outlines the evaluation methodology and metrics used to benchmark 
 
 ## 🔬 Benchmark Dataset Design
 
-The benchmark suite (`benchmark/datasets/benchmarks.json`) contains annotated test scenarios covering 5 critical vulnerability categories:
+The research benchmark suite ([benchmark/benchmark.json](file:///Users/manideepchittineni/Desktop/GitHub/Personal/CrownCorridor/benchmark/benchmark.json)) contains 345 self-contained test scenarios across 12 infrastructure domains:
 
-1. **ENCRYPTION**: Missing S3 bucket encryption, RDS KMS storage encryption, CloudFront TLS policies.
-2. **NETWORKING**: Security groups allowing `0.0.0.0/0` ingress on port 22/3389, missing ALB header dropping.
-3. **SECRETS**: Hardcoded AWS secret access keys, plain database passwords, API tokens.
-4. **TESTING**: Missing native `.tftest.hcl` validation blocks.
-5. **PII**: Customer personal identity strings or phone numbers stored in IaC tags.
+1. **IAM**: IAM roles, wildcard policies, privilege escalation, inline statements.
+2. **NET**: Security groups open to `0.0.0.0/0`, public SSH/RDP, ALB drop headers, VPC flow logs.
+3. **STO**: S3 bucket public access blocks, versioning, Object Lock, EBS encryption.
+4. **ENC**: KMS key rotation, TLS 1.2+ minimum protocols, RDS/DynamoDB KMS encryption.
+5. **CMP**: IMDSv2 enforcement, public IP assignment, ECR image vulnerability scanning.
+6. **K8S**: Pod Security Standards, privileged containers, RBAC wildcard bindings.
+7. **SRV**: Lambda execution roles, API Gateway throttling, CORS configuration.
+8. **MON**: CloudTrail multi-region logging, GuardDuty, Security Hub enablement.
+9. **SEC**: Zero hardcoded secrets, SSM Parameter Store encryption, Vault integrations.
+10. **ID**: SAML / OIDC trust policies, MFA enforcement, federated role trust.
+11. **PII**: Zero customer names, emails, or phone numbers in IaC tags and metadata.
+12. **TF**: Native `.tftest.hcl`, custom variable validation, dynamic blocks, `for_each`.
 
 ---
 
@@ -33,6 +40,21 @@ For each evaluated tool:
 - **Recall (%)**:
   \[
   \text{Recall} = \frac{TP}{TP + FN} \times 100
+  \]
+
+- **F1 Score (%)**:
+  \[
+  \text{F1} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
+  \]
+
+- **False Positive Rate (FPR %)**:
+  \[
+  \text{FPR} = \frac{FP}{FP + TN} \times 100
+  \]
+
+- **False Negative Rate (FNR %)**:
+  \[
+  \text{FNR} = \frac{FN}{TP + FN} \times 100
   \]
 
 - **Latency (ms)**: Total execution runtime measured in milliseconds per scan round.

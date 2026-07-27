@@ -5,10 +5,12 @@
 ## Contents
 
 | Document                                                                 | Description                                                                    |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| :----------------------------------------------------------------------- | :----------------------------------------------------------------------------- |
 | [index.html](index.html)                                                 | Interactive HTML documentation portal & navigation hub                         |
 | [README.md](../README.md)                                                | Repository overview, feature table, and local quickstart                       |
 | [user-guide.md](user-guide.md)                                           | A complete guide on how the portal, search, comparison, and audit reports work |
+| [taxonomy.md](taxonomy.md)                                               | IaCSecBench Research Benchmark Taxonomy (345 cases, 12 categories)             |
+| [benchmark_protocol.md](benchmark_protocol.md)                           | Evaluation methodology, ground truth scoring, and reproducibility guidelines   |
 | [framework/README.md](framework/README.md)                               | Open-source IaCSecBench Security Evaluation Framework overview                 |
 | [framework/architecture.md](framework/architecture.md)                   | IaCSecBench Framework architecture & pipeline workflow                         |
 | [framework/benchmark-methodology.md](framework/benchmark-methodology.md) | Standard evaluation methodology & mathematical metrics                         |
@@ -85,28 +87,20 @@ Terraform Infrastructure as Code (infrastructure/)
   ├── tests/               Centralized Native .tftest.hcl test directory (11 suites, 100% coverage)
   └── modules/             Reusable child modules (vpc, security, waf, cdn, auth, api_gateway, compute, database, secrets_ssm, events_alerting)
 
-IaCSecBench Security Framework (security_framework/)
-  ├── engine/engine.py            Core IaC secret scanner & CIS AWS policy validator
-  ├── engine/comparative_eval.py  Comparative benchmark evaluator against Checkov, tfsec, Sentinel, Terratest
-  ├── policies/                   OPA Rego policy definitions
-  └── tests/                      Framework unit test suite (100% accuracy)
+IaCSecBench Security Framework & Evaluation Protocol (security_framework/ & evaluation/)
+  ├── evaluation/metrics.py       Evaluation metrics calculation engine (Acc, Prec, Rec, F1, Latency)
+  ├── evaluation/score.py         Automated benchmark scoring & leaderboard protocol driver
+  ├── security_framework/engine/  Engine scanners and comparative benchmark evaluator
+  └── security_framework/policies/ OPA Rego policy definitions
 
-Benchmark Datasets & Reports (benchmark/)
-  ├── datasets/benchmarks.json    Public benchmark dataset schema
-  ├── scenarios/                  Annotated security test case scenarios
-  └── reports/                    Telemetry output files (experiment_results.json)
+Benchmark Datasets, Cases & Leaderboard (benchmark/ & leaderboard/)
+  ├── benchmark/benchmark.json    Master 345 self-contained test case research dataset catalog
+  ├── benchmark/cases/           Modular case folders (IAM-001/ through TF-003/) with main.tf & expected.json
+  ├── benchmark/golden_results/  Golden reference JSON outputs for Checkov, tfsec, Terrascan, OPA, IaCSecBench
+  └── leaderboard/results.csv    Published reference leaderboard metrics
 
 Experiments & Results (experiments/ & results/)
   ├── experiments/run_all.sh      One-command reproducible experiment suite
   ├── experiments/generate_charts.py Benchmark performance chart generator
-  └── results/                    metrics.csv, benchmark_results.json & ASCII charts
-
-GitHub Workflows & Governance (.github/workflows/)
-  ├── ci.yml              PR gate: ESLint + Prettier + Ruff + Zero-PII check + pytest suite + IaCSecBench harness
-  ├── infra-ci.yml        Infra PR gate: terraform fmt/validate/test + Conftest OPA Rego policy + validate_iac.py + pytest
-  ├── deploy-pages.yml    Builds _site/ (application/app/ + data/ + docs/) → GitHub Pages with zero-PII data validation
-  ├── update-data.yml     Weekly SRO data refresh with --generate-history
-  ├── release-please.yml  Automated release PR, versioning & artifact publishing
-  ├── uptime-check.yml    Synthetic health & dataset availability check every 6 hours
-  └── docs.yml            JSDoc compilation verification on PRs
+  └── results/                    metrics.csv, benchmark_results.json & ASCII comparison charts
 ```

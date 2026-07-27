@@ -33,18 +33,19 @@ FEATURES_POOL = [
 DIFFICULTIES = ["Easy", "Medium", "Hard", "Expert"]
 SEVERITIES = ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
 
+
 def generate_catalog():
     test_cases = []
-    
+
     for cat_code, count, cat_name, cis_base in CATEGORIES:
         for i in range(1, count + 1):
             case_id = f"{cat_code}-{i:03d}"
-            is_fail = (i % 2 != 0)  # 50% Fail, 50% Pass for class balance
+            is_fail = i % 2 != 0  # 50% Fail, 50% Pass for class balance
             expected_res = "FAIL" if is_fail else "PASS"
             difficulty = DIFFICULTIES[(i - 1) % 4]
             severity = SEVERITIES[(i - 1) % 4]
             features = FEATURES_POOL[(i - 1) % len(FEATURES_POOL)]
-            
+
             tc = {
                 "id": case_id,
                 "module": cat_code.lower(),
@@ -60,11 +61,10 @@ def generate_catalog():
                 "benchmark_category": cat_code,
                 "cis_control": f"{cis_base}.{i}",
                 "mitre_attack": f"T1078.{i:03d}",
-                "owasp_category": "A05:2021-Security Misconfiguration" if is_fail else "A00:Compliant",
-                "references": [
-                    "https://cisecurity.org/benchmark/aws",
-                    "https://attack.mitre.org"
-                ],
+                "owasp_category": "A05:2021-Security Misconfiguration"
+                if is_fail
+                else "A00:Compliant",
+                "references": ["https://cisecurity.org/benchmark/aws", "https://attack.mitre.org"],
                 "tags": [cat_code.lower(), expected_res.lower(), difficulty.lower()],
                 "difficulty": difficulty,
                 "estimated_runtime": f"{1.0 + (i % 5) * 0.4:.1f}s",
@@ -74,9 +74,11 @@ def generate_catalog():
                         "resource": f"aws_{cat_code.lower()}_resource.target_{i}",
                         "property": "security_configuration",
                         "rule_id": f"CIS_AWS_{cis_base}_{i}",
-                        "description": f"Security misconfiguration in {cat_name} configuration element {i}"
+                        "description": f"Security misconfiguration in {cat_name} configuration element {i}",
                     }
-                ] if is_fail else []
+                ]
+                if is_fail
+                else [],
             }
             test_cases.append(tc)
 
@@ -95,11 +97,11 @@ def generate_catalog():
             "total_cases": len(test_cases),
             "class_distribution": {
                 "insecure_fail": sum(1 for c in test_cases if c["expected_result"] == "FAIL"),
-                "secure_pass": sum(1 for c in test_cases if c["expected_result"] == "PASS")
-            }
+                "secure_pass": sum(1 for c in test_cases if c["expected_result"] == "PASS"),
+            },
         },
         "benchmark_categories": [c[0] for c in CATEGORIES],
-        "test_cases": test_cases
+        "test_cases": test_cases,
     }
 
     # Write master catalog
@@ -118,6 +120,7 @@ def generate_catalog():
         json.dump(catalog, f, indent=2)
 
     print(f"✓ Created master benchmark catalog with {len(test_cases)} cases across 12 categories.")
+
 
 if __name__ == "__main__":
     generate_catalog()

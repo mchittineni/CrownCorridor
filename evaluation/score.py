@@ -39,7 +39,9 @@ def run_benchmark_scoring() -> list[dict]:
     total_cases = len(cases) if cases else 300
 
     # Split cases into secure / insecure baseline counts if missing
-    insecure_count = sum(1 for c in cases if c.get("expected_result") == "FAIL" or c.get("has_violation"))
+    insecure_count = sum(
+        1 for c in cases if c.get("expected_result") == "FAIL" or c.get("has_violation")
+    )
     secure_count = total_cases - insecure_count
 
     if insecure_count == 0:
@@ -134,7 +136,9 @@ def run_benchmark_scoring() -> list[dict]:
     print("============================================================")
     print("IaCSecBench Leaderboard & Evaluation Protocol Results")
     print("============================================================")
-    print(f"{'Tool':<20} | {'Category':<22} | {'Recall':<8} | {'Precision':<10} | {'F1':<8} | {'Latency':<10}")
+    print(
+        f"{'Tool':<20} | {'Category':<22} | {'Recall':<8} | {'Precision':<10} | {'F1':<8} | {'Latency':<10}"
+    )
     print("-" * 90)
     for m in metrics_list:
         print(

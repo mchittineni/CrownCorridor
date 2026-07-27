@@ -3,6 +3,7 @@
 import json
 import os
 
+
 def create_case_folders():
     with open("benchmark/benchmark.json", encoding="utf-8") as f:
         catalog = json.load(f)
@@ -27,11 +28,11 @@ def create_case_folders():
         os.makedirs(case_dir, exist_ok=True)
 
         # 1. main.tf
-        main_tf = f"""# Benchmark Case: {case['id']} - {case['title']}
-# Difficulty: {case['difficulty']} | Category: {case['benchmark_category']}
+        main_tf = f"""# Benchmark Case: {case["id"]} - {case["title"]}
+# Difficulty: {case["difficulty"]} | Category: {case["benchmark_category"]}
 
 terraform {{
-  required_version = ">= {case['terraform_version']}"
+  required_version = ">= {case["terraform_version"]}"
   required_providers {{
     aws = {{
       source  = "hashicorp/aws"
@@ -42,7 +43,7 @@ terraform {{
 
 locals {{
   environment = "benchmark"
-  case_id     = "{case['id']}"
+  case_id     = "{case["id"]}"
 }}
 
 resource "aws_{cat.lower()}_resource" "target" {{
@@ -71,7 +72,7 @@ resource "aws_{cat.lower()}_resource" "target" {{
             "benchmark_id": case["id"],
             "expected_result": case["expected_result"],
             "severity": case["severity"],
-            "violations": case["expected_violations"]
+            "violations": case["expected_violations"],
         }
         with open(os.path.join(case_dir, "expected.json"), "w", encoding="utf-8") as f:
             json.dump(expected_data, f, indent=2)
@@ -81,6 +82,7 @@ resource "aws_{cat.lower()}_resource" "target" {{
             json.dump(case, f, indent=2)
 
     print(f"✓ Created representative self-contained case folders in {base_cases_dir}/")
+
 
 if __name__ == "__main__":
     create_case_folders()

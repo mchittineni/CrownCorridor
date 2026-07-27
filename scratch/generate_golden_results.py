@@ -3,6 +3,7 @@
 import json
 import os
 
+
 def generate_golden_results():
     with open("benchmark/benchmark.json", encoding="utf-8") as f:
         catalog = json.load(f)
@@ -31,28 +32,31 @@ def generate_golden_results():
                 detected = False
                 fp = (idx % 100) < int(fp_rate * 100)
 
-            results.append({
-                "benchmark_id": case["id"],
-                "category": case["benchmark_category"],
-                "expected_result": expected,
-                "tool_detected": detected or fp,
-                "is_true_positive": detected and expected == "FAIL",
-                "is_false_positive": fp and expected == "PASS",
-                "is_true_negative": (not fp) and expected == "PASS",
-                "is_false_negative": (not detected) and expected == "FAIL"
-            })
+            results.append(
+                {
+                    "benchmark_id": case["id"],
+                    "category": case["benchmark_category"],
+                    "expected_result": expected,
+                    "tool_detected": detected or fp,
+                    "is_true_positive": detected and expected == "FAIL",
+                    "is_false_positive": fp and expected == "PASS",
+                    "is_true_negative": (not fp) and expected == "PASS",
+                    "is_false_negative": (not detected) and expected == "FAIL",
+                }
+            )
 
         output_data = {
             "tool_name": tool_name,
             "total_benchmark_cases": total_cases,
             "execution_time_ms": latency,
-            "results": results
+            "results": results,
         }
 
         with open(os.path.join(golden_dir, f"{file_prefix}.json"), "w", encoding="utf-8") as f:
             json.dump(output_data, f, indent=2)
 
     print(f"✓ Generated golden reference results in {golden_dir}/")
+
 
 if __name__ == "__main__":
     generate_golden_results()
