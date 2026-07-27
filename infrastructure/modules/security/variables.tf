@@ -19,9 +19,9 @@ variable "vpc_cidr" {
 }
 
 variable "aws_account_id" {
-  description = "AWS Account ID for CloudTrail bucket policies"
+  description = "AWS Account ID (defaults to current identity or mock account)"
   type        = string
-  default     = "123456789012"
+  default     = null
 }
 
 variable "tags" {

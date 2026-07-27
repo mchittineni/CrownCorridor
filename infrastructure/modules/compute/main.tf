@@ -19,7 +19,7 @@ resource "aws_ecs_cluster" "main" {
 # ECR Repository for FastAPI
 resource "aws_ecr_repository" "fastapi" {
   name                 = "${var.app_name}/api"
-  image_tag_mutability = "MUTABLE"
+  image_tag_mutability = "IMMUTABLE"
 
   image_scanning_configuration {
     scan_on_push = true
@@ -104,8 +104,9 @@ resource "aws_ecs_task_definition" "typesense" {
     name = "typesense-data"
 
     efs_volume_configuration {
-      file_system_id = aws_efs_file_system.typesense.id
-      root_directory = "/"
+      file_system_id          = aws_efs_file_system.typesense.id
+      root_directory           = "/"
+      transit_encryption      = "ENABLED"
     }
   }
 
@@ -114,6 +115,7 @@ resource "aws_ecs_task_definition" "typesense" {
       name      = "typesense"
       image     = "typesense/typesense:26.0"
       essential = true
+      user      = "1000:1000"
       portMappings = [
         {
           containerPort = 8108
@@ -140,7 +142,7 @@ resource "aws_ecs_task_definition" "typesense" {
         logDriver = "awslogs"
         options = {
           "awslogs-group"         = aws_cloudwatch_log_group.typesense.name
-          "awslogs-region"        = "us-east-1"
+          "awslogs-region"        = var.aws_region
           "awslogs-stream-prefix" = "typesense"
         }
       }
@@ -212,8 +214,12 @@ resource "aws_lb_listener" "http" {
   protocol          = "HTTP"
 
   default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.fastapi.arn
+    type = "redirect"
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
   }
 }
 
@@ -242,7 +248,7 @@ resource "aws_ecs_task_definition" "fastapi" {
       environment = [
         { name = "TYPESENSE_HOST", value = "typesense.${var.app_name}.internal" },
         { name = "TYPESENSE_PORT", value = "8108" },
-        { name = "TYPESENSE_PROTOCOL", value = "http" },
+        { name = "TYPESENSE_PROTOCOL", value = "https" },
         { name = "ENVIRONMENT", value = var.environment }
       ]
       secrets = [
@@ -259,7 +265,7 @@ resource "aws_ecs_task_definition" "fastapi" {
         logDriver = "awslogs"
         options = {
           "awslogs-group"         = aws_cloudwatch_log_group.fastapi.name
-          "awslogs-region"        = "us-east-1"
+          "awslogs-region"        = var.aws_region
           "awslogs-stream-prefix" = "fastapi"
         }
       }

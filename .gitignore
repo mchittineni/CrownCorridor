@@ -62,6 +62,8 @@ terraform.rc
 
 # Logs & Temporary Scratch Files
 *.log
+.env
+.env.*
 tmp/
 .cache/
 data/sro_feed/tmp/

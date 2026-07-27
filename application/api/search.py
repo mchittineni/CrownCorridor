@@ -247,7 +247,7 @@ def get_hierarchical_structure(
             f"Typesense hierarchy query failed for state {state_norm}: {exc}",
             exc_info=True,
         )
-        raise HTTPException(status_code=503, detail=f"Hierarchy service unavailable: {str(exc)}")
+        raise HTTPException(status_code=503, detail="Search service temporarily unavailable")
 
 
 def get_properties_by_hierarchy(
@@ -258,7 +258,7 @@ def get_properties_by_hierarchy(
     per_page: int = 20,
     client: typesense.Client | None = None,
 ) -> dict[str, Any]:
-    """Retrieves property list strictly scoped under State -> District -> Mandal.
+    """Queries properties strictly scoped to a District and Mandal hierarchy node.
 
     Args:
         state_code (str): State code ('TS' or 'AP').
@@ -271,9 +271,9 @@ def get_properties_by_hierarchy(
     Returns:
         Dict[str, Any]: Property list response for the specified hierarchy node.
     """
-    filter_expr = (
-        f"state_code:=`{state_code.upper()}` && district:=`{district}` && mandal:=`{mandal}`"
-    )
+    clean_district = district.replace("`", "")
+    clean_mandal = mandal.replace("`", "")
+    filter_expr = f"state_code:=`{state_code.upper()}` && district:=`{clean_district}` && mandal:=`{clean_mandal}`"
     return search_properties(
         q="*",
         state_code=state_code,

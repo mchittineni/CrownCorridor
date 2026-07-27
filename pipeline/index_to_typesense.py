@@ -189,7 +189,7 @@ def main():
     )
     parser.add_argument(
         "--api-key",
-        default=os.getenv("TYPESENSE_API_KEY", "xyz123-crowncorridor-key"),
+        default=os.getenv("TYPESENSE_API_KEY"),
         help="API key",
     )
     parser.add_argument(

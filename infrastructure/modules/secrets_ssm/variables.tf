@@ -43,7 +43,6 @@ variable "typesense_api_key" {
   description = "Typesense API Key"
   type        = string
   sensitive   = true
-  default     = "crowncorridor_super_secret_typesense_key_2026"
 }
 
 variable "tags" {

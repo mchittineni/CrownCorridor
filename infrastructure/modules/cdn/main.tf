@@ -124,12 +124,14 @@ resource "aws_cloudfront_distribution" "cdn" {
 
   restrictions {
     geo_restriction {
-      restriction_type = "none"
+      restriction_type = "whitelist"
+      locations        = ["IN"]
     }
   }
 
   viewer_certificate {
     cloudfront_default_certificate = true
+    minimum_protocol_version       = "TLSv1.2_2021"
   }
 
   tags = merge(

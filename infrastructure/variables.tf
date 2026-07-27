@@ -26,11 +26,15 @@ variable "typesense_api_key" {
   description = "API key for Typesense search cluster"
   type        = string
   sensitive   = true
-  default     = "xyz123-crowncorridor-key-2026"
 }
 
 variable "alert_email" {
   description = "Notification subscriber email address for SNS operational alerts"
   type        = string
-  default     = "admin@crowncorridor.example.com"
+}
+
+variable "aws_account_id" {
+  description = "AWS Account ID for CloudTrail & security policies"
+  type        = string
+  default     = "123456789012"
 }

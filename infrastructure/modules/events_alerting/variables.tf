@@ -20,6 +20,12 @@ variable "alert_email" {
   default     = ""
 }
 
+variable "aws_account_id" {
+  description = "AWS Account ID (defaults to current identity or mock account)"
+  type        = string
+  default     = null
+}
+
 variable "tags" {
   description = "Resource tags"
   type        = map(string)

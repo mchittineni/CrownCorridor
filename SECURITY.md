@@ -23,7 +23,7 @@ We take the security of **IaCSecBench** and the **Crown Corridor Application Pla
 If you discover a security vulnerability or secret leakage issue within this repository:
 
 1. **Do NOT open a public GitHub issue**.
-2. Email details of the vulnerability directly to the project maintainer: **manideep.chittineni@example.com**.
+2. Email details of the vulnerability directly to the project security maintainer: **security@crowncorridor.dev**.
 3. Include the following details in your report:
    - Type of issue (e.g., secret leakage, policy bypass, logic flaw).
    - Component affected (IaCSecBench scanner, Terraform module, or Application API).

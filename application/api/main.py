@@ -4,6 +4,7 @@ Provides async endpoints for sub-100ms property search, state-level filtering,
 and historical property document retrieval.
 """
 
+import logging
 import math
 import time
 from enum import Enum
@@ -12,6 +13,9 @@ import uvicorn
 from fastapi import FastAPI, HTTPException, Query, Response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("crowncorridor-api")
 
 # pylint: disable=wrong-import-order
 from api.search import (  # isort: skip
@@ -157,7 +161,8 @@ def readiness_check():
         tc.collections["properties"].retrieve()
         return {"status": "ready", "search_engine": "connected"}
     except Exception as exc:
-        raise HTTPException(status_code=503, detail=f"Search engine unready: {str(exc)}")
+        logger.error(f"Readiness check failed: {exc}", exc_info=True)
+        raise HTTPException(status_code=503, detail="Search engine unready")
 
 
 @app.get("/api/v1/search", response_model=SearchResponse, tags=["Search"])

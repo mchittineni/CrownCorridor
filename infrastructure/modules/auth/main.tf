@@ -5,11 +5,17 @@ resource "aws_cognito_user_pool" "main" {
   auto_verified_attributes = ["email"]
 
   password_policy {
-    minimum_length    = 8
+    minimum_length    = 14
     require_lowercase = true
     require_numbers   = true
     require_symbols   = true
     require_uppercase = true
+  }
+
+  mfa_configuration = "OPTIONAL"
+
+  software_token_mfa_configuration {
+    enabled = true
   }
 
   account_recovery_setting {
@@ -20,7 +26,7 @@ resource "aws_cognito_user_pool" "main" {
   }
 
   user_pool_add_ons {
-    advanced_security_mode = "AUDIT"
+    advanced_security_mode = "ENFORCED"
   }
 
   tags = merge(
@@ -38,11 +44,11 @@ resource "aws_cognito_user_pool_client" "client" {
 
   explicit_auth_flows = [
     "ALLOW_USER_SRP_AUTH",
-    "ALLOW_REFRESH_TOKEN_AUTH",
-    "ALLOW_USER_PASSWORD_AUTH"
+    "ALLOW_REFRESH_TOKEN_AUTH"
   ]
 
-  generate_secret = false
+  prevent_user_existence_errors = "ENABLED"
+  generate_secret               = false
 }
 
 resource "aws_cognito_user_pool_domain" "domain" {

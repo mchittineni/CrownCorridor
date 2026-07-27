@@ -13,6 +13,14 @@
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%233b82f6' d='M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z'/%3E%3Ccircle cx='12' cy='9' r='2.6' fill='white'/%3E%3C/svg%3E"
     />
 
+    <!-- Security Meta Tags -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:;"
+    />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+
     <!-- Leaflet CSS & JS -->
     <link
       rel="stylesheet"
@@ -35,8 +43,8 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- Chart.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart.js CDN (Pinned Version) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" crossorigin="anonymous"></script>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css" />
