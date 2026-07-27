@@ -3,7 +3,7 @@ description: 'Sets up Python + Node toolchain, caches packages, and installs dep
 
 runs:
   using: 'composite'
-  
+
   steps:
     - name: Set up Python
       uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v5.4.0
@@ -21,4 +21,3 @@ runs:
         pip install -r pipeline/requirements.txt
         if [ -f api/requirements.txt ]; then pip install -r api/requirements.txt; fi
       shell: bash
-

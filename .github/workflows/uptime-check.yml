@@ -17,7 +17,7 @@ jobs:
   uptime-check:
     name: Synthetic Health & API Availability Check
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -27,7 +27,7 @@ jobs:
           TARGET_URL="https://mchittineni.github.io/CrownCorridor/app/"
           AP_META_URL="https://mchittineni.github.io/CrownCorridor/data/andhra_pradesh/meta.json"
           TS_META_URL="https://mchittineni.github.io/CrownCorridor/data/telangana/meta.json"
-          
+
           echo "Checking $TARGET_URL..."
           HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$TARGET_URL" || echo "000")
           if [ "$HTTP_CODE" -ne 200 ]; then
@@ -35,7 +35,7 @@ jobs:
             exit 1
           fi
           echo "✓ $TARGET_URL returned HTTP 200 OK"
-          
+
           echo "Checking $AP_META_URL..."
           AP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$AP_META_URL" || echo "000")
           if [ "$AP_STATUS" -ne 200 ]; then

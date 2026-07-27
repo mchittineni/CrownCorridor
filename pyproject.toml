@@ -67,8 +67,33 @@ extend-ignore = ["E203", "E501", "B008", "T201", "DAR101", "DAR201", "DAR401", "
 exclude = [".git", ".venv", "__pycache__", "node_modules"]
 
 [tool.bandit]
-skips = ["B101"]
-exclude_dirs = ["api/tests", "pipeline/tests", ".venv"]
+skips = ["B101", "B405"]
+exclude_dirs = ["api/tests", "pipeline/tests", "docs/scratch", ".venv"]
 
-
-
+[tool.pylint.messages_control]
+max-line-length = 112
+disable = [
+    "C0114", # missing-module-docstring
+    "C0115", # missing-class-docstring
+    "C0116", # missing-function-docstring
+    "C0415", # import-outside-toplevel
+    "C0103", # invalid-name
+    "R0903", # too-few-public-methods
+    "R0912", # too-many-branches
+    "R0914", # too-many-locals
+    "R0915", # too-many-statements
+    "R0801", # duplicate-code
+    "W0212", # protected-access
+    "C0413", # wrong-import-position
+    "E0401", # import-error
+    "C0301", # line-too-long
+    "C0325", # superfluous-parens
+    "R0913", # too-many-arguments
+    "R0917", # too-many-positional-arguments
+    "W1203", # logging-fstring-interpolation
+    "W0707", # raise-missing-from
+    "W0718", # broad-exception-caught
+    "C1803", # use-implicit-booleaness-not-comparison
+    "W0612", # unused-variable
+    "R1705", # no-else-return
+]

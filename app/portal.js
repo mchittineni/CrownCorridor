@@ -582,7 +582,7 @@ class RealEstatePortal {
         ? coloniesAP[Math.floor(Math.random() * coloniesAP.length)]
         : coloniesTG[Math.floor(Math.random() * coloniesTG.length)];
 
-    let blockUnit = '';
+    let blockUnit;
     if (propType.name === 'Residential Flat') {
       blockUnit = `Block ${['A', 'B', 'C', 'D'][Math.floor(Math.random() * 4)]}, Flat ${100 + Math.floor(Math.random() * 400)}`;
     } else if (propType.name === 'Commercial Space') {
@@ -722,7 +722,7 @@ class RealEstatePortal {
           ? coloniesAP[i % coloniesAP.length]
           : coloniesTG[i % coloniesTG.length];
 
-      let blockUnit = '';
+      let blockUnit;
       if (propType.name === 'Residential Flat') {
         blockUnit = `Block ${['A', 'B', 'C', 'D'][i % 4]}, Flat ${100 + ((i * 7) % 400)}`;
       } else if (propType.name === 'Commercial Space') {
@@ -902,16 +902,16 @@ class RealEstatePortal {
           <div class="property-geo">📍 ${p.district}, ${p.mandal}, ${p.village}</div>
           <div class="property-colony" style="color: #60a5fa; font-size: 0.85rem; font-weight: 500; margin: 4px 0;">🏢 ${p.colony} · ${p.blockUnit}</div>
           ${commuteBadgeHtml}
-          
+
           <div class="property-specs" style="margin-top: 6px;">
             <div class="property-spec-item">📐 ${p.area} ${p.unit}</div>
             <div class="property-spec-item">🧭 ${p.facing} Facing</div>
           </div>
-          
+
           <div class="property-amenities">
             ${p.amenities.map((a) => `<span class="property-amenity-tag">${a}</span>`).join('')}
           </div>
-          
+
           <div style="display:flex; gap:8px; margin-top: auto;">
             <button class="btn-contact" style="flex:1;" onclick="window.portal.openContactModal('${p.id}', '${p.title.replace(/'/g, "\\'")}')">Contact Agent</button>
             <button class="btn-toggle-compare ${isCompared ? 'active' : ''}" style="background:rgba(59,130,246,0.15); border:1px solid #3b82f6; color:#38bdf8; padding:6px 12px; border-radius:8px; font-size:0.75rem; font-weight:700; cursor:pointer;" onclick="window.portal.toggleCompareProperty('${p.code}')">${isCompared ? '✓ Comparing' : '+ Compare'}</button>
@@ -1110,8 +1110,8 @@ class RealEstatePortal {
         return;
       }
 
-      let baseRate = 0;
-      let unit = '';
+      let baseRate;
+      let unit;
       const isUrban = [
         'Hyderabad',
         'Ranga Reddy',
@@ -2588,7 +2588,7 @@ class RealEstatePortal {
         <div class="compare-col-card" style="background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); padding: 16px; border-radius: 12px;">
           <div style="font-weight:800; font-size:1.05rem; color:#38bdf8; margin-bottom:4px;">${title}</div>
           <div style="font-size:0.75rem; color:var(--text-dim); margin-bottom:12px;">${item.address || item.locality}</div>
-          
+
           <div class="compare-spec-row"><span>Valuation:</span> <strong style="color:#10b981;">₹${price}</strong></div>
           <div class="compare-spec-row"><span>Appreciation:</span> <strong style="color:#f59e0b;">${appreciation}</strong></div>
           <div class="compare-spec-row"><span>CAGR ROI:</span> <strong>${cagr}</strong></div>
@@ -2994,8 +2994,8 @@ class RealEstatePortal {
     const tgTrends = this.marketTrendsData.tg;
     if (!apTrends && !tgTrends) return;
 
-    let localities = [];
-    let quarters = [];
+    let localities;
+    let quarters;
 
     if (this.selectedTrendsState === 'telangana' && tgTrends) {
       localities = tgTrends.time_series.localities;

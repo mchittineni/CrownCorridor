@@ -1,6 +1,6 @@
 # Crown Corridor
 
-> **Real Estate at Your Fingertips** — A next-generation property discovery portal for Andhra Pradesh & Telangana.  
+> **Real Estate at Your Fingertips** — A next-generation property discovery portal for Andhra Pradesh & Telangana.
 > Features verified listings, interactive geospatial maps, state-modular SRO property sale histories, CAGR analytics, nearby infrastructure scoring, zero-PII privacy compliance, reusable Terraform AWS infrastructure, and strict code quality standards.
 
 [![CI](https://github.com/mchittineni/CrownCorridor/actions/workflows/ci.yml/badge.svg)](https://github.com/mchittineni/CrownCorridor/actions/workflows/ci.yml)

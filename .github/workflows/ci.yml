@@ -52,15 +52,11 @@ jobs:
       - name: Setup Python Pipeline Toolchain
         uses: ./.github/actions/setup-pipeline
 
-      - name: Run Python Formatting & Imports (Black & isort)
+      - name: Run Python Formatting & Linting (Ruff & Flake8)
         run: |
-          isort --check-only api pipeline
-          black --check api pipeline
-
-      - name: Run Code Quality Linting (Flake8 & Ruff)
-        run: |
-          flake8 api pipeline
           ruff check .
+          ruff format --check .
+          flake8 api pipeline
 
       - name: Run Security Audit (Bandit)
         run: bandit -c pyproject.toml -r api/ pipeline/
@@ -73,5 +69,3 @@ jobs:
 
       - name: Run Pytest Suite
         run: pytest api/tests/ pipeline/tests/ -v --tb=short
-
-

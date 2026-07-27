@@ -9,7 +9,7 @@ inputs:
 
 runs:
   using: 'composite'
-  
+
   steps:
     - name: Run Fetch Script
       run: |
@@ -18,7 +18,7 @@ runs:
         ${{ inputs.run-command }}
         EXIT_CODE=$?
         set -e
-        
+
         if [ $EXIT_CODE -eq 75 ]; then
           echo "::warning title=Outage Skip::Upstream data.gov.in API is currently down (exited with code 75). Skipping this run contractually."
           exit 0

@@ -7,13 +7,14 @@ on:
 
 permissions:
   contents: write
+  issues: write
   pull-requests: write
 
 jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: google-github-actions/release-please-action@a02a34c4d625f9be748938186244ec5ddb209573 # v4.1.0
+      - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
         id: release
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -43,17 +44,17 @@ jobs:
         run: |
           REF_NAME="${{ steps.release.outputs.tag_name }}"
           mkdir -p release-artifacts
-          
+
           # AP data archive
           cd data/andhra_pradesh
           zip -r ../../release-artifacts/crown-corridor-ap-$REF_NAME.zip .
           cd ../..
-          
+
           # TS data archive
           cd data/telangana
           zip -r ../../release-artifacts/crown-corridor-ts-$REF_NAME.zip .
           cd ../..
-          
+
           # Combined archive
           zip -r release-artifacts/crown-corridor-all-$REF_NAME.zip data/
 
