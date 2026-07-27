@@ -8,11 +8,12 @@ module "vpc" {
 
 # 2. Security, KMS, Audit & Compliance Module
 module "security" {
-  source      = "./modules/security"
-  app_name    = var.app_name
-  environment = var.environment
-  vpc_id      = module.vpc.vpc_id
-  vpc_cidr    = module.vpc.vpc_cidr_block
+  source         = "./modules/security"
+  app_name       = var.app_name
+  environment    = var.environment
+  vpc_id         = module.vpc.vpc_id
+  vpc_cidr       = module.vpc.vpc_cidr_block
+  aws_account_id = var.aws_account_id
 }
 
 # 3. AWS WAF Web ACL Module
@@ -77,6 +78,7 @@ module "compute" {
   efs_sg_id                    = module.security.efs_sg_id
   typesense_api_key_secret_arn = module.secrets_ssm.typesense_key_secret_arn
   db_secret_arn                = module.secrets_ssm.db_secret_arn
+  aws_region                   = var.aws_region
 }
 
 # 9. Amazon API Gateway HTTP API Module
@@ -91,8 +93,9 @@ module "api_gateway" {
 
 # 10. EventBridge Cron & SNS Alerting Module
 module "events_alerting" {
-  source      = "./modules/events_alerting"
-  app_name    = var.app_name
-  environment = var.environment
-  alert_email = var.alert_email
+  source         = "./modules/events_alerting"
+  app_name       = var.app_name
+  environment    = var.environment
+  alert_email    = var.alert_email
+  aws_account_id = var.aws_account_id
 }

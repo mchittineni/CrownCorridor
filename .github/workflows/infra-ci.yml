@@ -80,7 +80,12 @@ jobs:
           terraform init -backend=false
           terraform plan -out=tfplan.binary
           terraform show -json tfplan.binary > tfplan.json
-          conftest test tfplan.json --policy ../security_framework/policies/cis_aws_benchmark.rego --namespace aws.cis.benchmark || true
+          conftest test tfplan.json --policy policies/cis_aws_benchmark.rego --namespace aws.cis.benchmark
+
+      - name: Run Checkov Security Scan
+        run: |
+          pip install checkov
+          checkov -d infrastructure --framework terraform --quiet
 
       - name: Run Full Pytest Suite (Includes IaC & Policy Unit Tests)
         run: pytest security_framework/tests/ pipeline/tests/ -v --tb=short

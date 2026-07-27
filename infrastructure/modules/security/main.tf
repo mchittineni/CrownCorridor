@@ -52,6 +52,21 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "cloudtrail" {
   }
 }
 
+data "aws_caller_identity" "current" {
+  count = var.aws_account_id == null ? 1 : 0
+}
+
+locals {
+  account_id = var.aws_account_id != null ? var.aws_account_id : (length(data.aws_caller_identity.current) > 0 ? data.aws_caller_identity.current[0].account_id : "123456789012")
+}
+
+resource "aws_s3_bucket_versioning" "cloudtrail" {
+  bucket = aws_s3_bucket.cloudtrail.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
 resource "aws_s3_bucket_policy" "cloudtrail" {
   bucket = aws_s3_bucket.cloudtrail.id
 
@@ -74,7 +89,7 @@ resource "aws_s3_bucket_policy" "cloudtrail" {
           Service = "cloudtrail.amazonaws.com"
         }
         Action   = "s3:PutObject"
-        Resource = "${aws_s3_bucket.cloudtrail.arn}/AWSLogs/${var.aws_account_id}/*"
+        Resource = "${aws_s3_bucket.cloudtrail.arn}/AWSLogs/${local.account_id}/*"
         Condition = {
           StringEquals = {
             "s3:x-amz-acl" = "bucket-owner-full-control"
@@ -120,6 +135,11 @@ resource "aws_guardduty_detector" "main" {
 
 # AWS Security Hub Posture Monitoring
 resource "aws_securityhub_account" "main" {}
+
+resource "aws_securityhub_standards_subscription" "cis" {
+  depends_on    = [aws_securityhub_account.main]
+  standards_arn = "arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.4.0"
+}
 
 # IAM Roles for ECS Execution & Task
 resource "aws_iam_role" "ecs_execution_role" {
@@ -177,7 +197,10 @@ resource "aws_iam_policy" "ecs_task_kms_secrets" {
       {
         Effect   = "Allow"
         Action   = ["secretsmanager:GetSecretValue", "ssm:GetParameters", "ssm:GetParameter"]
-        Resource = "*"
+        Resource = [
+          "arn:aws:secretsmanager:*:*:secret:${var.app_name}/*",
+          "arn:aws:ssm:*:*:parameter/${var.app_name}/*"
+        ]
       }
     ]
   })

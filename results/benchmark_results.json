@@ -1,13 +1,19 @@
 {
-  "timestamp": "2026-07-27 20:47:37",
+  "timestamp": "2026-07-27 21:26:18",
   "engine_scan": {
     "target_dir": "/Users/manideepchittineni/Desktop/GitHub/Personal/CrownCorridor/infrastructure",
-    "execution_time_ms": 6.72,
-    "secret_violations_count": 1,
+    "execution_time_ms": 6.85,
+    "secret_violations_count": 2,
     "violations": [
       {
-        "file": "variables.tf",
-        "line": 35,
+        "file": "terraform.tfvars",
+        "line": 5,
+        "rule": "Hardcoded API Key",
+        "type": "SECRET_LEAK"
+      },
+      {
+        "file": "terraform.tfvars",
+        "line": 6,
         "rule": "Personal Email Address",
         "type": "SECRET_LEAK"
       }

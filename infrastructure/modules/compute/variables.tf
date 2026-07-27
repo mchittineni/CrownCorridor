@@ -58,6 +58,12 @@ variable "db_secret_arn" {
   type        = string
 }
 
+variable "aws_region" {
+  description = "AWS region for CloudWatch log groups"
+  type        = string
+  default     = "us-east-1"
+}
+
 variable "tags" {
   description = "Resource tags"
   type        = map(string)

@@ -3,7 +3,7 @@ resource "aws_secretsmanager_secret" "db_credentials" {
   name                    = "${var.app_name}/${var.environment}/database"
   description             = "Encrypted database credentials for ${var.app_name}"
   kms_key_id              = var.kms_key_arn
-  recovery_window_in_days = 0
+  recovery_window_in_days = 7
 
   tags = merge(
     var.tags,
@@ -31,7 +31,7 @@ resource "aws_secretsmanager_secret" "typesense_api_key" {
   name                    = "${var.app_name}/${var.environment}/typesense"
   description             = "Encrypted Typesense API Key for ${var.app_name}"
   kms_key_id              = var.kms_key_arn
-  recovery_window_in_days = 0
+  recovery_window_in_days = 7
 
   tags = merge(
     var.tags,

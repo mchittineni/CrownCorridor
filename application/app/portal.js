@@ -34,6 +34,22 @@ maplibregl.addProtocol('pmtiles', protocol.tile);
  *   constructor → init() → loadGeographicData() → [parallel UI init] → startLiveSimulation()
  */
 class RealEstatePortal {
+  /**
+   * Helper function to escape raw strings for safe DOM innerHTML insertion.
+   *
+   * @param {string} str Raw string.
+   * @returns {string} HTML-escaped string.
+   */
+  escapeHtml(str) {
+    if (str === null || str === undefined) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
   constructor() {
     this.transactions = [];
     this.listings = [];
@@ -1242,7 +1258,7 @@ class RealEstatePortal {
       const toast = document.createElement('div');
       toast.style.cssText =
         'position:fixed; bottom:24px; right:24px; background:#10b981; color:white; padding:12px 24px; border-radius:8px; z-index:9999; font-weight:600; font-family:Outfit; box-shadow:0 8px 30px rgba(0,0,0,0.5);';
-      toast.innerHTML = `🔔 Alerts configured! Webhook target set for transactions &gt; ₹${threshold} Cr to ${email}`;
+      toast.innerHTML = `🔔 Alerts configured! Webhook target set for transactions &gt; ₹${this.escapeHtml(threshold)} Cr to ${this.escapeHtml(email)}`;
       document.body.appendChild(toast);
 
       setTimeout(() => toast.remove(), 3500);
@@ -1276,7 +1292,7 @@ class RealEstatePortal {
       const toast = document.createElement('div');
       toast.style.cssText =
         'position:fixed; bottom:24px; right:24px; background:#10b981; color:white; padding:12px 24px; border-radius:8px; z-index:9999; font-weight:600; font-family:Outfit; box-shadow:0 8px 30px rgba(0,0,0,0.5);';
-      toast.innerHTML = `📧 Thank you ${name}! Verification details request dispatched to listing broker SRO.`;
+      toast.innerHTML = `📧 Thank you ${this.escapeHtml(name)}! Verification details request dispatched to listing broker SRO.`;
       document.body.appendChild(toast);
 
       setTimeout(() => toast.remove(), 4000);
@@ -2302,12 +2318,12 @@ class RealEstatePortal {
           .slice(0, 8)
           .map(
             (r) => `
-          <div class="search-drop-item" data-type="${r.type}" data-id="${r.id}">
+          <div class="search-drop-item" data-type="${this.escapeHtml(r.type)}" data-id="${this.escapeHtml(r.id)}">
             <div>
-              <div style="font-weight:700; color:#f8fafc; font-size:0.88rem;">${r.title}</div>
-              <div style="font-size:0.75rem; color:var(--text-dim);">${r.subtitle}</div>
+              <div style="font-weight:700; color:#f8fafc; font-size:0.88rem;">${this.escapeHtml(r.title)}</div>
+              <div style="font-size:0.75rem; color:var(--text-dim);">${this.escapeHtml(r.subtitle)}</div>
             </div>
-            <span class="search-drop-badge">${r.badge}</span>
+            <span class="search-drop-badge">${this.escapeHtml(r.badge)}</span>
           </div>
         `
           )
