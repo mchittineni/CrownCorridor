@@ -69,12 +69,12 @@ It combines:
 - **Where to find it**: Click the **Verified Listings** tab.
 - **How it works**: Use preset pills (_"Near Metro"_, _"High CAGR > 10%"_, _"Luxury Villas"_, _"AP"_, _"TS"_) or standard dropdowns to filter properties by budget and category.
 
-### 5. 📍 GPS "Find Near Me"
+### 7. 📍 GPS "Find Near Me"
 
 - **Where to find it**: Click **📍 Find Near Me** on the map overlay.
 - **How it works**: Requests browser geolocation to center the map on your current coordinates and calculate real-time distances to properties and nearby services.
 
-### 6. 🧮 Stamp Duty & Guidance Values
+### 8. 🧮 Stamp Duty & Guidance Values
 
 - **Stamp Duty Calculator**: Calculates exact tax breakdown (AP combined 7.5%, TS combined 6.0%).
 - **Government Guidance Value Directory**: Look up official minimum guidance rates per sq yard or sq ft by mandal.
@@ -97,4 +97,4 @@ Crown Corridor strictly enforces privacy compliance:
 python3 -m http.server 8080
 ```
 
-Open **[http://localhost:8080/app/](http://localhost:8080/app/)**.
+Open **[http://localhost:8080/application/app/](http://localhost:8080/application/app/)**.

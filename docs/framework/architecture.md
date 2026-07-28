@@ -23,7 +23,7 @@ The IaCSecBench engine processes target infrastructure repositories through thre
 
 ## 2. Comparative Evaluation Engine & Scoring Protocol
 
-`ComparativeEvaluator` and `evaluation/score.py` evaluate tools against the **345-case research benchmark dataset** ([benchmark/benchmark.json](file:///Users/manideepchittineni/Desktop/GitHub/Personal/CrownCorridor/benchmark/benchmark.json)):
+`ComparativeEvaluator` and `evaluation/score.py` evaluate tools against the **345-case research benchmark dataset** ([benchmark/benchmark.json](../../benchmark/benchmark.json)):
 
 - **Checkov**: AST-based static analysis engine.
 - **tfsec**: Go-compiled HCL AST scanner.

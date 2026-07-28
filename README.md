@@ -129,9 +129,18 @@ CrownCorridor/
 │
 ├── benchmark/               # Benchmark Datasets & Scenarios
 │   ├── benchmark.json       # Master 345 self-contained test case research dataset catalog
-│   ├── cases/               # Self-contained case folders (IAM-001/ through TF-003/)
+│   ├── cases/               # Representative self-contained case folders (main.tf, variables.tf, expected.json, metadata.json)
+│   ├── datasets/            # Standardized benchmark dataset schema (benchmarks.json)
 │   ├── golden_results/      # Golden baseline JSON outputs for Checkov, tfsec, Terrascan, OPA, IaCSecBench
 │   └── reports/             # Generated telemetry reports (experiment_results.json)
+│
+├── pipeline/                # Zero-PII Data Pipeline & Validators
+│   ├── fetch_sro.py         # SRO data fetcher with sanitize_and_anonymize_record() PII scrubbing
+│   ├── validate_data.py     # Eight-section data integrity & zero-PII validator
+│   ├── validate_iac.py      # IaC structure & CIS AWS Benchmark policy validator
+│   └── tests/               # Pipeline unit tests
+│
+├── data/                    # AP & TS geographic datasets and property histories
 │
 ├── leaderboard/             # Published Baseline Leaderboard
 │   └── results.csv          # Exported leaderboard metrics across tools
@@ -162,9 +171,28 @@ python3 -m http.server 8080
 # Option 2: Start Fast-Read Search API microservice
 pip install -r application/api/requirements.txt
 uvicorn application.api.main:app --reload --port 8000
+
+# Option 3: Run the IaCSecBench benchmark engine in Docker
+docker build -t iacsecbench .
+docker run iacsecbench                 # scans infrastructure/ by default
+docker compose up                      # runs full experiment suite (pipeline/run_experiments.py)
 ```
 
 Open **[http://localhost:8080/application/app/](http://localhost:8080/application/app/)** for the Web Portal and **[http://localhost:8000/docs](http://localhost:8000/docs)** for Interactive OpenAPI Docs.
+
+## 🛠️ Repository Tooling Scripts
+
+This repository includes helper scripts under `scripts/` for security, compliance, PR analysis, code quality, and combined review reporting.
+
+```bash
+python scripts/security_scanner.py . --severity high --json --output security_report.json
+python scripts/compliance_checker.py . --framework soc2 --json --output compliance_report.json
+python scripts/pr_analyzer.py . --base main --head feature-branch --json --output pr_report.json
+python scripts/code_quality_checker.py . --language python --json --output quality_report.json
+python scripts/review_report_generator.py . --format markdown --output review_report.md
+```
+
+> Note: these helper scripts use standard shell exit codes. `0` means the command completed successfully, while any non-zero exit code indicates an error or failure during script execution.
 
 ---
 
@@ -193,8 +221,8 @@ python evaluation/score.py
 # Run Reproducible IaC Benchmark Experiments
 ./experiments/run_all.sh
 
-# Run pytest test suite (51 test cases)
-.venv/bin/pytest security_framework/tests/ pipeline/tests/ -v
+# Run full pytest test suite (62 tests: application/api, pipeline & security_framework)
+.venv/bin/pytest -v
 
 # Run Checkov
 checkov -d infrastructure --framework terraform
@@ -238,8 +266,10 @@ For full setup, schemas, taxonomy, and reproducible experiment guides, see:
 Crown Corridor strictly follows this versioning strategy:
 
 - 🟡 **`MINOR` (x.Y.0)** — **Data Updates**: Triggered whenever state datasets (`data/**`), property histories, or SRO records are refreshed/expanded.
-- 🟢 **`PATCH` (x.y.Z)** — **Pipeline & Infrastructure Updates**: Triggered for data pipelines, validators, APIs, or CI toolchains (`pipeline/**`, `api/**`, `terraform/**`).
-- 🔵 **`MAJOR` (X.0.0)** — **Web Application Updates**: Triggered for UI/UX frontend features, design changes, and portal functionality (`app/**`).
+- 🟢 **`PATCH` (x.y.Z)** — **Pipeline & Infrastructure Updates**: Triggered for data pipelines, validators, APIs, or CI toolchains (`pipeline/**`, `application/api/**`, `infrastructure/**`).
+- 🔵 **`MAJOR` (X.0.0)** — **Web Application Updates**: Triggered for UI/UX frontend features, design changes, and portal functionality (`application/app/**`).
+
+Releases are cut automatically by [`release-please.yml`](.github/workflows/release-please.yml) from Conventional Commit messages — see [CHANGELOG.md](CHANGELOG.md).
 
 ---
 

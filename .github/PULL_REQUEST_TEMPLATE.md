@@ -28,7 +28,7 @@ Before submitting this PR, verify that all quality checks pass locally:
 - [ ] `.venv/bin/ruff check .` && `.venv/bin/ruff format --check .` (Ruff clean)
 - [ ] `python3 pipeline/validate_data.py` (Must print `ALL CHECKS PASSED ✓` with Zero PII)
 - [ ] `python3 pipeline/validate_iac.py` (Must print `ALL IAC CHECKS & POLICIES PASSED ✓`)
-- [ ] `.venv/bin/pytest security_framework/tests/ pipeline/tests/ -v --cov=security_framework` (All 51 unit tests passing with 93%+ coverage)
+- [ ] `.venv/bin/pytest -v --cov=security_framework` (All 62 tests passing with coverage)
 - [ ] `./experiments/run_all.sh` (One-command reproducible experiment suite completes successfully)
 - [ ] `npm run docs` (JSDoc API docs build cleanly)
 

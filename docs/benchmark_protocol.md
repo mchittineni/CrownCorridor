@@ -6,7 +6,7 @@ This document details the evaluation protocol, scoring metrics, ground truth for
 
 ## Evaluation Protocol Overview
 
-To ensure objective and fair comparison across IaC analysis tools (**Checkov**, **tfsec**, **Terrascan**, **OPA**, and **IaCSecBench Engine**), each tool is evaluated against a standardized set of 300 benchmark cases.
+To ensure objective and fair comparison across IaC analysis tools (**Checkov**, **tfsec**, **Terrascan**, **OPA**, and **IaCSecBench Engine**), each tool is evaluated against a standardized set of 345 benchmark cases.
 
 ### Scoring Metrics
 

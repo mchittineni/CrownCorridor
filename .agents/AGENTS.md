@@ -2,12 +2,12 @@
 
 ## 1. Code Formatting & Style Standards
 
-- **JavaScript (`app/portal.js`)**:
+- **JavaScript (`application/app/portal.js`)**:
   - Standard ES2021 syntax without build step/bundler.
   - Indentation: 2 spaces. Single quotes for strings.
   - Every public method MUST include a complete JSDoc `/** */` docstring with `@param` and `@returns`.
   - Enforce strict equality (`===` / `!==`).
-- **CSS (`app/styles.css`)**:
+- **CSS (`application/app/styles.css`)**:
   - Use custom CSS variables (`--var-name`) defined in `:root`.
   - Maintain glassmorphic dark and light theme consistency.
 - **Python (`pipeline/`)**:
@@ -26,5 +26,5 @@
 
 - Before committing or completing any task:
   1. Run `python3 pipeline/validate_data.py` (Must print `ALL CHECKS PASSED ✓`).
-  2. Run `.venv/bin/pytest pipeline/tests/ -v` (All 26 unit tests MUST pass).
+  2. Run `.venv/bin/pytest -v` (All 62 tests across `application/api/tests/`, `pipeline/tests/`, and `security_framework/tests/` MUST pass).
   3. Run `npm run docs` / `npx jsdoc -c jsdoc.json --pedantic` to verify docs build.
