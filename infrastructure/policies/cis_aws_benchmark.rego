@@ -40,9 +40,7 @@ deny contains msg if {
 
   some encryption in resource_changes["aws_s3_bucket_server_side_encryption_configuration"]
 
-  encryption.change.after.rule[_]
-  .apply_server_side_encryption_by_default
-  .sse_algorithm != "aws:kms"
+  encryption.change.after.rule[_].apply_server_side_encryption_by_default.sse_algorithm != "aws:kms"
 
   msg := sprintf(
   "S3 bucket %s is not encrypted using KMS",
@@ -200,8 +198,7 @@ deny contains msg if {
 
   some cf in resource_changes["aws_cloudfront_distribution"]
 
-  cf.change.after.default_cache_behavior[0]
-  .viewer_protocol_policy != "redirect-to-https"
+  cf.change.after.default_cache_behavior[0].viewer_protocol_policy != "redirect-to-https"
 
   msg := sprintf(
   "CloudFront distribution %s does not enforce HTTPS",
