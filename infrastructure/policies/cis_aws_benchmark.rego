@@ -7,77 +7,204 @@ import future.keywords.contains
 import future.keywords.if
 import future.keywords.in
 
-# Rule 1: S3 Buckets must enforce SSE Encryption, Versioning, and Public Access Block (CIS AWS 2.1.1 & 2.1.3)
-default allow_s3_bucket_security := false
+############################################
+# Helper Functions
+############################################
 
-allow_s3_bucket_security if {
-    input.resource.aws_s3_bucket_public_access_block[_].block_public_acls == true
-    input.resource.aws_s3_bucket_public_access_block[_].block_public_policy == true
-    input.resource.aws_s3_bucket_public_access_block[_].ignore_public_acls == true
-    input.resource.aws_s3_bucket_public_access_block[_].restrict_public_buckets == true
-    input.resource.aws_s3_bucket_versioning[_].versioning_configuration[_].status == "Enabled"
+resource_changes[type] = resources if {
+  resources := [
+  rc |
+  rc := input.resource_changes[_]
+  rc.type == type
+  ]
 }
 
-# Rule 2: RDS Instances must be private and storage encrypted with KMS (CIS AWS 2.3.1 & 2.3.2)
-default allow_rds_encryption := false
+############################################
+# S3 Security Controls
+# CIS AWS 2.1.x
+############################################
 
-allow_rds_encryption if {
-    input.resource.aws_db_instance[_].storage_encrypted == true
-    input.resource.aws_db_instance[_].publicly_accessible == false
-    input.resource.aws_db_instance[_].backup_retention_period >= 7
+deny contains msg if {
+
+  some bucket in resource_changes["aws_s3_bucket"]
+
+  not some block in resource_changes["aws_s3_bucket_public_access_block"]
+
+  msg := sprintf(
+  "S3 bucket %s does not have Public Access Block enabled",
+  [bucket.address]
+  )
 }
 
-# Rule 3: CloudTrail must have log file validation enabled and KMS encryption (CIS AWS 3.2)
-default allow_cloudtrail_validation := false
+deny contains msg if {
 
-allow_cloudtrail_validation if {
-    input.resource.aws_cloudtrail[_].enable_log_file_validation == true
-    input.resource.aws_cloudtrail[_].is_multi_region_trail == true
+  some encryption in resource_changes["aws_s3_bucket_server_side_encryption_configuration"]
+
+  encryption.change.after.rule[_]
+  .apply_server_side_encryption_by_default
+  .sse_algorithm != "aws:kms"
+
+  msg := sprintf(
+  "S3 bucket %s is not encrypted using KMS",
+  [encryption.address]
+  )
 }
 
-# Rule 4: VPC Flow Logs must be enabled (CIS AWS 3.9)
-default allow_vpc_flow_logs := false
+############################################
+# RDS Security
+# CIS AWS 2.3
+############################################
 
-allow_vpc_flow_logs if {
-    input.resource.aws_flow_log[_].traffic_type == "ALL"
+deny contains msg if {
+
+  some db in resource_changes["aws_db_instance"]
+
+  db.change.after.publicly_accessible == true
+
+  msg := sprintf(
+  "RDS instance %s is publicly accessible",
+  [db.address]
+  )
 }
 
-# Rule 5: ALB must drop invalid header fields (AWS Security Best Practices)
-default allow_alb_security := false
+deny contains msg if {
 
-allow_alb_security if {
-    input.resource.aws_lb[_].drop_invalid_header_fields == true
+  some db in resource_changes["aws_db_instance"]
+
+  db.change.after.storage_encrypted != true
+
+  msg := sprintf(
+  "RDS instance %s does not use encryption",
+  [db.address]
+  )
 }
 
-# Rule 6: ECR Repositories must enable scan on push (CIS AWS 5.3)
-default allow_ecr_scanning := false
+############################################
+# CloudTrail Security
+# CIS AWS 3.x
+############################################
 
-allow_ecr_scanning if {
-    input.resource.aws_ecr_repository[_].image_scanning_configuration[_].scan_on_push == true
+deny contains msg if {
+
+  some trail in resource_changes["aws_cloudtrail"]
+
+  trail.change.after.enable_log_file_validation != true
+
+  msg := sprintf(
+  "CloudTrail %s does not enable log validation",
+  [trail.address]
+  )
 }
 
-# Rule 7: Security Groups must not open port 22 or 3389 to 0.0.0.0/0 (CIS AWS 5.1 & 5.2)
-deny_unrestricted_ingress contains msg if {
-    some sg in input.resource.aws_security_group
-    some rule in sg.ingress
-    "0.0.0.0/0" in rule.cidr_blocks
-    rule.from_port <= 22
-    rule.to_port >= 22
-    msg := sprintf("Security group %v allows SSH from 0.0.0.0/0", [sg.name])
+deny contains msg if {
+
+  some trail in resource_changes["aws_cloudtrail"]
+
+  trail.change.after.is_multi_region_trail != true
+
+  msg := sprintf(
+  "CloudTrail %s is not multi-region",
+  [trail.address]
+  )
 }
 
-deny_unrestricted_ingress contains msg if {
-    some sg in input.resource.aws_security_group
-    some rule in sg.ingress
-    "0.0.0.0/0" in rule.cidr_blocks
-    rule.from_port <= 3389
-    rule.to_port >= 3389
-    msg := sprintf("Security group %v allows RDP from 0.0.0.0/0", [sg.name])
+############################################
+# VPC Flow Logs
+############################################
+
+deny contains msg if {
+
+  count(resource_changes["aws_flow_log"]) == 0
+
+  msg := "VPC Flow Logs are not enabled"
 }
 
-# Rule 8: CloudFront must enforce HTTPS redirection (CIS AWS 2.4.1)
-default allow_cloudfront_https := false
+############################################
+# ALB Security
+############################################
 
-allow_cloudfront_https if {
-    input.resource.aws_cloudfront_distribution[_].default_cache_behavior[_].viewer_protocol_policy == "redirect-to-https"
+deny contains msg if {
+
+  some alb in resource_changes["aws_lb"]
+
+  alb.change.after.drop_invalid_header_fields != true
+
+  msg := sprintf(
+  "ALB %s does not drop invalid headers",
+  [alb.address]
+  )
+}
+
+############################################
+# ECR Security
+############################################
+
+deny contains msg if {
+
+  some repo in resource_changes["aws_ecr_repository"]
+
+  repo.change.after.image_scanning_configuration[0].scan_on_push != true
+
+  msg := sprintf(
+  "ECR repository %s does not enable scan-on-push",
+  [repo.address]
+  )
+}
+
+############################################
+# Security Groups
+# CIS AWS 5.1 / 5.2
+############################################
+
+deny contains msg if {
+
+  some sg in resource_changes["aws_security_group"]
+
+  some ingress in sg.change.after.ingress
+
+  "0.0.0.0/0" in ingress.cidr_blocks
+
+  ingress.from_port <= 22
+
+  ingress.to_port >= 22
+
+  msg := sprintf(
+  "Security Group %s exposes SSH port 22",
+  [sg.address]
+  )
+}
+
+deny contains msg if {
+
+  some sg in resource_changes["aws_security_group"]
+
+  some ingress in sg.change.after.ingress
+
+  "0.0.0.0/0" in ingress.cidr_blocks
+
+  ingress.from_port <= 3389
+
+  ingress.to_port >= 3389
+
+  msg := sprintf(
+  "Security Group %s exposes RDP port 3389",
+  [sg.address]
+  )
+}
+
+############################################
+# CloudFront HTTPS
+############################################
+
+deny contains msg if {
+
+  some cf in resource_changes["aws_cloudfront_distribution"]
+
+  cf.change.after.default_cache_behavior[0]
+  .viewer_protocol_policy != "redirect-to-https"
+
+  msg := sprintf(
+  "CloudFront distribution %s does not enforce HTTPS",
+  [cf.address]
+  )
 }

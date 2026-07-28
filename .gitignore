@@ -59,6 +59,7 @@ override.tf.json
 *_override.tf.json
 .terraformrc
 terraform.rc
+results.sarif
 
 # Logs & Temporary Scratch Files
 *.log

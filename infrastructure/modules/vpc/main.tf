@@ -1,7 +1,11 @@
+#############################################
+# VPC
+#############################################
+
 resource "aws_vpc" "main" {
   cidr_block           = var.vpc_cidr
-  enable_dns_hostnames = true
   enable_dns_support   = true
+  enable_dns_hostnames = true
 
   tags = merge(
     var.tags,
@@ -13,8 +17,11 @@ resource "aws_vpc" "main" {
   )
 }
 
+#############################################
 # Internet Gateway
-resource "aws_internet_gateway" "gw" {
+#############################################
+
+resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
 
   tags = merge(
@@ -26,9 +33,14 @@ resource "aws_internet_gateway" "gw" {
   )
 }
 
+#############################################
 # Public Subnets
+# ALB / Internet-facing services
+#############################################
+
 resource "aws_subnet" "public" {
-  count                   = length(var.public_subnet_cidrs)
+  count = length(var.public_subnet_cidrs)
+
   vpc_id                  = aws_vpc.main.id
   cidr_block              = var.public_subnet_cidrs[count.index]
   availability_zone       = var.availability_zones[count.index]
@@ -37,16 +49,21 @@ resource "aws_subnet" "public" {
   tags = merge(
     var.tags,
     {
-      Name        = "${var.app_name}-${var.environment}-public-subnet-${count.index + 1}"
+      Name        = "${var.app_name}-${var.environment}-public-${count.index + 1}"
       Environment = var.environment
-      SubnetType  = "Public"
+      Tier        = "Public"
     }
   )
 }
 
-# Private Compute Subnets
+#############################################
+# Private Application Subnets
+# ECS / Fargate / Internal Services
+#############################################
+
 resource "aws_subnet" "private" {
-  count             = length(var.private_subnet_cidrs)
+  count = length(var.private_subnet_cidrs)
+
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.private_subnet_cidrs[count.index]
   availability_zone = var.availability_zones[count.index]
@@ -54,16 +71,21 @@ resource "aws_subnet" "private" {
   tags = merge(
     var.tags,
     {
-      Name        = "${var.app_name}-${var.environment}-private-subnet-${count.index + 1}"
+      Name        = "${var.app_name}-${var.environment}-private-${count.index + 1}"
       Environment = var.environment
-      SubnetType  = "Private"
+      Tier        = "Application"
     }
   )
 }
 
-# Private Database Subnets
+#############################################
+# Database Subnets
+# RDS PostgreSQL / PostGIS
+#############################################
+
 resource "aws_subnet" "database" {
-  count             = length(var.database_subnet_cidrs)
+  count = length(var.database_subnet_cidrs)
+
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.database_subnet_cidrs[count.index]
   availability_zone = var.availability_zones[count.index]
@@ -71,17 +93,20 @@ resource "aws_subnet" "database" {
   tags = merge(
     var.tags,
     {
-      Name        = "${var.app_name}-${var.environment}-db-subnet-${count.index + 1}"
+      Name        = "${var.app_name}-${var.environment}-database-${count.index + 1}"
       Environment = var.environment
-      SubnetType  = "Database"
+      Tier        = "Database"
     }
   )
 }
 
-# Elastic IP for NAT Gateway
+#############################################
+# NAT Gateway
+#############################################
+
 resource "aws_eip" "nat" {
-  domain     = "vpc"
-  depends_on = [aws_internet_gateway.gw]
+
+  domain = "vpc"
 
   tags = merge(
     var.tags,
@@ -90,31 +115,40 @@ resource "aws_eip" "nat" {
       Environment = var.environment
     }
   )
+
 }
 
-# NAT Gateway (Single NAT Gateway for cost-efficiency across public subnets, can scale to multi-AZ)
-resource "aws_nat_gateway" "nat" {
+resource "aws_nat_gateway" "main" {
+
   allocation_id = aws_eip.nat.id
   subnet_id     = aws_subnet.public[0].id
+
+  depends_on = [
+    aws_internet_gateway.main
+  ]
 
   tags = merge(
     var.tags,
     {
-      Name        = "${var.app_name}-${var.environment}-nat-gw"
+      Name        = "${var.app_name}-${var.environment}-nat"
       Environment = var.environment
     }
   )
-
-  depends_on = [aws_internet_gateway.gw]
 }
 
-# Route Table for Public Subnets
+#############################################
+# Public Route Table
+#############################################
+
 resource "aws_route_table" "public" {
+
   vpc_id = aws_vpc.main.id
 
   route {
+
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.gw.id
+
+    gateway_id = aws_internet_gateway.main.id
   }
 
   tags = merge(
@@ -126,13 +160,28 @@ resource "aws_route_table" "public" {
   )
 }
 
-# Route Table for Private Subnets
+resource "aws_route_table_association" "public" {
+
+  count = length(var.public_subnet_cidrs)
+
+  subnet_id = aws_subnet.public[count.index].id
+
+  route_table_id = aws_route_table.public.id
+}
+
+#############################################
+# Private Route Table
+#############################################
+
 resource "aws_route_table" "private" {
+
   vpc_id = aws_vpc.main.id
 
   route {
-    cidr_block     = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.nat.id
+
+    cidr_block = "0.0.0.0/0"
+
+    nat_gateway_id = aws_nat_gateway.main.id
   }
 
   tags = merge(
@@ -144,28 +193,36 @@ resource "aws_route_table" "private" {
   )
 }
 
-# Route Table Associations
-resource "aws_route_table_association" "public" {
-  count          = length(aws_subnet.public)
-  subnet_id      = aws_subnet.public[count.index].id
-  route_table_id = aws_route_table.public.id
-}
-
 resource "aws_route_table_association" "private" {
-  count          = length(aws_subnet.private)
-  subnet_id      = aws_subnet.private[count.index].id
+
+  count = length(var.private_subnet_cidrs)
+
+  subnet_id = aws_subnet.private[count.index].id
+
   route_table_id = aws_route_table.private.id
 }
+
+#############################################
+# Database Route Table Association
+#############################################
 
 resource "aws_route_table_association" "database" {
-  count          = length(aws_subnet.database)
-  subnet_id      = aws_subnet.database[count.index].id
+
+  count = length(var.database_subnet_cidrs)
+
+  subnet_id = aws_subnet.database[count.index].id
+
   route_table_id = aws_route_table.private.id
 }
 
-# DB Subnet Group for RDS
+#############################################
+# RDS Subnet Group
+#############################################
+
 resource "aws_db_subnet_group" "main" {
-  name       = "${var.app_name}-${var.environment}-db-subnet-group"
+
+  name = "${var.app_name}-${var.environment}-db-subnet-group"
+
   subnet_ids = aws_subnet.database[*].id
 
   tags = merge(
@@ -177,82 +234,107 @@ resource "aws_db_subnet_group" "main" {
   )
 }
 
-# CloudWatch Log Group for VPC Flow Logs
-resource "aws_cloudwatch_log_group" "vpc_flow_logs" {
-  name              = "/aws/vpc/${var.app_name}-${var.environment}-flow-logs"
-  retention_in_days = 90
+#############################################
+# VPC Flow Logs
+#############################################
 
-  tags = merge(
-    var.tags,
-    {
-      Name        = "${var.app_name}-${var.environment}-vpc-flow-logs"
-      Environment = var.environment
-    }
-  )
-}
+resource "aws_cloudwatch_log_group" "flow_logs" {
 
-# IAM Role for VPC Flow Logs
-resource "aws_iam_role" "vpc_flow_logs" {
-  name = "${var.app_name}-${var.environment}-vpc-flow-logs-role"
+  name = "/aws/vpc/${var.app_name}-${var.environment}"
 
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [{
-      Action = "sts:AssumeRole"
-      Effect = "Allow"
-      Principal = {
-        Service = "vpc-flow-logs.amazonaws.com"
-      }
-    }]
-  })
+  retention_in_days = 365
 
   tags = var.tags
 }
 
-resource "aws_iam_role_policy" "vpc_flow_logs" {
-  name = "${var.app_name}-${var.environment}-vpc-flow-logs-policy"
-  role = aws_iam_role.vpc_flow_logs.id
+resource "aws_iam_role" "flow_logs" {
+
+  name = "${var.app_name}-${var.environment}-vpc-flow-role"
+
+  assume_role_policy = jsonencode({
+
+    Version = "2012-10-17"
+
+    Statement = [
+      {
+        Effect = "Allow"
+
+        Principal = {
+          Service = "vpc-flow-logs.amazonaws.com"
+        }
+
+        Action = "sts:AssumeRole"
+      }
+    ]
+
+  })
+
+}
+
+resource "aws_iam_role_policy" "flow_logs" {
+
+  name = "${var.app_name}-${var.environment}-vpc-flow-policy"
+
+  role = aws_iam_role.flow_logs.id
 
   policy = jsonencode({
+
     Version = "2012-10-17"
-    Statement = [{
-      Action = [
-        "logs:CreateLogStream",
-        "logs:PutLogEvents",
-        "logs:DescribeLogGroups",
-        "logs:DescribeLogStreams"
-      ]
-      Effect   = "Allow"
-      Resource = "${aws_cloudwatch_log_group.vpc_flow_logs.arn}:*"
-    }]
+
+    Statement = [
+      {
+        Effect = "Allow"
+
+        Action = [
+          "logs:CreateLogStream",
+          "logs:PutLogEvents",
+          "logs:DescribeLogGroups",
+          "logs:DescribeLogStreams"
+        ]
+
+        Resource = "${aws_cloudwatch_log_group.flow_logs.arn}:*"
+      }
+    ]
+
   })
+
 }
 
-# Mandatory VPC Flow Logs (CIS AWS Benchmark 3.9)
 resource "aws_flow_log" "main" {
-  iam_role_arn    = aws_iam_role.vpc_flow_logs.arn
-  log_destination = aws_cloudwatch_log_group.vpc_flow_logs.arn
-  traffic_type    = "ALL"
-  vpc_id          = aws_vpc.main.id
 
-  tags = merge(
-    var.tags,
-    {
-      Name        = "${var.app_name}-${var.environment}-flow-log"
-      Environment = var.environment
-    }
-  )
-}
-
-# Default Security Group Restrictions (CIS AWS Benchmark 5.4)
-resource "aws_default_security_group" "default" {
   vpc_id = aws_vpc.main.id
 
+  traffic_type = "ALL"
+
+  iam_role_arn = aws_iam_role.flow_logs.arn
+
+  log_destination = aws_cloudwatch_log_group.flow_logs.arn
+
   tags = merge(
     var.tags,
     {
-      Name        = "${var.app_name}-${var.environment}-default-sg-restricted"
-      Environment = var.environment
+      Name = "${var.app_name}-${var.environment}-flow-log"
+    }
+  )
+
+}
+
+#############################################
+# Default Security Group Lockdown
+#############################################
+
+resource "aws_default_security_group" "default" {
+
+  vpc_id = aws_vpc.main.id
+
+  ingress = []
+
+  egress = []
+
+  tags = merge(
+    var.tags,
+    {
+      Name = "${var.app_name}-${var.environment}-default-sg-disabled"
     }
   )
 }

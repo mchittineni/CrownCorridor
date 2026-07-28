@@ -1,0 +1,70 @@
+# Checkov Configuration for Crown Corridor Infrastructure
+# Output format options: cli, json, junitxml, github_failed_check, sarif, cyclonedx
+
+# --- Output Settings ---
+output: 
+  - cli
+  - sarif # Standard format for GitHub Code Scanning alerts
+quiet: true # Reduces noise by hiding passed checks
+soft-fail: false
+hard-fail-on:
+  - HIGH
+  - CRITICAL
+
+# Compact output format for easier reading
+compact: true
+
+# --- Scan Scope ---
+framework: 
+  - terraform
+  - secrets
+
+# Directories to scan
+directory:
+  - infrastructure
+
+# Paths to skip during scanning
+skip-path:
+  - .terraform
+  - .git
+  - docs
+  - tests
+  - scripts
+  - .terraform.lock.hcl
+  - '**/*.tfstate'
+  - '**/*.tfstate.backup'
+
+# --- Policy Enforcement ---
+# This ensures new rules are automatically included.
+check:
+# If you still want to force specific Medium checks, list them here:
+# - CKV_AWS_11  # VPC flow logs
+# CKV - General security best practices (AWS)
+  # - CKV_AWS_1   # CloudFront distribution encrypted
+
+# --- Exclusions ---
+# Architectural & Environment Intentional Skips
+skip-check:
+  - CKV_AWS_309   # API Gateway Health Endpoint (Intentionally public without auth)
+  - CKV_AWS_224   # ECS Cluster Logging CMK Encryption
+  - CKV_AWS_260   # Security Group Ingress Port 80 (HTTP to HTTPS redirection)
+  - CKV_AWS_158   # CloudWatch Log Group KMS Encryption
+  - CKV_AWS_382   # Allow outbound egress for Load Balancers & Gateway SGs
+  - CKV_AWS_18    # S3 Access Logging (Logging buckets / environment cost trade-offs)
+  - CKV2_AWS_62   # S3 Event Notifications
+  - CKV_AWS_144   # S3 Cross-Region Replication
+  - CKV2_AWS_5    # Security Group Resource Attachment (evaluated dynamically by Terraform)
+  - CKV2_AWS_57   # Secrets Manager Automatic Rotation
+  - CKV2_AWS_64   # KMS Key Policy Definition
+  - CKV2_AWS_42   # CloudFront Custom SSL Certificate
+  - CKV2_AWS_3    # GuardDuty Org-level Delegation
+  - CKV2_AWS_10   # CloudTrail CloudWatch Integration
+  - CKV2_AWS_31   # WAFv2 Logging Configuration
+  - CKV2_AWS_76   # ALB WAF AMR Log4j Rule
+  - CKV2_AWS_47   # CloudFront WAF AMR Log4j Rule
+
+# --- Advanced Features ---
+# Download external modules to scan them
+download-external-modules: true 
+var-file:
+  - ./infrastructure/terraform.tfvars
