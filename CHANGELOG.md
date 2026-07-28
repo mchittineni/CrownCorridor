@@ -11,6 +11,15 @@ Releases are published automatically by [`release-please.yml`](.github/workflows
 - **`PATCH` (x.y.Z)** — Pipeline, validator, and ETL infrastructure changes (`pipeline/**`, `application/api/**`).
 - **`MAJOR` (X.0.0)** — Web application features, layout, and UI frontend changes (`application/app/**`).
 
+## [1.0.1](https://github.com/mchittineni/iacsecbench/compare/v1.0.0...v1.0.1) (2026-07-28)
+
+
+### Bug Fixes
+
+* **changelog:** update changelog for release-please workflow changes ([da2ef97](https://github.com/mchittineni/iacsecbench/commit/da2ef971a1675a7b00293153ee6cf10f98108ab0))
+* **citation:** update DOI in CITATION.cff ([ee47463](https://github.com/mchittineni/iacsecbench/commit/ee47463432da84f61344ac0642a09ec1c600a3ce))
+* **workflows:** updated workflows ([78cf657](https://github.com/mchittineni/iacsecbench/commit/78cf6578db5102aaea6c70debd944ce9eda92bb6))
+
 ## 1.0.0 (2026-07-28)
 
 ### Features
