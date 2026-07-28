@@ -10,8 +10,7 @@
 [![Coverage 100%](https://img.shields.io/badge/IaC_Coverage-100%25-success.svg)](https://github.com/mchittineni/IaCSecBench)
 [![Security Validated](https://img.shields.io/badge/Security-Zero--PII%20Validated-blue.svg)](https://github.com/mchittineni/IaCSecBench)
 [![Benchmark Reproducible](https://img.shields.io/badge/Benchmark-Reproducible-orange.svg)](https://github.com/mchittineni/IaCSecBench)
-[![License MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.1234567-purple.svg)](https://zenodo.org/)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21645016-purple.svg)](https://doi.org/10.5281/zenodo.21645016)
 
 ---
 
