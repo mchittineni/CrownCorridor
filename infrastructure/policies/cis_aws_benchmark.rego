@@ -28,7 +28,7 @@ deny contains msg if {
 
   some bucket in resource_changes["aws_s3_bucket"]
 
-  not some block in resource_changes["aws_s3_bucket_public_access_block"]
+  count(resource_changes["aws_s3_bucket_public_access_block"]) == 0
 
   msg := sprintf(
   "S3 bucket %s does not have Public Access Block enabled",
