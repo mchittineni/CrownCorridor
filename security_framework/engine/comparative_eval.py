@@ -128,14 +128,121 @@ class ComparativeEvaluator:
             },
         ]
 
+    def _load_golden_results(self) -> dict[str, Any]:
+        """Loads benchmark golden result artifacts for comparative scoring."""
+        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+        paths = [
+            os.path.join(project_root, "benchmark", "golden_results"),
+            os.path.join(project_root, "data", "benchmark", "golden_results"),
+        ]
+
+        golden_results = {}
+        for directory in paths:
+            if not os.path.isdir(directory):
+                continue
+            for filename in sorted(os.listdir(directory)):
+                if not filename.endswith(".json"):
+                    continue
+                filepath = os.path.join(directory, filename)
+                try:
+                    with open(filepath, encoding="utf-8") as f:
+                        data = json.load(f)
+                except Exception:
+                    continue
+                tool_name = data.get("tool_name") or os.path.splitext(filename)[0]
+                if not isinstance(tool_name, str):
+                    tool_name = os.path.splitext(filename)[0]
+                golden_results[tool_name] = data
+        return golden_results
+
+    def _resolve_tool_category(self, tool_name: str) -> str:
+        """Resolves tool categories for known benchmark artifacts."""
+        categories = {
+            "Checkov": "AST Static Analysis",
+            "tfsec": "HCL Binary Scanner",
+            "OPA / Sentinel": "Policy-as-Code",
+            "Sentinel / OPA": "Policy-as-Code",
+            "Terrascan": "Static Analysis",
+            "IaCSecBench Engine": "Unified Benchmark Framework",
+        }
+        return categories.get(tool_name, "Benchmarking Tool")
+
+    def _compute_metrics_from_golden(self, golden_data: dict[str, Any]) -> ToolBenchmarkResult | None:
+        """Converts golden result artifacts into benchmark performance metrics."""
+        results = golden_data.get("results", [])
+        if not isinstance(results, list) or not results:
+            return None
+
+        tool_name = golden_data.get("tool_name") or "Unknown Tool"
+        if tool_name == "OPA / Sentinel":
+            tool_name = "Sentinel / OPA"
+        if tool_name in ("Terrascan", "TerraScan"):
+            tool_name = "Terratest"
+
+        tp = 0
+        fp = 0
+        tn = 0
+        fn = 0
+
+        for case in results:
+            expected = case.get("expected_result")
+            if expected is None:
+                expected = "FAIL" if case.get("has_violation", False) else "PASS"
+            expected = str(expected).upper()
+            is_violation = expected == "FAIL"
+            detected = bool(case.get("tool_detected", case.get("detected", False)))
+
+            if detected and is_violation:
+                tp += 1
+            elif detected and not is_violation:
+                fp += 1
+            elif not detected and is_violation:
+                fn += 1
+            else:
+                tn += 1
+
+        total_cases = len(results)
+        if total_cases == 0:
+            return None
+
+        accuracy = round(((tp + tn) / total_cases) * 100, 2)
+        precision = round((tp / (tp + fp)) * 100, 2) if (tp + fp) > 0 else 100.0
+        recall = round((tp / (tp + fn)) * 100, 2) if (tp + fn) > 0 else 100.0
+        execution_time_ms = float(golden_data.get("execution_time_ms", 0.0))
+
+        return ToolBenchmarkResult(
+            tool_name=tool_name,
+            category=self._resolve_tool_category(tool_name),
+            total_benchmark_cases=total_cases,
+            detected_violations=tp,
+            false_positives=fp,
+            execution_time_ms=execution_time_ms,
+            accuracy_pct=accuracy,
+            precision_pct=precision,
+            recall_pct=recall,
+        )
+
     def run_comparative_suite(
         self, _mechanics: dict[str, Any] | None = None
     ) -> list[ToolBenchmarkResult]:
-        """Runs the benchmark suite across all target tool profiles.
+        """Runs the benchmark suite across all available tool artifacts.
+
+        The evaluator prefers actual golden result artifacts when present, otherwise it
+        falls back to synthetic profile estimates for research demonstration.
 
         Returns:
             List of ToolBenchmarkResult objects comparing tool capabilities.
         """
+        golden_results = self._load_golden_results()
+        results = []
+        for golden_data in golden_results.values():
+            benchmark_result = self._compute_metrics_from_golden(golden_data)
+            if benchmark_result:
+                results.append(benchmark_result)
+
+        if results:
+            return sorted(results, key=lambda entry: entry.tool_name)
+
         tools_profile = [
             {
                 "name": "Checkov",
@@ -182,7 +289,6 @@ class ComparativeEvaluator:
         )
         clean_cases = total_cases - true_violations
 
-        results = []
         for profile in tools_profile:
             tp = round(true_violations * profile["detection_rate"])
             fp = round(clean_cases * profile["fp_rate"])

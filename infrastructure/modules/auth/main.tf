@@ -34,7 +34,7 @@ resource "aws_cognito_user_pool" "main" {
     temporary_password_validity_days = 7
   }
 
-  mfa_configuration = "OPTIONAL"
+  mfa_configuration = "ON"
 
   software_token_mfa_configuration {
 
