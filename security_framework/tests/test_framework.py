@@ -44,7 +44,19 @@ class TestBenchmarkEngine:
             runner = BenchmarkEngineRunner(tmpdir)
             res = runner.run_full_evaluation()
             assert "execution_time_ms" in res
+            assert "cis_violations_count" in res
             assert res["status"] == "PASSED"
+
+    def test_evaluate_cis_policies(self):
+        """Verifies CIS policy evaluation returns violations for missing required blocks."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tf_file = os.path.join(tmpdir, "main.tf")
+            with open(tf_file, "w", encoding="utf-8") as f:
+                f.write('resource "aws_db_instance" "example" { storage_encrypted = false publicly_accessible = true }\n')
+
+            engine = BenchmarkEngine(tmpdir)
+            violations = engine.evaluate_cis_policies()
+            assert any(v["rule"] == "CIS 2.3" for v in violations)
 
 
 class TestComparativeEvaluator:
