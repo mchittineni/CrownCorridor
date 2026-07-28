@@ -197,6 +197,9 @@ python evaluation/score.py
 # Run pytest test suite (51 test cases)
 .venv/bin/pytest security_framework/tests/ pipeline/tests/ -v
 
+# Run Checkov
+checkov -d infrastructure --framework terraform
+
 # Native Terraform Tests (11 test suites with 100% coverage)
 cd infrastructure
 terraform fmt -check -recursive .

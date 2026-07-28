@@ -11,6 +11,15 @@ Releases are published automatically by [`release-please.yml`](.github/workflows
 - **`PATCH` (x.y.Z)** — Pipeline, validator, and ETL infrastructure changes (`pipeline/**`, `application/api/**`).
 - **`MAJOR` (X.0.0)** — Web application features, layout, and UI frontend changes (`application/app/**`).
 
+## [1.0.1] — 2026-07-28
+
+### Security & Infrastructure Hardening
+
+- **iac:** enforce S3 multipart upload cleanup (`abort_incomplete_multipart_upload`), CloudFront geo-restriction (whitelist `IN`), SNS topic KMS encryption, RDS deletion protection, and CloudWatch log group retention (365 days)
+- **iac:** align Rego CIS AWS Benchmark S3 encryption policy evaluation with decoupled Terraform provider resources
+- **ci:** configure `.checkov.yaml` and `.github/workflows/infra-ci.yml` for static analysis scanning and policy enforcement
+- **tests:** resolve resource, variable, and output references across native Terraform test suites (`terraform test`)
+
 ## [1.0.0] — 2026-07-27
 
 ### Features
