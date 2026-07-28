@@ -43,9 +43,8 @@ IaCSecBench is a modular, reusable evaluation framework designed to benchmark In
 
 ## 📁 Framework Structure
 
-- `security_framework/engine/`: Core scanning engine (`engine.py`) and comparative driver (`comparative_eval.py`).
+- `security_framework/engine/`: Core scanning engine (`engine.py`, including secret detection and syntax validation) and comparative driver (`comparative_eval.py`).
 - `security_framework/policies/`: OPA / Rego security policy implementations.
-- `security_framework/scanners/`: Secret detection and syntax validators.
 - `security_framework/tests/`: Unit test suite verifying 100% engine accuracy.
 
 ---

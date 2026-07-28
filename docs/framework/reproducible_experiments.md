@@ -11,7 +11,7 @@ This document details the exact methodology, environment prerequisites, and exec
 - **Python Version**: Python 3.11+
 - **Node.js**: v18+ (for frontend/JSDoc validation if running full pipeline)
 - **Terraform CLI**: >= 1.15.0 (for native `.tftest.hcl` execution)
-- **Dependencies**: Installed via `pip install -r pipeline/requirements.txt`
+- **Dependencies**: Installed via `pip install -r pipeline/requirements.txt -r experiments/requirements.txt`
 
 ---
 
@@ -54,18 +54,18 @@ IaCSecBench Engine   | Multi-Engine Validation |  100.0% |    100.0% |  100.0% |
 ✓ Leaderboard results saved to: leaderboard/results.csv
 ```
 
-````
-
 ### 3. Run Framework Unit & Integration Test Suite
 
 ```bash
-.venv/bin/pytest pipeline/tests/ -v
-````
+.venv/bin/pytest security_framework/tests/ pipeline/tests/ -v
+```
 
 ---
 
 ## 📁 Artifact Locations
 
-- **Benchmark Dataset**: [benchmarks.json](data/benchmarks/benchmarks.json)
-- **Experiment Results JSON**: [experiment_results.json](data/benchmarks/experiment_results.json)
-- **Framework Documentation**: [framework.md](docs/framework/framework.md)
+- **Master Benchmark Catalog**: [benchmark.json](../../benchmark/benchmark.json)
+- **Benchmark Dataset Schema**: [benchmarks.json](../../benchmark/datasets/benchmarks.json)
+- **Experiment Results JSON**: [experiment_results.json](../../benchmark/reports/experiment_results.json)
+- **Leaderboard Export**: [results.csv](../../leaderboard/results.csv)
+- **Framework Documentation**: [framework.md](framework.md)

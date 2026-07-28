@@ -6,7 +6,7 @@ This document outlines the evaluation methodology and metrics used to benchmark 
 
 ## 🔬 Benchmark Dataset Design
 
-The research benchmark suite ([benchmark/benchmark.json](file:///Users/manideepchittineni/Desktop/GitHub/Personal/CrownCorridor/benchmark/benchmark.json)) contains 345 self-contained test scenarios across 12 infrastructure domains:
+The research benchmark suite ([benchmark/benchmark.json](../../benchmark/benchmark.json)) contains 345 self-contained test scenarios across 12 infrastructure domains:
 
 1. **IAM**: IAM roles, wildcard policies, privilege escalation, inline statements.
 2. **NET**: Security groups open to `0.0.0.0/0`, public SSH/RDP, ALB drop headers, VPC flow logs.

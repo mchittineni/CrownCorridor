@@ -10,11 +10,11 @@ We take the security of **IaCSecBench** and the **Crown Corridor Application Pla
 
 ## 🛡️ Supported Versions
 
-| Component                            | Version   | Supported |
-| ------------------------------------ | --------- | --------- |
-| IaCSecBench Engine                   | v1.0.0    | ✅ Yes    |
-| Crown Corridor Application           | v1.0.0    | ✅ Yes    |
-| AWS Terraform Reference Architecture | >= 1.15.0 | ✅ Yes    |
+| Component                            | Version             | Supported |
+| ------------------------------------ | ------------------- | --------- |
+| IaCSecBench Engine                   | v1.0.x (latest)     | ✅ Yes    |
+| Crown Corridor Application           | v1.0.x (latest)     | ✅ Yes    |
+| AWS Terraform Reference Architecture | Terraform >= 1.15.0 | ✅ Yes    |
 
 ---
 

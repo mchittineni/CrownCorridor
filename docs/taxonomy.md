@@ -42,7 +42,7 @@ IaCSecBench
 
 ---
 
-## Category Breakdown & Case Allocation (300 Total Cases)
+## Category Breakdown & Case Allocation (345 Total Cases)
 
 | Category Code | Domain            | Description                                                           | Total Cases | Target Split (Secure / Insecure) |
 | :------------ | :---------------- | :-------------------------------------------------------------------- | :---------: | :------------------------------: |

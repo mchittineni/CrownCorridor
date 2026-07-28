@@ -24,7 +24,11 @@ git clone https://github.com/mchittineni/IaCSecBench.git
 cd IaCSecBench
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r pipeline/requirements.txt
+pip install -r pipeline/requirements.txt -r application/api/requirements.txt
+pip install pre-commit && pre-commit install
+
+# Node.js toolchain (ESLint, Prettier, JSDoc)
+npm install
 ```
 
 ### 2. Run Quality Checks & Tests
@@ -41,14 +45,18 @@ python3 pipeline/validate_iac.py
 # 3. Run evaluation protocol & leaderboard scoring
 python3 evaluation/score.py
 
-# 4. Run full test suite with code coverage
-.venv/bin/pytest security_framework/tests/ pipeline/tests/ -v
+# 4. Run full test suite (62 tests: application/api, pipeline & security_framework)
+.venv/bin/pytest -v
 
 # 5. Run one-command reproducible experiment suite
 ./experiments/run_all.sh
 
 # 6. Run pre-commit hook checks
-.venv/bin/pre-commit run --all-files
+pre-commit run --all-files
+
+# 7. Run JavaScript lint & formatting checks
+npm run lint
+npm run format:check
 ```
 
 ---

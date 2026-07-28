@@ -10,7 +10,7 @@ The **IaC Security & Evaluation Benchmark Framework** is a modular, reusable fra
 
 - 🔍 **Multi-Repository & Multi-Module IaC Engine**: Generic scanning engine capable of evaluating arbitrary Terraform modules, provider constraints, and security standards.
 - 📊 **Comparative Benchmark Driver**: Built-in comparative evaluator against **Checkov**, **tfsec**, **Sentinel / OPA**, and **Terratest**.
-- 📦 **Public Benchmark Datasets**: Standardized, annotated test case schema stored under `data/benchmarks/benchmarks.json`.
+- 📦 **Public Benchmark Datasets**: Standardized, annotated test case schema stored under `benchmark/datasets/benchmarks.json`.
 - 🧪 **Reproducible Experiments**: One-command experiment suite (`python pipeline/run_experiments.py`) generating telemetry and performance data.
 - 🔒 **Zero-PII & Secret Compliance**: Automatic scanning for customer PII, AWS secret keys, hardcoded database credentials, and tokens.
 
