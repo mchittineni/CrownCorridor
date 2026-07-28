@@ -13,6 +13,13 @@ Releases are published automatically by [`release-please.yml`](.github/workflows
 
 ## [1.0.0](https://github.com/mchittineni/iacsecbench/compare/iacsecbench-v1.0.0...iacsecbench-v1.0.0) (2026-07-28)
 
+
+### Bug Fixes
+
+* **citation:** update citation file to include correct DOI and authors ([2d5e98a](https://github.com/mchittineni/iacsecbench/commit/2d5e98a0e9a255aee315205231ef0b1d59c3f992))
+
+## [1.0.0](https://github.com/mchittineni/iacsecbench/compare/iacsecbench-v1.0.0...iacsecbench-v1.0.0) (2026-07-28)
+
 ### Bug Fixes
 
 - **benchmark:** update benchmark infrastructure ([f194119](https://github.com/mchittineni/iacsecbench/commit/f1941197dfe04bc588b513a5bff324a36b3cd0c2))
