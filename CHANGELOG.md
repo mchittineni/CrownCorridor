@@ -11,6 +11,20 @@ Releases are published automatically by [`release-please.yml`](.github/workflows
 - **`PATCH` (x.y.Z)** — Pipeline, validator, and ETL infrastructure changes (`pipeline/**`, `application/api/**`).
 - **`MAJOR` (X.0.0)** — Web application features, layout, and UI frontend changes (`application/app/**`).
 
+## [1.0.0](https://github.com/mchittineni/iacsecbench/compare/iacsecbench-v1.0.0...iacsecbench-v1.0.0) (2026-07-28)
+
+
+### Bug Fixes
+
+* **benchmark:** update benchmark infrastructure ([f194119](https://github.com/mchittineni/iacsecbench/commit/f1941197dfe04bc588b513a5bff324a36b3cd0c2))
+* **benchmark:** update benchmark infrastructure for security audit remediation ([396cab1](https://github.com/mchittineni/iacsecbench/commit/396cab168d2ecfce127c110edddd984ff3086456))
+* **benchmark:** update benchmark results ([3b64b35](https://github.com/mchittineni/iacsecbench/commit/3b64b352a516aaa3da6e9a90b51b66acc685352b))
+* **benchmark:** update infrastructure for security audit remediation ([b538ec7](https://github.com/mchittineni/iacsecbench/commit/b538ec7c93236573f3dca34f5d82a75ce9698441))
+* **benchmark:** updated CIS AWS Benchmark policy to address security audit findings ([3def95a](https://github.com/mchittineni/iacsecbench/commit/3def95a512ec7fd1be16ea444b7defbeb5552634))
+* **security:** update security policies and configurations ([417274c](https://github.com/mchittineni/iacsecbench/commit/417274c4a19c16d68afb81fd2382cc25e9082d24))
+* **terraform:** update terraform files to address security audit findings ([0a02487](https://github.com/mchittineni/iacsecbench/commit/0a024876aec73f646842780521ff91f807beeba9))
+* **terraform:** updated terraform files to fix security audit issues ([c6b69b0](https://github.com/mchittineni/iacsecbench/commit/c6b69b0f0edcf24b3a7c0a15c2e15e272607a99e))
+
 ## [1.0.1] — 2026-07-28
 
 ### Security & Infrastructure Hardening
