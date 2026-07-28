@@ -1,14 +1,13 @@
-cff-version: 1.2.0
+cff-version: 1.1.0
 message: "If you use this benchmark framework or dataset in your research, please cite it as below."
 authors:
   - family-names: "Chittineni"
     given-names: "Manideep"
-    orcid: "https://orcid.org/0000-0000-0000-0000"
+    orcid: "https://orcid.org/0009-0003-9709-5842"
 title: "IaCSecBench: An Infrastructure-as-Code Security Benchmark Framework"
 version: 1.0.0
-doi: 10.5281/zenodo.1234567
-date-released: 2026-07-27
-url: "https://github.com/mchittineni/CrownCorridor"
+date-released: 2026-07-28
+url: "https://github.com/mchittineni/iacsecbench"
 keywords:
   - "Infrastructure as Code"
   - "Cloud Security"
