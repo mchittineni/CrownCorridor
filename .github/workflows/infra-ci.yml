@@ -85,7 +85,7 @@ jobs:
       - name: Run Checkov Security Scan
         run: |
           pip install checkov
-          checkov -d infrastructure --framework terraform --quiet
+          checkov --config-file .checkov.yaml
 
       - name: Run Full Pytest Suite (Includes IaC & Policy Unit Tests)
         run: pytest security_framework/tests/ pipeline/tests/ -v --tb=short

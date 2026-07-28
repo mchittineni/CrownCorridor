@@ -10,11 +10,16 @@ permissions:
   issues: write
   pull-requests: write
 
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+      - name: Create Release Please PR
+        uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
         id: release
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -24,13 +29,6 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Overlay Data Branches
-        if: ${{ steps.release.outputs.release_created }}
-        uses: ./.github/actions/overlay-data-branches
-        with:
-          branches: 'data/andhra_pradesh,data/telangana'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Setup Toolchain
         if: ${{ steps.release.outputs.release_created }}
         uses: ./.github/actions/setup-pipeline
@@ -39,26 +37,16 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
         run: python pipeline/validate_data.py
 
-      - name: Build Data Archives
+      - name: Build Benchmark Archives
         if: ${{ steps.release.outputs.release_created }}
         run: |
           REF_NAME="${{ steps.release.outputs.tag_name }}"
           mkdir -p release-artifacts
 
-          # AP data archive
-          cd data/andhra_pradesh
-          zip -r ../../release-artifacts/crown-corridor-ap-$REF_NAME.zip .
-          cd ../..
+          # IaCSecBench benchmark dataset & evaluation suite
+          zip -r release-artifacts/iacsecbench-$REF_NAME.zip benchmark/ security_framework/ evaluation/ infrastructure/
 
-          # TS data archive
-          cd data/telangana
-          zip -r ../../release-artifacts/crown-corridor-ts-$REF_NAME.zip .
-          cd ../..
-
-          # Combined archive
-          zip -r release-artifacts/crown-corridor-all-$REF_NAME.zip data/
-
-      - name: Upload Data Archives to Release
+      - name: Upload Benchmark Archives to Release
         if: ${{ steps.release.outputs.release_created }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
