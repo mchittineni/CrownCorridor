@@ -2,8 +2,8 @@
 Figure 2: Execution Runtime Latency (ms) Comparison
 ============================================================
 
-Checkov              ██                   (1420.0 ms)
-tfsec                █                    (310.0 ms)
-Sentinel / OPA       █                    (650.0 ms)
-Terratest            ████████████████████ (12400.0 ms)
-IaCSecBench Engine   █                    (185.0 ms)
+Checkov              ████████████████████ (1420.0 ms)
+IaCSecBench Engine   ██                   (185.0 ms)
+Sentinel / OPA       █████████            (650.0 ms)
+Terratest            ███████████          (850.0 ms)
+tfsec                ████                 (310.0 ms)
