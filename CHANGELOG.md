@@ -11,6 +11,21 @@ Releases are published automatically by [`release-please.yml`](.github/workflows
 - **`PATCH` (x.y.Z)** — Pipeline, validator, and ETL infrastructure changes (`pipeline/**`, `application/api/**`).
 - **`MAJOR` (X.0.0)** — Web application features, layout, and UI frontend changes (`application/app/**`).
 
+## [1.1.0](https://github.com/mchittineni/iacsecbench/compare/v1.0.1...v1.1.0) (2026-07-30)
+
+
+### Features
+
+* **threat-model:** added new threat model for project upgrade ([c83fbc5](https://github.com/mchittineni/iacsecbench/commit/c83fbc5c03320ef3277ce2bec7e276bcafd0a820))
+
+
+### Bug Fixes
+
+* **benchmark:** update benchmark results for project upgrade ([36c0c10](https://github.com/mchittineni/iacsecbench/commit/36c0c1041c9c59c320f05b195a2a2d9319ea947d))
+* **docs:** update documentation for project upgrade ([4780961](https://github.com/mchittineni/iacsecbench/commit/4780961dc36ac45a73a7a5d90da61846bebe2dbf))
+* **scripts:** update code quality and compliance checkers ([fbba130](https://github.com/mchittineni/iacsecbench/commit/fbba1305e27a5eb5f3762815873edeb670339aed))
+* **scripts:** update code quality and compliance checkers ([d56f4c0](https://github.com/mchittineni/iacsecbench/commit/d56f4c09a2f0b3d5383b8a5ed425032d4817bfaf))
+
 ## [1.0.1](https://github.com/mchittineni/iacsecbench/compare/v1.0.0...v1.0.1) (2026-07-28)
 
 ### Bug Fixes
