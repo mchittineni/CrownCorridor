@@ -63,6 +63,26 @@ graph TD
 
 ---
 
+## 🔬 IaCSecBench Benchmark Dataset Architecture
+
+```mermaid
+graph TD
+    Bench["🔬 IaCSecBench Framework"] --> Internal["🔒 Controlled Benchmark (Internal)"]
+    Bench --> External["🌐 Validation Datasets (External)"]
+    Bench --> Ops["⚡ Operational Observation"]
+
+    Internal --> IntCases["345 Labelled Scenarios<br/>(12 Domains: IAM, Net, Storage, etc.)"]
+
+    External --> TFReg["📦 Terraform Registry<br/>(50 Modules)"]
+    External --> SF["🛡️ SecureFlag IaC<br/>(75 Vulnerability Scenarios)"]
+    External --> CIS["📋 CIS AWS Benchmarks<br/>(50 Misconfiguration Scenarios)"]
+
+    Ops --> PRs["🚀 61 CI/CD Pull Requests"]
+```
+
+
+---
+
 ## Architecture Overview
 
 ```
@@ -97,8 +117,9 @@ IaCSecBench Security Framework & Evaluation Protocol (security_framework/ & eval
   └── security_framework/policies/ OPA Rego policy definitions
 
 Benchmark Datasets, Cases & Leaderboard (benchmark/ & leaderboard/)
-  ├── benchmark/benchmark.json    Master 345 self-contained test case research dataset catalog
-  ├── benchmark/cases/           Modular case folders (IAM-001/ through TF-003/) with main.tf & expected.json
+  ├── benchmark/internal/         Internal 345 self-contained test case catalog
+  ├── benchmark/external/         175 external cases (terraform_registry/, secureflag/, cis_examples/)
+
   ├── benchmark/golden_results/  Golden reference JSON outputs for Checkov, tfsec, Terrascan, OPA, IaCSecBench
   └── leaderboard/results.csv    Published reference leaderboard metrics
 

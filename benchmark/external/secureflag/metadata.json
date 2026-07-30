@@ -1,0 +1,36 @@
+{
+  "dataset": "SecureFlag IaC Vulnerabilities",
+  "source": "SecureFlag",
+  "description": "External validation collection of intentionally vulnerable Terraform scenarios covering IAM privilege escalation, public S3 storage, exposed databases, insecure security groups, and missing encryption.",
+  "total_cases": 75,
+  "cases": [
+    {
+      "id": "SF-S3-001",
+      "category": "storage",
+      "expected": "VIOLATION",
+      "control": "CIS AWS 2.1",
+      "description": "Publicly accessible S3 bucket configuration with ACL set to public-read"
+    },
+    {
+      "id": "SF-SG-001",
+      "category": "networking",
+      "expected": "VIOLATION",
+      "control": "CIS AWS 4.1",
+      "description": "Unrestricted ingress SSH access from 0.0.0.0/0 on port 22"
+    },
+    {
+      "id": "SF-IAM-001",
+      "category": "identity",
+      "expected": "VIOLATION",
+      "control": "CIS AWS 1.16",
+      "description": "IAM role with overly permissive administrator wildcard permissions"
+    },
+    {
+      "id": "SF-RDS-001",
+      "category": "database",
+      "expected": "VIOLATION",
+      "control": "CIS AWS 2.3",
+      "description": "Unencrypted RDS instance lacking KMS customer managed key encryption"
+    }
+  ]
+}

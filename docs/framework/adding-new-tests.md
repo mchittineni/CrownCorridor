@@ -35,10 +35,10 @@ Append your new test case entry to the `test_cases` array of the master catalog 
 
 ## 🧪 Step 2: Add a Self-Contained Case Folder
 
-Create a matching folder under `benchmark/cases/<CASE-ID>/` containing the Terraform scenario and its ground truth:
+Create a matching folder under `benchmark/internal/cases/<CASE-ID>/` containing the Terraform scenario and its ground truth:
 
 ```
-benchmark/cases/ENC-031/
+benchmark/internal/cases/ENC-031/
 ├── main.tf         # The Terraform scenario under test
 ├── variables.tf    # Input variables (if any)
 ├── expected.json   # Ground truth: expected_result, severity, violations[]

@@ -388,6 +388,29 @@ def check_market_trends() -> None:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# benchmark data validator
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+def check_benchmark_datasets() -> None:
+    print("\n[9] Benchmark Internal & External Datasets")
+    BENCHMARK_ROOT = ROOT / "benchmark"
+    internal_meta = BENCHMARK_ROOT / "internal" / "metadata.json"
+    if internal_meta.exists():
+        ok("benchmark/internal/metadata.json present")
+    else:
+        err("Missing: benchmark/internal/metadata.json")
+
+    external_dirs = ["terraform_registry", "secureflag", "cis_examples"]
+    for ext in external_dirs:
+        ext_meta = BENCHMARK_ROOT / "external" / ext / "metadata.json"
+        if ext_meta.exists():
+            ok(f"benchmark/external/{ext}/metadata.json present")
+        else:
+            err(f"Missing: benchmark/external/{ext}/metadata.json")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Entry point
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -404,6 +427,7 @@ if __name__ == "__main__":
     check_geojson()
     check_property_history()
     check_market_trends()
+    check_benchmark_datasets()
 
     print("\n" + "=" * 60)
     if ERRORS:
