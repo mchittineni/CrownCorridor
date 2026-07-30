@@ -26,7 +26,7 @@ CHECKS = {
     ],
     "gdpr": [
         ("privacy_policy", ["SECURITY.md"]),
-        ("data_inventory", ["data/", "benchmark/", "infrastructure/"] ),
+        ("data_inventory", ["data/", "benchmark/", "infrastructure/"]),
         ("incident_response", ["SECURITY.md"]),
     ],
 }
@@ -80,7 +80,9 @@ def render_text(result):
 def parse_args():
     parser = argparse.ArgumentParser(description="Compliance checker stub for standard frameworks.")
     parser.add_argument("target", nargs="?", default=".", help="Repository root path.")
-    parser.add_argument("--framework", choices=FRAMEWORKS, required=True, help="Compliance framework to evaluate.")
+    parser.add_argument(
+        "--framework", choices=FRAMEWORKS, required=True, help="Compliance framework to evaluate."
+    )
     parser.add_argument("--json", action="store_true", help="Output JSON.")
     parser.add_argument("--output", type=Path, help="Write the report to a file.")
     return parser.parse_args()

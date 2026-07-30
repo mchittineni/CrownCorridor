@@ -2,7 +2,7 @@
 # Output format options: cli, json, junitxml, github_failed_check, sarif, cyclonedx
 
 # --- Output Settings ---
-output: 
+output:
   - cli
   - sarif # Standard format for GitHub Code Scanning alerts
 quiet: true # Reduces noise by hiding passed checks
@@ -15,7 +15,7 @@ hard-fail-on:
 compact: true
 
 # --- Scan Scope ---
-framework: 
+framework:
   - terraform
   - secrets
 
@@ -65,6 +65,6 @@ skip-check:
 
 # --- Advanced Features ---
 # Download external modules to scan them
-download-external-modules: true 
+download-external-modules: true
 var-file:
   - ./infrastructure/terraform.tfvars

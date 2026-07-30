@@ -29,7 +29,9 @@ class BenchmarkEngine:
         freq = {}
         for char in value:
             freq[char] = freq.get(char, 0) + 1
-        entropy = -sum((count / len(value)) * math.log2(count / len(value)) for count in freq.values())
+        entropy = -sum(
+            (count / len(value)) * math.log2(count / len(value)) for count in freq.values()
+        )
         return entropy >= 3.5 and len(set(value)) >= 8
 
     def scan_secret_patterns(self) -> list[dict[str, Any]]:
@@ -118,30 +120,6 @@ class BenchmarkEngine:
                     with open(filepath, encoding="utf-8", errors="ignore") as f:
                         content = f.read()
                     tf_contents.append((filepath, content))
-
-        if not tf_contents:
-            return []
-
-        if not tf_contents:
-            return []
-
-        if not tf_contents:
-            return []
-
-        if not tf_contents:
-            return []
-
-        if not tf_contents:
-            return []
-
-        if not tf_contents:
-            return []
-
-        if not tf_contents:
-            return []
-
-        if not tf_contents:
-            return []
 
         if not tf_contents:
             return []
@@ -238,7 +216,9 @@ class BenchmarkEngine:
                     "type": "CIS_AWS",
                 }
             )
-        if _matches(r"aws_cloudfront_distribution") and not _matches(r"viewer_protocol_policy\s*=\s*\"redirect-to-https\""):
+        if _matches(r"aws_cloudfront_distribution") and not _matches(
+            r"viewer_protocol_policy\s*=\s*\"redirect-to-https\""
+        ):
             violations.append(
                 {
                     "rule": "CIS 2.4",

@@ -52,7 +52,9 @@ class TestBenchmarkEngine:
         with tempfile.TemporaryDirectory() as tmpdir:
             tf_file = os.path.join(tmpdir, "main.tf")
             with open(tf_file, "w", encoding="utf-8") as f:
-                f.write('resource "aws_db_instance" "example" { storage_encrypted = false publicly_accessible = true }\n')
+                f.write(
+                    'resource "aws_db_instance" "example" { storage_encrypted = false publicly_accessible = true }\n'
+                )
 
             engine = BenchmarkEngine(tmpdir)
             violations = engine.evaluate_cis_policies()
