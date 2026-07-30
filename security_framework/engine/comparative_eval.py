@@ -147,7 +147,7 @@ class ComparativeEvaluator:
                 try:
                     with open(filepath, encoding="utf-8") as f:
                         data = json.load(f)
-                except Exception:
+                except (json.JSONDecodeError, OSError):
                     continue
                 tool_name = data.get("tool_name") or os.path.splitext(filename)[0]
                 if not isinstance(tool_name, str):
@@ -167,7 +167,9 @@ class ComparativeEvaluator:
         }
         return categories.get(tool_name, "Benchmarking Tool")
 
-    def _compute_metrics_from_golden(self, golden_data: dict[str, Any]) -> ToolBenchmarkResult | None:
+    def _compute_metrics_from_golden(
+        self, golden_data: dict[str, Any]
+    ) -> ToolBenchmarkResult | None:
         """Converts golden result artifacts into benchmark performance metrics."""
         results = golden_data.get("results", [])
         if not isinstance(results, list) or not results:

@@ -15,7 +15,7 @@ import future.keywords.in
 deny contains msg if {
   some bucket in input.resource_changes
   bucket.type == "aws_s3_bucket"
-  
+
   # Check if a public access block exists for this bucket or globally in the plan
   not has_public_access_block(bucket)
 

@@ -11,25 +11,33 @@ SEVERITY_ORDER = ["low", "medium", "high", "critical"]
 PATTERNS = [
     {
         "name": "Hardcoded Secret",
-        "pattern": re.compile(r"(?i)(aws_secret_access_key|aws_access_key_id|api[_-]?key|secret|password)\s*=\s*['\"][^'\"]+['\"]"),
+        "pattern": re.compile(
+            r"(?i)(aws_secret_access_key|aws_access_key_id|api[_-]?key|secret|password)\s*=\s*['\"][^'\"]+['\"]"
+        ),
         "severity": "high",
         "category": "secret",
     },
     {
         "name": "SQL Injection",
-        "pattern": re.compile(r"(?i)(union\s+select|select\s+.+\s+from|drop\s+table|exec\(|sp_executesql|--\s|/\*)"),
+        "pattern": re.compile(
+            r"(?i)(union\s+select|select\s+.+\s+from|drop\s+table|exec\(|sp_executesql|--\s|/\*)"
+        ),
         "severity": "critical",
         "category": "injection",
     },
     {
         "name": "XSS Injection",
-        "pattern": re.compile(r"(?i)(<script|javascript:|onerror=|onload=|document\.cookie|window\.location)"),
+        "pattern": re.compile(
+            r"(?i)(<script|javascript:|onerror=|onload=|document\.cookie|window\.location)"
+        ),
         "severity": "high",
         "category": "xss",
     },
     {
         "name": "Command Injection",
-        "pattern": re.compile(r"(?i)(\b(exec|system|popen|subprocess\.run|subprocess\.Popen|os\.system|shell=True)\b|[;&|`]{2,})"),
+        "pattern": re.compile(
+            r"(?i)(\b(exec|system|popen|subprocess\.run|subprocess\.Popen|os\.system|shell=True)\b|[;&|`]{2,})"
+        ),
         "severity": "critical",
         "category": "injection",
     },
@@ -41,7 +49,9 @@ PATTERNS = [
     },
     {
         "name": "Debug Statement",
-        "pattern": re.compile(r"(?i)(console\.log\(|print\(|pdb\.set_trace\(|debugger;|logger\.debug\()"),
+        "pattern": re.compile(
+            r"(?i)(console\.log\(|print\(|pdb\.set_trace\(|debugger;|logger\.debug\()"
+        ),
         "severity": "medium",
         "category": "debug",
     },
@@ -77,7 +87,16 @@ EXTENSIONS = [
     ".hcl",
 ]
 
-EXCLUDED_DIRS = {".git", "node_modules", ".venv", "__pycache__", ".pytest_cache", ".mypy_cache", "dist", "build"}
+EXCLUDED_DIRS = {
+    ".git",
+    "node_modules",
+    ".venv",
+    "__pycache__",
+    ".pytest_cache",
+    ".mypy_cache",
+    "dist",
+    "build",
+}
 
 
 def scan_file(path, min_severity):
@@ -170,7 +189,9 @@ def render_text(report, findings):
 def parse_args():
     parser = argparse.ArgumentParser(description="Security scanner for code and IaC files.")
     parser.add_argument("target", nargs="?", default=".", help="Path to scan.")
-    parser.add_argument("--severity", choices=SEVERITY_ORDER, default="low", help="Minimum severity to include.")
+    parser.add_argument(
+        "--severity", choices=SEVERITY_ORDER, default="low", help="Minimum severity to include."
+    )
     parser.add_argument("--json", action="store_true", help="Output JSON.")
     parser.add_argument("--output", type=Path, help="Write report to a file.")
     return parser.parse_args()

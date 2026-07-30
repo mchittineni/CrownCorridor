@@ -233,8 +233,11 @@ terraform fmt -check -recursive .
 terraform init -backend=false
 terraform validate
 terraform test
-```
 
+# Run Pre-commit Hooks
+pre-commit run --all-files
+
+```
 ---
 
 ## 🔬 Open-Source IaC Security Benchmark Framework

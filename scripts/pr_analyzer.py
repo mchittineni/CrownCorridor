@@ -2,17 +2,29 @@
 import argparse
 import json
 import re
-import subprocess
+import subprocess  # nosec B404
 import sys
 from pathlib import Path
 
-EXCLUDED_DIRS = {".git", "node_modules", ".venv", "__pycache__", ".pytest_cache", ".mypy_cache", "dist", "build"}
+EXCLUDED_DIRS = {
+    ".git",
+    "node_modules",
+    ".venv",
+    "__pycache__",
+    ".pytest_cache",
+    ".mypy_cache",
+    "dist",
+    "build",
+}
 
-CHANGE_PATTERN = re.compile(r"(TODO|FIXME|console\.log\(|print\(|debugger;|aws_secret_access_key|api[_-]?key|password|union\s+select|<script|\.\./|\.\.\\)", re.I)
+CHANGE_PATTERN = re.compile(
+    r"(TODO|FIXME|console\.log\(|print\(|debugger;|aws_secret_access_key|api[_-]?key|password|union\s+select|<script|\.\./|\.\.\\)",
+    re.I,
+)
 SEVERITY_OVERRIDES = {
-    "aws_secret_access_key": "critical",
+    "aws_secret_access_key": "critical",  # nosec B105
     "api_key": "high",
-    "password": "high",
+    "password": "high",  # nosec B105
     "union select": "critical",
     "<script": "high",
     "console.log(": "medium",
@@ -25,7 +37,7 @@ SEVERITY_OVERRIDES = {
 
 def git_diff_files(base, head):
     try:
-        result = subprocess.run(
+        result = subprocess.run(  # nosec B603, B607
             ["git", "diff", "--name-only", f"{base}...{head}"],
             capture_output=True,
             text=True,
@@ -132,7 +144,9 @@ def render_text(report):
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="PR analyzer for code risk and review prioritization.")
+    parser = argparse.ArgumentParser(
+        description="PR analyzer for code risk and review prioritization."
+    )
     parser.add_argument("target", nargs="?", default=".", help="Repository root path.")
     parser.add_argument("--base", help="Base branch or commit.")
     parser.add_argument("--head", help="Head branch or commit.")

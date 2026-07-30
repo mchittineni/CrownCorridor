@@ -12,7 +12,16 @@ LANGUAGE_EXTENSIONS = {
     "go": [".go"],
 }
 
-EXCLUDED_DIRS = {".git", "node_modules", ".venv", "__pycache__", ".pytest_cache", ".mypy_cache", "dist", "build"}
+EXCLUDED_DIRS = {
+    ".git",
+    "node_modules",
+    ".venv",
+    "__pycache__",
+    ".pytest_cache",
+    ".mypy_cache",
+    "dist",
+    "build",
+}
 
 THRESHOLDS = {
     "long_function": 50,
@@ -34,10 +43,16 @@ def compute_python_metrics(source):
     for node in ast.walk(tree):
         if isinstance(node, ast.FunctionDef):
             start = node.lineno
-            end = max((child.lineno for child in ast.walk(node) if hasattr(child, "lineno")), default=start)
+            end = max(
+                (child.lineno for child in ast.walk(node) if hasattr(child, "lineno")),
+                default=start,
+            )
             length = end - start + 1
             params = len(node.args.args) + len(node.args.kwonlyargs)
-            branches = sum(isinstance(child, (ast.If, ast.For, ast.While, ast.Try, ast.With, ast.BoolOp)) for child in ast.walk(node))
+            branches = sum(
+                isinstance(child, (ast.If, ast.For, ast.While, ast.Try, ast.With, ast.BoolOp))
+                for child in ast.walk(node)
+            )
             if length > THRESHOLDS["long_function"]:
                 metrics.append({"type": "long_function", "name": node.name, "value": length})
             if params > THRESHOLDS["too_many_params"]:
@@ -47,22 +62,32 @@ def compute_python_metrics(source):
     return metrics
 
 
-def compute_text_metrics(source, language):
+def compute_text_metrics(source, _language):
     findings = []
     lines = source.splitlines()
     nesting = 0
     max_nesting = 0
     for line in lines:
         stripped = line.strip()
-        if stripped.startswith(("if ", "for ", "while ", "switch ", "case ", "else ", "try", "except", "catch")):
+        if stripped.startswith(
+            ("if ", "for ", "while ", "switch ", "case ", "else ", "try", "except", "catch")
+        ):
             nesting += 1
             max_nesting = max(max_nesting, nesting)
         elif stripped == "" and nesting > 0:
             nesting = max(nesting - 1, 0)
     if max_nesting > THRESHOLDS["deep_nesting"]:
         findings.append({"type": "deep_nesting", "value": max_nesting})
-    if source.count("if ") + source.count("for ") + source.count("while ") > THRESHOLDS["high_complexity"]:
-        findings.append({"type": "high_complexity", "value": source.count("if ") + source.count("for ") + source.count("while ")})
+    if (
+        source.count("if ") + source.count("for ") + source.count("while ")
+        > THRESHOLDS["high_complexity"]
+    ):
+        findings.append(
+            {
+                "type": "high_complexity",
+                "value": source.count("if ") + source.count("for ") + source.count("while "),
+            }
+        )
     return findings
 
 
@@ -88,8 +113,7 @@ def gather_files(root, language):
     return [
         path
         for path in Path(root).rglob("*")
-        if path.suffix in extensions
-        and not any(part in EXCLUDED_DIRS for part in path.parts)
+        if path.suffix in extensions and not any(part in EXCLUDED_DIRS for part in path.parts)
     ]
 
 
@@ -124,7 +148,9 @@ def render_text(report):
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Code quality checker for file-level complexity thresholds.")
+    parser = argparse.ArgumentParser(
+        description="Code quality checker for file-level complexity thresholds."
+    )
     parser.add_argument("target", nargs="?", default=".", help="Path to analyze.")
     parser.add_argument("--language", default="python", help="Language to evaluate.")
     parser.add_argument("--json", action="store_true", help="Output JSON.")
