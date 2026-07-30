@@ -11,6 +11,13 @@ Releases are published automatically by [`release-please.yml`](.github/workflows
 - **`PATCH` (x.y.Z)** — Pipeline, validator, and ETL infrastructure changes (`pipeline/**`, `application/api/**`).
 - **`MAJOR` (X.0.0)** — Web application features, layout, and UI frontend changes (`application/app/**`).
 
+## [1.2.0](https://github.com/mchittineni/iacsecbench/compare/v1.1.0...v1.2.0) (2026-07-30)
+
+
+### Features
+
+* **benchmark:** add external validation framework ([3d67d97](https://github.com/mchittineni/iacsecbench/commit/3d67d97d4c67ee6373f75c4d22dfab06648b469f))
+
 ## [1.1.0](https://github.com/mchittineni/iacsecbench/compare/v1.0.1...v1.1.0) (2026-07-30)
 
 
