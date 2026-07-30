@@ -8,7 +8,7 @@ This document outlines the hierarchical taxonomy of **IaCSecBench**, a publicati
 
 ```
 IaCSecBench
-├── 1. Security
+├── 1. Internal Controlled Benchmark (345 Cases)
 │   ├── IAM (Identity & Access Management)
 │   ├── Networking (VPC, Security Groups, ALB, Firewalls)
 │   ├── Storage (S3, EFS, EBS, Block Storage)
@@ -18,31 +18,25 @@ IaCSecBench
 │   ├── Serverless (Lambda, API Gateway, EventBridge)
 │   ├── Logging & Monitoring (CloudTrail, VPC Flow Logs, GuardDuty)
 │   ├── Secrets (Hardcoded Keys, SSM Parameter Store, Vault)
-│   └── Identity (SSO, IAM Identity Center, OIDC Federated Roles)
-│
-├── 2. Privacy & Governance
+│   ├── Identity (SSO, IAM Identity Center, OIDC Federated Roles)
 │   ├── PII (Personally Identifiable Information Scrubbing)
-│   ├── Data Sovereignty (Regional Isolation & Bounding Boxes)
-│   └── Regulatory Compliance (GDPR, HIPAA, CIS AWS Foundations)
+│   └── Terraform Quality & Native Testing (HCL2, Variable Validation, .tftest.hcl)
 │
-├── 3. Terraform Quality & Linting
-│   ├── Syntax & Formatting (HCL2 Standard, Brace/Bracket Balance)
-│   ├── Variable Validation (Type Constraints & Regex Validation)
-│   ├── Native Tests (.tftest.hcl Coverage & Assertion Checks)
-│   └── Resource Lifecycle (depends_on, prevent_destroy, ignore_changes)
+├── 2. External Validation Datasets (175 Cases)
+│   ├── Terraform Registry Modules (50 Cases — Real-world Module Complexity)
+│   ├── SecureFlag IaC Vulnerabilities (75 Cases — Real-world Vulnerability Scenarios)
+│   └── CIS AWS Misconfigurations (50 Cases — Compliance-driven Security Controls)
 │
-├── 4. Performance & Execution
-│   ├── Evaluation Latency (Per-module and Total Engine Speed in ms)
-│   └── Parser Throughput (Lines of HCL Processed per Second)
+├── 3. Operational Production Observation
+│   └── 61 Continuous Integration Pull Requests
 │
-└── 5. Reliability & State Drift
-    ├── Idempotency (State Convergence & Drift Prevention)
-    └── Structural Integrity (Orphaned Resources & Cyclic Dependencies)
+└── Total Evidence: 581 Scenarios & Evaluations
 ```
 
 ---
 
-## Category Breakdown & Case Allocation (345 Total Cases)
+## Category Breakdown & Case Allocation (345 Internal + 175 External Cases)
+
 
 | Category Code | Domain            | Description                                                           | Total Cases | Target Split (Secure / Insecure) |
 | :------------ | :---------------- | :-------------------------------------------------------------------- | :---------: | :------------------------------: |

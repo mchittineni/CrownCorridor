@@ -8,7 +8,8 @@ Thank you for your interest in contributing to **IaCSecBench: An Infrastructure-
 
 We welcome contributions across several areas:
 
-1. **Adding Benchmark Scenarios**: Adding self-contained test cases to `benchmark/benchmark.json` and `benchmark/cases/`.
+1. **Adding Benchmark Scenarios**: Adding self-contained test cases to `benchmark/internal/metadata.json` and `benchmark/internal/cases/`.
+
 2. **Policy Extensions**: Adding OPA / Rego security policy rules under `security_framework/policies/`.
 3. **Scanner & Metric Enhancements**: Extending static analysis, scoring protocols (`evaluation/score.py`), and secret detection engines under `security_framework/engine/`.
 4. **Bug Reports & Feature Requests**: Submitting issues with reproducible steps.

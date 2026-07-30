@@ -21,9 +21,22 @@ The IaCSecBench engine processes target infrastructure repositories through thre
 
 ---
 
-## 2. Comparative Evaluation Engine & Scoring Protocol
+## 2. Comparative Evaluation Engine & Dataset Architecture
 
-`ComparativeEvaluator` and `evaluation/score.py` evaluate tools against the **345-case research benchmark dataset** ([benchmark/benchmark.json](../../benchmark/benchmark.json)):
+`ComparativeEvaluator` and `evaluation/score.py` evaluate tools against a dual-component dataset:
+
+```
+                 IaCSecBench Evaluation Flow
+                              |
+        ----------------------------------------------
+        |                     |                      |
+ Internal Controlled    External Validation     Production Observation
+ Benchmark Suite        Collection              CI Runs
+ (345 cases)            (175 cases)             (61 PRs)
+ ├── vulnerable/        ├── terraform_registry/
+ └── secure/            ├── secureflag/
+                        └── cis_examples/
+```
 
 - **Checkov**: AST-based static analysis engine.
 - **tfsec**: Go-compiled HCL AST scanner.

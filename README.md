@@ -128,9 +128,11 @@ CrownCorridor/
 │   └── score.py             # Evaluation protocol driver & leaderboard CSV exporter
 │
 ├── benchmark/               # Benchmark Datasets & Scenarios
-│   ├── benchmark.json       # Master 345 self-contained test case research dataset catalog
-│   ├── cases/               # Representative self-contained case folders (main.tf, variables.tf, expected.json, metadata.json)
-│   ├── datasets/            # Standardized benchmark dataset schema (benchmarks.json)
+│   ├── internal/            # IaCSecBench Controlled Benchmark (345 cases: vulnerable/, secure/, metadata.json)
+│   ├── external/            # External Validation Datasets (175 cases across 3 collections)
+│   │   ├── terraform_registry/ # 50 Terraform Registry modules (modules/, metadata.json)
+│   │   ├── secureflag/      # 75 SecureFlag vulnerability examples (terraform/, metadata.json)
+│   │   └── cis_examples/    # 50 CIS misconfiguration scenarios (aws/, metadata.json)
 │   ├── golden_results/      # Golden baseline JSON outputs for Checkov, tfsec, Terrascan, OPA, IaCSecBench
 │   └── reports/             # Generated telemetry reports (experiment_results.json)
 │

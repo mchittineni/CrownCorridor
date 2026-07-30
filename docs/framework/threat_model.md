@@ -6,7 +6,8 @@ This document describes the primary threat model for the IaCSecBench security be
 
 ## Assets
 
-- IaCSecBench benchmark datasets (`benchmark/benchmark.json`, `benchmark/cases/`)
+- IaCSecBench benchmark datasets (`benchmark/internal/`, `benchmark/external/`)
+
 - Security evaluation engine (`security_framework/engine/engine.py`)
 - OPA / Rego policy definitions (`security_framework/policies/`)
 - Terraform reference architecture (`infrastructure/`)

@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-30 17:22:54",
+  "timestamp": "2026-07-30 17:49:17",
   "engine_scan": {
     "target_dir": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/infrastructure",
-    "execution_time_ms": 18.12,
+    "execution_time_ms": 17.55,
     "secret_violations_count": 521,
     "cis_violations_count": 0,
     "secret_violations": [

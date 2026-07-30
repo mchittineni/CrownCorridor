@@ -1,0 +1,48 @@
+{
+  "dataset": "Terraform Registry Modules",
+  "source": "https://registry.terraform.io/",
+  "description": "External validation dataset evaluating IaC security scanners against real-world module complexity, dynamic blocks, variables, and nested resources.",
+  "total_cases": 50,
+  "cases": [
+    {
+      "name": "terraform-aws-vpc",
+      "source_repo": "terraform-aws-modules/terraform-aws-vpc",
+      "cloud": "AWS",
+      "category": "Networking",
+      "resources": 42,
+      "classification": "unknown"
+    },
+    {
+      "name": "terraform-aws-eks",
+      "source_repo": "terraform-aws-modules/terraform-aws-eks",
+      "cloud": "AWS",
+      "category": "Containers",
+      "resources": 38,
+      "classification": "unknown"
+    },
+    {
+      "name": "terraform-aws-rds",
+      "source_repo": "terraform-aws-modules/terraform-aws-rds",
+      "cloud": "AWS",
+      "category": "Database",
+      "resources": 29,
+      "classification": "unknown"
+    },
+    {
+      "name": "terraform-aws-iam",
+      "source_repo": "terraform-aws-modules/terraform-aws-iam",
+      "cloud": "AWS",
+      "category": "IAM",
+      "resources": 31,
+      "classification": "unknown"
+    },
+    {
+      "name": "terraform-aws-security-group",
+      "source_repo": "terraform-aws-modules/terraform-aws-security-group",
+      "cloud": "AWS",
+      "category": "Security",
+      "resources": 24,
+      "classification": "unknown"
+    }
+  ]
+}
