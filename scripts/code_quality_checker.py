@@ -2,8 +2,6 @@
 import argparse
 import ast
 import json
-import os
-import re
 import sys
 from pathlib import Path
 
@@ -39,8 +37,6 @@ def compute_python_metrics(source):
             end = max((child.lineno for child in ast.walk(node) if hasattr(child, "lineno")), default=start)
             length = end - start + 1
             params = len(node.args.args) + len(node.args.kwonlyargs)
-            level_values = [getattr(child, "level", 0) for child in ast.walk(node) if hasattr(child, "level")]
-            depth = max(level_values) if level_values else 1
             branches = sum(isinstance(child, (ast.If, ast.For, ast.While, ast.Try, ast.With, ast.BoolOp)) for child in ast.walk(node))
             if length > THRESHOLDS["long_function"]:
                 metrics.append({"type": "long_function", "name": node.name, "value": length})
@@ -53,7 +49,6 @@ def compute_python_metrics(source):
 
 def compute_text_metrics(source, language):
     findings = []
-    function_pattern = re.compile(r"\b(function|def|class|interface|struct|fn)\b")
     lines = source.splitlines()
     nesting = 0
     max_nesting = 0
