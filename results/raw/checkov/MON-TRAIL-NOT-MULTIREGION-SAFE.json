@@ -14,8 +14,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
         "file_line_range": [
           30,
           36
@@ -38,13 +38,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-aws-cloudtrail-defines-an-sns-topic",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
         "breadcrumbs": {
           "name": [
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -69,15 +69,15 @@
             }
           },
           "evaluated_keys": [
-            "block_public_acls",
             "resource_type",
+            "block_public_acls",
             "block_public_policy"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -100,13 +100,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/s3-bucket-should-have-public-access-blocks-defaults-to-false-if-the-public-access-block-is-not-attached",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -136,8 +136,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -160,13 +160,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-62",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -197,8 +197,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -221,13 +221,74 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_AWS_18",
+        "bc_check_id": "BC_AWS_S3_13",
+        "check_name": "Ensure the S3 bucket has access logging enabled",
+        "check_result": {
+          "result": "FAILED",
+          "entity": {
+            "aws_s3_bucket": {
+              "trail": {
+                "__end_line__": 22,
+                "__start_line__": 20,
+                "bucket": [
+                  "iacsecbench-mon-region-benchmark"
+                ],
+                "__address__": "aws_s3_bucket.trail"
+              }
+            }
+          },
+          "evaluated_keys": [
+            "resource_type",
+            "logging"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
+        "file_line_range": [
+          20,
+          22
+        ],
+        "resource": "aws_s3_bucket.trail",
+        "evaluations": null,
+        "check_class": "checkov.common.graph.checks_infra.base_check",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-13-enable-logging",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
+        "breadcrumbs": {
+          "bucket": [
+            {
+              "type": "variable",
+              "name": "environment",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -270,8 +331,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
         "file_line_range": [
           30,
           36
@@ -294,74 +355,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/ensure-cloudtrail-trails-are-integrated-with-cloudwatch-logs",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
         "breadcrumbs": {
           "name": [
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/variables.tf",
-              "module_connection": false
-            }
-          ]
-        }
-      },
-      {
-        "check_id": "CKV_AWS_18",
-        "bc_check_id": "BC_AWS_S3_13",
-        "check_name": "Ensure the S3 bucket has access logging enabled",
-        "check_result": {
-          "result": "FAILED",
-          "entity": {
-            "aws_s3_bucket": {
-              "trail": {
-                "__end_line__": 22,
-                "__start_line__": 20,
-                "bucket": [
-                  "iacsecbench-mon-region-benchmark"
-                ],
-                "__address__": "aws_s3_bucket.trail"
-              }
-            }
-          },
-          "evaluated_keys": [
-            "resource_type",
-            "logging"
-          ]
-        },
-        "code_block": null,
-        "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
-        "file_line_range": [
-          20,
-          22
-        ],
-        "resource": "aws_s3_bucket.trail",
-        "evaluations": null,
-        "check_class": "checkov.common.graph.checks_infra.base_check",
-        "fixed_definition": null,
-        "entity_tags": null,
-        "caller_file_path": null,
-        "caller_file_line_range": null,
-        "resource_address": null,
-        "severity": null,
-        "bc_category": null,
-        "benchmarks": null,
-        "description": null,
-        "short_description": null,
-        "vulnerability_details": null,
-        "connected_node": null,
-        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-13-enable-logging",
-        "details": [],
-        "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
-        "breadcrumbs": {
-          "bucket": [
-            {
-              "type": "variable",
-              "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -387,14 +387,14 @@
           },
           "evaluated_keys": [
             "resource_type",
-            "versioning/enabled",
-            "versioning_configuration/status"
+            "versioning_configuration/status",
+            "versioning/enabled"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -417,13 +417,75 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-16-enable-versioning",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_AWS_145",
+        "bc_check_id": "BC_AWS_GENERAL_56",
+        "check_name": "Ensure that S3 buckets are encrypted with KMS by default",
+        "check_result": {
+          "result": "FAILED",
+          "entity": {
+            "aws_s3_bucket": {
+              "trail": {
+                "__end_line__": 22,
+                "__start_line__": 20,
+                "bucket": [
+                  "iacsecbench-mon-region-benchmark"
+                ],
+                "__address__": "aws_s3_bucket.trail"
+              }
+            }
+          },
+          "evaluated_keys": [
+            "resource_type",
+            "rule/apply_server_side_encryption_by_default/sse_algorithm",
+            "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
+        "file_line_range": [
+          20,
+          22
+        ],
+        "resource": "aws_s3_bucket.trail",
+        "evaluations": null,
+        "check_class": "checkov.common.graph.checks_infra.base_check",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
+        "breadcrumbs": {
+          "bucket": [
+            {
+              "type": "variable",
+              "name": "environment",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -455,8 +517,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -479,75 +541,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-bucket-has-cross-region-replication-enabled",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/variables.tf",
-              "module_connection": false
-            }
-          ]
-        }
-      },
-      {
-        "check_id": "CKV_AWS_145",
-        "bc_check_id": "BC_AWS_GENERAL_56",
-        "check_name": "Ensure that S3 buckets are encrypted with KMS by default",
-        "check_result": {
-          "result": "FAILED",
-          "entity": {
-            "aws_s3_bucket": {
-              "trail": {
-                "__end_line__": 22,
-                "__start_line__": 20,
-                "bucket": [
-                  "iacsecbench-mon-region-benchmark"
-                ],
-                "__address__": "aws_s3_bucket.trail"
-              }
-            }
-          },
-          "evaluated_keys": [
-            "resource_type",
-            "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm",
-            "rule/apply_server_side_encryption_by_default/sse_algorithm"
-          ]
-        },
-        "code_block": null,
-        "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
-        "file_line_range": [
-          20,
-          22
-        ],
-        "resource": "aws_s3_bucket.trail",
-        "evaluations": null,
-        "check_class": "checkov.common.graph.checks_infra.base_check",
-        "fixed_definition": null,
-        "entity_tags": null,
-        "caller_file_path": null,
-        "caller_file_line_range": null,
-        "resource_address": null,
-        "severity": null,
-        "bc_category": null,
-        "benchmarks": null,
-        "description": null,
-        "short_description": null,
-        "vulnerability_details": null,
-        "connected_node": null,
-        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default",
-        "details": [],
-        "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
-        "breadcrumbs": {
-          "bucket": [
-            {
-              "type": "variable",
-              "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -578,14 +578,14 @@
             }
           },
           "evaluated_keys": [
-            "resource_type",
-            "policy"
+            "policy",
+            "resource_type"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf",
         "file_line_range": [
           24,
           28
@@ -608,7 +608,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-64",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-0uhgmqky/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-TRAIL-NOT-MULTIREGION-SAFE-b8xw789f/case/main.tf"
       }
     ]
   },

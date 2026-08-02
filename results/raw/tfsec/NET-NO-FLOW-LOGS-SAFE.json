@@ -1,0 +1,27 @@
+{
+  "results": [
+    {
+      "rule_id": "AVD-AWS-0017",
+      "long_id": "aws-cloudwatch-log-group-customer-key",
+      "rule_description": "CloudWatch log groups should be encrypted using CMK",
+      "rule_provider": "aws",
+      "rule_service": "cloudwatch",
+      "impact": "Log data may be leaked if the logs are compromised. No auditing of who have viewed the logs.",
+      "resolution": "Enable CMK encryption of CloudWatch Log Groups",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/cloudwatch/log-group-customer-key/",
+        "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#kms_key_id"
+      ],
+      "description": "Log group is not encrypted.",
+      "severity": "LOW",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_cloudwatch_log_group.flow",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-SAFE-j272t1ms/case/main.tf",
+        "start_line": 25,
+        "end_line": 28
+      }
+    }
+  ]
+}

@@ -1665,8 +1665,8 @@
     },
     {
       "case_id": "NET-UNRESTRICTED-INGRESS-SAFE",
-      "status": "invalid_hcl",
-      "detail": "Failed to load plugin schemas: Error while loading schemas for plugin components: Failed to obtain provider schema: Could not load the schema for provider registry.terraform.io/hashicorp/aws: failed to instantiate provider \"registry.terraform.io/hashicorp/aws\" to obtain schema: Unrecognized remote p"
+      "status": "ok",
+      "detail": ""
     },
     {
       "case_id": "NET-UNRESTRICTED-INGRESS-VULN",
@@ -1675,28 +1675,28 @@
     },
     {
       "case_id": "SEC-HARDCODED-CREDENTIAL-SAFE",
-      "status": "invalid_hcl",
-      "detail": "registry.terraform.io/hashicorp/aws: the cached package for registry.terraform.io/hashicorp/aws 5.100.0 (in .terraform/providers) does not match any of the checksums recorded in the dependency lock file:"
+      "status": "ok",
+      "detail": ""
     },
     {
       "case_id": "SEC-HARDCODED-CREDENTIAL-VULN",
-      "status": "invalid_hcl",
-      "detail": "Failed to load plugin schemas: Error while loading schemas for plugin components: Failed to obtain provider schema: Could not load the schema for provider registry.terraform.io/hashicorp/aws: failed to instantiate provider \"registry.terraform.io/hashicorp/aws\" to obtain schema: Unrecognized remote p"
+      "status": "ok",
+      "detail": ""
     },
     {
       "case_id": "SRV-NO-FUNCTION-ENCRYPTION-SAFE",
-      "status": "invalid_hcl",
-      "detail": "registry.terraform.io/hashicorp/aws: the cached package for registry.terraform.io/hashicorp/aws 5.100.0 (in .terraform/providers) does not match any of the checksums recorded in the dependency lock file:"
+      "status": "ok",
+      "detail": ""
     },
     {
       "case_id": "SRV-NO-FUNCTION-ENCRYPTION-VULN",
-      "status": "invalid_hcl",
-      "detail": "Failed to load plugin schemas: Error while loading schemas for plugin components: Failed to obtain provider schema: Could not load the schema for provider registry.terraform.io/hashicorp/aws: failed to instantiate provider \"registry.terraform.io/hashicorp/aws\" to obtain schema: Unrecognized remote p"
+      "status": "ok",
+      "detail": ""
     },
     {
       "case_id": "STO-NO-ACCESS-LOGGING-SAFE",
-      "status": "invalid_hcl",
-      "detail": "Failed to load plugin schemas: Error while loading schemas for plugin components: Failed to obtain provider schema: Could not load the schema for provider registry.terraform.io/hashicorp/aws: failed to instantiate provider \"registry.terraform.io/hashicorp/aws\" to obtain schema: Unrecognized remote p"
+      "status": "ok",
+      "detail": ""
     },
     {
       "case_id": "STO-NO-ACCESS-LOGGING-VULN",
@@ -1705,33 +1705,33 @@
     },
     {
       "case_id": "STO-PUBLIC-BUCKET-SAFE",
-      "status": "invalid_hcl",
-      "detail": "registry.terraform.io/hashicorp/aws: the cached package for registry.terraform.io/hashicorp/aws 5.100.0 (in .terraform/providers) does not match any of the checksums recorded in the dependency lock file:"
+      "status": "ok",
+      "detail": ""
     },
     {
       "case_id": "STO-PUBLIC-BUCKET-VULN",
-      "status": "invalid_hcl",
-      "detail": "Failed to load plugin schemas: Error while loading schemas for plugin components: Failed to obtain provider schema: Could not load the schema for provider registry.terraform.io/hashicorp/aws: failed to instantiate provider \"registry.terraform.io/hashicorp/aws\" to obtain schema: Unrecognized remote p"
+      "status": "ok",
+      "detail": ""
     },
     {
       "case_id": "STO-PUBLIC-DATABASE-SAFE",
-      "status": "invalid_hcl",
-      "detail": "registry.terraform.io/hashicorp/aws: the cached package for registry.terraform.io/hashicorp/aws 5.100.0 (in .terraform/providers) does not match any of the checksums recorded in the dependency lock file:"
+      "status": "ok",
+      "detail": ""
     },
     {
       "case_id": "STO-PUBLIC-DATABASE-VULN",
-      "status": "invalid_hcl",
-      "detail": "Failed to load plugin schemas: Error while loading schemas for plugin components: Failed to obtain provider schema: Could not load the schema for provider registry.terraform.io/hashicorp/aws: failed to instantiate provider \"registry.terraform.io/hashicorp/aws\" to obtain schema: Unrecognized remote p"
+      "status": "ok",
+      "detail": ""
     },
     {
       "case_id": "STO-UNENCRYPTED-BUCKET-SAFE",
-      "status": "invalid_hcl",
-      "detail": "Failed to load plugin schemas: Error while loading schemas for plugin components: Failed to obtain provider schema: Could not load the schema for provider registry.terraform.io/hashicorp/aws: failed to instantiate provider \"registry.terraform.io/hashicorp/aws\" to obtain schema: Unrecognized remote p"
+      "status": "ok",
+      "detail": ""
     },
     {
       "case_id": "STO-UNENCRYPTED-BUCKET-VULN",
-      "status": "invalid_hcl",
-      "detail": "Failed to load plugin schemas: Error while loading schemas for plugin components: Failed to obtain provider schema: Could not load the schema for provider registry.terraform.io/hashicorp/aws: failed to instantiate provider \"registry.terraform.io/hashicorp/aws\" to obtain schema: Unrecognized remote p"
+      "status": "ok",
+      "detail": ""
     },
     {
       "case_id": "cis_examples/cis_2_1_s3_public",
@@ -1785,8 +1785,20 @@
     "NET-NO-HTTPS-REDIRECT-VULN",
     "NET-PUBLIC-INSTANCE-SAFE",
     "NET-PUBLIC-INSTANCE-VULN",
+    "NET-UNRESTRICTED-INGRESS-SAFE",
     "NET-UNRESTRICTED-INGRESS-VULN",
+    "SEC-HARDCODED-CREDENTIAL-SAFE",
+    "SEC-HARDCODED-CREDENTIAL-VULN",
+    "SRV-NO-FUNCTION-ENCRYPTION-SAFE",
+    "SRV-NO-FUNCTION-ENCRYPTION-VULN",
+    "STO-NO-ACCESS-LOGGING-SAFE",
     "STO-NO-ACCESS-LOGGING-VULN",
+    "STO-PUBLIC-BUCKET-SAFE",
+    "STO-PUBLIC-BUCKET-VULN",
+    "STO-PUBLIC-DATABASE-SAFE",
+    "STO-PUBLIC-DATABASE-VULN",
+    "STO-UNENCRYPTED-BUCKET-SAFE",
+    "STO-UNENCRYPTED-BUCKET-VULN",
     "cis_examples/cis_2_1_s3_public",
     "cis_examples/cis_2_2_s3_encryption",
     "cis_examples/cis_3_1_cloudtrail",
