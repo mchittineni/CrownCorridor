@@ -88,7 +88,11 @@ jobs:
           checkov --config-file .checkov.yaml
 
       - name: Run Full Pytest Suite (Includes IaC & Policy Unit Tests)
-        run: pytest security_framework/tests/ pipeline/tests/ -v --tb=short
+        env:
+          IACSECBENCH_ALLOW_SYNTHETIC: '1'
+        run: pytest security_framework/tests/ pipeline/tests/ evaluation/tests/ -v --tb=short
 
       - name: Run IaCSecBench Experiments Harness
+        env:
+          IACSECBENCH_ALLOW_SYNTHETIC: '1'
         run: ./experiments/run_all.sh

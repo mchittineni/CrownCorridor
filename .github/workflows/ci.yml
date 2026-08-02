@@ -56,7 +56,11 @@ jobs:
         run: python pipeline/validate_data.py
 
       - name: Run Pytest Suite & Coverage
-        run: pytest security_framework/tests/ pipeline/tests/ application/api/tests/ -v --tb=short --cov=security_framework
+        env:
+          IACSECBENCH_ALLOW_SYNTHETIC: '1'
+        run: pytest security_framework/tests/ pipeline/tests/ application/api/tests/ evaluation/tests/ -v --tb=short --cov=security_framework
 
       - name: Run IaCSecBench Experiments Harness
+        env:
+          IACSECBENCH_ALLOW_SYNTHETIC: '1'
         run: ./experiments/run_all.sh
