@@ -60,6 +60,9 @@ override.tf.json
 .terraformrc
 terraform.rc
 results.sarif
+.terraform-plugin-cache/
+.terraform-provider-mirror/
+.terraform-provider-mirror.lock
 
 # Logs & Temporary Scratch Files
 *.log
@@ -69,3 +72,12 @@ tmp/
 .cache/
 data/sro_feed/tmp/
 pyrightconfig.json
+
+# Obsolete Files
+*.bak
+obsidian_daily/
+obsidian_modules/
+obsidian_research/
+OBSIDIAN_CHANGELOG_INDEX.md
+OBSIDIAN_CHANGELOG_SYNC.md
+OBSIDIAN_PROJECT_STRUCTURE.md
