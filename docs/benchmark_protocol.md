@@ -6,7 +6,7 @@ This document details the evaluation protocol, scoring metrics, ground truth for
 
 ## Evaluation Protocol Overview
 
-To ensure objective and fair comparison across IaC analysis tools (**Checkov**, **tfsec**, **Terrascan**, **OPA**, and **IaCSecBench Engine**), each tool is evaluated against a dual-component dataset:
+To ensure objective and fair comparison across IaC analysis tools (**Checkov**, **tfsec**, **OPA**, and **IaCSecBench Engine**), each tool is evaluated against a dual-component dataset:
 1. **IaCSecBench Internal Controlled Benchmark**: 345 self-contained, labelled cases across 12 infrastructure domains.
 2. **External Validation Collection**: 175 independent cases (50 Terraform Registry modules, 75 SecureFlag vulnerability scenarios, and 50 CIS misconfiguration scenarios) to evaluate scanner generalizability (RQ5).
 

@@ -59,7 +59,6 @@ The framework evaluates security analysis engines across standardized benchmark 
 | :--------------------- | :---------------------- | :---: | :----------: | :-----------: | :--------: | :----------: | :----------: |
 | **Checkov**            | AST Static Analysis     |  345  |    93.0%     |     94.3%     |   90.0%    |    92.1%     |  1420.0 ms   |
 | **tfsec**              | HCL Binary Scanner      |  345  |    92.0%     |     93.6%     |   88.0%    |    90.7%     |   310.0 ms   |
-| **Terrascan**          | Policy Engine           |  345  |    87.5%     |     89.5%     |   85.0%    |    87.2%     |   850.0 ms   |
 | **OPA / Sentinel**     | Rego Policy Engine      |  345  |    93.5%     |     94.8%     |   92.0%    |    93.4%     |   650.0 ms   |
 | **IaCSecBench Engine** | Multi-Engine Validation |  345  |    100.0%    |    100.0%     |   100.0%   |    100.0%    |   185.0 ms   |
 

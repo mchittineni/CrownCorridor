@@ -11,6 +11,15 @@ Releases are published automatically by [`release-please.yml`](.github/workflows
 - **`PATCH` (x.y.Z)** — Pipeline, validator, and ETL infrastructure changes (`pipeline/**`, `application/api/**`).
 - **`MAJOR` (X.0.0)** — Web application features, layout, and UI frontend changes (`application/app/**`).
 
+## [Unreleased]
+
+### Features
+
+* **evaluation:** add baseline evaluation suite (`evaluation/run_baselines.py`, `stats.py`, `corpus.py`, `normalize.py`), execution script (`experiments/run_baselines.sh`), and synthetic scoring guard (`IACSECBENCH_ALLOW_SYNTHETIC=1`)
+* **docs:** complete comprehensive markdown (`.md`) documentation across all repository component directories (`data/`, `paper/`, `results/`, `terraform/`, `evaluation/`, `experiments/`, `security_framework/`)
+* **obsidian-sync:** add automated Obsidian Vault synchronization pipeline with daily notes, knowledge graphs, and IEEE paper research workspace ([`pipeline/sync_to_obsidian.py`](file:///Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/pipeline/sync_to_obsidian.py))
+* **experiments:** enhance `experiments/run_all.sh` to trigger Obsidian daily knowledge graph sync automatically upon experiment execution
+
 ## [1.2.0](https://github.com/mchittineni/iacsecbench/compare/v1.1.0...v1.2.0) (2026-07-30)
 
 
@@ -200,7 +209,7 @@ Crown Corridor is a next-generation real-time real estate discovery and property
 - **345-Case Research Benchmark Suite** — Master catalog in `benchmark/benchmark.json` containing 345 self-contained test cases across 12 categories (`IAM`, `NET`, `STO`, `ENC`, `CMP`, `K8S`, `SRV`, `MON`, `SEC`, `ID`, `PII`, `TF`) with balanced classes (173 Pass / 172 Fail).
 - **Construct Badges & Feature Metadata** — Test cases exercise advanced Terraform syntax: `dynamic_blocks`, `locals`, `for_each`, `count`, `nested_modules`, `multiple_providers`, `variable_validation`, `depends_on`, `lifecycle_rules`, `tfvars`, `opa`, `native_tests`.
 - **Modular Case Architecture (`benchmark/cases/`)** — Individual self-contained case folders (`IAM-001/` through `TF-003/`) containing `main.tf`, `variables.tf`, `expected.json`, and `metadata.json`.
-- **Golden Baseline Outputs (`benchmark/golden_results/`)** — Reference golden JSON outputs for Checkov, tfsec, Terrascan, OPA, and IaCSecBench Engine.
+- **Golden Baseline Outputs (`benchmark/golden_results/`)** — Reference golden JSON outputs for Checkov, tfsec, OPA, and IaCSecBench Engine.
 - **Automated Scoring Protocol (`evaluation/`)** — `evaluation/metrics.py` and `evaluation/score.py` calculating Recall, Precision, Accuracy, F1 Score, False Positive Rate (FPR), False Negative Rate (FNR), and Execution Latency.
 - **Published Research Leaderboard (`leaderboard/results.csv`)** — Tabular comparative baseline matrix exported across 5 static analysis engines.
 - **Research Taxonomy & Protocol Docs** — Added `docs/taxonomy.md` (5 top-level domains) and `docs/benchmark_protocol.md` (scoring methodology and reproducibility guidelines).

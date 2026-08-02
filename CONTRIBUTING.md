@@ -44,20 +44,24 @@ python3 pipeline/validate_data.py
 python3 pipeline/validate_iac.py
 
 # 3. Run evaluation protocol & leaderboard scoring
-python3 evaluation/score.py
+IACSECBENCH_ALLOW_SYNTHETIC=1 python3 evaluation/score.py
 
-# 4. Run full test suite (62 tests: application/api, pipeline & security_framework)
-.venv/bin/pytest -v
+# 4. Run full test suite (63 tests: application/api, pipeline, evaluation & security_framework)
+IACSECBENCH_ALLOW_SYNTHETIC=1 .venv/bin/pytest -v
 
 # 5. Run one-command reproducible experiment suite
 ./experiments/run_all.sh
 
-# 6. Run pre-commit hook checks
+# 6. Run pre-commit hook checks & JSDoc documentation generator
 pre-commit run --all-files
+npm run docs
 
 # 7. Run JavaScript lint & formatting checks
 npm run lint
 npm run format:check
+
+# 8. Run Obsidian Vault Knowledge Base & Research Sync
+python3 pipeline/sync_to_obsidian.py
 ```
 
 ---

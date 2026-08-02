@@ -133,7 +133,7 @@ CrownCorridor/
 │   │   ├── terraform_registry/ # 50 Terraform Registry modules (modules/, metadata.json)
 │   │   ├── secureflag/      # 75 SecureFlag vulnerability examples (terraform/, metadata.json)
 │   │   └── cis_examples/    # 50 CIS misconfiguration scenarios (aws/, metadata.json)
-│   ├── golden_results/      # Golden baseline JSON outputs for Checkov, tfsec, Terrascan, OPA, IaCSecBench
+│   ├── golden_results/      # Golden baseline JSON outputs for Checkov, tfsec, OPA, IaCSecBench
 │   └── reports/             # Generated telemetry reports (experiment_results.json)
 │
 ├── pipeline/                # Zero-PII Data Pipeline & Validators
@@ -252,7 +252,6 @@ Crown Corridor serves as the reference implementation for the **IaCSecBench Rese
 | :--------------------- | :---------------------- | :---: | :----------: | :-----------: | :--------: | :----------: | :----------: |
 | **Checkov**            | AST Static Analysis     |  345  |    93.0%     |     94.3%     |   90.0%    |    92.1%     |  1420.0 ms   |
 | **tfsec**              | HCL Binary Scanner      |  345  |    92.0%     |     93.6%     |   88.0%    |    90.7%     |   310.0 ms   |
-| **Terrascan**          | Policy Engine           |  345  |    87.5%     |     89.5%     |   85.0%    |    87.2%     |   850.0 ms   |
 | **OPA / Sentinel**     | Rego Policy Engine      |  345  |    93.5%     |     94.8%     |   92.0%    |    93.4%     |   650.0 ms   |
 | **IaCSecBench Engine** | Multi-Engine Validation |  345  |    100.0%    |    100.0%     |   100.0%   |    100.0%    |   185.0 ms   |
 
