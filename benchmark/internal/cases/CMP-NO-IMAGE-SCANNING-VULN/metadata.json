@@ -1,0 +1,27 @@
+{
+  "id": "CMP-NO-IMAGE-SCANNING-VULN",
+  "title": "Container registry image scanning (VIOLATION)",
+  "description": "Repository does not scan images on push.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "CMP_NO_IMAGE_SCANNING"
+  ],
+  "benchmark_category": "CMP",
+  "cis_control": "n/a",
+  "severity": "MEDIUM",
+  "provider": "aws",
+  "benchmark_features": [
+    "nested blocks"
+  ],
+  "pair_id": "CMP_NO_IMAGE_SCANNING",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_ecr_repository.target",
+      "control": "CMP_NO_IMAGE_SCANNING",
+      "description": "Repository does not scan images on push."
+    }
+  ]
+}

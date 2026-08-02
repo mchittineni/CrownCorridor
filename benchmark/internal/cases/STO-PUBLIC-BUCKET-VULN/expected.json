@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "STO-PUBLIC-BUCKET-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "STO_PUBLIC_BUCKET"
+  ],
+  "severity": "CRITICAL",
+  "violations": [
+    {
+      "resource": "aws_s3_bucket_public_access_block.target",
+      "control": "STO_PUBLIC_BUCKET"
+    }
+  ]
+}

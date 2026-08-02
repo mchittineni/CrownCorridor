@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "CMP-NO-IMDSV2-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "CMP_NO_IMDSV2"
+  ],
+  "severity": "HIGH",
+  "violations": [
+    {
+      "resource": "aws_instance.target",
+      "control": "CMP_NO_IMDSV2"
+    }
+  ]
+}

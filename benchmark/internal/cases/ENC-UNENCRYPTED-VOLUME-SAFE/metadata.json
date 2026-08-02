@@ -1,0 +1,20 @@
+{
+  "id": "ENC-UNENCRYPTED-VOLUME-SAFE",
+  "title": "Block storage encryption at rest (COMPLIANT)",
+  "description": "EBS volume is encrypted with a customer-managed key.",
+  "expected_result": "PASS",
+  "has_violation": false,
+  "canonical_controls": [
+    "ENC_UNENCRYPTED_VOLUME"
+  ],
+  "benchmark_category": "ENC",
+  "cis_control": "2.2.1",
+  "severity": "NONE",
+  "provider": "aws",
+  "benchmark_features": [
+    "resource references"
+  ],
+  "pair_id": "ENC_UNENCRYPTED_VOLUME",
+  "pair_variant": "compliant",
+  "generated_by": "benchmark/generate_corpus.py"
+}

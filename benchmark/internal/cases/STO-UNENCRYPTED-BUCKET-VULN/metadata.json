@@ -1,0 +1,28 @@
+{
+  "id": "STO-UNENCRYPTED-BUCKET-VULN",
+  "title": "Object storage encryption at rest (VIOLATION)",
+  "description": "Bucket encryption uses AES256 rather than a customer-managed key.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "STO_UNENCRYPTED_BUCKET"
+  ],
+  "benchmark_category": "ENC",
+  "cis_control": "2.1.1",
+  "severity": "HIGH",
+  "provider": "aws",
+  "benchmark_features": [
+    "locals",
+    "resource references"
+  ],
+  "pair_id": "STO_UNENCRYPTED_BUCKET",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_s3_bucket_server_side_encryption_configuration.target",
+      "control": "STO_UNENCRYPTED_BUCKET",
+      "description": "Bucket encryption uses AES256 rather than a customer-managed key."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "benchmark_id": "STO-UNENCRYPTED-BUCKET-SAFE",
+  "expected_result": "PASS",
+  "canonical_controls": [
+    "STO_UNENCRYPTED_BUCKET"
+  ],
+  "severity": "NONE",
+  "violations": []
+}

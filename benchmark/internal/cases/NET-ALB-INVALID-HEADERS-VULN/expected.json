@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "NET-ALB-INVALID-HEADERS-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "NET_ALB_INVALID_HEADERS"
+  ],
+  "severity": "MEDIUM",
+  "violations": [
+    {
+      "resource": "aws_lb.target",
+      "control": "NET_ALB_INVALID_HEADERS"
+    }
+  ]
+}

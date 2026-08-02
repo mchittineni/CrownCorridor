@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "SEC-HARDCODED-CREDENTIAL-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "SEC_HARDCODED_CREDENTIAL"
+  ],
+  "severity": "CRITICAL",
+  "violations": [
+    {
+      "resource": "aws_lambda_function.target",
+      "control": "SEC_HARDCODED_CREDENTIAL"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "NET-UNRESTRICTED-INGRESS-VULN",
+  "title": "Unrestricted network ingress (VIOLATION)",
+  "description": "Security group permits SSH ingress from 0.0.0.0/0.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "NET_UNRESTRICTED_INGRESS"
+  ],
+  "benchmark_category": "NET",
+  "cis_control": "5.2",
+  "severity": "CRITICAL",
+  "provider": "aws",
+  "benchmark_features": [
+    "locals",
+    "dynamic block",
+    "resource references"
+  ],
+  "pair_id": "NET_UNRESTRICTED_INGRESS",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_security_group.target",
+      "control": "NET_UNRESTRICTED_INGRESS",
+      "description": "Security group permits SSH ingress from 0.0.0.0/0."
+    }
+  ]
+}

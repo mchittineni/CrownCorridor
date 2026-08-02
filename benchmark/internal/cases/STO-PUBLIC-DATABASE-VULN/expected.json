@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "STO-PUBLIC-DATABASE-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "STO_PUBLIC_DATABASE"
+  ],
+  "severity": "CRITICAL",
+  "violations": [
+    {
+      "resource": "aws_db_instance.target",
+      "control": "STO_PUBLIC_DATABASE"
+    }
+  ]
+}

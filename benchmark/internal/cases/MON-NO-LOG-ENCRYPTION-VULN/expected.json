@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "MON-NO-LOG-ENCRYPTION-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "MON_NO_LOG_ENCRYPTION"
+  ],
+  "severity": "MEDIUM",
+  "violations": [
+    {
+      "resource": "aws_cloudtrail.target",
+      "control": "MON_NO_LOG_ENCRYPTION"
+    }
+  ]
+}

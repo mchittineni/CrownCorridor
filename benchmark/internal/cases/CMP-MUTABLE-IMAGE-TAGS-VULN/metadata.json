@@ -1,0 +1,27 @@
+{
+  "id": "CMP-MUTABLE-IMAGE-TAGS-VULN",
+  "title": "Container registry tag immutability (VIOLATION)",
+  "description": "Repository permits mutable image tags.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "CMP_MUTABLE_IMAGE_TAGS"
+  ],
+  "benchmark_category": "CMP",
+  "cis_control": "n/a",
+  "severity": "LOW",
+  "provider": "aws",
+  "benchmark_features": [
+    "nested blocks"
+  ],
+  "pair_id": "CMP_MUTABLE_IMAGE_TAGS",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_ecr_repository.target",
+      "control": "CMP_MUTABLE_IMAGE_TAGS",
+      "description": "Repository permits mutable image tags."
+    }
+  ]
+}

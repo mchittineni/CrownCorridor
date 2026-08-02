@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "NET-NO-FLOW-LOGS-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "NET_NO_FLOW_LOGS"
+  ],
+  "severity": "MEDIUM",
+  "violations": [
+    {
+      "resource": "aws_vpc.target",
+      "control": "NET_NO_FLOW_LOGS"
+    }
+  ]
+}

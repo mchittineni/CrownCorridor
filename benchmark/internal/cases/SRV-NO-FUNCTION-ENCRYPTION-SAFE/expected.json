@@ -1,0 +1,9 @@
+{
+  "benchmark_id": "SRV-NO-FUNCTION-ENCRYPTION-SAFE",
+  "expected_result": "PASS",
+  "canonical_controls": [
+    "SRV_NO_FUNCTION_ENCRYPTION"
+  ],
+  "severity": "NONE",
+  "violations": []
+}

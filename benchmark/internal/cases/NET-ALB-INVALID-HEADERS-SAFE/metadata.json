@@ -1,0 +1,21 @@
+{
+  "id": "NET-ALB-INVALID-HEADERS-SAFE",
+  "title": "Load balancer header sanitisation (COMPLIANT)",
+  "description": "Load balancer drops invalid HTTP header fields.",
+  "expected_result": "PASS",
+  "has_violation": false,
+  "canonical_controls": [
+    "NET_ALB_INVALID_HEADERS"
+  ],
+  "benchmark_category": "NET",
+  "cis_control": "n/a",
+  "severity": "NONE",
+  "provider": "aws",
+  "benchmark_features": [
+    "count",
+    "resource references"
+  ],
+  "pair_id": "NET_ALB_INVALID_HEADERS",
+  "pair_variant": "compliant",
+  "generated_by": "benchmark/generate_corpus.py"
+}

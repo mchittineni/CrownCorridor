@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "CMP-NO-IMAGE-SCANNING-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "CMP_NO_IMAGE_SCANNING"
+  ],
+  "severity": "MEDIUM",
+  "violations": [
+    {
+      "resource": "aws_ecr_repository.target",
+      "control": "CMP_NO_IMAGE_SCANNING"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "benchmark_id": "IAM-WILDCARD-TRUST-SAFE",
+  "expected_result": "PASS",
+  "canonical_controls": [
+    "IAM_WILDCARD_TRUST"
+  ],
+  "severity": "NONE",
+  "violations": []
+}

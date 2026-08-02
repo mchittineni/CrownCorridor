@@ -1,0 +1,27 @@
+{
+  "id": "ENC-NO-KEY-ROTATION-VULN",
+  "title": "Key management rotation (VIOLATION)",
+  "description": "KMS key has automatic rotation disabled.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "ENC_NO_KEY_ROTATION"
+  ],
+  "benchmark_category": "ENC",
+  "cis_control": "3.8",
+  "severity": "MEDIUM",
+  "provider": "aws",
+  "benchmark_features": [
+    "basic resource"
+  ],
+  "pair_id": "ENC_NO_KEY_ROTATION",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_kms_key.target",
+      "control": "ENC_NO_KEY_ROTATION",
+      "description": "KMS key has automatic rotation disabled."
+    }
+  ]
+}

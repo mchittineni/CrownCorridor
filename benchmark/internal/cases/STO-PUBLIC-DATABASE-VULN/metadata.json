@@ -1,0 +1,27 @@
+{
+  "id": "STO-PUBLIC-DATABASE-VULN",
+  "title": "Managed database public accessibility (VIOLATION)",
+  "description": "Database instance is publicly accessible.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "STO_PUBLIC_DATABASE"
+  ],
+  "benchmark_category": "NET",
+  "cis_control": "2.3.3",
+  "severity": "CRITICAL",
+  "provider": "aws",
+  "benchmark_features": [
+    "basic resource"
+  ],
+  "pair_id": "STO_PUBLIC_DATABASE",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_db_instance.target",
+      "control": "STO_PUBLIC_DATABASE",
+      "description": "Database instance is publicly accessible."
+    }
+  ]
+}

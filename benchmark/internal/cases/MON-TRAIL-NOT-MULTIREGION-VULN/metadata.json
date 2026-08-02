@@ -1,0 +1,27 @@
+{
+  "id": "MON-TRAIL-NOT-MULTIREGION-VULN",
+  "title": "Audit trail regional coverage (VIOLATION)",
+  "description": "Trail records events in a single region only.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "MON_TRAIL_NOT_MULTIREGION"
+  ],
+  "benchmark_category": "MON",
+  "cis_control": "3.1",
+  "severity": "MEDIUM",
+  "provider": "aws",
+  "benchmark_features": [
+    "resource references"
+  ],
+  "pair_id": "MON_TRAIL_NOT_MULTIREGION",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_cloudtrail.target",
+      "control": "MON_TRAIL_NOT_MULTIREGION",
+      "description": "Trail records events in a single region only."
+    }
+  ]
+}

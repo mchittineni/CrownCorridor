@@ -1,0 +1,9 @@
+{
+  "benchmark_id": "NET-ALB-INVALID-HEADERS-SAFE",
+  "expected_result": "PASS",
+  "canonical_controls": [
+    "NET_ALB_INVALID_HEADERS"
+  ],
+  "severity": "NONE",
+  "violations": []
+}

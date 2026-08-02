@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "ENC-UNENCRYPTED-DATABASE-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "ENC_UNENCRYPTED_DATABASE"
+  ],
+  "severity": "HIGH",
+  "violations": [
+    {
+      "resource": "aws_db_instance.target",
+      "control": "ENC_UNENCRYPTED_DATABASE"
+    }
+  ]
+}

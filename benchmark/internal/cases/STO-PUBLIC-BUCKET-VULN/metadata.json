@@ -1,0 +1,28 @@
+{
+  "id": "STO-PUBLIC-BUCKET-VULN",
+  "title": "Object storage public access block (VIOLATION)",
+  "description": "All four public access block flags are disabled.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "STO_PUBLIC_BUCKET"
+  ],
+  "benchmark_category": "STO",
+  "cis_control": "2.1.5",
+  "severity": "CRITICAL",
+  "provider": "aws",
+  "benchmark_features": [
+    "locals",
+    "interpolation"
+  ],
+  "pair_id": "STO_PUBLIC_BUCKET",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_s3_bucket_public_access_block.target",
+      "control": "STO_PUBLIC_BUCKET",
+      "description": "All four public access block flags are disabled."
+    }
+  ]
+}

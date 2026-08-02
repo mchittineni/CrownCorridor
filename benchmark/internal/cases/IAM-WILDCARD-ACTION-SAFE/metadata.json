@@ -1,0 +1,21 @@
+{
+  "id": "IAM-WILDCARD-ACTION-SAFE",
+  "title": "Identity policy action scope (COMPLIANT)",
+  "description": "Policy grants a single read action on a specific bucket ARN.",
+  "expected_result": "PASS",
+  "has_violation": false,
+  "canonical_controls": [
+    "IAM_WILDCARD_ACTION"
+  ],
+  "benchmark_category": "IAM",
+  "cis_control": "1.16",
+  "severity": "NONE",
+  "provider": "aws",
+  "benchmark_features": [
+    "jsonencode",
+    "resource references"
+  ],
+  "pair_id": "IAM_WILDCARD_ACTION",
+  "pair_variant": "compliant",
+  "generated_by": "benchmark/generate_corpus.py"
+}

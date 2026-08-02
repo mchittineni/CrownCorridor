@@ -1,0 +1,28 @@
+{
+  "id": "IAM-WILDCARD-ACTION-VULN",
+  "title": "Identity policy action scope (VIOLATION)",
+  "description": "Policy grants Action '*' on Resource '*'.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "IAM_WILDCARD_ACTION"
+  ],
+  "benchmark_category": "IAM",
+  "cis_control": "1.16",
+  "severity": "CRITICAL",
+  "provider": "aws",
+  "benchmark_features": [
+    "jsonencode",
+    "resource references"
+  ],
+  "pair_id": "IAM_WILDCARD_ACTION",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_iam_policy.target",
+      "control": "IAM_WILDCARD_ACTION",
+      "description": "Policy grants Action '*' on Resource '*'."
+    }
+  ]
+}

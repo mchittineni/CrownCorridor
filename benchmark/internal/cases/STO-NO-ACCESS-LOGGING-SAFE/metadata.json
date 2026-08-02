@@ -1,0 +1,20 @@
+{
+  "id": "STO-NO-ACCESS-LOGGING-SAFE",
+  "title": "Object storage access logging (COMPLIANT)",
+  "description": "Access logging is directed to a dedicated log bucket.",
+  "expected_result": "PASS",
+  "has_violation": false,
+  "canonical_controls": [
+    "STO_NO_ACCESS_LOGGING"
+  ],
+  "benchmark_category": "MON",
+  "cis_control": "2.1.3",
+  "severity": "NONE",
+  "provider": "aws",
+  "benchmark_features": [
+    "multiple resources"
+  ],
+  "pair_id": "STO_NO_ACCESS_LOGGING",
+  "pair_variant": "compliant",
+  "generated_by": "benchmark/generate_corpus.py"
+}

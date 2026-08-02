@@ -1,0 +1,28 @@
+{
+  "id": "NET-ALB-INVALID-HEADERS-VULN",
+  "title": "Load balancer header sanitisation (VIOLATION)",
+  "description": "Load balancer forwards invalid HTTP header fields.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "NET_ALB_INVALID_HEADERS"
+  ],
+  "benchmark_category": "NET",
+  "cis_control": "n/a",
+  "severity": "MEDIUM",
+  "provider": "aws",
+  "benchmark_features": [
+    "count",
+    "resource references"
+  ],
+  "pair_id": "NET_ALB_INVALID_HEADERS",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_lb.target",
+      "control": "NET_ALB_INVALID_HEADERS",
+      "description": "Load balancer forwards invalid HTTP header fields."
+    }
+  ]
+}

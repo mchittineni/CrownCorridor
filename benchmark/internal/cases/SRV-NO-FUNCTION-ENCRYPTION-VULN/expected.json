@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "SRV-NO-FUNCTION-ENCRYPTION-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "SRV_NO_FUNCTION_ENCRYPTION"
+  ],
+  "severity": "HIGH",
+  "violations": [
+    {
+      "resource": "aws_lambda_function.target",
+      "control": "SRV_NO_FUNCTION_ENCRYPTION"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "benchmark_id": "MON-NO-TRAIL-VALIDATION-SAFE",
+  "expected_result": "PASS",
+  "canonical_controls": [
+    "MON_NO_TRAIL_VALIDATION"
+  ],
+  "severity": "NONE",
+  "violations": []
+}

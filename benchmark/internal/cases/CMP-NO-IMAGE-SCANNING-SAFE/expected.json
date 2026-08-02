@@ -1,0 +1,9 @@
+{
+  "benchmark_id": "CMP-NO-IMAGE-SCANNING-SAFE",
+  "expected_result": "PASS",
+  "canonical_controls": [
+    "CMP_NO_IMAGE_SCANNING"
+  ],
+  "severity": "NONE",
+  "violations": []
+}

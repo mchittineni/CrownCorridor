@@ -1,0 +1,9 @@
+{
+  "benchmark_id": "MON-NO-LOG-ENCRYPTION-SAFE",
+  "expected_result": "PASS",
+  "canonical_controls": [
+    "MON_NO_LOG_ENCRYPTION"
+  ],
+  "severity": "NONE",
+  "violations": []
+}

@@ -1,0 +1,9 @@
+{
+  "benchmark_id": "NET-PUBLIC-INSTANCE-SAFE",
+  "expected_result": "PASS",
+  "canonical_controls": [
+    "NET_PUBLIC_INSTANCE"
+  ],
+  "severity": "NONE",
+  "violations": []
+}

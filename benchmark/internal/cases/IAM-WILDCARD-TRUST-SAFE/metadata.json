@@ -1,0 +1,20 @@
+{
+  "id": "IAM-WILDCARD-TRUST-SAFE",
+  "title": "Role trust policy principal scope (COMPLIANT)",
+  "description": "Trust policy allows sts:AssumeRole from a named service principal.",
+  "expected_result": "PASS",
+  "has_violation": false,
+  "canonical_controls": [
+    "IAM_WILDCARD_TRUST"
+  ],
+  "benchmark_category": "IAM",
+  "cis_control": "1.16",
+  "severity": "NONE",
+  "provider": "aws",
+  "benchmark_features": [
+    "jsonencode"
+  ],
+  "pair_id": "IAM_WILDCARD_TRUST",
+  "pair_variant": "compliant",
+  "generated_by": "benchmark/generate_corpus.py"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "MON-NO-TRAIL-VALIDATION-VULN",
+  "title": "Audit trail log file validation (VIOLATION)",
+  "description": "Trail has log file integrity validation disabled.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "MON_NO_TRAIL_VALIDATION"
+  ],
+  "benchmark_category": "MON",
+  "cis_control": "3.2",
+  "severity": "MEDIUM",
+  "provider": "aws",
+  "benchmark_features": [
+    "resource references"
+  ],
+  "pair_id": "MON_NO_TRAIL_VALIDATION",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_cloudtrail.target",
+      "control": "MON_NO_TRAIL_VALIDATION",
+      "description": "Trail has log file integrity validation disabled."
+    }
+  ]
+}
