@@ -162,7 +162,6 @@ class ComparativeEvaluator:
             "tfsec": "HCL Binary Scanner",
             "OPA / Sentinel": "Policy-as-Code",
             "Sentinel / OPA": "Policy-as-Code",
-            "Terrascan": "Static Analysis",
             "IaCSecBench Engine": "Unified Benchmark Framework",
         }
         return categories.get(tool_name, "Benchmarking Tool")
@@ -178,8 +177,12 @@ class ComparativeEvaluator:
         tool_name = golden_data.get("tool_name") or "Unknown Tool"
         if tool_name == "OPA / Sentinel":
             tool_name = "Sentinel / OPA"
+        # Terrascan is out of scope for this benchmark. Any lingering artefact
+        # naming it is skipped rather than renamed: a previous revision relabelled
+        # it "Terratest", which silently published one tool's numbers under
+        # another tool's name.
         if tool_name in ("Terrascan", "TerraScan"):
-            tool_name = "Terratest"
+            return None
 
         tp = 0
         fp = 0
