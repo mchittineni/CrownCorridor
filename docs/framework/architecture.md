@@ -40,7 +40,6 @@ The IaCSecBench engine processes target infrastructure repositories through thre
 
 - **Checkov**: AST-based static analysis engine.
 - **tfsec**: Go-compiled HCL AST scanner.
-- **Terrascan**: Policy-as-code static scanner.
 - **Sentinel / OPA**: Policy-as-Code evaluation framework.
 - **IaCSecBench Engine**: Native multi-engine policy, testing, and secret detection framework.
 

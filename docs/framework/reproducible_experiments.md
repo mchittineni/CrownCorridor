@@ -47,7 +47,6 @@ Tool                 | Category               | Recall   | Precision  | F1      
 ------------------------------------------------------------------------------------------
 Checkov              | AST Static Analysis    |   90.3% |     92.4% |   91.3% |   1420.0 ms
 tfsec                | HCL Lexical Scanner    |   88.0% |     93.9% |   90.9% |    310.0 ms
-Terrascan            | Policy Engine          |   85.1% |     90.3% |   87.7% |    850.0 ms
 OPA / Sentinel       | Rego Policy Engine     |   92.0% |     95.3% |   93.6% |    650.0 ms
 IaCSecBench Engine   | Multi-Engine Validation |  100.0% |    100.0% |  100.0% |    185.0 ms
 ============================================================

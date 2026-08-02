@@ -120,7 +120,7 @@ Benchmark Datasets, Cases & Leaderboard (benchmark/ & leaderboard/)
   ├── benchmark/internal/         Internal 345 self-contained test case catalog
   ├── benchmark/external/         175 external cases (terraform_registry/, secureflag/, cis_examples/)
 
-  ├── benchmark/golden_results/  Golden reference JSON outputs for Checkov, tfsec, Terrascan, OPA, IaCSecBench
+  ├── benchmark/golden_results/  Golden reference JSON outputs for Checkov, tfsec, OPA, IaCSecBench
   └── leaderboard/results.csv    Published reference leaderboard metrics
 
 Experiments & Results (experiments/ & results/)
