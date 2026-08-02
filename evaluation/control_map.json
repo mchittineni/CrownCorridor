@@ -1,0 +1,552 @@
+{
+  "$comment": [
+    "Canonical control taxonomy for the IaCSecBench finding-normalization engine.",
+    "",
+    "Each entry defines one canonical control and lists the native rule identifiers",
+    "that each evaluated tool emits for it. The normalization engine uses this file",
+    "to decide whether a tool's finding corresponds to the violation a benchmark",
+    "case was authored to contain.",
+    "",
+    "The 'verified' field records whether the rule-identifier mapping has been",
+    "confirmed against actual tool output on this corpus. Entries are seeded from",
+    "published rule catalogues and MUST be confirmed before results are reported:",
+    "run 'python -m evaluation.normalize --emit-unmapped' after a baseline run to",
+    "list every rule identifier the tools actually emitted but this file does not",
+    "cover, then extend the map and flip 'verified' to true.",
+    "",
+    "Unmapped findings are never silently discarded. They are counted and reported,",
+    "because a tool that detects a violation under a rule identifier absent from",
+    "this file would otherwise be scored as a false negative -- which would bias",
+    "the comparison in favour of the reference implementation."
+  ],
+  "schema_version": "1.0.0",
+  "controls": {
+    "STO_PUBLIC_BUCKET": {
+      "title": "Object storage bucket permits public access",
+      "domain": "STO",
+      "cis_aws": "2.1.5",
+      "severity": "CRITICAL",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_20",
+          "CKV_AWS_53",
+          "CKV_AWS_54",
+          "CKV_AWS_55",
+          "CKV_AWS_56"
+        ],
+        "tfsec": [
+          "aws-s3-block-public-acls",
+          "aws-s3-block-public-policy",
+          "aws-s3-ignore-public-acls",
+          "aws-s3-no-public-access-with-acl",
+          "aws-s3-specify-public-access-block"
+        ],
+        "opa": [
+          "s3_public_access_block"
+        ]
+      }
+    },
+    "STO_UNENCRYPTED_BUCKET": {
+      "title": "Object storage bucket lacks server-side encryption",
+      "domain": "ENC",
+      "cis_aws": "2.1.1",
+      "severity": "HIGH",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_19",
+          "CKV_AWS_145"
+        ],
+        "tfsec": [
+          "aws-s3-encryption-customer-key",
+          "aws-s3-enable-bucket-encryption"
+        ],
+        "opa": [
+          "s3_server_side_encryption"
+        ]
+      }
+    },
+    "STO_NO_ACCESS_LOGGING": {
+      "title": "Object storage bucket lacks access logging",
+      "domain": "MON",
+      "cis_aws": "2.1.3",
+      "severity": "MEDIUM",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_18"
+        ],
+        "tfsec": [
+          "aws-s3-enable-bucket-logging"
+        ],
+        "opa": []
+      }
+    },
+    "NET_UNRESTRICTED_INGRESS": {
+      "title": "Security group permits unrestricted ingress from 0.0.0.0/0",
+      "domain": "NET",
+      "cis_aws": "5.2",
+      "severity": "CRITICAL",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_24",
+          "CKV_AWS_25",
+          "CKV_AWS_260",
+          "CKV_AWS_277"
+        ],
+        "tfsec": [
+          "aws-ec2-no-public-ingress-sgr",
+          "aws-vpc-no-public-ingress-sgr"
+        ],
+        "opa": [
+          "security_group_unrestricted_ingress"
+        ]
+      }
+    },
+    "NET_PUBLIC_INSTANCE": {
+      "title": "Compute instance assigned a public address",
+      "domain": "NET",
+      "cis_aws": "5.6",
+      "severity": "HIGH",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_88"
+        ],
+        "tfsec": [
+          "aws-ec2-no-public-ip",
+          "aws-ec2-no-public-ip-subnet"
+        ],
+        "opa": []
+      }
+    },
+    "NET_NO_FLOW_LOGS": {
+      "title": "Virtual network lacks flow logging",
+      "domain": "MON",
+      "cis_aws": "3.9",
+      "severity": "MEDIUM",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_11"
+        ],
+        "tfsec": [
+          "aws-ec2-require-vpc-flow-logs-for-all-vpcs"
+        ],
+        "opa": [
+          "vpc_flow_logs"
+        ]
+      }
+    },
+    "IAM_WILDCARD_ACTION": {
+      "title": "Identity policy grants wildcard actions or resources",
+      "domain": "IAM",
+      "cis_aws": "1.16",
+      "severity": "CRITICAL",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_1",
+          "CKV_AWS_49",
+          "CKV_AWS_62",
+          "CKV_AWS_107",
+          "CKV_AWS_108",
+          "CKV_AWS_109",
+          "CKV_AWS_110",
+          "CKV_AWS_111",
+          "CKV_AWS_286",
+          "CKV_AWS_287",
+          "CKV_AWS_288",
+          "CKV_AWS_289",
+          "CKV_AWS_290"
+        ],
+        "tfsec": [
+          "aws-iam-no-policy-wildcards"
+        ],
+        "opa": [
+          "iam_wildcard_action"
+        ]
+      }
+    },
+    "IAM_WILDCARD_TRUST": {
+      "title": "Role trust policy permits assumption by any principal",
+      "domain": "IAM",
+      "cis_aws": "1.16",
+      "severity": "CRITICAL",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_60",
+          "CKV_AWS_61"
+        ],
+        "tfsec": [
+          "aws-iam-no-policy-wildcards"
+        ],
+        "opa": [
+          "iam_wildcard_trust"
+        ]
+      }
+    },
+    "ENC_UNENCRYPTED_VOLUME": {
+      "title": "Block storage volume unencrypted at rest",
+      "domain": "ENC",
+      "cis_aws": "2.2.1",
+      "severity": "HIGH",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_3",
+          "CKV_AWS_8"
+        ],
+        "tfsec": [
+          "aws-ec2-enable-volume-encryption",
+          "aws-ec2-encryption-customer-key"
+        ],
+        "opa": [
+          "ebs_encryption"
+        ]
+      }
+    },
+    "ENC_UNENCRYPTED_DATABASE": {
+      "title": "Managed database storage unencrypted at rest",
+      "domain": "ENC",
+      "cis_aws": "2.3.1",
+      "severity": "HIGH",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_16"
+        ],
+        "tfsec": [
+          "aws-rds-encrypt-instance-storage-data"
+        ],
+        "opa": [
+          "rds_storage_encrypted"
+        ]
+      }
+    },
+    "ENC_NO_KEY_ROTATION": {
+      "title": "Key management key lacks automatic rotation",
+      "domain": "ENC",
+      "cis_aws": "3.8",
+      "severity": "MEDIUM",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_7"
+        ],
+        "tfsec": [
+          "aws-kms-auto-rotate-keys"
+        ],
+        "opa": []
+      }
+    },
+    "STO_PUBLIC_DATABASE": {
+      "title": "Managed database instance publicly accessible",
+      "domain": "NET",
+      "cis_aws": "2.3.3",
+      "severity": "CRITICAL",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_17"
+        ],
+        "tfsec": [
+          "aws-rds-no-public-db-access"
+        ],
+        "opa": [
+          "rds_publicly_accessible"
+        ]
+      }
+    },
+    "MON_NO_TRAIL_VALIDATION": {
+      "title": "Audit trail lacks log file integrity validation",
+      "domain": "MON",
+      "cis_aws": "3.2",
+      "severity": "MEDIUM",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_36"
+        ],
+        "tfsec": [
+          "aws-cloudtrail-enable-log-validation"
+        ],
+        "opa": [
+          "cloudtrail_log_validation"
+        ]
+      }
+    },
+    "MON_TRAIL_NOT_MULTIREGION": {
+      "title": "Audit trail not enabled across all regions",
+      "domain": "MON",
+      "cis_aws": "3.1",
+      "severity": "MEDIUM",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_67"
+        ],
+        "tfsec": [
+          "aws-cloudtrail-enable-all-regions"
+        ],
+        "opa": [
+          "cloudtrail_multi_region"
+        ]
+      }
+    },
+    "MON_NO_LOG_ENCRYPTION": {
+      "title": "Log group unencrypted with customer-managed key",
+      "domain": "MON",
+      "cis_aws": "3.5",
+      "severity": "MEDIUM",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_35",
+          "CKV_AWS_158"
+        ],
+        "tfsec": [
+          "aws-cloudtrail-encryption-customer-managed-key",
+          "aws-cloudwatch-log-group-customer-key"
+        ],
+        "opa": [
+          "cloudtrail_log_encryption"
+        ]
+      }
+    },
+    "CMP_NO_IMDSV2": {
+      "title": "Compute instance permits unauthenticated metadata access",
+      "domain": "CMP",
+      "cis_aws": "5.6",
+      "severity": "HIGH",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_79"
+        ],
+        "tfsec": [
+          "aws-ec2-enforce-http-token-imds"
+        ],
+        "opa": [
+          "ec2_imdsv2_required"
+        ]
+      }
+    },
+    "CMP_NO_IMAGE_SCANNING": {
+      "title": "Container registry lacks image vulnerability scanning",
+      "domain": "CMP",
+      "cis_aws": "n/a",
+      "severity": "MEDIUM",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_163"
+        ],
+        "tfsec": [
+          "aws-ecr-enable-image-scans"
+        ],
+        "opa": [
+          "ecr_scan_on_push"
+        ]
+      }
+    },
+    "CMP_MUTABLE_IMAGE_TAGS": {
+      "title": "Container registry permits mutable image tags",
+      "domain": "CMP",
+      "cis_aws": "n/a",
+      "severity": "LOW",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_51"
+        ],
+        "tfsec": [
+          "aws-ecr-enforce-immutable-repository"
+        ],
+        "opa": []
+      }
+    },
+    "SRV_NO_FUNCTION_ENCRYPTION": {
+      "title": "Function environment variables unencrypted",
+      "domain": "SRV",
+      "cis_aws": "n/a",
+      "severity": "HIGH",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_173"
+        ],
+        "tfsec": [
+          "aws-lambda-enable-tracing"
+        ],
+        "opa": []
+      }
+    },
+    "SRV_NO_API_AUTHORIZATION": {
+      "title": "API endpoint permits unauthenticated invocation",
+      "domain": "SRV",
+      "cis_aws": "n/a",
+      "severity": "CRITICAL",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_59"
+        ],
+        "tfsec": [
+          "aws-api-gateway-no-public-access"
+        ],
+        "opa": [
+          "api_gateway_authorization"
+        ]
+      }
+    },
+    "SEC_HARDCODED_CREDENTIAL": {
+      "title": "Credential material embedded in configuration source",
+      "domain": "SEC",
+      "cis_aws": "1.4",
+      "severity": "CRITICAL",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_41",
+          "CKV_AWS_45",
+          "CKV_SECRET_2",
+          "CKV_SECRET_6"
+        ],
+        "tfsec": [
+          "general-secrets-no-plaintext-exposure"
+        ],
+        "opa": [
+          "hardcoded_credential"
+        ],
+        "iacsb_layer1": [
+          "layer1_secret_pattern"
+        ]
+      }
+    },
+    "K8S_PRIVILEGED_CONTAINER": {
+      "title": "Container runs in privileged mode",
+      "domain": "K8S",
+      "cis_aws": "n/a",
+      "severity": "CRITICAL",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_K8S_16",
+          "CKV_K8S_20"
+        ],
+        "tfsec": [
+          "kubernetes-no-privileged-containers"
+        ],
+        "opa": [
+          "k8s_privileged_container"
+        ]
+      }
+    },
+    "K8S_ROOT_CONTAINER": {
+      "title": "Container permitted to run as root",
+      "domain": "K8S",
+      "cis_aws": "n/a",
+      "severity": "HIGH",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_K8S_23",
+          "CKV_K8S_40"
+        ],
+        "tfsec": [
+          "kubernetes-no-root-containers"
+        ],
+        "opa": [
+          "k8s_run_as_non_root"
+        ]
+      }
+    },
+    "K8S_NO_RESOURCE_LIMITS": {
+      "title": "Container lacks CPU or memory limits",
+      "domain": "K8S",
+      "cis_aws": "n/a",
+      "severity": "MEDIUM",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_K8S_11",
+          "CKV_K8S_13"
+        ],
+        "tfsec": [
+          "kubernetes-set-resource-limits"
+        ],
+        "opa": [
+          "k8s_resource_limits"
+        ]
+      }
+    },
+    "ID_WEAK_TOKEN_VALIDATION": {
+      "title": "Federated identity configuration omits audience or subject binding",
+      "domain": "ID",
+      "cis_aws": "1.16",
+      "severity": "HIGH",
+      "verified": false,
+      "tools": {
+        "checkov": [],
+        "tfsec": [],
+        "opa": [
+          "oidc_audience_binding"
+        ]
+      }
+    },
+    "PII_UNMASKED_PERSONAL_DATA": {
+      "title": "Personal data present in repository-tracked artefact",
+      "domain": "PII",
+      "cis_aws": "n/a",
+      "severity": "CRITICAL",
+      "verified": false,
+      "tools": {
+        "checkov": [],
+        "tfsec": [],
+        "opa": [
+          "pii_present"
+        ]
+      }
+    },
+    "NET_NO_HTTPS_REDIRECT": {
+      "title": "Content delivery endpoint does not enforce HTTPS redirection",
+      "domain": "NET",
+      "cis_aws": "n/a",
+      "severity": "MEDIUM",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_34"
+        ],
+        "tfsec": [
+          "aws-cloudfront-enforce-https"
+        ],
+        "opa": [
+          "cloudfront_https_only"
+        ]
+      }
+    },
+    "NET_ALB_INVALID_HEADERS": {
+      "title": "Load balancer does not drop invalid header fields",
+      "domain": "NET",
+      "cis_aws": "n/a",
+      "severity": "MEDIUM",
+      "verified": false,
+      "tools": {
+        "checkov": [
+          "CKV_AWS_131"
+        ],
+        "tfsec": [
+          "aws-elb-drop-invalid-headers"
+        ],
+        "opa": [
+          "alb_drop_invalid_headers"
+        ]
+      }
+    }
+  }
+}

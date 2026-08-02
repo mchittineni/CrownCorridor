@@ -1,7 +1,20 @@
-"""IaCSecBench — Benchmark Scoring & Leaderboard Protocol Driver.
+"""DEPRECATED — derives a leaderboard from assumed accuracy rates.
 
-Evaluates security tools (Checkov, tfsec, Terrascan, OPA, IaCSecBench) across the
-benchmark suite dataset and generates the research leaderboard (results.csv).
+This module does not evaluate any security tool. It multiplies the corpus class
+counts by hardcoded per-tool rates (``"tp": int(insecure_count * 0.90)`` and
+similar) and pins the reference implementation to a perfect score. The latency
+column is a set of constants. The resulting ``leaderboard/results.csv`` is
+therefore a projection of its own assumptions, not a measurement.
+
+Replaced by the measuring pipeline:
+
+    experiments/run_baselines.sh
+
+which is built from evaluation/run_baselines.py (execution), evaluation/normalize.py
+(finding normalization), evaluation/stats.py (exact intervals and tests) and
+evaluation/analyze.py (aggregation and LaTeX emission).
+
+To run this module anyway, set IACSECBENCH_ALLOW_SYNTHETIC=1.
 """
 
 import csv
@@ -9,6 +22,26 @@ import json
 import os
 import sys
 from pathlib import Path
+
+_GUARD_ENV = "IACSECBENCH_ALLOW_SYNTHETIC"
+
+
+def _refuse_unless_explicitly_allowed() -> None:
+    """Blocks accidental generation of a synthetic leaderboard."""
+    if os.environ.get(_GUARD_ENV) == "1":
+        print(
+            f"WARNING: {_GUARD_ENV}=1 -- emitting a SYNTHETIC leaderboard derived from "
+            "assumed accuracy rates. Not a measurement; must not be published.",
+            file=sys.stderr,
+        )
+        return
+    sys.exit(
+        "refusing to run: this module fabricates leaderboard metrics.\n"
+        "  Tool scores are corpus counts multiplied by hardcoded rates; no scanner\n"
+        "  is executed and the reference tool is pinned to 100%.\n\n"
+        "  Measure instead:  experiments/run_baselines.sh\n"
+        f"  Override (not for publication):  {_GUARD_ENV}=1 python evaluation/score.py"
+    )
 
 ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT))
@@ -31,6 +64,7 @@ def run_benchmark_scoring() -> list[dict]:
     Returns:
         List of tool metric dictionaries.
     """
+    _refuse_unless_explicitly_allowed()
     dataset_file = ROOT / "benchmark" / "benchmark.json"
     if not dataset_file.exists():
         dataset_file = ROOT / "benchmark" / "datasets" / "benchmarks.json"
@@ -66,15 +100,6 @@ def run_benchmark_scoring() -> list[dict]:
             "tn": int(secure_count * 0.94),
             "fn": int(insecure_count * 0.12),
             "latency": 310.0,
-        },
-        {
-            "name": "Terrascan",
-            "category": "Policy Engine",
-            "tp": int(insecure_count * 0.85),
-            "fp": int(secure_count * 0.10),
-            "tn": int(secure_count * 0.90),
-            "fn": int(insecure_count * 0.15),
-            "latency": 850.0,
         },
         {
             "name": "OPA / Sentinel",
