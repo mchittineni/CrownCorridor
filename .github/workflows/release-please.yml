@@ -44,7 +44,7 @@ jobs:
           mkdir -p release-artifacts
 
           # IaCSecBench benchmark dataset & evaluation suite
-          zip -r release-artifacts/iacsecbench-$REF_NAME.zip benchmark/ security_framework/ evaluation/ infrastructure/
+          zip -r release-artifacts/iacsecbench-$REF_NAME.zip benchmark/ security_framework/ evaluation/ infrastructure/ paper/ results/
 
       - name: Upload Benchmark Archives to Release
         if: ${{ steps.release.outputs.release_created }}
