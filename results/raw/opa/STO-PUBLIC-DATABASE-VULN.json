@@ -1,0 +1,23 @@
+{
+  "result": [
+    {
+      "expressions": [
+        {
+          "value": [
+            {
+              "msg": "aws_db_instance.target is publicly accessible",
+              "resource": "aws_db_instance.target",
+              "rule_id": "rds_publicly_accessible",
+              "severity": "CRITICAL"
+            }
+          ],
+          "text": "data.aws.cis.benchmark.deny",
+          "location": {
+            "row": 1,
+            "col": 1
+          }
+        }
+      ]
+    }
+  ]
+}

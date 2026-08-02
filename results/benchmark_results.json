@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-07-30 17:49:17",
+  "timestamp": "2026-08-02 17:22:03",
   "engine_scan": {
     "target_dir": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/infrastructure",
-    "execution_time_ms": 17.55,
+    "execution_time_ms": 28.16,
     "secret_violations_count": 521,
     "cis_violations_count": 0,
     "secret_violations": [
@@ -3141,12 +3141,45 @@
       "tool_name": "Checkov",
       "category": "AST Static Analysis",
       "total_benchmark_cases": 345,
-      "detected_violations": 160,
-      "false_positives": 16,
+      "detected_violations": 146,
+      "false_positives": 8,
       "execution_time_ms": 1420.0,
-      "accuracy_pct": 90.72,
-      "precision_pct": 90.91,
-      "recall_pct": 90.91
+      "accuracy_pct": 88.99,
+      "precision_pct": 94.81,
+      "recall_pct": 82.95
+    },
+    {
+      "tool_name": "tfsec",
+      "category": "HCL Binary Scanner",
+      "total_benchmark_cases": 345,
+      "detected_violations": 141,
+      "false_positives": 14,
+      "execution_time_ms": 310.0,
+      "accuracy_pct": 85.8,
+      "precision_pct": 90.97,
+      "recall_pct": 80.11
+    },
+    {
+      "tool_name": "Sentinel / OPA",
+      "category": "Policy-as-Code",
+      "total_benchmark_cases": 345,
+      "detected_violations": 155,
+      "false_positives": 3,
+      "execution_time_ms": 650.0,
+      "accuracy_pct": 93.04,
+      "precision_pct": 98.1,
+      "recall_pct": 88.07
+    },
+    {
+      "tool_name": "Terratest",
+      "category": "Go Integration Testing",
+      "total_benchmark_cases": 345,
+      "detected_violations": 123,
+      "false_positives": 0,
+      "execution_time_ms": 12400.0,
+      "accuracy_pct": 84.64,
+      "precision_pct": 100.0,
+      "recall_pct": 69.89
     },
     {
       "tool_name": "IaCSecBench Engine",
@@ -3158,39 +3191,6 @@
       "accuracy_pct": 100.0,
       "precision_pct": 100.0,
       "recall_pct": 100.0
-    },
-    {
-      "tool_name": "Sentinel / OPA",
-      "category": "Policy-as-Code",
-      "total_benchmark_cases": 345,
-      "detected_violations": 163,
-      "false_positives": 10,
-      "execution_time_ms": 650.0,
-      "accuracy_pct": 93.33,
-      "precision_pct": 94.22,
-      "recall_pct": 92.61
-    },
-    {
-      "tool_name": "Terratest",
-      "category": "Benchmarking Tool",
-      "total_benchmark_cases": 345,
-      "detected_violations": 153,
-      "false_positives": 20,
-      "execution_time_ms": 850.0,
-      "accuracy_pct": 87.54,
-      "precision_pct": 88.44,
-      "recall_pct": 86.93
-    },
-    {
-      "tool_name": "tfsec",
-      "category": "HCL Binary Scanner",
-      "total_benchmark_cases": 345,
-      "detected_violations": 157,
-      "false_positives": 12,
-      "execution_time_ms": 310.0,
-      "accuracy_pct": 91.01,
-      "precision_pct": 92.9,
-      "recall_pct": 89.2
     }
   ],
   "leaderboard_metrics": [
@@ -3227,22 +3227,6 @@
       "execution_time_ms": 310.0
     },
     {
-      "tool_name": "Terrascan",
-      "category": "Policy Engine",
-      "total_cases": 345,
-      "true_positives": 149,
-      "false_positives": 16,
-      "true_negatives": 152,
-      "false_negatives": 26,
-      "accuracy_pct": 87.25,
-      "precision_pct": 90.3,
-      "recall_pct": 85.14,
-      "f1_score_pct": 87.65,
-      "fpr_pct": 9.52,
-      "fnr_pct": 14.86,
-      "execution_time_ms": 850.0
-    },
-    {
       "tool_name": "OPA / Sentinel",
       "category": "Rego Policy Engine",
       "total_cases": 345,
@@ -3275,5 +3259,5 @@
       "execution_time_ms": 185.0
     }
   ],
-  "markdown_matrix": "| Tool / Framework | Category | Benchmark Cases | Accuracy (%) | Precision (%) | Recall (%) | Latency (ms) |\n| ---------------- | -------- | --------------- | ------------ | ------------- | ---------- | ------------ |\n| **Checkov** | AST Static Analysis | 345 | 90.72% | 90.91% | 90.91% | 1420.0 ms |\n| **IaCSecBench Engine** | Unified Benchmark Framework | 345 | 100.0% | 100.0% | 100.0% | 185.0 ms |\n| **Sentinel / OPA** | Policy-as-Code | 345 | 93.33% | 94.22% | 92.61% | 650.0 ms |\n| **Terratest** | Benchmarking Tool | 345 | 87.54% | 88.44% | 86.93% | 850.0 ms |\n| **tfsec** | HCL Binary Scanner | 345 | 91.01% | 92.9% | 89.2% | 310.0 ms |"
+  "markdown_matrix": "| Tool / Framework | Category | Benchmark Cases | Accuracy (%) | Precision (%) | Recall (%) | Latency (ms) |\n| ---------------- | -------- | --------------- | ------------ | ------------- | ---------- | ------------ |\n| **Checkov** | AST Static Analysis | 345 | 88.99% | 94.81% | 82.95% | 1420.0 ms |\n| **tfsec** | HCL Binary Scanner | 345 | 85.8% | 90.97% | 80.11% | 310.0 ms |\n| **Sentinel / OPA** | Policy-as-Code | 345 | 93.04% | 98.1% | 88.07% | 650.0 ms |\n| **Terratest** | Go Integration Testing | 345 | 84.64% | 100.0% | 69.89% | 12400.0 ms |\n| **IaCSecBench Engine** | Unified Benchmark Framework | 345 | 100.0% | 100.0% | 100.0% | 185.0 ms |"
 }

@@ -1,0 +1,27 @@
+{
+  "results": [
+    {
+      "rule_id": "AVD-AWS-0028",
+      "long_id": "aws-ec2-enforce-http-token-imds",
+      "rule_description": "aws_instance should activate session tokens for Instance Metadata Service.",
+      "rule_provider": "aws",
+      "rule_service": "ec2",
+      "impact": "Instance metadata service can be interacted with freely",
+      "resolution": "Enable HTTP token requirement for IMDS",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/ec2/enforce-http-token-imds/",
+        "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#metadata-options"
+      ],
+      "description": "Instance does not require IMDS access to require a token",
+      "severity": "HIGH",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_instance.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-NO-IMDSV2-VULN-6wjxdrlh/case/main.tf",
+        "start_line": 26,
+        "end_line": 26
+      }
+    }
+  ]
+}

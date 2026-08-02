@@ -1,0 +1,63 @@
+{
+  "check_type": "terraform",
+  "results": {
+    "failed_checks": [
+      {
+        "check_id": "CKV_AWS_136",
+        "bc_check_id": "BC_AWS_GENERAL_53",
+        "check_name": "Ensure that ECR repositories are encrypted using KMS",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "encryption_configuration/[0]/encryption_type"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-NO-IMAGE-SCANNING-SAFE-g_bsnes6/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-NO-IMAGE-SCANNING-SAFE-g_bsnes6/case/main.tf",
+        "file_line_range": [
+          20,
+          27
+        ],
+        "resource": "aws_ecr_repository.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.aws.ECRRepositoryEncrypted",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-ecr-repositories-are-encrypted",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-NO-IMAGE-SCANNING-SAFE-g_bsnes6/case/main.tf",
+        "breadcrumbs": {
+          "name": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-NO-IMAGE-SCANNING-SAFE-g_bsnes6/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "summary": {
+    "passed": 2,
+    "failed": 1,
+    "skipped": 0,
+    "parsing_errors": 0,
+    "resource_count": 1,
+    "checkov_version": "3.3.8"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "result": [
+    {
+      "expressions": [
+        {
+          "value": [
+            {
+              "msg": "aws_security_group.target permits unrestricted ingress from 0.0.0.0/0",
+              "resource": "aws_security_group.target",
+              "rule_id": "security_group_unrestricted_ingress",
+              "severity": "CRITICAL"
+            },
+            {
+              "msg": "aws_vpc.target has no flow log configured in the plan",
+              "resource": "aws_vpc.target",
+              "rule_id": "vpc_flow_logs",
+              "severity": "MEDIUM"
+            }
+          ],
+          "text": "data.aws.cis.benchmark.deny",
+          "location": {
+            "row": 1,
+            "col": 1
+          }
+        }
+      ]
+    }
+  ]
+}

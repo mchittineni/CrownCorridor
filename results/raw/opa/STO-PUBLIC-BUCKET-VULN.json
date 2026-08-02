@@ -1,0 +1,29 @@
+{
+  "result": [
+    {
+      "expressions": [
+        {
+          "value": [
+            {
+              "msg": "aws_s3_bucket.target does not enforce server-side encryption",
+              "resource": "aws_s3_bucket.target",
+              "rule_id": "s3_server_side_encryption",
+              "severity": "HIGH"
+            },
+            {
+              "msg": "aws_s3_bucket_public_access_block.target does not set all four public access block flags to true",
+              "resource": "aws_s3_bucket_public_access_block.target",
+              "rule_id": "s3_public_access_block",
+              "severity": "CRITICAL"
+            }
+          ],
+          "text": "data.aws.cis.benchmark.deny",
+          "location": {
+            "row": 1,
+            "col": 1
+          }
+        }
+      ]
+    }
+  ]
+}

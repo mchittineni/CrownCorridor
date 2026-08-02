@@ -1,0 +1,50 @@
+{
+  "results": [
+    {
+      "rule_id": "AVD-AWS-0031",
+      "long_id": "aws-ecr-enforce-immutable-repository",
+      "rule_description": "ECR images tags shouldn't be mutable.",
+      "rule_provider": "aws",
+      "rule_service": "ecr",
+      "impact": "Image tags could be overwritten with compromised images",
+      "resolution": "Only use immutable images in ECR",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/ecr/enforce-immutable-repository/",
+        "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository"
+      ],
+      "description": "Repository tags are mutable.",
+      "severity": "HIGH",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_ecr_repository.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-MUTABLE-IMAGE-TAGS-VULN-sh3olboo/case/main.tf",
+        "start_line": 22,
+        "end_line": 22
+      }
+    },
+    {
+      "rule_id": "AVD-AWS-0033",
+      "long_id": "aws-ecr-repository-customer-key",
+      "rule_description": "ECR Repository should use customer managed keys to allow more control",
+      "rule_provider": "aws",
+      "rule_service": "ecr",
+      "impact": "Using AWS managed keys does not allow for fine grained control",
+      "resolution": "Use customer managed keys",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/ecr/repository-customer-key/",
+        "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository#encryption_configuration"
+      ],
+      "description": "Repository is not encrypted using KMS.",
+      "severity": "LOW",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_ecr_repository.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-MUTABLE-IMAGE-TAGS-VULN-sh3olboo/case/main.tf",
+        "start_line": 20,
+        "end_line": 27
+      }
+    }
+  ]
+}

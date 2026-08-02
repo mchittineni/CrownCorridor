@@ -1,0 +1,124 @@
+{
+  "check_type": "terraform",
+  "results": {
+    "failed_checks": [
+      {
+        "check_id": "CKV_AWS_158",
+        "bc_check_id": "BC_AWS_GENERAL_85",
+        "check_name": "Ensure that CloudWatch Log Group is encrypted by KMS",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "kms_key_id"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-SAFE-2ghe935n/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-SAFE-2ghe935n/case/main.tf",
+        "file_line_range": [
+          25,
+          28
+        ],
+        "resource": "aws_cloudwatch_log_group.flow",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.aws.CloudWatchLogGroupKMSKey",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-cloudwatch-log-group-is-encrypted-by-kms",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-SAFE-2ghe935n/case/main.tf",
+        "breadcrumbs": {
+          "name": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-SAFE-2ghe935n/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV2_AWS_12",
+        "bc_check_id": "BC_AWS_NETWORKING_4",
+        "check_name": "Ensure the default security group of every VPC restricts all traffic",
+        "check_result": {
+          "result": "FAILED",
+          "entity": {
+            "aws_vpc": {
+              "target": {
+                "__end_line__": 23,
+                "__start_line__": 20,
+                "cidr_block": [
+                  "10.1.0.0/16"
+                ],
+                "enable_dns_hostnames": [
+                  true
+                ],
+                "__address__": "aws_vpc.target"
+              }
+            }
+          },
+          "evaluated_keys": [
+            "resource_type",
+            "ingress/from_port",
+            "egress/to_port",
+            "ingress/to_port",
+            "ingress/protocol",
+            "egress/from_port",
+            "egress/cidr_blocks",
+            "ingress/self",
+            "egress/protocol"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-SAFE-2ghe935n/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-SAFE-2ghe935n/case/main.tf",
+        "file_line_range": [
+          20,
+          23
+        ],
+        "resource": "aws_vpc.target",
+        "evaluations": null,
+        "check_class": "checkov.common.graph.checks_infra.base_check",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-4",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-SAFE-2ghe935n/case/main.tf"
+      }
+    ]
+  },
+  "summary": {
+    "passed": 8,
+    "failed": 2,
+    "skipped": 0,
+    "parsing_errors": 0,
+    "resource_count": 4,
+    "checkov_version": "3.3.8"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "result": [
+    {
+      "expressions": [
+        {
+          "value": [
+            {
+              "msg": "aws_s3_bucket.target has no aws_s3_bucket_public_access_block in the plan",
+              "resource": "aws_s3_bucket.target",
+              "rule_id": "s3_public_access_block",
+              "severity": "CRITICAL"
+            },
+            {
+              "msg": "aws_s3_bucket_server_side_encryption_configuration.target uses AES256 rather than a customer-managed KMS key",
+              "resource": "aws_s3_bucket_server_side_encryption_configuration.target",
+              "rule_id": "s3_server_side_encryption",
+              "severity": "MEDIUM"
+            }
+          ],
+          "text": "data.aws.cis.benchmark.deny",
+          "location": {
+            "row": 1,
+            "col": 1
+          }
+        }
+      ]
+    }
+  ]
+}

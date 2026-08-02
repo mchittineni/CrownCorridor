@@ -1,0 +1,49 @@
+{
+  "results": [
+    {
+      "rule_id": "AVD-AWS-0104",
+      "long_id": "aws-ec2-no-public-egress-sgr",
+      "rule_description": "An egress security group rule allows traffic to /0.",
+      "rule_provider": "aws",
+      "rule_service": "ec2",
+      "impact": "Your port is egressing data to the internet",
+      "resolution": "Set a more restrictive cidr range",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/ec2/no-public-egress-sgr/",
+        "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group"
+      ],
+      "description": "Security group rule allows egress to multiple public internet addresses.",
+      "severity": "CRITICAL",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_security_group.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-x0cnoi9k/case/main.tf",
+        "start_line": 49,
+        "end_line": 49
+      }
+    },
+    {
+      "rule_id": "AVD-AWS-0178",
+      "long_id": "aws-ec2-require-vpc-flow-logs-for-all-vpcs",
+      "rule_description": "VPC Flow Logs is a feature that enables you to capture information about the IP traffic going to and from network interfaces in your VPC. After you've created a flow log, you can view and retrieve its data in Amazon CloudWatch Logs. It is recommended that VPC Flow Logs be enabled for packet \"Rejects\" for VPCs.",
+      "rule_provider": "aws",
+      "rule_service": "ec2",
+      "impact": "Without VPC flow logs, you risk not having enough information about network traffic flow to investigate incidents or identify security issues.",
+      "resolution": "Enable flow logs for VPC",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/ec2/require-vpc-flow-logs-for-all-vpcs/"
+      ],
+      "description": "VPC Flow Logs is not enabled for VPC ",
+      "severity": "MEDIUM",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_vpc.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-x0cnoi9k/case/main.tf",
+        "start_line": 24,
+        "end_line": 26
+      }
+    }
+  ]
+}

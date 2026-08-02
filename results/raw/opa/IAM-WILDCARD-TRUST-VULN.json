@@ -1,0 +1,23 @@
+{
+  "result": [
+    {
+      "expressions": [
+        {
+          "value": [
+            {
+              "msg": "aws_iam_role.target may be assumed by any principal",
+              "resource": "aws_iam_role.target",
+              "rule_id": "iam_wildcard_trust",
+              "severity": "CRITICAL"
+            }
+          ],
+          "text": "data.aws.cis.benchmark.deny",
+          "location": {
+            "row": 1,
+            "col": 1
+          }
+        }
+      ]
+    }
+  ]
+}

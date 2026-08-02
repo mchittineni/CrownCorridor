@@ -1,0 +1,96 @@
+{
+  "results": [
+    {
+      "rule_id": "AVD-AWS-0088",
+      "long_id": "aws-s3-enable-bucket-encryption",
+      "rule_description": "Unencrypted S3 bucket.",
+      "rule_provider": "aws",
+      "rule_service": "s3",
+      "impact": "The bucket objects could be read if compromised",
+      "resolution": "Configure bucket encryption",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/s3/enable-bucket-encryption/",
+        "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#enable-default-server-side-encryption"
+      ],
+      "description": "Bucket does not have encryption enabled",
+      "severity": "HIGH",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_s3_bucket.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-dq9lhfka/case/main.tf",
+        "start_line": 24,
+        "end_line": 26
+      }
+    },
+    {
+      "rule_id": "AVD-AWS-0089",
+      "long_id": "aws-s3-enable-bucket-logging",
+      "rule_description": "S3 Bucket does not have logging enabled.",
+      "rule_provider": "aws",
+      "rule_service": "s3",
+      "impact": "There is no way to determine the access to this bucket",
+      "resolution": "Add a logging block to the resource to enable access logging",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/s3/enable-bucket-logging/",
+        "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket"
+      ],
+      "description": "Bucket does not have logging enabled",
+      "severity": "MEDIUM",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_s3_bucket.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-dq9lhfka/case/main.tf",
+        "start_line": 24,
+        "end_line": 26
+      }
+    },
+    {
+      "rule_id": "AVD-AWS-0090",
+      "long_id": "aws-s3-enable-versioning",
+      "rule_description": "S3 Data should be versioned",
+      "rule_provider": "aws",
+      "rule_service": "s3",
+      "impact": "Deleted or modified data would not be recoverable",
+      "resolution": "Enable versioning to protect against accidental/malicious removal or modification",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/s3/enable-versioning/",
+        "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#versioning"
+      ],
+      "description": "Bucket does not have versioning enabled",
+      "severity": "MEDIUM",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_s3_bucket.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-dq9lhfka/case/main.tf",
+        "start_line": 24,
+        "end_line": 26
+      }
+    },
+    {
+      "rule_id": "AVD-AWS-0132",
+      "long_id": "aws-s3-encryption-customer-key",
+      "rule_description": "S3 encryption should use Customer Managed Keys",
+      "rule_provider": "aws",
+      "rule_service": "s3",
+      "impact": "Using AWS managed keys does not allow for fine grained control",
+      "resolution": "Enable encryption using customer managed keys",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/s3/encryption-customer-key/",
+        "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#enable-default-server-side-encryption"
+      ],
+      "description": "Bucket does not encrypt data with a customer managed key.",
+      "severity": "HIGH",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_s3_bucket.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-dq9lhfka/case/main.tf",
+        "start_line": 24,
+        "end_line": 26
+      }
+    }
+  ]
+}

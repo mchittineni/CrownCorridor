@@ -1,0 +1,23 @@
+{
+  "result": [
+    {
+      "expressions": [
+        {
+          "value": [
+            {
+              "msg": "aws_cloudfront_distribution.target does not enforce HTTPS redirection",
+              "resource": "aws_cloudfront_distribution.target",
+              "rule_id": "cloudfront_https_only",
+              "severity": "MEDIUM"
+            }
+          ],
+          "text": "data.aws.cis.benchmark.deny",
+          "location": {
+            "row": 1,
+            "col": 1
+          }
+        }
+      ]
+    }
+  ]
+}

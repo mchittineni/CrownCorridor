@@ -1,0 +1,26 @@
+{
+  "results": [
+    {
+      "rule_id": "AVD-AWS-0178",
+      "long_id": "aws-ec2-require-vpc-flow-logs-for-all-vpcs",
+      "rule_description": "VPC Flow Logs is a feature that enables you to capture information about the IP traffic going to and from network interfaces in your VPC. After you've created a flow log, you can view and retrieve its data in Amazon CloudWatch Logs. It is recommended that VPC Flow Logs be enabled for packet \"Rejects\" for VPCs.",
+      "rule_provider": "aws",
+      "rule_service": "ec2",
+      "impact": "Without VPC flow logs, you risk not having enough information about network traffic flow to investigate incidents or identify security issues.",
+      "resolution": "Enable flow logs for VPC",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/ec2/require-vpc-flow-logs-for-all-vpcs/"
+      ],
+      "description": "VPC Flow Logs is not enabled for VPC ",
+      "severity": "MEDIUM",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_vpc.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-VULN-ysfp0gzq/case/main.tf",
+        "start_line": 20,
+        "end_line": 23
+      }
+    }
+  ]
+}

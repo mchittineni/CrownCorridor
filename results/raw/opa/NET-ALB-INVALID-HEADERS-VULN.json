@@ -1,0 +1,29 @@
+{
+  "result": [
+    {
+      "expressions": [
+        {
+          "value": [
+            {
+              "msg": "aws_lb.target does not drop invalid header fields",
+              "resource": "aws_lb.target",
+              "rule_id": "alb_drop_invalid_headers",
+              "severity": "MEDIUM"
+            },
+            {
+              "msg": "aws_vpc.target has no flow log configured in the plan",
+              "resource": "aws_vpc.target",
+              "rule_id": "vpc_flow_logs",
+              "severity": "MEDIUM"
+            }
+          ],
+          "text": "data.aws.cis.benchmark.deny",
+          "location": {
+            "row": 1,
+            "col": 1
+          }
+        }
+      ]
+    }
+  ]
+}

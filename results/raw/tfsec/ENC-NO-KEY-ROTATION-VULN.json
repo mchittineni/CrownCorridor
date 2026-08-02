@@ -1,0 +1,27 @@
+{
+  "results": [
+    {
+      "rule_id": "AVD-AWS-0065",
+      "long_id": "aws-kms-auto-rotate-keys",
+      "rule_description": "A KMS key is not configured to auto-rotate.",
+      "rule_provider": "aws",
+      "rule_service": "kms",
+      "impact": "Long life KMS keys increase the attack surface when compromised",
+      "resolution": "Configure KMS key to auto rotate",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/kms/auto-rotate-keys/",
+        "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key#enable_key_rotation"
+      ],
+      "description": "Key does not have rotation enabled.",
+      "severity": "MEDIUM",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_kms_key.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-ENC-NO-KEY-ROTATION-VULN-j2rlum4j/case/main.tf",
+        "start_line": 23,
+        "end_line": 23
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "results": [
+    {
+      "rule_id": "AVD-AWS-0010",
+      "long_id": "aws-cloudfront-enable-logging",
+      "rule_description": "Cloudfront distribution should have Access Logging configured",
+      "rule_provider": "aws",
+      "rule_service": "cloudfront",
+      "impact": "Logging provides vital information about access and usage",
+      "resolution": "Enable logging for CloudFront distributions",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/cloudfront/enable-logging/",
+        "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution#logging_config"
+      ],
+      "description": "Distribution does not have logging enabled.",
+      "severity": "MEDIUM",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_cloudfront_distribution.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-ga30nyj2/case/main.tf",
+        "start_line": 20,
+        "end_line": 58
+      }
+    },
+    {
+      "rule_id": "AVD-AWS-0011",
+      "long_id": "aws-cloudfront-enable-waf",
+      "rule_description": "CloudFront distribution does not have a WAF in front.",
+      "rule_provider": "aws",
+      "rule_service": "cloudfront",
+      "impact": "Complex web application attacks can more easily be performed without a WAF",
+      "resolution": "Enable WAF for the CloudFront distribution",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/cloudfront/enable-waf/",
+        "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution#web_acl_id"
+      ],
+      "description": "Distribution does not utilise a WAF.",
+      "severity": "HIGH",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_cloudfront_distribution.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-ga30nyj2/case/main.tf",
+        "start_line": 20,
+        "end_line": 58
+      }
+    },
+    {
+      "rule_id": "AVD-AWS-0013",
+      "long_id": "aws-cloudfront-use-secure-tls-policy",
+      "rule_description": "CloudFront distribution uses outdated SSL/TLS protocols.",
+      "rule_provider": "aws",
+      "rule_service": "cloudfront",
+      "impact": "Outdated SSL policies increase exposure to known vulnerabilities",
+      "resolution": "Use the most modern TLS/SSL policies available",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/cloudfront/use-secure-tls-policy/",
+        "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution#minimum_protocol_version"
+      ],
+      "description": "Distribution allows unencrypted communications.",
+      "severity": "HIGH",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_cloudfront_distribution.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-ga30nyj2/case/main.tf",
+        "start_line": 55,
+        "end_line": 57
+      }
+    }
+  ]
+}
