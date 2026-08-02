@@ -572,10 +572,23 @@ def main(argv: list[str] | None = None) -> int:
     print(f"Corpus      : {len(cases)} cases  ({n_positives} vulnerable, {n_negatives} compliant)")
     print(f"Repeats     : {manifest.get('repeats')} executions per tool-case")
 
-    unverified = manifest.get("control_map_unverified") or []
+    # Taken from the control map that scored these findings, not from the
+    # manifest's snapshot. The manifest records the map as it stood when the
+    # scanners ran, but scoring re-reads the file, so a map corrected after the
+    # run would otherwise be reported with its pre-correction defect count --
+    # overstating the caveat and understating the audit that removed it.
+    unverified = sorted(control_map.unverified_controls)
+    recorded = manifest.get("control_map_unverified") or []
     if unverified:
         print(f"\nWARNING: {len(unverified)} control-map entries are unverified.")
         print("         Results are provisional until they are confirmed.")
+    if sorted(recorded) != unverified:
+        print(
+            f"\nNote: the control map was corrected after this run "
+            f"({len(recorded)} unverified at scan time, {len(unverified)} now). "
+            "Scoring used the corrected map; latency and tool versions still "
+            "come from the recorded run."
+        )
 
     if n_negatives == 0:
         print("\nWARNING: the corpus contains no compliant baseline cases.")
