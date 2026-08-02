@@ -29,6 +29,7 @@
       "verified": false,
       "tools": {
         "checkov": [
+          "CKV2_AWS_6",
           "CKV_AWS_20",
           "CKV_AWS_53",
           "CKV_AWS_54",
@@ -40,6 +41,7 @@
           "aws-s3-block-public-policy",
           "aws-s3-ignore-public-acls",
           "aws-s3-no-public-access-with-acl",
+          "aws-s3-no-public-buckets",
           "aws-s3-specify-public-access-block"
         ],
         "opa": [
@@ -52,7 +54,7 @@
       "domain": "ENC",
       "cis_aws": "2.1.1",
       "severity": "HIGH",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_AWS_19",
@@ -72,12 +74,13 @@
       "domain": "MON",
       "cis_aws": "2.1.3",
       "severity": "MEDIUM",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_AWS_18"
         ],
         "tfsec": [
+          "aws-cloudtrail-require-bucket-access-logging",
           "aws-s3-enable-bucket-logging"
         ],
         "opa": []
@@ -127,10 +130,10 @@
       "domain": "MON",
       "cis_aws": "3.9",
       "severity": "MEDIUM",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
-          "CKV_AWS_11"
+          "CKV2_AWS_11"
         ],
         "tfsec": [
           "aws-ec2-require-vpc-flow-logs-for-all-vpcs"
@@ -145,7 +148,7 @@
       "domain": "IAM",
       "cis_aws": "1.16",
       "severity": "CRITICAL",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_AWS_1",
@@ -175,7 +178,7 @@
       "domain": "IAM",
       "cis_aws": "1.16",
       "severity": "CRITICAL",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_AWS_60",
@@ -214,7 +217,7 @@
       "domain": "ENC",
       "cis_aws": "2.3.1",
       "severity": "HIGH",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_AWS_16"
@@ -232,7 +235,7 @@
       "domain": "ENC",
       "cis_aws": "3.8",
       "severity": "MEDIUM",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_AWS_7"
@@ -248,12 +251,13 @@
       "domain": "NET",
       "cis_aws": "2.3.3",
       "severity": "CRITICAL",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_AWS_17"
         ],
         "tfsec": [
+          "aws-rds-enable-public-access",
           "aws-rds-no-public-db-access"
         ],
         "opa": [
@@ -266,7 +270,7 @@
       "domain": "MON",
       "cis_aws": "3.2",
       "severity": "MEDIUM",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_AWS_36"
@@ -284,7 +288,7 @@
       "domain": "MON",
       "cis_aws": "3.1",
       "severity": "MEDIUM",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_AWS_67"
@@ -302,14 +306,14 @@
       "domain": "MON",
       "cis_aws": "3.5",
       "severity": "MEDIUM",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_AWS_35",
           "CKV_AWS_158"
         ],
         "tfsec": [
-          "aws-cloudtrail-encryption-customer-managed-key",
+          "aws-cloudtrail-enable-at-rest-encryption",
           "aws-cloudwatch-log-group-customer-key"
         ],
         "opa": [
@@ -322,7 +326,7 @@
       "domain": "CMP",
       "cis_aws": "5.6",
       "severity": "HIGH",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_AWS_79"
@@ -340,7 +344,7 @@
       "domain": "CMP",
       "cis_aws": "n/a",
       "severity": "MEDIUM",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_AWS_163"
@@ -358,7 +362,7 @@
       "domain": "CMP",
       "cis_aws": "n/a",
       "severity": "LOW",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_AWS_51"
@@ -374,7 +378,7 @@
       "domain": "SRV",
       "cis_aws": "n/a",
       "severity": "HIGH",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_AWS_173"
@@ -517,7 +521,7 @@
       "domain": "NET",
       "cis_aws": "n/a",
       "severity": "MEDIUM",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_AWS_34"
@@ -535,7 +539,7 @@
       "domain": "NET",
       "cis_aws": "n/a",
       "severity": "MEDIUM",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_AWS_131"
