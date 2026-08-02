@@ -1,0 +1,23 @@
+{
+  "result": [
+    {
+      "expressions": [
+        {
+          "value": [
+            {
+              "msg": "aws_ebs_volume.target is not encrypted at rest",
+              "resource": "aws_ebs_volume.target",
+              "rule_id": "ebs_encryption",
+              "severity": "HIGH"
+            }
+          ],
+          "text": "data.aws.cis.benchmark.deny",
+          "location": {
+            "row": 1,
+            "col": 1
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "result": [
+    {
+      "expressions": [
+        {
+          "value": [
+            {
+              "msg": "aws_s3_bucket.target has no aws_s3_bucket_public_access_block in the plan",
+              "resource": "aws_s3_bucket.target",
+              "rule_id": "s3_public_access_block",
+              "severity": "CRITICAL"
+            }
+          ],
+          "text": "data.aws.cis.benchmark.deny",
+          "location": {
+            "row": 1,
+            "col": 1
+          }
+        }
+      ]
+    }
+  ]
+}

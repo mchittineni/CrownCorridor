@@ -1,0 +1,268 @@
+{
+  "check_type": "terraform",
+  "results": {
+    "failed_checks": [
+      {
+        "check_id": "CKV_AWS_150",
+        "bc_check_id": "BC_AWS_NETWORKING_62",
+        "check_name": "Ensure that Load Balancer has deletion protection enabled",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "enable_deletion_protection"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-osc52xsm/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-osc52xsm/case/main.tf",
+        "file_line_range": [
+          31,
+          37
+        ],
+        "resource": "aws_lb.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.aws.LBDeletionProtection",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-150",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-osc52xsm/case/main.tf",
+        "breadcrumbs": {
+          "name": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-osc52xsm/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_AWS_91",
+        "bc_check_id": "BC_AWS_LOGGING_22",
+        "check_name": "Ensure the ELBv2 (Application/Network) has access logging enabled",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "access_logs/0/enabled/0"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-osc52xsm/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-osc52xsm/case/main.tf",
+        "file_line_range": [
+          31,
+          37
+        ],
+        "resource": "aws_lb.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.aws.ELBv2AccessLogs",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-logging-22",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-osc52xsm/case/main.tf",
+        "breadcrumbs": {
+          "name": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-osc52xsm/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_AWS_131",
+        "bc_check_id": "BC_AWS_NETWORKING_41",
+        "check_name": "Ensure that ALB drops HTTP headers",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "drop_invalid_header_fields"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-osc52xsm/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-osc52xsm/case/main.tf",
+        "file_line_range": [
+          31,
+          37
+        ],
+        "resource": "aws_lb.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.aws.ALBDropHttpHeaders",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-that-alb-drops-http-headers",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-osc52xsm/case/main.tf",
+        "breadcrumbs": {
+          "name": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-osc52xsm/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV2_AWS_12",
+        "bc_check_id": "BC_AWS_NETWORKING_4",
+        "check_name": "Ensure the default security group of every VPC restricts all traffic",
+        "check_result": {
+          "result": "FAILED",
+          "entity": {
+            "aws_vpc": {
+              "target": {
+                "__end_line__": 22,
+                "__start_line__": 20,
+                "cidr_block": [
+                  "10.3.0.0/16"
+                ],
+                "__address__": "aws_vpc.target"
+              }
+            }
+          },
+          "evaluated_keys": [
+            "ingress/self",
+            "egress/cidr_blocks",
+            "ingress/from_port",
+            "egress/protocol",
+            "ingress/to_port",
+            "egress/to_port",
+            "egress/from_port",
+            "resource_type",
+            "ingress/protocol"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-osc52xsm/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-osc52xsm/case/main.tf",
+        "file_line_range": [
+          20,
+          22
+        ],
+        "resource": "aws_vpc.target",
+        "evaluations": null,
+        "check_class": "checkov.common.graph.checks_infra.base_check",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-4",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-osc52xsm/case/main.tf"
+      },
+      {
+        "check_id": "CKV2_AWS_11",
+        "bc_check_id": "BC_AWS_LOGGING_9",
+        "check_name": "Ensure VPC flow logging is enabled in all VPCs",
+        "check_result": {
+          "result": "FAILED",
+          "entity": {
+            "aws_vpc": {
+              "target": {
+                "__end_line__": 22,
+                "__start_line__": 20,
+                "cidr_block": [
+                  "10.3.0.0/16"
+                ],
+                "__address__": "aws_vpc.target"
+              }
+            }
+          },
+          "evaluated_keys": [
+            "networking",
+            "resource_type"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-osc52xsm/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-osc52xsm/case/main.tf",
+        "file_line_range": [
+          20,
+          22
+        ],
+        "resource": "aws_vpc.target",
+        "evaluations": null,
+        "check_class": "checkov.common.graph.checks_infra.base_check",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-9-enable-vpc-flow-logging",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-osc52xsm/case/main.tf"
+      }
+    ]
+  },
+  "summary": {
+    "passed": 6,
+    "failed": 5,
+    "skipped": 0,
+    "parsing_errors": 0,
+    "resource_count": 4,
+    "checkov_version": "3.3.8"
+  }
+}

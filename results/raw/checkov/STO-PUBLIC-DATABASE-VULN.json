@@ -1,0 +1,570 @@
+{
+  "check_type": "terraform",
+  "results": {
+    "failed_checks": [
+      {
+        "check_id": "CKV_AWS_161",
+        "bc_check_id": "BC_AWS_IAM_65",
+        "check_name": "Ensure RDS database has IAM authentication enabled",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "iam_database_authentication_enabled"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "file_line_range": [
+          20,
+          30
+        ],
+        "resource": "aws_db_instance.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.aws.RDSIAMAuthentication",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-rds-database-has-iam-authentication-enabled",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "breadcrumbs": {
+          "identifier": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_AWS_293",
+        "bc_check_id": "BC_AWS_GENERAL_208",
+        "check_name": "Ensure that AWS database instances have deletion protection enabled",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "deletion_protection"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "file_line_range": [
+          20,
+          30
+        ],
+        "resource": "aws_db_instance.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.aws.RDSInstanceDeletionProtection",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-293",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "breadcrumbs": {
+          "identifier": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_AWS_353",
+        "bc_check_id": "BC_AWS_LOGGING_47",
+        "check_name": "Ensure that RDS instances have performance insights enabled",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "performance_insights_enabled"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "file_line_range": [
+          20,
+          30
+        ],
+        "resource": "aws_db_instance.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.aws.RDSInstancePerformanceInsights",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-353",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "breadcrumbs": {
+          "identifier": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_AWS_157",
+        "bc_check_id": "BC_AWS_GENERAL_73",
+        "check_name": "Ensure that RDS instances have Multi-AZ enabled",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "multi_az"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "file_line_range": [
+          20,
+          30
+        ],
+        "resource": "aws_db_instance.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.aws.RDSMultiAZEnabled",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/general-73",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "breadcrumbs": {
+          "identifier": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_AWS_129",
+        "bc_check_id": "BC_AWS_IAM_60",
+        "check_name": "Ensure that respective logs of Amazon Relational Database Service (Amazon RDS) are enabled",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "enabled_cloudwatch_logs_exports/[0]"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "file_line_range": [
+          20,
+          30
+        ],
+        "resource": "aws_db_instance.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.aws.DBInstanceLogging",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-that-respective-logs-of-amazon-relational-database-service-amazon-rds-are-enabled",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "breadcrumbs": {
+          "identifier": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_AWS_226",
+        "bc_check_id": "BC_AWS_GENERAL_121",
+        "check_name": "Ensure DB instance gets all minor upgrades automatically",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "auto_minor_version_upgrade"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "file_line_range": [
+          20,
+          30
+        ],
+        "resource": "aws_db_instance.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.aws.DBInstanceMinorUpgrade",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-aws-db-instance-gets-all-minor-upgrades-automatically",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "breadcrumbs": {
+          "identifier": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_AWS_17",
+        "bc_check_id": "BC_AWS_PUBLIC_2",
+        "check_name": "Ensure all data stored in RDS is not publicly accessible",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "publicly_accessible"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "file_line_range": [
+          20,
+          30
+        ],
+        "resource": "aws_db_instance.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.aws.RDSPubliclyAccessible",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/public-policies/public-2",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "breadcrumbs": {
+          "identifier": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_AWS_118",
+        "bc_check_id": "BC_AWS_LOGGING_28",
+        "check_name": "Ensure that enhanced monitoring is enabled for Amazon RDS instances",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "monitoring_interval"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "file_line_range": [
+          20,
+          30
+        ],
+        "resource": "aws_db_instance.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.aws.RDSEnhancedMonitorEnabled",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/ensure-that-enhanced-monitoring-is-enabled-for-amazon-rds-instances",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "breadcrumbs": {
+          "identifier": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV2_AWS_60",
+        "bc_check_id": "BC_AWS_GENERAL_195",
+        "check_name": "Ensure RDS instance with copy tags to snapshots is enabled",
+        "check_result": {
+          "result": "FAILED",
+          "entity": {
+            "aws_db_instance": {
+              "target": {
+                "__end_line__": 30,
+                "__start_line__": 20,
+                "allocated_storage": [
+                  20
+                ],
+                "engine": [
+                  "postgres"
+                ],
+                "identifier": [
+                  "iacsecbench-net-db"
+                ],
+                "instance_class": [
+                  "db.t3.micro"
+                ],
+                "manage_master_user_password": [
+                  true
+                ],
+                "publicly_accessible": [
+                  true
+                ],
+                "skip_final_snapshot": [
+                  true
+                ],
+                "storage_encrypted": [
+                  true
+                ],
+                "username": [
+                  "benchmark"
+                ],
+                "__address__": "aws_db_instance.target"
+              }
+            }
+          },
+          "evaluated_keys": [
+            "copy_tags_to_snapshot",
+            "engine"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "file_line_range": [
+          20,
+          30
+        ],
+        "resource": "aws_db_instance.target",
+        "evaluations": null,
+        "check_class": "checkov.common.graph.checks_infra.base_check",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-2-60",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "breadcrumbs": {
+          "identifier": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV2_AWS_30",
+        "bc_check_id": "BC_AWS_LOGGING_32",
+        "check_name": "Ensure Postgres RDS as aws_db_instance has Query Logging enabled",
+        "check_result": {
+          "result": "FAILED",
+          "entity": {
+            "aws_db_instance": {
+              "target": {
+                "__end_line__": 30,
+                "__start_line__": 20,
+                "allocated_storage": [
+                  20
+                ],
+                "engine": [
+                  "postgres"
+                ],
+                "identifier": [
+                  "iacsecbench-net-db"
+                ],
+                "instance_class": [
+                  "db.t3.micro"
+                ],
+                "manage_master_user_password": [
+                  true
+                ],
+                "publicly_accessible": [
+                  true
+                ],
+                "skip_final_snapshot": [
+                  true
+                ],
+                "storage_encrypted": [
+                  true
+                ],
+                "username": [
+                  "benchmark"
+                ],
+                "__address__": "aws_db_instance.target"
+              }
+            }
+          },
+          "evaluated_keys": [
+            "engine",
+            "parameter/*/name",
+            "resource_type"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "file_line_range": [
+          20,
+          30
+        ],
+        "resource": "aws_db_instance.target",
+        "evaluations": null,
+        "check_class": "checkov.common.graph.checks_infra.base_check",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-postgres-rds-has-query-logging-enabled",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/main.tf",
+        "breadcrumbs": {
+          "identifier": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-DATABASE-VULN-0kyglf27/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "summary": {
+    "passed": 6,
+    "failed": 10,
+    "skipped": 0,
+    "parsing_errors": 0,
+    "resource_count": 1,
+    "checkov_version": "3.3.8"
+  }
+}

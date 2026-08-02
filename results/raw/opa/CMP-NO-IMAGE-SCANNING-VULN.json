@@ -1,0 +1,23 @@
+{
+  "result": [
+    {
+      "expressions": [
+        {
+          "value": [
+            {
+              "msg": "aws_ecr_repository.target does not scan images on push",
+              "resource": "aws_ecr_repository.target",
+              "rule_id": "ecr_scan_on_push",
+              "severity": "MEDIUM"
+            }
+          ],
+          "text": "data.aws.cis.benchmark.deny",
+          "location": {
+            "row": 1,
+            "col": 1
+          }
+        }
+      ]
+    }
+  ]
+}

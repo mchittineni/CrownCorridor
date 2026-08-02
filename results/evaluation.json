@@ -1,0 +1,587 @@
+{
+  "environment": {
+    "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.14.6",
+    "cpu_count": 14,
+    "git_commit": "a6489c9532b83c1edb144d194d4c8a68da06aa81"
+  },
+  "corpus": {
+    "n_cases": 4,
+    "n_vulnerable": 4,
+    "n_compliant": 0,
+    "case_ids": [
+      "cis_examples/cis_2_1_s3_public",
+      "cis_examples/cis_2_2_s3_encryption",
+      "cis_examples/cis_3_1_cloudtrail",
+      "cis_examples/cis_4_1_security_group"
+    ]
+  },
+  "matching_level": "control",
+  "reference_tool": "opa",
+  "control_map_schema": "1.0.0",
+  "control_map_unverified": [
+    "CMP_MUTABLE_IMAGE_TAGS",
+    "CMP_NO_IMAGE_SCANNING",
+    "CMP_NO_IMDSV2",
+    "ENC_NO_KEY_ROTATION",
+    "ENC_UNENCRYPTED_DATABASE",
+    "ENC_UNENCRYPTED_VOLUME",
+    "IAM_WILDCARD_ACTION",
+    "IAM_WILDCARD_TRUST",
+    "ID_WEAK_TOKEN_VALIDATION",
+    "K8S_NO_RESOURCE_LIMITS",
+    "K8S_PRIVILEGED_CONTAINER",
+    "K8S_ROOT_CONTAINER",
+    "MON_NO_LOG_ENCRYPTION",
+    "MON_NO_TRAIL_VALIDATION",
+    "MON_TRAIL_NOT_MULTIREGION",
+    "NET_ALB_INVALID_HEADERS",
+    "NET_NO_FLOW_LOGS",
+    "NET_NO_HTTPS_REDIRECT",
+    "NET_PUBLIC_INSTANCE",
+    "NET_UNRESTRICTED_INGRESS",
+    "PII_UNMASKED_PERSONAL_DATA",
+    "SEC_HARDCODED_CREDENTIAL",
+    "SRV_NO_API_AUTHORIZATION",
+    "SRV_NO_FUNCTION_ENCRYPTION",
+    "STO_NO_ACCESS_LOGGING",
+    "STO_PUBLIC_BUCKET",
+    "STO_PUBLIC_DATABASE",
+    "STO_UNENCRYPTED_BUCKET",
+    "TF_MISSING_VARIABLE_CONSTRAINT"
+  ],
+  "tool_status": {
+    "checkov": "run",
+    "opa": "run",
+    "tfsec": "run"
+  },
+  "results": {
+    "checkov": {
+      "control": {
+        "tool": "checkov",
+        "level": "control",
+        "confusion_matrix": {
+          "tp": 4,
+          "fp": 0,
+          "tn": 0,
+          "fn": 0,
+          "total": 4,
+          "positives": 4,
+          "negatives": 0,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "specificity": null,
+          "f1": 1.0,
+          "balanced_accuracy": null,
+          "mcc": null,
+          "recall_ci": {
+            "point": 1.0,
+            "lower": 0.39763536438352576,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          },
+          "precision_ci": {
+            "point": 1.0,
+            "lower": 0.39763536438352576,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          },
+          "specificity_ci": null,
+          "accuracy_ci": {
+            "point": 1.0,
+            "lower": 0.39763536438352576,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          }
+        },
+        "latency": {
+          "mean_ms": 2623.593611166598,
+          "sd_ms": 43.22694378837626,
+          "n": 12
+        },
+        "n_execution_errors": 0,
+        "n_unmapped_findings": 56,
+        "specificity_estimable": false,
+        "mcc_estimable": false
+      },
+      "resource": {
+        "tool": "checkov",
+        "level": "resource",
+        "confusion_matrix": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 0,
+          "fn": 4,
+          "total": 4,
+          "positives": 4,
+          "negatives": 0,
+          "accuracy": 0.0,
+          "precision": null,
+          "recall": 0.0,
+          "specificity": null,
+          "f1": null,
+          "balanced_accuracy": null,
+          "mcc": null,
+          "recall_ci": {
+            "point": 0.0,
+            "lower": 0.0,
+            "upper": 0.6023646356164742,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          },
+          "precision_ci": null,
+          "specificity_ci": null,
+          "accuracy_ci": {
+            "point": 0.0,
+            "lower": 0.0,
+            "upper": 0.6023646356164742,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          }
+        },
+        "latency": {
+          "mean_ms": 2623.593611166598,
+          "sd_ms": 43.22694378837626,
+          "n": 12
+        },
+        "n_execution_errors": 0,
+        "n_unmapped_findings": 56,
+        "specificity_estimable": false,
+        "mcc_estimable": false
+      },
+      "any": {
+        "tool": "checkov",
+        "level": "any",
+        "confusion_matrix": {
+          "tp": 4,
+          "fp": 0,
+          "tn": 0,
+          "fn": 0,
+          "total": 4,
+          "positives": 4,
+          "negatives": 0,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "specificity": null,
+          "f1": 1.0,
+          "balanced_accuracy": null,
+          "mcc": null,
+          "recall_ci": {
+            "point": 1.0,
+            "lower": 0.39763536438352576,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          },
+          "precision_ci": {
+            "point": 1.0,
+            "lower": 0.39763536438352576,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          },
+          "specificity_ci": null,
+          "accuracy_ci": {
+            "point": 1.0,
+            "lower": 0.39763536438352576,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          }
+        },
+        "latency": {
+          "mean_ms": 2623.593611166598,
+          "sd_ms": 43.22694378837626,
+          "n": 12
+        },
+        "n_execution_errors": 0,
+        "n_unmapped_findings": 56,
+        "specificity_estimable": false,
+        "mcc_estimable": false
+      }
+    },
+    "opa": {
+      "control": {
+        "tool": "opa",
+        "level": "control",
+        "confusion_matrix": {
+          "tp": 4,
+          "fp": 0,
+          "tn": 0,
+          "fn": 0,
+          "total": 4,
+          "positives": 4,
+          "negatives": 0,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "specificity": null,
+          "f1": 1.0,
+          "balanced_accuracy": null,
+          "mcc": null,
+          "recall_ci": {
+            "point": 1.0,
+            "lower": 0.39763536438352576,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          },
+          "precision_ci": {
+            "point": 1.0,
+            "lower": 0.39763536438352576,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          },
+          "specificity_ci": null,
+          "accuracy_ci": {
+            "point": 1.0,
+            "lower": 0.39763536438352576,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          }
+        },
+        "latency": {
+          "mean_ms": 19.32552783318897,
+          "sd_ms": 0.2063533572028713,
+          "n": 12
+        },
+        "n_execution_errors": 0,
+        "n_unmapped_findings": 0,
+        "specificity_estimable": false,
+        "mcc_estimable": false
+      },
+      "resource": {
+        "tool": "opa",
+        "level": "resource",
+        "confusion_matrix": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 0,
+          "fn": 4,
+          "total": 4,
+          "positives": 4,
+          "negatives": 0,
+          "accuracy": 0.0,
+          "precision": null,
+          "recall": 0.0,
+          "specificity": null,
+          "f1": null,
+          "balanced_accuracy": null,
+          "mcc": null,
+          "recall_ci": {
+            "point": 0.0,
+            "lower": 0.0,
+            "upper": 0.6023646356164742,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          },
+          "precision_ci": null,
+          "specificity_ci": null,
+          "accuracy_ci": {
+            "point": 0.0,
+            "lower": 0.0,
+            "upper": 0.6023646356164742,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          }
+        },
+        "latency": {
+          "mean_ms": 19.32552783318897,
+          "sd_ms": 0.2063533572028713,
+          "n": 12
+        },
+        "n_execution_errors": 0,
+        "n_unmapped_findings": 0,
+        "specificity_estimable": false,
+        "mcc_estimable": false
+      },
+      "any": {
+        "tool": "opa",
+        "level": "any",
+        "confusion_matrix": {
+          "tp": 4,
+          "fp": 0,
+          "tn": 0,
+          "fn": 0,
+          "total": 4,
+          "positives": 4,
+          "negatives": 0,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "specificity": null,
+          "f1": 1.0,
+          "balanced_accuracy": null,
+          "mcc": null,
+          "recall_ci": {
+            "point": 1.0,
+            "lower": 0.39763536438352576,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          },
+          "precision_ci": {
+            "point": 1.0,
+            "lower": 0.39763536438352576,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          },
+          "specificity_ci": null,
+          "accuracy_ci": {
+            "point": 1.0,
+            "lower": 0.39763536438352576,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          }
+        },
+        "latency": {
+          "mean_ms": 19.32552783318897,
+          "sd_ms": 0.2063533572028713,
+          "n": 12
+        },
+        "n_execution_errors": 0,
+        "n_unmapped_findings": 0,
+        "specificity_estimable": false,
+        "mcc_estimable": false
+      }
+    },
+    "tfsec": {
+      "control": {
+        "tool": "tfsec",
+        "level": "control",
+        "confusion_matrix": {
+          "tp": 4,
+          "fp": 0,
+          "tn": 0,
+          "fn": 0,
+          "total": 4,
+          "positives": 4,
+          "negatives": 0,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "specificity": null,
+          "f1": 1.0,
+          "balanced_accuracy": null,
+          "mcc": null,
+          "recall_ci": {
+            "point": 1.0,
+            "lower": 0.39763536438352576,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          },
+          "precision_ci": {
+            "point": 1.0,
+            "lower": 0.39763536438352576,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          },
+          "specificity_ci": null,
+          "accuracy_ci": {
+            "point": 1.0,
+            "lower": 0.39763536438352576,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          }
+        },
+        "latency": {
+          "mean_ms": 432.64948258320146,
+          "sd_ms": 1.909842172876082,
+          "n": 12
+        },
+        "n_execution_errors": 0,
+        "n_unmapped_findings": 24,
+        "specificity_estimable": false,
+        "mcc_estimable": false
+      },
+      "resource": {
+        "tool": "tfsec",
+        "level": "resource",
+        "confusion_matrix": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 0,
+          "fn": 4,
+          "total": 4,
+          "positives": 4,
+          "negatives": 0,
+          "accuracy": 0.0,
+          "precision": null,
+          "recall": 0.0,
+          "specificity": null,
+          "f1": null,
+          "balanced_accuracy": null,
+          "mcc": null,
+          "recall_ci": {
+            "point": 0.0,
+            "lower": 0.0,
+            "upper": 0.6023646356164742,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          },
+          "precision_ci": null,
+          "specificity_ci": null,
+          "accuracy_ci": {
+            "point": 0.0,
+            "lower": 0.0,
+            "upper": 0.6023646356164742,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          }
+        },
+        "latency": {
+          "mean_ms": 432.64948258320146,
+          "sd_ms": 1.909842172876082,
+          "n": 12
+        },
+        "n_execution_errors": 0,
+        "n_unmapped_findings": 24,
+        "specificity_estimable": false,
+        "mcc_estimable": false
+      },
+      "any": {
+        "tool": "tfsec",
+        "level": "any",
+        "confusion_matrix": {
+          "tp": 4,
+          "fp": 0,
+          "tn": 0,
+          "fn": 0,
+          "total": 4,
+          "positives": 4,
+          "negatives": 0,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "specificity": null,
+          "f1": 1.0,
+          "balanced_accuracy": null,
+          "mcc": null,
+          "recall_ci": {
+            "point": 1.0,
+            "lower": 0.39763536438352576,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          },
+          "precision_ci": {
+            "point": 1.0,
+            "lower": 0.39763536438352576,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          },
+          "specificity_ci": null,
+          "accuracy_ci": {
+            "point": 1.0,
+            "lower": 0.39763536438352576,
+            "upper": 1.0,
+            "level": 0.95,
+            "method": "Clopper-Pearson (exact)"
+          }
+        },
+        "latency": {
+          "mean_ms": 432.64948258320146,
+          "sd_ms": 1.909842172876082,
+          "n": 12
+        },
+        "n_execution_errors": 0,
+        "n_unmapped_findings": 24,
+        "specificity_estimable": false,
+        "mcc_estimable": false
+      }
+    }
+  },
+  "pairwise_mcnemar": {
+    "checkov": {
+      "reference": "opa",
+      "comparator": "checkov",
+      "b": 0,
+      "c": 0,
+      "n_discordant": 0,
+      "p_exact": 1.0,
+      "p_midp": 1.0,
+      "p_chi2_cc": 1.0,
+      "chi2_statistic": 0.0,
+      "chi2_valid": false,
+      "odds_ratio": 1.0,
+      "odds_ratio_ci": {
+        "point": 1.0,
+        "lower": 0.01984252390544195,
+        "upper": 50.39681467768034,
+        "level": 0.95,
+        "method": "Haldane-Anscombe corrected (+0.5 per cell)"
+      },
+      "diff_ci": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0,
+        "level": 0.95,
+        "method": "paired difference of proportions (Wald)"
+      },
+      "cohens_g": 0.0,
+      "n_paired_cases": 4,
+      "holm": {
+        "p_raw": 1.0,
+        "p_adjusted": 1.0,
+        "rank": 1,
+        "reject": false
+      }
+    },
+    "tfsec": {
+      "reference": "opa",
+      "comparator": "tfsec",
+      "b": 0,
+      "c": 0,
+      "n_discordant": 0,
+      "p_exact": 1.0,
+      "p_midp": 1.0,
+      "p_chi2_cc": 1.0,
+      "chi2_statistic": 0.0,
+      "chi2_valid": false,
+      "odds_ratio": 1.0,
+      "odds_ratio_ci": {
+        "point": 1.0,
+        "lower": 0.01984252390544195,
+        "upper": 50.39681467768034,
+        "level": 0.95,
+        "method": "Haldane-Anscombe corrected (+0.5 per cell)"
+      },
+      "diff_ci": {
+        "point": 0.0,
+        "lower": 0.0,
+        "upper": 0.0,
+        "level": 0.95,
+        "method": "paired difference of proportions (Wald)"
+      },
+      "cohens_g": 0.0,
+      "n_paired_cases": 4,
+      "holm": {
+        "p_raw": 1.0,
+        "p_adjusted": 1.0,
+        "rank": 2,
+        "reject": false
+      }
+    }
+  },
+  "caveats": [
+    "The corpus has no compliant baselines, so no false-positive rate, specificity, balanced accuracy or MCC can be reported.",
+    "29 control-map entries are unverified against tool output; detection may be under-credited for affected controls.",
+    "80 findings were unmappable and are excluded from control-level scoring; this understates the affected tools.",
+    "Comparator tools ran with default rulesets; the plan-level policy set was authored with knowledge of the corpus. This asymmetry favours the reference."
+  ]
+}

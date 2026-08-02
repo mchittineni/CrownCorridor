@@ -1,0 +1,42 @@
+[
+  {
+    "rule_id": "layer1_secret_pattern",
+    "resource": "",
+    "severity": "CRITICAL",
+    "msg": "High Entropy Secret in main.tf",
+    "file": "main.tf",
+    "line": 25
+  },
+  {
+    "rule_id": "layer1_secret_pattern",
+    "resource": "",
+    "severity": "CRITICAL",
+    "msg": "High Entropy Secret in main.tf",
+    "file": "main.tf",
+    "line": 38
+  },
+  {
+    "rule_id": "layer1_secret_pattern",
+    "resource": "",
+    "severity": "CRITICAL",
+    "msg": "High Entropy Secret in variables.tf",
+    "file": "variables.tf",
+    "line": 4
+  },
+  {
+    "rule_id": "layer1_secret_pattern",
+    "resource": "",
+    "severity": "CRITICAL",
+    "msg": "High Entropy Secret in variables.tf",
+    "file": "variables.tf",
+    "line": 8
+  },
+  {
+    "rule_id": "layer1_secret_pattern",
+    "resource": "",
+    "severity": "CRITICAL",
+    "msg": "High Entropy Secret in variables.tf",
+    "file": "variables.tf",
+    "line": 15
+  }
+]

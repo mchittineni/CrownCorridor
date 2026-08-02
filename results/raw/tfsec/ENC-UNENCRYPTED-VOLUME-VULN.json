@@ -1,0 +1,50 @@
+{
+  "results": [
+    {
+      "rule_id": "AVD-AWS-0026",
+      "long_id": "aws-ec2-enable-volume-encryption",
+      "rule_description": "EBS volumes must be encrypted",
+      "rule_provider": "aws",
+      "rule_service": "ec2",
+      "impact": "Unencrypted sensitive data is vulnerable to compromise.",
+      "resolution": "Enable encryption of EBS volumes",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/ec2/enable-volume-encryption/",
+        "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ebs_volume#encrypted"
+      ],
+      "description": "EBS volume is not encrypted.",
+      "severity": "HIGH",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_ebs_volume.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-ENC-UNENCRYPTED-VOLUME-VULN-rrwgxqke/case/main.tf",
+        "start_line": 29,
+        "end_line": 29
+      }
+    },
+    {
+      "rule_id": "AVD-AWS-0027",
+      "long_id": "aws-ec2-volume-encryption-customer-key",
+      "rule_description": "EBS volume encryption should use Customer Managed Keys",
+      "rule_provider": "aws",
+      "rule_service": "ec2",
+      "impact": "Using AWS managed keys does not allow for fine grained control",
+      "resolution": "Enable encryption using customer managed keys",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/ec2/volume-encryption-customer-key/",
+        "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ebs_volume#kms_key_id"
+      ],
+      "description": "EBS volume does not use a customer-managed KMS key.",
+      "severity": "LOW",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_ebs_volume.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-ENC-UNENCRYPTED-VOLUME-VULN-rrwgxqke/case/main.tf",
+        "start_line": 26,
+        "end_line": 30
+      }
+    }
+  ]
+}

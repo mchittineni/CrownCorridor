@@ -1,0 +1,23 @@
+{
+  "result": [
+    {
+      "expressions": [
+        {
+          "value": [
+            {
+              "msg": "aws_instance.target does not require IMDSv2 tokens",
+              "resource": "aws_instance.target",
+              "rule_id": "ec2_imdsv2_required",
+              "severity": "HIGH"
+            }
+          ],
+          "text": "data.aws.cis.benchmark.deny",
+          "location": {
+            "row": 1,
+            "col": 1
+          }
+        }
+      ]
+    }
+  ]
+}

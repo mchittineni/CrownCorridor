@@ -1,0 +1,23 @@
+{
+  "result": [
+    {
+      "expressions": [
+        {
+          "value": [
+            {
+              "msg": "aws_db_instance.target does not encrypt storage at rest",
+              "resource": "aws_db_instance.target",
+              "rule_id": "rds_storage_encrypted",
+              "severity": "HIGH"
+            }
+          ],
+          "text": "data.aws.cis.benchmark.deny",
+          "location": {
+            "row": 1,
+            "col": 1
+          }
+        }
+      ]
+    }
+  ]
+}

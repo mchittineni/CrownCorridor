@@ -1,0 +1,353 @@
+{
+  "check_type": "terraform",
+  "results": {
+    "failed_checks": [
+      {
+        "check_id": "CKV_AWS_382",
+        "bc_check_id": "BC_AWS_IAM_93",
+        "check_name": "Ensure no security groups allow egress from 0.0.0.0:0 to port -1",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "egress/[0]/from_port",
+            "egress/[0]/to_port",
+            "egress/[0]/cidr_blocks",
+            "egress/[0]/ipv6_cidr_blocks"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-7_pbxzuo/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-7_pbxzuo/case/main.tf",
+        "file_line_range": [
+          28,
+          51
+        ],
+        "resource": "aws_security_group.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.aws.SecurityGroupUnrestrictedEgressAny",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-7_pbxzuo/case/main.tf",
+        "breadcrumbs": {
+          "dynamic.ingress.for_each": [
+            {
+              "type": "locals",
+              "name": "ingress_cidrs",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-7_pbxzuo/case/main.tf",
+              "module_connection": false
+            }
+          ],
+          "ingress.cidr_blocks.0": [
+            {
+              "type": "locals",
+              "name": "ingress_cidrs",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-7_pbxzuo/case/main.tf",
+              "module_connection": false
+            }
+          ],
+          "dynamic.ingress": [
+            {
+              "type": "locals",
+              "name": "ingress_cidrs",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-7_pbxzuo/case/main.tf",
+              "module_connection": false
+            }
+          ],
+          "name": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-7_pbxzuo/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV2_AWS_12",
+        "bc_check_id": "BC_AWS_NETWORKING_4",
+        "check_name": "Ensure the default security group of every VPC restricts all traffic",
+        "check_result": {
+          "result": "FAILED",
+          "entity": {
+            "aws_vpc": {
+              "target": {
+                "__end_line__": 26,
+                "__start_line__": 24,
+                "cidr_block": [
+                  "10.0.0.0/16"
+                ],
+                "__address__": "aws_vpc.target"
+              }
+            }
+          },
+          "evaluated_keys": [
+            "resource_type",
+            "egress/from_port",
+            "ingress/protocol",
+            "egress/to_port",
+            "egress/protocol",
+            "ingress/self",
+            "ingress/from_port",
+            "ingress/to_port",
+            "egress/cidr_blocks"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-7_pbxzuo/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-7_pbxzuo/case/main.tf",
+        "file_line_range": [
+          24,
+          26
+        ],
+        "resource": "aws_vpc.target",
+        "evaluations": null,
+        "check_class": "checkov.common.graph.checks_infra.base_check",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-4",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-7_pbxzuo/case/main.tf"
+      },
+      {
+        "check_id": "CKV2_AWS_5",
+        "bc_check_id": "BC_AWS_NETWORKING_51",
+        "check_name": "Ensure that Security Groups are attached to another resource",
+        "check_result": {
+          "result": "FAILED",
+          "entity": {
+            "aws_security_group": {
+              "target": {
+                "__end_line__": 51,
+                "__start_line__": 28,
+                "description": [
+                  "Benchmark ingress group"
+                ],
+                "dynamic": [
+                  {
+                    "ingress": [
+                      {
+                        "cidr_blocks": [
+                          "ingress.value"
+                        ],
+                        "description": [
+                          "SSH"
+                        ],
+                        "from_port": [
+                          22
+                        ],
+                        "protocol": [
+                          "tcp"
+                        ],
+                        "to_port": [
+                          22
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "egress": [
+                  {
+                    "cidr_blocks": [
+                      [
+                        "0.0.0.0/0"
+                      ]
+                    ],
+                    "description": [
+                      "All outbound"
+                    ],
+                    "from_port": [
+                      0
+                    ],
+                    "protocol": [
+                      "-1"
+                    ],
+                    "to_port": [
+                      0
+                    ]
+                  }
+                ],
+                "name": [
+                  "iacsecbench-net-ingress"
+                ],
+                "vpc_id": [
+                  "aws_vpc.target.id"
+                ],
+                "__address__": "aws_security_group.target",
+                "ingress": [
+                  {
+                    "cidr_blocks": [
+                      "ingress.value"
+                    ],
+                    "description": [
+                      "SSH"
+                    ],
+                    "from_port": [
+                      22
+                    ],
+                    "protocol": [
+                      "tcp"
+                    ],
+                    "to_port": [
+                      22
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "evaluated_keys": [
+            "networking",
+            "resource_type"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-7_pbxzuo/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-7_pbxzuo/case/main.tf",
+        "file_line_range": [
+          28,
+          51
+        ],
+        "resource": "aws_security_group.target",
+        "evaluations": null,
+        "check_class": "checkov.common.graph.checks_infra.base_check",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-that-security-groups-are-attached-to-ec2-instances-or-elastic-network-interfaces-enis",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-7_pbxzuo/case/main.tf",
+        "breadcrumbs": {
+          "dynamic.ingress.for_each": [
+            {
+              "type": "locals",
+              "name": "ingress_cidrs",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-7_pbxzuo/case/main.tf",
+              "module_connection": false
+            }
+          ],
+          "ingress.cidr_blocks.0": [
+            {
+              "type": "locals",
+              "name": "ingress_cidrs",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-7_pbxzuo/case/main.tf",
+              "module_connection": false
+            }
+          ],
+          "dynamic.ingress": [
+            {
+              "type": "locals",
+              "name": "ingress_cidrs",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-7_pbxzuo/case/main.tf",
+              "module_connection": false
+            }
+          ],
+          "name": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-7_pbxzuo/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV2_AWS_11",
+        "bc_check_id": "BC_AWS_LOGGING_9",
+        "check_name": "Ensure VPC flow logging is enabled in all VPCs",
+        "check_result": {
+          "result": "FAILED",
+          "entity": {
+            "aws_vpc": {
+              "target": {
+                "__end_line__": 26,
+                "__start_line__": 24,
+                "cidr_block": [
+                  "10.0.0.0/16"
+                ],
+                "__address__": "aws_vpc.target"
+              }
+            }
+          },
+          "evaluated_keys": [
+            "networking",
+            "resource_type"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-7_pbxzuo/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-7_pbxzuo/case/main.tf",
+        "file_line_range": [
+          24,
+          26
+        ],
+        "resource": "aws_vpc.target",
+        "evaluations": null,
+        "check_class": "checkov.common.graph.checks_infra.base_check",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-9-enable-vpc-flow-logging",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-7_pbxzuo/case/main.tf"
+      }
+    ]
+  },
+  "summary": {
+    "passed": 5,
+    "failed": 4,
+    "skipped": 0,
+    "parsing_errors": 0,
+    "resource_count": 2,
+    "checkov_version": "3.3.8"
+  }
+}

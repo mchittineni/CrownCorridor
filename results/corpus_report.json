@@ -1,0 +1,1795 @@
+{
+  "mode": "terraform",
+  "catalogue_gap": {
+    "internal_declared": 345,
+    "internal_on_disk": 44,
+    "internal_missing": [
+      "CMP-001",
+      "CMP-002",
+      "CMP-003",
+      "CMP-004",
+      "CMP-005",
+      "CMP-006",
+      "CMP-007",
+      "CMP-008",
+      "CMP-009",
+      "CMP-010",
+      "CMP-011",
+      "CMP-012",
+      "CMP-013",
+      "CMP-014",
+      "CMP-015",
+      "CMP-016",
+      "CMP-017",
+      "CMP-018",
+      "CMP-019",
+      "CMP-020",
+      "CMP-021",
+      "CMP-022",
+      "CMP-023",
+      "CMP-024",
+      "CMP-025",
+      "CMP-026",
+      "CMP-027",
+      "CMP-028",
+      "CMP-029",
+      "CMP-030",
+      "ENC-001",
+      "ENC-002",
+      "ENC-003",
+      "ENC-004",
+      "ENC-005",
+      "ENC-006",
+      "ENC-007",
+      "ENC-008",
+      "ENC-009",
+      "ENC-010",
+      "ENC-011",
+      "ENC-012",
+      "ENC-013",
+      "ENC-014",
+      "ENC-015",
+      "ENC-016",
+      "ENC-017",
+      "ENC-018",
+      "ENC-019",
+      "ENC-020",
+      "ENC-021",
+      "ENC-022",
+      "ENC-023",
+      "ENC-024",
+      "ENC-025",
+      "ENC-026",
+      "ENC-027",
+      "ENC-028",
+      "ENC-029",
+      "ENC-030",
+      "IAM-001",
+      "IAM-002",
+      "IAM-003",
+      "IAM-004",
+      "IAM-005",
+      "IAM-006",
+      "IAM-007",
+      "IAM-008",
+      "IAM-009",
+      "IAM-010",
+      "IAM-011",
+      "IAM-012",
+      "IAM-013",
+      "IAM-014",
+      "IAM-015",
+      "IAM-016",
+      "IAM-017",
+      "IAM-018",
+      "IAM-019",
+      "IAM-020",
+      "IAM-021",
+      "IAM-022",
+      "IAM-023",
+      "IAM-024",
+      "IAM-025",
+      "IAM-026",
+      "IAM-027",
+      "IAM-028",
+      "IAM-029",
+      "IAM-030",
+      "IAM-031",
+      "IAM-032",
+      "IAM-033",
+      "IAM-034",
+      "IAM-035",
+      "ID-001",
+      "ID-002",
+      "ID-003",
+      "ID-004",
+      "ID-005",
+      "ID-006",
+      "ID-007",
+      "ID-008",
+      "ID-009",
+      "ID-010",
+      "ID-011",
+      "ID-012",
+      "ID-013",
+      "ID-014",
+      "ID-015",
+      "ID-016",
+      "ID-017",
+      "ID-018",
+      "ID-019",
+      "ID-020",
+      "K8S-001",
+      "K8S-002",
+      "K8S-003",
+      "K8S-004",
+      "K8S-005",
+      "K8S-006",
+      "K8S-007",
+      "K8S-008",
+      "K8S-009",
+      "K8S-010",
+      "K8S-011",
+      "K8S-012",
+      "K8S-013",
+      "K8S-014",
+      "K8S-015",
+      "K8S-016",
+      "K8S-017",
+      "K8S-018",
+      "K8S-019",
+      "K8S-020",
+      "K8S-021",
+      "K8S-022",
+      "K8S-023",
+      "K8S-024",
+      "K8S-025",
+      "K8S-026",
+      "K8S-027",
+      "K8S-028",
+      "K8S-029",
+      "K8S-030",
+      "K8S-031",
+      "K8S-032",
+      "K8S-033",
+      "K8S-034",
+      "K8S-035",
+      "MON-001",
+      "MON-002",
+      "MON-003",
+      "MON-004",
+      "MON-005",
+      "MON-006",
+      "MON-007",
+      "MON-008",
+      "MON-009",
+      "MON-010",
+      "MON-011",
+      "MON-012",
+      "MON-013",
+      "MON-014",
+      "MON-015",
+      "MON-016",
+      "MON-017",
+      "MON-018",
+      "MON-019",
+      "MON-020",
+      "MON-021",
+      "MON-022",
+      "MON-023",
+      "MON-024",
+      "MON-025",
+      "NET-001",
+      "NET-002",
+      "NET-003",
+      "NET-004",
+      "NET-005",
+      "NET-006",
+      "NET-007",
+      "NET-008",
+      "NET-009",
+      "NET-010",
+      "NET-011",
+      "NET-012",
+      "NET-013",
+      "NET-014",
+      "NET-015",
+      "NET-016",
+      "NET-017",
+      "NET-018",
+      "NET-019",
+      "NET-020",
+      "NET-021",
+      "NET-022",
+      "NET-023",
+      "NET-024",
+      "NET-025",
+      "NET-026",
+      "NET-027",
+      "NET-028",
+      "NET-029",
+      "NET-030",
+      "NET-031",
+      "NET-032",
+      "NET-033",
+      "NET-034",
+      "NET-035",
+      "PII-001",
+      "PII-002",
+      "PII-003",
+      "PII-004",
+      "PII-005",
+      "PII-006",
+      "PII-007",
+      "PII-008",
+      "PII-009",
+      "PII-010",
+      "PII-011",
+      "PII-012",
+      "PII-013",
+      "PII-014",
+      "PII-015",
+      "PII-016",
+      "PII-017",
+      "PII-018",
+      "PII-019",
+      "PII-020",
+      "PII-021",
+      "PII-022",
+      "PII-023",
+      "PII-024",
+      "PII-025",
+      "SEC-001",
+      "SEC-002",
+      "SEC-003",
+      "SEC-004",
+      "SEC-005",
+      "SEC-006",
+      "SEC-007",
+      "SEC-008",
+      "SEC-009",
+      "SEC-010",
+      "SEC-011",
+      "SEC-012",
+      "SEC-013",
+      "SEC-014",
+      "SEC-015",
+      "SEC-016",
+      "SEC-017",
+      "SEC-018",
+      "SEC-019",
+      "SEC-020",
+      "SEC-021",
+      "SEC-022",
+      "SEC-023",
+      "SEC-024",
+      "SEC-025",
+      "SEC-026",
+      "SEC-027",
+      "SEC-028",
+      "SEC-029",
+      "SEC-030",
+      "SRV-001",
+      "SRV-002",
+      "SRV-003",
+      "SRV-004",
+      "SRV-005",
+      "SRV-006",
+      "SRV-007",
+      "SRV-008",
+      "SRV-009",
+      "SRV-010",
+      "SRV-011",
+      "SRV-012",
+      "SRV-013",
+      "SRV-014",
+      "SRV-015",
+      "SRV-016",
+      "SRV-017",
+      "SRV-018",
+      "SRV-019",
+      "SRV-020",
+      "SRV-021",
+      "SRV-022",
+      "SRV-023",
+      "SRV-024",
+      "SRV-025",
+      "STO-001",
+      "STO-002",
+      "STO-003",
+      "STO-004",
+      "STO-005",
+      "STO-006",
+      "STO-007",
+      "STO-008",
+      "STO-009",
+      "STO-010",
+      "STO-011",
+      "STO-012",
+      "STO-013",
+      "STO-014",
+      "STO-015",
+      "STO-016",
+      "STO-017",
+      "STO-018",
+      "STO-019",
+      "STO-020",
+      "STO-021",
+      "STO-022",
+      "STO-023",
+      "STO-024",
+      "STO-025",
+      "STO-026",
+      "STO-027",
+      "STO-028",
+      "STO-029",
+      "STO-030",
+      "TF-001",
+      "TF-002",
+      "TF-003",
+      "TF-004",
+      "TF-005",
+      "TF-006",
+      "TF-007",
+      "TF-008",
+      "TF-009",
+      "TF-010",
+      "TF-011",
+      "TF-012",
+      "TF-013",
+      "TF-014",
+      "TF-015",
+      "TF-016",
+      "TF-017",
+      "TF-018",
+      "TF-019",
+      "TF-020",
+      "TF-021",
+      "TF-022",
+      "TF-023",
+      "TF-024",
+      "TF-025"
+    ],
+    "external_declared": 175,
+    "external_on_disk": 4
+  },
+  "cases": [
+    {
+      "case_id": "CMP-MUTABLE-IMAGE-TAGS-SAFE",
+      "path": "benchmark/internal/cases/CMP-MUTABLE-IMAGE-TAGS-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "CMP",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "CMP_MUTABLE_IMAGE_TAGS"
+      ],
+      "expected_resources": [],
+      "cis_control": "n/a",
+      "severity": "NONE",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 30,
+      "resource_types": [
+        "aws_ecr_repository"
+      ]
+    },
+    {
+      "case_id": "CMP-MUTABLE-IMAGE-TAGS-VULN",
+      "path": "benchmark/internal/cases/CMP-MUTABLE-IMAGE-TAGS-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "CMP",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "CMP_MUTABLE_IMAGE_TAGS"
+      ],
+      "expected_resources": [
+        "aws_ecr_repository.target"
+      ],
+      "cis_control": "n/a",
+      "severity": "LOW",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 30,
+      "resource_types": [
+        "aws_ecr_repository"
+      ]
+    },
+    {
+      "case_id": "CMP-NO-IMAGE-SCANNING-SAFE",
+      "path": "benchmark/internal/cases/CMP-NO-IMAGE-SCANNING-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "CMP",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "CMP_NO_IMAGE_SCANNING"
+      ],
+      "expected_resources": [],
+      "cis_control": "n/a",
+      "severity": "NONE",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 30,
+      "resource_types": [
+        "aws_ecr_repository"
+      ]
+    },
+    {
+      "case_id": "CMP-NO-IMAGE-SCANNING-VULN",
+      "path": "benchmark/internal/cases/CMP-NO-IMAGE-SCANNING-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "CMP",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "CMP_NO_IMAGE_SCANNING"
+      ],
+      "expected_resources": [
+        "aws_ecr_repository.target"
+      ],
+      "cis_control": "n/a",
+      "severity": "MEDIUM",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 30,
+      "resource_types": [
+        "aws_ecr_repository"
+      ]
+    },
+    {
+      "case_id": "CMP-NO-IMDSV2-SAFE",
+      "path": "benchmark/internal/cases/CMP-NO-IMDSV2-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "CMP",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "CMP_NO_IMDSV2"
+      ],
+      "expected_resources": [],
+      "cis_control": "5.6",
+      "severity": "NONE",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 34,
+      "resource_types": [
+        "aws_instance"
+      ]
+    },
+    {
+      "case_id": "CMP-NO-IMDSV2-VULN",
+      "path": "benchmark/internal/cases/CMP-NO-IMDSV2-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "CMP",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "CMP_NO_IMDSV2"
+      ],
+      "expected_resources": [
+        "aws_instance.target"
+      ],
+      "cis_control": "5.6",
+      "severity": "HIGH",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 34,
+      "resource_types": [
+        "aws_instance"
+      ]
+    },
+    {
+      "case_id": "ENC-NO-KEY-ROTATION-SAFE",
+      "path": "benchmark/internal/cases/ENC-NO-KEY-ROTATION-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "ENC",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "ENC_NO_KEY_ROTATION"
+      ],
+      "expected_resources": [],
+      "cis_control": "3.8",
+      "severity": "NONE",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 28,
+      "resource_types": [
+        "aws_kms_key"
+      ]
+    },
+    {
+      "case_id": "ENC-NO-KEY-ROTATION-VULN",
+      "path": "benchmark/internal/cases/ENC-NO-KEY-ROTATION-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "ENC",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "ENC_NO_KEY_ROTATION"
+      ],
+      "expected_resources": [
+        "aws_kms_key.target"
+      ],
+      "cis_control": "3.8",
+      "severity": "MEDIUM",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 28,
+      "resource_types": [
+        "aws_kms_key"
+      ]
+    },
+    {
+      "case_id": "ENC-UNENCRYPTED-DATABASE-SAFE",
+      "path": "benchmark/internal/cases/ENC-UNENCRYPTED-DATABASE-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "ENC",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "ENC_UNENCRYPTED_DATABASE"
+      ],
+      "expected_resources": [],
+      "cis_control": "2.3.1",
+      "severity": "NONE",
+      "n_resources": 2,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 40,
+      "resource_types": [
+        "aws_db_instance",
+        "aws_kms_key"
+      ]
+    },
+    {
+      "case_id": "ENC-UNENCRYPTED-DATABASE-VULN",
+      "path": "benchmark/internal/cases/ENC-UNENCRYPTED-DATABASE-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "ENC",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "ENC_UNENCRYPTED_DATABASE"
+      ],
+      "expected_resources": [
+        "aws_db_instance.target"
+      ],
+      "cis_control": "2.3.1",
+      "severity": "HIGH",
+      "n_resources": 2,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 39,
+      "resource_types": [
+        "aws_db_instance",
+        "aws_kms_key"
+      ]
+    },
+    {
+      "case_id": "ENC-UNENCRYPTED-VOLUME-SAFE",
+      "path": "benchmark/internal/cases/ENC-UNENCRYPTED-VOLUME-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "ENC",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "ENC_UNENCRYPTED_VOLUME"
+      ],
+      "expected_resources": [],
+      "cis_control": "2.2.1",
+      "severity": "NONE",
+      "n_resources": 2,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 34,
+      "resource_types": [
+        "aws_ebs_volume",
+        "aws_kms_key"
+      ]
+    },
+    {
+      "case_id": "ENC-UNENCRYPTED-VOLUME-VULN",
+      "path": "benchmark/internal/cases/ENC-UNENCRYPTED-VOLUME-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "ENC",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "ENC_UNENCRYPTED_VOLUME"
+      ],
+      "expected_resources": [
+        "aws_ebs_volume.target"
+      ],
+      "cis_control": "2.2.1",
+      "severity": "HIGH",
+      "n_resources": 2,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 33,
+      "resource_types": [
+        "aws_ebs_volume",
+        "aws_kms_key"
+      ]
+    },
+    {
+      "case_id": "IAM-WILDCARD-ACTION-SAFE",
+      "path": "benchmark/internal/cases/IAM-WILDCARD-ACTION-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "IAM",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "IAM_WILDCARD_ACTION"
+      ],
+      "expected_resources": [],
+      "cis_control": "1.16",
+      "severity": "NONE",
+      "n_resources": 2,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 37,
+      "resource_types": [
+        "aws_iam_policy",
+        "aws_s3_bucket"
+      ]
+    },
+    {
+      "case_id": "IAM-WILDCARD-ACTION-VULN",
+      "path": "benchmark/internal/cases/IAM-WILDCARD-ACTION-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "IAM",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "IAM_WILDCARD_ACTION"
+      ],
+      "expected_resources": [
+        "aws_iam_policy.target"
+      ],
+      "cis_control": "1.16",
+      "severity": "CRITICAL",
+      "n_resources": 2,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 37,
+      "resource_types": [
+        "aws_iam_policy",
+        "aws_s3_bucket"
+      ]
+    },
+    {
+      "case_id": "IAM-WILDCARD-TRUST-SAFE",
+      "path": "benchmark/internal/cases/IAM-WILDCARD-TRUST-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "IAM",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "IAM_WILDCARD_TRUST"
+      ],
+      "expected_resources": [],
+      "cis_control": "1.16",
+      "severity": "NONE",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 34,
+      "resource_types": [
+        "aws_iam_role"
+      ]
+    },
+    {
+      "case_id": "IAM-WILDCARD-TRUST-VULN",
+      "path": "benchmark/internal/cases/IAM-WILDCARD-TRUST-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "IAM",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "IAM_WILDCARD_TRUST"
+      ],
+      "expected_resources": [
+        "aws_iam_role.target"
+      ],
+      "cis_control": "1.16",
+      "severity": "CRITICAL",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 34,
+      "resource_types": [
+        "aws_iam_role"
+      ]
+    },
+    {
+      "case_id": "MON-NO-LOG-ENCRYPTION-SAFE",
+      "path": "benchmark/internal/cases/MON-NO-LOG-ENCRYPTION-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "MON",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "MON_NO_LOG_ENCRYPTION"
+      ],
+      "expected_resources": [],
+      "cis_control": "3.5",
+      "severity": "NONE",
+      "n_resources": 3,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 38,
+      "resource_types": [
+        "aws_cloudtrail",
+        "aws_kms_key",
+        "aws_s3_bucket"
+      ]
+    },
+    {
+      "case_id": "MON-NO-LOG-ENCRYPTION-VULN",
+      "path": "benchmark/internal/cases/MON-NO-LOG-ENCRYPTION-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "MON",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "MON_NO_LOG_ENCRYPTION"
+      ],
+      "expected_resources": [
+        "aws_cloudtrail.target"
+      ],
+      "cis_control": "3.5",
+      "severity": "MEDIUM",
+      "n_resources": 2,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 32,
+      "resource_types": [
+        "aws_cloudtrail",
+        "aws_s3_bucket"
+      ]
+    },
+    {
+      "case_id": "MON-NO-TRAIL-VALIDATION-SAFE",
+      "path": "benchmark/internal/cases/MON-NO-TRAIL-VALIDATION-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "MON",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "MON_NO_TRAIL_VALIDATION"
+      ],
+      "expected_resources": [],
+      "cis_control": "3.2",
+      "severity": "NONE",
+      "n_resources": 3,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 38,
+      "resource_types": [
+        "aws_cloudtrail",
+        "aws_kms_key",
+        "aws_s3_bucket"
+      ]
+    },
+    {
+      "case_id": "MON-NO-TRAIL-VALIDATION-VULN",
+      "path": "benchmark/internal/cases/MON-NO-TRAIL-VALIDATION-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "MON",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "MON_NO_TRAIL_VALIDATION"
+      ],
+      "expected_resources": [
+        "aws_cloudtrail.target"
+      ],
+      "cis_control": "3.2",
+      "severity": "MEDIUM",
+      "n_resources": 3,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 38,
+      "resource_types": [
+        "aws_cloudtrail",
+        "aws_kms_key",
+        "aws_s3_bucket"
+      ]
+    },
+    {
+      "case_id": "MON-TRAIL-NOT-MULTIREGION-SAFE",
+      "path": "benchmark/internal/cases/MON-TRAIL-NOT-MULTIREGION-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "MON",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "MON_TRAIL_NOT_MULTIREGION"
+      ],
+      "expected_resources": [],
+      "cis_control": "3.1",
+      "severity": "NONE",
+      "n_resources": 3,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 38,
+      "resource_types": [
+        "aws_cloudtrail",
+        "aws_kms_key",
+        "aws_s3_bucket"
+      ]
+    },
+    {
+      "case_id": "MON-TRAIL-NOT-MULTIREGION-VULN",
+      "path": "benchmark/internal/cases/MON-TRAIL-NOT-MULTIREGION-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "MON",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "MON_TRAIL_NOT_MULTIREGION"
+      ],
+      "expected_resources": [
+        "aws_cloudtrail.target"
+      ],
+      "cis_control": "3.1",
+      "severity": "MEDIUM",
+      "n_resources": 3,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 38,
+      "resource_types": [
+        "aws_cloudtrail",
+        "aws_kms_key",
+        "aws_s3_bucket"
+      ]
+    },
+    {
+      "case_id": "NET-ALB-INVALID-HEADERS-SAFE",
+      "path": "benchmark/internal/cases/NET-ALB-INVALID-HEADERS-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "NET",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "NET_ALB_INVALID_HEADERS"
+      ],
+      "expected_resources": [],
+      "cis_control": "n/a",
+      "severity": "NONE",
+      "n_resources": 3,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 39,
+      "resource_types": [
+        "aws_lb",
+        "aws_subnet",
+        "aws_vpc"
+      ]
+    },
+    {
+      "case_id": "NET-ALB-INVALID-HEADERS-VULN",
+      "path": "benchmark/internal/cases/NET-ALB-INVALID-HEADERS-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "NET",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "NET_ALB_INVALID_HEADERS"
+      ],
+      "expected_resources": [
+        "aws_lb.target"
+      ],
+      "cis_control": "n/a",
+      "severity": "MEDIUM",
+      "n_resources": 3,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 39,
+      "resource_types": [
+        "aws_lb",
+        "aws_subnet",
+        "aws_vpc"
+      ]
+    },
+    {
+      "case_id": "NET-NO-FLOW-LOGS-SAFE",
+      "path": "benchmark/internal/cases/NET-NO-FLOW-LOGS-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "MON",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "NET_NO_FLOW_LOGS"
+      ],
+      "expected_resources": [],
+      "cis_control": "3.9",
+      "severity": "NONE",
+      "n_resources": 4,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 48,
+      "resource_types": [
+        "aws_cloudwatch_log_group",
+        "aws_flow_log",
+        "aws_iam_role",
+        "aws_vpc"
+      ]
+    },
+    {
+      "case_id": "NET-NO-FLOW-LOGS-VULN",
+      "path": "benchmark/internal/cases/NET-NO-FLOW-LOGS-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "MON",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "NET_NO_FLOW_LOGS"
+      ],
+      "expected_resources": [
+        "aws_vpc.target"
+      ],
+      "cis_control": "3.9",
+      "severity": "MEDIUM",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 27,
+      "resource_types": [
+        "aws_vpc"
+      ]
+    },
+    {
+      "case_id": "NET-NO-HTTPS-REDIRECT-SAFE",
+      "path": "benchmark/internal/cases/NET-NO-HTTPS-REDIRECT-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "NET",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "NET_NO_HTTPS_REDIRECT"
+      ],
+      "expected_resources": [],
+      "cis_control": "n/a",
+      "severity": "NONE",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 56,
+      "resource_types": [
+        "aws_cloudfront_distribution"
+      ]
+    },
+    {
+      "case_id": "NET-NO-HTTPS-REDIRECT-VULN",
+      "path": "benchmark/internal/cases/NET-NO-HTTPS-REDIRECT-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "NET",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "NET_NO_HTTPS_REDIRECT"
+      ],
+      "expected_resources": [
+        "aws_cloudfront_distribution.target"
+      ],
+      "cis_control": "n/a",
+      "severity": "MEDIUM",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 56,
+      "resource_types": [
+        "aws_cloudfront_distribution"
+      ]
+    },
+    {
+      "case_id": "NET-PUBLIC-INSTANCE-SAFE",
+      "path": "benchmark/internal/cases/NET-PUBLIC-INSTANCE-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "NET",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "NET_PUBLIC_INSTANCE"
+      ],
+      "expected_resources": [],
+      "cis_control": "5.6",
+      "severity": "NONE",
+      "n_resources": 3,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 43,
+      "resource_types": [
+        "aws_instance",
+        "aws_subnet",
+        "aws_vpc"
+      ]
+    },
+    {
+      "case_id": "NET-PUBLIC-INSTANCE-VULN",
+      "path": "benchmark/internal/cases/NET-PUBLIC-INSTANCE-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "NET",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "NET_PUBLIC_INSTANCE"
+      ],
+      "expected_resources": [
+        "aws_instance.target"
+      ],
+      "cis_control": "5.6",
+      "severity": "HIGH",
+      "n_resources": 3,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 43,
+      "resource_types": [
+        "aws_instance",
+        "aws_subnet",
+        "aws_vpc"
+      ]
+    },
+    {
+      "case_id": "NET-UNRESTRICTED-INGRESS-SAFE",
+      "path": "benchmark/internal/cases/NET-UNRESTRICTED-INGRESS-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "NET",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "NET_UNRESTRICTED_INGRESS"
+      ],
+      "expected_resources": [],
+      "cis_control": "5.2",
+      "severity": "NONE",
+      "n_resources": 2,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 51,
+      "resource_types": [
+        "aws_security_group",
+        "aws_vpc"
+      ]
+    },
+    {
+      "case_id": "NET-UNRESTRICTED-INGRESS-VULN",
+      "path": "benchmark/internal/cases/NET-UNRESTRICTED-INGRESS-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "NET",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "NET_UNRESTRICTED_INGRESS"
+      ],
+      "expected_resources": [
+        "aws_security_group.target"
+      ],
+      "cis_control": "5.2",
+      "severity": "CRITICAL",
+      "n_resources": 2,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 51,
+      "resource_types": [
+        "aws_security_group",
+        "aws_vpc"
+      ]
+    },
+    {
+      "case_id": "SEC-HARDCODED-CREDENTIAL-SAFE",
+      "path": "benchmark/internal/cases/SEC-HARDCODED-CREDENTIAL-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "SEC",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "SEC_HARDCODED_CREDENTIAL"
+      ],
+      "expected_resources": [],
+      "cis_control": "1.4",
+      "severity": "NONE",
+      "n_resources": 3,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 49,
+      "resource_types": [
+        "aws_iam_role",
+        "aws_lambda_function",
+        "aws_secretsmanager_secret"
+      ]
+    },
+    {
+      "case_id": "SEC-HARDCODED-CREDENTIAL-VULN",
+      "path": "benchmark/internal/cases/SEC-HARDCODED-CREDENTIAL-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "SEC",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "SEC_HARDCODED_CREDENTIAL"
+      ],
+      "expected_resources": [
+        "aws_lambda_function.target"
+      ],
+      "cis_control": "1.4",
+      "severity": "CRITICAL",
+      "n_resources": 2,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 46,
+      "resource_types": [
+        "aws_iam_role",
+        "aws_lambda_function"
+      ]
+    },
+    {
+      "case_id": "SRV-NO-FUNCTION-ENCRYPTION-SAFE",
+      "path": "benchmark/internal/cases/SRV-NO-FUNCTION-ENCRYPTION-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "SRV",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "SRV_NO_FUNCTION_ENCRYPTION"
+      ],
+      "expected_resources": [],
+      "cis_control": "n/a",
+      "severity": "NONE",
+      "n_resources": 3,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 55,
+      "resource_types": [
+        "aws_iam_role",
+        "aws_kms_key",
+        "aws_lambda_function"
+      ]
+    },
+    {
+      "case_id": "SRV-NO-FUNCTION-ENCRYPTION-VULN",
+      "path": "benchmark/internal/cases/SRV-NO-FUNCTION-ENCRYPTION-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "SRV",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "SRV_NO_FUNCTION_ENCRYPTION"
+      ],
+      "expected_resources": [
+        "aws_lambda_function.target"
+      ],
+      "cis_control": "n/a",
+      "severity": "HIGH",
+      "n_resources": 3,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 54,
+      "resource_types": [
+        "aws_iam_role",
+        "aws_kms_key",
+        "aws_lambda_function"
+      ]
+    },
+    {
+      "case_id": "STO-NO-ACCESS-LOGGING-SAFE",
+      "path": "benchmark/internal/cases/STO-NO-ACCESS-LOGGING-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "MON",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "STO_NO_ACCESS_LOGGING"
+      ],
+      "expected_resources": [],
+      "cis_control": "2.1.3",
+      "severity": "NONE",
+      "n_resources": 3,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 34,
+      "resource_types": [
+        "aws_s3_bucket",
+        "aws_s3_bucket_logging"
+      ]
+    },
+    {
+      "case_id": "STO-NO-ACCESS-LOGGING-VULN",
+      "path": "benchmark/internal/cases/STO-NO-ACCESS-LOGGING-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "MON",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "STO_NO_ACCESS_LOGGING"
+      ],
+      "expected_resources": [
+        "aws_s3_bucket.target"
+      ],
+      "cis_control": "2.1.3",
+      "severity": "MEDIUM",
+      "n_resources": 2,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 29,
+      "resource_types": [
+        "aws_s3_bucket"
+      ]
+    },
+    {
+      "case_id": "STO-PUBLIC-BUCKET-SAFE",
+      "path": "benchmark/internal/cases/STO-PUBLIC-BUCKET-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "STO",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "STO_PUBLIC_BUCKET"
+      ],
+      "expected_resources": [],
+      "cis_control": "2.1.5",
+      "severity": "NONE",
+      "n_resources": 2,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 36,
+      "resource_types": [
+        "aws_s3_bucket",
+        "aws_s3_bucket_public_access_block"
+      ]
+    },
+    {
+      "case_id": "STO-PUBLIC-BUCKET-VULN",
+      "path": "benchmark/internal/cases/STO-PUBLIC-BUCKET-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "STO",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "STO_PUBLIC_BUCKET"
+      ],
+      "expected_resources": [
+        "aws_s3_bucket_public_access_block.target"
+      ],
+      "cis_control": "2.1.5",
+      "severity": "CRITICAL",
+      "n_resources": 2,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 36,
+      "resource_types": [
+        "aws_s3_bucket",
+        "aws_s3_bucket_public_access_block"
+      ]
+    },
+    {
+      "case_id": "STO-PUBLIC-DATABASE-SAFE",
+      "path": "benchmark/internal/cases/STO-PUBLIC-DATABASE-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "NET",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "STO_PUBLIC_DATABASE"
+      ],
+      "expected_resources": [],
+      "cis_control": "2.3.3",
+      "severity": "NONE",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 34,
+      "resource_types": [
+        "aws_db_instance"
+      ]
+    },
+    {
+      "case_id": "STO-PUBLIC-DATABASE-VULN",
+      "path": "benchmark/internal/cases/STO-PUBLIC-DATABASE-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "NET",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "STO_PUBLIC_DATABASE"
+      ],
+      "expected_resources": [
+        "aws_db_instance.target"
+      ],
+      "cis_control": "2.3.3",
+      "severity": "CRITICAL",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 34,
+      "resource_types": [
+        "aws_db_instance"
+      ]
+    },
+    {
+      "case_id": "STO-UNENCRYPTED-BUCKET-SAFE",
+      "path": "benchmark/internal/cases/STO-UNENCRYPTED-BUCKET-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "ENC",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "STO_UNENCRYPTED_BUCKET"
+      ],
+      "expected_resources": [],
+      "cis_control": "2.1.1",
+      "severity": "NONE",
+      "n_resources": 3,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 40,
+      "resource_types": [
+        "aws_kms_key",
+        "aws_s3_bucket",
+        "aws_s3_bucket_server_side_encryption_configuration"
+      ]
+    },
+    {
+      "case_id": "STO-UNENCRYPTED-BUCKET-VULN",
+      "path": "benchmark/internal/cases/STO-UNENCRYPTED-BUCKET-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "ENC",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "STO_UNENCRYPTED_BUCKET"
+      ],
+      "expected_resources": [
+        "aws_s3_bucket_server_side_encryption_configuration.target"
+      ],
+      "cis_control": "2.1.1",
+      "severity": "HIGH",
+      "n_resources": 3,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 39,
+      "resource_types": [
+        "aws_kms_key",
+        "aws_s3_bucket",
+        "aws_s3_bucket_server_side_encryption_configuration"
+      ]
+    },
+    {
+      "case_id": "cis_examples/cis_2_1_s3_public",
+      "path": "benchmark/external/cis_examples/aws",
+      "collection": "external",
+      "subset": "cis_examples",
+      "domain": "Storage",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "STO_PUBLIC_BUCKET"
+      ],
+      "expected_resources": [],
+      "cis_control": "2.1",
+      "severity": "HIGH",
+      "n_resources": 5,
+      "n_variables": 0,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 32,
+      "resource_types": [
+        "aws_cloudtrail",
+        "aws_s3_bucket",
+        "aws_s3_bucket_public_access_block",
+        "aws_security_group"
+      ]
+    },
+    {
+      "case_id": "cis_examples/cis_2_2_s3_encryption",
+      "path": "benchmark/external/cis_examples/aws",
+      "collection": "external",
+      "subset": "cis_examples",
+      "domain": "Storage",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "STO_UNENCRYPTED_BUCKET"
+      ],
+      "expected_resources": [],
+      "cis_control": "2.2",
+      "severity": "HIGH",
+      "n_resources": 5,
+      "n_variables": 0,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 32,
+      "resource_types": [
+        "aws_cloudtrail",
+        "aws_s3_bucket",
+        "aws_s3_bucket_public_access_block",
+        "aws_security_group"
+      ]
+    },
+    {
+      "case_id": "cis_examples/cis_3_1_cloudtrail",
+      "path": "benchmark/external/cis_examples/aws",
+      "collection": "external",
+      "subset": "cis_examples",
+      "domain": "Monitoring",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "MON_TRAIL_NOT_MULTIREGION",
+        "MON_NO_TRAIL_VALIDATION"
+      ],
+      "expected_resources": [],
+      "cis_control": "3.1",
+      "severity": "HIGH",
+      "n_resources": 5,
+      "n_variables": 0,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 32,
+      "resource_types": [
+        "aws_cloudtrail",
+        "aws_s3_bucket",
+        "aws_s3_bucket_public_access_block",
+        "aws_security_group"
+      ]
+    },
+    {
+      "case_id": "cis_examples/cis_4_1_security_group",
+      "path": "benchmark/external/cis_examples/aws",
+      "collection": "external",
+      "subset": "cis_examples",
+      "domain": "Networking",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "NET_UNRESTRICTED_INGRESS"
+      ],
+      "expected_resources": [],
+      "cis_control": "4.1",
+      "severity": "CRITICAL",
+      "n_resources": 5,
+      "n_variables": 0,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 32,
+      "resource_types": [
+        "aws_cloudtrail",
+        "aws_s3_bucket",
+        "aws_s3_bucket_public_access_block",
+        "aws_security_group"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "case_id": "CMP-MUTABLE-IMAGE-TAGS-SAFE",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "CMP-MUTABLE-IMAGE-TAGS-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "CMP-NO-IMAGE-SCANNING-SAFE",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "CMP-NO-IMAGE-SCANNING-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "CMP-NO-IMDSV2-SAFE",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "CMP-NO-IMDSV2-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "ENC-NO-KEY-ROTATION-SAFE",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "ENC-NO-KEY-ROTATION-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "ENC-UNENCRYPTED-DATABASE-SAFE",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "ENC-UNENCRYPTED-DATABASE-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "ENC-UNENCRYPTED-VOLUME-SAFE",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "ENC-UNENCRYPTED-VOLUME-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "IAM-WILDCARD-ACTION-SAFE",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "IAM-WILDCARD-ACTION-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "IAM-WILDCARD-TRUST-SAFE",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "IAM-WILDCARD-TRUST-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "MON-NO-LOG-ENCRYPTION-SAFE",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "MON-NO-LOG-ENCRYPTION-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "MON-NO-TRAIL-VALIDATION-SAFE",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "MON-NO-TRAIL-VALIDATION-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "MON-TRAIL-NOT-MULTIREGION-SAFE",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "MON-TRAIL-NOT-MULTIREGION-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "NET-ALB-INVALID-HEADERS-SAFE",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "NET-ALB-INVALID-HEADERS-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "NET-NO-FLOW-LOGS-SAFE",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "NET-NO-FLOW-LOGS-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "NET-NO-HTTPS-REDIRECT-SAFE",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "NET-NO-HTTPS-REDIRECT-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "NET-PUBLIC-INSTANCE-SAFE",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "NET-PUBLIC-INSTANCE-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "NET-UNRESTRICTED-INGRESS-SAFE",
+      "status": "invalid_hcl",
+      "detail": "Failed to load plugin schemas: Error while loading schemas for plugin components: Failed to obtain provider schema: Could not load the schema for provider registry.terraform.io/hashicorp/aws: failed to instantiate provider \"registry.terraform.io/hashicorp/aws\" to obtain schema: Unrecognized remote p"
+    },
+    {
+      "case_id": "NET-UNRESTRICTED-INGRESS-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "SEC-HARDCODED-CREDENTIAL-SAFE",
+      "status": "invalid_hcl",
+      "detail": "registry.terraform.io/hashicorp/aws: the cached package for registry.terraform.io/hashicorp/aws 5.100.0 (in .terraform/providers) does not match any of the checksums recorded in the dependency lock file:"
+    },
+    {
+      "case_id": "SEC-HARDCODED-CREDENTIAL-VULN",
+      "status": "invalid_hcl",
+      "detail": "Failed to load plugin schemas: Error while loading schemas for plugin components: Failed to obtain provider schema: Could not load the schema for provider registry.terraform.io/hashicorp/aws: failed to instantiate provider \"registry.terraform.io/hashicorp/aws\" to obtain schema: Unrecognized remote p"
+    },
+    {
+      "case_id": "SRV-NO-FUNCTION-ENCRYPTION-SAFE",
+      "status": "invalid_hcl",
+      "detail": "registry.terraform.io/hashicorp/aws: the cached package for registry.terraform.io/hashicorp/aws 5.100.0 (in .terraform/providers) does not match any of the checksums recorded in the dependency lock file:"
+    },
+    {
+      "case_id": "SRV-NO-FUNCTION-ENCRYPTION-VULN",
+      "status": "invalid_hcl",
+      "detail": "Failed to load plugin schemas: Error while loading schemas for plugin components: Failed to obtain provider schema: Could not load the schema for provider registry.terraform.io/hashicorp/aws: failed to instantiate provider \"registry.terraform.io/hashicorp/aws\" to obtain schema: Unrecognized remote p"
+    },
+    {
+      "case_id": "STO-NO-ACCESS-LOGGING-SAFE",
+      "status": "invalid_hcl",
+      "detail": "Failed to load plugin schemas: Error while loading schemas for plugin components: Failed to obtain provider schema: Could not load the schema for provider registry.terraform.io/hashicorp/aws: failed to instantiate provider \"registry.terraform.io/hashicorp/aws\" to obtain schema: Unrecognized remote p"
+    },
+    {
+      "case_id": "STO-NO-ACCESS-LOGGING-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "STO-PUBLIC-BUCKET-SAFE",
+      "status": "invalid_hcl",
+      "detail": "registry.terraform.io/hashicorp/aws: the cached package for registry.terraform.io/hashicorp/aws 5.100.0 (in .terraform/providers) does not match any of the checksums recorded in the dependency lock file:"
+    },
+    {
+      "case_id": "STO-PUBLIC-BUCKET-VULN",
+      "status": "invalid_hcl",
+      "detail": "Failed to load plugin schemas: Error while loading schemas for plugin components: Failed to obtain provider schema: Could not load the schema for provider registry.terraform.io/hashicorp/aws: failed to instantiate provider \"registry.terraform.io/hashicorp/aws\" to obtain schema: Unrecognized remote p"
+    },
+    {
+      "case_id": "STO-PUBLIC-DATABASE-SAFE",
+      "status": "invalid_hcl",
+      "detail": "registry.terraform.io/hashicorp/aws: the cached package for registry.terraform.io/hashicorp/aws 5.100.0 (in .terraform/providers) does not match any of the checksums recorded in the dependency lock file:"
+    },
+    {
+      "case_id": "STO-PUBLIC-DATABASE-VULN",
+      "status": "invalid_hcl",
+      "detail": "Failed to load plugin schemas: Error while loading schemas for plugin components: Failed to obtain provider schema: Could not load the schema for provider registry.terraform.io/hashicorp/aws: failed to instantiate provider \"registry.terraform.io/hashicorp/aws\" to obtain schema: Unrecognized remote p"
+    },
+    {
+      "case_id": "STO-UNENCRYPTED-BUCKET-SAFE",
+      "status": "invalid_hcl",
+      "detail": "Failed to load plugin schemas: Error while loading schemas for plugin components: Failed to obtain provider schema: Could not load the schema for provider registry.terraform.io/hashicorp/aws: failed to instantiate provider \"registry.terraform.io/hashicorp/aws\" to obtain schema: Unrecognized remote p"
+    },
+    {
+      "case_id": "STO-UNENCRYPTED-BUCKET-VULN",
+      "status": "invalid_hcl",
+      "detail": "Failed to load plugin schemas: Error while loading schemas for plugin components: Failed to obtain provider schema: Could not load the schema for provider registry.terraform.io/hashicorp/aws: failed to instantiate provider \"registry.terraform.io/hashicorp/aws\" to obtain schema: Unrecognized remote p"
+    },
+    {
+      "case_id": "cis_examples/cis_2_1_s3_public",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "cis_examples/cis_2_2_s3_encryption",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "cis_examples/cis_3_1_cloudtrail",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "cis_examples/cis_4_1_security_group",
+      "status": "ok",
+      "detail": ""
+    }
+  ],
+  "admissible_ids": [
+    "CMP-MUTABLE-IMAGE-TAGS-SAFE",
+    "CMP-MUTABLE-IMAGE-TAGS-VULN",
+    "CMP-NO-IMAGE-SCANNING-SAFE",
+    "CMP-NO-IMAGE-SCANNING-VULN",
+    "CMP-NO-IMDSV2-SAFE",
+    "CMP-NO-IMDSV2-VULN",
+    "ENC-NO-KEY-ROTATION-SAFE",
+    "ENC-NO-KEY-ROTATION-VULN",
+    "ENC-UNENCRYPTED-DATABASE-SAFE",
+    "ENC-UNENCRYPTED-DATABASE-VULN",
+    "ENC-UNENCRYPTED-VOLUME-SAFE",
+    "ENC-UNENCRYPTED-VOLUME-VULN",
+    "IAM-WILDCARD-ACTION-SAFE",
+    "IAM-WILDCARD-ACTION-VULN",
+    "IAM-WILDCARD-TRUST-SAFE",
+    "IAM-WILDCARD-TRUST-VULN",
+    "MON-NO-LOG-ENCRYPTION-SAFE",
+    "MON-NO-LOG-ENCRYPTION-VULN",
+    "MON-NO-TRAIL-VALIDATION-SAFE",
+    "MON-NO-TRAIL-VALIDATION-VULN",
+    "MON-TRAIL-NOT-MULTIREGION-SAFE",
+    "MON-TRAIL-NOT-MULTIREGION-VULN",
+    "NET-ALB-INVALID-HEADERS-SAFE",
+    "NET-ALB-INVALID-HEADERS-VULN",
+    "NET-NO-FLOW-LOGS-SAFE",
+    "NET-NO-FLOW-LOGS-VULN",
+    "NET-NO-HTTPS-REDIRECT-SAFE",
+    "NET-NO-HTTPS-REDIRECT-VULN",
+    "NET-PUBLIC-INSTANCE-SAFE",
+    "NET-PUBLIC-INSTANCE-VULN",
+    "NET-UNRESTRICTED-INGRESS-VULN",
+    "STO-NO-ACCESS-LOGGING-VULN",
+    "cis_examples/cis_2_1_s3_public",
+    "cis_examples/cis_2_2_s3_encryption",
+    "cis_examples/cis_3_1_cloudtrail",
+    "cis_examples/cis_4_1_security_group"
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "results": [
+    {
+      "rule_id": "AVD-AWS-0177",
+      "long_id": "aws-rds-enable-deletion-protection",
+      "rule_description": "RDS Deletion Protection Disabled",
+      "rule_provider": "aws",
+      "rule_service": "rds",
+      "impact": "",
+      "resolution": "Modify the RDS instances to enable deletion protection.",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/rds/enable-deletion-protection/"
+      ],
+      "description": "Instance does not have Deletion Protection enabled",
+      "severity": "MEDIUM",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_db_instance.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-ENC-UNENCRYPTED-DATABASE-SAFE-mo3a05ud/case/main.tf",
+        "start_line": 26,
+        "end_line": 37
+      }
+    },
+    {
+      "rule_id": "AVD-AWS-0176",
+      "long_id": "aws-rds-enable-iam-auth",
+      "rule_description": "RDS IAM Database Authentication Disabled",
+      "rule_provider": "aws",
+      "rule_service": "rds",
+      "impact": "",
+      "resolution": "Modify the PostgreSQL and MySQL type RDS instances to enable IAM database authentication.",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/rds/enable-iam-auth/"
+      ],
+      "description": "Instance does not have IAM Authentication enabled",
+      "severity": "MEDIUM",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_db_instance.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-ENC-UNENCRYPTED-DATABASE-SAFE-mo3a05ud/case/main.tf",
+        "start_line": 26,
+        "end_line": 37
+      }
+    },
+    {
+      "rule_id": "AVD-AWS-0133",
+      "long_id": "aws-rds-enable-performance-insights",
+      "rule_description": "Enable Performance Insights to detect potential problems",
+      "rule_provider": "aws",
+      "rule_service": "rds",
+      "impact": "Without adequate monitoring, performance related issues may go unreported and potentially lead to compromise.",
+      "resolution": "Enable performance insights",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/rds/enable-performance-insights/",
+        "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster_instance#performance_insights_kms_key_id",
+        "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#performance_insights_kms_key_id"
+      ],
+      "description": "Instance does not have performance insights enabled.",
+      "severity": "LOW",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_db_instance.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-ENC-UNENCRYPTED-DATABASE-SAFE-mo3a05ud/case/main.tf",
+        "start_line": 26,
+        "end_line": 37
+      }
+    },
+    {
+      "rule_id": "AVD-AWS-0077",
+      "long_id": "aws-rds-specify-backup-retention",
+      "rule_description": "RDS Cluster and RDS instance should have backup retention longer than default 1 day",
+      "rule_provider": "aws",
+      "rule_service": "rds",
+      "impact": "Potential loss of data and short opportunity for recovery",
+      "resolution": "Explicitly set the retention period to greater than the default",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/rds/specify-backup-retention/",
+        "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster#backup_retention_period",
+        "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#backup_retention_period"
+      ],
+      "description": "Instance has very low backup retention period.",
+      "severity": "MEDIUM",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_db_instance.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-ENC-UNENCRYPTED-DATABASE-SAFE-mo3a05ud/case/main.tf",
+        "start_line": 26,
+        "end_line": 37
+      }
+    }
+  ]
+}
