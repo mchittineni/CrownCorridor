@@ -37,13 +37,13 @@ if $PYTEST --help 2>&1 | grep -q "\--cov"; then
 else
   COV_FLAG=""
 fi
-$PYTEST security_framework/tests/ pipeline/tests/ $COV_FLAG -v
+IACSECBENCH_ALLOW_SYNTHETIC=1 $PYTEST security_framework/tests/ pipeline/tests/ evaluation/tests/ $COV_FLAG -v
 
 # 3. Run Experiment Pipeline & Generate Benchmark Results
 echo ""
 echo "[Step 3/4] Running IaCSecBench Comparative Experiments & Evaluation Scoring Protocol..."
-$PYTHON evaluation/score.py
-$PYTHON pipeline/run_experiments.py
+bash experiments/run_baselines.sh
+IACSECBENCH_ALLOW_SYNTHETIC=1 $PYTHON pipeline/run_experiments.py
 
 # 4. Generate Visual Charts & CSV Telemetry
 echo ""
@@ -55,3 +55,10 @@ echo "============================================================"
 echo "SUCCESS: All experiments executed and results generated!"
 echo "Outputs stored in results/ & benchmark/reports/"
 echo "============================================================"
+
+# 5. Log updates to Obsidian vault project folder (Daily Modular Notes & Main Index)
+echo ""
+echo "[Step 5/5] Synchronizing modular daily notes & master index with Obsidian Vault..."
+$PYTHON pipeline/sync_to_obsidian.py
+echo "✅ Obsidian Vault daily notes sync complete!"
+
