@@ -1,66 +1,401 @@
-# OPA / Rego Policy Definition for CIS AWS Foundations & Well-Architected Security Benchmark Compliance
-# Scope: Crown Corridor Infrastructure as Code (Evaluated over terraform show -json resource_changes)
+# IaCSecBench — Layer 3 Policy-as-Code controls.
+#
+# Evaluated against a compiled Terraform plan document produced by
+#   terraform plan -out=tfplan.bin && terraform show -json tfplan.bin
+# so every expression is resolved: variable interpolation, locals, conditionals
+# and for_each expansion have already been applied by Terraform. This is the
+# property that distinguishes plan-level evaluation from source-level scanning.
+#
+# Findings are emitted as structured objects rather than bare strings:
+#
+#   {"rule_id": ..., "resource": ..., "severity": ..., "msg": ...}
+#
+# The rule_id values are the keys the finding-normalization engine uses to map a
+# policy decision onto a canonical control (see evaluation/control_map.json).
+# Emitting free-text messages alone would make plan-level findings unmappable and
+# would therefore score this layer as a false negative on every case.
+#
+# Syntax note: this file targets OPA 1.x (Rego v1). The previous revision used
+# `not (A and B and C)` and `(x or y)`, neither of which is valid Rego; it failed
+# to parse, so this layer never executed. Conjunction is expressed by successive
+# expressions in a rule body, and disjunction by multiple rule definitions.
 
 package aws.cis.benchmark
 
-import future.keywords.contains
-import future.keywords.if
-import future.keywords.in
+import rego.v1
 
-# 1. Deny unencrypted S3 buckets or missing public access block
-deny contains msg if {
-    some change in input.resource_changes
-    change.type == "aws_s3_bucket"
-    not change.change.after.server_side_encryption_configuration
-    msg := sprintf("S3 Bucket '%v' must enforce server-side encryption", [change.address])
+# --------------------------------------------------------------------------- #
+# Helpers
+# --------------------------------------------------------------------------- #
+
+resources_of_type(type) := [rc |
+	some rc in input.resource_changes
+	rc.type == type
+]
+
+# The planned attribute set for a resource change.
+after(rc) := rc.change.after
+
+# True when the plan creates, updates or retains the resource. A resource being
+# destroyed should not be reported as a misconfiguration.
+is_managed(rc) if {
+	some action in rc.change.actions
+	action in {"create", "update", "no-op"}
 }
 
-deny contains msg if {
-    some change in input.resource_changes
-    change.type == "aws_s3_bucket_public_access_block"
-    pab := change.change.after
-    not (pab.block_public_acls == true and pab.block_public_policy == true and pab.ignore_public_acls == true and pab.restrict_public_buckets == true)
-    msg := sprintf("S3 Public Access Block '%v' must set all 4 flags to true", [change.address])
+cast_array(value) := value if is_array(value)
+
+cast_array(value) := [value] if is_string(value)
+
+# --------------------------------------------------------------------------- #
+# CIS AWS 2.1 — Object storage public exposure
+# --------------------------------------------------------------------------- #
+
+all_public_access_blocked(pab) if {
+	pab.block_public_acls == true
+	pab.block_public_policy == true
+	pab.ignore_public_acls == true
+	pab.restrict_public_buckets == true
 }
 
-# 2. Deny public RDS instances or unencrypted storage
-deny contains msg if {
-    some change in input.resource_changes
-    change.type == "aws_db_instance"
-    change.change.after.publicly_accessible == true
-    msg := sprintf("RDS Instance '%v' must set publicly_accessible = false", [change.address])
+deny contains finding if {
+	some rc in resources_of_type("aws_s3_bucket_public_access_block")
+	is_managed(rc)
+	not all_public_access_blocked(after(rc))
+	finding := {
+		"rule_id": "s3_public_access_block",
+		"resource": rc.address,
+		"severity": "CRITICAL",
+		"msg": sprintf("%s does not set all four public access block flags to true", [rc.address]),
+	}
 }
 
-deny contains msg if {
-    some change in input.resource_changes
-    change.type == "aws_db_instance"
-    change.change.after.storage_encrypted != true
-    msg := sprintf("RDS Instance '%v' must set storage_encrypted = true", [change.address])
+# A bucket with no public access block anywhere in the plan is exposed by
+# omission. Source-level scanners frequently miss this because the two resources
+# are commonly declared in separate files.
+deny contains finding if {
+	some rc in resources_of_type("aws_s3_bucket")
+	is_managed(rc)
+	count(resources_of_type("aws_s3_bucket_public_access_block")) == 0
+	finding := {
+		"rule_id": "s3_public_access_block",
+		"resource": rc.address,
+		"severity": "CRITICAL",
+		"msg": sprintf("%s has no aws_s3_bucket_public_access_block in the plan", [rc.address]),
+	}
 }
 
-# 3. Deny CloudTrail without log file validation or multi-region
-deny contains msg if {
-    some change in input.resource_changes
-    change.type == "aws_cloudtrail"
-    change.change.after.enable_log_file_validation != true
-    msg := sprintf("CloudTrail '%v' must enable log file validation", [change.address])
+deny contains finding if {
+	some rc in resources_of_type("aws_s3_bucket")
+	is_managed(rc)
+	after(rc).acl in {"public-read", "public-read-write"}
+	finding := {
+		"rule_id": "s3_public_access_block",
+		"resource": rc.address,
+		"severity": "CRITICAL",
+		"msg": sprintf("%s grants a public canned ACL (%s)", [rc.address, after(rc).acl]),
+	}
 }
 
-# 4. Deny unrestricted ingress (SSH/RDP/All) from 0.0.0.0/0
-deny contains msg if {
-    some change in input.resource_changes
-    change.type == "aws_security_group"
-    some rule in change.change.after.ingress
-    "0.0.0.0/0" in rule.cidr_blocks
-    (rule.from_port == 0 or rule.from_port == 22 or rule.from_port == 3389 or rule.protocol == "-1")
-    msg := sprintf("Security group '%v' has unrestricted ingress rule from 0.0.0.0/0", [change.address])
+# --------------------------------------------------------------------------- #
+# CIS AWS 2.1.1 — Object storage encryption at rest
+# --------------------------------------------------------------------------- #
+
+deny contains finding if {
+	some rc in resources_of_type("aws_s3_bucket")
+	is_managed(rc)
+	count(resources_of_type("aws_s3_bucket_server_side_encryption_configuration")) == 0
+	not after(rc).server_side_encryption_configuration
+	finding := {
+		"rule_id": "s3_server_side_encryption",
+		"resource": rc.address,
+		"severity": "HIGH",
+		"msg": sprintf("%s does not enforce server-side encryption", [rc.address]),
+	}
 }
 
-# 5. Deny CloudFront distribution without HTTPS redirection or TLS 1.2+
-deny contains msg if {
-    some change in input.resource_changes
-    change.type == "aws_cloudfront_distribution"
-    some behavior in change.change.after.default_cache_behavior
-    behavior.viewer_protocol_policy != "redirect-to-https"
-    msg := sprintf("CloudFront distribution '%v' must enforce redirect-to-https", [change.address])
+deny contains finding if {
+	some rc in resources_of_type("aws_s3_bucket_server_side_encryption_configuration")
+	is_managed(rc)
+	some sse_rule in after(rc).rule
+	some applied in sse_rule.apply_server_side_encryption_by_default
+	applied.sse_algorithm != "aws:kms"
+	finding := {
+		"rule_id": "s3_server_side_encryption",
+		"resource": rc.address,
+		"severity": "MEDIUM",
+		"msg": sprintf(
+			"%s uses %s rather than a customer-managed KMS key",
+			[rc.address, applied.sse_algorithm],
+		),
+	}
+}
+
+# --------------------------------------------------------------------------- #
+# CIS AWS 2.3 — Managed database exposure and encryption
+# --------------------------------------------------------------------------- #
+
+deny contains finding if {
+	some rc in resources_of_type("aws_db_instance")
+	is_managed(rc)
+	after(rc).publicly_accessible == true
+	finding := {
+		"rule_id": "rds_publicly_accessible",
+		"resource": rc.address,
+		"severity": "CRITICAL",
+		"msg": sprintf("%s is publicly accessible", [rc.address]),
+	}
+}
+
+deny contains finding if {
+	some rc in resources_of_type("aws_db_instance")
+	is_managed(rc)
+	after(rc).storage_encrypted != true
+	finding := {
+		"rule_id": "rds_storage_encrypted",
+		"resource": rc.address,
+		"severity": "HIGH",
+		"msg": sprintf("%s does not encrypt storage at rest", [rc.address]),
+	}
+}
+
+# --------------------------------------------------------------------------- #
+# CIS AWS 3.x — Audit logging
+# --------------------------------------------------------------------------- #
+
+deny contains finding if {
+	some rc in resources_of_type("aws_cloudtrail")
+	is_managed(rc)
+	after(rc).enable_log_file_validation != true
+	finding := {
+		"rule_id": "cloudtrail_log_validation",
+		"resource": rc.address,
+		"severity": "MEDIUM",
+		"msg": sprintf("%s does not enable log file integrity validation", [rc.address]),
+	}
+}
+
+deny contains finding if {
+	some rc in resources_of_type("aws_cloudtrail")
+	is_managed(rc)
+	after(rc).is_multi_region_trail != true
+	finding := {
+		"rule_id": "cloudtrail_multi_region",
+		"resource": rc.address,
+		"severity": "MEDIUM",
+		"msg": sprintf("%s is not a multi-region trail", [rc.address]),
+	}
+}
+
+deny contains finding if {
+	some rc in resources_of_type("aws_cloudtrail")
+	is_managed(rc)
+	not after(rc).kms_key_id
+	finding := {
+		"rule_id": "cloudtrail_log_encryption",
+		"resource": rc.address,
+		"severity": "MEDIUM",
+		"msg": sprintf("%s does not encrypt logs with a customer-managed key", [rc.address]),
+	}
+}
+
+deny contains finding if {
+	count(resources_of_type("aws_flow_log")) == 0
+	some rc in resources_of_type("aws_vpc")
+	finding := {
+		"rule_id": "vpc_flow_logs",
+		"resource": rc.address,
+		"severity": "MEDIUM",
+		"msg": sprintf("%s has no flow log configured in the plan", [rc.address]),
+	}
+}
+
+# --------------------------------------------------------------------------- #
+# CIS AWS 5.2 — Network ingress exposure
+# --------------------------------------------------------------------------- #
+
+# Disjunction over sensitive ports is expressed as several helper bodies rather
+# than an `or` expression, which Rego does not provide.
+sensitive_ingress(rule) if rule.protocol == "-1"
+
+sensitive_ingress(rule) if {
+	rule.from_port <= 22
+	rule.to_port >= 22
+}
+
+sensitive_ingress(rule) if {
+	rule.from_port <= 3389
+	rule.to_port >= 3389
+}
+
+sensitive_ingress(rule) if rule.from_port == 0
+
+deny contains finding if {
+	some rc in resources_of_type("aws_security_group")
+	is_managed(rc)
+	some rule in after(rc).ingress
+	"0.0.0.0/0" in rule.cidr_blocks
+	sensitive_ingress(rule)
+	finding := {
+		"rule_id": "security_group_unrestricted_ingress",
+		"resource": rc.address,
+		"severity": "CRITICAL",
+		"msg": sprintf("%s permits unrestricted ingress from 0.0.0.0/0", [rc.address]),
+	}
+}
+
+deny contains finding if {
+	some rc in resources_of_type("aws_security_group_rule")
+	is_managed(rc)
+	after(rc).type == "ingress"
+	"0.0.0.0/0" in after(rc).cidr_blocks
+	sensitive_ingress(after(rc))
+	finding := {
+		"rule_id": "security_group_unrestricted_ingress",
+		"resource": rc.address,
+		"severity": "CRITICAL",
+		"msg": sprintf("%s permits unrestricted ingress from 0.0.0.0/0", [rc.address]),
+	}
+}
+
+# --------------------------------------------------------------------------- #
+# CIS AWS 1.16 — Identity policy scope
+# --------------------------------------------------------------------------- #
+
+wildcard_statement(statement) if {
+	statement.Effect == "Allow"
+	"*" in cast_array(statement.Action)
+}
+
+wildcard_statement(statement) if {
+	statement.Effect == "Allow"
+	"*" in cast_array(statement.Resource)
+}
+
+deny contains finding if {
+	some type in {
+		"aws_iam_policy",
+		"aws_iam_role_policy",
+		"aws_iam_user_policy",
+		"aws_iam_group_policy",
+	}
+	some rc in resources_of_type(type)
+	is_managed(rc)
+	document := json.unmarshal(after(rc).policy)
+	some statement in cast_array(document.Statement)
+	wildcard_statement(statement)
+	finding := {
+		"rule_id": "iam_wildcard_action",
+		"resource": rc.address,
+		"severity": "CRITICAL",
+		"msg": sprintf("%s grants a wildcard action or resource", [rc.address]),
+	}
+}
+
+deny contains finding if {
+	some rc in resources_of_type("aws_iam_role")
+	is_managed(rc)
+	document := json.unmarshal(after(rc).assume_role_policy)
+	some statement in cast_array(document.Statement)
+	statement.Effect == "Allow"
+	statement.Principal == "*"
+	finding := {
+		"rule_id": "iam_wildcard_trust",
+		"resource": rc.address,
+		"severity": "CRITICAL",
+		"msg": sprintf("%s may be assumed by any principal", [rc.address]),
+	}
+}
+
+deny contains finding if {
+	some rc in resources_of_type("aws_iam_role")
+	is_managed(rc)
+	document := json.unmarshal(after(rc).assume_role_policy)
+	some statement in cast_array(document.Statement)
+	statement.Effect == "Allow"
+	"*" in cast_array(statement.Principal.AWS)
+	finding := {
+		"rule_id": "iam_wildcard_trust",
+		"resource": rc.address,
+		"severity": "CRITICAL",
+		"msg": sprintf("%s may be assumed by any AWS principal", [rc.address]),
+	}
+}
+
+# --------------------------------------------------------------------------- #
+# Compute and container controls
+# --------------------------------------------------------------------------- #
+
+deny contains finding if {
+	some rc in resources_of_type("aws_ebs_volume")
+	is_managed(rc)
+	after(rc).encrypted != true
+	finding := {
+		"rule_id": "ebs_encryption",
+		"resource": rc.address,
+		"severity": "HIGH",
+		"msg": sprintf("%s is not encrypted at rest", [rc.address]),
+	}
+}
+
+deny contains finding if {
+	some rc in resources_of_type("aws_instance")
+	is_managed(rc)
+	some metadata in after(rc).metadata_options
+	metadata.http_tokens != "required"
+	finding := {
+		"rule_id": "ec2_imdsv2_required",
+		"resource": rc.address,
+		"severity": "HIGH",
+		"msg": sprintf("%s does not require IMDSv2 tokens", [rc.address]),
+	}
+}
+
+deny contains finding if {
+	some rc in resources_of_type("aws_ecr_repository")
+	is_managed(rc)
+	some scanning in after(rc).image_scanning_configuration
+	scanning.scan_on_push != true
+	finding := {
+		"rule_id": "ecr_scan_on_push",
+		"resource": rc.address,
+		"severity": "MEDIUM",
+		"msg": sprintf("%s does not scan images on push", [rc.address]),
+	}
+}
+
+deny contains finding if {
+	some rc in resources_of_type("aws_lb")
+	is_managed(rc)
+	after(rc).drop_invalid_header_fields != true
+	finding := {
+		"rule_id": "alb_drop_invalid_headers",
+		"resource": rc.address,
+		"severity": "MEDIUM",
+		"msg": sprintf("%s does not drop invalid header fields", [rc.address]),
+	}
+}
+
+deny contains finding if {
+	some rc in resources_of_type("aws_cloudfront_distribution")
+	is_managed(rc)
+	some behaviour in after(rc).default_cache_behavior
+	behaviour.viewer_protocol_policy != "redirect-to-https"
+	finding := {
+		"rule_id": "cloudfront_https_only",
+		"resource": rc.address,
+		"severity": "MEDIUM",
+		"msg": sprintf("%s does not enforce HTTPS redirection", [rc.address]),
+	}
+}
+
+# --------------------------------------------------------------------------- #
+# Aggregate decision surface
+# --------------------------------------------------------------------------- #
+
+# Convenience entrypoint: `opa eval data.aws.cis.benchmark.report`
+report := {
+	"violation_count": count(deny),
+	"violations": deny,
+	"compliant": count(deny) == 0,
 }
