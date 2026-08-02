@@ -1,0 +1,346 @@
+% IaCSecBench bibliography.
+%
+% Every entry below corresponds to a publication that can be located by title and
+% author. Entries from the previous revision that could not be verified have been
+% removed rather than corrected, and the seminal IaC-security work that revision
+% omitted has been added -- most importantly Saavedra & Ferreira's GLITCH, which
+% is the closest prior art to this paper and must be discussed.
+%
+% Removed as unverifiable: guzman2023iac, matsowe2024iac, van2022iac,
+% cumming2023cloud, al2023devsecops, perez2021static, dalla2022devsecops,
+% borovits2022securing, zampetti2021ci, vasquez2022towards, farrokh2024iac,
+% smith2024gitops, patel2025cloud, meneely2013empirical. Where a real paper by
+% the same author covers the intended point, it appears below instead.
+
+% ---------------------------------------------------------------------------
+% Security weaknesses and defects in Infrastructure as Code
+% ---------------------------------------------------------------------------
+
+@inproceedings{rahman2019sins,
+  author    = {Rahman, Akond and Parnin, Chris and Williams, Laurie},
+  title     = {The Seven Sins: Security Smells in Infrastructure as Code Scripts},
+  booktitle = {Proc. 41st Int. Conf. Software Engineering (ICSE)},
+  pages     = {164--175},
+  year      = {2019},
+  address   = {Montreal, QC, Canada},
+  doi       = {10.1109/ICSE.2019.00033}
+}
+
+@article{rahman2021replication,
+  author  = {Rahman, Akond and Rahman, Md Rayhanur and Parnin, Chris and Williams, Laurie},
+  title   = {Security Smells in {Ansible} and {Chef} Scripts: A Replication Study},
+  journal = {ACM Trans. Software Engineering and Methodology},
+  volume  = {30},
+  number  = {1},
+  pages   = {1--31},
+  year    = {2021},
+  doi     = {10.1145/3408897}
+}
+
+@inproceedings{rahman2020gang,
+  author    = {Rahman, Akond and Farhana, Effat and Parnin, Chris and Williams, Laurie},
+  title     = {Gang of Eight: A Defect Taxonomy for Infrastructure as Code Scripts},
+  booktitle = {Proc. 42nd Int. Conf. Software Engineering (ICSE)},
+  pages     = {752--764},
+  year      = {2020},
+  doi       = {10.1145/3377811.3380409}
+}
+
+@article{rahman2023k8s,
+  author  = {Rahman, Akond and Shamim, Shazibul Islam and Bose, Dibyendu Brinto and Pandita, Rahul},
+  title   = {Security Misconfigurations in Open Source {Kubernetes} Manifests: An Empirical Study},
+  journal = {ACM Trans. Software Engineering and Methodology},
+  volume  = {32},
+  number  = {4},
+  pages   = {1--36},
+  year    = {2023},
+  doi     = {10.1145/3579639}
+}
+
+@article{verdet2024exploring,
+  author  = {Verdet, Alexandre and Hamdaqa, Mohammad and Da Silva, Leuson and Khomh, Foutse},
+  title   = {Exploring Security Practices in Infrastructure as Code: An Empirical Study},
+  journal = {Empirical Software Engineering},
+  volume  = {29},
+  number  = {4},
+  year    = {2024},
+  doi     = {10.1007/s10664-024-10446-8}
+}
+
+@inproceedings{guerriero2019adoption,
+  author    = {Guerriero, Michele and Garriga, Martin and Tamburri, Damian A. and Palomba, Fabio},
+  title     = {Adoption, Support, and Challenges of Infrastructure-as-Code: Insights from Industry},
+  booktitle = {Proc. IEEE Int. Conf. Software Maintenance and Evolution (ICSME)},
+  pages     = {580--589},
+  year      = {2019},
+  doi       = {10.1109/ICSME.2019.00092}
+}
+
+@article{dallapalma2022within,
+  author  = {Dalla Palma, Stefano and Di Nucci, Dario and Palomba, Fabio and Tamburri, Damian A.},
+  title   = {Within-Project Defect Prediction of Infrastructure-as-Code Using Product and Process Metrics},
+  journal = {IEEE Trans. Software Engineering},
+  volume  = {48},
+  number  = {6},
+  pages   = {2086--2104},
+  year    = {2022},
+  doi     = {10.1109/TSE.2021.3051492}
+}
+
+@article{dallapalma2020catalog,
+  author  = {Dalla Palma, Stefano and Di Nucci, Dario and Tamburri, Damian A.},
+  title   = {Toward a Catalog of Software Quality Metrics for Infrastructure Code},
+  journal = {Journal of Systems and Software},
+  volume  = {170},
+  pages   = {110726},
+  year    = {2020},
+  doi     = {10.1016/j.jss.2020.110726}
+}
+
+% ---------------------------------------------------------------------------
+% Static analysis of IaC, and the closest prior art
+% ---------------------------------------------------------------------------
+
+@inproceedings{saavedra2022glitch,
+  author    = {Saavedra, Nuno and Ferreira, Jo{\~a}o F.},
+  title     = {{GLITCH}: Automated Polyglot Security Smell Detection in Infrastructure as Code},
+  booktitle = {Proc. 37th IEEE/ACM Int. Conf. Automated Software Engineering (ASE)},
+  pages     = {1--12},
+  year      = {2022},
+  doi       = {10.1145/3551349.3556945}
+}
+
+@inproceedings{opdebeeck2022control,
+  author    = {Opdebeeck, Ruben and Zerouali, Ahmed and De Roover, Coen},
+  title     = {Control and Data Flow in Security Smell Detection for Infrastructure as Code:
+               Is It Worth the Effort?},
+  booktitle = {Proc. 19th Int. Conf. Mining Software Repositories (MSR)},
+  pages     = {534--545},
+  year      = {2022},
+  doi       = {10.1145/3524842.3527964}
+}
+
+@inproceedings{opdebeeck2021smelly,
+  author    = {Opdebeeck, Ruben and Zerouali, Ahmed and Velázquez-Rodríguez, Camilo and De Roover, Coen},
+  title     = {Smelly Variables in {Ansible} Infrastructure Code: Detection, Prevalence, and Lifetime},
+  booktitle = {Proc. 18th Int. Conf. Mining Software Repositories (MSR)},
+  pages     = {61--72},
+  year      = {2021},
+  doi       = {10.1109/MSR52588.2021.00019}
+}
+
+@inproceedings{chiari2022static,
+  author    = {Chiari, Michele and De Pascalis, Michele and Pradella, Matteo},
+  title     = {Static Analysis of Infrastructure as Code: A Survey},
+  booktitle = {Proc. IEEE 19th Int. Conf. Software Architecture Companion (ICSA-C)},
+  pages     = {218--225},
+  year      = {2022},
+  doi       = {10.1109/ICSA-C54293.2022.00049}
+}
+
+@inproceedings{shamim2020xi,
+  author    = {Shamim, Md Shazibul Islam and Bhuiyan, Farzana Ahamed and Rahman, Akond},
+  title     = {{XI} Commandments of {Kubernetes} Security: A Systematization of Knowledge
+               Related to {Kubernetes} Security Practices},
+  booktitle = {Proc. IEEE Secure Development Conf. (SecDev)},
+  pages     = {58--64},
+  year      = {2020},
+  doi       = {10.1109/SecDev45635.2020.00025}
+}
+
+% ---------------------------------------------------------------------------
+% Benchmark and static-analyser evaluation methodology
+% ---------------------------------------------------------------------------
+
+@inproceedings{habib2018howmany,
+  author    = {Habib, Andrew and Pradel, Michael},
+  title     = {How Many of All Bugs Do We Find? A Study of Static Bug Detectors},
+  booktitle = {Proc. 33rd IEEE/ACM Int. Conf. Automated Software Engineering (ASE)},
+  pages     = {317--328},
+  year      = {2018},
+  doi       = {10.1145/3238147.3238213}
+}
+
+% ---------------------------------------------------------------------------
+% Statistical methods
+% ---------------------------------------------------------------------------
+
+@article{clopper1934use,
+  author  = {Clopper, C. J. and Pearson, E. S.},
+  title   = {The Use of Confidence or Fiducial Limits Illustrated in the Case of the Binomial},
+  journal = {Biometrika},
+  volume  = {26},
+  number  = {4},
+  pages   = {404--413},
+  year    = {1934},
+  doi     = {10.1093/biomet/26.4.404}
+}
+
+@article{mcnemar1947note,
+  author  = {McNemar, Quinn},
+  title   = {Note on the Sampling Error of the Difference Between Correlated
+             Proportions or Percentages},
+  journal = {Psychometrika},
+  volume  = {12},
+  number  = {2},
+  pages   = {153--157},
+  year    = {1947},
+  doi     = {10.1007/BF02295996}
+}
+
+@article{matthews1975comparison,
+  author  = {Matthews, B. W.},
+  title   = {Comparison of the Predicted and Observed Secondary Structure of
+             {T4} Phage Lysozyme},
+  journal = {Biochimica et Biophysica Acta (BBA) -- Protein Structure},
+  volume  = {405},
+  number  = {2},
+  pages   = {442--451},
+  year    = {1975},
+  doi     = {10.1016/0005-2795(75)90109-9}
+}
+
+@article{dietterich1998approximate,
+  author  = {Dietterich, Thomas G.},
+  title   = {Approximate Statistical Tests for Comparing Supervised
+             Classification Learning Algorithms},
+  journal = {Neural Computation},
+  volume  = {10},
+  number  = {7},
+  pages   = {1895--1923},
+  year    = {1998},
+  doi     = {10.1162/089976698300017197}
+}
+
+@article{arcuri2014hitchhiker,
+  author  = {Arcuri, Andrea and Briand, Lionel},
+  title   = {A Hitchhiker's Guide to Statistical Tests for Assessing Randomized
+             Algorithms in Software Engineering},
+  journal = {Software Testing, Verification and Reliability},
+  volume  = {24},
+  number  = {3},
+  pages   = {219--250},
+  year    = {2014},
+  doi     = {10.1002/stvr.1486}
+}
+
+@article{holm1979simple,
+  author  = {Holm, Sture},
+  title   = {A Simple Sequentially Rejective Multiple Test Procedure},
+  journal = {Scandinavian Journal of Statistics},
+  volume  = {6},
+  number  = {2},
+  pages   = {65--70},
+  year    = {1979}
+}
+
+@article{agresti1998approximate,
+  author  = {Agresti, Alan and Coull, Brent A.},
+  title   = {Approximate Is Better than ``Exact'' for Interval Estimation of
+             Binomial Proportions},
+  journal = {The American Statistician},
+  volume  = {52},
+  number  = {2},
+  pages   = {119--126},
+  year    = {1998},
+  doi     = {10.1080/00031305.1998.10480550}
+}
+
+% ---------------------------------------------------------------------------
+% DevOps, continuous integration, threat modelling
+% ---------------------------------------------------------------------------
+
+@book{morris2020infrastructure,
+  author    = {Morris, Kief},
+  title     = {Infrastructure as Code: Dynamic Systems for the Cloud Age},
+  edition   = {2nd},
+  publisher = {O'Reilly Media},
+  address   = {Sebastopol, CA, USA},
+  year      = {2020}
+}
+
+@book{shostack2014threat,
+  author    = {Shostack, Adam},
+  title     = {Threat Modeling: Designing for Security},
+  publisher = {John Wiley \& Sons},
+  address   = {Indianapolis, IN, USA},
+  year      = {2014}
+}
+
+@book{bass2015devops,
+  author    = {Bass, Len and Weber, Ingo and Zhu, Liming},
+  title     = {DevOps: A Software Architect's Perspective},
+  publisher = {Addison-Wesley},
+  address   = {Boston, MA, USA},
+  year      = {2015}
+}
+
+@book{humble2010continuous,
+  author    = {Humble, Jez and Farley, David},
+  title     = {Continuous Delivery: Reliable Software Releases through Build,
+               Test, and Deployment Automation},
+  publisher = {Addison-Wesley},
+  address   = {Boston, MA, USA},
+  year      = {2010}
+}
+
+@article{armbrust2010view,
+  author  = {Armbrust, Michael and Fox, Armando and Griffith, Rean and
+             Joseph, Anthony D. and Katz, Randy and Konwinski, Andy and
+             Lee, Gunho and Patterson, David and Rabkin, Ariel and
+             Stoica, Ion and Zaharia, Matei},
+  title   = {A View of Cloud Computing},
+  journal = {Communications of the ACM},
+  volume  = {53},
+  number  = {4},
+  pages   = {50--58},
+  year    = {2010},
+  doi     = {10.1145/1721654.1721672}
+}
+
+% ---------------------------------------------------------------------------
+% Tools, standards and specifications
+% ---------------------------------------------------------------------------
+
+@misc{hashicorp2024tests,
+  author       = {{HashiCorp}},
+  title        = {{Terraform} Tests},
+  year         = {2024},
+  howpublished = {\url{https://developer.hashicorp.com/terraform/language/tests}},
+  note         = {accessed Aug. 2, 2026}
+}
+
+@misc{openpolicyagent2024,
+  author       = {{Open Policy Agent}},
+  title        = {{Open Policy Agent} Documentation},
+  organization = {Cloud Native Computing Foundation},
+  year         = {2024},
+  howpublished = {\url{https://www.openpolicyagent.org/docs}},
+  note         = {accessed Aug. 2, 2026}
+}
+
+@misc{cis2024aws,
+  author       = {{Center for Internet Security}},
+  title        = {{CIS Amazon Web Services} Foundations Benchmark, v3.0.0},
+  year         = {2024},
+  howpublished = {\url{https://www.cisecurity.org/benchmark/amazon_web_services}},
+  note         = {accessed Aug. 2, 2026}
+}
+
+@techreport{nist2020sp80053,
+  author      = {{National Institute of Standards and Technology}},
+  title       = {Security and Privacy Controls for Information Systems and
+                 Organizations},
+  institution = {NIST},
+  number      = {Special Publication 800-53, Rev. 5},
+  year        = {2020},
+  doi         = {10.6028/NIST.SP.800-53r5}
+}
+
+@misc{owasp2023benchmark,
+  author       = {{OWASP Foundation}},
+  title        = {{OWASP} Benchmark Project},
+  year         = {2023},
+  howpublished = {\url{https://owasp.org/www-project-benchmark/}},
+  note         = {accessed Aug. 2, 2026}
+}
