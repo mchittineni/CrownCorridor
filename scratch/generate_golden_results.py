@@ -1,10 +1,55 @@
-"""Generates baseline golden results for security tools under benchmark/golden_results/."""
+"""DEPRECATED — synthesises baseline results from assumed accuracy rates.
+
+This script does not execute Checkov, tfsec or OPA. It fabricates a
+per-case outcome vector for each tool from a hardcoded recall constant using
+``detected = (idx % 100) < int(recall_rate * 100)``, and hardcodes the reference
+implementation at recall 1.00 with a 0.00 false-positive rate. The latency values
+are likewise constants, not measurements.
+
+Output from this script must never be reported as an experimental result. It is
+retained only so that previously published figures can be traced to their origin.
+
+The replacement measures real tool behaviour:
+
+    experiments/run_baselines.sh
+
+which executes each installed scanner over the admissible corpus, records raw
+output and per-execution wall-clock samples, and refuses to emit a table when no
+case is admissible. See evaluation/run_baselines.py.
+
+To run this script anyway, set IACSECBENCH_ALLOW_SYNTHETIC=1. The guard exists
+because the generated files are indistinguishable from measured ones once
+written to disk.
+"""
 
 import json
 import os
+import sys
+
+_GUARD_ENV = "IACSECBENCH_ALLOW_SYNTHETIC"
+
+
+def _refuse_unless_explicitly_allowed():
+    """Blocks accidental generation of synthetic results."""
+    if os.environ.get(_GUARD_ENV) == "1":
+        print(
+            f"WARNING: {_GUARD_ENV}=1 -- generating SYNTHETIC results from assumed "
+            "accuracy rates. These are not measurements and must not be published.",
+            file=sys.stderr,
+        )
+        return
+    sys.exit(
+        "refusing to run: this script fabricates benchmark results.\n"
+        "  It does not invoke any scanner; outcomes come from hardcoded recall\n"
+        "  constants and the reference tool is pinned to a perfect score.\n\n"
+        "  Measure instead:  experiments/run_baselines.sh\n"
+        f"  Override (not for publication):  {_GUARD_ENV}=1 python "
+        "scratch/generate_golden_results.py"
+    )
 
 
 def generate_golden_results():
+    _refuse_unless_explicitly_allowed()
     with open("benchmark/benchmark.json", encoding="utf-8") as f:
         catalog = json.load(f)
 
@@ -16,7 +61,6 @@ def generate_golden_results():
     tools = [
         ("checkov", "Checkov", 0.90, 0.08, 1420.0),
         ("tfsec", "tfsec", 0.88, 0.06, 310.0),
-        ("terrascan", "Terrascan", 0.85, 0.10, 850.0),
         ("opa", "OPA / Sentinel", 0.92, 0.05, 650.0),
         ("iacsecbench", "IaCSecBench Engine", 1.00, 0.00, 185.0),
     ]
