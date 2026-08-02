@@ -18,7 +18,7 @@
       "status": 0,
       "resource": "aws_cloudtrail.insecure_trail",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_3_1_cloudtrail.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_3_1_cloudtrail.tf",
         "start_line": 7,
         "end_line": 7
       }
@@ -41,7 +41,7 @@
       "status": 0,
       "resource": "aws_cloudtrail.insecure_trail",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_3_1_cloudtrail.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_3_1_cloudtrail.tf",
         "start_line": 3,
         "end_line": 9
       }
@@ -64,7 +64,7 @@
       "status": 0,
       "resource": "aws_cloudtrail.insecure_trail",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_3_1_cloudtrail.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_3_1_cloudtrail.tf",
         "start_line": 3,
         "end_line": 9
       }
@@ -87,7 +87,7 @@
       "status": 0,
       "resource": "aws_cloudtrail.insecure_trail",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_3_1_cloudtrail.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_3_1_cloudtrail.tf",
         "start_line": 3,
         "end_line": 9
       }
@@ -110,7 +110,7 @@
       "status": 0,
       "resource": "aws_security_group.allow_all",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_4_1_security_group.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_4_1_security_group.tf",
         "start_line": 13,
         "end_line": 13
       }
@@ -133,7 +133,7 @@
       "status": 0,
       "resource": "aws_security_group.allow_all",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_4_1_security_group.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_4_1_security_group.tf",
         "start_line": 12,
         "end_line": 12
       }
@@ -156,7 +156,7 @@
       "status": 0,
       "resource": "aws_s3_bucket.unencrypted",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_2_2_s3_encryption.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_2_2_s3_encryption.tf",
         "start_line": 3,
         "end_line": 5
       }
@@ -179,7 +179,7 @@
       "status": 0,
       "resource": "aws_s3_bucket_public_access_block.example",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_2_1_s3_public.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_2_1_s3_public.tf",
         "start_line": 9,
         "end_line": 9
       }
@@ -202,7 +202,7 @@
       "status": 0,
       "resource": "aws_s3_bucket.unencrypted",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_2_2_s3_encryption.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_2_2_s3_encryption.tf",
         "start_line": 3,
         "end_line": 5
       }
@@ -225,7 +225,7 @@
       "status": 0,
       "resource": "aws_s3_bucket_public_access_block.example",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_2_1_s3_public.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_2_1_s3_public.tf",
         "start_line": 10,
         "end_line": 10
       }
@@ -248,7 +248,7 @@
       "status": 0,
       "resource": "aws_s3_bucket.unencrypted",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_2_2_s3_encryption.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_2_2_s3_encryption.tf",
         "start_line": 3,
         "end_line": 5
       }
@@ -271,7 +271,7 @@
       "status": 0,
       "resource": "aws_s3_bucket.example",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_2_1_s3_public.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_2_1_s3_public.tf",
         "start_line": 3,
         "end_line": 5
       }
@@ -294,7 +294,7 @@
       "status": 0,
       "resource": "aws_s3_bucket.unencrypted",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_2_2_s3_encryption.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_2_2_s3_encryption.tf",
         "start_line": 3,
         "end_line": 5
       }
@@ -317,7 +317,7 @@
       "status": 0,
       "resource": "aws_s3_bucket.example",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_2_1_s3_public.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_2_1_s3_public.tf",
         "start_line": 3,
         "end_line": 5
       }
@@ -340,7 +340,7 @@
       "status": 0,
       "resource": "aws_s3_bucket.unencrypted",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_2_2_s3_encryption.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_2_2_s3_encryption.tf",
         "start_line": 3,
         "end_line": 5
       }
@@ -363,7 +363,7 @@
       "status": 0,
       "resource": "aws_s3_bucket.example",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_2_1_s3_public.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_2_1_s3_public.tf",
         "start_line": 3,
         "end_line": 5
       }
@@ -386,7 +386,7 @@
       "status": 0,
       "resource": "aws_s3_bucket.unencrypted",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_2_2_s3_encryption.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_2_2_s3_encryption.tf",
         "start_line": 3,
         "end_line": 5
       }
@@ -409,7 +409,7 @@
       "status": 0,
       "resource": "aws_s3_bucket.example",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_2_1_s3_public.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_2_1_s3_public.tf",
         "start_line": 3,
         "end_line": 5
       }
@@ -432,7 +432,7 @@
       "status": 0,
       "resource": "aws_s3_bucket.unencrypted",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_2_2_s3_encryption.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_2_2_s3_encryption.tf",
         "start_line": 3,
         "end_line": 5
       }
@@ -455,7 +455,7 @@
       "status": 0,
       "resource": "aws_s3_bucket_public_access_block.example",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_2_1_s3_public.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_2_1_s3_public.tf",
         "start_line": 11,
         "end_line": 11
       }
@@ -478,7 +478,7 @@
       "status": 0,
       "resource": "aws_s3_bucket.unencrypted",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_2_2_s3_encryption.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_2_2_s3_encryption.tf",
         "start_line": 3,
         "end_line": 5
       }
@@ -501,7 +501,7 @@
       "status": 0,
       "resource": "aws_s3_bucket_public_access_block.example",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_2_1_s3_public.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_2_1_s3_public.tf",
         "start_line": 12,
         "end_line": 12
       }
@@ -524,7 +524,7 @@
       "status": 0,
       "resource": "aws_s3_bucket.unencrypted",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-o8jzgigy/case/cis_2_2_s3_encryption.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_2_s3_encryption-cl47001q/case/cis_2_2_s3_encryption.tf",
         "start_line": 3,
         "end_line": 5
       }

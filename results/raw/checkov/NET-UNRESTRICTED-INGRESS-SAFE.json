@@ -17,8 +17,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-9za8ii_7/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-9za8ii_7/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-1q3mhpmw/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-1q3mhpmw/case/main.tf",
         "file_line_range": [
           28,
           51
@@ -41,13 +41,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-9za8ii_7/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-1q3mhpmw/case/main.tf",
         "breadcrumbs": {
           "dynamic.ingress.for_each": [
             {
               "type": "locals",
               "name": "ingress_cidrs",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-9za8ii_7/case/main.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-1q3mhpmw/case/main.tf",
               "module_connection": false
             }
           ],
@@ -55,7 +55,7 @@
             {
               "type": "locals",
               "name": "ingress_cidrs",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-9za8ii_7/case/main.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-1q3mhpmw/case/main.tf",
               "module_connection": false
             }
           ],
@@ -63,7 +63,7 @@
             {
               "type": "locals",
               "name": "ingress_cidrs",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-9za8ii_7/case/main.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-1q3mhpmw/case/main.tf",
               "module_connection": false
             }
           ],
@@ -71,7 +71,7 @@
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-9za8ii_7/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-1q3mhpmw/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -96,21 +96,21 @@
             }
           },
           "evaluated_keys": [
-            "egress/from_port",
-            "ingress/protocol",
-            "ingress/self",
-            "egress/to_port",
-            "ingress/from_port",
+            "resource_type",
             "egress/protocol",
             "ingress/to_port",
-            "resource_type",
-            "egress/cidr_blocks"
+            "egress/to_port",
+            "ingress/from_port",
+            "egress/cidr_blocks",
+            "ingress/self",
+            "ingress/protocol",
+            "egress/from_port"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-9za8ii_7/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-9za8ii_7/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-1q3mhpmw/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-1q3mhpmw/case/main.tf",
         "file_line_range": [
           24,
           26
@@ -133,7 +133,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-4",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-9za8ii_7/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-1q3mhpmw/case/main.tf"
       },
       {
         "check_id": "CKV2_AWS_5",
@@ -229,8 +229,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-9za8ii_7/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-9za8ii_7/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-1q3mhpmw/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-1q3mhpmw/case/main.tf",
         "file_line_range": [
           28,
           51
@@ -253,13 +253,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-that-security-groups-are-attached-to-ec2-instances-or-elastic-network-interfaces-enis",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-9za8ii_7/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-1q3mhpmw/case/main.tf",
         "breadcrumbs": {
           "dynamic.ingress.for_each": [
             {
               "type": "locals",
               "name": "ingress_cidrs",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-9za8ii_7/case/main.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-1q3mhpmw/case/main.tf",
               "module_connection": false
             }
           ],
@@ -267,7 +267,7 @@
             {
               "type": "locals",
               "name": "ingress_cidrs",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-9za8ii_7/case/main.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-1q3mhpmw/case/main.tf",
               "module_connection": false
             }
           ],
@@ -275,7 +275,7 @@
             {
               "type": "locals",
               "name": "ingress_cidrs",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-9za8ii_7/case/main.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-1q3mhpmw/case/main.tf",
               "module_connection": false
             }
           ],
@@ -283,7 +283,7 @@
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-9za8ii_7/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-1q3mhpmw/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -314,8 +314,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-9za8ii_7/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-9za8ii_7/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-1q3mhpmw/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-1q3mhpmw/case/main.tf",
         "file_line_range": [
           24,
           26
@@ -338,7 +338,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-9-enable-vpc-flow-logging",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-9za8ii_7/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-1q3mhpmw/case/main.tf"
       }
     ]
   },
