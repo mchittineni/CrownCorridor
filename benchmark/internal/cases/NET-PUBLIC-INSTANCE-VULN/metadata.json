@@ -1,0 +1,28 @@
+{
+  "id": "NET-PUBLIC-INSTANCE-VULN",
+  "title": "Compute instance public addressing (VIOLATION)",
+  "description": "Instance is launched with a public IP association.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "NET_PUBLIC_INSTANCE"
+  ],
+  "benchmark_category": "NET",
+  "cis_control": "5.6",
+  "severity": "HIGH",
+  "provider": "aws",
+  "benchmark_features": [
+    "data source",
+    "resource references"
+  ],
+  "pair_id": "NET_PUBLIC_INSTANCE",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_instance.target",
+      "control": "NET_PUBLIC_INSTANCE",
+      "description": "Instance is launched with a public IP association."
+    }
+  ]
+}

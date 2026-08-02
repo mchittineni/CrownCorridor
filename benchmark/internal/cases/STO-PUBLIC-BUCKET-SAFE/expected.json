@@ -1,0 +1,9 @@
+{
+  "benchmark_id": "STO-PUBLIC-BUCKET-SAFE",
+  "expected_result": "PASS",
+  "canonical_controls": [
+    "STO_PUBLIC_BUCKET"
+  ],
+  "severity": "NONE",
+  "violations": []
+}

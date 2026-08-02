@@ -1,0 +1,20 @@
+{
+  "id": "CMP-NO-IMDSV2-SAFE",
+  "title": "Instance metadata service authentication (COMPLIANT)",
+  "description": "Instance metadata service requires IMDSv2 session tokens.",
+  "expected_result": "PASS",
+  "has_violation": false,
+  "canonical_controls": [
+    "CMP_NO_IMDSV2"
+  ],
+  "benchmark_category": "CMP",
+  "cis_control": "5.6",
+  "severity": "NONE",
+  "provider": "aws",
+  "benchmark_features": [
+    "nested blocks"
+  ],
+  "pair_id": "CMP_NO_IMDSV2",
+  "pair_variant": "compliant",
+  "generated_by": "benchmark/generate_corpus.py"
+}

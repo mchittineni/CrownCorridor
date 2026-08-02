@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "STO-NO-ACCESS-LOGGING-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "STO_NO_ACCESS_LOGGING"
+  ],
+  "severity": "MEDIUM",
+  "violations": [
+    {
+      "resource": "aws_s3_bucket.target",
+      "control": "STO_NO_ACCESS_LOGGING"
+    }
+  ]
+}

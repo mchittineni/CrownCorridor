@@ -1,0 +1,20 @@
+{
+  "id": "NET-NO-HTTPS-REDIRECT-SAFE",
+  "title": "Content delivery HTTPS enforcement (COMPLIANT)",
+  "description": "Cache behaviour redirects viewer requests to HTTPS.",
+  "expected_result": "PASS",
+  "has_violation": false,
+  "canonical_controls": [
+    "NET_NO_HTTPS_REDIRECT"
+  ],
+  "benchmark_category": "NET",
+  "cis_control": "n/a",
+  "severity": "NONE",
+  "provider": "aws",
+  "benchmark_features": [
+    "nested blocks"
+  ],
+  "pair_id": "NET_NO_HTTPS_REDIRECT",
+  "pair_variant": "compliant",
+  "generated_by": "benchmark/generate_corpus.py"
+}

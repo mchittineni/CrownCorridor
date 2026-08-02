@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "STO-UNENCRYPTED-BUCKET-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "STO_UNENCRYPTED_BUCKET"
+  ],
+  "severity": "HIGH",
+  "violations": [
+    {
+      "resource": "aws_s3_bucket_server_side_encryption_configuration.target",
+      "control": "STO_UNENCRYPTED_BUCKET"
+    }
+  ]
+}

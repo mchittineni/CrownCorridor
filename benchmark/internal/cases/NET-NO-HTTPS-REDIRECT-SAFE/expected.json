@@ -1,0 +1,9 @@
+{
+  "benchmark_id": "NET-NO-HTTPS-REDIRECT-SAFE",
+  "expected_result": "PASS",
+  "canonical_controls": [
+    "NET_NO_HTTPS_REDIRECT"
+  ],
+  "severity": "NONE",
+  "violations": []
+}

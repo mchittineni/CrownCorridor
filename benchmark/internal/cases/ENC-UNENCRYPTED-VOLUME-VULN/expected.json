@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "ENC-UNENCRYPTED-VOLUME-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "ENC_UNENCRYPTED_VOLUME"
+  ],
+  "severity": "HIGH",
+  "violations": [
+    {
+      "resource": "aws_ebs_volume.target",
+      "control": "ENC_UNENCRYPTED_VOLUME"
+    }
+  ]
+}

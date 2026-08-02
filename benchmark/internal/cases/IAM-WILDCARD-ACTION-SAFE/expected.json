@@ -1,0 +1,9 @@
+{
+  "benchmark_id": "IAM-WILDCARD-ACTION-SAFE",
+  "expected_result": "PASS",
+  "canonical_controls": [
+    "IAM_WILDCARD_ACTION"
+  ],
+  "severity": "NONE",
+  "violations": []
+}

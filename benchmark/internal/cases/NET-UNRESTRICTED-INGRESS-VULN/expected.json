@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "NET-UNRESTRICTED-INGRESS-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "NET_UNRESTRICTED_INGRESS"
+  ],
+  "severity": "CRITICAL",
+  "violations": [
+    {
+      "resource": "aws_security_group.target",
+      "control": "NET_UNRESTRICTED_INGRESS"
+    }
+  ]
+}

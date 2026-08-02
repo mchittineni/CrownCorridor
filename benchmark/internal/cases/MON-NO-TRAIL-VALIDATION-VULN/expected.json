@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "MON-NO-TRAIL-VALIDATION-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "MON_NO_TRAIL_VALIDATION"
+  ],
+  "severity": "MEDIUM",
+  "violations": [
+    {
+      "resource": "aws_cloudtrail.target",
+      "control": "MON_NO_TRAIL_VALIDATION"
+    }
+  ]
+}

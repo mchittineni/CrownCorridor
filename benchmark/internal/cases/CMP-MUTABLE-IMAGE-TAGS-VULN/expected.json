@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "CMP-MUTABLE-IMAGE-TAGS-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "CMP_MUTABLE_IMAGE_TAGS"
+  ],
+  "severity": "LOW",
+  "violations": [
+    {
+      "resource": "aws_ecr_repository.target",
+      "control": "CMP_MUTABLE_IMAGE_TAGS"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "benchmark_id": "NET-NO-FLOW-LOGS-SAFE",
+  "expected_result": "PASS",
+  "canonical_controls": [
+    "NET_NO_FLOW_LOGS"
+  ],
+  "severity": "NONE",
+  "violations": []
+}

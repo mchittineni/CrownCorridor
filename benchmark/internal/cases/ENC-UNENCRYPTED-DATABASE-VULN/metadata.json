@@ -1,0 +1,27 @@
+{
+  "id": "ENC-UNENCRYPTED-DATABASE-VULN",
+  "title": "Managed database encryption at rest (VIOLATION)",
+  "description": "Database instance storage is unencrypted.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "ENC_UNENCRYPTED_DATABASE"
+  ],
+  "benchmark_category": "ENC",
+  "cis_control": "2.3.1",
+  "severity": "HIGH",
+  "provider": "aws",
+  "benchmark_features": [
+    "resource references"
+  ],
+  "pair_id": "ENC_UNENCRYPTED_DATABASE",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_db_instance.target",
+      "control": "ENC_UNENCRYPTED_DATABASE",
+      "description": "Database instance storage is unencrypted."
+    }
+  ]
+}

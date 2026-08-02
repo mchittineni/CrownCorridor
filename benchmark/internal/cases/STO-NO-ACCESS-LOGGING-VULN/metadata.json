@@ -1,0 +1,27 @@
+{
+  "id": "STO-NO-ACCESS-LOGGING-VULN",
+  "title": "Object storage access logging (VIOLATION)",
+  "description": "No access logging configuration is declared for the bucket.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "STO_NO_ACCESS_LOGGING"
+  ],
+  "benchmark_category": "MON",
+  "cis_control": "2.1.3",
+  "severity": "MEDIUM",
+  "provider": "aws",
+  "benchmark_features": [
+    "multiple resources"
+  ],
+  "pair_id": "STO_NO_ACCESS_LOGGING",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_s3_bucket.target",
+      "control": "STO_NO_ACCESS_LOGGING",
+      "description": "No access logging configuration is declared for the bucket."
+    }
+  ]
+}

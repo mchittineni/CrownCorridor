@@ -1,0 +1,27 @@
+{
+  "id": "MON-NO-LOG-ENCRYPTION-VULN",
+  "title": "Audit log encryption (VIOLATION)",
+  "description": "Trail logs are not encrypted with a customer-managed key.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "MON_NO_LOG_ENCRYPTION"
+  ],
+  "benchmark_category": "MON",
+  "cis_control": "3.5",
+  "severity": "MEDIUM",
+  "provider": "aws",
+  "benchmark_features": [
+    "resource references"
+  ],
+  "pair_id": "MON_NO_LOG_ENCRYPTION",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_cloudtrail.target",
+      "control": "MON_NO_LOG_ENCRYPTION",
+      "description": "Trail logs are not encrypted with a customer-managed key."
+    }
+  ]
+}

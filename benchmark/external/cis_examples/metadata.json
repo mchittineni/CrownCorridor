@@ -10,7 +10,10 @@
       "severity": "HIGH",
       "expected": "VIOLATION",
       "control": "2.1",
-      "source": "CIS AWS Foundations Benchmark v3"
+      "source": "CIS AWS Foundations Benchmark v3",
+      "canonical_controls": [
+        "STO_PUBLIC_BUCKET"
+      ]
     },
     {
       "id": "CIS-AWS-2.2",
@@ -18,7 +21,10 @@
       "severity": "HIGH",
       "expected": "VIOLATION",
       "control": "2.2",
-      "source": "CIS AWS Foundations Benchmark v3"
+      "source": "CIS AWS Foundations Benchmark v3",
+      "canonical_controls": [
+        "STO_UNENCRYPTED_BUCKET"
+      ]
     },
     {
       "id": "CIS-AWS-4.1",
@@ -26,7 +32,10 @@
       "severity": "CRITICAL",
       "expected": "VIOLATION",
       "control": "4.1",
-      "source": "CIS AWS Foundations Benchmark v3"
+      "source": "CIS AWS Foundations Benchmark v3",
+      "canonical_controls": [
+        "NET_UNRESTRICTED_INGRESS"
+      ]
     },
     {
       "id": "CIS-AWS-5.1",
@@ -42,7 +51,11 @@
       "severity": "HIGH",
       "expected": "VIOLATION",
       "control": "3.1",
-      "source": "CIS AWS Foundations Benchmark v3"
+      "source": "CIS AWS Foundations Benchmark v3",
+      "canonical_controls": [
+        "MON_TRAIL_NOT_MULTIREGION",
+        "MON_NO_TRAIL_VALIDATION"
+      ]
     }
   ]
 }

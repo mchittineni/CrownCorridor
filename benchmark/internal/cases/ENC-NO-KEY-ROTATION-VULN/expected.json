@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "ENC-NO-KEY-ROTATION-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "ENC_NO_KEY_ROTATION"
+  ],
+  "severity": "MEDIUM",
+  "violations": [
+    {
+      "resource": "aws_kms_key.target",
+      "control": "ENC_NO_KEY_ROTATION"
+    }
+  ]
+}

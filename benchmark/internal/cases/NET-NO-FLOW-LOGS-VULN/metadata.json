@@ -1,0 +1,28 @@
+{
+  "id": "NET-NO-FLOW-LOGS-VULN",
+  "title": "Virtual network flow logging (VIOLATION)",
+  "description": "No flow log is declared for the VPC.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "NET_NO_FLOW_LOGS"
+  ],
+  "benchmark_category": "MON",
+  "cis_control": "3.9",
+  "severity": "MEDIUM",
+  "provider": "aws",
+  "benchmark_features": [
+    "iam policy document",
+    "resource references"
+  ],
+  "pair_id": "NET_NO_FLOW_LOGS",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_vpc.target",
+      "control": "NET_NO_FLOW_LOGS",
+      "description": "No flow log is declared for the VPC."
+    }
+  ]
+}

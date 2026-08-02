@@ -1,0 +1,27 @@
+{
+  "id": "IAM-WILDCARD-TRUST-VULN",
+  "title": "Role trust policy principal scope (VIOLATION)",
+  "description": "Trust policy allows sts:AssumeRole from principal '*'.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "IAM_WILDCARD_TRUST"
+  ],
+  "benchmark_category": "IAM",
+  "cis_control": "1.16",
+  "severity": "CRITICAL",
+  "provider": "aws",
+  "benchmark_features": [
+    "jsonencode"
+  ],
+  "pair_id": "IAM_WILDCARD_TRUST",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_iam_role.target",
+      "control": "IAM_WILDCARD_TRUST",
+      "description": "Trust policy allows sts:AssumeRole from principal '*'."
+    }
+  ]
+}

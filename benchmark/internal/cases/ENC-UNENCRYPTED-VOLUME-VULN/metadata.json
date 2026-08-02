@@ -1,0 +1,27 @@
+{
+  "id": "ENC-UNENCRYPTED-VOLUME-VULN",
+  "title": "Block storage encryption at rest (VIOLATION)",
+  "description": "EBS volume is created unencrypted.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "ENC_UNENCRYPTED_VOLUME"
+  ],
+  "benchmark_category": "ENC",
+  "cis_control": "2.2.1",
+  "severity": "HIGH",
+  "provider": "aws",
+  "benchmark_features": [
+    "resource references"
+  ],
+  "pair_id": "ENC_UNENCRYPTED_VOLUME",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_ebs_volume.target",
+      "control": "ENC_UNENCRYPTED_VOLUME",
+      "description": "EBS volume is created unencrypted."
+    }
+  ]
+}

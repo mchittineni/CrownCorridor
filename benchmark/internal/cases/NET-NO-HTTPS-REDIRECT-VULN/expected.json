@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "NET-NO-HTTPS-REDIRECT-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "NET_NO_HTTPS_REDIRECT"
+  ],
+  "severity": "MEDIUM",
+  "violations": [
+    {
+      "resource": "aws_cloudfront_distribution.target",
+      "control": "NET_NO_HTTPS_REDIRECT"
+    }
+  ]
+}

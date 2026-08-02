@@ -1,0 +1,27 @@
+{
+  "id": "CMP-NO-IMDSV2-VULN",
+  "title": "Instance metadata service authentication (VIOLATION)",
+  "description": "Instance metadata service permits unauthenticated IMDSv1 access.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "CMP_NO_IMDSV2"
+  ],
+  "benchmark_category": "CMP",
+  "cis_control": "5.6",
+  "severity": "HIGH",
+  "provider": "aws",
+  "benchmark_features": [
+    "nested blocks"
+  ],
+  "pair_id": "CMP_NO_IMDSV2",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_instance.target",
+      "control": "CMP_NO_IMDSV2",
+      "description": "Instance metadata service permits unauthenticated IMDSv1 access."
+    }
+  ]
+}

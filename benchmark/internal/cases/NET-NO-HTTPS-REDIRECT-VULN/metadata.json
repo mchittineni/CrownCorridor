@@ -1,0 +1,27 @@
+{
+  "id": "NET-NO-HTTPS-REDIRECT-VULN",
+  "title": "Content delivery HTTPS enforcement (VIOLATION)",
+  "description": "Cache behaviour allows plaintext HTTP viewer requests.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "NET_NO_HTTPS_REDIRECT"
+  ],
+  "benchmark_category": "NET",
+  "cis_control": "n/a",
+  "severity": "MEDIUM",
+  "provider": "aws",
+  "benchmark_features": [
+    "nested blocks"
+  ],
+  "pair_id": "NET_NO_HTTPS_REDIRECT",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_cloudfront_distribution.target",
+      "control": "NET_NO_HTTPS_REDIRECT",
+      "description": "Cache behaviour allows plaintext HTTP viewer requests."
+    }
+  ]
+}

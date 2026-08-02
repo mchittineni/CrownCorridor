@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "NET-PUBLIC-INSTANCE-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "NET_PUBLIC_INSTANCE"
+  ],
+  "severity": "HIGH",
+  "violations": [
+    {
+      "resource": "aws_instance.target",
+      "control": "NET_PUBLIC_INSTANCE"
+    }
+  ]
+}

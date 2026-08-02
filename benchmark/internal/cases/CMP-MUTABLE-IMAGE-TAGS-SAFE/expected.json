@@ -1,0 +1,9 @@
+{
+  "benchmark_id": "CMP-MUTABLE-IMAGE-TAGS-SAFE",
+  "expected_result": "PASS",
+  "canonical_controls": [
+    "CMP_MUTABLE_IMAGE_TAGS"
+  ],
+  "severity": "NONE",
+  "violations": []
+}

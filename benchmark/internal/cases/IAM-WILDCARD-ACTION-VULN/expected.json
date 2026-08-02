@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "IAM-WILDCARD-ACTION-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "IAM_WILDCARD_ACTION"
+  ],
+  "severity": "CRITICAL",
+  "violations": [
+    {
+      "resource": "aws_iam_policy.target",
+      "control": "IAM_WILDCARD_ACTION"
+    }
+  ]
+}
