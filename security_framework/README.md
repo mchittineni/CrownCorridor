@@ -24,11 +24,13 @@ security_framework/
 ## ⚙️ Key Components
 
 ### 1. Benchmark Scan Engine (`security_framework/engine/engine.py`)
+
 - Evaluates Terraform HCL & Plan JSON against declarative OPA Rego security policies.
 - Detects security violations across IAM, networking, encryption, compute, and secret handling.
 - Returns evaluation results in under 185 ms latency.
 
 ### 2. OPA Policy Suite (`security_framework/policies/cis_aws_benchmark.rego`)
+
 - Comprehensive Rego policies implementing CIS AWS Foundations Benchmark controls:
   - Enforcing S3 bucket public access blocks, SSL/TLS transport, and KMS encryption.
   - Blocking unrestricted ingress (`0.0.0.0/0`) on security groups.
