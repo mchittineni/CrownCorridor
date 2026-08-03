@@ -39,20 +39,20 @@ This repository provides **IaCSecBench**, a unified evaluation framework to meas
 
 ## ✨ Features
 
-| Feature                                     | Description                                                                                                                                        |
-| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 🔴 **Live SRO Feed**                        | Real-time property registration ticker with pause/resume and speed controls                                                                        |
-| 🚗 **Search by Commute**                    | Filter properties by driving time to workplace hubs (HITECH City, Financial District, Amaravati)                                                   |
-| 📈 **Regional Market Trends**               | Time-series price trajectory charts (2016-2026) and top appreciating localities leaderboard                                                        |
-| 🔍 **Global Smart Search**                  | Persistent header bar with instant autocomplete for properties, listings, and districts                                                            |
-| ⚖️ **Property Comparison**                  | Side-by-side spec comparison modal for up to 3 properties (Valuation, CAGR, Rate/SqFt, Metro)                                                      |
-| 🏰 **Complete State Property History**      | Full state historical property records for 24,484 villages (15,197 AP, 9,287 TS) across all 61 districts                                           |
-| 🗂️ **Hierarchical Location Query**          | Filter properties via State ➔ District ➔ Mandal / Taluk ➔ Property List (Fast-Read API & Web UI)                                                   |
-| 🖨️ **Valuation Audit Report**               | One-click printable PDF/audit summary with transaction logs and infrastructure scores                                                              |
-| 📍 **Infrastructure Explorer**              | Nearby schools, hospitals, metro/railway stations with Focus Map and Google Maps turn-by-turn links                                                |
-| 🔒 **Zero-PII Compliance**                  | Strict privacy protections — no customer names or personal data stored (automated CI check)                                                        |
-| 🏗️ **AWS Terraform Reference Architecture** | Modular Terraform (>= 1.15.0, AWS ~> 6.56.0) reference architecture with WAF, CloudFront, API Gateway, Fargate & PostGIS                           |
-| 🛡️ **CIS AWS Benchmark Security**           | OPA / Rego policy engine, VPC Flow Logs, S3 TLS-Only, ALB Header Dropping, and native `.tftest.hcl` suites                                         |
+| Feature                                     | Description                                                                                                                                                   |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 🔴 **Live SRO Feed**                        | Real-time property registration ticker with pause/resume and speed controls                                                                                   |
+| 🚗 **Search by Commute**                    | Filter properties by driving time to workplace hubs (HITECH City, Financial District, Amaravati)                                                              |
+| 📈 **Regional Market Trends**               | Time-series price trajectory charts (2016-2026) and top appreciating localities leaderboard                                                                   |
+| 🔍 **Global Smart Search**                  | Persistent header bar with instant autocomplete for properties, listings, and districts                                                                       |
+| ⚖️ **Property Comparison**                  | Side-by-side spec comparison modal for up to 3 properties (Valuation, CAGR, Rate/SqFt, Metro)                                                                 |
+| 🏰 **Complete State Property History**      | Full state historical property records for 24,484 villages (15,197 AP, 9,287 TS) across all 61 districts                                                      |
+| 🗂️ **Hierarchical Location Query**          | Filter properties via State ➔ District ➔ Mandal / Taluk ➔ Property List (Fast-Read API & Web UI)                                                              |
+| 🖨️ **Valuation Audit Report**               | One-click printable PDF/audit summary with transaction logs and infrastructure scores                                                                         |
+| 📍 **Infrastructure Explorer**              | Nearby schools, hospitals, metro/railway stations with Focus Map and Google Maps turn-by-turn links                                                           |
+| 🔒 **Zero-PII Compliance**                  | Strict privacy protections — no customer names or personal data stored (automated CI check)                                                                   |
+| 🏗️ **AWS Terraform Reference Architecture** | Modular Terraform (>= 1.15.0, AWS ~> 6.56.0) reference architecture with WAF, CloudFront, API Gateway, Fargate & PostGIS                                      |
+| 🛡️ **CIS AWS Benchmark Security**           | OPA / Rego policy engine, VPC Flow Logs, S3 TLS-Only, ALB Header Dropping, and native `.tftest.hcl` suites                                                    |
 | 🔬 **IaCSecBench Evaluation Framework**     | Open-source framework, comparative benchmarking (Checkov, tfsec, plan-level OPA), public datasets & reproducible experiments (`experiments/run_baselines.sh`) |
 
 ---
@@ -258,6 +258,7 @@ terraform test
 pre-commit run --all-files
 
 ```
+
 ---
 
 ## 🔬 Open-Source IaC Security Benchmark Framework

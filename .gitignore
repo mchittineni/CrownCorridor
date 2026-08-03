@@ -81,3 +81,8 @@ obsidian_research/
 OBSIDIAN_CHANGELOG_INDEX.md
 OBSIDIAN_CHANGELOG_SYNC.md
 OBSIDIAN_PROJECT_STRUCTURE.md
+
+# Output of the opt-in synthetic demonstration stage (evaluation/score.py). It is
+# a fabricated illustration, not a measurement, and must never be mistaken for
+# leaderboard/results.csv, which analyze.py writes from real scanner runs.
+leaderboard/results.synthetic.csv

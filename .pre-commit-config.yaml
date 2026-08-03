@@ -32,16 +32,6 @@ repos:
     hooks:
       - id: isort
 
-  - repo: https://github.com/PyCQA/doc8
-    rev: v2.0.0
-    hooks:
-      - id: doc8
-        args:
-          - "--max-line-length"
-          - "112"
-          - "--file-encoding"
-          - "utf-8"
-
   - repo: https://github.com/pycqa/flake8
     rev: 7.3.0
     hooks:
