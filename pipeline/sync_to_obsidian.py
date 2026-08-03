@@ -67,6 +67,7 @@ EXCLUDE_FILES = {
 # SECTION 1: GIT HISTORY PARSING
 # ==============================================================================
 
+
 def get_git_history():
     """Retrieve full git commit history sorted chronologically."""
     git_cmd = [
@@ -139,6 +140,7 @@ def parse_commits(git_output):
 # ==============================================================================
 # SECTION 2: WORKSPACE FILE SYSTEM & CODE DEPENDENCY PARSER
 # ==============================================================================
+
 
 def scan_project_files():
     """Scan markdown files and extract metadata."""
@@ -278,8 +280,7 @@ def generate_research_notes():
     research_files = {}
 
     # 1. Article Workspace Note
-    research_files["Article-Workspace.md"] = (
-        """---
+    research_files["Article-Workspace.md"] = """---
 type: research_article
 title: "IaCSecBench: A Reproducible Benchmark Framework for Evaluating Infrastructure as Code Security Validation Pipelines"
 author: "Manideep Chittineni"
@@ -290,9 +291,9 @@ tags: [research, ieee, paper, iac, devsecops, benchmark]
 
 # 📝 IEEE Research Article: IaCSecBench Workspace
 
-> **Journal Target:** IEEE Transactions on Software Engineering  
-> **Author:** Manideep Chittineni (`manideep.chittineni@hotmail.com`)  
-> **Repository:** [[Project-Structure|iacsecbench Codebase]]  
+> **Journal Target:** IEEE Transactions on Software Engineering
+> **Author:** Manideep Chittineni (`manideep.chittineni@hotmail.com`)
+> **Repository:** [[Project-Structure|iacsecbench Codebase]]
 > **Changelog & Activity:** [[Changelog-Activity|Master Activity Log]]
 
 ---
@@ -307,9 +308,7 @@ tags: [research, ieee, paper, iac, devsecops, benchmark]
 
 ## 📊 Quick Empirical Metrics Summary
 
-"""
-        + render_measured_metrics_table()
-    )
+""" + render_measured_metrics_table()
 
     # 2. RQ1 Metrics Note
     research_files["RQ1-Internal-Metrics.md"] = (
@@ -363,7 +362,7 @@ tags: [research, security, stride, threat-model]
 graph TD
     Dev["Developer Workspace"] -->|Git Commit| Repo["GitHub Source Control"]
     Repo -->|Trigger Webhook| CI["Continuous Integration Pipeline"]
-    
+
     subgraph Trust Boundary 1: Repository Edge
         L1["Layer 1: Data and PII Sanitizer"]
     end
@@ -404,6 +403,7 @@ graph TD
 # ==============================================================================
 # SECTION 4: OBSIDIAN KNOWLEDGE MAP GENERATOR
 # ==============================================================================
+
 
 def generate_project_structure_note(file_map):
     """Generate Project-Structure.md with full tree view and dependency graph."""
@@ -459,7 +459,9 @@ def generate_project_structure_note(file_map):
         lines.append("")
         for info in info_list:
             safe_module_name = info["rel_path"].replace("/", "_").replace(".", "_")
-            lines.append(f"- **[[Modules/{safe_module_name}|`{info['rel_path']}`]]** ({info['size']} bytes)")
+            lines.append(
+                f"- **[[Modules/{safe_module_name}|`{info['rel_path']}`]]** ({info['size']} bytes)"
+            )
         lines.append("")
 
     return "\n".join(lines)
@@ -491,7 +493,9 @@ def generate_module_notes(file_map):
         ]
 
         parent_dir = os.path.dirname(rel_path)
-        related = [p for p, i in file_map.items() if os.path.dirname(p) == parent_dir and p != rel_path]
+        related = [
+            p for p, i in file_map.items() if os.path.dirname(p) == parent_dir and p != rel_path
+        ]
         if related:
             lines.append("## 🔗 Related Workspace Modules")
             lines.append("")
@@ -540,19 +544,21 @@ def generate_daily_notes(daily_commits):
         ]
 
         for idx, c in enumerate(commits, 1):
-            clean_sub = re.sub(r'["\'\(\)\[\]&<>]', ' ', c["subject"])
+            clean_sub = re.sub(r'["\'\(\)\[\]&<>]', " ", c["subject"])
             lines.append(f'    C{idx}["{c["short_hash"]}: {clean_sub}"]')
             if idx > 1:
-                lines.append(f"    C{idx-1} --> C{idx}")
+                lines.append(f"    C{idx - 1} --> C{idx}")
 
-        lines.extend([
-            "```",
-            "",
-            "---",
-            "",
-            "## 📝 Commit Details",
-            "",
-        ])
+        lines.extend(
+            [
+                "```",
+                "",
+                "---",
+                "",
+                "## 📝 Commit Details",
+                "",
+            ]
+        )
 
         for idx, commit in enumerate(commits, 1):
             lines.append(f"### {idx}. {commit['subject']}")
@@ -616,14 +622,16 @@ def generate_main_index(daily_commits):
             lines.append(f"- **`{commit['short_hash']}`** `{commit['type']}`: {commit['subject']}")
         lines.append("")
 
-    lines.extend([
-        "---",
-        "",
-        "## 🔍 Quick Jump Navigation",
-        "",
-        "- [[Research/Article-Workspace|📝 View IEEE Research Article Workspace]]",
-        "- [[Project-Structure|📐 View Project Architecture & Knowledge Graph]]",
-    ])
+    lines.extend(
+        [
+            "---",
+            "",
+            "## 🔍 Quick Jump Navigation",
+            "",
+            "- [[Research/Article-Workspace|📝 View IEEE Research Article Workspace]]",
+            "- [[Project-Structure|📐 View Project Architecture & Knowledge Graph]]",
+        ]
+    )
     for day in sorted_days:
         lines.append(f"- [[Daily/{day}|View activity for {day}]]")
     lines.append("")
@@ -666,9 +674,15 @@ def main():
     with open(LOCAL_STRUCTURE_FILE, "w", encoding="utf-8") as f:
         f.write(structure_content)
 
-    print(f"✅ Local workspace daily notes ({len(daily_files_data)}) generated in: {LOCAL_DAILY_DIR}")
-    print(f"✅ Local workspace module notes ({len(module_files_data)}) generated in: {LOCAL_MODULES_DIR}")
-    print(f"✅ Local workspace research notes ({len(research_files_data)}) generated in: {LOCAL_RESEARCH_DIR}")
+    print(
+        f"✅ Local workspace daily notes ({len(daily_files_data)}) generated in: {LOCAL_DAILY_DIR}"
+    )
+    print(
+        f"✅ Local workspace module notes ({len(module_files_data)}) generated in: {LOCAL_MODULES_DIR}"
+    )
+    print(
+        f"✅ Local workspace research notes ({len(research_files_data)}) generated in: {LOCAL_RESEARCH_DIR}"
+    )
 
     # 4. Write Directly to External Vault (Dual Sync)
     try:
