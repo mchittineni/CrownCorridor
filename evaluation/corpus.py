@@ -248,9 +248,7 @@ def _control_digits(text: str) -> str:
     return "".join(digits)
 
 
-def _match_manifest_entry(
-    filename_stem: str, by_id: dict[str, dict[str, Any]]
-) -> dict[str, Any]:
+def _match_manifest_entry(filename_stem: str, by_id: dict[str, dict[str, Any]]) -> dict[str, Any]:
     """Reconciles a configuration filename with its manifest entry.
 
     Exact normalised match is preferred. Failing that, the leading control number
@@ -414,8 +412,11 @@ def load_external(control_map: Any | None = None) -> Iterator[Case]:
                 expected_resources=_expected_resources(entry),
                 cis_control=str(entry.get("control") or entry.get("cis_control") or ""),
                 severity=str(entry.get("severity") or "UNKNOWN"),
-                metadata={**entry, "_label_resolved": expected is not None,
-                          "_single_file": str(tf_file.relative_to(ROOT))},
+                metadata={
+                    **entry,
+                    "_label_resolved": expected is not None,
+                    "_single_file": str(tf_file.relative_to(ROOT)),
+                },
             )
             yield measure_complexity(case)
 
@@ -439,7 +440,9 @@ def load_catalogue_gap() -> dict[str, Any]:
             pass
 
     on_disk = (
-        {p.name for p in INTERNAL_CASES.iterdir() if p.is_dir()} if INTERNAL_CASES.is_dir() else set()
+        {p.name for p in INTERNAL_CASES.iterdir() if p.is_dir()}
+        if INTERNAL_CASES.is_dir()
+        else set()
     )
 
     external_declared = 0
@@ -529,9 +532,7 @@ STATUS_DESCRIPTIONS = {
 }
 
 
-def emit_admissibility_table(
-    cases: list[Case], results: list[ValidationResult], mode: str
-) -> str:
+def emit_admissibility_table(cases: list[Case], results: list[ValidationResult], mode: str) -> str:
     """Emits the corpus admissibility table for the manuscript.
 
     The table states the admissible count alongside every rejection reason. This
@@ -705,7 +706,9 @@ def _print_report(cases: list[Case], results: list[ValidationResult], mode: str)
 
     print("\nAdmissibility")
     print("-" * 74)
-    print(f"  cases loaded      : {len(cases)}  (internal {len(internal)}, external {len(external)})")
+    print(
+        f"  cases loaded      : {len(cases)}  (internal {len(internal)}, external {len(external)})"
+    )
     print(f"  admissible        : {len(admissible)}")
     print(f"  inadmissible      : {len(results) - len(admissible)}")
 
@@ -744,7 +747,9 @@ def _print_report(cases: list[Case], results: list[ValidationResult], mode: str)
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="IaCSecBench corpus loader and validator")
-    parser.add_argument("--report", action="store_true", help="print the corpus admissibility report")
+    parser.add_argument(
+        "--report", action="store_true", help="print the corpus admissibility report"
+    )
     parser.add_argument(
         "--mode",
         choices=("structural", "terraform"),
@@ -766,8 +771,10 @@ def main(argv: list[str] | None = None) -> int:
 
         control_map = ControlMap.load()
     except Exception as exc:  # noqa: BLE001 - the report must still render
-        print(f"warning: control map unavailable ({exc}); control resolution disabled",
-              file=sys.stderr)
+        print(
+            f"warning: control map unavailable ({exc}); control resolution disabled",
+            file=sys.stderr,
+        )
         control_map = None
 
     cases = load_corpus(control_map, include_external=not args.no_external)

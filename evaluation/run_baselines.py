@@ -124,8 +124,15 @@ TOOL_SPECS: dict[str, ToolSpec] = {
         version_args=["--version"],
         layer="source",
         build_command=lambda d: [
-            "checkov", "--directory", str(d), "--output", "json",
-            "--quiet", "--compact", "--framework", "terraform",
+            "checkov",
+            "--directory",
+            str(d),
+            "--output",
+            "json",
+            "--quiet",
+            "--compact",
+            "--framework",
+            "terraform",
         ],
     ),
     "tfsec": ToolSpec(
@@ -149,9 +156,14 @@ TOOL_SPECS: dict[str, ToolSpec] = {
         version_args=["version"],
         layer="plan",
         build_command=lambda plan: [
-            "opa", "eval", "--format", "json",
-            "--data", str(REGO_POLICY),
-            "--input", str(plan),
+            "opa",
+            "eval",
+            "--format",
+            "json",
+            "--data",
+            str(REGO_POLICY),
+            "--input",
+            str(plan),
             "data.aws.cis.benchmark.deny",
         ],
         ok_exit_codes=(0,),
@@ -321,9 +333,7 @@ def run_tool_on_case(
         if spec.needs_plan:
             plan_path, error = generate_plan_json(case_dir, workdir, provider_mirror)
             if plan_path is None:
-                return CaseRun(
-                    case_id=case_id, tool=spec.name, status="plan_failed", stderr=error
-                )
+                return CaseRun(case_id=case_id, tool=spec.name, status="plan_failed", stderr=error)
             target = plan_path
         else:
             for tf_file in sorted(case_dir.glob("*.tf")):
@@ -480,7 +490,9 @@ def main(argv: list[str] | None = None) -> int:
         print("-" * 70)
         for name, info in discovered.items():
             flag = "yes" if info["installed"] else "NO"
-            print(f"{name:<14} {flag:<11} {info.get('layer', '-'):<10} {info.get('version') or '-'}")
+            print(
+                f"{name:<14} {flag:<11} {info.get('layer', '-'):<10} {info.get('version') or '-'}"
+            )
         missing = [n for n, i in discovered.items() if not i["installed"]]
         if missing:
             print(f"\nNot installed: {', '.join(missing)}")
@@ -505,8 +517,10 @@ def main(argv: list[str] | None = None) -> int:
 
     if not selected:
         print("No admissible cases to scan.", file=sys.stderr)
-        print("Run `python -m evaluation.corpus --report --mode terraform` to see why.",
-              file=sys.stderr)
+        print(
+            "Run `python -m evaluation.corpus --report --mode terraform` to see why.",
+            file=sys.stderr,
+        )
         print("\nThe harness will not fabricate results for an empty corpus.", file=sys.stderr)
         return 2
 
@@ -517,15 +531,19 @@ def main(argv: list[str] | None = None) -> int:
     runnable = [t for t in requested if t == LAYER1_TOOL or discovered[t]["installed"]]
     skipped = [t for t in requested if t != LAYER1_TOOL and not discovered[t]["installed"]]
 
-    print(f"Scanning {len(selected)} admissible cases with {len(runnable)} tools "
-          f"({args.repeats} repeats each).")
+    print(
+        f"Scanning {len(selected)} admissible cases with {len(runnable)} tools "
+        f"({args.repeats} repeats each)."
+    )
     if skipped:
         print(f"Not installed, recorded as not_run: {', '.join(skipped)}")
 
     # Built once up front so that per-case planning never races on provider
     # installation. See evaluation/tfenv.py.
     provider_mirror = ensure_provider_mirror()
-    if provider_mirror is None and any(TOOL_SPECS[t].needs_plan for t in runnable if t in TOOL_SPECS):
+    if provider_mirror is None and any(
+        TOOL_SPECS[t].needs_plan for t in runnable if t in TOOL_SPECS
+    ):
         print("warning: no provider mirror; plan-level runs may fail or race.")
 
     runs: list[CaseRun] = []
@@ -541,8 +559,7 @@ def main(argv: list[str] | None = None) -> int:
             runs.append(run)
             mean = run.mean_latency_ms
             latency = f"{mean:8.1f} ms" if mean is not None else "        -"
-            print(f"  {index:3d}/{len(selected)}  {case.case_id:<34} "
-                  f"{run.status:<13} {latency}")
+            print(f"  {index:3d}/{len(selected)}  {case.case_id:<34} {run.status:<13} {latency}")
 
     for tool in skipped:
         for case in selected:

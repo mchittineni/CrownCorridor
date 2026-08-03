@@ -129,11 +129,7 @@ def betainc(a: float, b: float, x: float) -> float:
         return x
 
     log_beta = (
-        math.lgamma(a + b)
-        - math.lgamma(a)
-        - math.lgamma(b)
-        + a * math.log(x)
-        + b * math.log1p(-x)
+        math.lgamma(a + b) - math.lgamma(a) - math.lgamma(b) + a * math.log(x) + b * math.log1p(-x)
     )
     front = math.exp(log_beta)
 
@@ -457,9 +453,7 @@ def mcc(tp: int, fp: int, tn: int, fn: int) -> float:
     with a single ground-truth class).
     """
     numerator = (tp * tn) - (fp * fn)
-    denominator = math.sqrt(
-        float(tp + fp) * float(tp + fn) * float(tn + fp) * float(tn + fn)
-    )
+    denominator = math.sqrt(float(tp + fp) * float(tp + fn) * float(tn + fp) * float(tn + fn))
     return numerator / denominator if denominator > 0.0 else 0.0
 
 
@@ -637,9 +631,7 @@ def odds_ratio_haldane(b: int, c: int, alpha: float = 0.05) -> tuple[float, Inte
     return ratio, interval
 
 
-def paired_proportion_diff_ci(
-    b: int, c: int, n: int, alpha: float = 0.05
-) -> Interval:
+def paired_proportion_diff_ci(b: int, c: int, n: int, alpha: float = 0.05) -> Interval:
     """Confidence interval for the difference of two paired proportions.
 
     Uses the standard paired-difference variance
