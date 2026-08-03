@@ -11,9 +11,9 @@ The `application/` directory houses the core application services for the **Crow
 ```text
 application/
 ├── api/                   # FastAPI Backend Service
-│   ├── main.py            # API Entry Point & Route Declarations
-│   ├── schemas.py         # Pydantic Schemas & Request/Response Models
-│   ├── services.py        # Business Logic & Search Index Provider Interfaces
+│   ├── main.py            # API Entry Point, Route Declarations & Pydantic Models
+│   ├── search.py          # Typesense Client Wrapper
+│   ├── Dockerfile         # Container Image Definition
 │   └── tests/             # Pytest Unit & Integration Test Suite for API Endpoints
 └── app/                   # Web Portal Frontend Application
     ├── index.html         # Single Page Web App Entry Point
@@ -28,9 +28,17 @@ application/
 ### 1. API Service (`application/api/`)
 
 - **`main.py`**: Configures the FastAPI application instance, CORS middleware, health check endpoints (`/health`), and spatial/property search API routes (`/api/v1/search`, `/api/v1/properties/{id}`).
-- **`schemas.py`**: Defines Pydantic validation schemas for incoming spatial query payloads, region filters (Andhra Pradesh & Telangana), and property detail objects.
-- **`services.py`**: Provides data retrieval functions interfacing with Typesense search indices and fallback geospatial JSON stores.
-- **`tests/test_api.py`**: Pytest suite ensuring 100% test coverage across API endpoints, error handling (503 fallbacks), and hierarchy parameter scoping.
+- **`search.py`**: Typesense client wrapper providing the search-index interface and its
+  fallback path when the index is unavailable.
+- **`tests/test_api.py`**: Pytest suite covering API endpoints, error handling (503
+  fallbacks), and hierarchy parameter scoping. Measured coverage is **92%** overall
+  (`main.py` 91%, `search.py` 85%) — reproduce with
+  `pytest application/api/tests/ --cov=application/api`.
+
+There are no `schemas.py` or `services.py` modules. An earlier version of this file
+documented both; the Pydantic request/response models are declared inline in `main.py`,
+and the search-index interface lives in `search.py`. The same revision claimed 100%
+test coverage, which was never measured and is not the case.
 
 ### 2. Web Portal UI (`application/app/`)
 
