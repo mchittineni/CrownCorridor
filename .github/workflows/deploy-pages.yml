@@ -48,9 +48,6 @@ jobs:
         run: npx jsdoc -c jsdoc.json --pedantic
 
       - name: Assemble Site Root
-        # GitHub Pages serves from a single directory.
-        # We build a _site/ folder containing app/ + data/ + docs/ so that
-        # relative paths resolve correctly.
         run: |
           mkdir -p _site
           cp -r application/app/ _site/app

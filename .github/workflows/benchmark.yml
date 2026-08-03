@@ -1,24 +1,5 @@
 name: IaCSecBench Measurement Harness
 
-# The full measurement: every installed scanner over every admissible case, with
-# repeats, exact intervals, and LaTeX table generation.
-#
-# It does NOT run on pull requests. Two reasons, both about honesty rather than
-# cost:
-#
-#   1. It takes tens of minutes. Corpus validation alone runs `terraform init` and
-#      `terraform validate` once per case, and the harness repeats every scan.
-#
-#   2. Latency measured on a shared runner is not a measurement of the tool. It
-#      reflects whatever else the host is doing. Locally, the same corpus produced
-#      a Checkov standard deviation of 155 ms on an idle machine and 897 ms under
-#      load -- a sixfold difference from the environment alone, with the mean barely
-#      moving. Detection counts are deterministic and transfer; latency does not.
-#
-# Results are uploaded as an artefact and are deliberately NOT committed back to
-# the repository. Committing them would overwrite locally measured latency figures,
-# which are the only publishable ones, with runner noise.
-
 on:
   workflow_dispatch:
     inputs:
@@ -44,7 +25,7 @@ permissions:
 
 jobs:
   measure:
-    name: Measure Baselines (Checkov, tfsec, plan-level OPA, Layer 1)
+    name: Measure Baselines (Checkov, tfsec, Trivy, plan-level OPA, Layer 1)
     runs-on: ubuntu-latest
     timeout-minutes: 120
 
@@ -102,21 +83,44 @@ jobs:
           sudo mv tfsec /usr/local/bin/
           tfsec --version
 
+      - name: Install Trivy
+        run: |
+          set -eu
+          TRIVY_VERSION="0.73.0"
+          curl -fsSL "https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz" -o trivy.tar.gz
+          tar xzf trivy.tar.gz trivy
+          sudo mv trivy /usr/local/bin/
+          trivy --version
+
+      - name: Warm Trivy Checks Bundle
+        run: |
+          set -eu
+          # One real scan with the update enabled populates the checks cache. There
+          # is no download-only subcommand for `trivy config`; the DB flags belong
+          # to the vulnerability scanners, not the misconfiguration one.
+          trivy config benchmark/internal/cases --format json --quiet > /dev/null
+          # Prove the cache is warm by doing what the harness will do. If this
+          # finds nothing, the measurement would have silently scored every case
+          # as clean rather than failing.
+          findings=$(trivy config benchmark/internal/cases --format json --quiet --skip-check-update \
+            | python -c 'import json,sys; d=json.load(sys.stdin); print(sum(len(r.get("Misconfigurations") or []) for r in d.get("Results") or []))')
+          echo "cached bundle reports ${findings} misconfigurations on the corpus"
+          if [ "$findings" -eq 0 ]; then
+            echo "::error::trivy with --skip-check-update found nothing; the checks bundle is not cached"
+            exit 1
+          fi
+
       - name: Install Checkov
         run: |
           set -eu
           pip install checkov
           checkov --version
 
-      # Every tool must be present. The harness reports an absent tool as absent
-      # rather than assuming a detection rate for it, which is correct behaviour but
-      # produces a table with a silently missing column. For a run whose whole
-      # purpose is measurement, a missing tool should stop the job.
       - name: Assert All Tools Are Installed
         run: |
           set -eu
           missing=0
-          for tool in terraform opa tfsec checkov; do
+          for tool in terraform opa tfsec trivy checkov; do
             if command -v "$tool" >/dev/null 2>&1; then
               echo "ok: ${tool}"
             else
@@ -133,8 +137,6 @@ jobs:
           VALIDATE: terraform
         run: ./experiments/run_baselines.sh
 
-      # Surfaced in the job summary so a reader meets the caveats next to the
-      # numbers rather than having to open the artefact to find them.
       - name: Publish Result Summary
         if: always()
         run: |

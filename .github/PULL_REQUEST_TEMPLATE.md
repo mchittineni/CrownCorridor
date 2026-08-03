@@ -39,5 +39,5 @@ Before submitting this PR, verify that all quality checks pass locally:
 Explain how reviewers can test your changes locally:
 
 1. `python3 -m http.server 8080` (Open `http://localhost:8080/application/app/`)
-2. `experiments/run_baselines.sh` (Full measurement: needs Checkov, tfsec, OPA and Terraform; tens of minutes)
+2. `experiments/run_baselines.sh` (Full measurement: needs Checkov, tfsec, Trivy, OPA and Terraform; tens of minutes)
 3. `docker run iacsecbench` (Test Docker containerized benchmark runner)
