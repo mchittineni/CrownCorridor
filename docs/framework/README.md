@@ -25,17 +25,19 @@ IaCSecBench is a modular, reusable evaluation framework designed to benchmark In
              │                                                         │
              │   Evaluates:                                            │
              │   1. Checkov (AST Static Analysis Engine)               │
-             │   2. tfsec (HCL AST Binary Scanner)                     │
-             │   3. Sentinel / OPA Rego (Policy-as-Code Engines)       │
-             │   4. Terratest (Go Integration Testing)                 │
-             │   5. IaCSecBench Engine (Unified Benchmark Framework)   │
+             │   2. tfsec (HCL lexical binary scanner)                 │
+             │   3. OPA / Rego over the compiled Terraform plan        │
+             │   4. IaCSecBench Layer 1 (repository-edge scanning)     │
+             │                                                         │
+             │   Sentinel and Terratest are NOT evaluated. Neither has │
+             │   ever been executed here and no number is reported.    │
              └────────────────────────────┬────────────────────────────┘
                                           │
                                           ▼
              ┌─────────────────────────────────────────────────────────┐
              │          Public Benchmark Dataset & Telemetry           │
              │   • benchmark/datasets/benchmarks.json                  │
-             │   • benchmark/reports/experiment_results.json           │
+             │   • results/evaluation.json  (measured)                 │
              └─────────────────────────────────────────────────────────┘
 ```
 

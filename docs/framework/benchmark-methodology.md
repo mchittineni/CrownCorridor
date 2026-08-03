@@ -8,8 +8,14 @@ This document outlines the evaluation methodology and metrics used to benchmark 
 
 The evaluation dataset consists of two primary components:
 
-1. **IaCSecBench Controlled Benchmark (Internal)**: 345 labelled cases across 12 core infrastructure domains (IAM, Networking, Storage, Encryption, Compute, Kubernetes, Serverless, Monitoring, Secrets, Identity, Zero-PII, Terraform Native).
-2. **External Validation Collection**: 175 independent cases evaluating scanner generalizability across external, unseen IaC security cases.
+1. **IaCSecBench Controlled Benchmark (Internal)** — labelled vulnerable/compliant
+   pairs, each self-contained and validated against its declared provider.
+2. **External Validation Collection** — independently sourced configurations, used
+   as a check that the harness operates on cases it did not generate.
+
+The design target is 345 internal and 175 external cases across 12 domains. What
+is **present and admissible** is smaller, and only the present figure is ever a
+denominator here:
 
 ```
                  IaCSecBench
@@ -18,12 +24,20 @@ The evaluation dataset consists of two primary components:
         |             |              |
  Internal        External       Production
  Benchmark       Validation     Observation
- 345 cases       175 cases        61 PRs
+ 44 present      4 present         61 PRs
+ (345 designed)  (175 declared)
 ```
+
+The external gap is not attrition: two of the three external collections contain
+no Terraform files at all, so their manifest entries are citations rather than
+cases. `results/corpus_report.json` reports declared and present counts per
+collection, and `evaluation/corpus.py` refuses to treat a declared count as a
+usable one.
 
 ### Internal Benchmark Dataset Composition
 
-The internal benchmark suite contains 345 self-contained test scenarios across 12 infrastructure domains:
+The domains below are the designed taxonomy. Four of them — K8S, ID, PII and TF —
+have no cases on disk, so nothing is measured over them:
 
 IAM: IAM roles, wildcard policies, privilege escalation, inline statements.
 NET: Security groups open to 0.0.0.0/0, public SSH/RDP, ALB drop headers, VPC flow logs.

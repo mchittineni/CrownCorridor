@@ -9,9 +9,9 @@ The **IaC Security & Evaluation Benchmark Framework** is a modular, reusable fra
 ## 🌟 Key Capabilities
 
 - 🔍 **Multi-Repository & Multi-Module IaC Engine**: Generic scanning engine capable of evaluating arbitrary Terraform modules, provider constraints, and security standards.
-- 📊 **Comparative Benchmark Driver**: Built-in comparative evaluator against **Checkov**, **tfsec**, **Sentinel / OPA**, and **Terratest**.
+- 📊 **Comparative Benchmark Driver**: Measures **Checkov**, **tfsec**, and **plan-level OPA** against the same admissible corpus. Sentinel and Terratest are *not* evaluated — neither was ever executed here, and no number is reported for either.
 - 📦 **Public Benchmark Datasets**: Standardized, annotated test case schema stored under `benchmark/datasets/benchmarks.json`.
-- 🧪 **Reproducible Experiments**: One-command experiment suite (`python pipeline/run_experiments.py`) generating telemetry and performance data.
+- 🧪 **Reproducible Experiments**: One-command measurement suite (`experiments/run_baselines.sh`) producing raw scanner output, latency samples, exact confidence intervals and LaTeX tables.
 - 🔒 **Zero-PII & Secret Compliance**: Automatic scanning for customer PII, AWS secret keys, hardcoded database credentials, and tokens.
 
 ---
@@ -35,32 +35,46 @@ The **IaC Security & Evaluation Benchmark Framework** is a modular, reusable fra
              │                                                         │
              │   Evaluates:                                            │
              │   1. Checkov (AST Python Scanner)                       │
-             │   2. tfsec (HCL AST Binary)                             │
-             │   3. Sentinel / OPA Rego (Policy-as-Code)               │
-             │   4. Terratest / Native HCL (.tftest.hcl)               │
-             │   5. Crown Corridor Framework Engine                    │
+             │   2. tfsec (HCL lexical binary)                         │
+             │   3. OPA / Rego over the compiled Terraform plan        │
+             │   4. IaCSecBench Layer 1 (repository-edge scanning)     │
              └────────────────────────────┬────────────────────────────┘
                                           │
                                           ▼
              ┌─────────────────────────────────────────────────────────┐
              │          Public Benchmark Dataset & Telemetry           │
              │   • data/benchmarks/benchmarks.json                    │
-             │   • data/benchmarks/experiment_results.json             │
+             │   • results/evaluation.json  (measured)                 │
              └─────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 📊 Comparative Performance Matrix (345 Benchmark Cases)
+## 📊 Comparative Performance Matrix
 
-The framework evaluates security analysis engines across standardized benchmark metrics:
+Results are not reproduced in this document. A table pasted into prose cannot be
+regenerated, so it silently becomes wrong the first time the corpus, the control
+map or a tool version changes — and a stale table is indistinguishable from a
+current one. The measured matrix lives in exactly two generated places:
 
-| Tool / Framework       | Category                | Cases | Accuracy (%) | Precision (%) | Recall (%) | F1 Score (%) | Latency (ms) |
-| :--------------------- | :---------------------- | :---: | :----------: | :-----------: | :--------: | :----------: | :----------: |
-| **Checkov**            | AST Static Analysis     |  345  |    93.0%     |     94.3%     |   90.0%    |    92.1%     |  1420.0 ms   |
-| **tfsec**              | HCL Binary Scanner      |  345  |    92.0%     |     93.6%     |   88.0%    |    90.7%     |   310.0 ms   |
-| **OPA / Sentinel**     | Rego Policy Engine      |  345  |    93.5%     |     94.8%     |   92.0%    |    93.4%     |   650.0 ms   |
-| **IaCSecBench Engine** | Multi-Engine Validation |  345  |    100.0%    |    100.0%     |   100.0%   |    100.0%    |   185.0 ms   |
+| Artefact | Contents |
+| :--- | :--- |
+| [`leaderboard/results.csv`](../../leaderboard/results.csv) | Per-tool TP/FP/TN/FN, accuracy, precision, recall, F1, FPR/FNR, exact recall interval, latency mean and SD |
+| `results/evaluation.json` | The same, plus per-case outcomes, all three matching levels, and pairwise McNemar tests |
+
+Regenerate both with:
+
+```bash
+experiments/run_baselines.sh
+```
+
+Two things to know before reading the numbers:
+
+- **The reference implementation does not win.** Layer 1 is a repository-edge
+  secret and PII scanner, so on a corpus of cloud misconfigurations it detects
+  almost nothing. That is a scope result, not a defect, and it is reported as
+  measured rather than adjusted.
+- **Latency reflects the host.** Measure it on an idle machine or do not quote it.
 
 ---
 
@@ -72,13 +86,17 @@ The framework evaluates security analysis engines across standardized benchmark 
 python -m security_framework.engine.engine
 ```
 
-### 2. Run Comparative Evaluation Protocol & Leaderboard Driver
+### 2. Measure the comparative evaluation and regenerate the leaderboard
 
 ```bash
-python evaluation/score.py
+experiments/run_baselines.sh
 ```
 
-### 3. Run One-Command Reproducible Experiment Suite
+This is the only command that produces results. `evaluation/score.py` is deprecated:
+it fabricates metrics from hardcoded rates and refuses to run without
+`IACSECBENCH_ALLOW_SYNTHETIC=1`.
+
+### 3. Run the full reproducibility suite (validation, tests, measurement)
 
 ```bash
 ./experiments/run_all.sh
@@ -88,4 +106,4 @@ python evaluation/score.py
 
 ## 📄 License & Open-Source Distribution
 
-This framework is released under the **MIT License**. Benchmark datasets and evaluation telemetry are publicly accessible under `data/benchmarks/`.
+This framework is released under the **MIT License**. Benchmark datasets are under `benchmark/`; measured evaluation telemetry is under `results/`.
