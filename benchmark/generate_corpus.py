@@ -1317,13 +1317,17 @@ def main(argv: list[str] | None = None) -> int:
 
     controls = {spec.control_id for spec in SPECS}
     if len(controls) != len(SPECS):
-        duplicates = [s.control_id for s in SPECS if [x.control_id for x in SPECS].count(s.control_id) > 1]
+        duplicates = [
+            s.control_id for s in SPECS if [x.control_id for x in SPECS].count(s.control_id) > 1
+        ]
         parser.error(f"duplicate control specifications: {sorted(set(duplicates))}")
 
     planned = [(spec, variant) for spec in SPECS for variant in ("vulnerable", "compliant")]
 
-    print(f"{len(SPECS)} control specifications -> {len(planned)} cases "
-          f"({len(SPECS)} vulnerable, {len(SPECS)} compliant)")
+    print(
+        f"{len(SPECS)} control specifications -> {len(planned)} cases "
+        f"({len(SPECS)} vulnerable, {len(SPECS)} compliant)"
+    )
     domains = sorted({s.domain for s in SPECS})
     print(f"domains: {', '.join(domains)}")
 
