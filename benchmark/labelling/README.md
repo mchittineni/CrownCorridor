@@ -73,8 +73,13 @@ discusses, rather than a hypothetical one.
 
 The **control text was corrected, not the label.** Requiring a customer-managed key
 is a defensible control, and it is what the corpus, the policy set, and the
-CMK-specific rules in both Checkov and tfsec all actually test. Changing the label
+CMK-specific rules in Checkov, tfsec and Trivy all actually test. Changing the label
 instead would have made the vulnerable/compliant pair test nothing.
+
+(This section originally said "both Checkov and tfsec", from when the comparison
+covered two source-level scanners. Trivy was added later and maps the same control
+via `AWS-0132`, tfsec's `aws-s3-encryption-customer-key`, so the reasoning holds
+across all three rather than being weakened by the addition.)
 
 `STO_UNENCRYPTED_BUCKET` is now titled _"Object storage bucket not encrypted with a
 customer-managed key"_, matching the phrasing already used by
