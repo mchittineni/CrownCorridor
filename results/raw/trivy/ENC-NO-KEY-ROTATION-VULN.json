@@ -1,0 +1,120 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.73.0"
+  },
+  "ReportID": "019fc98e-affa-72ce-8eb9-7e1ea9367af2",
+  "CreatedAt": "2026-08-03T22:36:39.418185+01:00",
+  "ArtifactName": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-ENC-NO-KEY-ROTATION-VULN-gskhevey/case",
+  "ArtifactType": "filesystem",
+  "Results": [
+    {
+      "Target": ".",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 51,
+        "Failures": 0
+      }
+    },
+    {
+      "Target": "main.tf",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 0,
+        "Failures": 1
+      },
+      "Misconfigurations": [
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0065",
+          "Title": "A KMS key is not configured to auto-rotate.",
+          "Description": "You should configure your KMS keys to auto rotate to maintain security and defend against compromise.\n",
+          "Message": "Key does not have rotation enabled.",
+          "Namespace": "builtin.aws.kms.aws0065",
+          "Query": "data.builtin.aws.kms.aws0065.deny",
+          "Resolution": "Configure KMS key to auto rotate",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0065",
+          "References": [
+            "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html",
+            "https://avd.aquasec.com/misconfig/aws-0065"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_kms_key.target",
+            "Provider": "AWS",
+            "Service": "kms",
+            "StartLine": 23,
+            "EndLine": 23,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 20,
+                  "Content": "resource \"aws_kms_key\" \"target\" {",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_kms_key\"\u001b[0m \u001b[38;5;37m\"target\"\u001b[0m {",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 21,
+                  "Content": "  description             = \"Benchmark rotation key\"",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mdescription\u001b[0m             = \u001b[38;5;37m\"Benchmark rotation key\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 22,
+                  "Content": "  deletion_window_in_days = 7",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mdeletion_window_in_days\u001b[0m = \u001b[38;5;37m7",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 23,
+                  "Content": "  enable_key_rotation     = false",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245menable_key_rotation\u001b[0m     = \u001b[38;5;166mfalse",
+                  "FirstCause": true,
+                  "LastCause": true
+                },
+                {
+                  "Number": 24,
+                  "Content": "}",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": false
+                }
+              ]
+            },
+            "Occurrences": [
+              {
+                "Resource": "aws_kms_key.target",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 20,
+                  "EndLine": 24
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

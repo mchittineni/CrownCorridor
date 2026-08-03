@@ -1,0 +1,380 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.73.0"
+  },
+  "ReportID": "019fc98f-998b-722e-a05d-0f383ea3016d",
+  "CreatedAt": "2026-08-03T22:37:39.211145+01:00",
+  "ArtifactName": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-VULN-o3unkqrf/case",
+  "ArtifactType": "filesystem",
+  "Results": [
+    {
+      "Target": ".",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 52,
+        "Failures": 0
+      }
+    },
+    {
+      "Target": "main.tf",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 0,
+        "Failures": 3
+      },
+      "Misconfigurations": [
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0010",
+          "Title": "Cloudfront distribution should have Access Logging configured",
+          "Description": "You should configure CloudFront Access Logging to create log files that contain detailed information about every user request that CloudFront receives\n",
+          "Message": "Distribution does not have logging enabled",
+          "Namespace": "builtin.aws.cloudfront.aws0010",
+          "Query": "data.builtin.aws.cloudfront.aws0010.deny",
+          "Resolution": "Enable logging for CloudFront distributions",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0010",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html",
+            "https://avd.aquasec.com/misconfig/aws-0010"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_cloudfront_distribution.target",
+            "Provider": "AWS",
+            "Service": "cloudfront",
+            "StartLine": 20,
+            "EndLine": 58,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 20,
+                  "Content": "resource \"aws_cloudfront_distribution\" \"target\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_cloudfront_distribution\"\u001b[0m \u001b[38;5;37m\"target\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 21,
+                  "Content": "  enabled = true",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245menabled\u001b[0m = \u001b[38;5;166mtrue",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 22,
+                  "Content": "",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 23,
+                  "Content": "  origin {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  origin {",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 24,
+                  "Content": "    domain_name = \"origin.example.com\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "    \u001b[38;5;245mdomain_name\u001b[0m = \u001b[38;5;37m\"origin.example.com\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 25,
+                  "Content": "    origin_id   = \"primary\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m    \u001b[38;5;245morigin_id\u001b[0m   = \u001b[38;5;37m\"primary\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 26,
+                  "Content": "",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 27,
+                  "Content": "    custom_origin_config {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "    custom_origin_config {",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 28,
+                  "Content": "      http_port              = 80",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "      \u001b[38;5;245mhttp_port\u001b[0m              = \u001b[38;5;37m80",
+                  "FirstCause": false,
+                  "LastCause": true
+                },
+                {
+                  "Number": 29,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0011",
+          "Title": "CloudFront distribution does not have a WAF in front.",
+          "Description": "You should configure a Web Application Firewall in front of your CloudFront distribution. This will mitigate many types of attacks on your web application.\n",
+          "Message": "Distribution does not utilize a WAF.",
+          "Namespace": "builtin.aws.cloudfront.aws0011",
+          "Query": "data.builtin.aws.cloudfront.aws0011.deny",
+          "Resolution": "Enable WAF for the CloudFront distribution",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0011",
+          "References": [
+            "https://docs.aws.amazon.com/waf/latest/developerguide/cloudfront-features.html",
+            "https://avd.aquasec.com/misconfig/aws-0011"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_cloudfront_distribution.target",
+            "Provider": "AWS",
+            "Service": "cloudfront",
+            "StartLine": 20,
+            "EndLine": 58,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 20,
+                  "Content": "resource \"aws_cloudfront_distribution\" \"target\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_cloudfront_distribution\"\u001b[0m \u001b[38;5;37m\"target\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 21,
+                  "Content": "  enabled = true",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245menabled\u001b[0m = \u001b[38;5;166mtrue",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 22,
+                  "Content": "",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 23,
+                  "Content": "  origin {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  origin {",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 24,
+                  "Content": "    domain_name = \"origin.example.com\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "    \u001b[38;5;245mdomain_name\u001b[0m = \u001b[38;5;37m\"origin.example.com\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 25,
+                  "Content": "    origin_id   = \"primary\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m    \u001b[38;5;245morigin_id\u001b[0m   = \u001b[38;5;37m\"primary\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 26,
+                  "Content": "",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 27,
+                  "Content": "    custom_origin_config {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "    custom_origin_config {",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 28,
+                  "Content": "      http_port              = 80",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "      \u001b[38;5;245mhttp_port\u001b[0m              = \u001b[38;5;37m80",
+                  "FirstCause": false,
+                  "LastCause": true
+                },
+                {
+                  "Number": 29,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0012",
+          "Title": "CloudFront distribution allows unencrypted (HTTP) communications.",
+          "Description": "Plain HTTP is unencrypted and human-readable. This means that if a malicious actor was to eavesdrop on your connection, they would be able to see all of your data flowing back and forth.\nYou should use HTTPS, which is HTTP over an encrypted (TLS) connection, meaning eavesdroppers cannot read your traffic.\n",
+          "Message": "Distribution allows unencrypted communications.",
+          "Namespace": "builtin.aws.cloudfront.aws0012",
+          "Query": "data.builtin.aws.cloudfront.aws0012.deny",
+          "Resolution": "Only allow HTTPS for CloudFront distribution communication",
+          "Severity": "CRITICAL",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0012",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https-cloudfront-to-s3-origin.html",
+            "https://avd.aquasec.com/misconfig/aws-0012"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_cloudfront_distribution.target",
+            "Provider": "AWS",
+            "Service": "cloudfront",
+            "StartLine": 39,
+            "EndLine": 39,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 20,
+                  "Content": "resource \"aws_cloudfront_distribution\" \"target\" {",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_cloudfront_distribution\"\u001b[0m \u001b[38;5;37m\"target\"\u001b[0m {",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 21,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 39,
+                  "Content": "    viewer_protocol_policy = \"allow-all\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m    \u001b[38;5;245mviewer_protocol_policy\u001b[0m = \u001b[38;5;37m\"allow-all\"",
+                  "FirstCause": true,
+                  "LastCause": true
+                },
+                {
+                  "Number": 57,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 58,
+                  "Content": "}",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "}",
+                  "FirstCause": false,
+                  "LastCause": false
+                }
+              ]
+            },
+            "Occurrences": [
+              {
+                "Resource": "default_cache_behavior",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 35,
+                  "EndLine": 47
+                }
+              },
+              {
+                "Resource": "aws_cloudfront_distribution.target",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 20,
+                  "EndLine": 58
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

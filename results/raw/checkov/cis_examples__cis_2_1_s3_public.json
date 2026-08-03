@@ -14,8 +14,8 @@
         },
         "code_block": null,
         "file_path": "/cis_2_1_s3_public.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
         "file_line_range": [
           7,
           13
@@ -38,7 +38,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-19",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf"
       },
       {
         "check_id": "CKV_AWS_54",
@@ -52,8 +52,8 @@
         },
         "code_block": null,
         "file_path": "/cis_2_1_s3_public.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
         "file_line_range": [
           7,
           13
@@ -76,7 +76,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-20",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf"
       },
       {
         "check_id": "CKV_AWS_55",
@@ -90,8 +90,8 @@
         },
         "code_block": null,
         "file_path": "/cis_2_1_s3_public.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
         "file_line_range": [
           7,
           13
@@ -114,7 +114,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-21",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf"
       },
       {
         "check_id": "CKV_AWS_56",
@@ -128,8 +128,8 @@
         },
         "code_block": null,
         "file_path": "/cis_2_1_s3_public.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
         "file_line_range": [
           7,
           13
@@ -152,7 +152,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-22",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf"
       },
       {
         "check_id": "CKV2_AWS_62",
@@ -178,8 +178,8 @@
         },
         "code_block": null,
         "file_path": "/cis_2_1_s3_public.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
         "file_line_range": [
           3,
           5
@@ -202,7 +202,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-62",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf"
       },
       {
         "check_id": "CKV2_AWS_61",
@@ -229,8 +229,8 @@
         },
         "code_block": null,
         "file_path": "/cis_2_1_s3_public.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
         "file_line_range": [
           3,
           5
@@ -253,7 +253,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf"
       },
       {
         "check_id": "CKV_AWS_18",
@@ -280,8 +280,8 @@
         },
         "code_block": null,
         "file_path": "/cis_2_1_s3_public.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
         "file_line_range": [
           3,
           5
@@ -304,163 +304,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-13-enable-logging",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf"
-      },
-      {
-        "check_id": "CKV_AWS_21",
-        "bc_check_id": "BC_AWS_S3_16",
-        "check_name": "Ensure all data stored in the S3 bucket have versioning enabled",
-        "check_result": {
-          "result": "FAILED",
-          "entity": {
-            "aws_s3_bucket": {
-              "example": {
-                "__end_line__": 5,
-                "__start_line__": 3,
-                "bucket": [
-                  "test-public-bucket"
-                ],
-                "__address__": "aws_s3_bucket.example"
-              }
-            }
-          },
-          "evaluated_keys": [
-            "resource_type",
-            "versioning/enabled",
-            "versioning_configuration/status"
-          ]
-        },
-        "code_block": null,
-        "file_path": "/cis_2_1_s3_public.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
-        "file_line_range": [
-          3,
-          5
-        ],
-        "resource": "aws_s3_bucket.example",
-        "evaluations": null,
-        "check_class": "checkov.common.graph.checks_infra.base_check",
-        "fixed_definition": null,
-        "entity_tags": null,
-        "caller_file_path": null,
-        "caller_file_line_range": null,
-        "resource_address": null,
-        "severity": null,
-        "bc_category": null,
-        "benchmarks": null,
-        "description": null,
-        "short_description": null,
-        "vulnerability_details": null,
-        "connected_node": null,
-        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-16-enable-versioning",
-        "details": [],
-        "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf"
-      },
-      {
-        "check_id": "CKV_AWS_145",
-        "bc_check_id": "BC_AWS_GENERAL_56",
-        "check_name": "Ensure that S3 buckets are encrypted with KMS by default",
-        "check_result": {
-          "result": "FAILED",
-          "entity": {
-            "aws_s3_bucket": {
-              "example": {
-                "__end_line__": 5,
-                "__start_line__": 3,
-                "bucket": [
-                  "test-public-bucket"
-                ],
-                "__address__": "aws_s3_bucket.example"
-              }
-            }
-          },
-          "evaluated_keys": [
-            "resource_type",
-            "rule/apply_server_side_encryption_by_default/sse_algorithm",
-            "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm"
-          ]
-        },
-        "code_block": null,
-        "file_path": "/cis_2_1_s3_public.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
-        "file_line_range": [
-          3,
-          5
-        ],
-        "resource": "aws_s3_bucket.example",
-        "evaluations": null,
-        "check_class": "checkov.common.graph.checks_infra.base_check",
-        "fixed_definition": null,
-        "entity_tags": null,
-        "caller_file_path": null,
-        "caller_file_line_range": null,
-        "resource_address": null,
-        "severity": null,
-        "bc_category": null,
-        "benchmarks": null,
-        "description": null,
-        "short_description": null,
-        "vulnerability_details": null,
-        "connected_node": null,
-        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default",
-        "details": [],
-        "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf"
-      },
-      {
-        "check_id": "CKV_AWS_144",
-        "bc_check_id": "BC_AWS_GENERAL_72",
-        "check_name": "Ensure that S3 bucket has cross-region replication enabled",
-        "check_result": {
-          "result": "FAILED",
-          "entity": {
-            "aws_s3_bucket": {
-              "example": {
-                "__end_line__": 5,
-                "__start_line__": 3,
-                "bucket": [
-                  "test-public-bucket"
-                ],
-                "__address__": "aws_s3_bucket.example"
-              }
-            }
-          },
-          "evaluated_keys": [
-            "replication_configuration/rules/*/status",
-            "rule/*/status",
-            "resource_type"
-          ]
-        },
-        "code_block": null,
-        "file_path": "/cis_2_1_s3_public.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
-        "file_line_range": [
-          3,
-          5
-        ],
-        "resource": "aws_s3_bucket.example",
-        "evaluations": null,
-        "check_class": "checkov.common.graph.checks_infra.base_check",
-        "fixed_definition": null,
-        "entity_tags": null,
-        "caller_file_path": null,
-        "caller_file_line_range": null,
-        "resource_address": null,
-        "severity": null,
-        "bc_category": null,
-        "benchmarks": null,
-        "description": null,
-        "short_description": null,
-        "vulnerability_details": null,
-        "connected_node": null,
-        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-bucket-has-cross-region-replication-enabled",
-        "details": [],
-        "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf"
       },
       {
         "check_id": "CKV2_AWS_6",
@@ -488,8 +332,8 @@
         },
         "code_block": null,
         "file_path": "/cis_2_1_s3_public.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
         "file_line_range": [
           3,
           5
@@ -512,7 +356,163 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/s3-bucket-should-have-public-access-blocks-defaults-to-false-if-the-public-access-block-is-not-attached",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-epe4rrfx/case/cis_2_1_s3_public.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf"
+      },
+      {
+        "check_id": "CKV_AWS_21",
+        "bc_check_id": "BC_AWS_S3_16",
+        "check_name": "Ensure all data stored in the S3 bucket have versioning enabled",
+        "check_result": {
+          "result": "FAILED",
+          "entity": {
+            "aws_s3_bucket": {
+              "example": {
+                "__end_line__": 5,
+                "__start_line__": 3,
+                "bucket": [
+                  "test-public-bucket"
+                ],
+                "__address__": "aws_s3_bucket.example"
+              }
+            }
+          },
+          "evaluated_keys": [
+            "resource_type",
+            "versioning_configuration/status",
+            "versioning/enabled"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/cis_2_1_s3_public.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
+        "file_line_range": [
+          3,
+          5
+        ],
+        "resource": "aws_s3_bucket.example",
+        "evaluations": null,
+        "check_class": "checkov.common.graph.checks_infra.base_check",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-16-enable-versioning",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf"
+      },
+      {
+        "check_id": "CKV_AWS_145",
+        "bc_check_id": "BC_AWS_GENERAL_56",
+        "check_name": "Ensure that S3 buckets are encrypted with KMS by default",
+        "check_result": {
+          "result": "FAILED",
+          "entity": {
+            "aws_s3_bucket": {
+              "example": {
+                "__end_line__": 5,
+                "__start_line__": 3,
+                "bucket": [
+                  "test-public-bucket"
+                ],
+                "__address__": "aws_s3_bucket.example"
+              }
+            }
+          },
+          "evaluated_keys": [
+            "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm",
+            "resource_type",
+            "rule/apply_server_side_encryption_by_default/sse_algorithm"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/cis_2_1_s3_public.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
+        "file_line_range": [
+          3,
+          5
+        ],
+        "resource": "aws_s3_bucket.example",
+        "evaluations": null,
+        "check_class": "checkov.common.graph.checks_infra.base_check",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf"
+      },
+      {
+        "check_id": "CKV_AWS_144",
+        "bc_check_id": "BC_AWS_GENERAL_72",
+        "check_name": "Ensure that S3 bucket has cross-region replication enabled",
+        "check_result": {
+          "result": "FAILED",
+          "entity": {
+            "aws_s3_bucket": {
+              "example": {
+                "__end_line__": 5,
+                "__start_line__": 3,
+                "bucket": [
+                  "test-public-bucket"
+                ],
+                "__address__": "aws_s3_bucket.example"
+              }
+            }
+          },
+          "evaluated_keys": [
+            "replication_configuration/rules/*/status",
+            "resource_type",
+            "rule/*/status"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/cis_2_1_s3_public.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf",
+        "file_line_range": [
+          3,
+          5
+        ],
+        "resource": "aws_s3_bucket.example",
+        "evaluations": null,
+        "check_class": "checkov.common.graph.checks_infra.base_check",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-bucket-has-cross-region-replication-enabled",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-hpbmmfle/case/cis_2_1_s3_public.tf"
       }
     ]
   },

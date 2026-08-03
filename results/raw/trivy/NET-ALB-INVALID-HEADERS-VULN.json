@@ -1,0 +1,198 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.73.0"
+  },
+  "ReportID": "019fc98f-6b41-7119-9311-cdbda41c7d22",
+  "CreatedAt": "2026-08-03T22:37:27.361073+01:00",
+  "ArtifactName": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-qfprsb5x/case",
+  "ArtifactType": "filesystem",
+  "Results": [
+    {
+      "Target": ".",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 73,
+        "Failures": 0
+      }
+    },
+    {
+      "Target": "main.tf",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 0,
+        "Failures": 2
+      },
+      "Misconfigurations": [
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0052",
+          "Title": "Load balancers should drop invalid headers",
+          "Description": "Passing unknown or invalid headers through to the target poses a potential risk of compromise.\nBy setting drop_invalid_header_fields to true, anything that does not conform to well known, defined headers will be removed by the load balancer.\n",
+          "Message": "Application load balancer is not set to drop invalid headers.",
+          "Namespace": "builtin.aws.elb.aws0052",
+          "Query": "data.builtin.aws.elb.aws0052.deny",
+          "Resolution": "Set drop_invalid_header_fields to true",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0052",
+          "References": [
+            "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html",
+            "https://avd.aquasec.com/misconfig/aws-0052"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_lb.target",
+            "Provider": "AWS",
+            "Service": "elb",
+            "StartLine": 36,
+            "EndLine": 36,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 31,
+                  "Content": "resource \"aws_lb\" \"target\" {",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_lb\"\u001b[0m \u001b[38;5;37m\"target\"\u001b[0m {",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 32,
+                  "Content": "  name                       = \"${var.name_prefix}-alb\"",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mname\u001b[0m                       = \u001b[38;5;37m\"\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.name_prefix\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m-alb\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 33,
+                  "Content": "  internal                   = true",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245minternal\u001b[0m                   = \u001b[38;5;166mtrue",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 34,
+                  "Content": "  load_balancer_type         = \"application\"",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mload_balancer_type\u001b[0m         = \u001b[38;5;37m\"application\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 35,
+                  "Content": "  subnets                    = aws_subnet.target[*].id",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245msubnets\u001b[0m                    = aws_subnet.target[\u001b[38;5;245m*\u001b[0m].id",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 36,
+                  "Content": "  drop_invalid_header_fields = false",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mdrop_invalid_header_fields\u001b[0m = \u001b[38;5;166mfalse",
+                  "FirstCause": true,
+                  "LastCause": true
+                },
+                {
+                  "Number": 37,
+                  "Content": "}",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": false
+                }
+              ]
+            },
+            "Occurrences": [
+              {
+                "Resource": "aws_lb.target",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 31,
+                  "EndLine": 37
+                }
+              }
+            ]
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0178",
+          "Title": "VPC Flow Logs is a feature that enables you to capture information about the IP traffic going to and from network interfaces in your VPC. After you've created a flow log, you can view and retrieve its data in Amazon CloudWatch Logs. It is recommended that VPC Flow Logs be enabled for packet \"Rejects\" for VPCs.",
+          "Description": "VPC Flow Logs provide visibility into network traffic that traverses the VPC and can be used to detect anomalous traffic or insight during security workflows.\n",
+          "Message": "VPC does not have VPC Flow Logs enabled.",
+          "Namespace": "builtin.aws.ec2.aws0178",
+          "Query": "data.builtin.aws.ec2.aws0178.deny",
+          "Resolution": "Enable flow logs for VPC",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0178",
+          "References": [
+            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/RootDeviceStorage.html",
+            "https://avd.aquasec.com/misconfig/aws-0178"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_vpc.target",
+            "Provider": "AWS",
+            "Service": "ec2",
+            "StartLine": 20,
+            "EndLine": 22,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 20,
+                  "Content": "resource \"aws_vpc\" \"target\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_vpc\"\u001b[0m \u001b[38;5;37m\"target\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 21,
+                  "Content": "  cidr_block = \"10.3.0.0/16\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mcidr_block\u001b[0m = \u001b[38;5;37m\"10.3.0.0/16\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 22,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,677 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.73.0"
+  },
+  "ReportID": "019fc98e-c744-7720-b60e-062e57f0d9f7",
+  "CreatedAt": "2026-08-03T22:36:45.380468+01:00",
+  "ArtifactName": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-ENC-UNENCRYPTED-DATABASE-VULN-k3qst1e9/case",
+  "ArtifactType": "filesystem",
+  "Results": [
+    {
+      "Target": ".",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 56,
+        "Failures": 0
+      }
+    },
+    {
+      "Target": "main.tf",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 0,
+        "Failures": 5
+      },
+      "Misconfigurations": [
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0077",
+          "Title": "RDS Cluster and RDS instance should have backup retention longer than default 1 day",
+          "Description": "RDS backup retention for clusters defaults to 1 day, this may not be enough to identify and respond to an issue. Backup retention periods should be set to a period that is a balance on cost and limiting risk.\n",
+          "Message": "Instance has very low backup retention period.",
+          "Namespace": "builtin.aws.rds.aws0077",
+          "Query": "data.builtin.aws.rds.aws0077.deny",
+          "Resolution": "Explicitly set the retention period to greater than the default",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0077",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups.BackupRetention",
+            "https://avd.aquasec.com/misconfig/aws-0077"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_db_instance.target",
+            "Provider": "AWS",
+            "Service": "rds",
+            "StartLine": 26,
+            "EndLine": 36,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 26,
+                  "Content": "resource \"aws_db_instance\" \"target\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_db_instance\"\u001b[0m \u001b[38;5;37m\"target\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 27,
+                  "Content": "  identifier              = \"${var.name_prefix}-enc-db\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245midentifier\u001b[0m              = \u001b[38;5;37m\"\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.name_prefix\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m-enc-db\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 28,
+                  "Content": "  allocated_storage       = 20",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mallocated_storage\u001b[0m       = \u001b[38;5;37m20",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 29,
+                  "Content": "  engine                  = \"postgres\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mengine\u001b[0m                  = \u001b[38;5;37m\"postgres\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 30,
+                  "Content": "  instance_class          = \"db.t3.micro\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245minstance_class\u001b[0m          = \u001b[38;5;37m\"db.t3.micro\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 31,
+                  "Content": "  username                = \"benchmark\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245musername\u001b[0m                = \u001b[38;5;37m\"benchmark\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 32,
+                  "Content": "  manage_master_user_password = true",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mmanage_master_user_password\u001b[0m = \u001b[38;5;166mtrue",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 33,
+                  "Content": "  skip_final_snapshot     = true",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mskip_final_snapshot\u001b[0m     = \u001b[38;5;166mtrue",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 34,
+                  "Content": "  publicly_accessible     = false",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mpublicly_accessible\u001b[0m     = \u001b[38;5;166mfalse",
+                  "FirstCause": false,
+                  "LastCause": true
+                },
+                {
+                  "Number": 35,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0080",
+          "Title": "RDS encryption has not been enabled at a DB Instance level.",
+          "Description": "Encryption should be enabled for an RDS Database instances.\nWhen enabling encryption by setting the kms_key_id.\n",
+          "Message": "Instance does not have storage encryption enabled.",
+          "Namespace": "builtin.aws.rds.aws0080",
+          "Query": "data.builtin.aws.rds.aws0080.deny",
+          "Resolution": "Enable encryption for RDS instances",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0080",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html",
+            "https://avd.aquasec.com/misconfig/aws-0080"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_db_instance.target",
+            "Provider": "AWS",
+            "Service": "rds",
+            "StartLine": 35,
+            "EndLine": 35,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 26,
+                  "Content": "resource \"aws_db_instance\" \"target\" {",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_db_instance\"\u001b[0m \u001b[38;5;37m\"target\"\u001b[0m {",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 27,
+                  "Content": "  identifier              = \"${var.name_prefix}-enc-db\"",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245midentifier\u001b[0m              = \u001b[38;5;37m\"\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.name_prefix\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m-enc-db\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 28,
+                  "Content": "  allocated_storage       = 20",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mallocated_storage\u001b[0m       = \u001b[38;5;37m20",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 29,
+                  "Content": "  engine                  = \"postgres\"",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mengine\u001b[0m                  = \u001b[38;5;37m\"postgres\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 30,
+                  "Content": "  instance_class          = \"db.t3.micro\"",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245minstance_class\u001b[0m          = \u001b[38;5;37m\"db.t3.micro\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 31,
+                  "Content": "  username                = \"benchmark\"",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245musername\u001b[0m                = \u001b[38;5;37m\"benchmark\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 32,
+                  "Content": "  manage_master_user_password = true",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mmanage_master_user_password\u001b[0m = \u001b[38;5;166mtrue",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 33,
+                  "Content": "  skip_final_snapshot     = true",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mskip_final_snapshot\u001b[0m     = \u001b[38;5;166mtrue",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 34,
+                  "Content": "  publicly_accessible     = false",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mpublicly_accessible\u001b[0m     = \u001b[38;5;166mfalse",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 35,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            },
+            "Occurrences": [
+              {
+                "Resource": "aws_db_instance.target",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 26,
+                  "EndLine": 36
+                }
+              }
+            ]
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0133",
+          "Title": "Enable Performance Insights to detect potential problems",
+          "Description": "Enabling Performance insights allows for greater depth in monitoring data.\nFor example, information about active sessions could help diagose a compromise or assist in the investigation\n",
+          "Message": "Instance does not have performance insights enabled.",
+          "Namespace": "builtin.aws.rds.aws0133",
+          "Query": "data.builtin.aws.rds.aws0133.deny",
+          "Resolution": "Enable performance insights",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0133",
+          "References": [
+            "https://aws.amazon.com/rds/performance-insights/",
+            "https://avd.aquasec.com/misconfig/aws-0133"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_db_instance.target",
+            "Provider": "AWS",
+            "Service": "rds",
+            "StartLine": 26,
+            "EndLine": 36,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 26,
+                  "Content": "resource \"aws_db_instance\" \"target\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_db_instance\"\u001b[0m \u001b[38;5;37m\"target\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 27,
+                  "Content": "  identifier              = \"${var.name_prefix}-enc-db\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245midentifier\u001b[0m              = \u001b[38;5;37m\"\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.name_prefix\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m-enc-db\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 28,
+                  "Content": "  allocated_storage       = 20",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mallocated_storage\u001b[0m       = \u001b[38;5;37m20",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 29,
+                  "Content": "  engine                  = \"postgres\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mengine\u001b[0m                  = \u001b[38;5;37m\"postgres\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 30,
+                  "Content": "  instance_class          = \"db.t3.micro\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245minstance_class\u001b[0m          = \u001b[38;5;37m\"db.t3.micro\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 31,
+                  "Content": "  username                = \"benchmark\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245musername\u001b[0m                = \u001b[38;5;37m\"benchmark\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 32,
+                  "Content": "  manage_master_user_password = true",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mmanage_master_user_password\u001b[0m = \u001b[38;5;166mtrue",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 33,
+                  "Content": "  skip_final_snapshot     = true",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mskip_final_snapshot\u001b[0m     = \u001b[38;5;166mtrue",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 34,
+                  "Content": "  publicly_accessible     = false",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mpublicly_accessible\u001b[0m     = \u001b[38;5;166mfalse",
+                  "FirstCause": false,
+                  "LastCause": true
+                },
+                {
+                  "Number": 35,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0176",
+          "Title": "RDS IAM Database Authentication Disabled",
+          "Description": "Ensure IAM Database Authentication is enabled for RDS database instances to manage database access",
+          "Message": "Instance does not have IAM Authentication enabled",
+          "Namespace": "builtin.aws.rds.aws0176",
+          "Query": "data.builtin.aws.rds.aws0176.deny",
+          "Resolution": "Modify the PostgreSQL and MySQL type RDS instances to enable IAM database authentication.",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0176",
+          "References": [
+            "https://docs.aws.amazon.com/neptune/latest/userguide/iam-auth.html",
+            "https://avd.aquasec.com/misconfig/aws-0176"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_db_instance.target",
+            "Provider": "AWS",
+            "Service": "rds",
+            "StartLine": 26,
+            "EndLine": 36,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 26,
+                  "Content": "resource \"aws_db_instance\" \"target\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_db_instance\"\u001b[0m \u001b[38;5;37m\"target\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 27,
+                  "Content": "  identifier              = \"${var.name_prefix}-enc-db\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245midentifier\u001b[0m              = \u001b[38;5;37m\"\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.name_prefix\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m-enc-db\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 28,
+                  "Content": "  allocated_storage       = 20",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mallocated_storage\u001b[0m       = \u001b[38;5;37m20",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 29,
+                  "Content": "  engine                  = \"postgres\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mengine\u001b[0m                  = \u001b[38;5;37m\"postgres\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 30,
+                  "Content": "  instance_class          = \"db.t3.micro\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245minstance_class\u001b[0m          = \u001b[38;5;37m\"db.t3.micro\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 31,
+                  "Content": "  username                = \"benchmark\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245musername\u001b[0m                = \u001b[38;5;37m\"benchmark\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 32,
+                  "Content": "  manage_master_user_password = true",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mmanage_master_user_password\u001b[0m = \u001b[38;5;166mtrue",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 33,
+                  "Content": "  skip_final_snapshot     = true",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mskip_final_snapshot\u001b[0m     = \u001b[38;5;166mtrue",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 34,
+                  "Content": "  publicly_accessible     = false",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mpublicly_accessible\u001b[0m     = \u001b[38;5;166mfalse",
+                  "FirstCause": false,
+                  "LastCause": true
+                },
+                {
+                  "Number": 35,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0177",
+          "Title": "RDS Deletion Protection Disabled",
+          "Description": "Ensure deletion protection is enabled for RDS database instances.",
+          "Message": "Instance does not have Deletion Protection enabled",
+          "Namespace": "builtin.aws.rds.aws0177",
+          "Query": "data.builtin.aws.rds.aws0177.deny",
+          "Resolution": "Modify the RDS instances to enable deletion protection.",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0177",
+          "References": [
+            "https://aws.amazon.com/about-aws/whats-new/2018/09/amazon-rds-now-provides-database-deletion-protection/",
+            "https://avd.aquasec.com/misconfig/aws-0177"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_db_instance.target",
+            "Provider": "AWS",
+            "Service": "rds",
+            "StartLine": 26,
+            "EndLine": 36,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 26,
+                  "Content": "resource \"aws_db_instance\" \"target\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_db_instance\"\u001b[0m \u001b[38;5;37m\"target\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 27,
+                  "Content": "  identifier              = \"${var.name_prefix}-enc-db\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245midentifier\u001b[0m              = \u001b[38;5;37m\"\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.name_prefix\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m-enc-db\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 28,
+                  "Content": "  allocated_storage       = 20",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mallocated_storage\u001b[0m       = \u001b[38;5;37m20",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 29,
+                  "Content": "  engine                  = \"postgres\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mengine\u001b[0m                  = \u001b[38;5;37m\"postgres\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 30,
+                  "Content": "  instance_class          = \"db.t3.micro\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245minstance_class\u001b[0m          = \u001b[38;5;37m\"db.t3.micro\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 31,
+                  "Content": "  username                = \"benchmark\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245musername\u001b[0m                = \u001b[38;5;37m\"benchmark\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 32,
+                  "Content": "  manage_master_user_password = true",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mmanage_master_user_password\u001b[0m = \u001b[38;5;166mtrue",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 33,
+                  "Content": "  skip_final_snapshot     = true",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mskip_final_snapshot\u001b[0m     = \u001b[38;5;166mtrue",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 34,
+                  "Content": "  publicly_accessible     = false",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mpublicly_accessible\u001b[0m     = \u001b[38;5;166mfalse",
+                  "FirstCause": false,
+                  "LastCause": true
+                },
+                {
+                  "Number": 35,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -14,8 +14,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-MUTABLE-IMAGE-TAGS-VULN-y5kqffy0/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-MUTABLE-IMAGE-TAGS-VULN-y5kqffy0/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-MUTABLE-IMAGE-TAGS-VULN-ccb_gze0/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-MUTABLE-IMAGE-TAGS-VULN-ccb_gze0/case/main.tf",
         "file_line_range": [
           20,
           27
@@ -38,13 +38,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-ecr-repositories-are-encrypted",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-MUTABLE-IMAGE-TAGS-VULN-y5kqffy0/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-MUTABLE-IMAGE-TAGS-VULN-ccb_gze0/case/main.tf",
         "breadcrumbs": {
           "name": [
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-MUTABLE-IMAGE-TAGS-VULN-y5kqffy0/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-MUTABLE-IMAGE-TAGS-VULN-ccb_gze0/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -62,8 +62,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-MUTABLE-IMAGE-TAGS-VULN-y5kqffy0/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-MUTABLE-IMAGE-TAGS-VULN-y5kqffy0/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-MUTABLE-IMAGE-TAGS-VULN-ccb_gze0/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-MUTABLE-IMAGE-TAGS-VULN-ccb_gze0/case/main.tf",
         "file_line_range": [
           20,
           27
@@ -86,13 +86,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-24",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-MUTABLE-IMAGE-TAGS-VULN-y5kqffy0/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-MUTABLE-IMAGE-TAGS-VULN-ccb_gze0/case/main.tf",
         "breadcrumbs": {
           "name": [
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-MUTABLE-IMAGE-TAGS-VULN-y5kqffy0/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-MUTABLE-IMAGE-TAGS-VULN-ccb_gze0/case/variables.tf",
               "module_connection": false
             }
           ]

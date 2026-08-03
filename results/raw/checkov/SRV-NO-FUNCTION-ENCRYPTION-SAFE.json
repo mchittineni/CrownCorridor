@@ -14,8 +14,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/main.tf",
         "file_line_range": [
           39,
           56
@@ -38,13 +38,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-aws-lambda-function-is-configured-inside-a-vpc-1",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/main.tf",
         "breadcrumbs": {
           "function_name": [
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/variables.tf",
               "module_connection": false
             }
           ],
@@ -52,7 +52,7 @@
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/variables.tf",
               "module_connection": false
             }
           ],
@@ -60,7 +60,7 @@
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -78,8 +78,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/main.tf",
         "file_line_range": [
           39,
           56
@@ -102,13 +102,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-aws-lambda-function-is-configured-for-a-dead-letter-queue-dlq",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/main.tf",
         "breadcrumbs": {
           "function_name": [
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/variables.tf",
               "module_connection": false
             }
           ],
@@ -116,7 +116,7 @@
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/variables.tf",
               "module_connection": false
             }
           ],
@@ -124,7 +124,7 @@
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -142,8 +142,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/main.tf",
         "file_line_range": [
           39,
           56
@@ -166,13 +166,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-272",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/main.tf",
         "breadcrumbs": {
           "function_name": [
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/variables.tf",
               "module_connection": false
             }
           ],
@@ -180,7 +180,7 @@
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/variables.tf",
               "module_connection": false
             }
           ],
@@ -188,7 +188,7 @@
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -206,8 +206,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/main.tf",
         "file_line_range": [
           39,
           56
@@ -230,13 +230,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-aws-lambda-function-is-configured-for-function-level-concurrent-execution-limit",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/main.tf",
         "breadcrumbs": {
           "function_name": [
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/variables.tf",
               "module_connection": false
             }
           ],
@@ -244,7 +244,7 @@
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/variables.tf",
               "module_connection": false
             }
           ],
@@ -252,7 +252,7 @@
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -289,8 +289,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/main.tf",
         "file_line_range": [
           33,
           37
@@ -313,7 +313,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-64",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-2auk_c2q/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-FUNCTION-ENCRYPTION-SAFE-34h0mmhw/case/main.tf"
       }
     ]
   },

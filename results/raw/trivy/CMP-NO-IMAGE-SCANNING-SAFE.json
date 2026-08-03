@@ -1,0 +1,140 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.73.0"
+  },
+  "ReportID": "019fc98e-7616-7db3-9a51-edbf65d949d6",
+  "CreatedAt": "2026-08-03T22:36:24.598899+01:00",
+  "ArtifactName": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-NO-IMAGE-SCANNING-SAFE-4xx8cnnv/case",
+  "ArtifactType": "filesystem",
+  "Results": [
+    {
+      "Target": ".",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 54,
+        "Failures": 0
+      }
+    },
+    {
+      "Target": "main.tf",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 0,
+        "Failures": 1
+      },
+      "Misconfigurations": [
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0033",
+          "Title": "ECR Repository should use customer managed keys to allow more control",
+          "Description": "Images in the ECR repository are encrypted by default using AWS managed encryption keys. To increase control of the encryption and control the management of factors like key rotation, use a Customer Managed Key.\n",
+          "Message": "Repository is not encrypted using KMS.",
+          "Namespace": "builtin.aws.ecr.aws0033",
+          "Query": "data.builtin.aws.ecr.aws0033.deny",
+          "Resolution": "Use customer managed keys",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0033",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonECR/latest/userguide/encryption-at-rest.html",
+            "https://avd.aquasec.com/misconfig/aws-0033"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_ecr_repository.target",
+            "Provider": "AWS",
+            "Service": "ecr",
+            "StartLine": 20,
+            "EndLine": 27,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 20,
+                  "Content": "resource \"aws_ecr_repository\" \"target\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_ecr_repository\"\u001b[0m \u001b[38;5;37m\"target\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 21,
+                  "Content": "  name                 = \"${var.name_prefix}-cmp-scan\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mname\u001b[0m                 = \u001b[38;5;37m\"\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.name_prefix\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m-cmp-scan\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 22,
+                  "Content": "  image_tag_mutability = \"IMMUTABLE\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mimage_tag_mutability\u001b[0m = \u001b[38;5;37m\"IMMUTABLE\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 23,
+                  "Content": "",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 24,
+                  "Content": "  image_scanning_configuration {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  image_scanning_configuration {",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 25,
+                  "Content": "    scan_on_push = true",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "    \u001b[38;5;245mscan_on_push\u001b[0m = \u001b[38;5;166mtrue",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 26,
+                  "Content": "  }",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  }",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 27,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
