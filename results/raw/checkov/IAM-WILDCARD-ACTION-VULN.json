@@ -14,8 +14,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "file_line_range": [
           24,
           35
@@ -38,13 +38,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-288",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "breadcrumbs": {
           "name": [
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -62,8 +62,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "file_line_range": [
           24,
           35
@@ -86,13 +86,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-290",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "breadcrumbs": {
           "name": [
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -110,8 +110,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "file_line_range": [
           24,
           35
@@ -134,13 +134,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-287",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "breadcrumbs": {
           "name": [
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -159,8 +159,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "file_line_range": [
           24,
           35
@@ -183,13 +183,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/iam-48",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "breadcrumbs": {
           "name": [
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -207,8 +207,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "file_line_range": [
           24,
           35
@@ -231,13 +231,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-289",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "breadcrumbs": {
           "name": [
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -256,8 +256,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "file_line_range": [
           24,
           35
@@ -280,13 +280,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-iam-45",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "breadcrumbs": {
           "name": [
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -304,8 +304,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "file_line_range": [
           24,
           35
@@ -328,13 +328,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-355",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "breadcrumbs": {
           "name": [
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -352,8 +352,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "file_line_range": [
           24,
           35
@@ -376,13 +376,73 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-286",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "breadcrumbs": {
           "name": [
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV2_AWS_62",
+        "bc_check_id": "BC_AWS_LOGGING_36",
+        "check_name": "Ensure S3 buckets should have event notifications enabled",
+        "check_result": {
+          "result": "FAILED",
+          "entity": {
+            "aws_s3_bucket": {
+              "target": {
+                "__end_line__": 22,
+                "__start_line__": 20,
+                "bucket": [
+                  "iacsecbench-iam-scope-benchmark"
+                ],
+                "__address__": "aws_s3_bucket.target"
+              }
+            }
+          },
+          "evaluated_keys": [
+            "resource_type"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
+        "file_line_range": [
+          20,
+          22
+        ],
+        "resource": "aws_s3_bucket.target",
+        "evaluations": null,
+        "check_class": "checkov.common.graph.checks_infra.base_check",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-62",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
+        "breadcrumbs": {
+          "bucket": [
+            {
+              "type": "variable",
+              "name": "environment",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -413,8 +473,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -437,13 +497,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -474,8 +534,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -498,73 +558,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-13-enable-logging",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/variables.tf",
-              "module_connection": false
-            }
-          ]
-        }
-      },
-      {
-        "check_id": "CKV2_AWS_62",
-        "bc_check_id": "BC_AWS_LOGGING_36",
-        "check_name": "Ensure S3 buckets should have event notifications enabled",
-        "check_result": {
-          "result": "FAILED",
-          "entity": {
-            "aws_s3_bucket": {
-              "target": {
-                "__end_line__": 22,
-                "__start_line__": 20,
-                "bucket": [
-                  "iacsecbench-iam-scope-benchmark"
-                ],
-                "__address__": "aws_s3_bucket.target"
-              }
-            }
-          },
-          "evaluated_keys": [
-            "resource_type"
-          ]
-        },
-        "code_block": null,
-        "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
-        "file_line_range": [
-          20,
-          22
-        ],
-        "resource": "aws_s3_bucket.target",
-        "evaluations": null,
-        "check_class": "checkov.common.graph.checks_infra.base_check",
-        "fixed_definition": null,
-        "entity_tags": null,
-        "caller_file_path": null,
-        "caller_file_line_range": null,
-        "resource_address": null,
-        "severity": null,
-        "bc_category": null,
-        "benchmarks": null,
-        "description": null,
-        "short_description": null,
-        "vulnerability_details": null,
-        "connected_node": null,
-        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-62",
-        "details": [],
-        "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
-        "breadcrumbs": {
-          "bucket": [
-            {
-              "type": "variable",
-              "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -590,14 +590,14 @@
           },
           "evaluated_keys": [
             "resource_type",
-            "block_public_policy",
-            "block_public_acls"
+            "block_public_acls",
+            "block_public_policy"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -620,13 +620,75 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/s3-bucket-should-have-public-access-blocks-defaults-to-false-if-the-public-access-block-is-not-attached",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_AWS_21",
+        "bc_check_id": "BC_AWS_S3_16",
+        "check_name": "Ensure all data stored in the S3 bucket have versioning enabled",
+        "check_result": {
+          "result": "FAILED",
+          "entity": {
+            "aws_s3_bucket": {
+              "target": {
+                "__end_line__": 22,
+                "__start_line__": 20,
+                "bucket": [
+                  "iacsecbench-iam-scope-benchmark"
+                ],
+                "__address__": "aws_s3_bucket.target"
+              }
+            }
+          },
+          "evaluated_keys": [
+            "versioning/enabled",
+            "resource_type",
+            "versioning_configuration/status"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
+        "file_line_range": [
+          20,
+          22
+        ],
+        "resource": "aws_s3_bucket.target",
+        "evaluations": null,
+        "check_class": "checkov.common.graph.checks_infra.base_check",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-16-enable-versioning",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
+        "breadcrumbs": {
+          "bucket": [
+            {
+              "type": "variable",
+              "name": "environment",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -652,14 +714,14 @@
           },
           "evaluated_keys": [
             "resource_type",
-            "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm",
-            "rule/apply_server_side_encryption_by_default/sse_algorithm"
+            "rule/apply_server_side_encryption_by_default/sse_algorithm",
+            "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -682,13 +744,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -714,14 +776,14 @@
           },
           "evaluated_keys": [
             "resource_type",
-            "rule/*/status",
-            "replication_configuration/rules/*/status"
+            "replication_configuration/rules/*/status",
+            "rule/*/status"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -744,13 +806,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-bucket-has-cross-region-replication-enabled",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -787,15 +849,15 @@
             }
           },
           "evaluated_keys": [
-            "policy/Statement[?(@/Effect == Allow)]/Action[*]",
+            "inline_policy/Statement[?(@/Effect == Allow)]/Action[*]",
             "statement[?(@/effect == Allow)]/actions[*]",
-            "inline_policy/Statement[?(@/Effect == Allow)]/Action[*]"
+            "policy/Statement[?(@/Effect == Allow)]/Action[*]"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "file_line_range": [
           24,
           35
@@ -818,75 +880,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-40",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/main.tf",
         "breadcrumbs": {
           "name": [
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/variables.tf",
-              "module_connection": false
-            }
-          ]
-        }
-      },
-      {
-        "check_id": "CKV_AWS_21",
-        "bc_check_id": "BC_AWS_S3_16",
-        "check_name": "Ensure all data stored in the S3 bucket have versioning enabled",
-        "check_result": {
-          "result": "FAILED",
-          "entity": {
-            "aws_s3_bucket": {
-              "target": {
-                "__end_line__": 22,
-                "__start_line__": 20,
-                "bucket": [
-                  "iacsecbench-iam-scope-benchmark"
-                ],
-                "__address__": "aws_s3_bucket.target"
-              }
-            }
-          },
-          "evaluated_keys": [
-            "resource_type",
-            "versioning_configuration/status",
-            "versioning/enabled"
-          ]
-        },
-        "code_block": null,
-        "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
-        "file_line_range": [
-          20,
-          22
-        ],
-        "resource": "aws_s3_bucket.target",
-        "evaluations": null,
-        "check_class": "checkov.common.graph.checks_infra.base_check",
-        "fixed_definition": null,
-        "entity_tags": null,
-        "caller_file_path": null,
-        "caller_file_line_range": null,
-        "resource_address": null,
-        "severity": null,
-        "bc_category": null,
-        "benchmarks": null,
-        "description": null,
-        "short_description": null,
-        "vulnerability_details": null,
-        "connected_node": null,
-        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-16-enable-versioning",
-        "details": [],
-        "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/main.tf",
-        "breadcrumbs": {
-          "bucket": [
-            {
-              "type": "variable",
-              "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-d_9zc4tz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-VULN-9uitzpoj/case/variables.tf",
               "module_connection": false
             }
           ]
