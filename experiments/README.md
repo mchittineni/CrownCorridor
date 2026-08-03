@@ -43,8 +43,13 @@ and are invoked by hand — the first three only under
 **The only script that produces results.** Four stages: corpus admissibility,
 scanner execution with repeats, a control-map audit against the rule identifiers
 actually emitted, then statistics and LaTeX table generation. Requires Checkov,
-tfsec, OPA and Terraform; a tool that is absent is reported as absent and excluded,
-never assigned an assumed detection rate.
+tfsec, Trivy, OPA and Terraform; a tool that is absent is reported as absent and
+excluded, never assigned an assumed detection rate.
+
+Trivy runs with `--skip-check-update`, so its checks bundle must already be cached
+before a measurement. Otherwise the first invocation fetches it from a registry and
+that network time is recorded as scanner latency — or the fetch fails and the scan
+is recorded as finding nothing, which is indistinguishable from a clean case.
 
 Takes tens of minutes, largely in `terraform init`/`validate` per case.
 
