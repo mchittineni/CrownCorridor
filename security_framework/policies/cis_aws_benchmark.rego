@@ -43,9 +43,47 @@ is_managed(rc) if {
 	action in {"create", "update", "no-op"}
 }
 
-cast_array(value) := value if is_array(value)
+# Named `as_array` rather than `cast_array`: the latter collides with a
+# deprecated OPA builtin of the same name, which makes `opa fmt` refuse the
+# whole file with a type error even though evaluation still resolves the local
+# definition. A policy the formatter cannot process is a policy whose style
+# drifts silently.
+as_array(value) := value if is_array(value)
 
-cast_array(value) := [value] if is_string(value)
+as_array(value) := [value] if is_string(value)
+
+# Terraform collapses three distinct configuration states into one plan
+# document, and a bare presence test tells them apart wrongly for *scalar*
+# optional attributes:
+#
+#   set to a literal        change.after[key] holds the literal value
+#   set from a reference    key is absent from change.after and recorded in
+#                           change.after_unknown, because the value is not
+#                           resolvable until apply
+#   not set at all          change.after[key] is present with the value null
+#
+# So `not after(rc).kms_key_id` fails on the configuration that omits the key
+# (null is a *defined* value in Rego, so `not` does not succeed) and succeeds on
+# the configuration that sets it from another resource. That does not merely
+# weaken such a control, it inverts it: the compliant case is reported and the
+# violating case is passed.
+#
+# Block-typed attributes do not share the defect. An unconfigured block is also
+# absent from `after` and marked unknown, but a configured one appears in
+# `after` with its contents, so presence tests over blocks discriminate
+# correctly and are left as they are.
+#
+# attribute_unset holds only for the third state. The second state is
+# indeterminate: the attribute *is* set, but nothing in the plan establishes
+# what to. Reporting it either way would be a measurement error, so it yields no
+# finding -- a limitation of plan-level evaluation that is disclosed rather than
+# hidden behind a pass.
+attribute_unknown(rc, key) if rc.change.after_unknown[key]
+
+attribute_unset(rc, key) if {
+	not attribute_unknown(rc, key)
+	object.get(rc.change.after, key, null) == null
+}
 
 # --------------------------------------------------------------------------- #
 # CIS AWS 2.1 — Object storage public exposure
@@ -190,7 +228,7 @@ deny contains finding if {
 deny contains finding if {
 	some rc in resources_of_type("aws_cloudtrail")
 	is_managed(rc)
-	not after(rc).kms_key_id
+	attribute_unset(rc, "kms_key_id")
 	finding := {
 		"rule_id": "cloudtrail_log_encryption",
 		"resource": rc.address,
@@ -264,12 +302,12 @@ deny contains finding if {
 
 wildcard_statement(statement) if {
 	statement.Effect == "Allow"
-	"*" in cast_array(statement.Action)
+	"*" in as_array(statement.Action)
 }
 
 wildcard_statement(statement) if {
 	statement.Effect == "Allow"
-	"*" in cast_array(statement.Resource)
+	"*" in as_array(statement.Resource)
 }
 
 deny contains finding if {
@@ -282,7 +320,7 @@ deny contains finding if {
 	some rc in resources_of_type(type)
 	is_managed(rc)
 	document := json.unmarshal(after(rc).policy)
-	some statement in cast_array(document.Statement)
+	some statement in as_array(document.Statement)
 	wildcard_statement(statement)
 	finding := {
 		"rule_id": "iam_wildcard_action",
@@ -296,7 +334,7 @@ deny contains finding if {
 	some rc in resources_of_type("aws_iam_role")
 	is_managed(rc)
 	document := json.unmarshal(after(rc).assume_role_policy)
-	some statement in cast_array(document.Statement)
+	some statement in as_array(document.Statement)
 	statement.Effect == "Allow"
 	statement.Principal == "*"
 	finding := {
@@ -311,9 +349,9 @@ deny contains finding if {
 	some rc in resources_of_type("aws_iam_role")
 	is_managed(rc)
 	document := json.unmarshal(after(rc).assume_role_policy)
-	some statement in cast_array(document.Statement)
+	some statement in as_array(document.Statement)
 	statement.Effect == "Allow"
-	"*" in cast_array(statement.Principal.AWS)
+	"*" in as_array(statement.Principal.AWS)
 	finding := {
 		"rule_id": "iam_wildcard_trust",
 		"resource": rc.address,
