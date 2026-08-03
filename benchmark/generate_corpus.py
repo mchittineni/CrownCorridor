@@ -38,6 +38,12 @@ Usage::
     python benchmark/generate_corpus.py --write --clean
 """
 
+# Most of this module's length is the corpus itself: one ControlSpec per canonical
+# control, each embedding the literal HCL for its vulnerable and compliant case.
+# Splitting it across files would separate a specification from the ground truth
+# it defines, which is the one thing this design exists to keep together.
+# pylint: disable=too-many-lines
+
 from __future__ import annotations
 
 import argparse

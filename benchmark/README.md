@@ -30,10 +30,12 @@ benchmark/
 ## ⚙️ Key Components Explained
 
 ### 1. Internal Controlled Benchmark (`benchmark/internal/`)
+
 - Contains **44 labelled cases present on disk** (22 vulnerable / 22 compliant) across 8 domains: IAM, NET, STO, ENC, CMP, MON, SEC, SRV. The designed taxonomy targets 345 cases across 12 domains; the four remaining domains (K8S, ID, PII, TF) have no cases yet and nothing is measured over them.
 - **Metadata Annotation Schema (`metadata.json`)**: Formats each case with canonical attributes: `case_id`, `domain`, `severity`, `target_resource_urn`, and ground-truth `status` (`VIOLATION` vs. `COMPLIANT`).
 
 ### 2. External Validation Collection (`benchmark/external/`)
+
 Each `metadata.json` here declares more cases than there are configurations on
 disk. The manifests are left unmodified on purpose: `evaluation/corpus.py` reads
 the declared count precisely so it can report the gap, and correcting the
@@ -47,6 +49,7 @@ A manifest entry with no configuration behind it is a citation, not a case, and
 is never counted as one.
 
 ### 3. Generated Evaluation Telemetry — now under `results/`
+
 Measured output lives in [`results/`](../results/), not here. `benchmark/reports/`
 previously held `experiment_results.json`, written by `pipeline/run_experiments.py`
 from hardcoded per-tool rates rather than from any scanner execution; it has been
@@ -73,6 +76,7 @@ than the requirement its label encoded. Read
 the limitations that bound what κ means here.
 
 ## 🔗 Related Knowledge Base Links
+
 - [[Research/RQ1-Internal-Metrics|📊 RQ1: Internal Controlled Benchmark Performance]]
 - [[Research/RQ5-External-Generalizability|🌐 RQ5: External Validation Collection]]
 - [[Project-Structure|📐 View Project Architecture]]
