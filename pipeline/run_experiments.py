@@ -16,8 +16,19 @@ if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
 from evaluation.score import run_benchmark_scoring
+from evaluation.synthetic_guard import GUARD_ENV, refuse_unless_explicitly_allowed
 from security_framework.engine.comparative_eval import ComparativeEvaluator
 from security_framework.engine.engine import BenchmarkEngineRunner
+
+# Output paths are module constants rather than expressions inlined at the write
+# site so a test can redirect them. A test that exercises this stage otherwise
+# overwrites the repository's real result files with fabricated ones as a side
+# effect -- the same hazard the synthetic guard exists to prevent, arriving
+# through the test suite instead of through run_all.sh.
+EXPERIMENT_RESULTS_PATH = os.path.join(
+    PROJECT_ROOT, "benchmark", "reports", "experiment_results.json"
+)
+BENCHMARK_RESULTS_PATH = os.path.join(PROJECT_ROOT, "results", "benchmark_results.json")
 
 
 def run_experiments() -> dict[str, Any]:
@@ -26,6 +37,16 @@ def run_experiments() -> dict[str, Any]:
     Returns:
         Dictionary containing experiment telemetry, comparative metrics, and environment details.
     """
+    # The comparative stage below does not execute Checkov, tfsec or OPA. It
+    # multiplies corpus counts by the hardcoded profile rates in
+    # ComparativeEvaluator.run_comparative_suite and writes the product to
+    # results/benchmark_results.json -- a filename a reader has every reason to
+    # take for measured output. Gate it before anything is written, not after.
+    refuse_unless_explicitly_allowed(
+        "comparative tool metrics from hardcoded per-tool profile rates",
+        writes="results/benchmark_results.json, benchmark/reports/experiment_results.json",
+        override_hint=f"{GUARD_ENV}=1 python pipeline/run_experiments.py",
+    )
     print("============================================================")
     print("IaC Security Benchmark Framework — Reproducible Experiments")
     print("============================================================\n")
@@ -67,15 +88,10 @@ def run_experiments() -> dict[str, Any]:
         "markdown_matrix": evaluator.generate_comparison_matrix_markdown(),
     }
 
-    results_path = os.path.join(PROJECT_ROOT, "benchmark", "reports", "experiment_results.json")
-    os.makedirs(os.path.dirname(results_path), exist_ok=True)
-    with open(results_path, "w", encoding="utf-8") as f:
-        json.dump(output_data, f, indent=2)
-
-    res_alt_path = os.path.join(PROJECT_ROOT, "results", "benchmark_results.json")
-    os.makedirs(os.path.dirname(res_alt_path), exist_ok=True)
-    with open(res_alt_path, "w", encoding="utf-8") as f:
-        json.dump(output_data, f, indent=2)
+    for path in (EXPERIMENT_RESULTS_PATH, BENCHMARK_RESULTS_PATH):
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(output_data, f, indent=2)
 
     print(
         "\n[3] Experiment telemetry saved to: benchmark/reports/experiment_results.json & results/benchmark_results.json"

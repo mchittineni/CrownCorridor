@@ -12,6 +12,10 @@ ROOT = pathlib.Path(__file__).parent.parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+import pytest
+
+import pipeline.run_experiments as run_experiments_module
+from evaluation.synthetic_guard import GUARD_ENV
 from pipeline.run_experiments import run_experiments
 from security_framework.engine.comparative_eval import ComparativeEvaluator
 from security_framework.engine.engine import BenchmarkEngine, BenchmarkEngineRunner
@@ -98,8 +102,39 @@ class TestBenchmarkDatasetSchema:
 class TestRunExperiments:
     """Tests execution of the experiment runner."""
 
-    def test_run_experiments_success(self):
-        """Executes full experiment pipeline and verifies output structure."""
+    def test_run_experiments_refuses_without_explicit_opt_in(self, monkeypatch):
+        """The synthetic stage must not run just because something imported it.
+
+        ``run_experiments`` derives its comparative numbers from hardcoded per-tool
+        profile rates and writes them to ``results/benchmark_results.json`` -- a
+        path a reader has every reason to take for measured output. The guard is
+        the only thing standing between an editor-triggered ``run_all.sh`` and a
+        set of fabricated results overwriting real ones, so its refusal is part of
+        the contract and is asserted here rather than merely worked around below.
+        """
+        monkeypatch.delenv(GUARD_ENV, raising=False)
+        with pytest.raises(SystemExit):
+            run_experiments()
+
+    def test_run_experiments_success(self, monkeypatch, tmp_path):
+        """Executes full experiment pipeline and verifies output structure.
+
+        Opts into synthetic output explicitly, because that is what this stage
+        produces. The opt-in belongs in the test rather than in the module.
+
+        Writes are redirected into ``tmp_path``. Without that, running the test
+        suite silently replaces ``results/benchmark_results.json`` and
+        ``benchmark/reports/experiment_results.json`` with fabricated numbers --
+        the exact substitution the synthetic guard exists to prevent, performed by
+        the guard's own test.
+        """
+        monkeypatch.setenv(GUARD_ENV, "1")
+        monkeypatch.setattr(
+            run_experiments_module, "EXPERIMENT_RESULTS_PATH", str(tmp_path / "experiment.json")
+        )
+        monkeypatch.setattr(
+            run_experiments_module, "BENCHMARK_RESULTS_PATH", str(tmp_path / "benchmark.json")
+        )
         out = run_experiments()
         assert "timestamp" in out
         assert "engine_scan" in out
