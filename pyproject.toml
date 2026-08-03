@@ -55,6 +55,15 @@ exclude = [
 select = ["E", "F", "W", "I", "N", "UP"]
 ignore = ["E501", "UP042", "E402", "N806", "E701"]
 
+[tool.ruff.lint.per-file-ignores]
+# This module embeds Markdown templates in triple-quoted literals, and Markdown
+# encodes a hard line break as two trailing spaces. The flagged whitespace is
+# therefore content, not formatting slack: `ruff --fix` would strip it and
+# silently collapse the rendered blockquotes in the Obsidian vault into single
+# paragraphs. W293 likewise flags the indented blank line inside a Mermaid
+# diagram body. Scoped to this one file so the rules stay active everywhere else.
+"pipeline/sync_to_obsidian.py" = ["W291", "W293"]
+
 [tool.isort]
 profile = "black"
 line_length = 100
