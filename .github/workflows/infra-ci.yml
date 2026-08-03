@@ -101,15 +101,6 @@ jobs:
           pip install checkov
           checkov --config-file .checkov.yaml
 
-      # Two policy sets exist and are NOT copies of one another:
-      #   infrastructure/policies/      evaluated by conftest against the real plan
-      #   security_framework/policies/  evaluated by the benchmark harness, and the
-      #                                 only one that emits rule_id fields for the
-      #                                 finding-normalization engine
-      # Both are parsed and format-checked here. `opa check` matters because a Rego
-      # file that fails to parse does not fail loudly -- an earlier revision of the
-      # benchmark policy used constructs invalid in Rego v1, so that layer silently
-      # never executed and scored as a total miss on every case.
       - name: Validate Rego Policy Sets (parse + format)
         run: |
           set -eu
@@ -124,24 +115,11 @@ jobs:
           fi
           echo "ok: all Rego files canonically formatted"
 
-      # Authoritative corpus admissibility. Terraform mode runs init and validate
-      # per case, the only check that catches a case referencing a resource type the
-      # provider does not define. ci.yml runs the fast structural variant; this job
-      # has the CLI, so it runs the real one.
       - name: Check Corpus Admissibility (terraform)
         run: python -m evaluation.corpus --report --mode terraform
 
-      # IACSECBENCH_ALLOW_SYNTHETIC is deliberately NOT set: tests that exercise a
-      # fabricating stage opt in per test, and one test asserts those stages refuse
-      # without it.
       - name: Run Full Pytest Suite (Includes IaC & Policy Unit Tests)
         run: pytest security_framework/tests/ pipeline/tests/ evaluation/tests/ -v --tb=short
 
-      # The measurement harness is not run on pull requests. It executes four
-      # scanners over every admissible case with repeats, takes tens of minutes, and
-      # its latency column is meaningless on a shared runner. benchmark.yml runs it
-      # on demand. What this job verifies instead is that the harness is wired
-      # correctly: that it discovers tools and reports absent ones as absent rather
-      # than inventing results for them.
       - name: Verify Measurement Harness Wiring (no scan)
         run: python -m evaluation.run_baselines --list-tools

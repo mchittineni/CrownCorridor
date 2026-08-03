@@ -1,16 +1,16 @@
 # Workflows
 
-| Workflow             | Trigger                                                                                                                | Purpose                                                                                                                                   |
-| :------------------- | :--------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| `ci.yml`             | every PR + push to main                                                                                                | Lint, format, security audit, unit tests, data validation, fast corpus check, synthetic-guard assertion                                   |
-| `infra-ci.yml`       | PR/push touching `infrastructure/`, `security_framework/`, `benchmark/`, `evaluation/`, `leaderboard/`, `experiments/` | Terraform fmt/validate/test, conftest policy evaluation, Checkov scan, Rego parse + format, corpus admissibility, tests                   |
-| `benchmark.yml`      | manual dispatch + weekly cron                                                                                          | **The full measurement.** Installs Checkov, tfsec, OPA, Terraform; runs `experiments/run_baselines.sh`; uploads `results/` as an artefact |
-| `docs.yml`           | PR/push touching `application/app/`, `docs/`, `jsdoc.json`                                                             | JSDoc build                                                                                                                               |
-| `deploy-pages.yml`   | push to main                                                                                                           | GitHub Pages deployment                                                                                                                   |
-| `release-please.yml` | push to main                                                                                                           | Release automation; packages a replication archive                                                                                        |
-| `update-data.yml`    | schedule                                                                                                               | SRO dataset refresh                                                                                                                       |
+| Workflow             | Trigger                                                                                                                | Purpose                                                                                                                                          |
+| :------------------- | :--------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ci.yml`             | every PR + push to main                                                                                                | Lint, format, security audit, unit tests, data validation, fast corpus check, synthetic-guard assertion                                          |
+| `infra-ci.yml`       | PR/push touching `infrastructure/`, `security_framework/`, `benchmark/`, `evaluation/`, `leaderboard/`, `experiments/` | Terraform fmt/validate/test, conftest policy evaluation, Checkov scan, Rego parse + format, corpus admissibility, tests                          |
+| `benchmark.yml`      | manual dispatch + weekly cron                                                                                          | **The full measurement.** Installs Checkov, tfsec, Trivy, OPA, Terraform; runs `experiments/run_baselines.sh`; uploads `results/` as an artefact |
+| `docs.yml`           | PR/push touching `application/app/`, `docs/`, `jsdoc.json`                                                             | JSDoc build                                                                                                                                      |
+| `deploy-pages.yml`   | push to main                                                                                                           | GitHub Pages deployment                                                                                                                          |
+| `release-please.yml` | push to main                                                                                                           | Release automation; packages a replication archive                                                                                               |
+| `update-data.yml`    | schedule                                                                                                               | SRO dataset refresh                                                                                                                              |
 
-## Two invariants worth knowing before editing these
+## Three invariants worth knowing before editing these
 
 ### 1. Never export `IACSECBENCH_ALLOW_SYNTHETIC` at job or workflow scope
 
@@ -83,11 +83,21 @@ does not define, and roughly twenty minutes of work.
 
 ## Tool versions
 
-`benchmark.yml` and `infra-ci.yml` pin OPA and tfsec to the versions recorded in
-`results/run_manifest.json`, which is the authoritative record of the published run.
+`benchmark.yml` and `infra-ci.yml` pin OPA, tfsec and Trivy to the versions recorded
+in `results/run_manifest.json`, which is the authoritative record of the published run.
 When you bump a pin, expect detection results to move and re-measure — upstream rule
 sets change independently of this repository, which is why `benchmark.yml` also runs
 on a weekly schedule.
 
 Note that OPA `1.9.0` and `1.19.0` are different releases and easy to transpose. The
 manifest is the reference.
+
+Trivy needs its checks bundle cached before the measurement, because the harness runs
+it with `--skip-check-update` — an uncached run would either charge a registry fetch to
+scanner latency or, on a fetch failure, record every case as clean. `benchmark.yml` warms
+the cache and then verifies it by running the harness's exact command and failing if it
+reports zero findings.
+
+The tfsec pin is deliberately kept alongside Trivy rather than replaced by it. tfsec is
+retired and Trivy is its successor, and measuring both is what lets the benchmark report
+how far the shared rule set has drifted between the two products.
