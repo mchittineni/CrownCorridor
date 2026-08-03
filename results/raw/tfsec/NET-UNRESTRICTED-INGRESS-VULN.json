@@ -18,7 +18,7 @@
       "status": 0,
       "resource": "aws_security_group.target",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-3vm3_fcd/case/main.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-bwyneatq/case/main.tf",
         "start_line": 49,
         "end_line": 49
       }
@@ -41,7 +41,7 @@
       "status": 0,
       "resource": "aws_security_group.target",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-3vm3_fcd/case/main.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-bwyneatq/case/main.tf",
         "start_line": 40,
         "end_line": 40
       }
@@ -64,7 +64,7 @@
       "status": 0,
       "resource": "aws_security_group.target",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-3vm3_fcd/case/main.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-bwyneatq/case/main.tf",
         "start_line": 40,
         "end_line": 40
       }
@@ -86,7 +86,7 @@
       "status": 0,
       "resource": "aws_vpc.target",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-3vm3_fcd/case/main.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-VULN-bwyneatq/case/main.tf",
         "start_line": 24,
         "end_line": 26
       }

@@ -5,7 +5,7 @@
     "processor": "arm",
     "python": "3.14.6",
     "cpu_count": 14,
-    "git_commit": "14a1e4cbd392d8454a55a9733ae9d1259559c336"
+    "git_commit": "c8aad799c14a37e46de60fc931902d59e3482b48"
   },
   "tools": {
     "checkov": {
@@ -38,16 +38,13 @@
   "control_map_schema": "1.0.0",
   "control_map_unverified": [
     "ENC_UNENCRYPTED_VOLUME",
-    "ID_WEAK_TOKEN_VALIDATION",
     "K8S_NO_RESOURCE_LIMITS",
     "K8S_PRIVILEGED_CONTAINER",
     "K8S_ROOT_CONTAINER",
     "NET_PUBLIC_INSTANCE",
     "NET_UNRESTRICTED_INGRESS",
-    "PII_UNMASKED_PERSONAL_DATA",
     "SEC_HARDCODED_CREDENTIAL",
-    "SRV_NO_API_AUTHORIZATION",
-    "STO_PUBLIC_BUCKET"
+    "SRV_NO_API_AUTHORIZATION"
   ],
   "n_cases_loaded": 48,
   "n_cases_scanned": 48,
@@ -108,15 +105,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2814.8418750024575,
-        2315.1630829997885,
-        2328.104041000188,
-        2285.540291999496,
-        2285.723707998841
+        3313.530166000419,
+        2466.5225830030977,
+        2444.972166998923,
+        2425.32575000223,
+        2484.564792001038
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/CMP-MUTABLE-IMAGE-TAGS-SAFE.json",
-      "mean_latency_ms": 2405.874599800154
+      "mean_latency_ms": 2626.9830916011415
     },
     {
       "case_id": "CMP-MUTABLE-IMAGE-TAGS-VULN",
@@ -124,15 +121,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2339.2690000000584,
-        2290.862541001843,
-        2290.9457920031855,
-        2386.2339579973195,
-        2307.5329169987526
+        2482.7772499993443,
+        2566.1842090012215,
+        2410.2073750000272,
+        2459.719916998438,
+        2428.2112500004587
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/CMP-MUTABLE-IMAGE-TAGS-VULN.json",
-      "mean_latency_ms": 2322.968841600232
+      "mean_latency_ms": 2469.420000199898
     },
     {
       "case_id": "CMP-NO-IMAGE-SCANNING-SAFE",
@@ -140,15 +137,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2307.9061250027735,
-        2261.1675419975654,
-        2261.808041999757,
-        2377.8025829997205,
-        2295.4122079972876
+        2487.527499997668,
+        2391.8794999990496,
+        2356.8179169997165,
+        2450.436291997903,
+        2496.6860839995206
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/CMP-NO-IMAGE-SCANNING-SAFE.json",
-      "mean_latency_ms": 2300.8192999994208
+      "mean_latency_ms": 2436.6694585987716
     },
     {
       "case_id": "CMP-NO-IMAGE-SCANNING-VULN",
@@ -156,15 +153,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2313.592250000511,
-        2267.1601669972006,
-        2324.138167001365,
-        2353.646291001496,
-        2446.470250000857
+        2522.626207999565,
+        2506.5785410006356,
+        2510.7707499992102,
+        2464.783333001833,
+        2446.1306249977497
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/CMP-NO-IMAGE-SCANNING-VULN.json",
-      "mean_latency_ms": 2341.001425000286
+      "mean_latency_ms": 2490.1778913997987
     },
     {
       "case_id": "CMP-NO-IMDSV2-SAFE",
@@ -172,15 +169,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2328.539209000155,
-        2322.725750000245,
-        2263.34683299865,
-        2265.525583999988,
-        2332.2188329984783
+        2452.634915996896,
+        2333.6164579995966,
+        2293.1019159987045,
+        2269.1645830018388,
+        2257.6184999998077
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/CMP-NO-IMDSV2-SAFE.json",
-      "mean_latency_ms": 2302.4712417995033
+      "mean_latency_ms": 2321.2272745993687
     },
     {
       "case_id": "CMP-NO-IMDSV2-VULN",
@@ -188,15 +185,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2363.0737919993408,
-        2295.815958001185,
-        2358.6919580011454,
-        2292.691250000644,
-        2265.9210829988297
+        2283.3890830006567,
+        2360.2922499994747,
+        2360.574374997668,
+        2395.0053330008814,
+        2387.517625000328
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/CMP-NO-IMDSV2-VULN.json",
-      "mean_latency_ms": 2315.238808200229
+      "mean_latency_ms": 2357.3557331998018
     },
     {
       "case_id": "ENC-NO-KEY-ROTATION-SAFE",
@@ -204,15 +201,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2315.432791998319,
-        2304.31425000279,
-        2249.733542001195,
-        2247.9094589980377,
-        2259.104541000852
+        2434.976917000313,
+        2380.5342500018014,
+        2390.73712499885,
+        2534.2966669995803,
+        2405.887332999555
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/ENC-NO-KEY-ROTATION-SAFE.json",
-      "mean_latency_ms": 2275.2989168002387
+      "mean_latency_ms": 2429.28645840002
     },
     {
       "case_id": "ENC-NO-KEY-ROTATION-VULN",
@@ -220,15 +217,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2321.1199170000327,
-        2282.6820420013973,
-        2298.493292000785,
-        2283.190250000189,
-        2250.174333999894
+        2523.1876660000125,
+        2527.3121659993194,
+        2423.220750002656,
+        2326.5572499985865,
+        2344.5365840016166
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/ENC-NO-KEY-ROTATION-VULN.json",
-      "mean_latency_ms": 2287.1319670004596
+      "mean_latency_ms": 2428.9628832004382
     },
     {
       "case_id": "ENC-UNENCRYPTED-DATABASE-SAFE",
@@ -236,15 +233,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2372.6169580004353,
-        2250.501958998939,
-        2294.2299999995157,
-        2261.5222919994267,
-        2272.2297079999407
+        2291.9942080006876,
+        2296.337959000084,
+        2308.611332999135,
+        2339.3087499971443,
+        2310.4180410009576
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/ENC-UNENCRYPTED-DATABASE-SAFE.json",
-      "mean_latency_ms": 2290.2201833996514
+      "mean_latency_ms": 2309.3340581996017
     },
     {
       "case_id": "ENC-UNENCRYPTED-DATABASE-VULN",
@@ -252,15 +249,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2347.5640830001794,
-        2325.7437079992087,
-        2284.4440000008035,
-        2296.6546249990643,
-        2319.560542000545
+        2329.72033400074,
+        2332.110457999079,
+        2309.532582999964,
+        2349.464208000427,
+        2379.509791997407
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/ENC-UNENCRYPTED-DATABASE-VULN.json",
-      "mean_latency_ms": 2314.79339159996
+      "mean_latency_ms": 2340.0674749995233
     },
     {
       "case_id": "ENC-UNENCRYPTED-VOLUME-SAFE",
@@ -268,15 +265,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2515.7561250016443,
-        2536.0345000008238,
-        2356.0619590025453,
-        2396.778082998935,
-        2364.9602080004115
+        2487.966332999349,
+        2361.4839170004416,
+        2271.519541001908,
+        2346.0100829979638,
+        2406.9759159974637
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/ENC-UNENCRYPTED-VOLUME-SAFE.json",
-      "mean_latency_ms": 2433.918175000872
+      "mean_latency_ms": 2374.791157999425
     },
     {
       "case_id": "ENC-UNENCRYPTED-VOLUME-VULN",
@@ -284,15 +281,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2434.2465410009027,
-        2295.750166002108,
-        2377.1725830010837,
-        2327.568249998876,
-        2337.172292001924
+        2372.7679590010666,
+        2305.7474170018395,
+        2276.1347079976986,
+        2297.3530419985764,
+        2335.0291249989823
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/ENC-UNENCRYPTED-VOLUME-VULN.json",
-      "mean_latency_ms": 2354.381966400979
+      "mean_latency_ms": 2317.4064501996327
     },
     {
       "case_id": "IAM-WILDCARD-ACTION-SAFE",
@@ -300,15 +297,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2579.4861249996757,
-        2470.645749999676,
-        2523.274457998923,
-        2684.042208002211,
-        2392.4833339988254
+        2314.5977089989174,
+        2284.0264160004153,
+        2242.152292001265,
+        2270.0292079971405,
+        2255.2297080001154
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/IAM-WILDCARD-ACTION-SAFE.json",
-      "mean_latency_ms": 2529.986374999862
+      "mean_latency_ms": 2273.2070665995707
     },
     {
       "case_id": "IAM-WILDCARD-ACTION-VULN",
@@ -316,15 +313,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2662.7561249988503,
-        2733.837499999936,
-        2701.8512079994252,
-        2614.0854999976,
-        2630.888749998121
+        2437.304374998348,
+        2492.292292001366,
+        2455.5919579979673,
+        2772.2159170007217,
+        2487.01120899932
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/IAM-WILDCARD-ACTION-VULN.json",
-      "mean_latency_ms": 2668.6838165987865
+      "mean_latency_ms": 2528.8831501995446
     },
     {
       "case_id": "IAM-WILDCARD-TRUST-SAFE",
@@ -332,15 +329,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        2544.4851249994827,
-        2402.088457998616,
-        2520.2479170002334,
-        2473.2190419999824,
-        2577.77200000055
+        2294.336957998894,
+        2255.0150839997514,
+        2296.137458000885,
+        2265.294332999474,
+        2283.3471659978386
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/IAM-WILDCARD-TRUST-SAFE.json",
-      "mean_latency_ms": 2503.562508399773
+      "mean_latency_ms": 2278.8261997993686
     },
     {
       "case_id": "IAM-WILDCARD-TRUST-VULN",
@@ -348,15 +345,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        2564.1786669984867,
-        2519.209124999179,
-        2464.322332998563,
-        2487.4541249992035,
-        2476.8002499986324
+        2324.7546249986044,
+        2313.4057499992196,
+        2340.1281670012395,
+        2990.1665420002246,
+        2481.874000000971
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/IAM-WILDCARD-TRUST-VULN.json",
-      "mean_latency_ms": 2502.392899998813
+      "mean_latency_ms": 2490.065816800052
     },
     {
       "case_id": "MON-NO-LOG-ENCRYPTION-SAFE",
@@ -364,15 +361,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2424.2136670000036,
-        2450.8857919972797,
-        2501.7344999978377,
-        2522.9771670019545,
-        2525.8849579986418
+        2310.522208998009,
+        2346.302291000029,
+        2363.445375001902,
+        2415.5502089997754,
+        2450.144000002183
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/MON-NO-LOG-ENCRYPTION-SAFE.json",
-      "mean_latency_ms": 2485.1392167991435
+      "mean_latency_ms": 2377.1928168003797
     },
     {
       "case_id": "MON-NO-LOG-ENCRYPTION-VULN",
@@ -380,15 +377,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2441.401332998794,
-        2498.3878749990254,
-        2439.023791997897,
-        2449.0100000002712,
-        2418.4226659999695
+        2401.2670410011197,
+        2500.554499998543,
+        2451.9034160002775,
+        2525.8746669969696,
+        2419.165041999804
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/MON-NO-LOG-ENCRYPTION-VULN.json",
-      "mean_latency_ms": 2449.2491331991914
+      "mean_latency_ms": 2459.752933199343
     },
     {
       "case_id": "MON-NO-TRAIL-VALIDATION-SAFE",
@@ -396,15 +393,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2484.6690410013252,
-        2403.3391249977285,
-        2450.3917500005628,
-        2427.9810420011927,
-        2428.0033340000955
+        2434.322750003048,
+        2440.992208001262,
+        2517.162707998068,
+        2414.233041003172,
+        2339.1975830018055
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/MON-NO-TRAIL-VALIDATION-SAFE.json",
-      "mean_latency_ms": 2438.876858400181
+      "mean_latency_ms": 2429.181658001471
     },
     {
       "case_id": "MON-NO-TRAIL-VALIDATION-VULN",
@@ -412,15 +409,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2450.0964589969954,
-        2413.2777909981087,
-        2431.1418750003213,
-        2417.735040999105,
-        2380.2500829988276
+        2390.6312079998315,
+        2420.7054160033294,
+        2414.736874998198,
+        2439.6780829993077,
+        2359.930540998903
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/MON-NO-TRAIL-VALIDATION-VULN.json",
-      "mean_latency_ms": 2418.5002497986716
+      "mean_latency_ms": 2405.136424599914
     },
     {
       "case_id": "MON-TRAIL-NOT-MULTIREGION-SAFE",
@@ -428,15 +425,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2427.116749997367,
-        2405.762250000407,
-        2489.9202500018873,
-        2453.59766600086,
-        2422.224665999238
+        2493.0064590007532,
+        2366.026208997937,
+        2457.856167002319,
+        2464.80479100137,
+        2348.8035420014057
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/MON-TRAIL-NOT-MULTIREGION-SAFE.json",
-      "mean_latency_ms": 2439.724316399952
+      "mean_latency_ms": 2426.099433600757
     },
     {
       "case_id": "MON-TRAIL-NOT-MULTIREGION-VULN",
@@ -444,15 +441,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2462.4511250003707,
-        2476.071625002078,
-        2401.083957996889,
-        2460.8759590009868,
-        2507.913459001429
+        2553.333333999035,
+        2337.8692499973113,
+        2382.3076670014416,
+        2477.4802079991787,
+        2347.8891250015295
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/MON-TRAIL-NOT-MULTIREGION-VULN.json",
-      "mean_latency_ms": 2461.6792252003506
+      "mean_latency_ms": 2419.775916799699
     },
     {
       "case_id": "NET-ALB-INVALID-HEADERS-SAFE",
@@ -460,15 +457,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2489.69812499854,
-        2532.438917001855,
-        2518.044625001494,
-        2527.928667001106,
-        2452.5961250001274
+        2376.0267500001646,
+        2348.4414590020606,
+        2455.3946659980284,
+        2350.8343339999556,
+        2392.5380000000587
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/NET-ALB-INVALID-HEADERS-SAFE.json",
-      "mean_latency_ms": 2504.1412918006245
+      "mean_latency_ms": 2384.6470418000536
     },
     {
       "case_id": "NET-ALB-INVALID-HEADERS-VULN",
@@ -476,15 +473,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2487.843167000392,
-        2411.995750000642,
-        2557.1119999985967,
-        2488.4457499974815,
-        2489.8394590018142
+        2504.682833001425,
+        2311.650499999814,
+        2332.076374997996,
+        2349.2337499992573,
+        2399.6621250007593
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/NET-ALB-INVALID-HEADERS-VULN.json",
-      "mean_latency_ms": 2487.0472251997853
+      "mean_latency_ms": 2379.4611165998504
     },
     {
       "case_id": "NET-NO-FLOW-LOGS-SAFE",
@@ -492,15 +489,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2505.3994999980205,
-        2523.671792001551,
-        2525.4812910025066,
-        2572.5495830010914,
-        2396.2366669984476
+        2503.7162080006965,
+        2433.570624998538,
+        2350.4314579986385,
+        2448.6420419998467,
+        2482.2178750000603
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/NET-NO-FLOW-LOGS-SAFE.json",
-      "mean_latency_ms": 2504.6677666003234
+      "mean_latency_ms": 2443.715641599556
     },
     {
       "case_id": "NET-NO-FLOW-LOGS-VULN",
@@ -508,15 +505,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2467.519458001334,
-        2412.6710000018647,
-        2407.9843340005027,
-        2464.264499998535,
-        2392.136541002401
+        2512.582041999849,
+        2385.8694170012313,
+        2402.8055839989975,
+        2576.320250002027,
+        2475.7605000013427
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/NET-NO-FLOW-LOGS-VULN.json",
-      "mean_latency_ms": 2428.9151666009275
+      "mean_latency_ms": 2470.6675586006895
     },
     {
       "case_id": "NET-NO-HTTPS-REDIRECT-SAFE",
@@ -524,15 +521,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2577.489916999184,
-        2482.2660829995584,
-        2434.743375000835,
-        2459.360332999495,
-        2471.762208002474
+        2546.5360000016517,
+        2403.744999999617,
+        2463.026333000016,
+        2423.4199589991476,
+        2396.1777500007884
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/NET-NO-HTTPS-REDIRECT-SAFE.json",
-      "mean_latency_ms": 2485.1243832003092
+      "mean_latency_ms": 2446.581008400244
     },
     {
       "case_id": "NET-NO-HTTPS-REDIRECT-VULN",
@@ -540,15 +537,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2615.344207999442,
-        2598.5657920027734,
-        2378.5220829995524,
-        2363.9901669994288,
-        2468.09841600043
+        2535.5388749994745,
+        2428.051167000376,
+        2379.0539580004406,
+        2627.633166997839,
+        2464.9904999969294
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/NET-NO-HTTPS-REDIRECT-VULN.json",
-      "mean_latency_ms": 2484.9041332003253
+      "mean_latency_ms": 2487.053533399012
     },
     {
       "case_id": "NET-PUBLIC-INSTANCE-SAFE",
@@ -556,15 +553,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2418.13458300021,
-        2298.3067499990284,
-        2323.0466669992893,
-        2360.8552500008955,
-        2327.6050410022435
+        2496.243041001435,
+        3100.068083000224,
+        2394.74645899827,
+        2392.0074590023432,
+        2353.7081249996845
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/NET-PUBLIC-INSTANCE-SAFE.json",
-      "mean_latency_ms": 2345.5896582003334
+      "mean_latency_ms": 2547.3546334003913
     },
     {
       "case_id": "NET-PUBLIC-INSTANCE-VULN",
@@ -572,15 +569,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2366.3358750018233,
-        2480.605666998599,
-        2317.631417001394,
-        2318.535458001861,
-        2348.2457919999433
+        2450.0238330001594,
+        2399.2341670018504,
+        2339.253041998745,
+        2335.3968750016065,
+        2381.313958998362
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/NET-PUBLIC-INSTANCE-VULN.json",
-      "mean_latency_ms": 2366.270841800724
+      "mean_latency_ms": 2381.0443752001447
     },
     {
       "case_id": "NET-UNRESTRICTED-INGRESS-SAFE",
@@ -588,15 +585,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2386.6380840008787,
-        2367.863292001857,
-        2375.692749999871,
-        2347.2514579989365,
-        2455.883916998573
+        2495.040791000065,
+        2380.974084000627,
+        2441.3955000018177,
+        2468.858166001155,
+        2479.853583001386
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/NET-UNRESTRICTED-INGRESS-SAFE.json",
-      "mean_latency_ms": 2386.6659002000233
+      "mean_latency_ms": 2453.22442480101
     },
     {
       "case_id": "NET-UNRESTRICTED-INGRESS-VULN",
@@ -604,15 +601,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2415.4693750024308,
-        2437.776875001873,
-        2391.538625000976,
-        2347.382915999333,
-        2351.5000840016
+        2724.332374997175,
+        9310.624166002526,
+        2472.4761249999574,
+        2449.9473750001926,
+        2350.1426670009096
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/NET-UNRESTRICTED-INGRESS-VULN.json",
-      "mean_latency_ms": 2388.7335750012426
+      "mean_latency_ms": 3861.504541600152
     },
     {
       "case_id": "SEC-HARDCODED-CREDENTIAL-SAFE",
@@ -620,15 +617,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2418.3198749997246,
-        2362.1517499996116,
-        2351.2342080030066,
-        2437.9274589991837,
-        2368.2443329998932
+        2343.38900000148,
+        2384.1251249978086,
+        2361.6207920022134,
+        2336.674416997994,
+        2345.9081669971056
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/SEC-HARDCODED-CREDENTIAL-SAFE.json",
-      "mean_latency_ms": 2387.575525000284
+      "mean_latency_ms": 2354.3435001993203
     },
     {
       "case_id": "SEC-HARDCODED-CREDENTIAL-VULN",
@@ -636,15 +633,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2388.6910829969565,
-        2405.1844579989847,
-        2368.43166700055,
-        2347.536042001593,
-        2318.7261249986477
+        2411.618375001126,
+        2362.337792001199,
+        2300.0863749985,
+        2316.2319580005715,
+        2308.890791999147
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/SEC-HARDCODED-CREDENTIAL-VULN.json",
-      "mean_latency_ms": 2365.7138749993464
+      "mean_latency_ms": 2339.8330584001087
     },
     {
       "case_id": "SRV-NO-FUNCTION-ENCRYPTION-SAFE",
@@ -652,15 +649,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2398.5352919989964,
-        2376.5067500025907,
-        2371.946208000736,
-        2411.0595829988597,
-        2355.29970800053
+        2416.763000001083,
+        2365.914916001202,
+        2322.2060830012197,
+        2346.0351249996165,
+        2366.599083998153
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/SRV-NO-FUNCTION-ENCRYPTION-SAFE.json",
-      "mean_latency_ms": 2382.6695082003425
+      "mean_latency_ms": 2363.503641600255
     },
     {
       "case_id": "SRV-NO-FUNCTION-ENCRYPTION-VULN",
@@ -668,15 +665,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2424.7009999999136,
-        2362.4213750008494,
-        2411.2896250007907,
-        2418.463834001159,
-        2414.0608749985404
+        2340.0400830032595,
+        2381.0252090006543,
+        2603.763750001235,
+        2248.3355830008804,
+        2241.495334001229
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/SRV-NO-FUNCTION-ENCRYPTION-VULN.json",
-      "mean_latency_ms": 2406.1873418002506
+      "mean_latency_ms": 2362.9319918014517
     },
     {
       "case_id": "STO-NO-ACCESS-LOGGING-SAFE",
@@ -684,15 +681,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2392.161750001833,
-        2370.4592079993745,
-        2341.94954099803,
-        2352.377749997686,
-        2326.690375000908
+        2285.357875000045,
+        2258.6501670011785,
+        2296.6656659991713,
+        2363.6814169985882,
+        2279.3455829996674
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/STO-NO-ACCESS-LOGGING-SAFE.json",
-      "mean_latency_ms": 2356.727724799566
+      "mean_latency_ms": 2296.74014159973
     },
     {
       "case_id": "STO-NO-ACCESS-LOGGING-VULN",
@@ -700,15 +697,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2366.0234169983596,
-        2357.784541000001,
-        2346.5626670003985,
-        2356.306833000417,
-        2381.6650839980866
+        2329.310249999253,
+        2387.989374998142,
+        2329.1656250003143,
+        2280.0189169975056,
+        2283.560750001925
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/STO-NO-ACCESS-LOGGING-VULN.json",
-      "mean_latency_ms": 2361.6685083994525
+      "mean_latency_ms": 2322.008983399428
     },
     {
       "case_id": "STO-PUBLIC-BUCKET-SAFE",
@@ -716,15 +713,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2424.3569579994073,
-        2344.25495799951,
-        2348.2525419967715,
-        2347.8834580018884,
-        2320.704083002056
+        2295.1682080019964,
+        2378.3974170000874,
+        2404.032124999503,
+        2233.799875000841,
+        2294.3582910011173
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/STO-PUBLIC-BUCKET-SAFE.json",
-      "mean_latency_ms": 2357.0903997999267
+      "mean_latency_ms": 2321.151183200709
     },
     {
       "case_id": "STO-PUBLIC-BUCKET-VULN",
@@ -732,15 +729,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2346.884582999337,
-        3321.5574999994715,
-        2360.2037910022773,
-        2271.989000000758,
-        2573.7372920011694
+        2290.0404590000107,
+        2361.192291999032,
+        2307.431542001723,
+        2261.406708999857,
+        2253.3030420017894
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/STO-PUBLIC-BUCKET-VULN.json",
-      "mean_latency_ms": 2574.8744332006027
+      "mean_latency_ms": 2294.6748088004824
     },
     {
       "case_id": "STO-PUBLIC-DATABASE-SAFE",
@@ -748,15 +745,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2356.009625000297,
-        2268.4266659998684,
-        2285.2464170027815,
-        3621.1296250003215,
-        2384.047499999724
+        2266.011374998925,
+        2388.111791002302,
+        2201.50116700097,
+        2239.5787079985894,
+        2376.315125002293
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/STO-PUBLIC-DATABASE-SAFE.json",
-      "mean_latency_ms": 2582.9719666005985
+      "mean_latency_ms": 2294.303633200616
     },
     {
       "case_id": "STO-PUBLIC-DATABASE-VULN",
@@ -764,15 +761,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2349.9014170010923,
-        2464.7643330026767,
-        2325.202874999377,
-        2284.939666002174,
-        2491.2057089968584
+        2327.877832998638,
+        2334.6675829998276,
+        2372.962790999736,
+        2335.6834999976854,
+        2561.0810830003174
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/STO-PUBLIC-DATABASE-VULN.json",
-      "mean_latency_ms": 2383.2028000004357
+      "mean_latency_ms": 2386.454557999241
     },
     {
       "case_id": "STO-UNENCRYPTED-BUCKET-SAFE",
@@ -780,15 +777,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2344.243874998938,
-        2293.435416002467,
-        2851.964499997848,
-        2331.231291998847,
-        2280.364082998858
+        2347.859249999601,
+        2462.6745829991705,
+        2584.9130409987993,
+        2387.878334000561,
+        2320.393707999756
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/STO-UNENCRYPTED-BUCKET-SAFE.json",
-      "mean_latency_ms": 2420.2478331993916
+      "mean_latency_ms": 2420.7437831995776
     },
     {
       "case_id": "STO-UNENCRYPTED-BUCKET-VULN",
@@ -796,15 +793,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2333.42087499841,
-        2920.4245840010117,
-        2377.319957999134,
-        2389.210875000572,
-        2371.081958001014
+        2326.3484579983924,
+        2302.4664590011525,
+        2270.0380839996797,
+        2348.214083998755,
+        2325.3673750004964
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/STO-UNENCRYPTED-BUCKET-VULN.json",
-      "mean_latency_ms": 2478.2916500000283
+      "mean_latency_ms": 2314.486891999695
     },
     {
       "case_id": "cis_examples/cis_2_1_s3_public",
@@ -812,15 +809,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2382.691957998759,
-        2765.467708999495,
-        2317.5050419995387,
-        2325.7409580000967,
-        2820.0147909992666
+        2338.6662090015307,
+        2343.530333000672,
+        2267.9302919968904,
+        2283.5904589992424,
+        2279.800749998685
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/cis_examples__cis_2_1_s3_public.json",
-      "mean_latency_ms": 2522.284091599431
+      "mean_latency_ms": 2302.703608599404
     },
     {
       "case_id": "cis_examples/cis_2_2_s3_encryption",
@@ -828,15 +825,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2353.420167000877,
-        2317.849708000722,
-        2701.026709000871,
-        2343.481125000835,
-        2297.427624998818
+        2361.712540998269,
+        2350.0551670003915,
+        2234.5942920001107,
+        2280.0112500008254,
+        2307.554541999707
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/cis_examples__cis_2_2_s3_encryption.json",
-      "mean_latency_ms": 2402.6410668004246
+      "mean_latency_ms": 2306.7855583998607
     },
     {
       "case_id": "cis_examples/cis_3_1_cloudtrail",
@@ -844,15 +841,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2821.8889579984534,
-        2368.9734999970824,
-        2336.4306670009682,
-        2691.8986669988954,
-        2305.744083998434
+        2617.55570799869,
+        2350.372583998251,
+        3018.6865830000897,
+        2739.6606669972243,
+        2227.1479169976374
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/cis_examples__cis_3_1_cloudtrail.json",
-      "mean_latency_ms": 2504.9871751987666
+      "mean_latency_ms": 2590.6846917983785
     },
     {
       "case_id": "cis_examples/cis_4_1_security_group",
@@ -860,15 +857,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        2336.3883749989327,
-        2814.36791699889,
-        2352.5517500020214,
-        2440.858041001775,
-        2543.0844579968834
+        2284.2311250024068,
+        2478.356707997591,
+        2573.28037499974,
+        2545.716667002125,
+        2577.0797920013138
       ],
       "stderr": "",
       "raw_path": "results/raw/checkov/cis_examples__cis_4_1_security_group.json",
-      "mean_latency_ms": 2497.4501081997005
+      "mean_latency_ms": 2491.7329334006354
     },
     {
       "case_id": "CMP-MUTABLE-IMAGE-TAGS-SAFE",
@@ -876,15 +873,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        31.013584000902483,
-        20.37045799806947,
-        21.012917000916786,
-        17.492915998445824,
-        18.076667001878377
+        25.08779100026004,
+        20.38508300029207,
+        19.194042000890477,
+        18.274707999808015,
+        19.066000000748318
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/CMP-MUTABLE-IMAGE-TAGS-SAFE.json",
-      "mean_latency_ms": 21.593308400042588
+      "mean_latency_ms": 20.401524800399784
     },
     {
       "case_id": "CMP-MUTABLE-IMAGE-TAGS-VULN",
@@ -892,15 +889,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        19.259208002040396,
-        18.74150000003283,
-        19.829167002171744,
-        18.71154099717387,
-        18.163875000027474
+        17.879125000035856,
+        18.506542000977788,
+        18.020875002548564,
+        17.63879200007068,
+        17.924541996762855
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/CMP-MUTABLE-IMAGE-TAGS-VULN.json",
-      "mean_latency_ms": 18.941058200289262
+      "mean_latency_ms": 17.99397520007915
     },
     {
       "case_id": "CMP-NO-IMAGE-SCANNING-SAFE",
@@ -908,15 +905,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.895416000304976,
-        18.228416000056313,
-        18.433124998409767,
-        17.322916999546578,
-        18.026584002655
+        18.319041999347974,
+        17.641457998252008,
+        17.29137499933131,
+        17.895375000080094,
+        18.00741699844366
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/CMP-NO-IMAGE-SCANNING-SAFE.json",
-      "mean_latency_ms": 18.181291600194527
+      "mean_latency_ms": 17.83093339909101
     },
     {
       "case_id": "CMP-NO-IMAGE-SCANNING-VULN",
@@ -924,15 +921,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.354374999034917,
-        18.18158299647621,
-        18.38504099941929,
-        17.97633300157031,
-        19.088208999164635
+        19.429625001066597,
+        18.932915998448152,
+        18.57637500143028,
+        18.38008399863611,
+        18.49891699748696
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/CMP-NO-IMAGE-SCANNING-VULN.json",
-      "mean_latency_ms": 18.397108199133072
+      "mean_latency_ms": 18.76358339941362
     },
     {
       "case_id": "CMP-NO-IMDSV2-SAFE",
@@ -940,15 +937,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.57712499986519,
-        18.49345899972832,
-        18.028999998932704,
-        18.44337500006077,
-        19.49099999910686
+        19.44629099671147,
+        18.704875001276378,
+        19.328916001541074,
+        18.856958002288593,
+        19.301291002193466
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/CMP-NO-IMDSV2-SAFE.json",
-      "mean_latency_ms": 18.60679179953877
+      "mean_latency_ms": 19.127666200802196
     },
     {
       "case_id": "CMP-NO-IMDSV2-VULN",
@@ -956,15 +953,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.820583001797786,
-        18.14649999869289,
-        18.200667000201065,
-        17.941291000170168,
-        17.874125001981156
+        19.034832999750506,
+        17.51154200246674,
+        17.323832998954458,
+        17.140834002930205,
+        17.397625000739936
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/CMP-NO-IMDSV2-VULN.json",
-      "mean_latency_ms": 18.196633200568613
+      "mean_latency_ms": 17.68173340096837
     },
     {
       "case_id": "ENC-NO-KEY-ROTATION-SAFE",
@@ -972,15 +969,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.088541997713037,
-        18.59462499851361,
-        18.306583999219583,
-        17.950250003195833,
-        18.411292003293056
+        18.441250002069864,
+        18.446999998559477,
+        18.167624999477994,
+        17.3845830031496,
+        17.273333000048297
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/ENC-NO-KEY-ROTATION-SAFE.json",
-      "mean_latency_ms": 18.270258600387024
+      "mean_latency_ms": 17.942758200661046
     },
     {
       "case_id": "ENC-NO-KEY-ROTATION-VULN",
@@ -988,15 +985,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.055832999380073,
-        18.18591700066463,
-        17.534375001559965,
-        18.529167002270697,
-        20.067292000021553
+        19.589333001931664,
+        20.84212499903515,
+        24.259166999399895,
+        25.928958999429597,
+        22.182374999829335
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/ENC-NO-KEY-ROTATION-VULN.json",
-      "mean_latency_ms": 18.474516800779384
+      "mean_latency_ms": 22.560391799925128
     },
     {
       "case_id": "ENC-UNENCRYPTED-DATABASE-SAFE",
@@ -1004,15 +1001,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.63495799989323,
-        18.65008299864712,
-        18.502082999475533,
-        18.331167000724236,
-        18.72579199698521
+        18.010166997555643,
+        17.828291998739587,
+        17.687499999738066,
+        17.33141599834198,
+        17.27958399715135
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/ENC-UNENCRYPTED-DATABASE-SAFE.json",
-      "mean_latency_ms": 18.568816599145066
+      "mean_latency_ms": 17.627391798305325
     },
     {
       "case_id": "ENC-UNENCRYPTED-DATABASE-VULN",
@@ -1020,15 +1017,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.87712499956251,
-        18.930540998553624,
-        18.497749999369262,
-        18.362416998570552,
-        18.315166998945642
+        18.704166999668814,
+        18.040999999357155,
+        17.939125002158107,
+        17.687790998024866,
+        17.468583999288967
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/ENC-UNENCRYPTED-DATABASE-VULN.json",
-      "mean_latency_ms": 18.59659999900032
+      "mean_latency_ms": 17.968133399699582
     },
     {
       "case_id": "ENC-UNENCRYPTED-VOLUME-SAFE",
@@ -1036,15 +1033,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.653957999049453,
-        18.300457999430364,
-        17.683875001239358,
-        17.891415998747107,
-        18.98412499940605
+        18.69675000125426,
+        18.403250000119442,
+        19.233500002883375,
+        18.70562499971129,
+        18.28849999947124
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/ENC-UNENCRYPTED-VOLUME-SAFE.json",
-      "mean_latency_ms": 18.302766399574466
+      "mean_latency_ms": 18.66552500068792
     },
     {
       "case_id": "ENC-UNENCRYPTED-VOLUME-VULN",
@@ -1052,15 +1049,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.35466699776589,
-        17.575166002643527,
-        17.844375001004664,
-        18.984834001457784,
-        17.832834000728326
+        18.236874999274733,
+        17.83570800034795,
+        17.93454099970404,
+        18.159958999603987,
+        17.278499999520136
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/ENC-UNENCRYPTED-VOLUME-VULN.json",
-      "mean_latency_ms": 18.11837520072004
+      "mean_latency_ms": 17.88911659969017
     },
     {
       "case_id": "IAM-WILDCARD-ACTION-SAFE",
@@ -1068,15 +1065,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.18624999941676,
-        17.529708999063587,
-        17.606166999030393,
-        18.04529199944227,
-        18.54054199793609
+        18.98849999997765,
+        18.45879200118361,
+        18.706832997850142,
+        18.79137500145589,
+        21.81241600192152
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/IAM-WILDCARD-ACTION-SAFE.json",
-      "mean_latency_ms": 17.98159199897782
+      "mean_latency_ms": 19.351583200477762
     },
     {
       "case_id": "IAM-WILDCARD-ACTION-VULN",
@@ -1084,15 +1081,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.931665999843972,
-        17.790999998396728,
-        18.49249999941094,
-        18.216917000245303,
-        17.76724999945145
+        17.95512500029872,
+        18.066125001496403,
+        17.712875000142958,
+        17.426667000108864,
+        17.177915997308446
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/IAM-WILDCARD-ACTION-VULN.json",
-      "mean_latency_ms": 18.23986659946968
+      "mean_latency_ms": 17.66774159987108
     },
     {
       "case_id": "IAM-WILDCARD-TRUST-SAFE",
@@ -1100,15 +1097,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.432083001243882,
-        18.929249999928288,
-        18.15237499977229,
-        18.435917001625057,
-        18.25670800099033
+        18.477334000635892,
+        17.9552089975914,
+        17.895332999614766,
+        17.74154099985026,
+        17.911917002493283
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/IAM-WILDCARD-TRUST-SAFE.json",
-      "mean_latency_ms": 18.44126660071197
+      "mean_latency_ms": 17.99626680003712
     },
     {
       "case_id": "IAM-WILDCARD-TRUST-VULN",
@@ -1116,15 +1113,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        19.221083999582333,
-        18.463374999555526,
-        19.568167001125403,
-        18.885083998611663,
-        18.37741700001061
+        19.073082999966573,
+        18.42029199906392,
+        17.823457998019876,
+        17.659291002928512,
+        18.493457999284146
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/IAM-WILDCARD-TRUST-VULN.json",
-      "mean_latency_ms": 18.903025399777107
+      "mean_latency_ms": 18.293916399852606
     },
     {
       "case_id": "MON-NO-LOG-ENCRYPTION-SAFE",
@@ -1132,15 +1129,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        19.394208000448998,
-        19.11599999948521,
-        19.03258300080779,
-        19.020666997676017,
-        19.09483299823478
+        18.261749999510357,
+        17.23462499649031,
+        17.130041000200436,
+        17.114832997322083,
+        17.17958399967756
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/MON-NO-LOG-ENCRYPTION-SAFE.json",
-      "mean_latency_ms": 19.13165819933056
+      "mean_latency_ms": 17.38416659864015
     },
     {
       "case_id": "MON-NO-LOG-ENCRYPTION-VULN",
@@ -1148,15 +1145,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.721291999099776,
-        17.68045899734716,
-        17.569499999808613,
-        18.259749998833286,
-        18.525292001868365
+        17.924625000887318,
+        17.35624999855645,
+        17.446124998969026,
+        18.413207999401493,
+        17.46729200021946
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/MON-NO-LOG-ENCRYPTION-VULN.json",
-      "mean_latency_ms": 18.15125859939144
+      "mean_latency_ms": 17.72149999960675
     },
     {
       "case_id": "MON-NO-TRAIL-VALIDATION-SAFE",
@@ -1164,15 +1161,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        19.20304200029932,
-        18.95933400010108,
-        18.796250002196757,
-        19.5315839991963,
-        19.01091699983226
+        18.278125000506407,
+        17.707333001453662,
+        16.970750002656132,
+        16.938333999860333,
+        19.753332999243867
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/MON-NO-TRAIL-VALIDATION-SAFE.json",
-      "mean_latency_ms": 19.100225400325144
+      "mean_latency_ms": 17.92957500074408
     },
     {
       "case_id": "MON-NO-TRAIL-VALIDATION-VULN",
@@ -1180,15 +1177,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.732832999376114,
-        18.52754200081108,
-        18.87104200068279,
-        18.30704099847935,
-        18.18654200178571
+        19.24637500269455,
+        18.685833001654828,
+        18.703458001255058,
+        18.10562500031665,
+        18.096625000907807
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/MON-NO-TRAIL-VALIDATION-VULN.json",
-      "mean_latency_ms": 18.52500000022701
+      "mean_latency_ms": 18.567583201365778
     },
     {
       "case_id": "MON-TRAIL-NOT-MULTIREGION-SAFE",
@@ -1196,15 +1193,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        19.092999998974847,
-        17.82229099990218,
-        17.573375000210945,
-        17.418499999621417,
-        18.02937499815016
+        18.176166999182897,
+        17.831375000241678,
+        17.390291999618057,
+        16.89112500025658,
+        17.38608399682562
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/MON-TRAIL-NOT-MULTIREGION-SAFE.json",
-      "mean_latency_ms": 17.98730819937191
+      "mean_latency_ms": 17.535008599224966
     },
     {
       "case_id": "MON-TRAIL-NOT-MULTIREGION-VULN",
@@ -1212,15 +1209,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.770833001326537,
-        18.366832999163307,
-        18.62391699978616,
-        18.92658299766481,
-        18.78450000003795
+        18.55716700083576,
+        17.91508300084388,
+        18.245916999148903,
+        17.444832999899518,
+        17.24929199917824
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/MON-TRAIL-NOT-MULTIREGION-VULN.json",
-      "mean_latency_ms": 18.694533199595753
+      "mean_latency_ms": 17.88245839998126
     },
     {
       "case_id": "NET-ALB-INVALID-HEADERS-SAFE",
@@ -1228,15 +1225,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        19.67441699889605,
-        19.07358300013584,
-        19.208292000257643,
-        18.799749999743653,
-        18.597959002363496
+        18.517791999329347,
+        17.57825000095181,
+        18.01737500136369,
+        18.62391699978616,
+        17.79466600055457
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/NET-ALB-INVALID-HEADERS-SAFE.json",
-      "mean_latency_ms": 19.070800200279336
+      "mean_latency_ms": 18.106400000397116
     },
     {
       "case_id": "NET-ALB-INVALID-HEADERS-VULN",
@@ -1244,15 +1241,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.63995799794793,
-        18.255874998430954,
-        17.863749999378342,
-        18.27274999959627,
-        17.920083002536558
+        17.985791997489287,
+        17.723375000059605,
+        17.76883400088991,
+        17.444249999243766,
+        16.65970799876959
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/NET-ALB-INVALID-HEADERS-VULN.json",
-      "mean_latency_ms": 18.19048319957801
+      "mean_latency_ms": 17.51639179929043
     },
     {
       "case_id": "NET-NO-FLOW-LOGS-SAFE",
@@ -1260,15 +1257,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        19.494250002026092,
-        19.210124999517575,
-        18.950958001369145,
-        18.661124999198364,
-        19.382582999242004
+        17.759042002580827,
+        17.768457997590303,
+        17.894791999424342,
+        18.017917001998285,
+        18.02937500178814
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/NET-NO-FLOW-LOGS-SAFE.json",
-      "mean_latency_ms": 19.139808200270636
+      "mean_latency_ms": 17.89391680067638
     },
     {
       "case_id": "NET-NO-FLOW-LOGS-VULN",
@@ -1276,15 +1273,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        19.441958000243176,
-        18.86308299799566,
-        18.966125000588363,
-        18.226958000013838,
-        18.770416001643753
+        18.228583001473453,
+        17.594291999557754,
+        18.11033400008455,
+        17.17929200094659,
+        17.36983400041936
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/NET-NO-FLOW-LOGS-VULN.json",
-      "mean_latency_ms": 18.853708000096958
+      "mean_latency_ms": 17.69646700049634
     },
     {
       "case_id": "NET-NO-HTTPS-REDIRECT-SAFE",
@@ -1292,15 +1289,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.739291997917462,
-        19.240165998780867,
-        18.971292000060203,
-        18.974332997458987,
-        18.523541002650745
+        18.250916997203603,
+        17.74620800279081,
+        18.459999999322463,
+        18.2821669986879,
+        17.820959001255687
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/NET-NO-HTTPS-REDIRECT-SAFE.json",
-      "mean_latency_ms": 18.889724799373653
+      "mean_latency_ms": 18.112050199852092
     },
     {
       "case_id": "NET-NO-HTTPS-REDIRECT-VULN",
@@ -1308,15 +1305,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.541833997005597,
-        18.452291002176935,
-        18.08095799788134,
-        17.941041998710716,
-        18.270000000484288
+        18.383999999059597,
+        17.377208001562394,
+        17.521083002066007,
+        17.393624999385793,
+        17.636332999245496
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/NET-NO-HTTPS-REDIRECT-VULN.json",
-      "mean_latency_ms": 18.257224999251775
+      "mean_latency_ms": 17.662449800263857
     },
     {
       "case_id": "NET-PUBLIC-INSTANCE-SAFE",
@@ -1324,15 +1321,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.46612499866751,
-        18.212375001894543,
-        18.25441699838848,
-        18.469458998879418,
-        17.98745899941423
+        18.44945899938466,
+        17.996750000747852,
+        17.62149999922258,
+        17.382999998517334,
+        17.82950000051642
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/NET-PUBLIC-INSTANCE-SAFE.json",
-      "mean_latency_ms": 18.277966999448836
+      "mean_latency_ms": 17.85604179967777
     },
     {
       "case_id": "NET-PUBLIC-INSTANCE-VULN",
@@ -1340,15 +1337,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.902832998719532,
-        18.375875002675457,
-        19.239249999372987,
-        18.784292002237635,
-        17.924832998687634
+        18.302791999303736,
+        18.149957999412436,
+        17.304249999142485,
+        17.31850000214763,
+        17.66591699924902
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/NET-PUBLIC-INSTANCE-VULN.json",
-      "mean_latency_ms": 18.64541660033865
+      "mean_latency_ms": 17.74828339985106
     },
     {
       "case_id": "NET-UNRESTRICTED-INGRESS-SAFE",
@@ -1356,15 +1353,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.82275000025402,
-        18.364667001151247,
-        18.259624997881474,
-        18.039292001049034,
-        18.63479099847609
+        17.99633400150924,
+        17.41079099883791,
+        17.171666000649566,
+        17.332624996925006,
+        17.272917000809684
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/NET-UNRESTRICTED-INGRESS-SAFE.json",
-      "mean_latency_ms": 18.424224999762373
+      "mean_latency_ms": 17.43686659974628
     },
     {
       "case_id": "NET-UNRESTRICTED-INGRESS-VULN",
@@ -1372,15 +1369,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        19.869832998665515,
-        19.820583002001513,
-        19.669458000862505,
-        19.672624999657273,
-        18.455041998095112
+        18.153417000576155,
+        17.412791999959154,
+        17.37962500192225,
+        17.313915999693563,
+        17.22399999925983
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/NET-UNRESTRICTED-INGRESS-VULN.json",
-      "mean_latency_ms": 19.497508199856384
+      "mean_latency_ms": 17.49675000028219
     },
     {
       "case_id": "SEC-HARDCODED-CREDENTIAL-SAFE",
@@ -1388,15 +1385,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.442832999426173,
-        18.75333299904014,
-        17.930874997546198,
-        18.034584001725307,
-        18.188665999332443
+        18.33733300009044,
+        17.458334001275944,
+        17.29587500085472,
+        17.654791998211294,
+        17.483041003288236
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/SEC-HARDCODED-CREDENTIAL-SAFE.json",
-      "mean_latency_ms": 18.270058199414052
+      "mean_latency_ms": 17.645875000744127
     },
     {
       "case_id": "SEC-HARDCODED-CREDENTIAL-VULN",
@@ -1404,15 +1401,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.496333999792114,
-        17.674374998023268,
-        17.259374999412103,
-        17.812750000302913,
-        18.75037500212784
+        18.296750000445172,
+        17.117749997851206,
+        17.459499998949468,
+        17.368666998663684,
+        16.884208998817485
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/SEC-HARDCODED-CREDENTIAL-VULN.json",
-      "mean_latency_ms": 17.998641799931647
+      "mean_latency_ms": 17.425375198945403
     },
     {
       "case_id": "SRV-NO-FUNCTION-ENCRYPTION-SAFE",
@@ -1420,15 +1417,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.94650000031106,
-        18.854624999221414,
-        19.009083000128157,
-        18.906165998487268,
-        18.85954199678963
+        18.65512500080513,
+        17.453290998673765,
+        17.51045900164172,
+        17.08754100036458,
+        17.67962499798159
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/SRV-NO-FUNCTION-ENCRYPTION-SAFE.json",
-      "mean_latency_ms": 18.915183198987506
+      "mean_latency_ms": 17.677208199893357
     },
     {
       "case_id": "SRV-NO-FUNCTION-ENCRYPTION-VULN",
@@ -1436,15 +1433,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.376208001427585,
-        18.501250000554137,
-        17.802041002141777,
-        18.39112500238116,
-        18.65200000247569
+        18.13074999881792,
+        17.518332999316044,
+        17.351667000184534,
+        17.264792000787565,
+        17.509124998468906
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/SRV-NO-FUNCTION-ENCRYPTION-VULN.json",
-      "mean_latency_ms": 18.34452480179607
+      "mean_latency_ms": 17.554933399514994
     },
     {
       "case_id": "STO-NO-ACCESS-LOGGING-SAFE",
@@ -1452,15 +1449,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.963041999086272,
-        18.602791999001056,
-        18.86283400017419,
-        18.501167000067653,
-        18.764000000373926
+        18.213958999695024,
+        18.172874999436317,
+        17.932624999957625,
+        18.574375000753207,
+        17.89887500126497
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/STO-NO-ACCESS-LOGGING-SAFE.json",
-      "mean_latency_ms": 18.73876699974062
+      "mean_latency_ms": 18.15854180022143
     },
     {
       "case_id": "STO-NO-ACCESS-LOGGING-VULN",
@@ -1468,15 +1465,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        19.626459001301555,
-        19.299499999760883,
-        19.194250002328772,
-        18.431707998388447,
-        18.23820899880957
+        18.201249997218838,
+        17.551707998791244,
+        17.982833000132814,
+        18.283749999682186,
+        17.793957998947008
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/STO-NO-ACCESS-LOGGING-VULN.json",
-      "mean_latency_ms": 18.958025200117845
+      "mean_latency_ms": 17.962699798954418
     },
     {
       "case_id": "STO-PUBLIC-BUCKET-SAFE",
@@ -1484,15 +1481,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        19.23858399823075,
-        19.434833000559593,
-        19.06595800028299,
-        19.558916999812936,
-        20.30949999971199
+        19.422166002186714,
+        19.315708999783965,
+        18.7572499999078,
+        18.742790998658165,
+        18.185958000685787
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/STO-PUBLIC-BUCKET-SAFE.json",
-      "mean_latency_ms": 19.521558399719652
+      "mean_latency_ms": 18.884774800244486
     },
     {
       "case_id": "STO-PUBLIC-BUCKET-VULN",
@@ -1500,15 +1497,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        19.37437500237138,
-        18.784791998768924,
-        18.41870799762546,
-        18.978832998982398,
-        18.464791999576846
+        18.139834002795396,
+        17.3966250004014,
+        17.601083000045037,
+        17.17412500147475,
+        17.866833000880433
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/STO-PUBLIC-BUCKET-VULN.json",
-      "mean_latency_ms": 18.804299999465
+      "mean_latency_ms": 17.635700001119403
     },
     {
       "case_id": "STO-PUBLIC-DATABASE-SAFE",
@@ -1516,15 +1513,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.467249999957858,
-        17.53662500050268,
-        17.910582999320468,
-        18.015583998931106,
-        17.38416700027301
+        17.883290998724988,
+        17.272583001613384,
+        18.221082998934435,
+        19.49320800122223,
+        19.388458000321407
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/STO-PUBLIC-DATABASE-SAFE.json",
-      "mean_latency_ms": 17.862841799797025
+      "mean_latency_ms": 18.45172460016329
     },
     {
       "case_id": "STO-PUBLIC-DATABASE-VULN",
@@ -1532,15 +1529,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.62733300004038,
-        17.666499999904772,
-        17.79220900061773,
-        17.643542003497714,
-        16.85179099877132
+        18.322291001823032,
+        18.085292002069764,
+        17.3983330023475,
+        18.36725000248407,
+        17.400875000021188
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/STO-PUBLIC-DATABASE-VULN.json",
-      "mean_latency_ms": 17.716275000566384
+      "mean_latency_ms": 17.91480820174911
     },
     {
       "case_id": "STO-UNENCRYPTED-BUCKET-SAFE",
@@ -1548,15 +1545,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.840584001736715,
-        18.533583002863452,
-        19.074624997301726,
-        18.70812500055763,
-        18.953000002511544
+        18.137208000553073,
+        17.600667000806425,
+        17.390749999321997,
+        17.611082999792416,
+        17.63008399939281
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/STO-UNENCRYPTED-BUCKET-SAFE.json",
-      "mean_latency_ms": 18.821983400994213
+      "mean_latency_ms": 17.673958399973344
     },
     {
       "case_id": "STO-UNENCRYPTED-BUCKET-VULN",
@@ -1564,15 +1561,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        19.633042000350542,
-        19.708667001395952,
-        18.852583998523187,
-        18.42183400003705,
-        18.934666997665772
+        18.677000000025146,
+        17.953374997887295,
+        17.895041000883793,
+        17.778917001123773,
+        17.2889169989503
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/STO-UNENCRYPTED-BUCKET-VULN.json",
-      "mean_latency_ms": 19.1101587995945
+      "mean_latency_ms": 17.91864999977406
     },
     {
       "case_id": "cis_examples/cis_2_1_s3_public",
@@ -1580,15 +1577,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.66504100325983,
-        18.349040998145938,
-        18.04229100162047,
-        18.582458000309998,
-        18.178374997660285
+        18.290291001903825,
+        17.761667000741,
+        17.65187499768217,
+        17.91929200044251,
+        17.443791999539826
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/cis_examples__cis_2_1_s3_public.json",
-      "mean_latency_ms": 18.363441200199304
+      "mean_latency_ms": 17.813383400061866
     },
     {
       "case_id": "cis_examples/cis_2_2_s3_encryption",
@@ -1596,15 +1593,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        18.6668339993048,
-        17.88466599828098,
-        17.865207999420818,
-        17.654792001849273,
-        17.769374997442355
+        17.983458998060087,
+        17.954749997443287,
+        17.782791997888125,
+        18.292000000656117,
+        17.977374998736195
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/cis_examples__cis_2_2_s3_encryption.json",
-      "mean_latency_ms": 17.968174999259645
+      "mean_latency_ms": 17.998075198556762
     },
     {
       "case_id": "cis_examples/cis_3_1_cloudtrail",
@@ -1612,15 +1609,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        19.195457996829646,
-        19.111375000647968,
-        18.489166999643203,
-        18.386792002274888,
-        18.372375001490582
+        18.50870799898985,
+        17.8196669985482,
+        18.159167000703746,
+        17.18395899661118,
+        17.57079099843395
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/cis_examples__cis_3_1_cloudtrail.json",
-      "mean_latency_ms": 18.711033400177257
+      "mean_latency_ms": 17.848458398657385
     },
     {
       "case_id": "cis_examples/cis_4_1_security_group",
@@ -1628,15 +1625,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        19.28458299880731,
-        19.361875001777662,
-        19.376166997972177,
-        17.99037499949918,
-        18.97133400052553
+        18.38737499929266,
+        17.63329100140254,
+        17.84179199967184,
+        17.530666998936795,
+        18.346417000429938
       ],
       "stderr": "",
       "raw_path": "results/raw/opa/cis_examples__cis_4_1_security_group.json",
-      "mean_latency_ms": 18.996866799716372
+      "mean_latency_ms": 17.947908399946755
     },
     {
       "case_id": "CMP-MUTABLE-IMAGE-TAGS-SAFE",
@@ -1644,15 +1641,15 @@
       "status": "ok",
       "exit_code": 2,
       "latency_ms": [
-        439.12920799994026,
-        426.49675000211573,
-        425.04750000080094,
-        423.79545900257654,
-        423.66737500196905
+        437.6953749997483,
+        421.6947919994709,
+        429.2234160020598,
+        428.29537500074366,
+        429.5300000012503
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/CMP-MUTABLE-IMAGE-TAGS-SAFE.json",
-      "mean_latency_ms": 427.6272584014805
+      "mean_latency_ms": 429.2877916006546
     },
     {
       "case_id": "CMP-MUTABLE-IMAGE-TAGS-VULN",
@@ -1660,15 +1657,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        427.9224579986476,
-        425.0919170008274,
-        425.0286669994239,
-        423.3672500013199,
-        429.09483299808926
+        423.8105829972483,
+        431.25891700037755,
+        425.14554200170096,
+        427.6480000007723,
+        426.18824999954086
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/CMP-MUTABLE-IMAGE-TAGS-VULN.json",
-      "mean_latency_ms": 426.1010249996616
+      "mean_latency_ms": 426.810258399928
     },
     {
       "case_id": "CMP-NO-IMAGE-SCANNING-SAFE",
@@ -1676,15 +1673,15 @@
       "status": "ok",
       "exit_code": 2,
       "latency_ms": [
-        424.91591699945275,
-        425.5094170002849,
-        421.8399999990652,
-        417.86358399986057,
-        424.0187909999804
+        420.99612499805517,
+        420.9558330003347,
+        425.16033300125855,
+        424.2891250032699,
+        423.9659170016239
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/CMP-NO-IMAGE-SCANNING-SAFE.json",
-      "mean_latency_ms": 422.82954179972876
+      "mean_latency_ms": 423.07346660090843
     },
     {
       "case_id": "CMP-NO-IMAGE-SCANNING-VULN",
@@ -1692,15 +1689,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        418.2730000029551,
-        427.18387500281096,
-        428.49187499814434,
-        422.15945799762267,
-        419.16212499927497
+        424.17712500173366,
+        421.7164590008906,
+        430.29795899929013,
+        423.02870800267556,
+        422.76570899775834
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/CMP-NO-IMAGE-SCANNING-VULN.json",
-      "mean_latency_ms": 423.0540666001616
+      "mean_latency_ms": 424.39719200046966
     },
     {
       "case_id": "CMP-NO-IMDSV2-SAFE",
@@ -1708,15 +1705,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        420.3720830009843,
-        421.30050000196206,
-        424.31608400147525,
-        426.48383299820125,
-        421.6567080002278
+        422.08041599951684,
+        419.1387079990818,
+        416.50674999982584,
+        423.01312500057975,
+        453.87795900023775
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/CMP-NO-IMDSV2-SAFE.json",
-      "mean_latency_ms": 422.82584160057013
+      "mean_latency_ms": 426.9233915998484
     },
     {
       "case_id": "CMP-NO-IMDSV2-VULN",
@@ -1724,15 +1721,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        421.5942500013625,
-        423.4964589995798,
-        421.71058299936703,
-        423.43712499859976,
-        422.824875000515
+        425.9419159971003,
+        430.5116249997809,
+        431.5342919981049,
+        423.42050000297604,
+        422.4992499985092
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/CMP-NO-IMDSV2-VULN.json",
-      "mean_latency_ms": 422.6126583998848
+      "mean_latency_ms": 426.78151659929426
     },
     {
       "case_id": "ENC-NO-KEY-ROTATION-SAFE",
@@ -1740,15 +1737,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        422.2287089978636,
-        419.4218750017171,
-        421.25620799924945,
-        423.20016699886764,
-        423.2717919985589
+        420.2382910007145,
+        420.00108399952296,
+        416.21979200135684,
+        420.90116599865723,
+        419.4146669979091
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/ENC-NO-KEY-ROTATION-SAFE.json",
-      "mean_latency_ms": 421.87575019925134
+      "mean_latency_ms": 419.3549999996321
     },
     {
       "case_id": "ENC-NO-KEY-ROTATION-VULN",
@@ -1756,15 +1753,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        424.4905839987041,
-        419.53758299860056,
-        417.3259170020174,
-        420.8206250004878,
-        421.5954999999667
+        416.10762500204146,
+        416.0437919999822,
+        422.58329200194567,
+        420.06087499976275,
+        420.5287090007914
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/ENC-NO-KEY-ROTATION-VULN.json",
-      "mean_latency_ms": 420.7540417999553
+      "mean_latency_ms": 419.0648586009047
     },
     {
       "case_id": "ENC-UNENCRYPTED-DATABASE-SAFE",
@@ -1772,15 +1769,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        423.95179199957056,
-        425.37716700098827,
-        423.0842079996364,
-        422.34354200263624,
-        424.69174999860115
+        422.45045799791114,
+        425.3576659975806,
+        421.33224999997765,
+        425.9033750022354,
+        428.941541002132
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/ENC-UNENCRYPTED-DATABASE-SAFE.json",
-      "mean_latency_ms": 423.8896918002865
+      "mean_latency_ms": 424.79705799996736
     },
     {
       "case_id": "ENC-UNENCRYPTED-DATABASE-VULN",
@@ -1788,15 +1785,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        421.06079199948,
-        422.6505000006,
-        448.6815409982228,
-        427.7875000007043,
-        420.44808299760916
+        431.76600000151666,
+        435.7742499996675,
+        426.8153330012865,
+        433.2415829994716,
+        430.87737500172807
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/ENC-UNENCRYPTED-DATABASE-VULN.json",
-      "mean_latency_ms": 428.12568319932325
+      "mean_latency_ms": 431.69490820073406
     },
     {
       "case_id": "ENC-UNENCRYPTED-VOLUME-SAFE",
@@ -1804,15 +1801,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        423.1727910009795,
-        425.3253749993746,
-        418.9621250006894,
-        421.6392089983856,
-        428.81641699932516
+        425.88008399980026,
+        435.2574580007058,
+        425.47979099981603,
+        427.07291599799646,
+        421.85295799936284
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/ENC-UNENCRYPTED-VOLUME-SAFE.json",
-      "mean_latency_ms": 423.58318339975085
+      "mean_latency_ms": 427.1086413995363
     },
     {
       "case_id": "ENC-UNENCRYPTED-VOLUME-VULN",
@@ -1820,15 +1817,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        422.0737499999814,
-        420.7856670000183,
-        424.9052090017358,
-        433.1894999995711,
-        432.69970799883595
+        422.7097919974767,
+        428.00804099897505,
+        425.4415830000653,
+        420.35300000134157,
+        426.4861669980746
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/ENC-UNENCRYPTED-VOLUME-VULN.json",
-      "mean_latency_ms": 426.7307668000285
+      "mean_latency_ms": 424.59971659918665
     },
     {
       "case_id": "IAM-WILDCARD-ACTION-SAFE",
@@ -1836,15 +1833,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        422.5647499988554,
-        431.9426250003744,
-        431.6335830008029,
-        433.14974999884726,
-        427.24891699981526
+        423.8818329977221,
+        426.2769590022799,
+        433.2582090028154,
+        428.24566699709976,
+        424.09404200225254
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/IAM-WILDCARD-ACTION-SAFE.json",
-      "mean_latency_ms": 429.30792499973904
+      "mean_latency_ms": 427.15134200043394
     },
     {
       "case_id": "IAM-WILDCARD-ACTION-VULN",
@@ -1852,15 +1849,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        427.3333749988524,
-        432.62508399857325,
-        429.19366599744535,
-        431.16979200203787,
-        418.96941600134596
+        426.0309579985915,
+        443.08408299912116,
+        467.4496250008815,
+        424.9856659989746,
+        420.14504200051306
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/IAM-WILDCARD-ACTION-VULN.json",
-      "mean_latency_ms": 427.85826659965096
+      "mean_latency_ms": 436.33907479961636
     },
     {
       "case_id": "IAM-WILDCARD-TRUST-SAFE",
@@ -1868,15 +1865,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        424.5691670002998,
-        422.0483339995553,
-        415.4307079988939,
-        416.99700000026496,
-        420.3936660014733
+        429.60750000202097,
+        430.97095800112584,
+        430.11358299918356,
+        432.6817920009489,
+        430.67066599905957
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/IAM-WILDCARD-TRUST-SAFE.json",
-      "mean_latency_ms": 419.88777500009746
+      "mean_latency_ms": 430.80889980046777
     },
     {
       "case_id": "IAM-WILDCARD-TRUST-VULN",
@@ -1884,15 +1881,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        421.4260420012579,
-        424.24662499979604,
-        419.3205420015147,
-        418.90937499920256,
-        422.9163339987281
+        428.0487500000163,
+        423.20050000125775,
+        424.5210830013093,
+        420.72204199939733,
+        427.22362499989686
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/IAM-WILDCARD-TRUST-VULN.json",
-      "mean_latency_ms": 421.36378360009985
+      "mean_latency_ms": 424.7432000003755
     },
     {
       "case_id": "MON-NO-LOG-ENCRYPTION-SAFE",
@@ -1900,15 +1897,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        428.88370899891015,
-        418.585167000856,
-        421.1195830030192,
-        424.5478330012702,
-        421.9617919989105
+        425.86220799785224,
+        422.17312499997206,
+        426.679583000805,
+        422.1957910012861,
+        428.7162090004131
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/MON-NO-LOG-ENCRYPTION-SAFE.json",
-      "mean_latency_ms": 423.0196168005932
+      "mean_latency_ms": 425.1253832000657
     },
     {
       "case_id": "MON-NO-LOG-ENCRYPTION-VULN",
@@ -1916,15 +1913,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        429.11158299830277,
-        424.4350000008126,
-        423.1114160029392,
-        420.60004100130755,
-        421.27304099994944
+        433.9341669983696,
+        426.78845899718,
+        427.1735410002293,
+        424.4749169993156,
+        428.18324999825563
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/MON-NO-LOG-ENCRYPTION-VULN.json",
-      "mean_latency_ms": 423.7062162006623
+      "mean_latency_ms": 428.11086679867003
     },
     {
       "case_id": "MON-NO-TRAIL-VALIDATION-SAFE",
@@ -1932,15 +1929,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        417.45012500177836,
-        423.4462499989604,
-        419.35566699976334,
-        415.9254590013006,
-        426.13904099926003
+        425.3017499977432,
+        434.1312079995987,
+        424.23141700055567,
+        423.499583001103,
+        427.3045830013871
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/MON-NO-TRAIL-VALIDATION-SAFE.json",
-      "mean_latency_ms": 420.46330840021255
+      "mean_latency_ms": 426.8937082000775
     },
     {
       "case_id": "MON-NO-TRAIL-VALIDATION-VULN",
@@ -1948,15 +1945,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        422.782500001631,
-        428.78258299970184,
-        427.3951249997481,
-        426.85250000067754,
-        417.9766250017565
+        425.8403750027355,
+        423.99579099947005,
+        428.28729200118687,
+        424.8122909993981,
+        430.1378750024014
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/MON-NO-TRAIL-VALIDATION-VULN.json",
-      "mean_latency_ms": 424.757866600703
+      "mean_latency_ms": 426.6147248010384
     },
     {
       "case_id": "MON-TRAIL-NOT-MULTIREGION-SAFE",
@@ -1964,15 +1961,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        424.1363340006501,
-        425.9407920035301,
-        424.81887499889126,
-        419.0234999987297,
-        420.08254199754447
+        438.44945800083224,
+        424.271542000497,
+        422.0175839982403,
+        418.00345799856586,
+        420.80866700052866
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/MON-TRAIL-NOT-MULTIREGION-SAFE.json",
-      "mean_latency_ms": 422.8004085998691
+      "mean_latency_ms": 424.7101417997328
     },
     {
       "case_id": "MON-TRAIL-NOT-MULTIREGION-VULN",
@@ -1980,15 +1977,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        424.5852499989269,
-        418.6537909990875,
-        417.3270000028424,
-        422.75579199849744,
-        418.09979200115777
+        417.79549999773735,
+        418.84933300025295,
+        416.96212500028196,
+        421.8907909998961,
+        418.6209589970531
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/MON-TRAIL-NOT-MULTIREGION-VULN.json",
-      "mean_latency_ms": 420.2843250001024
+      "mean_latency_ms": 418.8237415990443
     },
     {
       "case_id": "NET-ALB-INVALID-HEADERS-SAFE",
@@ -1996,15 +1993,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        426.25816600047983,
-        421.26229199857335,
-        417.9599590024736,
-        420.8565829976578,
-        417.0604169994476
+        425.33308299971395,
+        417.0350420026807,
+        428.83466700004647,
+        421.80391700094333,
+        418.2424999999057
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/NET-ALB-INVALID-HEADERS-SAFE.json",
-      "mean_latency_ms": 420.67948339972645
+      "mean_latency_ms": 422.24984180065803
     },
     {
       "case_id": "NET-ALB-INVALID-HEADERS-VULN",
@@ -2012,15 +2009,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        424.24862499683513,
-        419.93204100072035,
-        429.4606670009671,
-        422.7840829989873,
-        421.1509999986447
+        415.01162499844213,
+        418.2375829986995,
+        423.84266699809814,
+        423.4980830005952,
+        420.5677089994424
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/NET-ALB-INVALID-HEADERS-VULN.json",
-      "mean_latency_ms": 423.5152831992309
+      "mean_latency_ms": 420.2315333990555
     },
     {
       "case_id": "NET-NO-FLOW-LOGS-SAFE",
@@ -2028,15 +2025,15 @@
       "status": "ok",
       "exit_code": 2,
       "latency_ms": [
-        423.7309170021035,
-        423.67949999970733,
-        422.72679100278765,
-        415.56825000225217,
-        421.42900000180816
+        413.4707920020446,
+        419.05312500239233,
+        423.4234590003325,
+        418.7993749983434,
+        424.1192500012403
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/NET-NO-FLOW-LOGS-SAFE.json",
-      "mean_latency_ms": 421.42689160173177
+      "mean_latency_ms": 419.77320020087063
     },
     {
       "case_id": "NET-NO-FLOW-LOGS-VULN",
@@ -2044,15 +2041,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        422.9425830017135,
-        420.80862500006333,
-        419.71491599906585,
-        417.86874999888823,
-        414.1164579996257
+        421.43066599965096,
+        430.8694999999716,
+        422.40258300080313,
+        422.55958399982774,
+        422.9275840007176
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/NET-NO-FLOW-LOGS-VULN.json",
-      "mean_latency_ms": 419.0902663998713
+      "mean_latency_ms": 424.0379834001942
     },
     {
       "case_id": "NET-NO-HTTPS-REDIRECT-SAFE",
@@ -2060,15 +2057,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        417.55183300119825,
-        429.96941700039315,
-        426.14516699904925,
-        424.391790998925,
-        422.2640000007232
+        421.1389159972896,
+        421.3001250027446,
+        424.3776250004885,
+        415.41858300115564,
+        422.5809579984343
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/NET-NO-HTTPS-REDIRECT-SAFE.json",
-      "mean_latency_ms": 424.06444160005776
+      "mean_latency_ms": 420.9632414000225
     },
     {
       "case_id": "NET-NO-HTTPS-REDIRECT-VULN",
@@ -2076,15 +2073,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        420.84583299947553,
-        420.2495839999756,
-        421.69879200082505,
-        418.80775000026915,
-        420.6829579998157
+        420.1339999999618,
+        424.3415420023666,
+        417.66658299820847,
+        415.975542000524,
+        423.4637080007815
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/NET-NO-HTTPS-REDIRECT-VULN.json",
-      "mean_latency_ms": 420.4569834000722
+      "mean_latency_ms": 420.3162750003685
     },
     {
       "case_id": "NET-PUBLIC-INSTANCE-SAFE",
@@ -2092,15 +2089,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        419.773499997973,
-        417.508499998803,
-        422.46637499920325,
-        418.5299999990093,
-        422.09566599922255
+        419.67024999757996,
+        422.4748750020808,
+        424.7547080012737,
+        422.01912499876926,
+        424.3208339976263
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/NET-PUBLIC-INSTANCE-SAFE.json",
-      "mean_latency_ms": 420.0748081988422
+      "mean_latency_ms": 422.647958399466
     },
     {
       "case_id": "NET-PUBLIC-INSTANCE-VULN",
@@ -2108,15 +2105,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        423.9834170002723,
-        421.5178330014169,
-        420.7157500022731,
-        423.0948750009702,
-        420.2146249990619
+        429.524457998923,
+        421.66304100101115,
+        417.82041599799413,
+        419.0340000022843,
+        419.06920799738145
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/NET-PUBLIC-INSTANCE-VULN.json",
-      "mean_latency_ms": 421.9053000007989
+      "mean_latency_ms": 421.4222245995188
     },
     {
       "case_id": "NET-UNRESTRICTED-INGRESS-SAFE",
@@ -2124,15 +2121,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        422.37699999895995,
-        425.0160829978995,
-        426.76720899908105,
-        434.136457999557,
-        434.53683400002774
+        421.00654099704116,
+        420.03354099870194,
+        415.6882499992207,
+        417.8732910004328,
+        421.7045000004873
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/NET-UNRESTRICTED-INGRESS-SAFE.json",
-      "mean_latency_ms": 428.56671679910505
+      "mean_latency_ms": 419.2612245991768
     },
     {
       "case_id": "NET-UNRESTRICTED-INGRESS-VULN",
@@ -2140,15 +2137,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        436.33220799893024,
-        431.31266600175877,
-        423.90845899717533,
-        436.6660000014235,
-        430.7580409986258
+        418.4196249989327,
+        421.73441699924297,
+        423.2268329978979,
+        418.3159170024737,
+        423.50995800006785
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/NET-UNRESTRICTED-INGRESS-VULN.json",
-      "mean_latency_ms": 431.79547479958273
+      "mean_latency_ms": 421.041349999723
     },
     {
       "case_id": "SEC-HARDCODED-CREDENTIAL-SAFE",
@@ -2156,15 +2153,15 @@
       "status": "ok",
       "exit_code": 2,
       "latency_ms": [
-        430.35129100098857,
-        423.41387499982375,
-        420.5790830019396,
-        417.69537499931175,
-        421.65183299948694
+        422.02629200255615,
+        418.17170899958,
+        418.63020899836556,
+        417.17041700030677,
+        420.9100000007311
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/SEC-HARDCODED-CREDENTIAL-SAFE.json",
-      "mean_latency_ms": 422.7382914003101
+      "mean_latency_ms": 419.3817254003079
     },
     {
       "case_id": "SEC-HARDCODED-CREDENTIAL-VULN",
@@ -2172,15 +2169,15 @@
       "status": "ok",
       "exit_code": 2,
       "latency_ms": [
-        419.56754199782154,
-        419.08712499935064,
-        419.24433300300734,
-        416.39579200273147,
-        420.2397920016665
+        420.27787500046543,
+        425.88687500028755,
+        420.1364580003428,
+        420.7069580006646,
+        420.2730840006552
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/SEC-HARDCODED-CREDENTIAL-VULN.json",
-      "mean_latency_ms": 418.9069168009155
+      "mean_latency_ms": 421.4562500004831
     },
     {
       "case_id": "SRV-NO-FUNCTION-ENCRYPTION-SAFE",
@@ -2188,15 +2185,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        419.97962499954156,
-        420.8814589983376,
-        422.7103330013051,
-        422.22408299858216,
-        419.1888329987705
+        420.00708300111,
+        423.66770900116535,
+        422.3134169988043,
+        422.5732919985603,
+        436.653083001147
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/SRV-NO-FUNCTION-ENCRYPTION-SAFE.json",
-      "mean_latency_ms": 420.9968665993074
+      "mean_latency_ms": 425.0429168001574
     },
     {
       "case_id": "SRV-NO-FUNCTION-ENCRYPTION-VULN",
@@ -2204,15 +2201,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        418.33970899824635,
-        421.0306249988207,
-        417.4377499984985,
-        420.5360829982965,
-        420.6076669979666
+        426.89583300307277,
+        421.2851660013257,
+        418.42404199996963,
+        422.69854199912515,
+        423.40150000018184
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/SRV-NO-FUNCTION-ENCRYPTION-VULN.json",
-      "mean_latency_ms": 419.5903667983657
+      "mean_latency_ms": 422.541016600735
     },
     {
       "case_id": "STO-NO-ACCESS-LOGGING-SAFE",
@@ -2220,15 +2217,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        418.69299999962095,
-        426.35858400171855,
-        418.7115829990944,
-        419.3067499982135,
-        419.5318749989383
+        421.4612079995277,
+        428.22770799830323,
+        423.59366699747625,
+        425.2627919995575,
+        422.4824999982957
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/STO-NO-ACCESS-LOGGING-SAFE.json",
-      "mean_latency_ms": 420.52035839951714
+      "mean_latency_ms": 424.2055749986321
     },
     {
       "case_id": "STO-NO-ACCESS-LOGGING-VULN",
@@ -2236,15 +2233,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        423.63550000300165,
-        420.7777920018998,
-        416.2815839990799,
-        419.4952079997165,
-        419.8899170005461
+        419.63449999821023,
+        419.4932919999701,
+        419.05845799919916,
+        423.9308340002026,
+        421.1722909967648
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/STO-NO-ACCESS-LOGGING-VULN.json",
-      "mean_latency_ms": 420.0160002008488
+      "mean_latency_ms": 420.6578749988694
     },
     {
       "case_id": "STO-PUBLIC-BUCKET-SAFE",
@@ -2252,15 +2249,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        424.37108300146065,
-        418.54220800087205,
-        419.31587499857415,
-        423.2827919986448,
-        421.7669170029694
+        422.8108329989482,
+        421.0747500001162,
+        422.69983399819466,
+        421.522125001502,
+        427.9504160003853
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/STO-PUBLIC-BUCKET-SAFE.json",
-      "mean_latency_ms": 421.4557750005042
+      "mean_latency_ms": 423.21159159982926
     },
     {
       "case_id": "STO-PUBLIC-BUCKET-VULN",
@@ -2268,15 +2265,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        419.732041998941,
-        420.561708000605,
-        423.6666670003615,
-        424.222292000195,
-        415.2764999998908
+        426.481792001141,
+        421.29537500295555,
+        420.770958000503,
+        422.2406670014607,
+        422.18037500060746
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/STO-PUBLIC-BUCKET-VULN.json",
-      "mean_latency_ms": 420.69184179999866
+      "mean_latency_ms": 422.59383340133354
     },
     {
       "case_id": "STO-PUBLIC-DATABASE-SAFE",
@@ -2284,15 +2281,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        421.4810419980495,
-        428.3990830008406,
-        422.29883399704704,
-        421.147375000146,
-        422.0169589971192
+        424.07554099918343,
+        420.21958400073345,
+        421.1565830009931,
+        418.5034580004867,
+        421.27199999958975
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/STO-PUBLIC-DATABASE-SAFE.json",
-      "mean_latency_ms": 423.06865859864047
+      "mean_latency_ms": 421.0454332001973
     },
     {
       "case_id": "STO-PUBLIC-DATABASE-VULN",
@@ -2300,15 +2297,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        422.5427919991489,
-        424.7003750024305,
-        422.16720799842733,
-        421.0882919978758,
-        418.32337500090944
+        425.23849999997765,
+        426.25991699969745,
+        423.7315419995866,
+        427.93533299845876,
+        424.5244579979044
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/STO-PUBLIC-DATABASE-VULN.json",
-      "mean_latency_ms": 421.7644083997584
+      "mean_latency_ms": 425.537949999125
     },
     {
       "case_id": "STO-UNENCRYPTED-BUCKET-SAFE",
@@ -2316,15 +2313,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        419.0735419979319,
-        420.4499580009724,
-        417.77012499733246,
-        416.81070900085615,
-        415.2204169986362
+        426.1501250002766,
+        421.8157089999295,
+        424.41404099736246,
+        446.0574170007021,
+        436.14733399954275
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/STO-UNENCRYPTED-BUCKET-SAFE.json",
-      "mean_latency_ms": 417.8649501991458
+      "mean_latency_ms": 430.9169251995627
     },
     {
       "case_id": "STO-UNENCRYPTED-BUCKET-VULN",
@@ -2332,15 +2329,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        412.32241699981387,
-        420.17245900206035,
-        422.9789169985452,
-        419.48237500037067,
-        417.30058399843983
+        428.02416699851165,
+        433.13954200129956,
+        419.85466700134566,
+        426.8254580019857,
+        434.9959580031282
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/STO-UNENCRYPTED-BUCKET-VULN.json",
-      "mean_latency_ms": 418.451350399846
+      "mean_latency_ms": 428.56795840125415
     },
     {
       "case_id": "cis_examples/cis_2_1_s3_public",
@@ -2348,15 +2345,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        413.8634170012665,
-        422.2286250005709,
-        421.0199579974869,
-        423.17904099763837,
-        419.55925000002026
+        431.2395410015597,
+        422.49466700013727,
+        423.0715000012424,
+        420.6825420005771,
+        419.221167001524
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/cis_examples__cis_2_1_s3_public.json",
-      "mean_latency_ms": 419.9700581993966
+      "mean_latency_ms": 423.3418834010081
     },
     {
       "case_id": "cis_examples/cis_2_2_s3_encryption",
@@ -2364,15 +2361,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        420.54141699918546,
-        421.7402079993917,
-        420.6320830016921,
-        418.912499997532,
-        423.6904579993279
+        418.63433300022734,
+        417.06866700042156,
+        420.2824169988162,
+        422.0862920010404,
+        421.03175000011106
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/cis_examples__cis_2_2_s3_encryption.json",
-      "mean_latency_ms": 421.10333319942583
+      "mean_latency_ms": 419.8206918001233
     },
     {
       "case_id": "cis_examples/cis_3_1_cloudtrail",
@@ -2380,15 +2377,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        416.4667500008363,
-        421.5648749996035,
-        420.8894169969426,
-        419.03191699748277,
-        417.0283749990631
+        426.3677920025657,
+        432.68929199984996,
+        419.31758300052024,
+        419.9183750024531,
+        420.54020799696445
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/cis_examples__cis_3_1_cloudtrail.json",
-      "mean_latency_ms": 418.99626679878565
+      "mean_latency_ms": 423.7666500004707
     },
     {
       "case_id": "cis_examples/cis_4_1_security_group",
@@ -2396,15 +2393,15 @@
       "status": "ok",
       "exit_code": 1,
       "latency_ms": [
-        427.8368750019581,
-        420.70574999888777,
-        419.91895899991505,
-        420.8760000001348,
-        421.35579199748463
+        427.33529199904297,
+        421.69654100143816,
+        429.5322910002142,
+        422.5834170028975,
+        425.3485829976853
       ],
       "stderr": "",
       "raw_path": "results/raw/tfsec/cis_examples__cis_4_1_security_group.json",
-      "mean_latency_ms": 422.1386751996761
+      "mean_latency_ms": 425.2992248002556
     },
     {
       "case_id": "CMP-MUTABLE-IMAGE-TAGS-SAFE",
@@ -2412,15 +2409,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        1.0441670019645244,
-        0.2202079995186068,
-        0.1940830006788019,
-        0.18416599777992815,
-        0.1813750022847671
+        1.4566669997293502,
+        0.22454200006905012,
+        0.19654200150398538,
+        0.19195900313206948,
+        0.18925000040326267
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/CMP-MUTABLE-IMAGE-TAGS-SAFE.json",
-      "mean_latency_ms": 0.3647998004453257
+      "mean_latency_ms": 0.45179200096754357
     },
     {
       "case_id": "CMP-MUTABLE-IMAGE-TAGS-VULN",
@@ -2428,15 +2425,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.225042000238318,
-        0.18287499915459193,
-        0.1790000023902394,
-        0.17637500059208833,
-        0.17537500025355257
+        0.22866600193083286,
+        0.1853339999797754,
+        0.18249999993713573,
+        0.1802910010155756,
+        0.2118339980370365
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/CMP-MUTABLE-IMAGE-TAGS-VULN.json",
-      "mean_latency_ms": 0.18773340052575804
+      "mean_latency_ms": 0.19772500018007122
     },
     {
       "case_id": "CMP-NO-IMAGE-SCANNING-SAFE",
@@ -2444,15 +2441,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.22708300093654543,
-        0.18074999752570875,
-        0.1768750007613562,
-        0.18716700287768617,
-        0.1761250023264438
+        0.22345899924403057,
+        0.1817499978642445,
+        0.17979100084630772,
+        0.17787500109989196,
+        0.1968750002561137
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/CMP-NO-IMAGE-SCANNING-SAFE.json",
-      "mean_latency_ms": 0.18960000088554807
+      "mean_latency_ms": 0.1919499998621177
     },
     {
       "case_id": "CMP-NO-IMAGE-SCANNING-VULN",
@@ -2460,15 +2457,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.21733399989898317,
-        0.17941700207302347,
-        0.17791600112104788,
-        0.17633300012676045,
-        0.17670799934421666
+        0.21987500076647848,
+        0.18129100135411136,
+        0.1919999995152466,
+        0.17987500177696347,
+        0.17800000205170363
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/CMP-NO-IMAGE-SCANNING-VULN.json",
-      "mean_latency_ms": 0.18554160051280633
+      "mean_latency_ms": 0.1902082010929007
     },
     {
       "case_id": "CMP-NO-IMDSV2-SAFE",
@@ -2476,15 +2473,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.22716699822922237,
-        0.19608300135587342,
-        0.1937080014613457,
-        0.19283399888081476,
-        0.20399999993969686
+        0.23833299928810447,
+        0.19845800125040114,
+        0.19624999913503416,
+        0.19429100211709738,
+        0.19370899826753885
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/CMP-NO-IMDSV2-SAFE.json",
-      "mean_latency_ms": 0.20275839997339062
+      "mean_latency_ms": 0.2042082000116352
     },
     {
       "case_id": "CMP-NO-IMDSV2-VULN",
@@ -2492,15 +2489,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.22804199761594646,
-        0.2176670022890903,
-        0.2594170000520535,
-        0.2049590002570767,
-        0.20870899970759638
+        0.23279099696082994,
+        0.19566600167308934,
+        0.20766699890373275,
+        0.20041699826833792,
+        0.19708300169440918
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/CMP-NO-IMDSV2-VULN.json",
-      "mean_latency_ms": 0.22375879998435266
+      "mean_latency_ms": 0.20672479950007983
     },
     {
       "case_id": "ENC-NO-KEY-ROTATION-SAFE",
@@ -2508,15 +2505,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.21829199977219105,
-        0.2315420024388004,
-        0.202959003217984,
-        0.1829170032578986,
-        0.1767089997883886
+        0.32141600240720436,
+        0.23816600150894374,
+        0.20229199799359776,
+        0.18974999693455175,
+        0.18520799858379178
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/ENC-NO-KEY-ROTATION-SAFE.json",
-      "mean_latency_ms": 0.20248380169505253
+      "mean_latency_ms": 0.22736639948561788
     },
     {
       "case_id": "ENC-NO-KEY-ROTATION-VULN",
@@ -2524,15 +2521,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.21004099835408852,
-        0.1837919990066439,
-        0.17779200061340816,
-        0.1768749971233774,
-        0.17583299995749258
+        0.23249999867402948,
+        0.18545800048741512,
+        0.18354200074099936,
+        0.17941699843504466,
+        0.1786659995559603
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/ENC-NO-KEY-ROTATION-VULN.json",
-      "mean_latency_ms": 0.1848665990110021
+      "mean_latency_ms": 0.19191659957868978
     },
     {
       "case_id": "ENC-UNENCRYPTED-DATABASE-SAFE",
@@ -2540,15 +2537,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.24912500157370232,
-        0.21349999951780774,
-        0.21120800010976382,
-        0.21304199981386773,
-        0.21283299793140031
+        0.26029199943877757,
+        0.2229169986094348,
+        0.21512499733944423,
+        0.21816700245835818,
+        0.2114589988195803
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/ENC-UNENCRYPTED-DATABASE-SAFE.json",
-      "mean_latency_ms": 0.21994159978930838
+      "mean_latency_ms": 0.22559199933311902
     },
     {
       "case_id": "ENC-UNENCRYPTED-DATABASE-VULN",
@@ -2556,15 +2553,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.24529200163669884,
-        0.2130840002791956,
-        0.20762499843840487,
-        0.20820799909415655,
-        0.20670899903052486
+        0.24487499831593595,
+        0.21299999934853986,
+        0.23733399939374067,
+        0.2414170012343675,
+        0.233959002798656
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/ENC-UNENCRYPTED-DATABASE-VULN.json",
-      "mean_latency_ms": 0.21618359969579615
+      "mean_latency_ms": 0.234117000218248
     },
     {
       "case_id": "ENC-UNENCRYPTED-VOLUME-SAFE",
@@ -2572,15 +2569,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.22825000269222073,
-        0.1952499987964984,
-        0.194500000361586,
-        0.20300000323913991,
-        0.21408400061773136
+        0.23924999914015643,
+        0.2035409997915849,
+        0.19704199803527445,
+        0.19537499974831007,
+        0.19454199718893506
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/ENC-UNENCRYPTED-VOLUME-SAFE.json",
-      "mean_latency_ms": 0.20701680114143528
+      "mean_latency_ms": 0.20594999878085218
     },
     {
       "case_id": "ENC-UNENCRYPTED-VOLUME-VULN",
@@ -2588,15 +2585,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.22329099738271907,
-        0.1950839978235308,
-        0.1972919999388978,
-        0.18937500135507435,
-        0.1892079999379348
+        0.25845800337265246,
+        0.41020900243893266,
+        0.24375000066356733,
+        0.21716600167565048,
+        0.20104199938941747
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/ENC-UNENCRYPTED-VOLUME-VULN.json",
-      "mean_latency_ms": 0.19884999928763136
+      "mean_latency_ms": 0.2661250015080441
     },
     {
       "case_id": "IAM-WILDCARD-ACTION-SAFE",
@@ -2604,15 +2601,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.23462500030291267,
-        0.20212500021443702,
-        0.19987500127172098,
-        0.1961250018212013,
-        0.19500000053085387
+        0.2689580032892991,
+        0.20625000252039172,
+        0.2008340015891008,
+        0.20087500161025673,
+        0.1977499996428378
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/IAM-WILDCARD-ACTION-SAFE.json",
-      "mean_latency_ms": 0.20555000082822517
+      "mean_latency_ms": 0.21493340173037723
     },
     {
       "case_id": "IAM-WILDCARD-ACTION-VULN",
@@ -2620,15 +2617,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.2276659979543183,
-        0.1944169998751022,
-        0.194958000065526,
-        0.1936250009748619,
-        0.1955419975274708
+        0.24037500043050386,
+        0.19762499869102612,
+        0.195415999769466,
+        0.19604100089054555,
+        0.20000000222353265
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/IAM-WILDCARD-ACTION-VULN.json",
-      "mean_latency_ms": 0.20124159927945584
+      "mean_latency_ms": 0.20589140040101483
     },
     {
       "case_id": "IAM-WILDCARD-TRUST-SAFE",
@@ -2636,15 +2633,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.22849999731988646,
-        0.19291600256110542,
-        0.19141599841532297,
-        0.19462499767541885,
-        0.19054199947277084
+        0.2320000021427404,
+        0.19912499919882976,
+        0.19537499974831007,
+        0.1961659982043784,
+        0.197208999452414
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/IAM-WILDCARD-TRUST-SAFE.json",
-      "mean_latency_ms": 0.1995997990889009
+      "mean_latency_ms": 0.20397499974933453
     },
     {
       "case_id": "IAM-WILDCARD-TRUST-VULN",
@@ -2652,15 +2649,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.24679200214450248,
-        0.20629199934774078,
-        0.20025000048917718,
-        0.18379099856247194,
-        0.18079199799103662
+        0.22841600002720952,
+        0.1857919996837154,
+        0.1945830008480698,
+        0.18316700152354315,
+        0.1830829969549086
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/IAM-WILDCARD-TRUST-VULN.json",
-      "mean_latency_ms": 0.2035833997069858
+      "mean_latency_ms": 0.1950081998074893
     },
     {
       "case_id": "MON-NO-LOG-ENCRYPTION-SAFE",
@@ -2668,15 +2665,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.2355840006202925,
-        0.2004590023716446,
-        0.21141600154805928,
-        0.1993750011024531,
-        0.19779200010816567
+        0.2362079976592213,
+        0.21904199820710346,
+        0.2017920014623087,
+        0.20162500004516914,
+        0.20220800070092082
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/MON-NO-LOG-ENCRYPTION-SAFE.json",
-      "mean_latency_ms": 0.20892520115012303
+      "mean_latency_ms": 0.21217499961494468
     },
     {
       "case_id": "MON-NO-LOG-ENCRYPTION-VULN",
@@ -2684,15 +2681,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.22504099979414605,
-        0.18429099873173982,
-        0.18233399896416813,
-        0.18249999993713573,
-        0.1811660004022997
+        0.21716699848184362,
+        0.1917080007842742,
+        0.18445800014887936,
+        0.1835410002968274,
+        0.23637499907636084
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/MON-NO-LOG-ENCRYPTION-VULN.json",
-      "mean_latency_ms": 0.19106639956589788
+      "mean_latency_ms": 0.20264979975763708
     },
     {
       "case_id": "MON-NO-TRAIL-VALIDATION-SAFE",
@@ -2700,15 +2697,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.23716700161457993,
-        0.20283299818402156,
-        0.20579099873430096,
-        0.19941600112360902,
-        0.20095899890293367
+        0.33837500086519867,
+        0.24920800206018612,
+        0.22841600002720952,
+        0.21166700025787577,
+        0.20450000010896474
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/MON-NO-TRAIL-VALIDATION-SAFE.json",
-      "mean_latency_ms": 0.20923319971188903
+      "mean_latency_ms": 0.24643320066388696
     },
     {
       "case_id": "MON-NO-TRAIL-VALIDATION-VULN",
@@ -2716,15 +2713,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.23504199998569675,
-        0.20170800053165294,
-        0.19933300063712522,
-        0.1992920006159693,
-        0.2061669983959291
+        0.24337500144611113,
+        0.2055830009339843,
+        0.2072909992421046,
+        0.21420800112537108,
+        0.20445799964363687
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/MON-NO-TRAIL-VALIDATION-VULN.json",
-      "mean_latency_ms": 0.20830840003327467
+      "mean_latency_ms": 0.2149830004782416
     },
     {
       "case_id": "MON-TRAIL-NOT-MULTIREGION-SAFE",
@@ -2732,15 +2729,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.23187499755294994,
-        0.20191699877614155,
-        0.2008340015891008,
-        0.19950000205426477,
-        0.20454200057429262
+        0.25925000227289274,
+        0.22900000112713315,
+        0.2586249975138344,
+        0.21470800129463896,
+        0.23066599896992557
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/MON-TRAIL-NOT-MULTIREGION-SAFE.json",
-      "mean_latency_ms": 0.20773360010934994
+      "mean_latency_ms": 0.23844980023568496
     },
     {
       "case_id": "MON-TRAIL-NOT-MULTIREGION-VULN",
@@ -2748,15 +2745,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.23462500030291267,
-        0.20120800036238506,
-        0.20045799828949384,
-        0.20245799896656536,
-        0.19891599731636234
+        0.2548749980633147,
+        0.21583299894700758,
+        0.20554200091282837,
+        0.21070799994049594,
+        0.22312500004773028
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/MON-TRAIL-NOT-MULTIREGION-VULN.json",
-      "mean_latency_ms": 0.20753299904754385
+      "mean_latency_ms": 0.22201659958227538
     },
     {
       "case_id": "NET-ALB-INVALID-HEADERS-SAFE",
@@ -2764,15 +2761,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.3214169992133975,
-        0.23429200155078433,
-        0.21633299911627546,
-        0.20808299814234488,
-        0.2046250010607764
+        0.25483300123596564,
+        0.20825000319746323,
+        0.20804200175916776,
+        0.20383399896672927,
+        0.21133400150574744
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/NET-ALB-INVALID-HEADERS-SAFE.json",
-      "mean_latency_ms": 0.23694999981671572
+      "mean_latency_ms": 0.21725860133301467
     },
     {
       "case_id": "NET-ALB-INVALID-HEADERS-VULN",
@@ -2780,15 +2777,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.24808400121401064,
-        0.2102920007018838,
-        0.2058749996649567,
-        0.20512499759206548,
-        0.20466599744395353
+        0.2488330028427299,
+        0.2166660015063826,
+        0.21566599752986804,
+        0.22454200006905012,
+        0.21020799977122806
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/NET-ALB-INVALID-HEADERS-VULN.json",
-      "mean_latency_ms": 0.21480839932337403
+      "mean_latency_ms": 0.22318300034385175
     },
     {
       "case_id": "NET-NO-FLOW-LOGS-SAFE",
@@ -2796,15 +2793,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.31445800050278194,
-        0.2902919986809138,
-        0.2604159999464173,
-        0.24679100170033053,
-        0.24479199782945216
+        0.2875829995900858,
+        0.25204100165865384,
+        0.2622909996716771,
+        0.24979200316010974,
+        0.25224999990314245
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/NET-NO-FLOW-LOGS-SAFE.json",
-      "mean_latency_ms": 0.27134979973197915
+      "mean_latency_ms": 0.2607914007967338
     },
     {
       "case_id": "NET-NO-FLOW-LOGS-VULN",
@@ -2812,15 +2809,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.1992920006159693,
-        0.17483299961895682,
-        0.18599999748403206,
-        0.17179099813802168,
-        0.17883300097309984
+        0.2030830000876449,
+        0.1744580004015006,
+        0.279874999250751,
+        0.20191699877614155,
+        0.1752499993017409
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/NET-NO-FLOW-LOGS-VULN.json",
-      "mean_latency_ms": 0.18214979936601594
+      "mean_latency_ms": 0.2069165995635558
     },
     {
       "case_id": "NET-NO-HTTPS-REDIRECT-SAFE",
@@ -2828,15 +2825,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.2905830006056931,
-        0.3010830005223397,
-        0.2525829986552708,
-        0.26824999804375693,
-        0.2598329992906656
+        0.3056659988942556,
+        0.2573750025476329,
+        0.25716700110933743,
+        0.25350000214530155,
+        0.2517080029065255
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/NET-NO-HTTPS-REDIRECT-SAFE.json",
-      "mean_latency_ms": 0.2744663994235452
+      "mean_latency_ms": 0.2650832015206106
     },
     {
       "case_id": "NET-NO-HTTPS-REDIRECT-VULN",
@@ -2844,15 +2841,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.30574999982491136,
-        0.26345800142735243,
-        0.283499997749459,
-        0.2557500010880176,
-        0.25945900051738136
+        0.28862500039394945,
+        0.2511669990781229,
+        0.25020799876074307,
+        0.2529170014895499,
+        0.2530839992687106
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/NET-NO-HTTPS-REDIRECT-VULN.json",
-      "mean_latency_ms": 0.27358340012142435
+      "mean_latency_ms": 0.2592001997982152
     },
     {
       "case_id": "NET-PUBLIC-INSTANCE-SAFE",
@@ -2860,15 +2857,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.2574579993961379,
-        0.23062499894876964,
-        0.22616700152866542,
-        0.2334160017198883,
-        0.2241670008515939
+        0.2723750003497116,
+        0.22854200142319314,
+        0.2263329988636542,
+        0.27475000024423935,
+        0.3339580034662504
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/NET-PUBLIC-INSTANCE-SAFE.json",
-      "mean_latency_ms": 0.23436660048901103
+      "mean_latency_ms": 0.26719160086940974
     },
     {
       "case_id": "NET-PUBLIC-INSTANCE-VULN",
@@ -2876,15 +2873,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.2785420001600869,
-        0.23291699835681356,
-        0.2256660009152256,
-        0.22375000116880983,
-        0.23083400083123706
+        0.31304199728765525,
+        0.2425419988867361,
+        0.23808399782865308,
+        0.2332500007469207,
+        0.26124999931198545
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/NET-PUBLIC-INSTANCE-VULN.json",
-      "mean_latency_ms": 0.2383418002864346
+      "mean_latency_ms": 0.2576335988123901
     },
     {
       "case_id": "NET-UNRESTRICTED-INGRESS-SAFE",
@@ -2892,15 +2889,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.2835830018739216,
-        0.25029099924722686,
-        0.24074999964796007,
-        0.2485410004737787,
-        0.24241700157290325
+        0.29887500204495154,
+        0.25100000129896216,
+        0.25245900178560987,
+        0.2389169967500493,
+        0.25233300038962625
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/NET-UNRESTRICTED-INGRESS-SAFE.json",
-      "mean_latency_ms": 0.2531164005631581
+      "mean_latency_ms": 0.2587168004538398
     },
     {
       "case_id": "NET-UNRESTRICTED-INGRESS-VULN",
@@ -2908,15 +2905,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.27008400138583966,
-        0.24112499886541627,
-        0.25070799893001094,
-        0.24124999981722794,
-        0.2418749973003287
+        0.2817919994413387,
+        0.252499998168787,
+        0.2704580001591239,
+        0.2535839994379785,
+        0.24987500000861473
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/NET-UNRESTRICTED-INGRESS-VULN.json",
-      "mean_latency_ms": 0.2490083992597647
+      "mean_latency_ms": 0.26164179944316857
     },
     {
       "case_id": "SEC-HARDCODED-CREDENTIAL-SAFE",
@@ -2924,15 +2921,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.2802079980028793,
-        0.2504580006643664,
-        0.2471250008966308,
-        0.23975000294740312,
-        0.2382909988227766
+        0.297874998068437,
+        0.26833300216821954,
+        0.2503750001778826,
+        0.25408399960724637,
+        0.243041999056004
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/SEC-HARDCODED-CREDENTIAL-SAFE.json",
-      "mean_latency_ms": 0.25116640026681125
+      "mean_latency_ms": 0.2627417998155579
     },
     {
       "case_id": "SEC-HARDCODED-CREDENTIAL-VULN",
@@ -2940,15 +2937,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.2693329988687765,
-        0.25233300038962625,
-        0.2537079999456182,
-        0.22987500051385723,
-        0.2320000021427404
+        0.27274999956716783,
+        0.279874999250751,
+        0.24620800104457885,
+        0.2365830005146563,
+        0.3062920004595071
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/SEC-HARDCODED-CREDENTIAL-VULN.json",
-      "mean_latency_ms": 0.24744980037212372
+      "mean_latency_ms": 0.2683416001673322
     },
     {
       "case_id": "SRV-NO-FUNCTION-ENCRYPTION-SAFE",
@@ -2956,15 +2953,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.3008330022566952,
-        0.261875000433065,
-        0.25704200015752576,
-        0.25741699937498197,
-        0.2712919995246921
+        0.4028750008728821,
+        0.29991699921083637,
+        0.2815000007103663,
+        0.2762080002867151,
+        0.26987499950337224
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/SRV-NO-FUNCTION-ENCRYPTION-SAFE.json",
-      "mean_latency_ms": 0.269691800349392
+      "mean_latency_ms": 0.3060750001168344
     },
     {
       "case_id": "SRV-NO-FUNCTION-ENCRYPTION-VULN",
@@ -2972,15 +2969,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.28779199783457443,
-        0.25720799749251455,
-        0.2532500002416782,
-        0.25354099852847867,
-        0.2536250030971132
+        0.3106660005869344,
+        0.2752090003923513,
+        0.2757079964794684,
+        0.28654199923039414,
+        0.27045900060329586
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/SRV-NO-FUNCTION-ENCRYPTION-VULN.json",
-      "mean_latency_ms": 0.2610831994388718
+      "mean_latency_ms": 0.2837167994584888
     },
     {
       "case_id": "STO-NO-ACCESS-LOGGING-SAFE",
@@ -2988,15 +2985,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.2328750015294645,
-        0.21095800184411928,
-        0.21558299704338424,
-        0.20049999875482172,
-        0.2007080001931172
+        0.2537079999456182,
+        0.20741600019391626,
+        0.21429199841804802,
+        0.20995800150558352,
+        0.22229100068216212
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/STO-NO-ACCESS-LOGGING-SAFE.json",
-      "mean_latency_ms": 0.21212479987298138
+      "mean_latency_ms": 0.22153300014906563
     },
     {
       "case_id": "STO-NO-ACCESS-LOGGING-VULN",
@@ -3004,15 +3001,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.20804199812118895,
-        0.18149999959859997,
-        0.17654199837124906,
-        0.18737499704002403,
-        0.18991600154549815
+        0.24625000150990672,
+        0.20245799896656536,
+        0.18195899974671192,
+        0.19866699949488975,
+        0.18887499754782766
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/STO-NO-ACCESS-LOGGING-VULN.json",
-      "mean_latency_ms": 0.18867499893531203
+      "mean_latency_ms": 0.20364179945318028
     },
     {
       "case_id": "STO-PUBLIC-BUCKET-SAFE",
@@ -3020,15 +3017,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.24275000032503158,
-        0.20858299831161276,
-        0.20808300178032368,
-        0.20766700254171155,
-        0.22133399761514738
+        0.26208299823338166,
+        0.21970799934933893,
+        0.21283299793140031,
+        0.21516700144275092,
+        0.209708003239939
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/STO-PUBLIC-BUCKET-SAFE.json",
-      "mean_latency_ms": 0.2176834001147654
+      "mean_latency_ms": 0.22389980003936216
     },
     {
       "case_id": "STO-PUBLIC-BUCKET-VULN",
@@ -3036,15 +3033,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.2512089995434508,
-        0.2080000012938399,
-        0.2112909969582688,
-        0.21012500292272307,
-        0.2125409992004279
+        0.24312499954248779,
+        0.23374999727820978,
+        0.2550829995016102,
+        0.24066700279945508,
+        0.24595800277893431
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/STO-PUBLIC-BUCKET-VULN.json",
-      "mean_latency_ms": 0.2186331999837421
+      "mean_latency_ms": 0.24371660038013943
     },
     {
       "case_id": "STO-PUBLIC-DATABASE-SAFE",
@@ -3052,15 +3049,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.23308299932978116,
-        0.1996669998334255,
-        0.19920799968531355,
-        0.19108299966319464,
-        0.20029199731652625
+        0.25133400049526244,
+        0.20104199938941747,
+        0.2026250003837049,
+        0.1903749980556313,
+        0.191833998542279
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/STO-PUBLIC-DATABASE-SAFE.json",
-      "mean_latency_ms": 0.20466659916564822
+      "mean_latency_ms": 0.20744199937325902
     },
     {
       "case_id": "STO-PUBLIC-DATABASE-VULN",
@@ -3068,15 +3065,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.269042000581976,
-        0.21724999896832742,
-        0.18979199739987962,
-        0.18466599794919603,
-        0.18408300093142316
+        0.22679099856759422,
+        0.20745800065924414,
+        0.19275000158813782,
+        0.19641600010800175,
+        0.18995899881701916
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/STO-PUBLIC-DATABASE-VULN.json",
-      "mean_latency_ms": 0.20896659916616045
+      "mean_latency_ms": 0.20267479994799942
     },
     {
       "case_id": "STO-UNENCRYPTED-BUCKET-SAFE",
@@ -3084,15 +3081,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.2626249988679774,
-        0.22058300237404183,
-        0.21600000036414713,
-        0.21445800302899443,
-        0.21341700266930275
+        0.26408299891045317,
+        0.22449999960372224,
+        0.225499999942258,
+        0.22358299975167029,
+        0.2251250007248018
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/STO-UNENCRYPTED-BUCKET-SAFE.json",
-      "mean_latency_ms": 0.2254166014608927
+      "mean_latency_ms": 0.2325581997865811
     },
     {
       "case_id": "STO-UNENCRYPTED-BUCKET-VULN",
@@ -3100,15 +3097,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.25387500136275776,
-        0.21770800231024623,
-        0.2237920016341377,
-        0.21700000070268288,
-        0.2125000028172508
+        0.24833299903548323,
+        0.22229200112633407,
+        0.23633299861103296,
+        0.23220799994305708,
+        0.2392919996054843
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/STO-UNENCRYPTED-BUCKET-VULN.json",
-      "mean_latency_ms": 0.22497500176541507
+      "mean_latency_ms": 0.23569159966427833
     },
     {
       "case_id": "cis_examples/cis_2_1_s3_public",
@@ -3116,15 +3113,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.2909579998231493,
-        0.2262919988424983,
-        0.23041600070428103,
-        0.23545800286228769,
-        0.23308299932978116
+        0.12979100210941397,
+        0.08658300066599622,
+        0.0882499989529606,
+        0.08841700037010014,
+        0.08895800056052394
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/cis_examples__cis_2_1_s3_public.json",
-      "mean_latency_ms": 0.2432414003123995
+      "mean_latency_ms": 0.09639980053179897
     },
     {
       "case_id": "cis_examples/cis_2_2_s3_encryption",
@@ -3132,15 +3129,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.24945800032583065,
-        0.25599999935366213,
-        0.2581250009825453,
-        0.28154199753771536,
-        0.3038750000996515
+        0.088541997683933,
+        0.05983300070511177,
+        0.05587499981629662,
+        0.059750000218627974,
+        0.056083998060785234
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/cis_examples__cis_2_2_s3_encryption.json",
-      "mean_latency_ms": 0.269799999659881
+      "mean_latency_ms": 0.06401679929695092
     },
     {
       "case_id": "cis_examples/cis_3_1_cloudtrail",
@@ -3148,15 +3145,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.2415000017208513,
-        0.23079199672793038,
-        0.21712499801651575,
-        0.25391700182808563,
-        0.24716700136195868
+        0.09029200009535998,
+        0.06208299964782782,
+        0.061750000895699486,
+        0.06937499711057171,
+        0.06399999983841553
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/cis_examples__cis_3_1_cloudtrail.json",
-      "mean_latency_ms": 0.23810019993106835
+      "mean_latency_ms": 0.0694999995175749
     },
     {
       "case_id": "cis_examples/cis_4_1_security_group",
@@ -3164,15 +3161,15 @@
       "status": "ok",
       "exit_code": 0,
       "latency_ms": [
-        0.24499999926774763,
-        0.23662500097998418,
-        0.246208997850772,
-        0.2435000023979228,
-        0.24049999774433672
+        0.128083996969508,
+        0.10695799937820993,
+        0.10945800022454932,
+        0.09508400034974329,
+        0.12279200018383563
       ],
       "stderr": "",
       "raw_path": "results/raw/iacsb_layer1/cis_examples__cis_4_1_security_group.json",
-      "mean_latency_ms": 0.24236679964815266
+      "mean_latency_ms": 0.11247519942116924
     }
   ]
 }

@@ -5,7 +5,7 @@
     "processor": "arm",
     "python": "3.14.6",
     "cpu_count": 14,
-    "git_commit": "14a1e4cbd392d8454a55a9733ae9d1259559c336"
+    "git_commit": "c8aad799c14a37e46de60fc931902d59e3482b48"
   },
   "corpus": {
     "n_cases": 48,
@@ -131,12 +131,12 @@
           }
         },
         "latency": {
-          "mean_ms": 2421.011611791664,
-          "sd_ms": 154.78542881487527,
+          "mean_ms": 2429.3362539999484,
+          "sd_ms": 465.52847320348593,
           "n": 240
         },
         "n_execution_errors": 0,
-        "n_unmapped_findings": 249,
+        "n_unmapped_findings": 213,
         "n_unmapped_findings_on_missed_cases": 8,
         "specificity_estimable": true,
         "mcc_estimable": true
@@ -189,12 +189,12 @@
           }
         },
         "latency": {
-          "mean_ms": 2421.011611791664,
-          "sd_ms": 154.78542881487527,
+          "mean_ms": 2429.3362539999484,
+          "sd_ms": 465.52847320348593,
           "n": 240
         },
         "n_execution_errors": 0,
-        "n_unmapped_findings": 249,
+        "n_unmapped_findings": 213,
         "n_unmapped_findings_on_missed_cases": 8,
         "specificity_estimable": true,
         "mcc_estimable": true
@@ -247,12 +247,12 @@
           }
         },
         "latency": {
-          "mean_ms": 2421.011611791664,
-          "sd_ms": 154.78542881487527,
+          "mean_ms": 2429.3362539999484,
+          "sd_ms": 465.52847320348593,
           "n": 240
         },
         "n_execution_errors": 0,
-        "n_unmapped_findings": 249,
+        "n_unmapped_findings": 213,
         "n_unmapped_findings_on_missed_cases": 8,
         "specificity_estimable": true,
         "mcc_estimable": true
@@ -307,8 +307,8 @@
           }
         },
         "latency": {
-          "mean_ms": 0.22455189167279363,
-          "sd_ms": 0.061756335273860846,
+          "mean_ms": 0.22212983755404517,
+          "sd_ms": 0.09664999567200436,
           "n": 240
         },
         "n_execution_errors": 0,
@@ -359,8 +359,8 @@
           }
         },
         "latency": {
-          "mean_ms": 0.22455189167279363,
-          "sd_ms": 0.061756335273860846,
+          "mean_ms": 0.22212983755404517,
+          "sd_ms": 0.09664999567200436,
           "n": 240
         },
         "n_execution_errors": 0,
@@ -373,31 +373,31 @@
         "tool": "iacsb_layer1",
         "level": "any",
         "confusion_matrix": {
-          "tp": 26,
+          "tp": 24,
           "fp": 22,
           "tn": 0,
-          "fn": 0,
+          "fn": 2,
           "total": 48,
           "positives": 26,
           "negatives": 22,
-          "accuracy": 0.5416666666666666,
-          "precision": 0.5416666666666666,
-          "recall": 1.0,
+          "accuracy": 0.5,
+          "precision": 0.5217391304347826,
+          "recall": 0.9230769230769231,
           "specificity": 0.0,
-          "f1": 0.7027027027027027,
-          "balanced_accuracy": 0.5,
-          "mcc": 0.0,
+          "f1": 0.6666666666666667,
+          "balanced_accuracy": 0.46153846153846156,
+          "mcc": -0.19180536399919287,
           "recall_ci": {
-            "point": 1.0,
-            "lower": 0.8677253955022457,
-            "upper": 1.0,
+            "point": 0.9230769230769231,
+            "lower": 0.7486970833046258,
+            "upper": 0.9905446089962875,
             "level": 0.95,
             "method": "Clopper-Pearson (exact)"
           },
           "precision_ci": {
-            "point": 0.5416666666666666,
-            "lower": 0.39172199759890747,
-            "upper": 0.6862845779278239,
+            "point": 0.5217391304347826,
+            "lower": 0.3694564735699841,
+            "upper": 0.6711213130726592,
             "level": 0.95,
             "method": "Clopper-Pearson (exact)"
           },
@@ -409,16 +409,16 @@
             "method": "Clopper-Pearson (exact)"
           },
           "accuracy_ci": {
-            "point": 0.5416666666666666,
-            "lower": 0.39172199759890747,
-            "upper": 0.6862845779278239,
+            "point": 0.5,
+            "lower": 0.3522516305533423,
+            "upper": 0.6477483694466568,
             "level": 0.95,
             "method": "Clopper-Pearson (exact)"
           }
         },
         "latency": {
-          "mean_ms": 0.22455189167279363,
-          "sd_ms": 0.061756335273860846,
+          "mean_ms": 0.22212983755404517,
+          "sd_ms": 0.09664999567200436,
           "n": 240
         },
         "n_execution_errors": 0,
@@ -477,8 +477,8 @@
           }
         },
         "latency": {
-          "mean_ms": 18.619832487380943,
-          "sd_ms": 1.0100043706655752,
+          "mean_ms": 18.10042135830372,
+          "sd_ms": 1.0808324260182063,
           "n": 240
         },
         "n_execution_errors": 0,
@@ -535,8 +535,8 @@
           }
         },
         "latency": {
-          "mean_ms": 18.619832487380943,
-          "sd_ms": 1.0100043706655752,
+          "mean_ms": 18.10042135830372,
+          "sd_ms": 1.0808324260182063,
           "n": 240
         },
         "n_execution_errors": 0,
@@ -593,8 +593,8 @@
           }
         },
         "latency": {
-          "mean_ms": 18.619832487380943,
-          "sd_ms": 1.0100043706655752,
+          "mean_ms": 18.10042135830372,
+          "sd_ms": 1.0808324260182063,
           "n": 240
         },
         "n_execution_errors": 0,
@@ -653,12 +653,12 @@
           }
         },
         "latency": {
-          "mean_ms": 422.5689326707349,
-          "sd_ms": 4.596782632831237,
+          "mean_ms": 424.219733666708,
+          "sd_ms": 6.026590453934721,
           "n": 240
         },
         "n_execution_errors": 0,
-        "n_unmapped_findings": 64,
+        "n_unmapped_findings": 55,
         "n_unmapped_findings_on_missed_cases": 0,
         "specificity_estimable": true,
         "mcc_estimable": true
@@ -711,12 +711,12 @@
           }
         },
         "latency": {
-          "mean_ms": 422.5689326707349,
-          "sd_ms": 4.596782632831237,
+          "mean_ms": 424.219733666708,
+          "sd_ms": 6.026590453934721,
           "n": 240
         },
         "n_execution_errors": 0,
-        "n_unmapped_findings": 64,
+        "n_unmapped_findings": 55,
         "n_unmapped_findings_on_missed_cases": 0,
         "specificity_estimable": true,
         "mcc_estimable": true
@@ -769,12 +769,12 @@
           }
         },
         "latency": {
-          "mean_ms": 422.5689326707349,
-          "sd_ms": 4.596782632831237,
+          "mean_ms": 424.219733666708,
+          "sd_ms": 6.026590453934721,
           "n": 240
         },
         "n_execution_errors": 0,
-        "n_unmapped_findings": 64,
+        "n_unmapped_findings": 55,
         "n_unmapped_findings_on_missed_cases": 0,
         "specificity_estimable": true,
         "mcc_estimable": true
@@ -890,7 +890,7 @@
   },
   "caveats": [
     "8 control-map entries are unverified against tool output; detection may be under-credited for affected controls.",
-    "313 findings were unmappable and are excluded from control-level scoring. 8 of them occurred on cases the emitting tool missed, so recall for those tools may be under-credited; extend the control map to resolve them.",
+    "268 findings were unmappable and are excluded from control-level scoring. 8 of them occurred on cases the emitting tool missed, so recall for those tools may be under-credited; extend the control map to resolve them.",
     "Comparator tools ran with default rulesets; the plan-level policy set was authored with knowledge of the corpus. This asymmetry favours the reference."
   ]
 }

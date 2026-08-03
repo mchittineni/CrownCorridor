@@ -5,42 +5,6 @@
         {
           "value": [
             {
-              "msg": "aws_cloudtrail.insecure_trail does not enable log file integrity validation",
-              "resource": "aws_cloudtrail.insecure_trail",
-              "rule_id": "cloudtrail_log_validation",
-              "severity": "MEDIUM"
-            },
-            {
-              "msg": "aws_cloudtrail.insecure_trail does not encrypt logs with a customer-managed key",
-              "resource": "aws_cloudtrail.insecure_trail",
-              "rule_id": "cloudtrail_log_encryption",
-              "severity": "MEDIUM"
-            },
-            {
-              "msg": "aws_cloudtrail.insecure_trail is not a multi-region trail",
-              "resource": "aws_cloudtrail.insecure_trail",
-              "rule_id": "cloudtrail_multi_region",
-              "severity": "MEDIUM"
-            },
-            {
-              "msg": "aws_s3_bucket.example does not enforce server-side encryption",
-              "resource": "aws_s3_bucket.example",
-              "rule_id": "s3_server_side_encryption",
-              "severity": "HIGH"
-            },
-            {
-              "msg": "aws_s3_bucket.unencrypted does not enforce server-side encryption",
-              "resource": "aws_s3_bucket.unencrypted",
-              "rule_id": "s3_server_side_encryption",
-              "severity": "HIGH"
-            },
-            {
-              "msg": "aws_s3_bucket_public_access_block.example does not set all four public access block flags to true",
-              "resource": "aws_s3_bucket_public_access_block.example",
-              "rule_id": "s3_public_access_block",
-              "severity": "CRITICAL"
-            },
-            {
               "msg": "aws_security_group.allow_all permits unrestricted ingress from 0.0.0.0/0",
               "resource": "aws_security_group.allow_all",
               "rule_id": "security_group_unrestricted_ingress",

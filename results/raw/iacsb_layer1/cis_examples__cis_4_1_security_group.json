@@ -6,13 +6,5 @@
     "msg": "High Entropy Secret in cis_4_1_security_group.tf",
     "file": "cis_4_1_security_group.tf",
     "line": 5
-  },
-  {
-    "rule_id": "layer1_secret_pattern",
-    "resource": "",
-    "severity": "CRITICAL",
-    "msg": "High Entropy Secret in cis_2_1_s3_public.tf",
-    "file": "cis_2_1_s3_public.tf",
-    "line": 7
   }
 ]

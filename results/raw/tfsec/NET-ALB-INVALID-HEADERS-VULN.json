@@ -17,7 +17,7 @@
       "status": 0,
       "resource": "aws_vpc.target",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-uz73n5fh/case/main.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-frtarlco/case/main.tf",
         "start_line": 20,
         "end_line": 22
       }
@@ -40,7 +40,7 @@
       "status": 0,
       "resource": "aws_lb.target",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-uz73n5fh/case/main.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-ALB-INVALID-HEADERS-VULN-frtarlco/case/main.tf",
         "start_line": 36,
         "end_line": 36
       }
