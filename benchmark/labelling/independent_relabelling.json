@@ -1,0 +1,252 @@
+{
+  "_about": "Second-rater labels produced blind to the generator specification. See README.md in this directory for method, agreement, and limitations.",
+  "n": 48,
+  "raw_agreement": 0.9791666666666666,
+  "kappa": 0.9581881533101044,
+  "table": {
+    "VIOLATION|VIOLATION": 25,
+    "VIOLATION|COMPLIANT": 1,
+    "COMPLIANT|VIOLATION": 0,
+    "COMPLIANT|COMPLIANT": 22
+  },
+  "disagreements": [
+    {
+      "blind_id": "C18",
+      "case_id": "STO-UNENCRYPTED-BUCKET-VULN",
+      "recorded": "VIOLATION",
+      "rater2": "COMPLIANT",
+      "reason": "SSE configured (AES256): bucket does not LACK server-side encryption"
+    }
+  ],
+  "rater2": {
+    "CMP-NO-IMDSV2-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "http_tokens=required -> IMDSv2 enforced"
+    },
+    "SRV-NO-FUNCTION-ENCRYPTION-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "lambda kms_key_arn set -> env vars encrypted with CMK"
+    },
+    "NET-ALB-INVALID-HEADERS-VULN": {
+      "label": "VIOLATION",
+      "reason": "drop_invalid_header_fields=false"
+    },
+    "cis_examples/cis_3_1_cloudtrail": {
+      "label": "VIOLATION",
+      "reason": "is_multi_region_trail=false; enable_log_file_validation absent"
+    },
+    "CMP-MUTABLE-IMAGE-TAGS-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "image_tag_mutability=IMMUTABLE"
+    },
+    "CMP-NO-IMAGE-SCANNING-VULN": {
+      "label": "VIOLATION",
+      "reason": "scan_on_push=false"
+    },
+    "cis_examples/cis_2_1_s3_public": {
+      "label": "VIOLATION",
+      "reason": "all four public-access-block flags false"
+    },
+    "cis_examples/cis_2_2_s3_encryption": {
+      "label": "VIOLATION",
+      "reason": "bare bucket, no SSE configuration resource"
+    },
+    "IAM-WILDCARD-TRUST-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "trust principal is a specific service, not a wildcard"
+    },
+    "CMP-MUTABLE-IMAGE-TAGS-VULN": {
+      "label": "VIOLATION",
+      "reason": "image_tag_mutability=MUTABLE"
+    },
+    "SEC-HARDCODED-CREDENTIAL-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "env var holds a Secrets Manager ARN reference, not a literal"
+    },
+    "STO-NO-ACCESS-LOGGING-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "aws_s3_bucket_logging present for the target bucket"
+    },
+    "MON-TRAIL-NOT-MULTIREGION-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "is_multi_region_trail=true"
+    },
+    "ENC-UNENCRYPTED-DATABASE-VULN": {
+      "label": "VIOLATION",
+      "reason": "storage_encrypted=false"
+    },
+    "ENC-NO-KEY-ROTATION-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "enable_key_rotation=true"
+    },
+    "STO-PUBLIC-DATABASE-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "publicly_accessible=false"
+    },
+    "MON-NO-LOG-ENCRYPTION-VULN": {
+      "label": "VIOLATION",
+      "reason": "cloudtrail has no kms_key_id"
+    },
+    "STO-UNENCRYPTED-BUCKET-VULN": {
+      "label": "COMPLIANT",
+      "reason": "SSE configured (AES256): bucket does not LACK server-side encryption"
+    },
+    "ENC-UNENCRYPTED-DATABASE-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "storage_encrypted=true with CMK"
+    },
+    "SEC-HARDCODED-CREDENTIAL-VULN": {
+      "label": "VIOLATION",
+      "reason": "DB_PASSWORD is a literal string in source"
+    },
+    "STO-UNENCRYPTED-BUCKET-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "SSE configured with aws:kms CMK"
+    },
+    "ENC-NO-KEY-ROTATION-VULN": {
+      "label": "VIOLATION",
+      "reason": "enable_key_rotation=false"
+    },
+    "NET-NO-FLOW-LOGS-VULN": {
+      "label": "VIOLATION",
+      "reason": "VPC with no aws_flow_log"
+    },
+    "NET-NO-FLOW-LOGS-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "aws_flow_log present for the VPC"
+    },
+    "ENC-UNENCRYPTED-VOLUME-VULN": {
+      "label": "VIOLATION",
+      "reason": "encrypted=false"
+    },
+    "NET-UNRESTRICTED-INGRESS-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "ingress cidr is 10.0.0.0/16; the 0.0.0.0/0 is egress"
+    },
+    "MON-TRAIL-NOT-MULTIREGION-VULN": {
+      "label": "VIOLATION",
+      "reason": "is_multi_region_trail=false"
+    },
+    "STO-PUBLIC-BUCKET-VULN": {
+      "label": "VIOLATION",
+      "reason": "all four public-access-block flags false"
+    },
+    "cis_examples/cis_4_1_security_group": {
+      "label": "VIOLATION",
+      "reason": "ingress 0.0.0.0/0 and ::/0 on port 22"
+    },
+    "STO-PUBLIC-DATABASE-VULN": {
+      "label": "VIOLATION",
+      "reason": "publicly_accessible=true"
+    },
+    "CMP-NO-IMAGE-SCANNING-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "scan_on_push=true"
+    },
+    "ENC-UNENCRYPTED-VOLUME-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "encrypted=true with CMK"
+    },
+    "STO-NO-ACCESS-LOGGING-VULN": {
+      "label": "VIOLATION",
+      "reason": "two buckets, no aws_s3_bucket_logging anywhere"
+    },
+    "NET-NO-HTTPS-REDIRECT-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "viewer_protocol_policy=redirect-to-https"
+    },
+    "NET-PUBLIC-INSTANCE-VULN": {
+      "label": "VIOLATION",
+      "reason": "associate_public_ip_address=true"
+    },
+    "CMP-NO-IMDSV2-VULN": {
+      "label": "VIOLATION",
+      "reason": "http_tokens=optional -> IMDSv1 permitted"
+    },
+    "IAM-WILDCARD-ACTION-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "specific action s3:GetObject; object-level ARN wildcard is normal scoping"
+    },
+    "NET-PUBLIC-INSTANCE-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "associate_public_ip_address=false"
+    },
+    "NET-ALB-INVALID-HEADERS-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "drop_invalid_header_fields=true"
+    },
+    "MON-NO-LOG-ENCRYPTION-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "cloudtrail kms_key_id set to a CMK"
+    },
+    "SRV-NO-FUNCTION-ENCRYPTION-VULN": {
+      "label": "VIOLATION",
+      "reason": "kms key declared but lambda has no kms_key_arn"
+    },
+    "MON-NO-TRAIL-VALIDATION-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "enable_log_file_validation=true"
+    },
+    "NET-NO-HTTPS-REDIRECT-VULN": {
+      "label": "VIOLATION",
+      "reason": "viewer_protocol_policy=allow-all"
+    },
+    "IAM-WILDCARD-TRUST-VULN": {
+      "label": "VIOLATION",
+      "reason": "trust policy Principal=\"*\""
+    },
+    "STO-PUBLIC-BUCKET-SAFE": {
+      "label": "COMPLIANT",
+      "reason": "all four public-access-block flags true"
+    },
+    "NET-UNRESTRICTED-INGRESS-VULN": {
+      "label": "VIOLATION",
+      "reason": "ingress cidr list is 0.0.0.0/0"
+    },
+    "MON-NO-TRAIL-VALIDATION-VULN": {
+      "label": "VIOLATION",
+      "reason": "enable_log_file_validation=false"
+    },
+    "IAM-WILDCARD-ACTION-VULN": {
+      "label": "VIOLATION",
+      "reason": "Action=\"*\" and Resource=\"*\""
+    }
+  },
+  "method": {
+    "blinding": [
+      "all comment lines stripped (the generator writes '# Expected:' and '# Rationale:' headers)",
+      "expected.json and metadata.json withheld",
+      "case identifier withheld (its SAFE/VULN suffix names the class)",
+      "presentation order keyed on sha256(case_id): reproducible, uncorrelated with the label",
+      "views screened for residual label vocabulary before labelling"
+    ],
+    "agreement_computed": "before reconciliation",
+    "rater2_is": "an automated (LLM) rater, NOT an independent human investigator"
+  },
+  "limitations": {
+    "not_human_inter_rater_reliability": true,
+    "shared_provenance": "rater 2's reading of CIS control text derives from the same public documentation the specifications were written from, so the raters are not fully independent and agreement is biased upward",
+    "contaminated_cases": [
+      "MON-NO-LOG-ENCRYPTION-SAFE",
+      "MON-NO-LOG-ENCRYPTION-VULN",
+      "IAM-WILDCARD-ACTION-SAFE",
+      "STO-NO-ACCESS-LOGGING-SAFE",
+      "NET-UNRESTRICTED-INGRESS-VULN"
+    ],
+    "contamination_note": "these five were inspected during earlier debugging in the same session, so their agreement is not blind; all five agreed",
+    "agreement_excluding_contaminated": "42/43",
+    "residual_blinding_leak": "cis_examples/cis_3_1_cloudtrail declares resource \"aws_cloudtrail\" \"insecure_trail\"; genuine upstream content, left unmodified rather than renamed",
+    "kappa_sensitivity": "with 26/22 class balance at n=48, one disagreement moves kappa by roughly 0.04; the interval around 0.958 is wide"
+  },
+  "reconciliation": {
+    "case": "STO-UNENCRYPTED-BUCKET-VULN",
+    "resolved_by": "correcting the control text, not the label",
+    "control": "STO_UNENCRYPTED_BUCKET",
+    "title_before": "Object storage bucket lacks server-side encryption",
+    "title_after": "Object storage bucket not encrypted with a customer-managed key",
+    "why": "the label encoded a customer-managed-key requirement the stated text did not; requiring a CMK is defensible and is what the corpus, the policy set and the CMK rules of both source-level scanners test. Relabelling instead would have left the vulnerable/compliant pair testing nothing.",
+    "confusion_matrix_impact": "none; no case label changed",
+    "post_reconciliation_note": "under the corrected title an AES256 bucket does violate the control, so rater 2 would agree; this is stated for clarity and does NOT revise the 47/48 figure above, which is pre-reconciliation",
+    "regression_test": "evaluation/tests/test_control_map.py::test_cis_citation_agrees_with_the_corpus_generator"
+  }
+}
