@@ -7,11 +7,24 @@
 [![Infra CI](https://github.com/mchittineni/IaCSecBench/actions/workflows/infra-ci.yml/badge.svg)](https://github.com/mchittineni/IaCSecBench/actions/workflows/infra-ci.yml)
 [![Benchmark](https://github.com/mchittineni/IaCSecBench/actions/workflows/benchmark.yml/badge.svg)](https://github.com/mchittineni/IaCSecBench/actions/workflows/benchmark.yml)
 [![Deploy](https://github.com/mchittineni/IaCSecBench/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/mchittineni/IaCSecBench/actions/workflows/deploy-pages.yml)
-[![Tests Passing](https://img.shields.io/badge/Tests-Passing-brightgreen.svg)](https://github.com/mchittineni/IaCSecBench)
-[![Coverage 100%](https://img.shields.io/badge/IaC_Coverage-100%25-success.svg)](https://github.com/mchittineni/IaCSecBench)
-[![Security Validated](https://img.shields.io/badge/Security-Zero--PII%20Validated-blue.svg)](https://github.com/mchittineni/IaCSecBench)
-[![Benchmark Reproducible](https://img.shields.io/badge/Benchmark-Reproducible-orange.svg)](https://github.com/mchittineni/IaCSecBench)
+[![Control coverage 22/26](https://img.shields.io/badge/control_coverage-22%2F26_exercised-yellow.svg)](evaluation/control_map.json)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21645016-purple.svg)](https://doi.org/10.5281/zenodo.21645016)
+
+<!-- The four badges above are the live workflow-status ones plus two measured facts.
+     Four static shields were removed rather than kept: "Tests Passing" and
+     "Benchmark Reproducible" were hardcoded literals that stayed green regardless of
+     the actual state, "Security Zero-PII Validated" asserted an outcome no badge can
+     establish, and "IaC Coverage 100%" was simply false -- 22 of 26 canonical controls
+     are exercised by the corpus and 8 rule mappings remain unverified. A badge that
+     cannot change is decoration, and one that overstates coverage is worse. The
+     coverage badge above is a hand-maintained number; re-derive it with
+     `python -m evaluation.analyze` and see `results/evaluation.json`. -->
+
+> **Measured state.** 48 admissible cases (26 vulnerable / 22 compliant); 22 of 26
+> canonical controls exercised; 8 rule mappings unverified. Every figure in
+> `results/` and in the paper is generated from recorded scanner output by
+> `evaluation/analyze.py` — see [`results/`](results/) and the caveat list in
+> `results/evaluation.json`.
 
 ---
 
@@ -39,21 +52,21 @@ This repository provides **IaCSecBench**, a unified evaluation framework to meas
 
 ## ✨ Features
 
-| Feature                                     | Description                                                                                                                                                   |
-| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 🔴 **Live SRO Feed**                        | Real-time property registration ticker with pause/resume and speed controls                                                                                   |
-| 🚗 **Search by Commute**                    | Filter properties by driving time to workplace hubs (HITECH City, Financial District, Amaravati)                                                              |
-| 📈 **Regional Market Trends**               | Time-series price trajectory charts (2016-2026) and top appreciating localities leaderboard                                                                   |
-| 🔍 **Global Smart Search**                  | Persistent header bar with instant autocomplete for properties, listings, and districts                                                                       |
-| ⚖️ **Property Comparison**                  | Side-by-side spec comparison modal for up to 3 properties (Valuation, CAGR, Rate/SqFt, Metro)                                                                 |
-| 🏰 **Complete State Property History**      | Full state historical property records for 24,484 villages (15,197 AP, 9,287 TS) across all 61 districts                                                      |
-| 🗂️ **Hierarchical Location Query**          | Filter properties via State ➔ District ➔ Mandal / Taluk ➔ Property List (Fast-Read API & Web UI)                                                              |
-| 🖨️ **Valuation Audit Report**               | One-click printable PDF/audit summary with transaction logs and infrastructure scores                                                                         |
-| 📍 **Infrastructure Explorer**              | Nearby schools, hospitals, metro/railway stations with Focus Map and Google Maps turn-by-turn links                                                           |
-| 🔒 **Zero-PII Compliance**                  | Strict privacy protections — no customer names or personal data stored (automated CI check)                                                                   |
-| 🏗️ **AWS Terraform Reference Architecture** | Modular Terraform (>= 1.15.0, AWS ~> 6.56.0) reference architecture with WAF, CloudFront, API Gateway, Fargate & PostGIS                                      |
-| 🛡️ **CIS AWS Benchmark Security**           | OPA / Rego policy engine, VPC Flow Logs, S3 TLS-Only, ALB Header Dropping, and native `.tftest.hcl` suites                                                    |
-| 🔬 **IaCSecBench Evaluation Framework**     | Open-source framework, comparative benchmarking (Checkov, tfsec, plan-level OPA), public datasets & reproducible experiments (`experiments/run_baselines.sh`) |
+| Feature                                     | Description                                                                                                                                                          |
+| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 🔴 **Live SRO Feed**                        | Real-time property registration ticker with pause/resume and speed controls                                                                                          |
+| 🚗 **Search by Commute**                    | Filter properties by driving time to workplace hubs (HITECH City, Financial District, Amaravati)                                                                     |
+| 📈 **Regional Market Trends**               | Time-series price trajectory charts (2016-2026) and top appreciating localities leaderboard                                                                          |
+| 🔍 **Global Smart Search**                  | Persistent header bar with instant autocomplete for properties, listings, and districts                                                                              |
+| ⚖️ **Property Comparison**                  | Side-by-side spec comparison modal for up to 3 properties (Valuation, CAGR, Rate/SqFt, Metro)                                                                        |
+| 🏰 **Complete State Property History**      | Full state historical property records for 24,484 villages (15,197 AP, 9,287 TS) across all 61 districts                                                             |
+| 🗂️ **Hierarchical Location Query**          | Filter properties via State ➔ District ➔ Mandal / Taluk ➔ Property List (Fast-Read API & Web UI)                                                                     |
+| 🖨️ **Valuation Audit Report**               | One-click printable PDF/audit summary with transaction logs and infrastructure scores                                                                                |
+| 📍 **Infrastructure Explorer**              | Nearby schools, hospitals, metro/railway stations with Focus Map and Google Maps turn-by-turn links                                                                  |
+| 🔒 **Zero-PII Compliance**                  | Strict privacy protections — no customer names or personal data stored (automated CI check)                                                                          |
+| 🏗️ **AWS Terraform Reference Architecture** | Modular Terraform (>= 1.15.0, AWS ~> 6.56.0) reference architecture with WAF, CloudFront, API Gateway, Fargate & PostGIS                                             |
+| 🛡️ **CIS AWS Benchmark Security**           | OPA / Rego policy engine, VPC Flow Logs, S3 TLS-Only, ALB Header Dropping, and native `.tftest.hcl` suites                                                           |
+| 🔬 **IaCSecBench Evaluation Framework**     | Open-source framework, comparative benchmarking (Checkov, tfsec, Trivy, plan-level OPA), public datasets & reproducible experiments (`experiments/run_baselines.sh`) |
 
 ---
 
@@ -143,7 +156,7 @@ CrownCorridor/
 │   │   ├── terraform_registry/ # declares 50; modules/ is empty
 │   │   ├── secureflag/      # declares 75; terraform/ is empty
 │   │   └── cis_examples/    # declares 50; aws/ holds 4 usable configurations
-│   └── golden_results/      # Golden baseline JSON outputs for Checkov, tfsec, OPA, IaCSecBench
+│   └── golden_results/      # Golden baseline JSON outputs for Checkov, tfsec, Trivy, OPA, IaCSecBench
 │
 ├── pipeline/                # Zero-PII Data Pipeline & Validators
 │   ├── fetch_sro.py         # SRO data fetcher with sanitize_and_anonymize_record() PII scrubbing
@@ -247,7 +260,7 @@ python evaluation/score.py
 # Run Checkov
 checkov -d infrastructure --framework terraform
 
-# Native Terraform Tests (11 test suites with 100% coverage)
+# Native Terraform Tests (11 .tftest.hcl suites, 26 assertions; no coverage metric is computed)
 cd infrastructure
 terraform fmt -check -recursive .
 terraform init -backend=false
