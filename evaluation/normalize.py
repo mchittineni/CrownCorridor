@@ -202,6 +202,13 @@ def _parse_checkov(payload: Any) -> Iterable[tuple[str, str, str, str, str, int]
 
     Checkov emits either a single object or a list of objects (one per detected
     framework) depending on what it finds in the target directory.
+
+    Args:
+        payload: Decoded JSON from ``checkov -o json``.
+
+    Yields:
+        One ``(rule_id, resource, severity, description, file, line)`` tuple per
+        failed check.
     """
     blocks = payload if isinstance(payload, list) else [payload]
     for block in blocks:
@@ -221,7 +228,19 @@ def _parse_checkov(payload: Any) -> Iterable[tuple[str, str, str, str, str, int]
 
 
 def _parse_tfsec(payload: Any) -> Iterable[tuple[str, str, str, str, str, int]]:
-    """Parses ``tfsec --format json`` output."""
+    """Parses ``tfsec --format json`` output.
+
+    The long identifier is preferred over ``rule_id``: tfsec reports the short
+    ``AVD-AWS-NNNN`` form in ``rule_id``, and the control map is keyed on the
+    stable long name.
+
+    Args:
+        payload: Decoded JSON from ``tfsec --format json``.
+
+    Yields:
+        One ``(rule_id, resource, severity, description, file, line)`` tuple per
+        result.
+    """
     if not isinstance(payload, dict):
         return
     for result in payload.get("results") or []:
@@ -244,6 +263,14 @@ def _parse_opa(payload: Any) -> Iterable[tuple[str, str, str, str, str, int]]:
     expected to carry a leading ``[rule_id]`` marker so that findings can be
     mapped to canonical controls; messages without one are reported as
     ``unmapped`` rather than dropped.
+
+    Args:
+        payload: Decoded JSON from ``opa eval --format json``, or a pre-extracted
+            list of deny messages.
+
+    Yields:
+        One ``(rule_id, resource, severity, description, file, line)`` tuple per
+        deny message.
     """
     denies: list[Any] = []
 
@@ -381,7 +408,7 @@ def score_case(
     outcome = CaseOutcome(case_id=case_id, tool=tool, expected=expected, tool_error=tool_error)
 
     if tool_error is not None:
-        outcome.detected = {level: False for level in MATCH_LEVELS}
+        outcome.detected = dict.fromkeys(MATCH_LEVELS, False)
         return outcome
 
     findings, unmapped = normalize_tool_output(case_id, tool, payload, control_map)

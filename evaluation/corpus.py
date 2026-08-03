@@ -304,6 +304,13 @@ def load_internal(control_map: Any | None = None) -> Iterator[Case]:
     Only directories that exist on disk are yielded. A catalogue entry without a
     corresponding directory is not a case; it is an unimplemented placeholder,
     and :func:`load_catalogue_gap` reports the difference.
+
+    Args:
+        control_map: Optional loaded control map, used to resolve each case's
+            expected label. When omitted, labels are taken from metadata alone.
+
+    Yields:
+        One complexity-measured ``Case`` per internal case directory.
     """
     if not INTERNAL_CASES.is_dir():
         return
@@ -350,6 +357,17 @@ def load_external(control_map: Any | None = None) -> Iterator[Case]:
     A ``metadata.json`` entry describing a case with no corresponding ``.tf``
     file is not loaded. External datasets are declared by manifest but scored
     only on material that is present.
+
+    Args:
+        control_map: Optional loaded control map, used to resolve each case's
+            expected label. When omitted, labels are taken from metadata alone.
+
+    Yields:
+        One complexity-measured ``Case`` per external ``.tf`` file found.
+
+    Raises:
+        ValueError: If two cases share a directory. A case is scanned as a
+            directory, so siblings would be one observation counted twice.
     """
     if not EXTERNAL_ROOT.is_dir():
         return

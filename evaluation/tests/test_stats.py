@@ -123,9 +123,9 @@ def test_clopper_pearson_contains_point_and_is_conservative():
 
 
 def test_clopper_pearson_rejects_bad_input():
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="n must be positive"):
         clopper_pearson(5, 0)
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match=r"k must lie in \[0, n\]"):
         clopper_pearson(11, 10)
 
 
@@ -184,7 +184,7 @@ def test_confusion_matrix_recall_denominator_is_internal():
 
 
 def test_confusion_matrix_rejects_negative_cells():
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="tp must be non-negative"):
         ConfusionMatrix(tp=-1, fp=0, tn=0, fn=0)
 
 
@@ -298,7 +298,7 @@ def test_paired_bootstrap_brackets_observed_difference():
 
 
 def test_paired_bootstrap_rejects_unequal_lengths():
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="must have equal length"):
         paired_bootstrap_diff_ci([True, False], [True])
 
 

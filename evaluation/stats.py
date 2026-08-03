@@ -212,7 +212,7 @@ def clopper_pearson(k: int, n: int, alpha: float = 0.05) -> Interval:
         alpha: Two-sided error rate; 0.05 yields a 95% interval.
 
     Returns:
-        An :class:`Interval` with ``point = k / n``.
+        An ``Interval`` whose ``point`` is ``k / n``.
 
     Notes:
         Boundary behaviour is handled explicitly: at k = n the lower bound is
@@ -546,7 +546,7 @@ def exact_mcnemar(
             only and will be wider than the corpus-level interval.
 
     Returns:
-        A fully populated :class:`McNemarResult`.
+        A fully populated ``McNemarResult``.
     """
     if b < 0 or c < 0:
         raise ValueError("discordant counts must be non-negative")
@@ -690,7 +690,11 @@ def paired_bootstrap_diff_ci(
     deltas = [int(a) - int(b) for a, b in zip(outcomes_a, outcomes_b)]
     observed = sum(deltas) / n
 
-    rng = random.Random(seed)
+    # A seeded Mersenne Twister is the correct generator here, not a weakness: the
+    # bootstrap must be reproducible from the seed recorded in the run manifest so
+    # a reader can regenerate the published interval exactly. Nothing here is a
+    # secret, a token, or a nonce.
+    rng = random.Random(seed)  # nosec B311 - reproducible resampling, not cryptography
     replicates = []
     for _ in range(iterations):
         total = 0

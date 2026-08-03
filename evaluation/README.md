@@ -25,14 +25,17 @@ evaluation/
 ## ⚙️ Key Components & Workflows
 
 ### 1. Baseline Evaluation Suite (`run_baselines.py` & `experiments/run_baselines.sh`)
+
 - Executes evaluations against Checkov, tfsec, Sentinel/OPA, Terratest, and the native IaCSecBench engine.
 - Measures detection accuracy, false positive rates, scan latency (ms), and zero-PII compliance.
 
 ### 2. Evaluation Protocol & Synthetic Guard (`score.py`)
+
 - Computes Clopper-Pearson 95% confidence intervals (`CI_95%`) and McNemar's statistical significance.
 - Requires `IACSECBENCH_ALLOW_SYNTHETIC=1` when running synthetic leaderboard calculations to prevent accidental publication of non-measured metrics.
 
 ### 3. Finding Normalization Engine (`normalize.py`)
+
 - Maps heterogeneous scanner output formats (SARIF, JSON, custom CLI text) into a canonical security finding taxonomy:
   $$\mathcal{F} = \langle \text{Case\_ID}, \text{Domain}, \text{Severity}, \text{Resource\_URN}, \text{Status} \rangle$$
 
