@@ -22,7 +22,9 @@ experiments/
 ## ⚙️ Key Execution Scripts
 
 ### 1. One-Command Reproduction Script (`run_all.sh`)
+
 Three stages, none of which fabricates anything:
+
 1. **Data Integrity & IaC Security Validation** — `validate_data.py` and `validate_iac.py`.
 2. **Pytest Verification** — the unit test suite. No `IACSECBENCH_ALLOW_SYNTHETIC` is
    exported: tests that exercise a fabricating stage opt in individually, and one
@@ -37,6 +39,7 @@ and are invoked by hand — the first three only under
 `IACSECBENCH_ALLOW_SYNTHETIC=1`.
 
 ### 2. Baseline Evaluation Shell Script (`run_baselines.sh`)
+
 **The only script that produces results.** Four stages: corpus admissibility,
 scanner execution with repeats, a control-map audit against the rule identifiers
 actually emitted, then statistics and LaTeX table generation. Requires Checkov,
@@ -52,6 +55,7 @@ Takes tens of minutes, largely in `terraform init`/`validate` per case.
 > is not.
 
 ### 3. In CI
+
 `.github/workflows/benchmark.yml` runs this harness on manual dispatch and weekly,
 installing all four tools and uploading `results/` as an artefact. It deliberately
 does **not** commit results back, because CI latency would overwrite the only
