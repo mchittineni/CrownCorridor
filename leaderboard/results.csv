@@ -1,5 +1,5 @@
-tool_name,category,total_cases,accuracy_pct,precision_pct,recall_pct,f1_score_pct,fpr_pct,fnr_pct,execution_time_ms
-Checkov,AST Static Analysis,345,90.72,92.4,90.29,91.33,7.74,9.71,1420.0
-tfsec,HCL Lexical Scanner,345,90.43,93.9,88.0,90.86,5.95,12.0,310.0
-OPA / Sentinel,Rego Policy Engine,345,93.04,95.27,92.0,93.6,4.76,8.0,650.0
-IaCSecBench Engine,Multi-Engine Validation,345,100.0,100.0,100.0,100.0,0.0,0.0,185.0
+tool_name,category,total_cases,tp,fp,tn,fn,accuracy_pct,precision_pct,recall_pct,f1_score_pct,fpr_pct,fnr_pct,recall_ci_low_pct,recall_ci_high_pct,latency_mean_ms,latency_sd_ms,latency_samples,matching_level
+Checkov,AST static analysis,48,23,0,22,3,93.75,100.00,88.46,93.88,0.00,11.54,69.85,97.55,2421.0,154.8,240,control
+tfsec,HCL lexical scanning,48,22,2,20,4,87.50,91.67,84.62,88.00,9.09,15.38,65.13,95.64,422.6,4.6,240,control
+OPA (plan-level),Rego over compiled plan,48,20,0,22,6,87.50,100.00,76.92,86.96,0.00,23.08,56.35,91.03,18.6,1.0,240,control
+IaCSecBench L1,Repository-edge scanning,48,1,1,21,25,45.83,50.00,3.85,7.14,4.55,96.15,0.10,19.64,0.2,0.1,240,control
