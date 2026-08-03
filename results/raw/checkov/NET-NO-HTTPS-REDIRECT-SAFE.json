@@ -14,8 +14,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf",
         "file_line_range": [
           20,
           58
@@ -38,7 +38,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-20",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf"
       },
       {
         "check_id": "CKV_AWS_174",
@@ -52,8 +52,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf",
         "file_line_range": [
           20,
           58
@@ -76,7 +76,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-networking-63",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf"
       },
       {
         "check_id": "CKV_AWS_68",
@@ -90,8 +90,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf",
         "file_line_range": [
           20,
           58
@@ -114,7 +114,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-27",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf"
       },
       {
         "check_id": "CKV_AWS_310",
@@ -126,8 +126,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf",
         "file_line_range": [
           20,
           58
@@ -150,7 +150,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-310",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf"
       },
       {
         "check_id": "CKV_AWS_305",
@@ -164,8 +164,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf",
         "file_line_range": [
           20,
           58
@@ -188,7 +188,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-305",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf"
       },
       {
         "check_id": "CKV_AWS_374",
@@ -202,8 +202,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf",
         "file_line_range": [
           20,
           58
@@ -226,7 +226,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-374",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf"
       },
       {
         "check_id": "CKV2_AWS_42",
@@ -329,14 +329,14 @@
             }
           },
           "evaluated_keys": [
-            "viewer_certificate/iam_certificate_id",
-            "viewer_certificate/acm_certificate_arn"
+            "viewer_certificate/acm_certificate_arn",
+            "viewer_certificate/iam_certificate_id"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf",
         "file_line_range": [
           20,
           58
@@ -359,139 +359,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-cloudfront-distribution-uses-custom-ssl-certificate",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf"
-      },
-      {
-        "check_id": "CKV2_AWS_32",
-        "bc_check_id": "BC_AWS_NETWORKING_65",
-        "check_name": "Ensure CloudFront distribution has a response headers policy attached",
-        "check_result": {
-          "result": "FAILED",
-          "entity": {
-            "aws_cloudfront_distribution": {
-              "target": {
-                "__end_line__": 58,
-                "__start_line__": 20,
-                "default_cache_behavior": [
-                  {
-                    "allowed_methods": [
-                      [
-                        "GET",
-                        "HEAD"
-                      ]
-                    ],
-                    "cached_methods": [
-                      [
-                        "GET",
-                        "HEAD"
-                      ]
-                    ],
-                    "forwarded_values": [
-                      {
-                        "cookies": [
-                          {
-                            "forward": [
-                              "none"
-                            ]
-                          }
-                        ],
-                        "query_string": [
-                          false
-                        ]
-                      }
-                    ],
-                    "target_origin_id": [
-                      "primary"
-                    ],
-                    "viewer_protocol_policy": [
-                      "redirect-to-https"
-                    ]
-                  }
-                ],
-                "enabled": [
-                  true
-                ],
-                "origin": [
-                  {
-                    "custom_origin_config": [
-                      {
-                        "http_port": [
-                          80
-                        ],
-                        "https_port": [
-                          443
-                        ],
-                        "origin_protocol_policy": [
-                          "https-only"
-                        ],
-                        "origin_ssl_protocols": [
-                          [
-                            "TLSv1.2"
-                          ]
-                        ]
-                      }
-                    ],
-                    "domain_name": [
-                      "origin.example.com"
-                    ],
-                    "origin_id": [
-                      "primary"
-                    ]
-                  }
-                ],
-                "restrictions": [
-                  {
-                    "geo_restriction": [
-                      {
-                        "restriction_type": [
-                          "none"
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "viewer_certificate": [
-                  {
-                    "cloudfront_default_certificate": [
-                      true
-                    ]
-                  }
-                ],
-                "__address__": "aws_cloudfront_distribution.target"
-              }
-            }
-          },
-          "evaluated_keys": [
-            "resource_type"
-          ]
-        },
-        "code_block": null,
-        "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf",
-        "file_line_range": [
-          20,
-          58
-        ],
-        "resource": "aws_cloudfront_distribution.target",
-        "evaluations": null,
-        "check_class": "checkov.common.graph.checks_infra.base_check",
-        "fixed_definition": null,
-        "entity_tags": null,
-        "caller_file_path": null,
-        "caller_file_line_range": null,
-        "resource_address": null,
-        "severity": null,
-        "bc_category": null,
-        "benchmarks": null,
-        "description": null,
-        "short_description": null,
-        "vulnerability_details": null,
-        "connected_node": null,
-        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-networking-65",
-        "details": [],
-        "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf"
       },
       {
         "check_id": "CKV2_AWS_47",
@@ -600,8 +468,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf",
         "file_line_range": [
           20,
           58
@@ -624,7 +492,139 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-47",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-jnw0h3sm/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf"
+      },
+      {
+        "check_id": "CKV2_AWS_32",
+        "bc_check_id": "BC_AWS_NETWORKING_65",
+        "check_name": "Ensure CloudFront distribution has a response headers policy attached",
+        "check_result": {
+          "result": "FAILED",
+          "entity": {
+            "aws_cloudfront_distribution": {
+              "target": {
+                "__end_line__": 58,
+                "__start_line__": 20,
+                "default_cache_behavior": [
+                  {
+                    "allowed_methods": [
+                      [
+                        "GET",
+                        "HEAD"
+                      ]
+                    ],
+                    "cached_methods": [
+                      [
+                        "GET",
+                        "HEAD"
+                      ]
+                    ],
+                    "forwarded_values": [
+                      {
+                        "cookies": [
+                          {
+                            "forward": [
+                              "none"
+                            ]
+                          }
+                        ],
+                        "query_string": [
+                          false
+                        ]
+                      }
+                    ],
+                    "target_origin_id": [
+                      "primary"
+                    ],
+                    "viewer_protocol_policy": [
+                      "redirect-to-https"
+                    ]
+                  }
+                ],
+                "enabled": [
+                  true
+                ],
+                "origin": [
+                  {
+                    "custom_origin_config": [
+                      {
+                        "http_port": [
+                          80
+                        ],
+                        "https_port": [
+                          443
+                        ],
+                        "origin_protocol_policy": [
+                          "https-only"
+                        ],
+                        "origin_ssl_protocols": [
+                          [
+                            "TLSv1.2"
+                          ]
+                        ]
+                      }
+                    ],
+                    "domain_name": [
+                      "origin.example.com"
+                    ],
+                    "origin_id": [
+                      "primary"
+                    ]
+                  }
+                ],
+                "restrictions": [
+                  {
+                    "geo_restriction": [
+                      {
+                        "restriction_type": [
+                          "none"
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "viewer_certificate": [
+                  {
+                    "cloudfront_default_certificate": [
+                      true
+                    ]
+                  }
+                ],
+                "__address__": "aws_cloudfront_distribution.target"
+              }
+            }
+          },
+          "evaluated_keys": [
+            "resource_type"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf",
+        "file_line_range": [
+          20,
+          58
+        ],
+        "resource": "aws_cloudfront_distribution.target",
+        "evaluations": null,
+        "check_class": "checkov.common.graph.checks_infra.base_check",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-networking-65",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-SAFE-rh_khwht/case/main.tf"
       }
     ]
   },
