@@ -1,5 +1,0 @@
-tool_name,category,total_cases,accuracy_pct,precision_pct,recall_pct,f1_score_pct,fpr_pct,fnr_pct,execution_time_ms
-Checkov,AST Static Analysis,345,90.72,92.4,90.29,91.33,7.74,9.71,1420.0
-tfsec,HCL Lexical Scanner,345,90.43,93.9,88.0,90.86,5.95,12.0,310.0
-OPA / Sentinel,Rego Policy Engine,345,93.04,95.27,92.0,93.6,4.76,8.0,650.0
-IaCSecBench Engine,Multi-Engine Validation,345,100.0,100.0,100.0,100.0,0.0,0.0,185.0
