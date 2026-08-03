@@ -18,7 +18,7 @@
       "status": 0,
       "resource": "aws_ebs_volume.target",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-ENC-UNENCRYPTED-VOLUME-VULN-3udx19ok/case/main.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-ENC-UNENCRYPTED-VOLUME-VULN-dmhpekta/case/main.tf",
         "start_line": 29,
         "end_line": 29
       }
@@ -41,7 +41,7 @@
       "status": 0,
       "resource": "aws_ebs_volume.target",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-ENC-UNENCRYPTED-VOLUME-VULN-3udx19ok/case/main.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-ENC-UNENCRYPTED-VOLUME-VULN-dmhpekta/case/main.tf",
         "start_line": 26,
         "end_line": 30
       }

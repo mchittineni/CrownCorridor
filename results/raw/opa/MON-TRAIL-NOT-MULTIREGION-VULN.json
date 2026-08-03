@@ -5,12 +5,6 @@
         {
           "value": [
             {
-              "msg": "aws_cloudtrail.target does not encrypt logs with a customer-managed key",
-              "resource": "aws_cloudtrail.target",
-              "rule_id": "cloudtrail_log_encryption",
-              "severity": "MEDIUM"
-            },
-            {
               "msg": "aws_cloudtrail.target is not a multi-region trail",
               "resource": "aws_cloudtrail.target",
               "rule_id": "cloudtrail_multi_region",

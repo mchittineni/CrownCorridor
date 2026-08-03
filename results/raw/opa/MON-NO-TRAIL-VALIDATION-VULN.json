@@ -11,12 +11,6 @@
               "severity": "MEDIUM"
             },
             {
-              "msg": "aws_cloudtrail.target does not encrypt logs with a customer-managed key",
-              "resource": "aws_cloudtrail.target",
-              "rule_id": "cloudtrail_log_encryption",
-              "severity": "MEDIUM"
-            },
-            {
               "msg": "aws_s3_bucket.trail does not enforce server-side encryption",
               "resource": "aws_s3_bucket.trail",
               "rule_id": "s3_server_side_encryption",

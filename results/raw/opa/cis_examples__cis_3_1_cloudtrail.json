@@ -11,6 +11,12 @@
               "severity": "MEDIUM"
             },
             {
+              "msg": "aws_cloudtrail.insecure_trail does not encrypt logs with a customer-managed key",
+              "resource": "aws_cloudtrail.insecure_trail",
+              "rule_id": "cloudtrail_log_encryption",
+              "severity": "MEDIUM"
+            },
+            {
               "msg": "aws_cloudtrail.insecure_trail is not a multi-region trail",
               "resource": "aws_cloudtrail.insecure_trail",
               "rule_id": "cloudtrail_multi_region",
