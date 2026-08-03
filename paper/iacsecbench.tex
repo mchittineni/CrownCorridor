@@ -95,9 +95,10 @@ a finding-normalization methodology that maps heterogeneous scanner output onto 
 canonical control taxonomy and thereby permits confusion-matrix comparison across
 tools with unrelated report formats. The framework composes repository-edge data
 validation, native Terraform module testing, and policy evaluation over compiled
-plan documents. Over a labelled corpus we evaluate two independent third-party
-scanners against the pipeline's own layers and their union, and assess
-generalization separately on independently sourced configurations. The reference
+plan documents. Over a labelled corpus we evaluate three third-party scanners ---
+spanning two independent rule sets, since one is the maintained successor of another
+and inherits its rules --- against the pipeline's own layers and their union, and
+assess generalization separately on independently sourced configurations. The reference
 pipeline does not lead the comparison, and we report that outcome as measured.
 Detection effectiveness is reported with
 exact Clopper--Pearson intervals, and pairwise differences with exact binomial
@@ -523,13 +524,35 @@ and omitted from every table. No tool is assigned an assumed detection rate or a
 assumed latency.
 
 \subsection{Tool Selection}
-The comparison covers Checkov, tfsec, and standalone policy evaluation over plan
-documents. Selection was governed by two criteria: the tool must parse HCL2 or
+\label{sec:toolsel}
+The comparison covers Checkov, tfsec, Trivy, and standalone policy evaluation over
+plan documents. Selection was governed by two criteria: the tool must parse HCL2 or
 Terraform plan JSON without requiring cloud provider API access, and the set must
 span distinct analysis paradigms---syntax-tree analysis, lexical scanning, and
-policy evaluation. Trivy, KICS, Regula, and provider-native configuration
-services are excluded under the first criterion or as duplicating a represented
-paradigm.
+policy evaluation. KICS, Regula, and provider-native configuration services are
+excluded under the first criterion or as duplicating a represented paradigm.
+
+Trivy requires separate comment, because it is in the set for a reason unrelated to
+paradigm coverage and its inclusion would otherwise be misread as adding an
+independent opinion. Aqua Security folded tfsec's engine and rule set into Trivy,
+and Trivy is the maintained product; tfsec is no longer developed. A comparison
+that reported tfsec alone would be characterising a scanner practitioners are
+advised off, so both are measured. But the two are not independent implementations.
+Their rule identifiers are the same Aqua Vulnerability Database numbers under
+different spellings---tfsec reports \texttt{AVD-AWS-0086}, Trivy reports
+\texttt{AWS-0086}---and we exploit exactly that correspondence to build Trivy's
+entries in the control taxonomy: each is derived mechanically from the identifier
+pair tfsec itself emits, rather than chosen by observing which rules Trivy happens
+to fire on a case, which would fit the taxonomy to the tool. A regression test
+re-derives the crosswalk and fails if the two disagree.
+
+The consequence bounds what the enlarged tool set establishes. Three third-party
+scanners are measured, but only \emph{two} independent third-party rule sets:
+Checkov's, and the tfsec/Trivy lineage. Agreement between tfsec and Trivy is
+therefore close to a consistency check on that shared lineage across two engine
+generations, not corroboration by a second party, and we do not report it as the
+latter. Where the two diverge, the difference is attributable to engine and rule
+evolution between the products and is informative for that reason alone.
 
 Terrascan is excluded under the second criterion: its analysis paradigm is Rego
 policy evaluation, which the plan-level layer already represents. The consequence
@@ -574,6 +597,41 @@ $p$-values are corrected across the tool family~\cite{holm1979simple}; test sele
 ratios carry a Haldane--Anscombe correction, so a zero discordant cell yields a
 finite estimate; an unbounded ratio is a degenerate cell rather than a large
 effect, and Cohen's $g$ is reported as the effect size.
+
+No pairwise difference among the three third-party scanners and the plan-level layer
+is significant after correction. This is the expected consequence of the corpus size
+rather than evidence of equivalence: with 26 violating cases the discordant cells
+are small enough that only a large difference could be resolved, and the exact test
+correctly declines to resolve differences of one or two cases. The interval widths
+in Table~\ref{tab:performance} are the honest summary of what this corpus
+establishes about relative effectiveness, which is little.
+
+\subsubsection{Divergence within the shared rule lineage}
+The tfsec/Trivy pair (Section~\ref{sec:toolsel}) permits one measurement the rest
+of the comparison cannot make: how much a rule set changes as it is carried from a
+retired product into its successor. The two agree on 46 of 48 cases. Both
+disagreements are the same control, IAM policy wildcards: tfsec reports
+\texttt{aws-iam-no-policy-wildcards} on both members of the pair, and Trivy emits
+its counterpart \texttt{AWS-0057} on neither --- not on these two cases, and nowhere
+in the corpus.
+
+The divergence is not a straightforward regression. tfsec's rule fires on the
+violating case, earning a true positive, \emph{and} on the compliant case, earning a
+false positive; Trivy's silence forfeits both. tfsec therefore records the higher
+recall and Trivy the higher precision, from a single rule behaving differently. We
+verified that Trivy's miss is genuine rather than an artefact of our taxonomy: the
+one unmapped finding Trivy emitted on that case is an S3 versioning rule, unrelated
+to IAM policy wildcards, so no mapping gap is concealing a detection.
+
+The remainder of the two tools' output corroborates the shared provenance
+quantitatively. Of the rule identifiers each emitted that the taxonomy does not
+cover, 12 of tfsec's 13 have an exact Trivy counterpart reported on an identical
+number of cases; the thirteenth, a CloudFront TLS-policy rule, is absent from Trivy
+as \texttt{AWS-0057} is. Two products separated by a major version and a change of
+engine thus differ, on this corpus, by two rules. Practitioners migrating from the
+retired scanner to its replacement should not assume that coverage transfers rule
+for rule, and a benchmark that measured only one of the two would have attributed
+the difference to nothing.
 
 \subsection{RQ2: Sensitivity to the Matching Criterion}
 \resulttable{strictness}
@@ -804,10 +862,18 @@ comparable preparation step. Plan-level and source-level latencies are therefore
 not interchangeable, and the plan-level figure is a lower bound on deployed cost.
 
 \subsection{External Validity}
-The operational deployment covers a single project maintained by a single
-developer. Observations concerning developer friction, escalation workflow, and
-policy ownership are experience-report evidence and do not generalise to
-multi-team organisations, other cloud providers, or other IaC technologies.
+The corpus targets Terraform against a single cloud provider, and the native
+module-testing layer is exercised against one project's infrastructure. Neither the
+reported effectiveness nor the suite-size measurement of Section~\ref{sec:rq3}
+generalises to other IaC technologies, other providers, or the multi-module
+configurations typical of large organisations. No claim is made about organisational
+factors --- policy ownership, escalation workflow, or developer friction --- because
+this study measures tool output and does not observe practitioners.
+
+The tool set bounds generalisation further. Three third-party scanners are measured
+but only two independent rule sets are represented (Section~\ref{sec:toolsel}), so
+the comparison speaks to those rule sets rather than to source-level IaC scanning in
+general.
 
 \subsection{Scope}
 The corpus is deterministic rather than adversarial. Reported effectiveness
