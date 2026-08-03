@@ -150,6 +150,36 @@ TOOL_SPECS: dict[str, ToolSpec] = {
         # correctly must not be scored as though it failed.
         ok_exit_codes=(0, 1, 2),
     ),
+    # Trivy is the maintained successor to tfsec: Aqua folded tfsec's engine and
+    # rule set into it, so the two share rule provenance and their identifiers are
+    # the same AVD numbers under different spellings (tfsec `AVD-AWS-0086`, Trivy
+    # `AWS-0086`). It is included because tfsec is no longer the current product
+    # and a comparison that omitted its replacement would be measuring an
+    # abandoned scanner. It is NOT an independent third opinion, and the analysis
+    # must not treat it as one.
+    "trivy": ToolSpec(
+        name="trivy",
+        binary="trivy",
+        version_args=["--version"],
+        layer="source",
+        build_command=lambda d: [
+            "trivy",
+            "config",
+            str(d),
+            "--format",
+            "json",
+            "--quiet",
+            # Without this Trivy pulls its checks bundle from a registry on first
+            # use. A network fetch inside a timed measurement would be recorded as
+            # scanner latency, and a fetch failure would be recorded as a scan
+            # that found nothing -- indistinguishable from a clean case.
+            "--skip-check-update",
+        ],
+        # `trivy config` exits 0 whether or not it finds anything unless --exit-code
+        # is passed. 1 is accepted so that a future default change does not turn
+        # every finding into a recorded execution error.
+        ok_exit_codes=(0, 1),
+    ),
     "opa": ToolSpec(
         name="opa",
         binary="opa",

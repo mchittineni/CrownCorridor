@@ -29,6 +29,7 @@ from evaluation.normalize import PARSERS, ControlMap
 ROOT = Path(__file__).resolve().parent.parent.parent
 CONTROL_MAP = ROOT / "evaluation" / "control_map.json"
 POLICY_DIR = ROOT / "security_framework" / "policies"
+TFSEC_RAW = ROOT / "results" / "raw" / "tfsec"
 
 
 @pytest.fixture(scope="module")
@@ -40,6 +41,51 @@ def implemented_opa_rule_ids() -> set[str]:
     """The ``rule_id`` literals the Rego policy set can actually emit."""
     source = "".join(path.read_text(encoding="utf-8") for path in POLICY_DIR.glob("*.rego"))
     return set(re.findall(r'"rule_id":\s*"([a-z0-9_]+)"', source))
+
+
+def observed_tfsec_avd_crosswalk() -> dict[str, set[str]]:
+    """Maps each tfsec long identifier to the AVD numbers tfsec reported for it.
+
+    tfsec emits both spellings in every result, so this correspondence is read off
+    recorded output rather than asserted. It is the basis of the Trivy identifiers
+    in the control map, because Trivy reports the same AVD numbers without the
+    ``AVD-`` prefix.
+    """
+    crosswalk: dict[str, set[str]] = {}
+    for path in sorted(TFSEC_RAW.glob("*.json")):
+        record = json.loads(path.read_text(encoding="utf-8"))
+        payload = record.get("payload", record)
+        for result in (payload or {}).get("results") or []:
+            long_id, rule_id = result.get("long_id"), result.get("rule_id")
+            if long_id and rule_id:
+                crosswalk.setdefault(long_id, set()).add(rule_id.removeprefix("AVD-"))
+    return crosswalk
+
+
+@pytest.mark.skipif(not TFSEC_RAW.is_dir(), reason="no recorded tfsec output to derive from")
+def test_trivy_identifiers_agree_with_the_tfsec_crosswalk(control_map: ControlMap) -> None:
+    """Every Trivy identifier must be one tfsec reported for the same control.
+
+    Trivy inherited tfsec's rule set, so its identifiers are derivable rather than
+    a matter of judgement. Deriving them removes the failure mode that matters
+    here: an identifier chosen by looking at what Trivy emitted on a case would
+    fit the map to the tool and manufacture a detection. This test re-runs the
+    derivation and fails if the file has drifted from it in either direction --
+    an invented identifier, or one dropped after tfsec stopped reporting it.
+    """
+    crosswalk = observed_tfsec_avd_crosswalk()
+    invented: dict[str, list[str]] = {}
+    for control_id, spec in control_map.controls.items():
+        tools = spec.get("tools", {})
+        derivable = {avd for lid in tools.get("tfsec", []) for avd in crosswalk.get(lid, set())}
+        claimed = set(tools.get("trivy", []))
+        extra = sorted(claimed - derivable)
+        if extra:
+            invented[control_id] = extra
+    assert not invented, (
+        "trivy identifiers not derivable from tfsec's recorded output "
+        f"(each must be an AVD number tfsec reported for the same control): {invented}"
+    )
 
 
 def test_opa_identifiers_are_all_implemented(control_map: ControlMap) -> None:

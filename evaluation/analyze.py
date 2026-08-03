@@ -54,6 +54,7 @@ REFERENCE_TOOL = "opa"
 TOOL_LABELS = {
     "checkov": ("Checkov", "AST static analysis"),
     "tfsec": ("tfsec", "HCL lexical scanning"),
+    "trivy": ("Trivy", "HCL scanning, tfsec successor"),
     "opa": ("OPA (plan-level)", "Rego over compiled plan"),
     "iacsecbench": ("IaCSecBench", "Composite pipeline"),
     "iacsb_layer1": ("IaCSecBench L1", "Repository-edge scanning"),

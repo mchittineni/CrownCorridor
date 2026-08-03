@@ -63,7 +63,28 @@
     "text was corrected to match the label rather than the label to match the text,",
     "because requiring a CMK is a defensible control and is what the corpus, the",
     "policy set and the tfsec/checkov CMK rules all actually test. Note that this",
-    "makes the control stricter than CIS AWS 2.1.1, which the 'note' field records."
+    "makes the control stricter than CIS AWS 2.1.1, which the 'note' field records.",
+    "",
+    "Trivy identifiers are AVD numbers as Trivy spells them ('AWS-0086'). They were",
+    "not authored by hand and were not chosen by observing what Trivy emits on this",
+    "corpus, which would fit the map to the tool. They were derived mechanically from",
+    "tfsec's own recorded output: tfsec reports both the long identifier this map is",
+    "keyed on and the AVD number Trivy reports, so the correspondence is observed.",
+    "evaluation/tests/test_control_map.py re-derives the crosswalk and fails if the",
+    "two ever disagree.",
+    "",
+    "That derivation is possible at all because Trivy and tfsec are not independent:",
+    "Aqua folded tfsec's engine and rule set into Trivy, and Trivy is the maintained",
+    "product. Trivy is included because a comparison that omitted it would be",
+    "measuring an abandoned scanner, NOT because it supplies a third opinion. Results",
+    "for the two are expected to correlate strongly and must not be read as agreement",
+    "between independent implementations.",
+    "",
+    "Six controls carry an empty trivy list: three Kubernetes controls the corpus does",
+    "not exercise, API-gateway authorization, public-instance addressing, and hardcoded",
+    "credentials. The last is a scanner-scope boundary rather than a gap -- 'trivy",
+    "config' evaluates misconfiguration only; secret detection is a separate scanner",
+    "('trivy fs --scanners secret') and is not part of this comparison."
   ],
   "schema_version": "1.0.0",
   "controls": {
@@ -90,6 +111,13 @@
           "aws-s3-no-public-buckets",
           "aws-s3-specify-public-access-block"
         ],
+        "trivy": [
+          "AWS-0086",
+          "AWS-0087",
+          "AWS-0091",
+          "AWS-0093",
+          "AWS-0094"
+        ],
         "opa": [
           "s3_public_access_block"
         ]
@@ -109,6 +137,10 @@
         "tfsec": [
           "aws-s3-encryption-customer-key",
           "aws-s3-enable-bucket-encryption"
+        ],
+        "trivy": [
+          "AWS-0088",
+          "AWS-0132"
         ],
         "opa": [
           "s3_server_side_encryption"
@@ -130,6 +162,10 @@
           "aws-cloudtrail-require-bucket-access-logging",
           "aws-s3-enable-bucket-logging"
         ],
+        "trivy": [
+          "AWS-0089",
+          "AWS-0163"
+        ],
         "opa": []
       }
     },
@@ -149,6 +185,9 @@
         "tfsec": [
           "aws-ec2-no-public-ingress-sgr",
           "aws-vpc-no-public-ingress-sgr"
+        ],
+        "trivy": [
+          "AWS-0107"
         ],
         "opa": [
           "security_group_unrestricted_ingress"
@@ -172,6 +211,7 @@
           "aws-ec2-no-public-ip",
           "aws-ec2-no-public-ip-subnet"
         ],
+        "trivy": [],
         "opa": []
       },
       "unverified_identifiers": [
@@ -190,6 +230,9 @@
         ],
         "tfsec": [
           "aws-ec2-require-vpc-flow-logs-for-all-vpcs"
+        ],
+        "trivy": [
+          "AWS-0178"
         ],
         "opa": [
           "vpc_flow_logs"
@@ -221,6 +264,9 @@
         "tfsec": [
           "aws-iam-no-policy-wildcards"
         ],
+        "trivy": [
+          "AWS-0057"
+        ],
         "opa": [
           "iam_wildcard_action"
         ]
@@ -239,6 +285,9 @@
         ],
         "tfsec": [
           "aws-iam-no-policy-wildcards"
+        ],
+        "trivy": [
+          "AWS-0057"
         ],
         "opa": [
           "iam_wildcard_trust"
@@ -259,6 +308,9 @@
         "tfsec": [
           "aws-ec2-enable-volume-encryption",
           "aws-ec2-encryption-customer-key"
+        ],
+        "trivy": [
+          "AWS-0026"
         ],
         "opa": [
           "ebs_encryption"
@@ -281,6 +333,9 @@
         "tfsec": [
           "aws-rds-encrypt-instance-storage-data"
         ],
+        "trivy": [
+          "AWS-0080"
+        ],
         "opa": [
           "rds_storage_encrypted"
         ]
@@ -299,6 +354,9 @@
         "tfsec": [
           "aws-kms-auto-rotate-keys"
         ],
+        "trivy": [
+          "AWS-0065"
+        ],
         "opa": []
       }
     },
@@ -315,6 +373,10 @@
         "tfsec": [
           "aws-rds-enable-public-access",
           "aws-rds-no-public-db-access"
+        ],
+        "trivy": [
+          "AWS-0082",
+          "AWS-0180"
         ],
         "opa": [
           "rds_publicly_accessible"
@@ -334,6 +396,9 @@
         "tfsec": [
           "aws-cloudtrail-enable-log-validation"
         ],
+        "trivy": [
+          "AWS-0016"
+        ],
         "opa": [
           "cloudtrail_log_validation"
         ]
@@ -351,6 +416,9 @@
         ],
         "tfsec": [
           "aws-cloudtrail-enable-all-regions"
+        ],
+        "trivy": [
+          "AWS-0014"
         ],
         "opa": [
           "cloudtrail_multi_region"
@@ -372,6 +440,10 @@
           "aws-cloudtrail-enable-at-rest-encryption",
           "aws-cloudwatch-log-group-customer-key"
         ],
+        "trivy": [
+          "AWS-0015",
+          "AWS-0017"
+        ],
         "opa": [
           "cloudtrail_log_encryption"
         ]
@@ -389,6 +461,9 @@
         ],
         "tfsec": [
           "aws-ec2-enforce-http-token-imds"
+        ],
+        "trivy": [
+          "AWS-0028"
         ],
         "opa": [
           "ec2_imdsv2_required"
@@ -408,6 +483,9 @@
         "tfsec": [
           "aws-ecr-enable-image-scans"
         ],
+        "trivy": [
+          "AWS-0030"
+        ],
         "opa": [
           "ecr_scan_on_push"
         ]
@@ -426,6 +504,9 @@
         "tfsec": [
           "aws-ecr-enforce-immutable-repository"
         ],
+        "trivy": [
+          "AWS-0031"
+        ],
         "opa": []
       }
     },
@@ -441,6 +522,9 @@
         ],
         "tfsec": [
           "aws-lambda-enable-tracing"
+        ],
+        "trivy": [
+          "AWS-0066"
         ],
         "opa": []
       }
@@ -458,6 +542,7 @@
         "tfsec": [
           "aws-api-gateway-no-public-access"
         ],
+        "trivy": [],
         "opa": []
       },
       "unverified_identifiers": [
@@ -480,6 +565,7 @@
         "tfsec": [
           "general-secrets-no-plaintext-exposure"
         ],
+        "trivy": [],
         "opa": [],
         "iacsb_layer1": [
           "layer1_secret_pattern"
@@ -503,6 +589,7 @@
         "tfsec": [
           "kubernetes-no-privileged-containers"
         ],
+        "trivy": [],
         "opa": []
       },
       "unverified_identifiers": [
@@ -522,6 +609,7 @@
         "tfsec": [
           "kubernetes-no-root-containers"
         ],
+        "trivy": [],
         "opa": []
       },
       "unverified_identifiers": [
@@ -542,6 +630,7 @@
         "tfsec": [
           "kubernetes-set-resource-limits"
         ],
+        "trivy": [],
         "opa": []
       },
       "unverified_identifiers": [
@@ -561,6 +650,9 @@
         "tfsec": [
           "aws-cloudfront-enforce-https"
         ],
+        "trivy": [
+          "AWS-0012"
+        ],
         "opa": [
           "cloudfront_https_only"
         ]
@@ -578,6 +670,9 @@
         ],
         "tfsec": [
           "aws-elb-drop-invalid-headers"
+        ],
+        "trivy": [
+          "AWS-0052"
         ],
         "opa": [
           "alb_drop_invalid_headers"
