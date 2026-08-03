@@ -14,8 +14,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-gy8q_jh5/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-gy8q_jh5/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-szzk7tl2/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-szzk7tl2/case/main.tf",
         "file_line_range": [
           29,
           43
@@ -38,7 +38,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/ensure-that-detailed-monitoring-is-enabled-for-ec2-instances",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-gy8q_jh5/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-szzk7tl2/case/main.tf"
       },
       {
         "check_id": "CKV_AWS_135",
@@ -52,8 +52,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-gy8q_jh5/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-gy8q_jh5/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-szzk7tl2/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-szzk7tl2/case/main.tf",
         "file_line_range": [
           29,
           43
@@ -76,7 +76,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-ec2-is-ebs-optimized",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-gy8q_jh5/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-szzk7tl2/case/main.tf"
       },
       {
         "check_id": "CKV2_AWS_12",
@@ -97,21 +97,21 @@
             }
           },
           "evaluated_keys": [
-            "ingress/self",
-            "ingress/to_port",
-            "ingress/from_port",
-            "resource_type",
-            "egress/from_port",
-            "egress/cidr_blocks",
             "egress/protocol",
+            "resource_type",
+            "egress/to_port",
+            "egress/from_port",
             "ingress/protocol",
-            "egress/to_port"
+            "egress/cidr_blocks",
+            "ingress/from_port",
+            "ingress/to_port",
+            "ingress/self"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-gy8q_jh5/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-gy8q_jh5/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-szzk7tl2/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-szzk7tl2/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -134,7 +134,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-4",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-gy8q_jh5/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-szzk7tl2/case/main.tf"
       },
       {
         "check_id": "CKV2_AWS_11",
@@ -155,14 +155,14 @@
             }
           },
           "evaluated_keys": [
-            "resource_type",
-            "networking"
+            "networking",
+            "resource_type"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-gy8q_jh5/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-gy8q_jh5/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-szzk7tl2/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-szzk7tl2/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -185,7 +185,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-9-enable-vpc-flow-logging",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-gy8q_jh5/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-szzk7tl2/case/main.tf"
       },
       {
         "check_id": "CKV2_AWS_41",
@@ -237,8 +237,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-gy8q_jh5/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-gy8q_jh5/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-szzk7tl2/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-szzk7tl2/case/main.tf",
         "file_line_range": [
           29,
           43
@@ -261,7 +261,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-an-iam-role-is-attached-to-ec2-instance",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-gy8q_jh5/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-SAFE-szzk7tl2/case/main.tf"
       }
     ]
   },

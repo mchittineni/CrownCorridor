@@ -14,8 +14,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
         "file_line_range": [
           30,
           36
@@ -38,13 +38,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-aws-cloudtrail-defines-an-sns-topic",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
         "breadcrumbs": {
           "name": [
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -62,8 +62,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
         "file_line_range": [
           30,
           36
@@ -86,13 +86,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-2",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
         "breadcrumbs": {
           "name": [
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -124,8 +124,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -148,13 +148,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/s3-bucket-should-have-public-access-blocks-defaults-to-false-if-the-public-access-block-is-not-attached",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -184,8 +184,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -208,13 +208,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-62",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -239,14 +239,14 @@
             }
           },
           "evaluated_keys": [
-            "resource_type",
-            "lifecycle_rule"
+            "lifecycle_rule",
+            "resource_type"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -269,13 +269,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -300,14 +300,14 @@
             }
           },
           "evaluated_keys": [
-            "resource_type",
-            "logging"
+            "logging",
+            "resource_type"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -330,13 +330,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-13-enable-logging",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -373,14 +373,14 @@
             }
           },
           "evaluated_keys": [
-            "resource_type",
-            "cloud_watch_logs_group_arn"
+            "cloud_watch_logs_group_arn",
+            "resource_type"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
         "file_line_range": [
           30,
           36
@@ -403,74 +403,17 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/ensure-cloudtrail-trails-are-integrated-with-cloudwatch-logs",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
         "breadcrumbs": {
           "name": [
             {
               "type": "variable",
               "name": "name_prefix",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/variables.tf",
               "module_connection": false
             }
           ]
         }
-      },
-      {
-        "check_id": "CKV2_AWS_64",
-        "bc_check_id": "BC_AWS_IAM_76",
-        "check_name": "Ensure KMS key Policy is defined",
-        "check_result": {
-          "result": "FAILED",
-          "entity": {
-            "aws_kms_key": {
-              "trail": {
-                "__end_line__": 28,
-                "__start_line__": 24,
-                "deletion_window_in_days": [
-                  7
-                ],
-                "description": [
-                  "Benchmark trail key"
-                ],
-                "enable_key_rotation": [
-                  true
-                ],
-                "__address__": "aws_kms_key.trail"
-              }
-            }
-          },
-          "evaluated_keys": [
-            "resource_type",
-            "policy"
-          ]
-        },
-        "code_block": null,
-        "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
-        "file_line_range": [
-          24,
-          28
-        ],
-        "resource": "aws_kms_key.trail",
-        "evaluations": null,
-        "check_class": "checkov.common.graph.checks_infra.base_check",
-        "fixed_definition": null,
-        "entity_tags": null,
-        "caller_file_path": null,
-        "caller_file_line_range": null,
-        "resource_address": null,
-        "severity": null,
-        "bc_category": null,
-        "benchmarks": null,
-        "description": null,
-        "short_description": null,
-        "vulnerability_details": null,
-        "connected_node": null,
-        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-64",
-        "details": [],
-        "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf"
       },
       {
         "check_id": "CKV_AWS_21",
@@ -492,14 +435,14 @@
           },
           "evaluated_keys": [
             "resource_type",
-            "versioning_configuration/status",
-            "versioning/enabled"
+            "versioning/enabled",
+            "versioning_configuration/status"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -522,13 +465,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-16-enable-versioning",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -560,8 +503,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -584,13 +527,13 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/variables.tf",
               "module_connection": false
             }
           ]
@@ -615,15 +558,15 @@
             }
           },
           "evaluated_keys": [
+            "replication_configuration/rules/*/status",
             "resource_type",
-            "rule/*/status",
-            "replication_configuration/rules/*/status"
+            "rule/*/status"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -646,17 +589,74 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-bucket-has-cross-region-replication-enabled",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-wwjk0zuz/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/variables.tf",
               "module_connection": false
             }
           ]
         }
+      },
+      {
+        "check_id": "CKV2_AWS_64",
+        "bc_check_id": "BC_AWS_IAM_76",
+        "check_name": "Ensure KMS key Policy is defined",
+        "check_result": {
+          "result": "FAILED",
+          "entity": {
+            "aws_kms_key": {
+              "trail": {
+                "__end_line__": 28,
+                "__start_line__": 24,
+                "deletion_window_in_days": [
+                  7
+                ],
+                "description": [
+                  "Benchmark trail key"
+                ],
+                "enable_key_rotation": [
+                  true
+                ],
+                "__address__": "aws_kms_key.trail"
+              }
+            }
+          },
+          "evaluated_keys": [
+            "policy",
+            "resource_type"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf",
+        "file_line_range": [
+          24,
+          28
+        ],
+        "resource": "aws_kms_key.trail",
+        "evaluations": null,
+        "check_class": "checkov.common.graph.checks_infra.base_check",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-64",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-MON-NO-TRAIL-VALIDATION-VULN-poxm3m79/case/main.tf"
       }
     ]
   },

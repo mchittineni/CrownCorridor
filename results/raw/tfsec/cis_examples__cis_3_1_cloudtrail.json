@@ -18,7 +18,7 @@
       "status": 0,
       "resource": "aws_cloudtrail.insecure_trail",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-cpy8f41r/case/cis_3_1_cloudtrail.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-z3pnywuf/case/cis_3_1_cloudtrail.tf",
         "start_line": 7,
         "end_line": 7
       }
@@ -41,7 +41,7 @@
       "status": 0,
       "resource": "aws_cloudtrail.insecure_trail",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-cpy8f41r/case/cis_3_1_cloudtrail.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-z3pnywuf/case/cis_3_1_cloudtrail.tf",
         "start_line": 3,
         "end_line": 9
       }
@@ -64,7 +64,7 @@
       "status": 0,
       "resource": "aws_cloudtrail.insecure_trail",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-cpy8f41r/case/cis_3_1_cloudtrail.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-z3pnywuf/case/cis_3_1_cloudtrail.tf",
         "start_line": 3,
         "end_line": 9
       }
@@ -87,7 +87,7 @@
       "status": 0,
       "resource": "aws_cloudtrail.insecure_trail",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-cpy8f41r/case/cis_3_1_cloudtrail.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-z3pnywuf/case/cis_3_1_cloudtrail.tf",
         "start_line": 3,
         "end_line": 9
       }

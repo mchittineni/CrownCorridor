@@ -1,0 +1,198 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.73.0"
+  },
+  "ReportID": "019fc98e-deda-7e3c-872f-01dffad4355e",
+  "CreatedAt": "2026-08-03T22:36:51.418934+01:00",
+  "ArtifactName": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-ENC-UNENCRYPTED-VOLUME-VULN-zjix4a1f/case",
+  "ArtifactType": "filesystem",
+  "Results": [
+    {
+      "Target": ".",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 70,
+        "Failures": 0
+      }
+    },
+    {
+      "Target": "main.tf",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 0,
+        "Failures": 2
+      },
+      "Misconfigurations": [
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0026",
+          "Title": "EBS volumes must be encrypted",
+          "Description": "By enabling encryption on EBS volumes you protect the volume, the disk I/O and any derived snapshots from compromise if intercepted.\n",
+          "Message": "EBS volume is not encrypted.",
+          "Namespace": "builtin.aws.ec2.aws0026",
+          "Query": "data.builtin.aws.ec2.aws0026.deny",
+          "Resolution": "Enable encryption of EBS volumes",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0026",
+          "References": [
+            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html",
+            "https://avd.aquasec.com/misconfig/aws-0026"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_ebs_volume.target",
+            "Provider": "AWS",
+            "Service": "ec2",
+            "StartLine": 29,
+            "EndLine": 29,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 26,
+                  "Content": "resource \"aws_ebs_volume\" \"target\" {",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_ebs_volume\"\u001b[0m \u001b[38;5;37m\"target\"\u001b[0m {",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 27,
+                  "Content": "  availability_zone = \"eu-west-2a\"",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mavailability_zone\u001b[0m = \u001b[38;5;37m\"eu-west-2a\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 28,
+                  "Content": "  size              = 8",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245msize\u001b[0m              = \u001b[38;5;37m8",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 29,
+                  "Content": "  encrypted         = false",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mencrypted\u001b[0m         = \u001b[38;5;166mfalse",
+                  "FirstCause": true,
+                  "LastCause": true
+                },
+                {
+                  "Number": 30,
+                  "Content": "}",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": false
+                }
+              ]
+            },
+            "Occurrences": [
+              {
+                "Resource": "aws_ebs_volume.target",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 26,
+                  "EndLine": 30
+                }
+              }
+            ]
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0027",
+          "Title": "EBS volume encryption should use Customer Managed Keys",
+          "Description": "Encryption using AWS keys provides protection for your EBS volume. To increase control of the encryption and manage factors like rotation use customer managed keys.\n",
+          "Message": "EBS volume does not use a customer-managed KMS key.",
+          "Namespace": "builtin.aws.ec2.aws0027",
+          "Query": "data.builtin.aws.ec2.aws0027.deny",
+          "Resolution": "Enable encryption using customer managed keys",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0027",
+          "References": [
+            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html",
+            "https://avd.aquasec.com/misconfig/aws-0027"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_ebs_volume.target",
+            "Provider": "AWS",
+            "Service": "ec2",
+            "StartLine": 26,
+            "EndLine": 30,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 26,
+                  "Content": "resource \"aws_ebs_volume\" \"target\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_ebs_volume\"\u001b[0m \u001b[38;5;37m\"target\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 27,
+                  "Content": "  availability_zone = \"eu-west-2a\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mavailability_zone\u001b[0m = \u001b[38;5;37m\"eu-west-2a\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 28,
+                  "Content": "  size              = 8",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245msize\u001b[0m              = \u001b[38;5;37m8",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 29,
+                  "Content": "  encrypted         = false",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mencrypted\u001b[0m         = \u001b[38;5;166mfalse",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 30,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
