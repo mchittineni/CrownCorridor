@@ -5,6 +5,7 @@
 
 [![CI](https://github.com/mchittineni/IaCSecBench/actions/workflows/ci.yml/badge.svg)](https://github.com/mchittineni/IaCSecBench/actions/workflows/ci.yml)
 [![Infra CI](https://github.com/mchittineni/IaCSecBench/actions/workflows/infra-ci.yml/badge.svg)](https://github.com/mchittineni/IaCSecBench/actions/workflows/infra-ci.yml)
+[![Benchmark](https://github.com/mchittineni/IaCSecBench/actions/workflows/benchmark.yml/badge.svg)](https://github.com/mchittineni/IaCSecBench/actions/workflows/benchmark.yml)
 [![Deploy](https://github.com/mchittineni/IaCSecBench/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/mchittineni/IaCSecBench/actions/workflows/deploy-pages.yml)
 [![Tests Passing](https://img.shields.io/badge/Tests-Passing-brightgreen.svg)](https://github.com/mchittineni/IaCSecBench)
 [![Coverage 100%](https://img.shields.io/badge/IaC_Coverage-100%25-success.svg)](https://github.com/mchittineni/IaCSecBench)
