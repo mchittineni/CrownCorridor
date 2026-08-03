@@ -3,8 +3,9 @@
 This module does not evaluate any security tool. It multiplies the corpus class
 counts by hardcoded per-tool rates (``"tp": int(insecure_count * 0.90)`` and
 similar) and pins the reference implementation to a perfect score. The latency
-column is a set of constants. The resulting ``leaderboard/results.csv`` is
-therefore a projection of its own assumptions, not a measurement.
+column is a set of constants. Its output, ``leaderboard/results.synthetic.csv``,
+is therefore a projection of its own assumptions, not a measurement. The measured
+leaderboard is ``leaderboard/results.csv``, written by evaluation/analyze.py.
 
 Replaced by the measuring pipeline:
 
@@ -23,30 +24,29 @@ import os
 import sys
 from pathlib import Path
 
-_GUARD_ENV = "IACSECBENCH_ALLOW_SYNTHETIC"
+# This module is executed directly (`python evaluation/score.py`), so the project
+# root is not on sys.path yet and the intra-project imports below cannot resolve
+# until it is. The insert therefore has to precede them, not follow them.
+ROOT = Path(__file__).parent.parent
+sys.path.insert(0, str(ROOT))
+
+# isort: off
+from evaluation.metrics import calculate_metrics  # noqa: E402
+from evaluation.synthetic_guard import GUARD_ENV as _GUARD_ENV  # noqa: E402
+from evaluation.synthetic_guard import (  # noqa: E402
+    refuse_unless_explicitly_allowed,
+)
+
+# isort: on
 
 
 def _refuse_unless_explicitly_allowed() -> None:
     """Blocks accidental generation of a synthetic leaderboard."""
-    if os.environ.get(_GUARD_ENV) == "1":
-        print(
-            f"WARNING: {_GUARD_ENV}=1 -- emitting a SYNTHETIC leaderboard derived from "
-            "assumed accuracy rates. Not a measurement; must not be published.",
-            file=sys.stderr,
-        )
-        return
-    sys.exit(
-        "refusing to run: this module fabricates leaderboard metrics.\n"
-        "  Tool scores are corpus counts multiplied by hardcoded rates; no scanner\n"
-        "  is executed and the reference tool is pinned to 100%.\n\n"
-        "  Measure instead:  experiments/run_baselines.sh\n"
-        f"  Override (not for publication):  {_GUARD_ENV}=1 python evaluation/score.py"
+    refuse_unless_explicitly_allowed(
+        "leaderboard metrics, with the reference tool pinned to a perfect score",
+        writes="leaderboard/results.synthetic.csv",
+        override_hint=f"{_GUARD_ENV}=1 python evaluation/score.py",
     )
-
-ROOT = Path(__file__).parent.parent
-sys.path.insert(0, str(ROOT))
-
-from evaluation.metrics import calculate_metrics  # isort: skip # pylint: disable=wrong-import-order
 
 
 def load_dataset(dataset_path: str) -> list[dict]:
@@ -135,10 +135,17 @@ def run_benchmark_scoring() -> list[dict]:
         )
         metrics_list.append(m.to_dict())
 
-    # Write leaderboard results.csv
+    # Write to results.synthetic.csv, NOT results.csv.
+    #
+    # This module used to write leaderboard/results.csv -- the same path
+    # evaluation/analyze.py now writes from measured confusion matrices. The guard
+    # above stops an accidental run, but a deliberate one still silently replaced
+    # real measurements with assumed rates, and the two files are
+    # indistinguishable afterwards. Separating the paths makes the collision
+    # impossible rather than merely unlikely.
     leaderboard_dir = ROOT / "leaderboard"
     leaderboard_dir.mkdir(exist_ok=True)
-    csv_file = leaderboard_dir / "results.csv"
+    csv_file = leaderboard_dir / "results.synthetic.csv"
 
     fieldnames = [
         "tool_name",

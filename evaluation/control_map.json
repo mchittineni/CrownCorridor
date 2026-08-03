@@ -17,7 +17,53 @@
     "Unmapped findings are never silently discarded. They are counted and reported,",
     "because a tool that detects a violation under a rule identifier absent from",
     "this file would otherwise be scored as a false negative -- which would bias",
-    "the comparison in favour of the reference implementation."
+    "the comparison in favour of the reference implementation.",
+    "",
+    "An entry must not name a rule identifier the tool cannot emit. Seven 'opa'",
+    "identifiers previously listed here (api_gateway_authorization,",
+    "hardcoded_credential, k8s_privileged_container, k8s_run_as_non_root,",
+    "k8s_resource_limits, oidc_audience_binding, pii_present) matched no rule in",
+    "security_framework/policies/*.rego. Such an entry cannot produce a false",
+    "detection -- nothing emits the identifier -- but it overstates how many",
+    "controls the reference policy set covers, which is precisely the direction of",
+    "error that flatters the reference. They were removed rather than implemented,",
+    "so the map now describes the policy set that exists.",
+    "",
+    "Check this invariant after editing:",
+    "  the 'opa' list of every control must be a subset of the \"rule_id\"",
+    "  literals in security_framework/policies/*.rego.",
+    "",
+    "Two further checkov identifiers were corrected against the installed",
+    "catalogue ('checkov --list', version 3.3.8): CKV_K8S_23 and CKV_K8S_40 do not",
+    "exist in it and were replaced by CKV_K8S_6 ('Do not admit root containers');",
+    "CKV_K8S_13 is 'Memory requests should be set', a requests check that had been",
+    "mapped to a limits control, and was replaced by CKV_K8S_12 ('Memory Limits",
+    "should be set'). ID_WEAK_TOKEN_VALIDATION and PII_UNMASKED_PERSONAL_DATA were",
+    "removed: both lost their only rule with the phantom OPA identifiers, no tool",
+    "could report them, and no case exercises them.",
+    "",
+    "Eight controls retain verified=false, each naming its single uncorroborated",
+    "identifier in 'unverified_identifiers'. All eight are tfsec long IDs that could",
+    "not be confirmed in this environment: tfsec 1.28.14 has no check-listing",
+    "command, and '--include-passed' only surfaces checks whose target resource type",
+    "appears in the scanned corpus -- which contains no API Gateway and no Kubernetes",
+    "resources at all. '--filter-results' is not a test either: it returns zero",
+    "results for an unknown identifier and for a real-but-untriggered one alike.",
+    "",
+    "They are retained rather than deleted because a wrong identifier here is inert:",
+    "nothing emits it, so it never matches, and the only possible effect of keeping",
+    "it is to credit tfsec if the identifier turns out to be real. Deleting it could",
+    "only ever under-credit a comparator. Where the two options differ, the one that",
+    "cannot flatter the reference implementation is the one to take.",
+    "",
+    "STO_UNENCRYPTED_BUCKET was retitled after an independent relabelling pass",
+    "disagreed on STO-UNENCRYPTED-BUCKET-VULN. Its stated text ('lacks server-side",
+    "encryption') is satisfied by SSE-S3, but the case labels an AES256 bucket as",
+    "violating, which is only correct under a customer-managed-key requirement. The",
+    "text was corrected to match the label rather than the label to match the text,",
+    "because requiring a CMK is a defensible control and is what the corpus, the",
+    "policy set and the tfsec/checkov CMK rules all actually test. Note that this",
+    "makes the control stricter than CIS AWS 2.1.1, which the 'note' field records."
   ],
   "schema_version": "1.0.0",
   "controls": {
@@ -26,7 +72,7 @@
       "domain": "STO",
       "cis_aws": "2.1.5",
       "severity": "CRITICAL",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV2_AWS_6",
@@ -50,7 +96,7 @@
       }
     },
     "STO_UNENCRYPTED_BUCKET": {
-      "title": "Object storage bucket lacks server-side encryption",
+      "title": "Object storage bucket not encrypted with a customer-managed key",
       "domain": "ENC",
       "cis_aws": "2.1.1",
       "severity": "HIGH",
@@ -67,7 +113,8 @@
         "opa": [
           "s3_server_side_encryption"
         ]
-      }
+      },
+      "note": "Stricter than the CIS control it cites. CIS AWS 2.1.1 requires encryption at rest and is satisfied by SSE-S3 (sse_algorithm = AES256); this control additionally requires a customer-managed KMS key, matching MON_NO_LOG_ENCRYPTION. The previous title, 'Object storage bucket lacks server-side encryption', described the weaker CIS requirement while the corpus labelled an AES256 bucket as violating -- the one disagreement found by independent relabelling. The title now states the requirement the label actually encodes."
     },
     "STO_NO_ACCESS_LOGGING": {
       "title": "Object storage bucket lacks access logging",
@@ -106,7 +153,10 @@
         "opa": [
           "security_group_unrestricted_ingress"
         ]
-      }
+      },
+      "unverified_identifiers": [
+        "tfsec:aws-vpc-no-public-ingress-sgr"
+      ]
     },
     "NET_PUBLIC_INSTANCE": {
       "title": "Compute instance assigned a public address",
@@ -123,7 +173,10 @@
           "aws-ec2-no-public-ip-subnet"
         ],
         "opa": []
-      }
+      },
+      "unverified_identifiers": [
+        "tfsec:aws-ec2-no-public-ip"
+      ]
     },
     "NET_NO_FLOW_LOGS": {
       "title": "Virtual network lacks flow logging",
@@ -210,7 +263,10 @@
         "opa": [
           "ebs_encryption"
         ]
-      }
+      },
+      "unverified_identifiers": [
+        "tfsec:aws-ec2-encryption-customer-key"
+      ]
     },
     "ENC_UNENCRYPTED_DATABASE": {
       "title": "Managed database storage unencrypted at rest",
@@ -402,10 +458,11 @@
         "tfsec": [
           "aws-api-gateway-no-public-access"
         ],
-        "opa": [
-          "api_gateway_authorization"
-        ]
-      }
+        "opa": []
+      },
+      "unverified_identifiers": [
+        "tfsec:aws-api-gateway-no-public-access"
+      ]
     },
     "SEC_HARDCODED_CREDENTIAL": {
       "title": "Credential material embedded in configuration source",
@@ -423,13 +480,14 @@
         "tfsec": [
           "general-secrets-no-plaintext-exposure"
         ],
-        "opa": [
-          "hardcoded_credential"
-        ],
+        "opa": [],
         "iacsb_layer1": [
           "layer1_secret_pattern"
         ]
-      }
+      },
+      "unverified_identifiers": [
+        "tfsec:general-secrets-no-plaintext-exposure"
+      ]
     },
     "K8S_PRIVILEGED_CONTAINER": {
       "title": "Container runs in privileged mode",
@@ -445,10 +503,11 @@
         "tfsec": [
           "kubernetes-no-privileged-containers"
         ],
-        "opa": [
-          "k8s_privileged_container"
-        ]
-      }
+        "opa": []
+      },
+      "unverified_identifiers": [
+        "tfsec:kubernetes-no-privileged-containers"
+      ]
     },
     "K8S_ROOT_CONTAINER": {
       "title": "Container permitted to run as root",
@@ -458,16 +517,16 @@
       "verified": false,
       "tools": {
         "checkov": [
-          "CKV_K8S_23",
-          "CKV_K8S_40"
+          "CKV_K8S_6"
         ],
         "tfsec": [
           "kubernetes-no-root-containers"
         ],
-        "opa": [
-          "k8s_run_as_non_root"
-        ]
-      }
+        "opa": []
+      },
+      "unverified_identifiers": [
+        "tfsec:kubernetes-no-root-containers"
+      ]
     },
     "K8S_NO_RESOURCE_LIMITS": {
       "title": "Container lacks CPU or memory limits",
@@ -478,43 +537,16 @@
       "tools": {
         "checkov": [
           "CKV_K8S_11",
-          "CKV_K8S_13"
+          "CKV_K8S_12"
         ],
         "tfsec": [
           "kubernetes-set-resource-limits"
         ],
-        "opa": [
-          "k8s_resource_limits"
-        ]
-      }
-    },
-    "ID_WEAK_TOKEN_VALIDATION": {
-      "title": "Federated identity configuration omits audience or subject binding",
-      "domain": "ID",
-      "cis_aws": "1.16",
-      "severity": "HIGH",
-      "verified": false,
-      "tools": {
-        "checkov": [],
-        "tfsec": [],
-        "opa": [
-          "oidc_audience_binding"
-        ]
-      }
-    },
-    "PII_UNMASKED_PERSONAL_DATA": {
-      "title": "Personal data present in repository-tracked artefact",
-      "domain": "PII",
-      "cis_aws": "n/a",
-      "severity": "CRITICAL",
-      "verified": false,
-      "tools": {
-        "checkov": [],
-        "tfsec": [],
-        "opa": [
-          "pii_present"
-        ]
-      }
+        "opa": []
+      },
+      "unverified_identifiers": [
+        "tfsec:kubernetes-set-resource-limits"
+      ]
     },
     "NET_NO_HTTPS_REDIRECT": {
       "title": "Content delivery endpoint does not enforce HTTPS redirection",

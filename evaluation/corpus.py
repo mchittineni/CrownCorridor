@@ -376,6 +376,29 @@ def load_external(control_map: Any | None = None) -> Iterator[Case]:
         for tf_file in sorted(subset_dir.rglob("*.tf")):
             case_id = tf_file.stem
             entry = _match_manifest_entry(case_id, by_id)
+
+            # A case is scanned as a directory, not as a file, so two cases sharing
+            # a directory are not two observations -- they are one scan scored twice.
+            # These four CIS examples originally sat side by side in a single
+            # directory, and every tool consequently returned a byte-identical
+            # finding set for all four: identical input, four rows in the confusion
+            # matrix, four contributions to a denominator that should have counted
+            # one. That does not merely add noise, it narrows the confidence
+            # intervals, because interval width is driven by the count of
+            # independent observations. Each external configuration now lives in its
+            # own directory; the guard below refuses to load a corpus that
+            # reintroduces the collision rather than scoring it.
+            siblings = sorted(p.name for p in tf_file.parent.glob("*.tf"))
+            if len(siblings) > 1:
+                raise ValueError(
+                    f"external case {subset_dir.name}/{case_id} shares its directory "
+                    f"{_display_path(tf_file.parent)} with {len(siblings) - 1} other "
+                    f"configuration(s): {siblings}.\n"
+                    "Every tool would receive identical input for each of these cases "
+                    "and produce identical findings, so they would be counted as "
+                    "independent observations while being one. Give each "
+                    "configuration its own directory."
+                )
             expected = _expected_from_metadata(entry) or (
                 "VIOLATION" if entry.get("expected") == "VIOLATION" else None
             )
