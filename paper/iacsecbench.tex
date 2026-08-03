@@ -124,7 +124,7 @@ repeatable application of a declared state---also amplifies its failure modes: a
 single insecure declaration, such as an unrestricted ingress rule or a disabled
 encryption setting, propagates automatically to every environment that consumes
 the module. Empirical studies of configuration repositories confirm that such
-defects are common rather than exceptional, recurring as hard-coded secrets,
+defects are common, not exceptional, recurring as hard-coded secrets,
 excessive privileges, and insecure defaults~\cite{rahman2019sins,
 rahman2021replication, verdet2024exploring}.
 
@@ -140,14 +140,14 @@ reproduce, and when a benchmark is authored by the developer of one of the tools
 under comparison, agreement between that tool and the ground truth is close to
 guaranteed by construction.
 
-This paper addresses the evaluation problem rather than proposing a further
+This paper addresses the evaluation problem; it does not propose a further
 analyser. Three commitments shape the design.
 
 First, \textit{normalization before comparison}. A canonical control taxonomy
 mediates between native rule identifiers and benchmark ground truth, so that a
 finding is credited when it identifies the control a case was authored to
 violate, and not merely when the tool emitted something. Findings whose rule
-identifiers the taxonomy does not cover are counted and reported rather than
+identifiers the taxonomy does not cover are counted and reported, never
 discarded, because silently treating an unmapped detection as a miss biases the
 comparison toward whichever tool the taxonomy was authored around.
 
@@ -213,7 +213,7 @@ security-smell detection in IaC~\cite{opdebeeck2022control, opdebeeck2021smelly}
 That result motivates the plan-level layer evaluated here: a compiled Terraform
 plan is a resolved artefact in which interpolation, conditionals and expansion
 have already been applied, so evaluating it sidesteps a class of analysis
-difficulty rather than solving it.
+difficulty instead of solving it.
 
 Methodologically, this paper follows the static-analyser evaluation tradition
 established by Habib and Pradel, who show that headline detection rates are
@@ -247,7 +247,7 @@ identification of personal data. This layer operates on repository content rathe
 than infrastructure semantics, and its characteristic failure mode is
 over-detection: high-entropy strings in output declarations are frequently
 flagged as credentials. Its false-positive behaviour is therefore reported
-separately in \S\ref{sec:results} rather than aggregated with the policy layers.
+separately in \S\ref{sec:results} and is not aggregated with the policy layers.
 
 \subsection{Layer 2: Native Module Testing}
 The second layer validates module behaviour using Terraform's native test
@@ -259,11 +259,11 @@ provisioning cloud resources.
 The third layer converts a Terraform plan to its JSON representation and
 evaluates Rego policies against it~\cite{openpolicyagent2024}. Because the plan
 is produced after expression resolution, policies observe concrete attribute
-values rather than unevaluated references. Plan generation is configured so that
+values, not unevaluated references. Plan generation is configured so that
 provider credential validation is disabled, which permits evaluation in
 continuous integration without cloud account access; this is a precondition for
 the layer being usable at all, and is implemented by an injected provider
-override rather than by relaxing any policy.
+override, never by relaxing a policy.
 
 \subsection{Finding Normalization}
 \label{sec:normalization}
@@ -364,12 +364,12 @@ an external collection sourced independently. The distinction matters because th
 controlled collection shares an author with the policy set and therefore cannot
 provide independent confirmation of detection capability.
 
-Admissibility is enforced mechanically rather than asserted. A case is admitted
+Admissibility is enforced mechanically; it is not asserted. A case is admitted
 only if it satisfies all of the following:
 \begin{enumerate}
 \item it declares at least one resource or module block;
 \item its ground-truth label is present and internally consistent, where a case
-declaring contradictory labels is rejected rather than resolved by precedence;
+declaring contradictory labels is rejected, not resolved by precedence;
 \item it resolves to exactly one interpretation in the canonical taxonomy, since
 a CIS section number may span several distinct controls and inference cannot
 choose between them;
@@ -467,7 +467,7 @@ compliant. The generator's rationale reveals the intent --- encryption \emph{oth
 than} a customer-managed key --- so the label encoded a requirement the control text
 never stated. That stricter requirement is also precisely what the reference policy
 set enforces, which makes this a concrete instance of the construct-validity threat
-of Section~\ref{sec:construct} rather than a hypothetical one: the ground truth
+of Section~\ref{sec:construct} and not a hypothetical one. The ground truth
 agreed with the reference implementation rather than with the control it cited.
 
 We corrected the control text rather than the label, because requiring a
@@ -556,7 +556,7 @@ evolution between the products and is informative for that reason alone.
 
 Terrascan is excluded under the second criterion: its analysis paradigm is Rego
 policy evaluation, which the plan-level layer already represents. The consequence
-for the comparison is stated explicitly: policy evaluation is represented only
+for the comparison is stated explicitly. Policy evaluation is represented only
 over compiled plan documents, and no source-level policy engine appears in the
 tool set. A source-level Rego engine could differ from a plan-level one on
 configurations whose violations are resolved during planning, and this benchmark
@@ -581,7 +581,7 @@ point estimate on a corpus of this size is compatible with a wide range of true
 values; a perfect point estimate in particular carries a lower confidence bound
 substantially below unity, and reporting the point estimate alone would misstate
 what has been established. Metrics that the corpus cannot support are marked as
-not estimable rather than printed as zero: specificity and the Matthews
+not estimable instead of printed as zero. Specificity and the Matthews
 correlation coefficient~\cite{matthews1975comparison} require ground-truth-compliant cases, and in their
 absence no false-positive behaviour is characterised at all.
 
@@ -595,12 +595,12 @@ reported in preference to the chi-square approximation, which is invalid when a
 discordant cell is small and is therefore not reported as a primary result.
 $p$-values are corrected across the tool family~\cite{holm1979simple}; test selection follows established guidance for software-engineering experiments~\cite{arcuri2014hitchhiker}. Odds
 ratios carry a Haldane--Anscombe correction, so a zero discordant cell yields a
-finite estimate; an unbounded ratio is a degenerate cell rather than a large
+finite estimate; an unbounded ratio is a degenerate cell, not a large
 effect, and Cohen's $g$ is reported as the effect size.
 
 No pairwise difference among the three third-party scanners and the plan-level layer
 is significant after correction. This is the expected consequence of the corpus size
-rather than evidence of equivalence: with 26 violating cases the discordant cells
+not evidence of equivalence. With 26 violating cases the discordant cells
 are small enough that only a large difference could be resolved, and the exact test
 correctly declines to resolve differences of one or two cases. The interval widths
 in Table~\ref{tab:performance} are the honest summary of what this corpus
@@ -619,7 +619,7 @@ The divergence is not a straightforward regression. tfsec's rule fires on the
 violating case, earning a true positive, \emph{and} on the compliant case, earning a
 false positive; Trivy's silence forfeits both. tfsec therefore records the higher
 recall and Trivy the higher precision, from a single rule behaving differently. We
-verified that Trivy's miss is genuine rather than an artefact of our taxonomy: the
+verified that Trivy's miss is genuine and not an artefact of our taxonomy. The
 one unmapped finding Trivy emitted on that case is an S3 versioning rule, unrelated
 to IAM policy wildcards, so no mapping gap is concealing a detection.
 
@@ -648,7 +648,7 @@ vulnerability in question.
 \resulttable{latency}
 
 Table~\ref{tab:latency} reports per-case latency as a mean with standard
-deviation over repeated executions. Single-run figures are not reported: variance
+deviation over repeated executions. Single-run figures are not reported. Variance
 on shared-tenancy runners is large enough that a one-decimal single-sample figure
 is not a measurement.
 
@@ -697,7 +697,7 @@ insensitive to every control expressed as a resource attribute, so on a corpus
 dominated by attribute-level controls its contribution is necessarily small.
 The plan-level layer, conversely, can only be credited on cases for which a plan
 was produced; cases whose planning failed are excluded from its denominator
-rather than recorded as misses. The native module-testing layer validates the
+and are not recorded as misses. The native module-testing layer validates the
 project's own infrastructure and is not exercised per benchmark case, so it is
 excluded from this table and reported under RQ3 instead. Its omission is a scope
 boundary, not a null result.
@@ -723,16 +723,16 @@ these four configurations initially shared one directory. Every tool therefore
 received identical input for all four cases and returned a byte-identical finding
 set for each, while the scoring stage compared that one result against four
 different controls. Four rows entered each confusion matrix where one observation
-existed. This does not add noise so much as misstate precision: interval width is
+existed. This does not add noise so much as misstate precision. Interval width is
 driven by the number of independent observations, so duplicated cases narrow every
 interval that includes them without contributing evidence. Nothing in the aggregate
 output distinguishes this from four genuinely independent cases that happen to
 agree. Each configuration now occupies its own directory, and the corpus loader
-refuses to load a corpus in which two cases share one, rather than scoring it.
+refuses to load a corpus in which two cases share one, instead of scoring it.
 
 We report this because it bears on how the external subset should be read, and
 because the same trap applies to any benchmark whose unit of analysis is a
-directory: case isolation is a property that has to be enforced, not assumed.
+directory. Case isolation has to be enforced, never assumed.
 Their number is small enough that a per-subset recall estimate would carry an
 interval spanning most of the unit interval, so we report them as part of the
 combined admissible corpus and treat the external subset as a check that the
@@ -772,7 +772,7 @@ a class of interpolation-related imprecision that source-level analysis must
 otherwise reason about~\cite{opdebeeck2022control}. The cost is that plan
 generation dominates the layer's latency and requires a working provider
 configuration, so the comparison between source-level and plan-level evaluation
-is a trade-off rather than a ranking.
+is a trade-off, not a verdict on which is better.
 
 %------------------------------------------------------------------------------
 \section{Threats to Validity}
@@ -794,7 +794,7 @@ investigator did not author.
 A third check bears on it partially. The blind relabelling pass of
 Section~\ref{sec:labelling} agreed with 47 of 48 recorded labels, and the one
 disagreement it surfaced was a genuine specification defect of exactly the
-predicted kind: a control whose stated text was weaker than the requirement its
+predicted kind. A control whose stated text was weaker than the requirement its
 label encoded, where the stricter reading matched the reference policy set. That the
 pass found such a case is evidence the mechanism is real, not merely conceivable.
 
@@ -831,9 +831,9 @@ value; an attribute set from a reference to another resource is omitted and
 recorded as not-yet-known; and an attribute that is not set at all is present with
 a null value. A presence test therefore fails on the configuration that omits the
 attribute and succeeds on the configuration that sets it from a reference, which
-inverts the control rather than weakening it. The compliant case was reported as
+inverts the control, not merely weakens it. The compliant case was reported as
 violating and the violating case as compliant, and the two errors concealed each
-other in the aggregate: the confusion matrix showed one false positive and one
+other in the aggregate. The confusion matrix showed one false positive and one
 false negative, a signature indistinguishable from ordinary imprecision.
 
 The corrected rule distinguishes not-set from not-yet-known and reports only the
@@ -872,11 +872,11 @@ this study measures tool output and does not observe practitioners.
 
 The tool set bounds generalisation further. Three third-party scanners are measured
 but only two independent rule sets are represented (Section~\ref{sec:toolsel}), so
-the comparison speaks to those rule sets rather than to source-level IaC scanning in
+the comparison speaks to those rule sets, not to source-level IaC scanning in
 general.
 
 \subsection{Scope}
-The corpus is deterministic rather than adversarial. Reported effectiveness
+The corpus is deterministic, not adversarial. Reported effectiveness
 characterises performance on a published taxonomy of known misconfiguration
 classes. No claim is made regarding novel or deliberately obfuscated insecure
 configurations, or an adversary who has read the policy set.
@@ -897,7 +897,7 @@ in Section~\ref{sec:internal}, so that the disclosure can be checked rather than
 taken on trust.
 
 Two properties are worth stating explicitly. The harness declines to emit results
-when no case is admissible, rather than producing an empty but plausible table.
+when no case is admissible, instead of producing an empty but plausible table.
 And the statistical implementation refuses to report a proportion whose
 denominator is zero, returning a not-estimable marker instead of a value a reader
 could mistake for a measurement.
