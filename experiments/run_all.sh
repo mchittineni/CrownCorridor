@@ -25,40 +25,57 @@ else
 fi
 
 # 1. Run Data Validator & IaC Security Scan
-echo "[Step 1/4] Running Data Integrity & IaC Security Validation..."
+echo "[Step 1/3] Running Data Integrity & IaC Security Validation..."
 $PYTHON pipeline/validate_data.py
 $PYTHON pipeline/validate_iac.py
 
 # 2. Execute Pytest Test Suite
 echo ""
-echo "[Step 2/4] Executing Framework & Unit Tests with Coverage..."
+echo "[Step 2/3] Executing Framework & Unit Tests with Coverage..."
 if $PYTEST --help 2>&1 | grep -q "\--cov"; then
   COV_FLAG="--cov=security_framework"
 else
   COV_FLAG=""
 fi
-IACSECBENCH_ALLOW_SYNTHETIC=1 $PYTEST security_framework/tests/ pipeline/tests/ evaluation/tests/ $COV_FLAG -v
+$PYTEST security_framework/tests/ pipeline/tests/ evaluation/tests/ $COV_FLAG -v
 
-# 3. Run Experiment Pipeline & Generate Benchmark Results
+# 3. Measure. This is the only stage that produces results.
 echo ""
-echo "[Step 3/4] Running IaCSecBench Comparative Experiments & Evaluation Scoring Protocol..."
+echo "[Step 3/3] Measuring baselines (Checkov, tfsec, plan-level OPA, Layer 1)..."
 bash experiments/run_baselines.sh
-IACSECBENCH_ALLOW_SYNTHETIC=1 $PYTHON pipeline/run_experiments.py
-
-# 4. Generate Visual Charts & CSV Telemetry
-echo ""
-echo "[Step 4/4] Generating Benchmark Performance Figures & Metrics CSV..."
-$PYTHON experiments/generate_charts.py
 
 echo ""
 echo "============================================================"
-echo "SUCCESS: All experiments executed and results generated!"
-echo "Outputs stored in results/ & benchmark/reports/"
+echo "SUCCESS: measurement complete."
+echo "  results/run_manifest.json   tool versions, environment, latency samples"
+echo "  results/evaluation.json     confusion matrices, intervals, tests"
+echo "  results/tables/*.tex        LaTeX tables for the manuscript"
+echo "  leaderboard/results.csv     measured leaderboard"
 echo "============================================================"
 
-# 5. Log updates to Obsidian vault project folder (Daily Modular Notes & Main Index)
-echo ""
-echo "[Step 5/5] Synchronizing modular daily notes & master index with Obsidian Vault..."
-$PYTHON pipeline/sync_to_obsidian.py
-echo "✅ Obsidian Vault daily notes sync complete!"
+# The stages below are deliberately NOT run here.
+#
+# pipeline/run_experiments.py and experiments/generate_charts.py do not execute a
+# scanner. They multiply corpus counts by hardcoded per-tool rates and write the
+# product to results/benchmark_results.json, results/charts/ and
+# results/metrics.csv -- filenames indistinguishable from measured output. This
+# script previously set IACSECBENCH_ALLOW_SYNTHETIC=1 and ran both, so any
+# automated invocation (an editor task, a file watcher, a CI hook) would overwrite
+# real measurements with assumed ones and then publish the result to an external
+# Obsidian vault, where it outlives every caveat attached to it.
+#
+# Run them by hand if you want illustrative placeholders, and do not cite the
+# output:
+#
+#   IACSECBENCH_ALLOW_SYNTHETIC=1 $PYTHON pipeline/run_experiments.py
+#   IACSECBENCH_ALLOW_SYNTHETIC=1 $PYTHON experiments/generate_charts.py
+#
+# pipeline/sync_to_obsidian.py writes outside the repository into a personal
+# vault. Publishing is a deliberate act, not a build step, so it is invoked
+# explicitly:
+#
+#   $PYTHON pipeline/sync_to_obsidian.py
+#
+# It now renders its metrics table from results/evaluation.json, and reports that
+# no measurement exists rather than showing numbers when that file is absent.
 

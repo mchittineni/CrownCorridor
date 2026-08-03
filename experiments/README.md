@@ -26,7 +26,7 @@ Executes the full paper evaluation pipeline:
 1. **Data Integrity & IaC Security Validation**: Executes `validate_data.py` and `validate_iac.py`.
 2. **Pytest Verification**: Runs the complete unit test suite with `IACSECBENCH_ALLOW_SYNTHETIC=1 pytest`.
 3. **Comparative Evaluation**: Executes `score.py` and `run_experiments.py`.
-4. **Figure Generation**: Exports visual charts and CSV metrics (`results/metrics.csv`).
+4. **Figure Generation**: `generate_charts.py` charts *assumed* per-tool rates, not measurements. It refuses to run without `IACSECBENCH_ALLOW_SYNTHETIC=1`, and its former output (`results/metrics.csv`, `results/charts/`) has been deleted. Measured figures come from `results/evaluation.json`.
 5. **Obsidian Sync**: Runs `pipeline/sync_to_obsidian.py` to synchronize notes and indexes.
 
 ### 2. Baseline Evaluation Shell Script (`run_baselines.sh`)

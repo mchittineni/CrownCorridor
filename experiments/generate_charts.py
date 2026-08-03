@@ -10,11 +10,20 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
+from evaluation.synthetic_guard import GUARD_ENV, refuse_unless_explicitly_allowed
 from security_framework.engine.comparative_eval import ComparativeEvaluator
 
 
 def generate_charts():
     """Generates ASCII and markdown figures for benchmark performance metrics."""
+    # ComparativeEvaluator falls back to synthetic profile estimates, so these
+    # figures and results/metrics.csv chart assumed rates rather than measured
+    # ones. A bar chart carries no caveat once it is pasted into a document.
+    refuse_unless_explicitly_allowed(
+        "detection and runtime figures from assumed per-tool rates",
+        writes="results/charts/, results/metrics.csv",
+        override_hint=f"{GUARD_ENV}=1 python experiments/generate_charts.py",
+    )
     evaluator = ComparativeEvaluator()
     results = evaluator.run_comparative_suite()
 
