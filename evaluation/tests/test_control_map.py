@@ -11,6 +11,11 @@ They are deliberately mechanical -- an assertion here is cheaper than re-reading
 1,700 lines of JSON after every edit.
 """
 
+# A test function's parameter deliberately shares the name of the fixture that
+# supplies it -- that is how pytest resolves fixtures, so pylint's shadowing
+# warning is inapplicable to every occurrence in this file.
+# pylint: disable=redefined-outer-name
+
 from __future__ import annotations
 
 import json
@@ -104,7 +109,7 @@ def test_rule_identifiers_are_unique_within_a_tool(control_map: ControlMap) -> N
     duplicated: dict[str, dict[str, list[str]]] = {}
     for control_id, spec in control_map.controls.items():
         for tool, rules in spec.get("tools", {}).items():
-            seen = [r for r in {x for x in rules if rules.count(x) > 1}]
+            seen = {x for x in rules if rules.count(x) > 1}
             if seen:
                 duplicated.setdefault(control_id, {})[tool] = sorted(seen)
     assert not duplicated, f"duplicate rule identifiers: {duplicated}"

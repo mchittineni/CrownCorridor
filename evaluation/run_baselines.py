@@ -427,9 +427,12 @@ def discover_tools() -> dict[str, dict[str, Any]]:
 
 
 def _git_commit() -> str:
+    git = shutil.which("git")
+    if git is None:
+        return "unknown"
     try:
         proc = subprocess.run(
-            ["git", "rev-parse", "HEAD"],
+            [git, "rev-parse", "HEAD"],
             cwd=ROOT,
             capture_output=True,
             text=True,

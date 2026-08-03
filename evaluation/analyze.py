@@ -221,13 +221,17 @@ def pairwise_comparisons(
     results: dict[str, dict[MatchLevel, ToolResult]],
     reference: str,
     level: MatchLevel,
-    n_total: int,
 ) -> dict[str, Any]:
     """Exact McNemar comparisons of the reference tool against every other tool.
 
     Discordant counts include both error types: a case where the reference is
     correct and the comparator wrong contributes to ``b`` whether the
     comparator's error was a missed violation or a spurious finding.
+
+    The corpus size is deliberately not a parameter. Each comparison's paired
+    difference interval is computed over the cases the two tools actually share,
+    which is narrower than the corpus whenever either tool errored on a case.
+    Passing a corpus-wide ``n`` would overstate the pairing.
     """
     if reference not in results:
         return {"error": f"reference tool {reference!r} produced no results"}
@@ -589,7 +593,7 @@ def main(argv: list[str] | None = None) -> int:
 
     n_positives = sum(1 for c in cases if c.expected == "VIOLATION")
     n_negatives = len(cases) - n_positives
-    comparisons = pairwise_comparisons(results, args.reference, args.level, len(cases))
+    comparisons = pairwise_comparisons(results, args.reference, args.level)
 
     # ---- console summary -------------------------------------------------- #
     print("=" * 78)
@@ -662,9 +666,13 @@ def main(argv: list[str] | None = None) -> int:
         any_level = f"{row['any'].matrix.recall * 100:>7.2f}%"
         print(f"{TOOL_LABELS.get(tool, (tool, ''))[0]:<18} {control} {resource} {any_level}")
 
-    total_unmapped = sum(results[t][args.level].n_unmapped for t in results if status[t] == "run")
+    total_unmapped = sum(
+        levels[args.level].n_unmapped for t, levels in results.items() if status[t] == "run"
+    )
     total_unmapped_on_missed = sum(
-        results[t][args.level].n_unmapped_on_missed for t in results if status[t] == "run"
+        levels[args.level].n_unmapped_on_missed
+        for t, levels in results.items()
+        if status[t] == "run"
     )
     if total_unmapped:
         print(f"\n{total_unmapped} findings carried rule identifiers absent from the control map.")
@@ -695,8 +703,8 @@ def main(argv: list[str] | None = None) -> int:
         "control_map_unverified": unverified,
         "tool_status": status,
         "results": {
-            tool: {lvl: results[tool][lvl].to_dict() for lvl in MATCH_LEVELS}
-            for tool in results
+            tool: {lvl: levels[lvl].to_dict() for lvl in MATCH_LEVELS}
+            for tool, levels in results.items()
             if status[tool] == "run"
         },
         "pairwise_mcnemar": comparisons,

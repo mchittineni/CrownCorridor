@@ -111,7 +111,7 @@ def ensure_provider_mirror(mirror: Path = MIRROR_DIR, *, timeout: int = 900) -> 
         return None
 
     LOCK_FILE.parent.mkdir(parents=True, exist_ok=True)
-    with open(LOCK_FILE, "w") as lock:
+    with open(LOCK_FILE, "w", encoding="utf-8") as lock:
         fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
         # Re-check under the lock: another process may have finished while we
         # were blocked, in which case there is nothing left to do.
