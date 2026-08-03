@@ -10,7 +10,7 @@ Generates a complete knowledge graph for the iacsecbench workspace inside Obsidi
   5. Master Dashboard index (`Changelog-Activity.md`)
 """
 
-import ast
+import json
 import os
 import re
 import subprocess
@@ -162,7 +162,7 @@ def scan_project_files():
 
             file_content = ""
             try:
-                with open(abs_path, "r", encoding="utf-8") as file_handle:
+                with open(abs_path, encoding="utf-8") as file_handle:
                     file_content = file_handle.read()
             except Exception:
                 pass
@@ -181,12 +181,105 @@ def scan_project_files():
 # SECTION 3: RESEARCH NOTES GENERATOR
 # ==============================================================================
 
+EVALUATION_JSON = os.path.join(PROJECT_DIR, "results", "evaluation.json")
+
+_TOOL_LABELS = {
+    "checkov": ("Checkov", "AST static analysis"),
+    "tfsec": ("tfsec", "HCL lexical scanning"),
+    "opa": ("OPA (plan-level)", "Rego over compiled plan"),
+    "iacsecbench": ("IaCSecBench", "Composite pipeline"),
+    "iacsb_layer1": ("IaCSecBench L1", "Repository-edge scanning"),
+}
+
+_NO_MEASUREMENT = """> [!WARNING] No measurement available
+> `results/evaluation.json` is absent, so there are no results to show. This note
+> deliberately shows nothing rather than illustrative numbers: a table synced into
+> a vault outlives the caveat that accompanied it.
+>
+> Produce one with `experiments/run_baselines.sh`, then re-run the sync.
+"""
+
+
+def render_measured_metrics_table() -> str:
+    """Renders the performance table from measured output, or says there is none.
+
+    This table used to be a hardcoded literal reporting 345 cases and a perfect
+    score for the reference implementation. Neither figure was measured: the
+    corpus is a fraction of that size and the reference implementation ranks last
+    on it. Because this function publishes into an Obsidian vault, a wrong number
+    here escapes the repository entirely and acquires the authority of a note the
+    author wrote themselves -- so it now reads the measured artefact or prints
+    nothing at all.
+    """
+    try:
+        with open(EVALUATION_JSON, encoding="utf-8") as handle:
+            payload = json.load(handle)
+    except (OSError, ValueError):
+        return _NO_MEASUREMENT
+
+    corpus = payload.get("corpus", {})
+    level = payload.get("matching_level", "control")
+    results = payload.get("results", {})
+    if not results:
+        return _NO_MEASUREMENT
+
+    rows = []
+    for tool, per_level in results.items():
+        entry = per_level.get(level) or {}
+        matrix = entry.get("confusion_matrix") or {}
+        if not matrix:
+            continue
+        latency = entry.get("latency") or {}
+        label, category = _TOOL_LABELS.get(tool, (tool, ""))
+        ci = matrix.get("recall_ci") or {}
+
+        def pct(key, source=matrix):
+            value = source.get(key)
+            return "n/e" if value is None else f"{value * 100:.2f}%"
+
+        interval = (
+            f"$[{ci['lower'] * 100:.2f}\\%, {ci['upper'] * 100:.2f}\\%]$"
+            if ci.get("lower") is not None
+            else "n/e"
+        )
+        mean = latency.get("mean_ms")
+        sd = latency.get("sd_ms")
+        latency_cell = "n/e" if mean is None else f"{mean:.1f} ± {sd:.1f} ms"
+        rows.append(
+            (
+                matrix.get("recall") or 0.0,
+                f"| {label} | {category} | {matrix.get('tp')} | {matrix.get('fp')} | "
+                f"{matrix.get('fn')} | {matrix.get('tn')} | {pct('accuracy')} | "
+                f"{pct('precision')} | {pct('recall')} | {interval} | {latency_cell} |",
+            )
+        )
+    if not rows:
+        return _NO_MEASUREMENT
+    rows.sort(key=lambda r: r[0], reverse=True)
+
+    caveats = payload.get("caveats") or []
+    caveat_block = "\n".join(f"> - {c}" for c in caveats)
+    return f"""- **Admissible cases:** `{corpus.get("n_cases")}` \
+({corpus.get("n_vulnerable")} vulnerable, {corpus.get("n_compliant")} compliant)
+- **Matching level:** `{level}`
+- **Generated from:** `results/evaluation.json` — do not edit this note by hand.
+
+| Tool / Engine | Category | TP | FP | FN | TN | Accuracy | Precision | Recall | 95% CI (Recall) | Latency |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+{chr(10).join(row for _, row in rows)}
+
+> [!IMPORTANT] Caveats that travel with these numbers
+{caveat_block or "> - (none recorded)"}
+"""
+
+
 def generate_research_notes():
     """Generate structured Research Article Notes."""
     research_files = {}
 
     # 1. Article Workspace Note
-    research_files["Article-Workspace.md"] = """---
+    research_files["Article-Workspace.md"] = (
+        """---
 type: research_article
 title: "IaCSecBench: A Reproducible Benchmark Framework for Evaluating Infrastructure as Code Security Validation Pipelines"
 author: "Manideep Chittineni"
@@ -208,22 +301,19 @@ tags: [research, ieee, paper, iac, devsecops, benchmark]
 
 - [[Research/RQ1-Internal-Metrics|📊 RQ1: Internal Controlled Benchmark Performance]]
 - [[Research/Threat-Model-STRIDE|🛡️ Threat Model & STRIDE Mitigation Matrix]]
-- [[Research/RQ5-External-Generalizability|🌐 RQ5: External Generalizability Collection (N=175)]]
+- [[Research/RQ5-External-Generalizability|🌐 RQ5: External Generalizability Collection]]
 
 ---
 
 ## 📊 Quick Empirical Metrics Summary
 
-| Tool / Engine | Category | Internal Recall | External Recall (N=175) | Execution Latency |
-| :--- | :--- | :---: | :---: | :---: |
-| **IaCSecBench** | Multi-Engine Validation | **100.0%** | **96.00%** | **185 ms** |
-| OPA / Sentinel | Policy-as-Code | 91.48% | — | 650 ms |
-| Checkov | AST Static Analysis | 89.77% | 85.71% | 1420 ms |
-| tfsec | HCL Scanner | 87.50% | 82.86% | 310 ms |
 """
+        + render_measured_metrics_table()
+    )
 
     # 2. RQ1 Metrics Note
-    research_files["RQ1-Internal-Metrics.md"] = """---
+    research_files["RQ1-Internal-Metrics.md"] = (
+        """---
 type: research_metrics
 rq: "RQ1"
 tags: [research, metrics, benchmark, rq1]
@@ -235,20 +325,25 @@ tags: [research, metrics, benchmark, rq1]
 
 ---
 
-## 📈 Empirical Confusion Matrix Results ($N = 345$ Cases)
-
-- **Total Labelled Cases:** `345` (176 Vulnerable Configurations, 169 Secure Baselines)
-- **Infrastructure Domains:** `12` (IAM, Network, Storage, Encryption, Compute, Kubernetes, Serverless, Monitoring, Secrets, Federated Auth, PII Privacy, Terraform Quality)
+## 📈 Empirical Confusion Matrix Results
 
 ### Comprehensive Performance Comparison Table
 
-| Tool / Engine | Category | TP | FP | FN | TN | Accuracy (%) | Precision (%) | Recall (%) | 95% CI (Recall) | Latency (ms) |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| Checkov | AST Analysis | 158 | 13 | 17 | 156 | 91.01% | 92.40% | 89.77% | $[84.32\\%, 93.89\\%]$ | 1420 ms |
-| tfsec | HCL Scanner | 154 | 10 | 21 | 159 | 91.01% | 93.90% | 87.50% | $[81.69\\%, 92.03\\%]$ | 310 ms |
-| OPA Baseline | Rego Policy | 161 | 8 | 14 | 161 | 93.62% | 95.27% | 91.48% | $[86.30\\%, 95.23\\%]$ | 650 ms |
-| **IaCSecBench** | **Multi-Engine** | **176** | **0** | **0** | **169** | **100.00%** | **100.00%** | **100.00%** | **$[97.93\\%, 100.00\\%]$** | **185 ms** |
 """
+        + render_measured_metrics_table()
+        + """
+### Reading this table
+
+The reference implementation does **not** lead it. Layer 1 is a repository-edge
+secret and PII scanner and the corpus is cloud misconfigurations, so it detects
+almost nothing here. That is a scope boundary, reported as measured.
+
+The denominator is the *admissible* corpus — cases present on disk, labelled
+unambiguously, and passing `terraform validate`. It is much smaller than the
+designed taxonomy of 345 internal and 175 external cases, and the designed figure
+is never used as a denominator.
+"""
+    )
 
     # 3. STRIDE Threat Model Note
     research_files["Threat-Model-STRIDE.md"] = """---
@@ -433,8 +528,8 @@ def generate_daily_notes(daily_commits):
             "",
             f"> **Date:** `{day_str}`  ",
             f"> **Total Commits:** `{len(commits)}`  ",
-            f"> **Main Index:** [[Changelog-Activity]]  ",
-            f"> **Architecture Map:** [[Project-Structure]]",
+            "> **Main Index:** [[Changelog-Activity]]  ",
+            "> **Architecture Map:** [[Project-Structure]]",
             "",
             "---",
             "",
@@ -505,8 +600,8 @@ def generate_main_index(daily_commits):
         "",
         f"> **Last Synced:** `{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}`  ",
         f"> **Total Synced Commits:** `{total_commits}` across `{len(sorted_days)}` days  ",
-        f"> **Research Article Workspace:** [[Research/Article-Workspace]]  ",
-        f"> **Workspace Knowledge Map:** [[Project-Structure]]",
+        "> **Research Article Workspace:** [[Research/Article-Workspace]]  ",
+        "> **Workspace Knowledge Map:** [[Project-Structure]]",
         "",
         "---",
         "",
