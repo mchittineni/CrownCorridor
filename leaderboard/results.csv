@@ -1,5 +1,5 @@
 tool_name,category,total_cases,tp,fp,tn,fn,accuracy_pct,precision_pct,recall_pct,f1_score_pct,fpr_pct,fnr_pct,recall_ci_low_pct,recall_ci_high_pct,latency_mean_ms,latency_sd_ms,latency_samples,matching_level
-Checkov,AST static analysis,48,23,0,22,3,93.75,100.00,88.46,93.88,0.00,11.54,69.85,97.55,2421.0,154.8,240,control
-tfsec,HCL lexical scanning,48,22,2,20,4,87.50,91.67,84.62,88.00,9.09,15.38,65.13,95.64,422.6,4.6,240,control
-OPA (plan-level),Rego over compiled plan,48,20,0,22,6,87.50,100.00,76.92,86.96,0.00,23.08,56.35,91.03,18.6,1.0,240,control
+Checkov,AST static analysis,48,23,0,22,3,93.75,100.00,88.46,93.88,0.00,11.54,69.85,97.55,2429.3,465.5,240,control
+tfsec,HCL lexical scanning,48,22,2,20,4,87.50,91.67,84.62,88.00,9.09,15.38,65.13,95.64,424.2,6.0,240,control
+OPA (plan-level),Rego over compiled plan,48,20,0,22,6,87.50,100.00,76.92,86.96,0.00,23.08,56.35,91.03,18.1,1.1,240,control
 IaCSecBench L1,Repository-edge scanning,48,1,1,21,25,45.83,50.00,3.85,7.14,4.55,96.15,0.10,19.64,0.2,0.1,240,control
