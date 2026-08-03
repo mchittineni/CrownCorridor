@@ -9,7 +9,7 @@ The **IaC Security & Evaluation Benchmark Framework** is a modular, reusable fra
 ## 🌟 Key Capabilities
 
 - 🔍 **Multi-Repository & Multi-Module IaC Engine**: Generic scanning engine capable of evaluating arbitrary Terraform modules, provider constraints, and security standards.
-- 📊 **Comparative Benchmark Driver**: Measures **Checkov**, **tfsec**, and **plan-level OPA** against the same admissible corpus. Sentinel and Terratest are *not* evaluated — neither was ever executed here, and no number is reported for either.
+- 📊 **Comparative Benchmark Driver**: Measures **Checkov**, **tfsec**, and **plan-level OPA** against the same admissible corpus. Sentinel and Terratest are _not_ evaluated — neither was ever executed here, and no number is reported for either.
 - 📦 **Public Benchmark Datasets**: Standardized, annotated test case schema stored under `benchmark/datasets/benchmarks.json`.
 - 🧪 **Reproducible Experiments**: One-command measurement suite (`experiments/run_baselines.sh`) producing raw scanner output, latency samples, exact confidence intervals and LaTeX tables.
 - 🔒 **Zero-PII & Secret Compliance**: Automatic scanning for customer PII, AWS secret keys, hardcoded database credentials, and tokens.
@@ -57,10 +57,10 @@ regenerated, so it silently becomes wrong the first time the corpus, the control
 map or a tool version changes — and a stale table is indistinguishable from a
 current one. The measured matrix lives in exactly two generated places:
 
-| Artefact | Contents |
-| :--- | :--- |
+| Artefact                                                   | Contents                                                                                                   |
+| :--------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------- |
 | [`leaderboard/results.csv`](../../leaderboard/results.csv) | Per-tool TP/FP/TN/FN, accuracy, precision, recall, F1, FPR/FNR, exact recall interval, latency mean and SD |
-| `results/evaluation.json` | The same, plus per-case outcomes, all three matching levels, and pairwise McNemar tests |
+| `results/evaluation.json`                                  | The same, plus per-case outcomes, all three matching levels, and pairwise McNemar tests                    |
 
 Regenerate both with:
 

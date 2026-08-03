@@ -6,7 +6,7 @@ This document details the evaluation protocol, scoring metrics, ground truth for
 
 ## Evaluation Protocol Overview
 
-To ensure objective and fair comparison across IaC analysis tools (**Checkov**, **tfsec**, **plan-level OPA**, and the **IaCSecBench Engine**), each tool is evaluated against the cases that are *admissible*: present on disk, carrying an unambiguous ground-truth label, and passing `terraform validate` against the declared provider.
+To ensure objective and fair comparison across IaC analysis tools (**Checkov**, **tfsec**, **plan-level OPA**, and the **IaCSecBench Engine**), each tool is evaluated against the cases that are _admissible_: present on disk, carrying an unambiguous ground-truth label, and passing `terraform validate` against the declared provider.
 
 Admissibility is the operative word. The corpus is described in two numbers that do not agree, and the protocol reports both rather than the flattering one:
 
@@ -20,7 +20,6 @@ Do not quote a corpus size from this document. Read the current one:
 ```bash
 python -m evaluation.corpus --report --mode terraform
 ```
-
 
 ### Scoring Metrics
 
@@ -76,7 +75,7 @@ version of each tool, the repeat count, the validation mode, and the raw latency
 samples. The manifest is the authoritative record of a run. Where this document
 and the manifest disagree, the manifest is right.
 
-The manifest also records which tools were *not* installed. A tool that could
+The manifest also records which tools were _not_ installed. A tool that could
 not be executed is reported as absent and excluded from the comparison; it is
 never represented by an assumed detection rate, and never appears in a results
 table as though it had scored zero.
@@ -100,7 +99,7 @@ plus LaTeX table emission. Nothing in it synthesises a result.
 reflects the host rather than the tool. Background load inflates the mean and
 roughly doubles the standard deviation, and no amount of repeats corrects it.
 
-### Stages that do *not* measure anything
+### Stages that do _not_ measure anything
 
 `evaluation/score.py`, `pipeline/run_experiments.py` and
 `experiments/generate_charts.py` do not execute a scanner. They multiply corpus

@@ -54,12 +54,11 @@ TF: Native .tftest.hcl, custom variable validation, dynamic blocks, for_each.
 
 ### External Validation Dataset Composition
 
-| Dataset | Source | Cases | Purpose |
-| :--- | :--- | :---: | :--- |
-| **Terraform Registry** | Open-source modules (VPC, EKS, RDS, IAM, Security Groups) | 50 | Real-world HCL complexity, dynamic blocks, variables, nested resources |
-| **SecureFlag** | Intentionally vulnerable security scenarios | 75 | Real-world vulnerability patterns (public S3, open SG, insecure IAM, unencrypted RDS) |
-| **CIS Benchmark** | Compliance-driven security controls | 50 | Compliance-driven security failure scenarios mapped directly to CIS AWS Foundations Benchmark v3 |
-
+| Dataset                | Source                                                    | Cases | Purpose                                                                                          |
+| :--------------------- | :-------------------------------------------------------- | :---: | :----------------------------------------------------------------------------------------------- |
+| **Terraform Registry** | Open-source modules (VPC, EKS, RDS, IAM, Security Groups) |  50   | Real-world HCL complexity, dynamic blocks, variables, nested resources                           |
+| **SecureFlag**         | Intentionally vulnerable security scenarios               |  75   | Real-world vulnerability patterns (public S3, open SG, insecure IAM, unencrypted RDS)            |
+| **CIS Benchmark**      | Compliance-driven security controls                       |  50   | Compliance-driven security failure scenarios mapped directly to CIS AWS Foundations Benchmark v3 |
 
 ---
 
