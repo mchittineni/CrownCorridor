@@ -1,14 +1,14 @@
 # Workflows
 
-| Workflow | Trigger | Purpose |
-| :--- | :--- | :--- |
-| `ci.yml` | every PR + push to main | Lint, format, security audit, unit tests, data validation, fast corpus check, synthetic-guard assertion |
-| `infra-ci.yml` | PR/push touching `infrastructure/`, `security_framework/`, `benchmark/`, `evaluation/`, `leaderboard/`, `experiments/` | Terraform fmt/validate/test, conftest policy evaluation, Checkov scan, Rego parse + format, corpus admissibility, tests |
-| `benchmark.yml` | manual dispatch + weekly cron | **The full measurement.** Installs Checkov, tfsec, OPA, Terraform; runs `experiments/run_baselines.sh`; uploads `results/` as an artefact |
-| `docs.yml` | PR/push touching `application/app/`, `docs/`, `jsdoc.json` | JSDoc build |
-| `deploy-pages.yml` | push to main | GitHub Pages deployment |
-| `release-please.yml` | push to main | Release automation; packages a replication archive |
-| `update-data.yml` | schedule | SRO dataset refresh |
+| Workflow             | Trigger                                                                                                                | Purpose                                                                                                                                   |
+| :------------------- | :--------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| `ci.yml`             | every PR + push to main                                                                                                | Lint, format, security audit, unit tests, data validation, fast corpus check, synthetic-guard assertion                                   |
+| `infra-ci.yml`       | PR/push touching `infrastructure/`, `security_framework/`, `benchmark/`, `evaluation/`, `leaderboard/`, `experiments/` | Terraform fmt/validate/test, conftest policy evaluation, Checkov scan, Rego parse + format, corpus admissibility, tests                   |
+| `benchmark.yml`      | manual dispatch + weekly cron                                                                                          | **The full measurement.** Installs Checkov, tfsec, OPA, Terraform; runs `experiments/run_baselines.sh`; uploads `results/` as an artefact |
+| `docs.yml`           | PR/push touching `application/app/`, `docs/`, `jsdoc.json`                                                             | JSDoc build                                                                                                                               |
+| `deploy-pages.yml`   | push to main                                                                                                           | GitHub Pages deployment                                                                                                                   |
+| `release-please.yml` | push to main                                                                                                           | Release automation; packages a replication archive                                                                                        |
+| `update-data.yml`    | schedule                                                                                                               | SRO dataset refresh                                                                                                                       |
 
 ## Two invariants worth knowing before editing these
 
@@ -42,6 +42,33 @@ a sixfold difference from the environment alone, with the mean barely moving.
 Committing would replace locally measured latency, the only publishable kind, with
 runner noise. Its job summary states this next to the numbers, so a reader meets the
 caveat before the table.
+
+### 3. A `workflow_dispatch` input never appears inside a command
+
+Bind it to `env:` and reference the variable, then validate it before use.
+`update-data.yml` used to interpolate its `date` input into a command string that
+`.github/actions/datagov-fetch` splices into a `run:` block — two hops from a
+dispatch field to a shell, which let anyone able to dispatch the workflow run
+arbitrary commands. It now rejects anything that is not a real calendar date and
+passes the flag through `$SRO_DATE_FLAG`. `benchmark.yml` validates its `repeats`
+and `level` inputs the same way.
+
+This applies to `github.event.*` fields generally, not just dispatch inputs — issue
+titles, branch names and commit messages are all attacker-controlled.
+
+## Checks that cannot fail are removed, not repointed
+
+`ci.yml` used to run `doc8` over `docs/`, `README.md` and `CONTRIBUTING.md`. doc8
+reads only `.rst` and `.txt`; every path named was Markdown, so the step passed
+without opening a file, and the matching pre-commit hook reported
+`(no files to check) Skipped` on every run. Both are gone. A green check that
+inspects nothing is worse than an absent one, because it occupies the slot where a
+missing check would be noticed.
+
+Markdown style is enforced instead by `prettier`, which `npm run format:check`
+covers. `.prettierignore` excludes `CHANGELOG.md` (written by release-please),
+generated JSDoc output, and `results/`+`leaderboard/` (measured artefacts compared
+byte-for-byte across runs, which reformatting would corrupt).
 
 ## Where the expensive checks live
 

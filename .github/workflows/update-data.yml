@@ -22,6 +22,26 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
+      - name: Validate Dispatch Date
+        env:
+          INPUT_DATE: ${{ inputs.date }}
+        run: |
+          set -eu
+          if [ -z "$INPUT_DATE" ]; then
+            echo "no date supplied; the pipeline will default to today"
+            echo "SRO_DATE_FLAG=" >> "$GITHUB_ENV"
+            exit 0
+          fi
+          case "$INPUT_DATE" in
+            [0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]) ;;
+            *) echo "::error::date must be YYYY-MM-DD"; exit 1 ;;
+          esac
+          if ! date -u -d "$INPUT_DATE" +%Y-%m-%d >/dev/null 2>&1; then
+            echo "::error::date is well-formed but is not a real calendar date"
+            exit 1
+          fi
+          echo "SRO_DATE_FLAG=--date $INPUT_DATE" >> "$GITHUB_ENV"
+
       - name: Setup Toolchain
         uses: ./.github/actions/setup-pipeline
 
@@ -39,7 +59,7 @@ jobs:
             --state andhra_pradesh
             --dry-run
             --generate-history
-            ${{ github.event.inputs.date && format('--date {0}', github.event.inputs.date) || '' }}
+            $SRO_DATE_FLAG
 
       - name: Fetch TS SRO Records & Generate History
         uses: ./.github/actions/datagov-fetch
@@ -49,7 +69,7 @@ jobs:
             --state telangana
             --dry-run
             --generate-history
-            ${{ github.event.inputs.date && format('--date {0}', github.event.inputs.date) || '' }}
+            $SRO_DATE_FLAG
 
       - name: Run Data Validator
         run: python pipeline/validate_data.py
