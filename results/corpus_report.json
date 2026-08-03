@@ -1412,7 +1412,7 @@
     },
     {
       "case_id": "cis_examples/cis_2_1_s3_public",
-      "path": "benchmark/external/cis_examples/aws",
+      "path": "benchmark/external/cis_examples/aws/cis_2_1_s3_public",
       "collection": "external",
       "subset": "cis_examples",
       "domain": "Storage",
@@ -1423,21 +1423,19 @@
       "expected_resources": [],
       "cis_control": "2.1",
       "severity": "HIGH",
-      "n_resources": 5,
+      "n_resources": 2,
       "n_variables": 0,
       "n_modules": 0,
       "n_data_sources": 0,
-      "sloc": 32,
+      "sloc": 10,
       "resource_types": [
-        "aws_cloudtrail",
         "aws_s3_bucket",
-        "aws_s3_bucket_public_access_block",
-        "aws_security_group"
+        "aws_s3_bucket_public_access_block"
       ]
     },
     {
       "case_id": "cis_examples/cis_2_2_s3_encryption",
-      "path": "benchmark/external/cis_examples/aws",
+      "path": "benchmark/external/cis_examples/aws/cis_2_2_s3_encryption",
       "collection": "external",
       "subset": "cis_examples",
       "domain": "Storage",
@@ -1448,21 +1446,18 @@
       "expected_resources": [],
       "cis_control": "2.2",
       "severity": "HIGH",
-      "n_resources": 5,
+      "n_resources": 1,
       "n_variables": 0,
       "n_modules": 0,
       "n_data_sources": 0,
-      "sloc": 32,
+      "sloc": 3,
       "resource_types": [
-        "aws_cloudtrail",
-        "aws_s3_bucket",
-        "aws_s3_bucket_public_access_block",
-        "aws_security_group"
+        "aws_s3_bucket"
       ]
     },
     {
       "case_id": "cis_examples/cis_3_1_cloudtrail",
-      "path": "benchmark/external/cis_examples/aws",
+      "path": "benchmark/external/cis_examples/aws/cis_3_1_cloudtrail",
       "collection": "external",
       "subset": "cis_examples",
       "domain": "Monitoring",
@@ -1474,21 +1469,18 @@
       "expected_resources": [],
       "cis_control": "3.1",
       "severity": "HIGH",
-      "n_resources": 5,
+      "n_resources": 1,
       "n_variables": 0,
       "n_modules": 0,
       "n_data_sources": 0,
-      "sloc": 32,
+      "sloc": 7,
       "resource_types": [
-        "aws_cloudtrail",
-        "aws_s3_bucket",
-        "aws_s3_bucket_public_access_block",
-        "aws_security_group"
+        "aws_cloudtrail"
       ]
     },
     {
       "case_id": "cis_examples/cis_4_1_security_group",
-      "path": "benchmark/external/cis_examples/aws",
+      "path": "benchmark/external/cis_examples/aws/cis_4_1_security_group",
       "collection": "external",
       "subset": "cis_examples",
       "domain": "Networking",
@@ -1499,15 +1491,12 @@
       "expected_resources": [],
       "cis_control": "4.1",
       "severity": "CRITICAL",
-      "n_resources": 5,
+      "n_resources": 1,
       "n_variables": 0,
       "n_modules": 0,
       "n_data_sources": 0,
-      "sloc": 32,
+      "sloc": 12,
       "resource_types": [
-        "aws_cloudtrail",
-        "aws_s3_bucket",
-        "aws_s3_bucket_public_access_block",
         "aws_security_group"
       ]
     }

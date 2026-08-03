@@ -18,7 +18,7 @@
       "status": 0,
       "resource": "aws_kms_key.target",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-ENC-NO-KEY-ROTATION-VULN-8pbo5oan/case/main.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-ENC-NO-KEY-ROTATION-VULN-3yau0d_8/case/main.tf",
         "start_line": 23,
         "end_line": 23
       }
