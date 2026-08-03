@@ -29,11 +29,13 @@ infrastructure/
 ## ⚙️ Key Security Gates & Policies Evaluated
 
 The infrastructure configurations in this directory serve as the live target evaluated by **IaCSecBench**:
+
 - **Layer 2 Native Testing:** Evaluated via `.tftest.hcl` suites verifying variable constraints and resource tags.
 - **Layer 3 Policy-as-Code:** Evaluated by compiling Terraform execution plans (`terraform plan -out=tfplan.binary`) into JSON (`terraform show -json tfplan.binary`) and running Open Policy Agent (OPA) Rego security policies against them.
 
 ---
 
 ## 🔗 Related Knowledge Base Links
+
 - [[Research/Threat-Model-STRIDE|🛡️ Threat Model & STRIDE Matrix]]
 - [[Project-Structure|📐 View Project Architecture]]
