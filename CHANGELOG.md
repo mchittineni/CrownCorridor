@@ -29,6 +29,35 @@ Releases are published automatically by [`release-please.yml`](.github/workflows
 - **`PATCH` (x.y.Z)** — Pipeline, validator, and ETL infrastructure changes (`pipeline/**`, `application/api/**`).
 - **`MAJOR` (X.0.0)** — Web application features, layout, and UI frontend changes (`application/app/**`).
 
+## [1.3.0](https://github.com/mchittineni/iacsecbench/compare/v1.2.0...v1.3.0) (2026-08-03)
+
+
+### Features
+
+* **benchmark:** update corpus generator and dataset documentation ([852b665](https://github.com/mchittineni/iacsecbench/commit/852b6656a108d786393bbdcc8afad4a4c03f4042))
+* **benchmark:** update corpus generator module ([965f135](https://github.com/mchittineni/iacsecbench/commit/965f13523ef3753141f34eead40c8887638bf1ae))
+* **evaluation:** add baseline evaluation framework and documentation ([edfc2e4](https://github.com/mchittineni/iacsecbench/commit/edfc2e4e7172123ea62549170a14841853290c04))
+* **evaluation:** add synthetic guard module and test suite updates ([83a4fd8](https://github.com/mchittineni/iacsecbench/commit/83a4fd8114195867f9f4eb46df3139837475a929))
+* **evaluation:** update evaluation protocol, baseline runners, and test suite ([a05020e](https://github.com/mchittineni/iacsecbench/commit/a05020e2c3421eca14e3969f007ad4831f09a3be))
+* **evaluation:** update statistical analysis, normalization, and baseline runner modules ([68d7323](https://github.com/mchittineni/iacsecbench/commit/68d73230603b92878fb835ebe624c5c02239b747))
+* **evaluation:** update stats analysis, normalization, and test suites ([cd9bbf4](https://github.com/mchittineni/iacsecbench/commit/cd9bbf46e1b5933171e8215643bfee6cb0d24b73))
+* **experiments:** update reproducibility scripts and experiment documentation ([5e81b08](https://github.com/mchittineni/iacsecbench/commit/5e81b089a6dd57a145a6d6a07ba837d1d2683c98))
+* **experiments:** update reproduction harness and chart generators ([a70aced](https://github.com/mchittineni/iacsecbench/commit/a70aced3676984dd669bcf8639055e564340f0df))
+* **experiments:** update run_all.sh reproduction script ([698f21e](https://github.com/mchittineni/iacsecbench/commit/698f21edccb5822a92d9ad5955172a711299effe))
+* **infrastructure:** update infrastructure CIS benchmark policies ([80009bc](https://github.com/mchittineni/iacsecbench/commit/80009bc10e0db1197a25be119188b8fe1d40a0cb))
+* **pipeline:** add obsidian sync tool and pipeline documentation ([9fab10f](https://github.com/mchittineni/iacsecbench/commit/9fab10f0889947fedb509c09fc8fc2cd9c73b9b2))
+* **pipeline:** update obsidian sync engine and evaluation test harness ([ee4e53c](https://github.com/mchittineni/iacsecbench/commit/ee4e53cabf985f429e9d2cf826aae46b84d65de0))
+* **pipeline:** update obsidian sync script ([8b53a12](https://github.com/mchittineni/iacsecbench/commit/8b53a12661829775e9b98e9a29e7228da0b7c7f7))
+* **pipeline:** update obsidian vault sync engine ([9d9a74e](https://github.com/mchittineni/iacsecbench/commit/9d9a74eb8b59e718aaa5e8b9510c482b78401c6c))
+* **pipeline:** update obsidian vault sync engine and documentation ([50a5ef7](https://github.com/mchittineni/iacsecbench/commit/50a5ef79bee67a84c4c530a7a3fc4493f3923d9a))
+* **security_framework:** update OPA benchmark policies ([cba5c67](https://github.com/mchittineni/iacsecbench/commit/cba5c671b7fb7b6253708809f9d72415258953dd))
+* **security_framework:** update policy engine and framework documentation ([480595c](https://github.com/mchittineni/iacsecbench/commit/480595c9a6ce40996f7c3d8966a8b65080292764))
+
+
+### Bug Fixes
+
+* **pre-commit:** update trivy test cases to match new output format ([d76be62](https://github.com/mchittineni/iacsecbench/commit/d76be628d0e7decae6c738eeaf83bfc2ffef75bb))
+
 ## [Unreleased]
 
 ### Features
