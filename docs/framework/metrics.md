@@ -2,6 +2,13 @@
 
 This document defines the metrics measured by **IaCSecBench**.
 
+> [!IMPORTANT]
+> The **Target Goal** column states design aspirations, **not measured results**. No tool
+> in this benchmark meets all of them: the best measured recall is 88.46% against a 100%
+> target, and the fastest source-level scanner takes 419 ms against a < 200 ms target.
+> Measured values live in `results/evaluation.json` and the generated tables in
+> `results/tables/`; nothing in this table is a finding.
+
 | Metric                  | Short Name | Definition                                                                                                    | Target Goal |
 | :---------------------- | :--------- | :------------------------------------------------------------------------------------------------------------ | :---------- |
 | **Accuracy**            | ACC        | Percentage of total benchmark predictions (violations and compliant cases) correctly classified.              | > 95%       |

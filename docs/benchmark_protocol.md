@@ -6,7 +6,7 @@ This document details the evaluation protocol, scoring metrics, ground truth for
 
 ## Evaluation Protocol Overview
 
-To ensure objective and fair comparison across IaC analysis tools (**Checkov**, **tfsec**, **plan-level OPA**, and the **IaCSecBench Engine**), each tool is evaluated against the cases that are _admissible_: present on disk, carrying an unambiguous ground-truth label, and passing `terraform validate` against the declared provider.
+To ensure objective and fair comparison across IaC analysis tools (**Checkov**, **tfsec**, **Trivy**, **plan-level OPA**, and the **IaCSecBench Engine**), each tool is evaluated against the cases that are _admissible_: present on disk, carrying an unambiguous ground-truth label, and passing `terraform validate` against the declared provider.
 
 Admissibility is the operative word. The corpus is described in two numbers that do not agree, and the protocol reports both rather than the flattering one:
 
