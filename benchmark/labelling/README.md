@@ -18,8 +18,8 @@ This directory records a second labelling pass designed to detect exactly that.
      `# Rationale: ...` into each file header;
    - `expected.json` and `metadata.json`;
    - the case ID, which ends in `SAFE` or `VULN`.
-   Cases were presented in an order keyed on `sha256(case_id)` — reproducible, and
-   uncorrelated with the label.
+     Cases were presented in an order keyed on `sha256(case_id)` — reproducible, and
+     uncorrelated with the label.
 2. **Screening.** The blinded views were scanned for residual label words
    (`safe`, `vuln*`, `compliant`, `violation`, `insecure`, `secure`). Three hits
    were inspected: two were the control title `"...image vulnerability scanning"`,
@@ -36,10 +36,10 @@ the blinding is a pure function of the case directory.
 
 ## Agreement, before reconciliation
 
-|  | rater 2: VIOLATION | rater 2: COMPLIANT |
-| :--- | :---: | :---: |
-| **generator: VIOLATION** | 25 | 1 |
-| **generator: COMPLIANT** | 0 | 22 |
+|                          | rater 2: VIOLATION | rater 2: COMPLIANT |
+| :----------------------- | :----------------: | :----------------: |
+| **generator: VIOLATION** |         25         |         1          |
+| **generator: COMPLIANT** |         0          |         22         |
 
 - Cases: **48**
 - Raw agreement: **47/48 = 97.92%**
@@ -54,13 +54,13 @@ Machine-readable, with every per-case label and reason:
 **`STO-UNENCRYPTED-BUCKET-VULN`** — recorded `VIOLATION`, second rater `COMPLIANT`.
 
 The configuration declares an `aws_s3_bucket_server_side_encryption_configuration`
-with `sse_algorithm = "AES256"`. The control was titled *"Object storage bucket
-lacks server-side encryption"* and cited CIS AWS 2.1.1. An AES256 bucket does not
+with `sse_algorithm = "AES256"`. The control was titled _"Object storage bucket
+lacks server-side encryption"_ and cited CIS AWS 2.1.1. An AES256 bucket does not
 lack server-side encryption, and CIS 2.1.1 — encryption at rest — is satisfied by
 SSE-S3. Read against its own stated text, the case is compliant.
 
-The generator's intent was different: its rationale reads *"Bucket encryption uses
-AES256 rather than a customer-managed key."* The label encodes a **customer-managed
+The generator's intent was different: its rationale reads _"Bucket encryption uses
+AES256 rather than a customer-managed key."_ The label encodes a **customer-managed
 key requirement** that the control text did not state.
 
 This matters beyond one case, because the stricter reading is also what the
@@ -76,8 +76,8 @@ is a defensible control, and it is what the corpus, the policy set, and the
 CMK-specific rules in both Checkov and tfsec all actually test. Changing the label
 instead would have made the vulnerable/compliant pair test nothing.
 
-`STO_UNENCRYPTED_BUCKET` is now titled *"Object storage bucket not encrypted with a
-customer-managed key"*, matching the phrasing already used by
+`STO_UNENCRYPTED_BUCKET` is now titled _"Object storage bucket not encrypted with a
+customer-managed key"_, matching the phrasing already used by
 `MON_NO_LOG_ENCRYPTION`, and carries a `note` recording that it is **stricter than
 CIS AWS 2.1.1**. No confusion-matrix entry changed.
 
