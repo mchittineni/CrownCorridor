@@ -32,15 +32,25 @@ The IaCSecBench engine processes target infrastructure repositories through thre
         |                     |                      |
  Internal Controlled    External Validation     Production Observation
  Benchmark Suite        Collection              CI Runs
- (345 cases)            (175 cases)             (61 PRs)
- ├── vulnerable/        ├── terraform_registry/
- └── secure/            ├── secureflag/
-                        └── cis_examples/
+ (44 present)           (4 present)             (61 PRs)
+ ├── vulnerable/        ├── terraform_registry/  (declares 50, 0 present)
+ └── secure/            ├── secureflag/          (declares 75, 0 present)
+                        └── cis_examples/        (declares 50, 4 present)
 ```
+
+The designed taxonomy targets 345 internal and 175 external cases. The counts above
+are what exists and is scanned; every metric uses the present count as its
+denominator. `results/corpus_report.json` reports both side by side.
 
 - **Checkov**: AST-based static analysis engine.
 - **tfsec**: Go-compiled HCL AST scanner.
-- **Sentinel / OPA**: Policy-as-Code evaluation framework.
+- **OPA / Rego**: Policy-as-Code evaluation over the compiled Terraform plan.
 - **IaCSecBench Engine**: Native multi-engine policy, testing, and secret detection framework.
 
-Telemetry and leaderboard rankings are computed automatically via `evaluation/score.py` and exported to `leaderboard/results.csv`.
+HashiCorp Sentinel is not evaluated: it is not open source and was never executed
+here, so no figure is reported for it.
+
+Telemetry and leaderboard rankings are measured by `experiments/run_baselines.sh`
+and exported to `leaderboard/results.csv` by `evaluation/analyze.py`.
+`evaluation/score.py` does **not** measure anything — it fabricates metrics from
+assumed rates and is gated behind `IACSECBENCH_ALLOW_SYNTHETIC=1`.

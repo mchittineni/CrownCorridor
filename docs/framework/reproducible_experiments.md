@@ -37,21 +37,24 @@ python evaluation/score.py
 ./experiments/run_all.sh
 ```
 
-Expected output snippet:
+Expected output is a table of per-tool confusion-matrix counts, recall with an
+exact Clopper-Pearson interval, and latency mean with standard deviation, followed
+by the caveats that must accompany the numbers.
 
+No sample numbers are reproduced here. A worked example in documentation gets
+quoted as a result, and the figures this section previously showed --- including a
+flawless 100% for the reference implementation --- were never measured. Run the
+command and read your own output:
+
+```bash
+experiments/run_baselines.sh
 ```
-============================================================
-IaCSecBench Leaderboard & Evaluation Protocol Results
-============================================================
-Tool                 | Category               | Recall   | Precision  | F1       | Latency
-------------------------------------------------------------------------------------------
-Checkov              | AST Static Analysis    |   90.3% |     92.4% |   91.3% |   1420.0 ms
-tfsec                | HCL Lexical Scanner    |   88.0% |     93.9% |   90.9% |    310.0 ms
-OPA / Sentinel       | Rego Policy Engine     |   92.0% |     95.3% |   93.6% |    650.0 ms
-IaCSecBench Engine   | Multi-Engine Validation |  100.0% |    100.0% |  100.0% |    185.0 ms
-============================================================
-✓ Leaderboard results saved to: leaderboard/results.csv
-```
+
+Two things the real output will tell you that the old sample did not: the reference
+implementation ranks **last** on this corpus (Layer 1 is a repository-edge secret
+and PII scanner, and the corpus is cloud misconfigurations), and plan-level latency
+excludes the `terraform init` and `terraform plan` invocations that produce the plan
+it evaluates.
 
 ### 3. Run Framework Unit & Integration Test Suite
 
@@ -65,6 +68,7 @@ IaCSecBench Engine   | Multi-Engine Validation |  100.0% |    100.0% |  100.0% |
 
 - **Master Benchmark Catalog**: [benchmark.json](../../benchmark/benchmark.json)
 - **Benchmark Dataset Schema**: [benchmarks.json](../../benchmark/datasets/benchmarks.json)
-- **Experiment Results JSON**: [experiment_results.json](../../benchmark/reports/experiment_results.json)
+- **Measured results JSON**: [evaluation.json](../../results/evaluation.json) — confusion matrices, exact intervals, McNemar tests, caveats
+- **Run manifest**: [run_manifest.json](../../results/run_manifest.json) — tool versions, environment, latency samples
 - **Leaderboard Export**: [results.csv](../../leaderboard/results.csv)
 - **Framework Documentation**: [framework.md](framework.md)
