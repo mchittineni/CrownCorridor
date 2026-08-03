@@ -25,18 +25,21 @@ pipeline/
 ## ⚙️ Key Components Explained
 
 ### 1. Repository-Edge Data Validation (`validate_data.py`)
+
 - Implements **Layer 1** security checks:
   - Schema verification across geospatial data (`regions.json`, `villages.json`, `coords.json`, `districts.geojson`).
   - **Zero-PII Privacy Rule:** Regex-based scanner ensuring customer names, phone numbers, and individual identities are never committed to repositories.
   - Returns `ALL CHECKS PASSED ✓` upon successful verification.
 
 ### 2. IaC Security Validator (`validate_iac.py`)
+
 - Implements **Layer 2 & 3** checks:
   - Validates HCL syntax and formatting (`terraform fmt -check`).
   - Verifies CIS AWS Foundations Benchmark policies.
   - Scans for hardcoded AWS secret keys, tokens, and insecure default configurations.
 
 ### 3. Obsidian Knowledge Base Synchronizer (`sync_to_obsidian.py`)
+
 - Automated synchronization tool extracting repository commits, AST code structures, and research papers into Obsidian markdown files:
   - **`Daily/`**: Generates daily commit notes with Mermaid workflow flowcharts.
   - **`Modules/`**: Generates individual notes for every workspace markdown file.
@@ -46,5 +49,6 @@ pipeline/
 ---
 
 ## 🔗 Related Knowledge Base Links
+
 - [[Research/Threat-Model-STRIDE|🛡️ Threat Model & STRIDE Matrix]]
 - [[Project-Structure|📐 View Project Architecture]]
