@@ -55,14 +55,14 @@ exclude = [
 select = ["E", "F", "W", "I", "N", "UP"]
 ignore = ["E501", "UP042", "E402", "N806", "E701"]
 
-[tool.ruff.lint.per-file-ignores]
-# This module embeds Markdown templates in triple-quoted literals, and Markdown
-# encodes a hard line break as two trailing spaces. The flagged whitespace is
-# therefore content, not formatting slack: `ruff --fix` would strip it and
-# silently collapse the rendered blockquotes in the Obsidian vault into single
-# paragraphs. W293 likewise flags the indented blank line inside a Mermaid
-# diagram body. Scoped to this one file so the rules stay active everywhere else.
-"pipeline/sync_to_obsidian.py" = ["W291", "W293"]
+# No per-file-ignores. W291/W293 were briefly exempted for
+# pipeline/sync_to_obsidian.py, whose Markdown templates encoded hard line breaks
+# as two trailing spaces. Exempting ruff was not enough: pre-commit's
+# trailing-whitespace hook strips the same characters, and it did, collapsing four
+# metadata lines into one paragraph in the published vault. The templates now use
+# list markup, which no formatter can damage, so the exemption is unnecessary --
+# and an ignore that suggests trailing whitespace is safe here would be misleading,
+# because the rest of the toolchain still removes it.
 
 [tool.isort]
 profile = "black"
