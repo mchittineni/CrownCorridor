@@ -151,7 +151,9 @@ if __name__ == "__main__":  # pragma: no cover - operational helper
     result = ensure_provider_mirror()
     if result is None:
         print("error: could not populate the provider mirror.", file=sys.stderr)
-        print("       terraform must be installed and the registry reachable once.", file=sys.stderr)
+        print(
+            "       terraform must be installed and the registry reachable once.", file=sys.stderr
+        )
         sys.exit(1)
     packages = sorted(p.name for p in result.rglob("*.zip"))
     print(f"Provider mirror ready: {result}")

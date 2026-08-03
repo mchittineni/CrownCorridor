@@ -141,7 +141,9 @@ def aggregate(
     results: dict[str, dict[MatchLevel, ToolResult]] = {}
 
     for tool in tools:
-        tool_runs = [runs_by_key[(tool, c.case_id)] for c in cases if (tool, c.case_id) in runs_by_key]
+        tool_runs = [
+            runs_by_key[(tool, c.case_id)] for c in cases if (tool, c.case_id) in runs_by_key
+        ]
         if tool_runs and all(r["status"] == "not_installed" for r in tool_runs):
             status[tool] = "not_run"
             continue
@@ -251,9 +253,7 @@ def pairwise_comparisons(
             elif other_correct and not ref_correct:
                 c += 1
 
-        result = exact_mcnemar(
-            b, c, reference=reference, comparator=tool, n_total=len(shared)
-        )
+        result = exact_mcnemar(b, c, reference=reference, comparator=tool, n_total=len(shared))
         comparisons[tool] = result.to_dict()
         comparisons[tool]["n_paired_cases"] = len(shared)
         raw_p[tool] = result.p_exact
@@ -402,14 +402,18 @@ def emit_layer_table(
         for i, first in enumerate(labels):
             for second in labels[i + 1 :]:
                 overlap = detected[first] & detected[second]
-                lines.append(f"\\quad overlap: {first} $\\cap$ {second} & {len(overlap)} & "
-                             f"{(len(overlap) / n_positives * 100.0) if n_positives else 0.0:.2f} \\\\")
+                lines.append(
+                    f"\\quad overlap: {first} $\\cap$ {second} & {len(overlap)} & "
+                    f"{(len(overlap) / n_positives * 100.0) if n_positives else 0.0:.2f} \\\\"
+                )
         union: set[str] = set()
         for cases in detected.values():
             union |= cases
         lines.append("\\midrule")
-        lines.append(f"\\textbf{{Union of scored layers}} & \\textbf{{{len(union)}}} & "
-                     f"\\textbf{{{(len(union) / n_positives * 100.0) if n_positives else 0.0:.2f}}} \\\\")
+        lines.append(
+            f"\\textbf{{Union of scored layers}} & \\textbf{{{len(union)}}} & "
+            f"\\textbf{{{(len(union) / n_positives * 100.0) if n_positives else 0.0:.2f}}} \\\\"
+        )
 
     lines += ["\\bottomrule", "\\end{tabular}", "\\end{table}", ""]
     return "\n".join(lines)
@@ -619,8 +623,10 @@ def main(argv: list[str] | None = None) -> int:
         print("         Specificity, balanced accuracy and MCC are not estimable.")
         print("         False-positive behaviour cannot be characterised at all.")
 
-    print(f"\n{'tool':<18} {'TP':>4} {'FP':>4} {'TN':>4} {'FN':>4}  "
-          f"{'recall':>8}  {'recall 95% CI':>20}  {'latency':>14}")
+    print(
+        f"\n{'tool':<18} {'TP':>4} {'FP':>4} {'TN':>4} {'FN':>4}  "
+        f"{'recall':>8}  {'recall 95% CI':>20}  {'latency':>14}"
+    )
     print("-" * 78)
     for tool in sorted(results):
         if status.get(tool) != "run":
@@ -629,9 +635,7 @@ def main(argv: list[str] | None = None) -> int:
         m = r.matrix
         ci = m.recall_ci().as_pct()
         lat = r.latency_summary()
-        lat_cell = (
-            f"{lat['mean_ms']:.1f}±{lat['sd_ms']:.1f}" if lat["mean_ms"] is not None else "-"
-        )
+        lat_cell = f"{lat['mean_ms']:.1f}±{lat['sd_ms']:.1f}" if lat["mean_ms"] is not None else "-"
         print(
             f"{TOOL_LABELS.get(tool, (tool, ''))[0]:<18} {m.tp:>4} {m.fp:>4} {m.tn:>4} {m.fn:>4}  "
             f"{m.recall * 100:>7.2f}%  [{ci.lower:>6.2f}, {ci.upper:>6.2f}]  {lat_cell:>14}"
@@ -650,7 +654,11 @@ def main(argv: list[str] | None = None) -> int:
         row = results[tool]
         applicable = row["resource"].n_resource_applicable > 0
         control = f"{row['control'].matrix.recall * 100:>8.2f}%"
-        resource = f"{row['resource'].matrix.recall * 100:>9.2f}%" if applicable else f"{NOT_ESTIMABLE:>10}"
+        resource = (
+            f"{row['resource'].matrix.recall * 100:>9.2f}%"
+            if applicable
+            else f"{NOT_ESTIMABLE:>10}"
+        )
         any_level = f"{row['any'].matrix.recall * 100:>7.2f}%"
         print(f"{TOOL_LABELS.get(tool, (tool, ''))[0]:<18} {control} {resource} {any_level}")
 
@@ -692,9 +700,7 @@ def main(argv: list[str] | None = None) -> int:
             if status[tool] == "run"
         },
         "pairwise_mcnemar": comparisons,
-        "caveats": _caveats(
-            n_negatives, unverified, total_unmapped, total_unmapped_on_missed
-        ),
+        "caveats": _caveats(n_negatives, unverified, total_unmapped, total_unmapped_on_missed),
     }
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     OUT_JSON.write_text(json.dumps(payload, indent=2), encoding="utf-8")

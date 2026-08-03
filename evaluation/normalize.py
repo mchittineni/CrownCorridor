@@ -183,9 +183,7 @@ class ControlMap:
 
     def coverage(self, tool: str) -> list[str]:
         """Controls for which the given tool has at least one mapped rule."""
-        return sorted(
-            cid for cid, spec in self.controls.items() if spec.get("tools", {}).get(tool)
-        )
+        return sorted(cid for cid, spec in self.controls.items() if spec.get("tools", {}).get(tool))
 
 
 # --------------------------------------------------------------------------- #
@@ -486,8 +484,10 @@ def main(argv: list[str] | None = None) -> int:
     control_map = ControlMap.load(args.control_map)
 
     if args.coverage:
-        print(f"Control map schema {control_map.schema_version}: "
-              f"{len(control_map.controls)} canonical controls")
+        print(
+            f"Control map schema {control_map.schema_version}: "
+            f"{len(control_map.controls)} canonical controls"
+        )
         for tool in sorted(PARSERS):
             covered = control_map.coverage(tool)
             print(f"  {tool:<14} {len(covered):>3}/{len(control_map.controls)} controls mapped")
