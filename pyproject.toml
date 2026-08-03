@@ -35,11 +35,7 @@ testpaths = [
     "pipeline/tests",
     "security_framework/tests",
 ]
-# `evaluation/tests/__init__.py` exists but `evaluation/__init__.py` does not, so
-# pytest's prepend import mode puts `evaluation/` on sys.path rather than the repo
-# root, and `from evaluation.stats import ...` fails. Declaring the root here makes
-# collection independent of the ambient sys.path instead of relying on the caller's
-# working directory.
+
 pythonpath = ["."]
 python_files = [
     "test_*.py",
@@ -61,15 +57,6 @@ exclude = [
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "N", "UP"]
 ignore = ["E501", "UP042", "E402", "N806", "E701"]
-
-# No per-file-ignores. W291/W293 were briefly exempted for
-# pipeline/sync_to_obsidian.py, whose Markdown templates encoded hard line breaks
-# as two trailing spaces. Exempting ruff was not enough: pre-commit's
-# trailing-whitespace hook strips the same characters, and it did, collapsing four
-# metadata lines into one paragraph in the published vault. The templates now use
-# list markup, which no formatter can damage, so the exemption is unnecessary --
-# and an ignore that suggests trailing whitespace is safe here would be misleading,
-# because the rest of the toolchain still removes it.
 
 [tool.isort]
 profile = "black"
