@@ -56,11 +56,21 @@ jobs:
         run: python pipeline/validate_data.py
 
       - name: Run Pytest Suite & Coverage
-        env:
-          IACSECBENCH_ALLOW_SYNTHETIC: '1'
         run: pytest security_framework/tests/ pipeline/tests/ application/api/tests/ evaluation/tests/ -v --tb=short --cov=security_framework
 
-      - name: Run IaCSecBench Experiments Harness
-        env:
-          IACSECBENCH_ALLOW_SYNTHETIC: '1'
-        run: ./experiments/run_all.sh
+      - name: Check Corpus Admissibility (structural)
+        run: python -m evaluation.corpus --report --mode structural
+
+      - name: Verify Fabricating Stages Refuse Without Explicit Opt-In
+        run: |
+          set -u
+          status=0
+          for module in evaluation/score.py pipeline/run_experiments.py experiments/generate_charts.py; do
+            if python "$module" >/dev/null 2>&1; then
+              echo "::error file=${module}::ran without IACSECBENCH_ALLOW_SYNTHETIC=1; the synthetic guard is not in effect"
+              status=1
+            else
+              echo "ok: ${module} refuses by default"
+            fi
+          done
+          exit "$status"
