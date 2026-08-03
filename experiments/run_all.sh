@@ -78,4 +78,3 @@ echo "============================================================"
 #
 # It now renders its metrics table from results/evaluation.json, and reports that
 # no measurement exists rather than showing numbers when that file is absent.
-
