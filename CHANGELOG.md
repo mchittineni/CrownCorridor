@@ -5,6 +5,24 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+> **Correction to earlier entries.** Release notes below are generated from commit
+> messages and are left unedited, because a changelog that is rewritten stops being
+> a record. Two claims in them do not hold, and are corrected here rather than
+> silently removed:
+>
+> - Entries describing a **345-case** benchmark refer to catalogue *declarations*,
+>   not configurations on disk. 44 internal cases exist, plus 4 external, for 48
+>   admissible cases. The **175** external cases are likewise declared by manifest;
+>   two of the three external collections contain no Terraform files at all.
+> - Any perfect or near-perfect score attributed to the reference implementation
+>   came from `evaluation/score.py`, which multiplies corpus counts by hardcoded
+>   rates and pins the reference to 100%. It measures nothing. On measured results
+>   the reference implementation ranks **last** on this corpus.
+>
+> Measured results: [`leaderboard/results.csv`](leaderboard/results.csv) and
+> `results/evaluation.json`. See [`results/README.md`](results/README.md) for which
+> artefacts are measurements and which are not.
+
 Releases are published automatically by [`release-please.yml`](.github/workflows/release-please.yml) adhering to CrownCorridor Semantic Versioning:
 
 - **`MINOR` (x.Y.0)** — SRO dataset updates & historical data expansions (`data/**`).
