@@ -43,7 +43,13 @@ are what exists and is scanned; every metric uses the present count as its
 denominator. `results/corpus_report.json` reports both side by side.
 
 - **Checkov**: AST-based static analysis engine.
-- **tfsec**: Go-compiled HCL AST scanner.
+- **tfsec**: Go-compiled HCL lexical scanner. (Not an AST scanner — an earlier revision of
+  this file said AST, which conflated it with Checkov and contradicted the tool labels in
+  `evaluation/analyze.py`.) No longer maintained; superseded by Trivy.
+- **Trivy**: Go-compiled HCL scanner, the maintained successor to tfsec. Aqua folded tfsec's
+  engine and rule set into it, so tfsec and Trivy share rule provenance and their identifiers
+  are the same AVD numbers spelled differently (`AVD-AWS-0086` vs `AWS-0086`). Measured
+  because tfsec is retired, **not** because it supplies an independent opinion.
 - **OPA / Rego**: Policy-as-Code evaluation over the compiled Terraform plan.
 - **IaCSecBench Engine**: Native multi-engine policy, testing, and secret detection framework.
 

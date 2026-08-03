@@ -26,8 +26,13 @@ IaCSecBench is a modular, reusable evaluation framework designed to benchmark In
              │   Evaluates:                                            │
              │   1. Checkov (AST Static Analysis Engine)               │
              │   2. tfsec (HCL lexical binary scanner)                 │
-             │   3. OPA / Rego over the compiled Terraform plan        │
-             │   4. IaCSecBench Layer 1 (repository-edge scanning)     │
+             │   3. Trivy (tfsec's successor; inherits its rule set)   │
+             │   4. OPA / Rego over the compiled Terraform plan        │
+             │   5. IaCSecBench Layer 1 (repository-edge scanning)     │
+             │                                                         │
+             │   tfsec and Trivy are NOT independent: Aqua folded      │
+             │   tfsec into Trivy, so the five columns above span      │
+             │   four independent rule sets, not five.                 │
              │                                                         │
              │   Sentinel and Terratest are NOT evaluated. Neither has │
              │   ever been executed here and no number is reported.    │
@@ -47,7 +52,12 @@ IaCSecBench is a modular, reusable evaluation framework designed to benchmark In
 
 - `security_framework/engine/`: Core scanning engine (`engine.py`, including secret detection and syntax validation) and comparative driver (`comparative_eval.py`).
 - `security_framework/policies/`: OPA / Rego security policy implementations.
-- `security_framework/tests/`: Unit test suite verifying 100% engine accuracy.
+- `security_framework/tests/`: Unit test suite for the engine's own behaviour — parsing,
+  rule dispatch and output shape. It does **not** establish detection accuracy, and an
+  earlier revision of this file claiming it verified "100% engine accuracy" was wrong in
+  both directions: unit tests cannot measure accuracy, and the measured recall of the
+  repository-edge layer on the benchmark corpus is 3.85%, not 100%. Detection
+  effectiveness comes only from `experiments/run_baselines.sh`.
 - `docs/framework/threat_model.md`: STRIDE-based threat modeling and attacker mitigation guidance.
 
 ---
