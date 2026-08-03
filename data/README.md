@@ -30,6 +30,7 @@ data/
 ## 🔒 Zero-PII Compliance Requirements
 
 All datasets strictly follow **Zero-PII Privacy Compliance**:
+
 - **No Personal Identifiers**: Customer personal names, phone numbers, email addresses, or individual IDs are strictly prohibited.
 - **Anonymized Classification**: Transactions use standardized owner classifications (`Private Individual Owner`, `Commercial Property Developer`, `Institutional Realty Fund`).
 - **Validation**: Run `python3 pipeline/validate_data.py` to verify data schemas and zero-PII compliance across all JSON files.
