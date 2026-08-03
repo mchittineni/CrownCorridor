@@ -276,7 +276,17 @@ def render_measured_metrics_table() -> str:
 
 
 def generate_research_notes():
-    """Generate structured Research Article Notes."""
+    """Generate structured Research Article Notes.
+
+    Markdown line breaks in these templates are expressed as list items, never as
+    two trailing spaces. Trailing whitespace is content in Markdown and formatting
+    slack everywhere else, and every tool in this repository treats it as the
+    latter: pre-commit's trailing-whitespace hook and ruff's W291 both strip it.
+    A previous revision relied on it here, and the hook duly deleted it, silently
+    collapsing four separate metadata lines into one wrapped paragraph in the
+    published vault. List markup survives every formatter, so the rendered output
+    no longer depends on characters the toolchain is entitled to remove.
+    """
     research_files = {}
 
     # 1. Article Workspace Note
@@ -291,10 +301,10 @@ tags: [research, ieee, paper, iac, devsecops, benchmark]
 
 # 📝 IEEE Research Article: IaCSecBench Workspace
 
-> **Journal Target:** IEEE Transactions on Software Engineering
-> **Author:** Manideep Chittineni (`manideep.chittineni@hotmail.com`)
-> **Repository:** [[Project-Structure|iacsecbench Codebase]]
-> **Changelog & Activity:** [[Changelog-Activity|Master Activity Log]]
+> - **Journal Target:** IEEE Transactions on Software Engineering
+> - **Author:** Manideep Chittineni (`manideep.chittineni@hotmail.com`)
+> - **Repository:** [[Project-Structure|iacsecbench Codebase]]
+> - **Changelog & Activity:** [[Changelog-Activity|Master Activity Log]]
 
 ---
 
