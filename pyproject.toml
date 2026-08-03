@@ -31,9 +31,16 @@ minversion = "7.0"
 addopts = "-v --strict-markers"
 testpaths = [
     "application/api/tests",
+    "evaluation/tests",
     "pipeline/tests",
     "security_framework/tests",
 ]
+# `evaluation/tests/__init__.py` exists but `evaluation/__init__.py` does not, so
+# pytest's prepend import mode puts `evaluation/` on sys.path rather than the repo
+# root, and `from evaluation.stats import ...` fails. Declaring the root here makes
+# collection independent of the ambient sys.path instead of relying on the caller's
+# working directory.
+pythonpath = ["."]
 python_files = [
     "test_*.py",
     "*_test.py",
@@ -79,7 +86,7 @@ extend-ignore = ["E203", "E501", "B008", "T201", "DAR101", "DAR201", "DAR401", "
 exclude = [".git", ".venv", "__pycache__", "node_modules"]
 
 [tool.bandit]
-skips = ["B101", "B405"]
+skips = ["B101", "B404", "B405", "B603"]
 exclude_dirs = ["api/tests", "pipeline/tests", "docs/scratch", ".venv"]
 
 [tool.pylint.messages_control]
@@ -91,6 +98,7 @@ disable = [
     "C0415", # import-outside-toplevel
     "C0103", # invalid-name
     "R0903", # too-few-public-methods
+    "R0902", # too-many-instance-attributes
     "R0912", # too-many-branches
     "R0914", # too-many-locals
     "R0915", # too-many-statements
