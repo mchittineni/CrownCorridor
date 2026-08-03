@@ -162,12 +162,17 @@ def scan_project_files():
             abs_path = os.path.join(root, f)
             size = os.path.getsize(abs_path)
 
+            # A file that cannot be decoded as UTF-8 or read at all still belongs
+            # in the map with its size and extension; only its body is missing.
+            # The reason is recorded rather than swallowed, so an unexpectedly
+            # unreadable file is visible in the sync log instead of silently
+            # appearing empty.
             file_content = ""
             try:
                 with open(abs_path, encoding="utf-8") as file_handle:
                     file_content = file_handle.read()
-            except Exception:
-                pass
+            except (OSError, UnicodeDecodeError) as exc:
+                print(f"  ! skipped body of {rel_path}: {exc}")
 
             file_map[rel_path] = {
                 "rel_path": rel_path,
