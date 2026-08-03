@@ -1,0 +1,179 @@
+name: IaCSecBench Measurement Harness
+
+# The full measurement: every installed scanner over every admissible case, with
+# repeats, exact intervals, and LaTeX table generation.
+#
+# It does NOT run on pull requests. Two reasons, both about honesty rather than
+# cost:
+#
+#   1. It takes tens of minutes. Corpus validation alone runs `terraform init` and
+#      `terraform validate` once per case, and the harness repeats every scan.
+#
+#   2. Latency measured on a shared runner is not a measurement of the tool. It
+#      reflects whatever else the host is doing. Locally, the same corpus produced
+#      a Checkov standard deviation of 155 ms on an idle machine and 897 ms under
+#      load -- a sixfold difference from the environment alone, with the mean barely
+#      moving. Detection counts are deterministic and transfer; latency does not.
+#
+# Results are uploaded as an artefact and are deliberately NOT committed back to
+# the repository. Committing them would overwrite locally measured latency figures,
+# which are the only publishable ones, with runner noise.
+
+on:
+  workflow_dispatch:
+    inputs:
+      repeats:
+        description: 'Latency repetitions per tool-case (detection is unaffected)'
+        required: false
+        default: '3'
+      level:
+        description: 'Matching strictness for the headline tables'
+        required: false
+        default: 'control'
+        type: choice
+        options: [control, resource, any]
+  schedule:
+    - cron: '0 4 * * 1'
+
+concurrency:
+  group: benchmark-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  measure:
+    name: Measure Baselines (Checkov, tfsec, plan-level OPA, Layer 1)
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    env:
+      INPUT_REPEATS: ${{ inputs.repeats || '3' }}
+      INPUT_LEVEL: ${{ inputs.level || 'control' }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Validate Workflow Inputs
+        run: |
+          set -eu
+          case "$INPUT_REPEATS" in
+            ''|*[!0-9]*) echo "::error::repeats must be a positive integer, got '$INPUT_REPEATS'"; exit 1 ;;
+          esac
+          if [ "$INPUT_REPEATS" -lt 1 ] || [ "$INPUT_REPEATS" -gt 25 ]; then
+            echo "::error::repeats must be between 1 and 25, got '$INPUT_REPEATS'"
+            exit 1
+          fi
+          case "$INPUT_LEVEL" in
+            control|resource|any) ;;
+            *) echo "::error::level must be control, resource or any, got '$INPUT_LEVEL'"; exit 1 ;;
+          esac
+          echo "repeats=$INPUT_REPEATS level=$INPUT_LEVEL"
+
+      - name: Setup Terraform CLI
+        uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
+        with:
+          terraform_version: "1.15.0"
+          terraform_wrapper: false
+
+      - name: Setup Python Toolchain
+        uses: ./.github/actions/setup-pipeline
+
+      - name: Install OPA
+        run: |
+          set -eu
+          # Pinned to the version recorded in results/run_manifest.json. 1.9.0 is a
+          # different, older release than 1.19.0 -- easy to transpose, and it would
+          # silently measure a different engine than the published results.
+          OPA_VERSION="1.19.0"
+          curl -fsSL "https://github.com/open-policy-agent/opa/releases/download/v${OPA_VERSION}/opa_linux_amd64_static" -o opa
+          chmod +x opa
+          sudo mv opa /usr/local/bin/
+          opa version
+
+      - name: Install tfsec
+        run: |
+          set -eu
+          TFSEC_VERSION="1.28.14"
+          curl -fsSL "https://github.com/aquasecurity/tfsec/releases/download/v${TFSEC_VERSION}/tfsec-linux-amd64" -o tfsec
+          chmod +x tfsec
+          sudo mv tfsec /usr/local/bin/
+          tfsec --version
+
+      - name: Install Checkov
+        run: |
+          set -eu
+          pip install checkov
+          checkov --version
+
+      # Every tool must be present. The harness reports an absent tool as absent
+      # rather than assuming a detection rate for it, which is correct behaviour but
+      # produces a table with a silently missing column. For a run whose whole
+      # purpose is measurement, a missing tool should stop the job.
+      - name: Assert All Tools Are Installed
+        run: |
+          set -eu
+          missing=0
+          for tool in terraform opa tfsec checkov; do
+            if command -v "$tool" >/dev/null 2>&1; then
+              echo "ok: ${tool}"
+            else
+              echo "::error::${tool} is not installed; the comparison would silently omit it"
+              missing=1
+            fi
+          done
+          exit "$missing"
+
+      - name: Run Measurement Harness
+        env:
+          REPEATS: ${{ env.INPUT_REPEATS }}
+          LEVEL: ${{ env.INPUT_LEVEL }}
+          VALIDATE: terraform
+        run: ./experiments/run_baselines.sh
+
+      # Surfaced in the job summary so a reader meets the caveats next to the
+      # numbers rather than having to open the artefact to find them.
+      - name: Publish Result Summary
+        if: always()
+        run: |
+          set -u
+          {
+            echo "## IaCSecBench measurement"
+            echo
+            echo "> **Latency in this run is not publishable.** It was measured on a shared"
+            echo "> GitHub-hosted runner. Detection counts are deterministic and transfer;"
+            echo "> latency reflects the host. Publishable latency requires an idle machine."
+            echo
+            if [ -f leaderboard/results.csv ]; then
+              echo '### Measured leaderboard'
+              echo
+              echo '```'
+              cat leaderboard/results.csv
+              echo '```'
+            else
+              echo '_No leaderboard produced -- the harness did not reach the analysis stage._'
+            fi
+            echo
+            if [ -f results/evaluation.json ]; then
+              echo '### Caveats recorded with these results'
+              echo
+              python -c "import json;[print('-', c) for c in json.load(open('results/evaluation.json')).get('caveats', [])]"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload Measured Results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: iacsecbench-results
+          if-no-files-found: warn
+          retention-days: 30
+          path: |
+            results/run_manifest.json
+            results/evaluation.json
+            results/corpus_report.json
+            results/tables/
+            results/raw/
+            leaderboard/results.csv
