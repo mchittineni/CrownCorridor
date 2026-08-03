@@ -7,7 +7,7 @@ This document outlines the hierarchical taxonomy of **IaCSecBench**, a publicati
 ## Benchmark Hierarchy
 
 > **Read this first.** The hierarchy and the allocation table below describe the
-> *designed* taxonomy — the target shape of a complete corpus. They are not a
+> _designed_ taxonomy — the target shape of a complete corpus. They are not a
 > census of what exists. The corpus currently present on disk is smaller and
 > covers fewer domains, and every metric in this repository is computed over the
 > present-and-admissible cases only. Both numbers are reported side by side in
@@ -50,7 +50,6 @@ cases on disk at all, so no metric in this repository is computed over them.
 Quoting a number from this table as a measured corpus size would overstate the
 evaluation by roughly an order of magnitude.
 
-
 | Category Code | Domain            | Description                                                           | Total Cases | Target Split (Secure / Insecure) |
 | :------------ | :---------------- | :-------------------------------------------------------------------- | :---------: | :------------------------------: |
 | **IAM**       | Identity & Access | IAM roles, wildcard policies, privilege escalation, inline policies   |     35      |        18 Pass / 17 Fail         |
@@ -72,11 +71,11 @@ evaluation by roughly an order of magnitude.
 
 What actually exists and is scanned, as distinct from the design target above:
 
-| | Cases |
-| :--- | :---: |
-| Internal, present on disk | 44 (22 vulnerable / 22 compliant) |
-| External, present on disk | 4 (CIS AWS examples, all vulnerable) |
-| **Total admissible** | **48 (26 vulnerable / 22 compliant)** |
+|                           |                 Cases                 |
+| :------------------------ | :-----------------------------------: |
+| Internal, present on disk |   44 (22 vulnerable / 22 compliant)   |
+| External, present on disk | 4 (CIS AWS examples, all vulnerable)  |
+| **Total admissible**      | **48 (26 vulnerable / 22 compliant)** |
 
 Domains with cases present: IAM, NET, STO, ENC, CMP, MON, SEC, SRV.
 Domains designed but absent: K8S, ID, PII, TF.
