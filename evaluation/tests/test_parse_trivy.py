@@ -75,7 +75,9 @@ def test_directory_level_group_without_misconfigurations_is_skipped() -> None:
             },
         ]
     }
-    assert list(parse_trivy(payload)) == [("AWS-0086", "aws_s3_bucket.b", "HIGH", "t", "main.tf", 4)]
+    assert list(parse_trivy(payload)) == [
+        ("AWS-0086", "aws_s3_bucket.b", "HIGH", "t", "main.tf", 4)
+    ]
 
 
 def test_passing_checks_are_not_counted_as_findings() -> None:
