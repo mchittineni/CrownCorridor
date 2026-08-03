@@ -95,9 +95,11 @@ a finding-normalization methodology that maps heterogeneous scanner output onto 
 canonical control taxonomy and thereby permits confusion-matrix comparison across
 tools with unrelated report formats. The framework composes repository-edge data
 validation, native Terraform module testing, and policy evaluation over compiled
-plan documents. We evaluate four independent scanners alongside the composed
-pipeline over a labelled corpus, and assess generalization separately on
-independently sourced configurations. Detection effectiveness is reported with
+plan documents. Over a labelled corpus we evaluate two independent third-party
+scanners against the pipeline's own layers and their union, and assess
+generalization separately on independently sourced configurations. The reference
+pipeline does not lead the comparison, and we report that outcome as measured.
+Detection effectiveness is reported with
 exact Clopper--Pearson intervals, and pairwise differences with exact binomial
 tests under family-wise correction. We further report a mechanically enforced
 corpus admissibility procedure that rejects cases which cannot support a
@@ -383,12 +385,117 @@ corresponding configuration are not cases and are excluded. We report the
 rejection reasons because they characterise the corpus more honestly than a
 headline size does.
 
+\subsection{Control Coverage}
+\label{sec:coverage}
+The canonical taxonomy defines 26 controls, of which 22 are exercised by at least
+one admissible case. Both numbers are stated because they answer different
+questions, and the larger one is not an answer to the question a reader is asking.
+The size of the taxonomy describes what the normalization engine can express; the
+exercised count describes what this evaluation measured. Reporting only the former
+would credit the corpus with four controls --- API-gateway authorization and three
+Kubernetes workload controls --- against which nothing was ever run.
+
+The unexercised controls are concentrated in the domains the corpus does not reach
+at all: Kubernetes workloads and serverless authorization. Their absence is a
+coverage limitation of the corpus, not a negative result about any tool, and no
+tool is penalised for them, since a control with no case contributes to no
+confusion matrix.
+
+Auditing the taxonomy against the installed tool catalogues found three defect
+classes in the mapping itself, all corrected. Seven controls named plan-level
+policy rules the policy set does not implement. Two named Checkov identifiers
+absent from the installed catalogue entirely, and one mapped a
+resource-\emph{requests} check to a resource-\emph{limits} control, which are
+distinct Kubernetes concepts. None of these can produce a spurious detection,
+because nothing emits the identifier; each instead inflates the apparent coverage
+of the layer it is attributed to, and in the first case that layer is the reference
+implementation. That is the direction of error that flatters the contribution under
+evaluation, which is why the audit was mechanical rather than by inspection, and
+why the resulting invariant --- every plan-level identifier must exist in the policy
+source --- is now enforced by a test.
+
+Two controls lost their only rule to that correction and became detectable by no
+tool. A control in that state scores every case citing it as a miss for every tool
+simultaneously, which reads as unanimous tool failure rather than as absent
+coverage; both were removed, and neither was exercised, so no reported figure
+changes. Eight controls retain an unverified flag, each naming the single
+identifier behind it. All eight are tfsec long identifiers that this environment
+cannot corroborate: tfsec 1.28 provides no check-listing command, and its
+\texttt{--filter-results} option returns nothing for an unknown identifier and for
+a real but untriggered one alike. They are retained rather than deleted, because a
+wrong identifier is inert --- nothing emits it, so it never matches --- and the only
+possible effect of keeping it is to credit a comparator if it turns out to be real.
+Where the two options differ, we take the one that cannot flatter the reference.
+
 \subsection{Ground-Truth Labelling}
-Labels were assigned from the text of the originating control rather than from
-any policy implementation, and independently reviewed. Inter-rater agreement is
-reported before reconciliation; reporting agreement after discarding
-disagreements would be circular, since discarding guarantees consensus. The
-number of cases removed at reconciliation is stated.
+\label{sec:labelling}
+Labels are derived mechanically, not by human rating. Each controlled case is
+emitted by a generator from a per-control specification that declares the intended
+violation, and the label follows from which member of the vulnerable/compliant pair
+is being written. The generator, the specification, and the emitted cases are all in
+the replication package, so any reader can check that a case carries the label its
+specification declares.
+
+Because labels are a deterministic function of the specifications, rater
+disagreement is impossible by construction, and the threat that replaces it is
+\emph{specification error}: a specification that misreads its originating control
+produces a wrong label reproduced identically across the whole pair. An agreement
+coefficient computed over the generator's own output would measure its determinism,
+not concurrence, so we do not report one.
+
+We instead ran a blind second labelling pass against the threat that does apply.
+For each admissible case a review view was constructed containing only the
+Terraform configuration and the canonical control under test, with every comment
+line removed --- the generator writes the expected label and its rationale into each
+file header --- along with the annotation files and the case identifier, whose suffix
+names the class. Cases were presented in an order keyed on a hash of the case
+identifier, and the views were screened for residual label vocabulary. Each was
+then labelled from the configuration and the control text alone, with a reason
+recorded before any comparison.
+
+Agreement is reported before reconciliation, since resolving disagreements
+guarantees consensus: 47 of 48 cases agreed, giving raw agreement of 97.92\% and
+Cohen's $\kappa = 0.958$ against a chance-agreement baseline of 50.17\%.
+
+The single disagreement is instructive, and it is the kind of defect this pass
+exists to surface. A bucket configured with SSE-S3 (\texttt{AES256}) was labelled
+violating under a control titled \emph{lacks server-side encryption} and citing CIS
+Amazon Web Services 2.1.1. That configuration does not lack server-side encryption,
+and CIS 2.1.1 is satisfied by SSE-S3; read against its stated text the case is
+compliant. The generator's rationale reveals the intent --- encryption \emph{other
+than} a customer-managed key --- so the label encoded a requirement the control text
+never stated. That stricter requirement is also precisely what the reference policy
+set enforces, which makes this a concrete instance of the construct-validity threat
+of Section~\ref{sec:construct} rather than a hypothetical one: the ground truth
+agreed with the reference implementation rather than with the control it cited.
+
+We corrected the control text rather than the label, because requiring a
+customer-managed key is a defensible control and is what the corpus, the policy set,
+and the customer-key rules of both source-level scanners all test; relabelling
+instead would have left the pair testing nothing. The control is retitled to state
+the key requirement and records that it is stricter than the CIS control it cites.
+No confusion-matrix entry changed. A regression test now pins the citation in the
+taxonomy to the one in the generator specification so the two cannot drift apart
+silently.
+
+Two properties of this pass bound what it establishes, and we state them rather
+than let $\kappa$ speak unqualified. The second rater is an automated one, so this
+is not human inter-rater reliability; and its reading of the control texts derives
+from the same public documentation the specifications were written from, so the two
+raters are not fully independent and agreement is biased upward. Five cases had been
+inspected during earlier debugging and their agreement is not blind; excluding all
+five leaves 42 of 43 agreeing, with the disagreement outside that set. The full
+per-case labels, reasons, and these caveats are in the replication package.
+
+Two further checks bear on specification error. The
+admissibility procedure of Section~\ref{sec:admissibility} rejects any case whose
+label is absent, internally contradictory, or resolvable to more than one control
+in the taxonomy. And the audit of the control map reported in
+Section~\ref{sec:coverage} found three classes of mapping defect by mechanical
+comparison against the installed tool catalogues, which is the same style of check
+applied to the other half of the scoring path. Neither check can establish that a
+specification reads its control correctly; that remains an unmitigated threat, and
+independent relabelling by a second investigator is the obvious next step.
 
 \subsection{Research Questions}
 \begin{itemize}
@@ -489,11 +596,13 @@ is not a measurement.
 
 On engineering effort we report a measurement of the native suite alone and
 withdraw the comparative claim. The validation suite comprises 11
-\texttt{.tftest.hcl} files totalling 190 physical lines, of which 153 are
-non-blank and non-comment, expressing 11 \texttt{run} blocks and 26
-\texttt{assert} blocks; counts were obtained by line-oriented pattern matching
-over the suite sources, and the sources are in the replication package so the
-count can be reproduced or disputed.
+\texttt{.tftest.hcl} files totalling 190 physical lines, of which 153 are non-blank
+and 137 are both non-blank and non-comment, expressing 11 \texttt{run} blocks and
+26 \texttt{assert} blocks. We give both line counts because they differ by the 16
+comment lines and one of them is the figure a reader would compute; quoting the
+larger under the stricter description would inflate the suite by 12\%. Counts were
+obtained by line-oriented pattern matching over the suite sources, and the sources
+are in the replication package so the count can be reproduced or disputed.
 
 We do not report a code-volume ratio against an external test framework. Doing so
 would require an independently authored equivalent suite, and no such
@@ -549,6 +658,23 @@ The external configurations that are present are drawn from published CIS
 Amazon Web Services Benchmark examples and carry ground-truth labels derived from
 the benchmark control each example illustrates; they enter the admissible corpus
 on the same terms as the internal cases and are validated by the same procedure.
+
+One defect in how they were stored is worth reporting, because its signature is
+invisible in aggregate. A case is scanned as a directory rather than as a file, and
+these four configurations initially shared one directory. Every tool therefore
+received identical input for all four cases and returned a byte-identical finding
+set for each, while the scoring stage compared that one result against four
+different controls. Four rows entered each confusion matrix where one observation
+existed. This does not add noise so much as misstate precision: interval width is
+driven by the number of independent observations, so duplicated cases narrow every
+interval that includes them without contributing evidence. Nothing in the aggregate
+output distinguishes this from four genuinely independent cases that happen to
+agree. Each configuration now occupies its own directory, and the corpus loader
+refuses to load a corpus in which two cases share one, rather than scoring it.
+
+We report this because it bears on how the external subset should be read, and
+because the same trap applies to any benchmark whose unit of analysis is a
+directory: case isolation is a property that has to be enforced, not assumed.
 Their number is small enough that a per-subset recall estimate would carry an
 interval spanning most of the unit interval, so we report them as part of the
 combined admissible corpus and treat the external subset as a check that the
@@ -594,19 +720,43 @@ is a trade-off rather than a ranking.
 \section{Threats to Validity}
 
 \subsection{Construct Validity}
+\label{sec:construct}
 The controlled corpus was authored by the same investigator who implemented the
 evaluated policy set. Ground-truth labels therefore encode the same reading of
 each control that the policies encode, and agreement between the two is not
-independent evidence of detection capability. Three mitigations apply: labels
-derive from published control text rather than from policy implementations; a
-second reviewer labelled each case independently, with agreement reported before
-reconciliation; and generalization is assessed on configurations the investigator
-did not author. Results on the controlled corpus should be read as an upper bound
-on field performance. A perfect score on a developer-authored corpus is at least
-as consistent with insufficient corpus difficulty as with complete detection, and
-we do not interpret it as the latter.
+independent evidence of detection capability. This is the most serious limitation
+of the evaluation, and it is only partly mitigated.
+
+Two mitigations apply. Labels derive from the text of the originating control
+rather than from any policy implementation, and both the specifications and the
+generator that consumes them are released, so a reader can audit the derivation
+instead of taking it on trust. And generalization is assessed on configurations the
+investigator did not author.
+
+A third check bears on it partially. The blind relabelling pass of
+Section~\ref{sec:labelling} agreed with 47 of 48 recorded labels, and the one
+disagreement it surfaced was a genuine specification defect of exactly the
+predicted kind: a control whose stated text was weaker than the requirement its
+label encoded, where the stricter reading matched the reference policy set. That the
+pass found such a case is evidence the mechanism is real, not merely conceivable.
+
+It is not, however, a sufficient mitigation, and we do not present it as one. The
+second rater is automated, so no claim of human inter-rater reliability is made,
+and its reading of control texts derives from the same public documentation the
+specifications were written from --- so the two raters share provenance and
+agreement is biased upward. A single investigator still wrote every specification.
+The external subset is the only part of the corpus outside this failure mode
+entirely, and it is too small to estimate effectiveness on its own. Independent
+relabelling by a second human who has not read the policy set remains the correct
+mitigation and remains outstanding.
+
+Results on the controlled corpus should therefore be read as an upper bound on
+field performance. A high score on a developer-authored corpus is at least as
+consistent with insufficient corpus difficulty as with strong detection, and we do
+not interpret it as the latter.
 
 \subsection{Internal Validity}
+\label{sec:internal}
 Comparator tools ran with default rule sets, whereas the plan-level policies were
 authored with knowledge of the corpus taxonomy. This asymmetry favours the
 plan-level layer. It is disclosed rather than adjusted for, because equivalent
@@ -614,8 +764,44 @@ tuning effort across heterogeneous engines cannot be operationalised objectively
 readers should treat the comparison as bounding what default-configuration
 scanning achieves, not as a ranking of the tools' attainable capability.
 
+One plan-level policy was corrected after its results had been inspected, and the
+correction is disclosed here because it is exactly the iteration the comparators
+did not receive. The audit-log-encryption rule tested for the presence of a
+key-identifier attribute in the plan document. Terraform serialises three
+configuration states into that document: an attribute set to a literal carries its
+value; an attribute set from a reference to another resource is omitted and
+recorded as not-yet-known; and an attribute that is not set at all is present with
+a null value. A presence test therefore fails on the configuration that omits the
+attribute and succeeds on the configuration that sets it from a reference, which
+inverts the control rather than weakening it. The compliant case was reported as
+violating and the violating case as compliant, and the two errors concealed each
+other in the aggregate: the confusion matrix showed one false positive and one
+false negative, a signature indistinguishable from ordinary imprecision.
+
+The corrected rule distinguishes not-set from not-yet-known and reports only the
+former. The latter is genuinely indeterminate at plan time --- the attribute is
+set, but nothing in the plan establishes what to --- and is reported as neither
+compliant nor violating. This is a property of plan-level evaluation and not of
+this implementation: any policy engine reading plan documents inherits the same
+three-way distinction, and any that collapses it will invert the same class of
+control. We report it as a finding about the evaluation layer rather than as a
+defect that has been repaired, and note that the same defect class does not affect
+block-typed attributes, whose unconfigured form is absent from the plan and can be
+tested for presence safely.
+
+Because this correction was informed by inspecting corpus results, the plan-level
+figures should be read as reflecting one round of iteration that Checkov and tfsec
+did not receive. The pre-correction and post-correction results are both in the
+replication package.
+
 Latency was measured on a single host with recorded specifications. Absolute
-figures do not transfer across environments.
+figures do not transfer across environments. Latency additionally measures each
+tool at its own interface: the plan-level figure covers policy evaluation over an
+already-compiled plan document and excludes the \texttt{terraform init} and
+\texttt{terraform plan} invocations that produce it, which dominate that layer's
+true wall-clock cost in continuous integration. The source-level scanners have no
+comparable preparation step. Plan-level and source-level latencies are therefore
+not interchangeable, and the plan-level figure is a lower bound on deployed cost.
 
 \subsection{External Validity}
 The operational deployment covers a single project maintained by a single
@@ -633,11 +819,16 @@ configurations, or an adversary who has read the policy set.
 \section{Replication Package}
 
 The replication package contains the benchmark corpus with ground-truth
-annotations; the canonical control taxonomy as auditable data; the execution
-harness, which records raw tool output, resolved versions, and repeated latency
-samples; the normalization engine; the statistical implementation, with a test
-suite pinning each method to independently derived values; and the analysis stage
-that generates every table in this paper.
+annotations and the generator specifications from which those annotations derive;
+the canonical control taxonomy as auditable data; the per-case output of the blind
+relabelling pass of Section~\ref{sec:labelling}, with its reasons and its stated
+limitations; the execution harness, which records raw tool output, resolved
+versions, and repeated latency samples; the normalization engine; the statistical
+implementation, with a test suite pinning each method to independently derived
+values; and the analysis stage that generates every table in this paper. It also
+retains the measured results from before the plan-level policy correction disclosed
+in Section~\ref{sec:internal}, so that the disclosure can be checked rather than
+taken on trust.
 
 Two properties are worth stating explicitly. The harness declines to emit results
 when no case is admissible, rather than producing an empty but plausible table.
