@@ -11,13 +11,13 @@ is not much of a disclosure.
 `not after(rc).kms_key_id` on `aws_cloudtrail`. Terraform serialises three distinct
 configuration states into one plan document:
 
-| Configuration | `change.after` | `change.after_unknown` |
-| :--- | :--- | :--- |
-| `kms_key_id = "arn:..."` (literal) | holds the value | — |
-| `kms_key_id = aws_kms_key.trail.arn` (reference) | **key absent** | `true` |
-| attribute not set at all | **present, `null`** | — |
+| Configuration                                    | `change.after`      | `change.after_unknown` |
+| :----------------------------------------------- | :------------------ | :--------------------- |
+| `kms_key_id = "arn:..."` (literal)               | holds the value     | —                      |
+| `kms_key_id = aws_kms_key.trail.arn` (reference) | **key absent**      | `true`                 |
+| attribute not set at all                         | **present, `null`** | —                      |
 
-`null` is a *defined* value in Rego, so `not after(rc).kms_key_id` **fails** on the
+`null` is a _defined_ value in Rego, so `not after(rc).kms_key_id` **fails** on the
 case that omits the attribute, and **succeeds** on the case that sets it from a
 reference. The control was not weakened, it was inverted.
 
@@ -36,7 +36,7 @@ inspection distinguishes the two.
 Block-typed attributes do **not** share the defect: an unconfigured block is absent
 from `after` and marked unknown, while a configured one appears in `after` with its
 contents, so presence tests over blocks discriminate correctly. The defect is
-specific to *scalar* optional attributes.
+specific to _scalar_ optional attributes.
 
 ## What the correction does
 
