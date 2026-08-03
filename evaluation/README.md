@@ -26,8 +26,13 @@ evaluation/
 
 ### 1. Baseline Evaluation Suite (`run_baselines.py` & `experiments/run_baselines.sh`)
 
-- Executes evaluations against Checkov, tfsec, Sentinel/OPA, Terratest, and the native IaCSecBench engine.
-- Measures detection accuracy, false positive rates, scan latency (ms), and zero-PII compliance.
+- Executes evaluations against Checkov, tfsec, Trivy, plan-level OPA, and the repository-edge IaCSecBench layer.
+  Note that Trivy is tfsec's maintained successor and inherits its rule set, so the five columns represent
+  **four** independent rule sets, not five. Sentinel and Terratest are _not_ evaluated; an earlier version of
+  this file listed them, and no measurement against either has ever been recorded.
+- Measures detection counts with exact Clopper-Pearson intervals, and per-case scan latency (ms) over repeats.
+- A tool that is not installed is reported as absent and omitted from every table. It is never assigned an
+  assumed detection rate.
 
 ### 2. Evaluation Protocol & Synthetic Guard (`score.py`)
 

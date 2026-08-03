@@ -255,6 +255,57 @@ def _parse_tfsec(payload: Any) -> Iterable[tuple[str, str, str, str, str, int]]:
         )
 
 
+def _parse_trivy(payload: Any) -> Iterable[tuple[str, str, str, str, str, int]]:
+    """Parses ``trivy config --format json`` output.
+
+    Trivy groups misconfigurations by target file, and the first group is a
+    directory-level entry that carries a summary but no ``Misconfigurations``
+    key, so groups are iterated rather than indexed.
+
+    Only entries whose ``Status`` is ``FAIL`` are emitted. Trivy can be asked to
+    report passing checks as well, and a passing check carries the same rule
+    identifier as a failing one; counting it as a finding would credit a tool for
+    confirming that a control is *satisfied*.
+
+    Rule identifiers are emitted as Trivy reports them (``AWS-0086``). Trivy 0.73
+    supplies no ``AVDID`` field, and earlier and later releases have moved this
+    identifier between ``ID`` and ``AVDID`` and have prefixed it with ``AVD-``, so
+    both fields are consulted and a leading ``AVD-`` is stripped. Without that the
+    control map would silently stop matching on a Trivy upgrade, which presents as
+    a total detection failure rather than as a parse error.
+
+    Args:
+        payload: Decoded JSON from ``trivy config --format json``.
+
+    Yields:
+        One ``(rule_id, resource, severity, description, file, line)`` tuple per
+        failing misconfiguration.
+    """
+    if not isinstance(payload, dict):
+        return
+    for group in payload.get("Results") or []:
+        if not isinstance(group, dict):
+            continue
+        target = group.get("Target", "")
+        for misconfig in group.get("Misconfigurations") or []:
+            if not isinstance(misconfig, dict):
+                continue
+            if (misconfig.get("Status") or "FAIL").upper() != "FAIL":
+                continue
+            rule_id = str(misconfig.get("AVDID") or misconfig.get("ID") or "")
+            if rule_id.startswith("AVD-"):
+                rule_id = rule_id[len("AVD-") :]
+            cause = misconfig.get("CauseMetadata") or {}
+            yield (
+                rule_id,
+                cause.get("Resource", ""),
+                (misconfig.get("Severity") or "UNKNOWN").upper(),
+                misconfig.get("Title", ""),
+                target,
+                int(cause.get("StartLine") or 0),
+            )
+
+
 def _parse_opa(payload: Any) -> Iterable[tuple[str, str, str, str, str, int]]:
     """Parses ``opa eval --format json`` output over a Terraform plan.
 
@@ -306,6 +357,7 @@ def _parse_opa(payload: Any) -> Iterable[tuple[str, str, str, str, str, int]]:
 PARSERS = {
     "checkov": _parse_checkov,
     "tfsec": _parse_tfsec,
+    "trivy": _parse_trivy,
     "opa": _parse_opa,
     "iacsecbench": _parse_opa,
     "iacsb_layer1": _parse_opa,
@@ -314,6 +366,7 @@ PARSERS = {
 TOOL_LAYERS = {
     "checkov": "source",
     "tfsec": "source",
+    "trivy": "source",
     "opa": "plan",
     "iacsecbench": "composite",
     "iacsb_layer1": "repository",
