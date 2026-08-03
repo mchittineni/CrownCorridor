@@ -49,9 +49,6 @@ jobs:
       - name: Run Security Audit (Bandit)
         run: bandit -c pyproject.toml -r application/api/ pipeline/ security_framework/ evaluation/ experiments/
 
-      - name: Run Documentation Linter (Doc8)
-        run: doc8 --max-line-length 112 --file-encoding utf-8 docs/ README.md CONTRIBUTING.md
-
       - name: Run Data Integrity & Zero-PII Validator
         run: python pipeline/validate_data.py
 

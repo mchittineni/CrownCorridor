@@ -39,16 +39,33 @@ jobs:
 
       - name: Build Benchmark Archives
         if: ${{ steps.release.outputs.release_created }}
+        env:
+          REF_NAME: ${{ steps.release.outputs.tag_name }}
         run: |
-          REF_NAME="${{ steps.release.outputs.tag_name }}"
+          set -eu
           mkdir -p release-artifacts
-
-          # IaCSecBench benchmark dataset & evaluation suite
-          zip -r release-artifacts/iacsecbench-$REF_NAME.zip benchmark/ security_framework/ evaluation/ infrastructure/ paper/ results/
+          zip -r "release-artifacts/iacsecbench-${REF_NAME}.zip" \
+            benchmark/ \
+            evaluation/ \
+            experiments/ \
+            infrastructure/ \
+            leaderboard/ \
+            paper/ \
+            pipeline/ \
+            results/ \
+            security_framework/ \
+            pyproject.toml \
+            .checkov.yaml \
+            README.md \
+            CITATION.cff \
+            LICENSE \
+            -x '*/__pycache__/*' '*.pyc' 'infrastructure/.terraform/*'
 
       - name: Upload Benchmark Archives to Release
         if: ${{ steps.release.outputs.release_created }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REF_NAME: ${{ steps.release.outputs.tag_name }}
         run: |
-          gh release upload "${{ steps.release.outputs.tag_name }}" release-artifacts/*.zip --clobber
+          set -eu
+          gh release upload "$REF_NAME" release-artifacts/*.zip --clobber
