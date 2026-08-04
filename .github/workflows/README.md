@@ -1,14 +1,14 @@
 # Workflows
 
-| Workflow             | Trigger                                                                                                                | Purpose                                                                                                                                          |
-| :------------------- | :--------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ci.yml`             | every PR + push to main                                                                                                | Lint, format, security audit, unit tests, data validation, fast corpus check, synthetic-guard assertion                                          |
-| `infra-ci.yml`       | PR/push touching `infrastructure/`, `security_framework/`, `benchmark/`, `evaluation/`, `leaderboard/`, `experiments/` | Terraform fmt/validate/test, conftest policy evaluation, Checkov scan, Rego parse + format, corpus admissibility, tests                          |
-| `benchmark.yml`      | manual dispatch + weekly cron                                                                                          | **The full measurement.** Installs Checkov, tfsec, Trivy, OPA, Terraform; runs `experiments/run_baselines.sh`; uploads `results/` as an artefact |
-| `docs.yml`           | PR/push touching `application/app/`, `docs/`, `jsdoc.json`                                                             | JSDoc build                                                                                                                                      |
-| `deploy-pages.yml`   | push to main                                                                                                           | GitHub Pages deployment                                                                                                                          |
-| `release-please.yml` | push to main                                                                                                           | Release automation; packages a replication archive                                                                                               |
-| `update-data.yml`    | schedule                                                                                                               | SRO dataset refresh                                                                                                                              |
+| Workflow             | Trigger                                                                                                                | Purpose                                                                                                                                                                                                          |
+| :------------------- | :--------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ci.yml`             | every PR + push to main                                                                                                | Lint, format, security audit, unit tests, data validation, fast corpus check, synthetic-guard assertion                                                                                                          |
+| `infra-ci.yml`       | PR/push touching `infrastructure/`, `security_framework/`, `benchmark/`, `evaluation/`, `leaderboard/`, `experiments/` | Terraform fmt/validate/test, conftest policy evaluation, Checkov scan, Rego parse + format, corpus admissibility, tests                                                                                          |
+| `benchmark.yml`      | manual dispatch + weekly cron                                                                                          | **The full measurement.** Installs Checkov, tfsec, Trivy, OPA, Terraform; runs `experiments/run_baselines.sh`; checks the manuscript's figure sources still match the results; uploads `results/` as an artefact |
+| `docs.yml`           | PR/push touching `application/app/`, `docs/`, `jsdoc.json`                                                             | JSDoc build                                                                                                                                                                                                      |
+| `deploy-pages.yml`   | push to main                                                                                                           | GitHub Pages deployment                                                                                                                                                                                          |
+| `release-please.yml` | push to main                                                                                                           | Release automation; packages a replication archive                                                                                                                                                               |
+| `update-data.yml`    | schedule                                                                                                               | SRO dataset refresh                                                                                                                                                                                              |
 
 ## Three invariants worth knowing before editing these
 
@@ -37,6 +37,19 @@ Detection counts are deterministic and transfer between machines. Latency does n
 it reflects whatever else the host is doing. Measured locally on the same corpus,
 Checkov's standard deviation was 155 ms on an idle machine and 897 ms under load —
 a sixfold difference from the environment alone, with the mean barely moving.
+
+## The figure-source gate
+
+`benchmark.yml` runs `python -m experiments.generate_figures --check` after the
+harness. The manuscript's two diagrams carry the corpus size and the resolved tool
+versions, and their Mermaid sources are generated from `results/evaluation.json` and
+`results/run_manifest.json`. A re-measurement that moves any of those values makes
+the committed sources stale, so the job fails and names the fix.
+
+This exists because an earlier hand-drawn figure set claimed 345 cases, listed a
+scanner the paper excludes, omitted one it evaluates, and quoted four tool versions
+that no longer matched the manifest. None of it was detectable from the figures,
+because they had no source in the repository.
 
 `benchmark.yml` therefore uploads results as an **artefact** and never commits them.
 Committing would replace locally measured latency, the only publishable kind, with

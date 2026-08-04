@@ -18,7 +18,7 @@
       "status": 0,
       "resource": "aws_security_group.allow_all",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_4_1_security_group-ugiw6a9q/case/cis_4_1_security_group.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_4_1_security_group-0i3ilcqm/case/cis_4_1_security_group.tf",
         "start_line": 13,
         "end_line": 13
       }
@@ -41,7 +41,7 @@
       "status": 0,
       "resource": "aws_security_group.allow_all",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_4_1_security_group-ugiw6a9q/case/cis_4_1_security_group.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_4_1_security_group-0i3ilcqm/case/cis_4_1_security_group.tf",
         "start_line": 12,
         "end_line": 12
       }

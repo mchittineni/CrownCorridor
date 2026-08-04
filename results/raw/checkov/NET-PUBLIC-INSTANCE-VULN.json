@@ -14,8 +14,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-_fcjfgm1/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-_fcjfgm1/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-sbl26ho3/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-sbl26ho3/case/main.tf",
         "file_line_range": [
           29,
           43
@@ -38,7 +38,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/public-policies/public-12",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-_fcjfgm1/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-sbl26ho3/case/main.tf"
       },
       {
         "check_id": "CKV_AWS_126",
@@ -52,8 +52,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-_fcjfgm1/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-_fcjfgm1/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-sbl26ho3/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-sbl26ho3/case/main.tf",
         "file_line_range": [
           29,
           43
@@ -76,7 +76,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/ensure-that-detailed-monitoring-is-enabled-for-ec2-instances",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-_fcjfgm1/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-sbl26ho3/case/main.tf"
       },
       {
         "check_id": "CKV_AWS_135",
@@ -90,8 +90,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-_fcjfgm1/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-_fcjfgm1/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-sbl26ho3/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-sbl26ho3/case/main.tf",
         "file_line_range": [
           29,
           43
@@ -114,7 +114,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-ec2-is-ebs-optimized",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-_fcjfgm1/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-sbl26ho3/case/main.tf"
       },
       {
         "check_id": "CKV2_AWS_12",
@@ -136,20 +136,20 @@
           },
           "evaluated_keys": [
             "ingress/to_port",
-            "ingress/from_port",
             "egress/from_port",
-            "egress/cidr_blocks",
-            "ingress/self",
             "resource_type",
             "ingress/protocol",
+            "egress/to_port",
+            "ingress/self",
+            "egress/cidr_blocks",
             "egress/protocol",
-            "egress/to_port"
+            "ingress/from_port"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-_fcjfgm1/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-_fcjfgm1/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-sbl26ho3/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-sbl26ho3/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -172,7 +172,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-4",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-_fcjfgm1/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-sbl26ho3/case/main.tf"
       },
       {
         "check_id": "CKV2_AWS_11",
@@ -193,14 +193,14 @@
             }
           },
           "evaluated_keys": [
-            "networking",
-            "resource_type"
+            "resource_type",
+            "networking"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-_fcjfgm1/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-_fcjfgm1/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-sbl26ho3/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-sbl26ho3/case/main.tf",
         "file_line_range": [
           20,
           22
@@ -223,7 +223,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-9-enable-vpc-flow-logging",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-_fcjfgm1/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-sbl26ho3/case/main.tf"
       },
       {
         "check_id": "CKV2_AWS_41",
@@ -275,8 +275,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-_fcjfgm1/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-_fcjfgm1/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-sbl26ho3/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-sbl26ho3/case/main.tf",
         "file_line_range": [
           29,
           43
@@ -299,7 +299,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-an-iam-role-is-attached-to-ec2-instance",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-_fcjfgm1/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-PUBLIC-INSTANCE-VULN-sbl26ho3/case/main.tf"
       }
     ]
   },

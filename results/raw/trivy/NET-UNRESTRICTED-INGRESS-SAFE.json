@@ -3,9 +3,9 @@
   "Trivy": {
     "Version": "0.73.0"
   },
-  "ReportID": "019fc98f-bc67-7f2a-8551-ebc1878cf021",
-  "CreatedAt": "2026-08-03T22:37:48.135995+01:00",
-  "ArtifactName": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-qrhm9emt/case",
+  "ReportID": "019fcc86-919e-7b2b-982f-970ae08c20cd",
+  "CreatedAt": "2026-08-04T12:26:39.006733+01:00",
+  "ArtifactName": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-UNRESTRICTED-INGRESS-SAFE-spxs7jm_/case",
   "ArtifactType": "filesystem",
   "Results": [
     {

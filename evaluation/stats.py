@@ -50,6 +50,7 @@ __all__ = [
     "balanced_accuracy",
     "exact_mcnemar",
     "mcnemar_chi2_corrected",
+    "minimum_detectable_discordance",
     "odds_ratio_haldane",
     "paired_proportion_diff_ci",
     "cohens_g",
@@ -586,6 +587,40 @@ def exact_mcnemar(
         diff_ci=paired_proportion_diff_ci(b, c, denom, alpha),
         cohens_g=cohens_g(b, c),
     )
+
+
+def minimum_detectable_discordance(n_discordant: int, alpha: float = 0.05) -> int | None:
+    """Smallest discordant imbalance the exact test could call significant.
+
+    A non-significant exact McNemar result on a small corpus is ambiguous between
+    "the tools are similar" and "this corpus cannot resolve any difference". The
+    two are distinguishable without any further measurement, because the exact
+    test's attainable p-values are fixed once the number of discordant pairs is
+    known: the pairs are Binomial(n, 1/2) under the null, so the smallest
+    two-sided p-value available at any split is ``2 * (1/2)**n``.
+
+    Returns the smallest ``abs(b - c)`` that would reach ``alpha`` at this
+    ``n_discordant``, or ``None`` when no split does. ``None`` is the informative
+    case: at ``n_discordant <= 5`` and ``alpha = 0.05`` even total disagreement
+    (``c = 0``) yields ``p >= 0.0625``, so the comparison had no power at all and
+    reporting it as evidence of similarity would be wrong.
+
+    Args:
+        n_discordant: Number of discordant pairs, ``b + c``.
+        alpha: Two-sided significance level.
+
+    Returns:
+        The minimum detectable ``abs(b - c)``, or ``None`` if unattainable.
+    """
+    if n_discordant <= 0:
+        return None
+    # b and c are integers summing to n, so abs(b - c) has the same parity as n.
+    # Ascending, so the first hit is the minimum.
+    for imbalance in range(n_discordant % 2, n_discordant + 1, 2):
+        k = (n_discordant - imbalance) // 2
+        if float(min(Fraction(1), 2 * _binom_sf_le(k, n_discordant))) <= alpha:
+            return imbalance
+    return None
 
 
 def mcnemar_chi2_corrected(b: int, c: int) -> tuple[float, float]:

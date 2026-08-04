@@ -27,7 +27,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
 import statistics
 import sys
 from dataclasses import dataclass
@@ -40,6 +39,19 @@ from evaluation.stats import (
     ConfusionMatrix,
     exact_mcnemar,
     holm_bonferroni,
+    minimum_detectable_discordance,
+)
+from evaluation.tables import (
+    NOT_ESTIMABLE,
+    TOOL_LABELS,
+    emit_allpairs_table,
+    emit_latency_table,
+    emit_layer_table,
+    emit_mcnemar_table,
+    emit_performance_table,
+    emit_rates_table,
+    emit_strictness_table,
+    latex_defects,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -50,17 +62,6 @@ TABLE_DIR = ROOT / "results" / "tables"
 LEADERBOARD_CSV = ROOT / "leaderboard" / "results.csv"
 
 REFERENCE_TOOL = "opa"
-
-TOOL_LABELS = {
-    "checkov": ("Checkov", "AST static analysis"),
-    "tfsec": ("tfsec", "HCL lexical scanning"),
-    "trivy": ("Trivy", "HCL scanning, tfsec successor"),
-    "opa": ("OPA (plan-level)", "Rego over compiled plan"),
-    "iacsecbench": ("IaCSecBench", "Composite pipeline"),
-    "iacsb_layer1": ("IaCSecBench L1", "Repository-edge scanning"),
-}
-
-NOT_ESTIMABLE = "n/e"
 
 
 @dataclass
@@ -215,6 +216,22 @@ def aggregate(
             for level in MATCH_LEVELS
         }
 
+        # Every case that produced usable output must land in exactly one cell of
+        # every level's matrix. ConfusionMatrix.assert_total existed to check
+        # precisely this and was never called, so the invariant was documented
+        # but not enforced. A case counted twice, or dropped between the scoring
+        # loop and the matrix, would otherwise surface only as an interval that
+        # is narrower than the evidence supports -- the same failure mode as the
+        # shared-directory defect disclosed in the manuscript, and equally
+        # invisible in aggregate.
+        n_scored = sum(
+            1
+            for case in cases
+            if (run := runs_by_key.get((tool, case.case_id))) is not None and run["status"] == "ok"
+        )
+        for level in MATCH_LEVELS:
+            results[tool][level].matrix.assert_total(n_scored)
+
     return results, status
 
 
@@ -244,23 +261,18 @@ def pairwise_comparisons(
     for tool, levels in results.items():
         if tool == reference:
             continue
-        other = levels[level].outcomes
-        shared = sorted(set(ref_outcomes) & set(other))
+        shared, b, c = _discordant(ref_outcomes, levels[level].outcomes)
         if not shared:
             continue
-
-        b = c = 0
-        for case_id in shared:
-            ref_correct = ref_outcomes[case_id] in ("TP", "TN")
-            other_correct = other[case_id] in ("TP", "TN")
-            if ref_correct and not other_correct:
-                b += 1
-            elif other_correct and not ref_correct:
-                c += 1
 
         result = exact_mcnemar(b, c, reference=reference, comparator=tool, n_total=len(shared))
         comparisons[tool] = result.to_dict()
         comparisons[tool]["n_paired_cases"] = len(shared)
+        # What this comparison could have detected, recorded alongside what it did
+        # detect. A non-significant exact test on few discordant pairs does not
+        # distinguish similar tools from an underpowered comparison, and the
+        # distinction is computable from b + c without further measurement.
+        comparisons[tool]["min_detectable_discordance"] = minimum_detectable_discordance(b + c)
         raw_p[tool] = result.p_exact
 
     if raw_p:
@@ -271,286 +283,73 @@ def pairwise_comparisons(
     return comparisons
 
 
-# --------------------------------------------------------------------------- #
-# LaTeX emission
-# --------------------------------------------------------------------------- #
+def _discordant(first: dict[str, str], second: dict[str, str]) -> tuple[list[str], int, int]:
+    """Discordant counts over the cases two tools share.
+
+    ``b`` counts cases the first tool classifies correctly and the second does not;
+    ``c`` is the converse. Both error types count: a comparator that emits a
+    spurious finding on a compliant case is as wrong as one that misses a
+    violation, and restricting the count to missed violations understates
+    disagreement.
+    """
+    shared = sorted(set(first) & set(second))
+    b = c = 0
+    for case_id in shared:
+        first_ok = first[case_id] in ("TP", "TN")
+        second_ok = second[case_id] in ("TP", "TN")
+        if first_ok and not second_ok:
+            b += 1
+        elif second_ok and not first_ok:
+            c += 1
+    return shared, b, c
 
 
-def _fmt_pct(value: float | None, estimable: bool = True) -> str:
-    if not estimable or value is None:
-        return NOT_ESTIMABLE
-    return f"{value * 100:.2f}"
-
-
-def _fmt_ci(matrix: ConfusionMatrix, which: str, estimable: bool = True) -> str:
-    if not estimable:
-        return NOT_ESTIMABLE
-    interval = getattr(matrix, f"{which}_ci")().as_pct()
-    return f"$[{interval.lower:.2f}, {interval.upper:.2f}]$"
-
-
-def emit_performance_table(
+def all_pairwise_comparisons(
     results: dict[str, dict[MatchLevel, ToolResult]],
     status: dict[str, str],
     level: MatchLevel,
-    n_cases: int,
-    n_positives: int,
-    n_negatives: int,
-) -> str:
-    """Emits the main performance table with exact confidence intervals."""
-    lines = [
-        "% Generated by evaluation/analyze.py -- do not edit by hand.",
-        "% Regenerate with: python -m evaluation.analyze",
-        f"% Matching strictness level: {level}",
-        "\\begin{table*}[!t]",
-        "\\caption{Detection performance on the admissible corpus "
-        f"($N = {n_cases}$: {n_positives} vulnerable, {n_negatives} compliant). "
-        "Intervals are exact Clopper--Pearson at the 95\\% level. "
-        f"Entries marked {NOT_ESTIMABLE} are not estimable from this corpus.}}",
-        "\\label{tab:performance}",
-        "\\centering",
-        "\\small",
-        "\\setlength{\\tabcolsep}{4pt}",
-        "\\begin{tabular}{l c c c c c l c l c}",
-        "\\toprule",
-        "\\textbf{Tool} & \\textbf{TP} & \\textbf{FP} & \\textbf{TN} & \\textbf{FN} & "
-        "\\textbf{Rec.\\ (\\%)} & \\textbf{Rec.\\ 95\\% CI} & "
-        "\\textbf{Prec.\\ (\\%)} & \\textbf{Prec.\\ 95\\% CI} & \\textbf{MCC} \\\\",
-        "\\midrule",
-    ]
+) -> list[dict[str, Any]]:
+    """Every unordered pair of tools, not just each tool against the reference.
 
-    for tool in sorted(results):
-        if status.get(tool) != "run":
-            continue
-        result = results[tool][level]
-        m = result.matrix
-        label = TOOL_LABELS.get(tool, (tool, ""))[0]
-        mcc = f"{m.mcc:.3f}" if result.mcc_estimable else NOT_ESTIMABLE
-        lines.append(
-            f"{label} & {m.tp} & {m.fp} & {m.tn} & {m.fn} & "
-            f"{_fmt_pct(m.recall)} & {_fmt_ci(m, 'recall')} & "
-            f"{_fmt_pct(m.precision)} & {_fmt_ci(m, 'precision')} & {mcc} \\\\"
-        )
+    Comparing only against the reference leaves the comparison a practitioner most
+    wants unmade: two third-party scanners against each other. It also puts the
+    tool this paper contributes at the centre of every test, which is a choice a
+    reader is entitled to see the alternative to.
 
-    lines += ["\\bottomrule", "\\end{tabular}", "\\end{table*}", ""]
-
-    not_run = sorted(t for t, s in status.items() if s == "not_run")
-    if not_run:
-        labels = ", ".join(TOOL_LABELS.get(t, (t, ""))[0] for t in not_run)
-        lines.insert(
-            -1,
-            f"% Not installed in the measurement environment and therefore excluded: {labels}.",
-        )
-    return "\n".join(lines)
-
-
-# Which tools constitute which validation layer of the composed pipeline.
-# Layer 2 (native module testing) is absent by design: `terraform test` validates
-# module behaviour -- variable constraints, outputs, conditional creation -- and
-# is not a misconfiguration detector over single-resource security cases. Claiming
-# a layer-2 detection count on this corpus would misrepresent what the layer does.
-PIPELINE_LAYERS = {
-    "L1 (repository edge)": "iacsb_layer1",
-    "L3 (compiled plan)": "opa",
-}
-LAYER2_NOTE = (
-    "Layer 2 (native module testing) is not scored: it validates module behaviour "
-    "rather than detecting resource misconfiguration, so it has no detection "
-    "count on this corpus."
-)
-
-
-def emit_layer_table(
-    results: dict[str, dict[MatchLevel, ToolResult]],
-    status: dict[str, str],
-    level: MatchLevel,
-    n_positives: int,
-) -> str:
-    """Emits layer attribution with explicit overlap between layers.
-
-    Intersection sizes are reported alongside per-layer counts. A strictly
-    additive attribution -- each layer detecting a disjoint case set -- is
-    implausible on a real corpus, so the overlap is stated rather than left to be
-    inferred from totals that happen to sum.
+    Holm--Bonferroni is applied across the whole set of pairs. The family is
+    therefore larger than in :func:`pairwise_comparisons` and the correction
+    correspondingly stronger; that is the honest cost of asking more questions of
+    the same corpus, not a reason to ask fewer.
     """
-    detected: dict[str, set[str]] = {}
-    for label, tool in PIPELINE_LAYERS.items():
-        if status.get(tool) != "run":
-            continue
-        outcomes = results[tool][level].outcomes
-        detected[label] = {cid for cid, cls in outcomes.items() if cls == "TP"}
+    tools = sorted(t for t in results if status.get(t) == "run")
+    rows: list[dict[str, Any]] = []
+    raw_p: dict[str, float] = {}
 
-    lines = [
-        "% Generated by evaluation/analyze.py -- do not edit by hand.",
-        "\\begin{table}[!t]",
-        "\\caption{Layer attribution over the vulnerable cases. Overlap is reported "
-        "explicitly: layers are not assumed to detect disjoint sets. " + LAYER2_NOTE + "}",
-        "\\label{tab:layers}",
-        "\\centering",
-        "\\small",
-        "\\begin{tabular}{l r r}",
-        "\\toprule",
-        "\\textbf{Configuration} & \\textbf{Detected} & \\textbf{Recall (\\%)} \\\\",
-        "\\midrule",
-    ]
-
-    def row(label: str, cases: set[str]) -> str:
-        pct = (len(cases) / n_positives * 100.0) if n_positives else 0.0
-        return f"{label} & {len(cases)} & {pct:.2f} \\\\"
-
-    for label in sorted(detected):
-        lines.append(row(label, detected[label]))
-
-    if len(detected) >= 2:
-        labels = sorted(detected)
-        lines.append("\\midrule")
-        for i, first in enumerate(labels):
-            for second in labels[i + 1 :]:
-                overlap = detected[first] & detected[second]
-                lines.append(
-                    f"\\quad overlap: {first} $\\cap$ {second} & {len(overlap)} & "
-                    f"{(len(overlap) / n_positives * 100.0) if n_positives else 0.0:.2f} \\\\"
-                )
-        union: set[str] = set()
-        for cases in detected.values():
-            union |= cases
-        lines.append("\\midrule")
-        lines.append(
-            f"\\textbf{{Union of scored layers}} & \\textbf{{{len(union)}}} & "
-            f"\\textbf{{{(len(union) / n_positives * 100.0) if n_positives else 0.0:.2f}}} \\\\"
-        )
-
-    lines += ["\\bottomrule", "\\end{tabular}", "\\end{table}", ""]
-    return "\n".join(lines)
-
-
-def emit_strictness_table(
-    results: dict[str, dict[MatchLevel, ToolResult]], status: dict[str, str]
-) -> str:
-    """Emits recall under each matching strictness level.
-
-    The gap between the ``control`` and ``any`` columns quantifies how much of a
-    tool's apparent detection rate comes from findings unrelated to the
-    vulnerability the case was authored to contain.
-    """
-    lines = [
-        "% Generated by evaluation/analyze.py -- do not edit by hand.",
-        "\\begin{table}[!t]",
-        "\\caption{Recall under three finding-matching criteria. "
-        "\\emph{Control} credits a detection only when the tool's rule maps to the "
-        "control the case violates; \\emph{resource} credits any finding on the "
-        "expected resource; \\emph{any} credits any finding whatsoever. The spread "
-        "measures attribution precision.}",
-        "\\label{tab:strictness}",
-        "\\centering",
-        "\\small",
-        "\\begin{tabular}{l c c c}",
-        "\\toprule",
-        "\\textbf{Tool} & \\textbf{Control (\\%)} & \\textbf{Resource (\\%)} & "
-        "\\textbf{Any (\\%)} \\\\",
-        "\\midrule",
-    ]
-    for tool in sorted(results):
-        if status.get(tool) != "run":
-            continue
-        label = TOOL_LABELS.get(tool, (tool, ""))[0]
-        cells = " & ".join(
-            _fmt_pct(
-                results[tool][lvl].matrix.recall,
-                estimable=(lvl != "resource" or results[tool][lvl].n_resource_applicable > 0),
+    for i, left in enumerate(tools):
+        for right in tools[i + 1 :]:
+            shared, b, c = _discordant(
+                results[left][level].outcomes, results[right][level].outcomes
             )
-            for lvl in ("control", "resource", "any")
-        )
-        lines.append(f"{label} & {cells} \\\\")
-    lines += ["\\bottomrule", "\\end{tabular}", "\\end{table}", ""]
-    return "\n".join(lines)
+            if not shared:
+                continue
+            result = exact_mcnemar(b, c, reference=left, comparator=right, n_total=len(shared))
+            key = f"{left}|{right}"
+            row = result.to_dict()
+            row["pair"] = key
+            row["left"] = left
+            row["right"] = right
+            row["n_paired_cases"] = len(shared)
+            row["min_detectable_discordance"] = minimum_detectable_discordance(b + c)
+            rows.append(row)
+            raw_p[key] = result.p_exact
 
+    if raw_p:
+        adjusted = holm_bonferroni(raw_p)
+        by_key = {r["pair"]: r for r in rows}
+        for key, entry in adjusted.items():
+            by_key[key]["holm"] = entry
 
-def emit_latency_table(
-    results: dict[str, dict[MatchLevel, ToolResult]], status: dict[str, str], repeats: int
-) -> str:
-    lines = [
-        "% Generated by evaluation/analyze.py -- do not edit by hand.",
-        "\\begin{table}[!t]",
-        # The plan-level exclusion belongs in the caption, not only in the prose
-        # that surrounds it. A table is extracted, pasted into slides and quoted in
-        # reviews on its own, and read that way an 18 ms figure next to a 2.4 s one
-        # invites a conclusion about relative cost that the measurement does not
-        # support.
-        f"\\caption{{Measured per-case execution latency over {repeats} repetitions. "
-        "Values are mean $\\pm$ standard deviation on the environment recorded in "
-        "\\texttt{results/run\\_manifest.json}. Each tool is measured at its own "
-        "interface: the plan-level figure covers policy evaluation over an "
-        "already-compiled plan document and excludes the \\texttt{terraform init} "
-        "and \\texttt{terraform plan} invocations that produce it, which dominate "
-        "that layer's wall-clock cost in continuous integration. It is therefore a "
-        "lower bound, and is not comparable with the source-level figures, which "
-        "have no equivalent preparation step.}",
-        "\\label{tab:latency}",
-        "\\centering",
-        "\\small",
-        "\\begin{tabular}{l l r}",
-        "\\toprule",
-        "\\textbf{Tool} & \\textbf{Evaluation layer} & \\textbf{Latency (ms)} \\\\",
-        "\\midrule",
-    ]
-    for tool in sorted(results):
-        if status.get(tool) != "run":
-            continue
-        label, category = TOOL_LABELS.get(tool, (tool, "-"))
-        summary = results[tool]["control"].latency_summary()
-        if summary["mean_ms"] is None:
-            cell = NOT_ESTIMABLE
-        else:
-            cell = f"${summary['mean_ms']:.1f} \\pm {summary['sd_ms']:.1f}$"
-        lines.append(f"{label} & {category} & {cell} \\\\")
-    lines += ["\\bottomrule", "\\end{tabular}", "\\end{table}", ""]
-    return "\n".join(lines)
-
-
-def emit_mcnemar_table(comparisons: dict[str, Any], reference: str) -> str:
-    lines = [
-        "% Generated by evaluation/analyze.py -- do not edit by hand.",
-        "\\begin{table}[!t]",
-        "\\caption{Exact McNemar comparisons against "
-        f"{TOOL_LABELS.get(reference, (reference, ''))[0]}. "
-        "$b$ counts cases the reference classifies correctly and the comparator "
-        "does not, counting both missed violations and spurious findings; $c$ is "
-        "the converse. $p$ is the two-sided exact binomial value, "
-        "$p_{\\text{adj}}$ its Holm--Bonferroni correction across the tool family. "
-        "The odds ratio carries a Haldane--Anscombe correction so that a zero "
-        "discordant cell yields a finite estimate.}",
-        "\\label{tab:mcnemar}",
-        "\\centering",
-        "\\small",
-        "\\setlength{\\tabcolsep}{4pt}",
-        "\\begin{tabular}{l c c c c c c}",
-        "\\toprule",
-        "\\textbf{Comparator} & \\textbf{$b$} & \\textbf{$c$} & \\textbf{$p$} & "
-        "\\textbf{$p_{\\text{adj}}$} & \\textbf{OR} & \\textbf{Cohen's $g$} \\\\",
-        "\\midrule",
-    ]
-    if "error" in comparisons:
-        lines.append(f"\\multicolumn{{7}}{{l}}{{{comparisons['error']}}} \\\\")
-    for tool, entry in sorted(comparisons.items()):
-        if tool == "error":
-            continue
-        label = TOOL_LABELS.get(tool, (tool, ""))[0]
-        p_raw = entry["p_exact"]
-        p_adj = entry.get("holm", {}).get("p_adjusted", p_raw)
-        lines.append(
-            f"{label} & {entry['b']} & {entry['c']} & "
-            f"{_fmt_p(p_raw)} & {_fmt_p(p_adj)} & "
-            f"{entry['odds_ratio']:.2f} & {entry['cohens_g']:.3f} \\\\"
-        )
-    lines += ["\\bottomrule", "\\end{tabular}", "\\end{table}", ""]
-    return "\n".join(lines)
-
-
-def _fmt_p(value: float) -> str:
-    if value < 0.001:
-        return "$<0.001$"
-    return f"${value:.3f}$"
+    return rows
 
 
 # --------------------------------------------------------------------------- #
@@ -595,6 +394,7 @@ def main(argv: list[str] | None = None) -> int:
     n_positives = sum(1 for c in cases if c.expected == "VIOLATION")
     n_negatives = len(cases) - n_positives
     comparisons = pairwise_comparisons(results, args.reference, args.level)
+    all_pairs = all_pairwise_comparisons(results, status, args.level)
 
     # ---- console summary -------------------------------------------------- #
     print("=" * 78)
@@ -700,6 +500,7 @@ def main(argv: list[str] | None = None) -> int:
         },
         "matching_level": args.level,
         "reference_tool": args.reference,
+        "all_pairwise": all_pairs,
         "control_map_schema": manifest.get("control_map_schema"),
         "control_map_unverified": unverified,
         "tool_status": status,
@@ -721,12 +522,14 @@ def main(argv: list[str] | None = None) -> int:
             "performance.tex": emit_performance_table(
                 results, status, args.level, len(cases), n_positives, n_negatives
             ),
+            "rates.tex": emit_rates_table(results, status, args.level),
             "strictness.tex": emit_strictness_table(results, status),
             "latency.tex": emit_latency_table(results, status, manifest.get("repeats", 1)),
             "mcnemar.tex": emit_mcnemar_table(comparisons, args.reference),
+            "allpairs.tex": emit_allpairs_table(all_pairs, args.level),
             "layers.tex": emit_layer_table(results, status, args.level, n_positives),
         }
-        malformed = {n: p for n, c in tables.items() if (p := _latex_defects(c))}
+        malformed = {n: p for n, c in tables.items() if (p := latex_defects(c))}
         if malformed:
             print("\nerror: generated tables are malformed and were not written.", file=sys.stderr)
             for name, problems in malformed.items():
@@ -739,12 +542,19 @@ def main(argv: list[str] | None = None) -> int:
             )
             return 1
         for name, content in tables.items():
-            (TABLE_DIR / name).write_text(content + "\n", encoding="utf-8")
+            # Exactly one trailing newline. Several emitters end their line list
+            # with "" so that the table is followed by a blank line in the source,
+            # which combined with a bare `content + "\n"' wrote a trailing blank
+            # line. pre-commit's end-of-file-fixer then stripped it, so every
+            # regeneration left eight tables dirty in git and the freshness checks
+            # could not distinguish real drift from that churn.
+            (TABLE_DIR / name).write_text(content.rstrip("\n") + "\n", encoding="utf-8")
         print(f"Wrote {len(tables)} LaTeX tables to {TABLE_DIR.relative_to(ROOT)}/")
 
         LEADERBOARD_CSV.parent.mkdir(parents=True, exist_ok=True)
         LEADERBOARD_CSV.write_text(
-            emit_leaderboard_csv(results, status, args.level) + "\n", encoding="utf-8"
+            emit_leaderboard_csv(results, status, args.level).rstrip("\n") + "\n",
+            encoding="utf-8",
         )
         print(f"Wrote {LEADERBOARD_CSV.relative_to(ROOT)}")
 
@@ -820,39 +630,6 @@ def emit_leaderboard_csv(
             )
         )
     return "\n".join(lines)
-
-
-def _latex_defects(content: str) -> list[str]:
-    """Reports structural defects in a generated LaTeX table.
-
-    A stray brace in an emitter's caption string surfaces during typesetting as
-    ``Extra }, or forgotten \\endgroup`` attributed to the generated file, which
-    gives no indication of which emitter produced it. Catching it at generation
-    time names the emitter instead. Escaped braces are discounted, since
-    ``\\{`` is a literal character rather than a group delimiter.
-    """
-    defects: list[str] = []
-    unescaped = re.sub(r"\\[{}]", "", content)
-    delta = unescaped.count("{") - unescaped.count("}")
-    if delta:
-        direction = "unclosed {" if delta > 0 else "extra }"
-        defects.append(f"brace imbalance ({direction} x{abs(delta)})")
-
-    for index, line in enumerate(content.splitlines(), start=1):
-        bare = re.sub(r"\\[{}]", "", line)
-        if line.lstrip().startswith("\\caption") and bare.count("{") != bare.count("}"):
-            defects.append(f"line {index}: caption braces do not balance on one line")
-
-    for environment in ("table", "tabular"):
-        opens = content.count(f"\\begin{{{environment}}}")
-        closes = content.count(f"\\end{{{environment}}}")
-        if opens != closes:
-            defects.append(f"{environment}: {opens} begin vs {closes} end")
-
-    if "\\caption" in content and "\\label" not in content:
-        defects.append("caption without label; \\ref to this table would print '??'")
-
-    return defects
 
 
 def _caveats(

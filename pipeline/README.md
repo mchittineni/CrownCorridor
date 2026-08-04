@@ -16,7 +16,6 @@ pipeline/
 ├── index_to_typesense.py  # Typesense Search Indexing Engine
 ├── run_experiments.py     # Experiment Execution & Scoring Harness
 ├── sync_to_obsidian.py    # Obsidian Vault Daily Notes & Knowledge Base Sync
-├── eval_framework/        # Benchmark Evaluation Engine Package
 └── tests/                 # Unit & Integration Test Suite for Pipeline Scripts
 ```
 

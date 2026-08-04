@@ -57,14 +57,28 @@
   doi     = {10.1145/3579639}
 }
 
-@article{verdet2024exploring,
+% Preprint, not a journal article. An earlier revision of this file cited it as
+% Empirical Software Engineering 29(4) 2024 with DOI 10.1007/s10664-024-10446-8;
+% that DOI resolves to "OpenSCV: an open hierarchical taxonomy for smart contract
+% vulnerabilities", an unrelated paper. No journal version is indexed in Crossref.
+% The peer-reviewed companion by the same group is verdet2025adoption below.
+@misc{verdet2023exploring,
+  author       = {Verdet, Alexandre and Hamdaqa, Mohammad and Da Silva, Leuson and Khomh, Foutse},
+  title        = {Exploring Security Practices in Infrastructure as Code: An Empirical Study},
+  howpublished = {arXiv preprint arXiv:2308.03952},
+  year         = {2023},
+  doi          = {10.48550/arXiv.2308.03952}
+}
+
+@article{verdet2025adoption,
   author  = {Verdet, Alexandre and Hamdaqa, Mohammad and Da Silva, Leuson and Khomh, Foutse},
-  title   = {Exploring Security Practices in Infrastructure as Code: An Empirical Study},
+  title   = {Assessing the Adoption of Security Policies by Developers in {Terraform}
+             Across Different Cloud Providers},
   journal = {Empirical Software Engineering},
-  volume  = {29},
-  number  = {4},
-  year    = {2024},
-  doi     = {10.1007/s10664-024-10446-8}
+  volume  = {30},
+  number  = {2},
+  year    = {2025},
+  doi     = {10.1007/s10664-024-10610-0}
 }
 
 @inproceedings{guerriero2019adoption,
@@ -110,23 +124,29 @@
   doi       = {10.1145/3551349.3556945}
 }
 
-@inproceedings{opdebeeck2022control,
+% These two entries previously had their DOIs crossed and both years wrong. The
+% control-and-data-flow paper is MSR 2023, not 2022, and the DOI it carried
+% (10.1145/3524842.3527964) belongs to the smelly-variables paper, which is MSR
+% 2022, not 2021. The DOI smelly-variables carried (10.1109/MSR52588.2021.00019)
+% resolves to "Learning Off-By-One Mistakes: An Empirical Study", unrelated to
+% either. Both corrected against Crossref, 2026-08-04.
+@inproceedings{opdebeeck2023control,
   author    = {Opdebeeck, Ruben and Zerouali, Ahmed and De Roover, Coen},
   title     = {Control and Data Flow in Security Smell Detection for Infrastructure as Code:
                Is It Worth the Effort?},
-  booktitle = {Proc. 19th Int. Conf. Mining Software Repositories (MSR)},
+  booktitle = {Proc. 20th IEEE/ACM Int. Conf. Mining Software Repositories (MSR)},
   pages     = {534--545},
-  year      = {2022},
-  doi       = {10.1145/3524842.3527964}
+  year      = {2023},
+  doi       = {10.1109/MSR59073.2023.00079}
 }
 
-@inproceedings{opdebeeck2021smelly,
-  author    = {Opdebeeck, Ruben and Zerouali, Ahmed and Velázquez-Rodríguez, Camilo and De Roover, Coen},
+@inproceedings{opdebeeck2022smelly,
+  author    = {Opdebeeck, Ruben and Zerouali, Ahmed and De Roover, Coen},
   title     = {Smelly Variables in {Ansible} Infrastructure Code: Detection, Prevalence, and Lifetime},
-  booktitle = {Proc. 18th Int. Conf. Mining Software Repositories (MSR)},
+  booktitle = {Proc. 19th Int. Conf. Mining Software Repositories (MSR)},
   pages     = {61--72},
-  year      = {2021},
-  doi       = {10.1109/MSR52588.2021.00019}
+  year      = {2022},
+  doi       = {10.1145/3524842.3527964}
 }
 
 @inproceedings{chiari2022static,
@@ -231,7 +251,8 @@
   volume  = {6},
   number  = {2},
   pages   = {65--70},
-  year    = {1979}
+  year    = {1979},
+  note    = {\url{https://www.jstor.org/stable/4615733}}
 }
 
 @article{agresti1998approximate,
@@ -343,4 +364,213 @@
   year         = {2023},
   howpublished = {\url{https://owasp.org/www-project-benchmark/}},
   note         = {accessed Aug. 2, 2026}
+}
+
+% ---------------------------------------------------------------------------
+% Added 2026-08-04. Metadata for every entry below was retrieved from Crossref
+% via DOI content negotiation; none is hand-typed.
+% ---------------------------------------------------------------------------
+
+@inproceedings{bohme2022reliability,
+  author    = {Böhme, Marcel and Szekeres, László and Metzman, Jonathan},
+  title     = {On the reliability of coverage-based fuzzer benchmarking},
+  booktitle  = {Proc. 44th Int. Conf. Software Engineering (ICSE)},
+  pages     = {1621--1633},
+  year      = {2022},
+  doi       = {10.1145/3510003.3510230}
+}
+
+@inproceedings{li2023sast,
+  author    = {Li, Kaixuan and Chen, Sen and Fan, Lingling and Feng, Ruitao and Liu, Han and Liu, Chengwei and Liu, Yang and Chen, Yixiang},
+  title     = {Comparison and Evaluation on Static Application Security Testing (SAST) Tools for {Java}},
+  booktitle  = {Proc. 31st ACM Joint European Software Engineering Conf. and Symp. Foundations of Software Engineering (ESEC/FSE)},
+  pages     = {921--933},
+  year      = {2023},
+  doi       = {10.1145/3611643.3616262}
+}
+
+@inproceedings{esposito2024extensive,
+  author    = {Esposito, Matteo and Falaschi, Valentina and Falessi, Davide},
+  title     = {An Extensive Comparison of Static Application Security Testing Tools},
+  booktitle  = {Proc. 28th Int. Conf. Evaluation and Assessment in Software Engineering (EASE)},
+  pages     = {69--78},
+  year      = {2024},
+  doi       = {10.1145/3661167.3661199}
+}
+
+@inproceedings{saavedra2023polyglot,
+  author    = {Saavedra, Nuno and Gonçalves, João and Henriques, Miguel and Ferreira, João F. and Mendes, Alexandra},
+  title     = {Polyglot Code Smell Detection for Infrastructure as Code with {GLITCH}},
+  booktitle  = {Proc. 38th IEEE/ACM Int. Conf. Automated Software Engineering (ASE)},
+  pages     = {2042--2045},
+  year      = {2023},
+  doi       = {10.1109/ASE56229.2023.00162}
+}
+
+@inproceedings{qiu2024semantic,
+  author    = {Qiu, Yiming and Kon, Patrick Tser Jern and Beckett, Ryan and Chen, Ang},
+  title     = {Unearthing Semantic Checks for Cloud Infrastructure-as-Code Programs},
+  booktitle  = {Proc. 30th ACM Symp. Operating Systems Principles (SOSP)},
+  pages     = {574--589},
+  year      = {2024},
+  doi       = {10.1145/3694715.3695974}
+}
+
+@inproceedings{gokhale2026comparative,
+  author    = {Gokhale, Anshuman B. and Jayaprakash, Vaishnavi and Singaravelu, Nagasundari},
+  title     = {Comparative Analysis of Infrastructure-as-Code Misconfiguration Detection Through Policy Driven Evaluation and Taint-Aware Static Reasoning},
+  booktitle  = {Proc. Int. Conf. Computing, Communication and Networking
+               Technologies (Lecture Notes in Networks and Systems)},
+  pages     = {400--413},
+  year      = {2026},
+  doi       = {10.1007/978-3-032-27160-0_37}
+}
+
+@inproceedings{kapetanidou2025k8s,
+  author    = {Kapetanidou, Ioanna Angeliki and Nizamis, Alexandros and Votis, Konstantinos},
+  title     = {An evaluation of commonly used {Kubernetes} security scanning tools},
+  booktitle  = {Proc. 2nd Int. Workshop on MetaOS for the Cloud-Edge-IoT Continuum
+               (MECC), companion of EuroSys},
+  pages     = {20--25},
+  year      = {2025},
+  doi       = {10.1145/3721889.3721924}
+}
+
+@article{roe2026multicloud,
+  author    = {Roe, Harry and Gogate, Mandar and Dashtipour, Kia},
+  title     = {Multicloud Security Assessment: A Benchmark Study of Infrastructure as Code Scanners},
+  journal  = {ICCK Trans. Information Security and Cryptography},
+  volume    = {2},
+  number    = {2},
+  pages     = {109--118},
+  year      = {2026},
+  doi       = {10.62762/tisc.2026.777114}
+}
+
+@article{vassallo2019engage,
+  author    = {Vassallo, Carmine and Panichella, Sebastiano and Palomba, Fabio and Proksch, Sebastian and Gall, Harald C. and Zaidman, Andy},
+  title     = {How developers engage with static analysis tools in different contexts},
+  journal  = {Empirical Software Engineering},
+  volume    = {25},
+  number    = {2},
+  pages     = {1419--1457},
+  year      = {2019},
+  doi       = {10.1007/s10664-019-09750-5}
+}
+
+@inproceedings{tahaei2021notifications,
+  author    = {Tahaei, Mohammad and Vaniea, Kami and Beznosov, Konstantin (Kosta) and Wolters, Maria K},
+  title     = {Security Notifications in Static Analysis Tools: Developers’ Attitudes, Comprehension, and Ability to Act on Them},
+  booktitle  = {Proc. ACM CHI Conf. Human Factors in Computing Systems},
+  pages     = {1--17},
+  year      = {2021},
+  doi       = {10.1145/3411764.3445616}
+}
+
+@article{foalem2026pac,
+  author    = {Foalem, Patrick Loic and Silva, Leuson Da and Khomh, Foutse and Merlo, Ettore},
+  title     = {An empirical study of Policy-as-Code adoption in open-source software projects},
+  journal  = {Journal of Systems and Software},
+  volume    = {242},
+  pages     = {113028},
+  year      = {2026},
+  doi       = {10.1016/j.jss.2026.113028}
+}
+
+@article{minna2026helm,
+  author    = {Minna, Francesco and Blaise, Agathe and Tuma, Katja and Massacci, Fabio},
+  title     = {Automated Analysis of Security Policy Violations in {Helm} Charts},
+  journal  = {IEEE Trans. Dependable and Secure Computing},
+  volume    = {23},
+  number    = {2},
+  pages     = {2519--2533},
+  year      = {2026},
+  doi       = {10.1109/TDSC.2025.3628213}
+}
+
+@misc{war2025taxonomy,
+  author       = {War, Aicha and Nikiema, Serge Lionel and Samhi, Jordan and Klein, Jacques and Bissyand\'e, Tegawend\'e F.},
+  title        = {Security Smells in Infrastructure as Code: A Taxonomy Update Beyond the Seven Sins},
+  howpublished = {arXiv preprint arXiv:2509.18761},
+  year         = {2025},
+  doi          = {10.48550/arXiv.2509.18761}
+}
+
+@misc{ge2023actionable,
+  author       = {Ge, Xiuting and Fang, Chunrong and Li, Xuanye and Sun, Weisong and Wu, Daoyuan and Zhai, Juan and Lin, Shang-Wei and Zhao, Zhihong and Liu, Yang and Chen, Zhenyu},
+  title        = {Machine Learning for Actionable Warning Identification: A Comprehensive Survey},
+  howpublished = {arXiv preprint arXiv:2312.00324},
+  year         = {2023},
+  doi          = {10.48550/arXiv.2312.00324}
+}
+
+% ---------------------------------------------------------------------------
+% Added 2026-08-04 for the EMSE revision. Metadata retrieved from Crossref by
+% DOI; none hand-typed. These close the gaps a benchmarking-methodology paper
+% at an empirical-software-engineering venue cannot leave open: the field's own
+% mapping study, the benchmarking empirical standard, and the reviewing standard
+% EMSE referees work from.
+% ---------------------------------------------------------------------------
+
+@article{rahman2019mapping,
+  author  = {Rahman, Akond and Mahdavi-Hezaveh, Rezvan and Williams, Laurie},
+  title   = {A systematic mapping study of infrastructure as code research},
+  journal = {Information and Software Technology},
+  volume  = {108},
+  pages   = {65--77},
+  year    = {2019},
+  doi     = {10.1016/j.infsof.2018.12.004}
+}
+
+@inproceedings{hasselbring2021benchmarking,
+  author    = {Hasselbring, Wilhelm},
+  title     = {Benchmarking as Empirical Standard in Software Engineering Research},
+  booktitle = {Proc. 25th Int. Conf. Evaluation and Assessment in Software
+               Engineering (EASE)},
+  pages     = {365--372},
+  year      = {2021},
+  doi       = {10.1145/3463274.3463361}
+}
+
+@article{ralph2021standards,
+  author  = {Ralph, Paul},
+  title   = {{ACM SIGSOFT} Empirical Standards Released},
+  journal = {ACM SIGSOFT Software Engineering Notes},
+  volume  = {46},
+  number  = {1},
+  pages   = {19},
+  year    = {2021},
+  doi     = {10.1145/3437479.3437483}
+}
+
+@inproceedings{sharma2016smell,
+  author    = {Sharma, Tushar and Fragkoulis, Marios and Spinellis, Diomidis},
+  title     = {Does your configuration code smell?},
+  booktitle = {Proc. 13th Int. Conf. Mining Software Repositories (MSR)},
+  pages     = {189--200},
+  year      = {2016},
+  doi       = {10.1145/2901739.2901761}
+}
+
+@article{kumara2021dos,
+  author  = {Kumara, Indika and Garriga, Mart\'{i}n and Romeu, Angel Urbano and
+             Di Nucci, Dario and Palomba, Fabio and Tamburri, Damian Andrew and
+             van den Heuvel, Willem-Jan},
+  title   = {The do's and don'ts of infrastructure code: A systematic gray
+             literature review},
+  journal = {Information and Software Technology},
+  volume  = {137},
+  pages   = {106593},
+  year    = {2021},
+  doi     = {10.1016/j.infsof.2021.106593}
+}
+
+@book{wohlin2012experimentation,
+  author    = {Wohlin, Claes and Runeson, Per and H{\"o}st, Martin and
+               Ohlsson, Magnus C. and Regnell, Bj{\"o}rn and Wessl{\'e}n, Anders},
+  title     = {Experimentation in Software Engineering},
+  publisher = {Springer},
+  address   = {Berlin, Germany},
+  year      = {2012},
+  doi       = {10.1007/978-3-642-29044-2}
 }

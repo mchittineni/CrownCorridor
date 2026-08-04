@@ -26,8 +26,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
         "file_line_range": [
           24,
           26
@@ -50,19 +50,19 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-62",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/variables.tf",
               "module_connection": false
             },
             {
               "type": "locals",
               "name": "bucket_name",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
               "module_connection": false
             }
           ]
@@ -87,14 +87,14 @@
             }
           },
           "evaluated_keys": [
-            "lifecycle_rule",
-            "resource_type"
+            "resource_type",
+            "lifecycle_rule"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
         "file_line_range": [
           24,
           26
@@ -117,86 +117,19 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/variables.tf",
               "module_connection": false
             },
             {
               "type": "locals",
               "name": "bucket_name",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
-              "module_connection": false
-            }
-          ]
-        }
-      },
-      {
-        "check_id": "CKV_AWS_18",
-        "bc_check_id": "BC_AWS_S3_13",
-        "check_name": "Ensure the S3 bucket has access logging enabled",
-        "check_result": {
-          "result": "FAILED",
-          "entity": {
-            "aws_s3_bucket": {
-              "target": {
-                "__end_line__": 26,
-                "__start_line__": 24,
-                "bucket": [
-                  "iacsecbench-sto-public-benchmark"
-                ],
-                "__address__": "aws_s3_bucket.target"
-              }
-            }
-          },
-          "evaluated_keys": [
-            "logging",
-            "resource_type"
-          ]
-        },
-        "code_block": null,
-        "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
-        "file_line_range": [
-          24,
-          26
-        ],
-        "resource": "aws_s3_bucket.target",
-        "evaluations": null,
-        "check_class": "checkov.common.graph.checks_infra.base_check",
-        "fixed_definition": null,
-        "entity_tags": null,
-        "caller_file_path": null,
-        "caller_file_line_range": null,
-        "resource_address": null,
-        "severity": null,
-        "bc_category": null,
-        "benchmarks": null,
-        "description": null,
-        "short_description": null,
-        "vulnerability_details": null,
-        "connected_node": null,
-        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-13-enable-logging",
-        "details": [],
-        "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
-        "breadcrumbs": {
-          "bucket": [
-            {
-              "type": "variable",
-              "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/variables.tf",
-              "module_connection": false
-            },
-            {
-              "type": "locals",
-              "name": "bucket_name",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
               "module_connection": false
             }
           ]
@@ -221,15 +154,15 @@
             }
           },
           "evaluated_keys": [
+            "versioning/enabled",
             "versioning_configuration/status",
-            "resource_type",
-            "versioning/enabled"
+            "resource_type"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
         "file_line_range": [
           24,
           26
@@ -252,19 +185,19 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-16-enable-versioning",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/variables.tf",
               "module_connection": false
             },
             {
               "type": "locals",
               "name": "bucket_name",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
               "module_connection": false
             }
           ]
@@ -296,8 +229,8 @@
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
         "file_line_range": [
           24,
           26
@@ -320,19 +253,19 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/variables.tf",
               "module_connection": false
             },
             {
               "type": "locals",
               "name": "bucket_name",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
               "module_connection": false
             }
           ]
@@ -358,14 +291,14 @@
           },
           "evaluated_keys": [
             "rule/*/status",
-            "resource_type",
-            "replication_configuration/rules/*/status"
+            "replication_configuration/rules/*/status",
+            "resource_type"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
         "file_line_range": [
           24,
           26
@@ -388,19 +321,86 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-bucket-has-cross-region-replication-enabled",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
         "breadcrumbs": {
           "bucket": [
             {
               "type": "variable",
               "name": "environment",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/variables.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/variables.tf",
               "module_connection": false
             },
             {
               "type": "locals",
               "name": "bucket_name",
-              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-779f4ge0/case/main.tf",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_AWS_18",
+        "bc_check_id": "BC_AWS_S3_13",
+        "check_name": "Ensure the S3 bucket has access logging enabled",
+        "check_result": {
+          "result": "FAILED",
+          "entity": {
+            "aws_s3_bucket": {
+              "target": {
+                "__end_line__": 26,
+                "__start_line__": 24,
+                "bucket": [
+                  "iacsecbench-sto-public-benchmark"
+                ],
+                "__address__": "aws_s3_bucket.target"
+              }
+            }
+          },
+          "evaluated_keys": [
+            "logging",
+            "resource_type"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
+        "file_line_range": [
+          24,
+          26
+        ],
+        "resource": "aws_s3_bucket.target",
+        "evaluations": null,
+        "check_class": "checkov.common.graph.checks_infra.base_check",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-13-enable-logging",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
+        "breadcrumbs": {
+          "bucket": [
+            {
+              "type": "variable",
+              "name": "environment",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/variables.tf",
+              "module_connection": false
+            },
+            {
+              "type": "locals",
+              "name": "bucket_name",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-STO-PUBLIC-BUCKET-SAFE-tn47tsfk/case/main.tf",
               "module_connection": false
             }
           ]

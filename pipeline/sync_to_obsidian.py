@@ -207,6 +207,42 @@ _NO_MEASUREMENT = """> [!WARNING] No measurement available
 """
 
 
+MANUSCRIPT = os.path.join(PROJECT_DIR, "paper", "iacsecbench.tex")
+
+
+def manuscript_metadata() -> dict[str, str]:
+    """Reads the paper's title and target journal from the manuscript itself.
+
+    These were hardcoded here, and both drifted: the title was the one from
+    before the manuscript was retitled, and the target journal was the IEEE
+    transaction the paper no longer targets. A vault note asserting a title and
+    venue that the paper contradicts is worse than one asserting nothing, because
+    it is the copy a reader trusts when writing a cover letter.
+
+    Falls back to empty strings rather than to a stale literal: a missing value is
+    visibly missing, whereas a stale default is indistinguishable from a current
+    one.
+    """
+    try:
+        with open(MANUSCRIPT, encoding="utf-8") as handle:
+            source = handle.read()
+    except OSError:
+        return {"title": "", "journal": ""}
+
+    def field(pattern: str) -> str:
+        match = re.search(pattern, source, re.S)
+        if not match:
+            return ""
+        # \title spans lines in the source; collapse to one line and drop the
+        # LaTeX escapes that survive into a plain-text heading.
+        return re.sub(r"\s+", " ", match.group(1)).replace("\\", "").strip()
+
+    return {
+        "title": field(r"\\title\{(.*?)\}\s*\n"),
+        "journal": field(r"\\journalname\{(.*?)\}"),
+    }
+
+
 def render_measured_metrics_table() -> str:
     """Renders the performance table from measured output, or says there is none.
 
@@ -295,18 +331,19 @@ def generate_research_notes():
     research_files = {}
 
     # 1. Article Workspace Note
-    research_files["Article-Workspace.md"] = """---
+    paper = manuscript_metadata()
+    research_files["Article-Workspace.md"] = f"""---
 type: research_article
-title: "IaCSecBench: A Reproducible Benchmark Framework for Evaluating Infrastructure as Code Security Validation Pipelines"
+title: "{paper["title"]}"
 author: "Manideep Chittineni"
-target_journal: "IEEE Transactions on Software Engineering"
+target_journal: "{paper["journal"]}"
 status: "Drafting"
-tags: [research, ieee, paper, iac, devsecops, benchmark]
+tags: [research, paper, iac, devsecops, benchmark]
 ---
 
-# 📝 IEEE Research Article: IaCSecBench Workspace
+# 📝 Research Article: IaCSecBench Workspace
 
-> - **Journal Target:** IEEE Transactions on Software Engineering
+> - **Journal Target:** {paper["journal"]}
 > - **Author:** Manideep Chittineni (`manideep.chittineni@hotmail.com`)
 > - **Repository:** [[Project-Structure|iacsecbench Codebase]]
 > - **Changelog & Activity:** [[Changelog-Activity|Master Activity Log]]
@@ -643,7 +680,7 @@ def generate_main_index(daily_commits):
             "",
             "## 🔍 Quick Jump Navigation",
             "",
-            "- [[Research/Article-Workspace|📝 View IEEE Research Article Workspace]]",
+            "- [[Research/Article-Workspace|📝 View Research Article Workspace]]",
             "- [[Project-Structure|📐 View Project Architecture & Knowledge Graph]]",
         ]
     )
