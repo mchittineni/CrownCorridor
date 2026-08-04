@@ -86,3 +86,11 @@ OBSIDIAN_PROJECT_STRUCTURE.md
 # a fabricated illustration, not a measurement, and must never be mistaken for
 # leaderboard/results.csv, which analyze.py writes from real scanner runs.
 leaderboard/results.synthetic.csv
+
+# Submission bundle produced by `make -C paper dist`. Pure derived output: it
+# duplicates the manuscript, refs.bib, the generated tables and the figures, so
+# tracking it doubles every paper change in the history. The manuscript's own
+# build artefacts (iacsecbench.pdf/.aux/.bbl/.out) are tracked deliberately and
+# are not covered here.
+paper/dist/
+paper/*-submission.tar.gz
