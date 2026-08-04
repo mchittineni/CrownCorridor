@@ -212,7 +212,7 @@ flowchart TD
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    ap = argparse.ArgumentParser(description=__doc__.split("\n", maxsplit=1)[0])
     ap.add_argument(
         "--check",
         action="store_true",
