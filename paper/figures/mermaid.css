@@ -1,0 +1,12 @@
+/* Blend the rendered diagrams with IEEEtran's Times body text. Mermaid's default
+   sans stack reads as foreign matter inside a serif paper. Sizes are chosen so the
+   labels stay legible after the figure is scaled to a 3.5in column. */
+.node text, .edgeLabel text, .cluster text, text {
+  font-family: "Times New Roman", Times, Georgia, serif !important;
+  font-size: 15px !important;
+}
+.cluster text { font-size: 15px !important; font-style: italic; }
+.edgeLabel { background-color: #ffffff !important; }
+.edgeLabel text { font-size: 13px !important; }
+.node rect, .node polygon { stroke-width: 1.2px !important; }
+.flowchart-link { stroke-width: 1.2px !important; }

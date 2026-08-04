@@ -38,7 +38,22 @@ repository, which is a deliberate act rather than a build step. All four still w
 and are invoked by hand — the first three only under
 `IACSECBENCH_ALLOW_SYNTHETIC=1`.
 
-### 2. Baseline Evaluation Shell Script (`run_baselines.sh`)
+### 2. Figure Source Generator (`generate_figures.py`)
+
+Writes the Mermaid sources for the manuscript's two diagrams from the recorded
+results, so a figure cannot assert a corpus size or a tool version that disagrees
+with a table. An earlier set of hand-drawn figures claimed 345 cases and named a
+scanner the paper excludes; that is the class of defect this removes.
+
+```bash
+python -m experiments.generate_figures          # refresh paper/figures/*.mmd
+python -m experiments.generate_figures --check  # exit 1 if they are stale (CI gate)
+```
+
+Rendering the `.mmd` to vector PDF is a separate manual step; see
+`paper/figures/README.md`.
+
+### 3. Baseline Evaluation Shell Script (`run_baselines.sh`)
 
 **The only script that produces results.** Four stages: corpus admissibility,
 scanner execution with repeats, a control-map audit against the rule identifiers
@@ -59,7 +74,7 @@ Takes tens of minutes, largely in `terraform init`/`validate` per case.
 > alone, with the mean barely moving. Detection counts are deterministic; latency
 > is not.
 
-### 3. In CI
+### 4. In CI
 
 `.github/workflows/benchmark.yml` runs this harness on manual dispatch and weekly,
 installing all four tools and uploading `results/` as an artefact. It deliberately

@@ -23,6 +23,7 @@ from evaluation.stats import (
     holm_bonferroni,
     mcc,
     mcnemar_chi2_corrected,
+    minimum_detectable_discordance,
     odds_ratio_haldane,
     paired_bootstrap_diff_ci,
     paired_proportion_diff_ci,
@@ -337,3 +338,78 @@ def test_holm_bonferroni_rejects_marginal_comparison():
 def test_holm_bonferroni_single_test_is_identity():
     adj = holm_bonferroni({"only": 0.03})
     assert adj["only"]["p_adjusted"] == pytest.approx(0.03, rel=REL)
+
+
+# --------------------------------------------------------------------------- #
+# Minimum detectable discordance
+#
+# The manuscript reports, for every pairwise comparison, the smallest discordant
+# imbalance the exact test could have called significant, and states that three of
+# its ten comparisons could not have reached significance under any outcome. That
+# claim rests entirely on this function, so the expected values below are derived
+# by hand from the binomial tail rather than from the implementation.
+# --------------------------------------------------------------------------- #
+
+
+def test_no_imbalance_is_detectable_below_six_discordant_pairs():
+    """At n <= 5 the smallest attainable two-sided p exceeds 0.05.
+
+    Total disagreement at n discordant pairs gives p = 2 * (1/2)**n. That is
+    0.0625 at n = 5 and 0.125 at n = 4, both above alpha, so no split of the
+    discordant cases can reject. This is the case that distinguishes "the tools
+    are similar" from "the comparison had no power", and it is why the paper
+    declines to report equivalence.
+    """
+    for n in range(0, 6):
+        assert minimum_detectable_discordance(n) is None, n
+
+
+def test_six_discordant_pairs_require_total_disagreement():
+    """2 * (1/2)**6 = 0.03125, so n = 6 is the first n that can reject at all."""
+    assert minimum_detectable_discordance(6) == 6
+
+
+def test_hand_derived_thresholds():
+    """Each expected value is the hand-computed binomial threshold.
+
+    n = 7: b = 7, c = 0 gives 2 * 1/128 = 0.015625; the next split down,
+           b = 6, c = 1, gives 2 * 8/128 = 0.125.
+    n = 9: b = 8, c = 1 gives 2 * 10/512 = 0.0390625; b = 7, c = 2 gives
+           2 * 46/512 = 0.1796875.
+    n = 10: b = 9, c = 1 gives 2 * 11/1024 = 0.021484375; b = 8, c = 2 gives
+           2 * 56/1024 = 0.109375.
+    """
+    assert minimum_detectable_discordance(7) == 7
+    assert minimum_detectable_discordance(9) == 7
+    assert minimum_detectable_discordance(10) == 8
+
+
+def test_threshold_is_tight_and_parity_preserving():
+    """The returned imbalance rejects and the next smaller one does not.
+
+    Parity matters: b and c are integers summing to n, so abs(b - c) has the same
+    parity as n. Returning a value of the wrong parity would name a split that
+    cannot occur.
+    """
+    for n in range(6, 40):
+        imbalance = minimum_detectable_discordance(n)
+        assert imbalance is not None, n
+        assert imbalance % 2 == n % 2, (n, imbalance)
+
+        b = (n + imbalance) // 2
+        assert exact_mcnemar(b, n - b).p_exact <= 0.05, (n, imbalance)
+
+        if imbalance >= 2:
+            smaller = imbalance - 2
+            b_smaller = (n + smaller) // 2
+            assert exact_mcnemar(b_smaller, n - b_smaller).p_exact > 0.05, (n, smaller)
+
+
+def test_alpha_is_configurable():
+    """A stricter alpha cannot make a previously undetectable n detectable."""
+    for n in range(0, 30):
+        strict = minimum_detectable_discordance(n, alpha=0.01)
+        lenient = minimum_detectable_discordance(n, alpha=0.05)
+        if strict is not None:
+            assert lenient is not None, n
+            assert strict >= lenient, n

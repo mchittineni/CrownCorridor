@@ -12,7 +12,8 @@ The `evaluation/` directory contains the evaluation protocol, statistical analys
 evaluation/
 ├── score.py               # Evaluation Protocol & Synthetic Leaderboard Guard Engine
 ├── run_baselines.py       # Baseline Evaluation Runner across IaC scanners
-├── analyze.py             # Evaluation Analysis & Metric Summary Aggregator
+├── analyze.py             # Evaluation Analysis & Metric Summary Aggregator (CLI entry point)
+├── tables.py              # LaTeX table emitters + the generated-table structural guard
 ├── corpus.py              # Infrastructure Corpus Analysis & Categorization
 ├── stats.py               # Statistical Significance & Confidence Interval Calculator
 ├── normalize.py           # Finding Normalization Engine & Canonical Schema Mapper
@@ -28,7 +29,9 @@ evaluation/
 
 - Executes evaluations against Checkov, tfsec, Trivy, plan-level OPA, and the repository-edge IaCSecBench layer.
   Note that Trivy is tfsec's maintained successor and inherits its rule set, so the five columns represent
-  **four** independent rule sets, not five. Sentinel and Terratest are _not_ evaluated; an earlier version of
+  **four** distinct rule sets, of which only **two** are independent _third-party_ ones: Checkov's and the
+  tfsec/Trivy lineage. Plan-level OPA and the repository-edge layer are this project's own. The manuscript
+  reports the two-third-party figure, and that is the number any comparative claim rests on. Sentinel and Terratest are _not_ evaluated; an earlier version of
   this file listed them, and no measurement against either has ever been recorded.
 - Measures detection counts with exact Clopper-Pearson intervals, and per-case scan latency (ms) over repeats.
 - A tool that is not installed is reported as absent and omitted from every table. It is never assigned an

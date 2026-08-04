@@ -137,6 +137,22 @@ jobs:
           VALIDATE: terraform
         run: ./experiments/run_baselines.sh
 
+      # The manuscript's two diagrams carry the corpus size and the resolved tool
+      # versions. An earlier hand-drawn set claimed 345 cases, named a scanner the
+      # paper excludes, and quoted four stale version strings, none of which was
+      # detectable from the figures themselves. Their sources are now generated from
+      # the recorded results, so a re-measurement that moves any of those values
+      # makes the committed sources stale. Fail here rather than let a figure and a
+      # table disagree in a submitted PDF.
+      - name: Check Figure Sources Match Measured Results
+        run: |
+          python -m experiments.generate_figures --check || {
+            echo "::error::paper/figures/*.mmd are stale after this measurement."
+            echo "::error::Run 'python -m experiments.generate_figures', re-render per"
+            echo "::error::paper/figures/README.md, and commit both."
+            exit 1
+          }
+
       - name: Publish Result Summary
         if: always()
         run: |

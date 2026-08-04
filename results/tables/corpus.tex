@@ -2,21 +2,21 @@
 % Regenerate with: python -m evaluation.corpus --latex
 % Validation mode: terraform
 \begin{table}[!t]
-\caption{Corpus admissibility. The admissible count is the corpus size reported throughout; catalogue entries without configuration are not cases. Rejection reasons are determined mechanically by \texttt{evaluation/corpus.py}.}
+\caption{Corpus admissibility. The admissible count is the corpus size reported throughout; catalogue entries without configuration are not cases. The declared and present counts are given per collection because the two collections diverge by very different factors, and the external collection is the one the generalization analysis rests on. Rejection reasons are determined mechanically by \texttt{evaluation/corpus.py}.}
 \label{tab:admissibility}
 \centering
 \small
-\begin{tabularx}{\columnwidth}{X r}
+\begin{tabularx}{\linewidth}{X r r r}
 \toprule
-\textbf{Corpus status} & \textbf{Cases} \\
+\textbf{Corpus status} & \textbf{Internal} & \textbf{External} & \textbf{Total} \\
 \midrule
-Catalogue entries declared & 520 \\
-Configurations present on disk & 48 \\
+Catalogue entries declared & 345 & 175 & 520 \\
+Configurations present on disk & 44 & 4 & 48 \\
 \midrule
 \midrule
-\textbf{Admissible} & \textbf{48} \\
-\quad vulnerable & 26 \\
-\quad compliant baseline & 22 \\
+\textbf{Admissible} & \textbf{44} & \textbf{4} & \textbf{48} \\
+\quad vulnerable & 22 & 4 & 26 \\
+\quad compliant baseline & 22 & 0 & 22 \\
 \bottomrule
 \end{tabularx}
 \end{table}

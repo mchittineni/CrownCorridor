@@ -57,6 +57,7 @@ Releases are published automatically by [`release-please.yml`](.github/workflows
 ### Bug Fixes
 
 * **pre-commit:** update trivy test cases to match new output format ([d76be62](https://github.com/mchittineni/iacsecbench/commit/d76be628d0e7decae6c738eeaf83bfc2ffef75bb))
+
 ## [Unreleased]
 
 ### Features
