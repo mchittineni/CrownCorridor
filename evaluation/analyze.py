@@ -39,6 +39,7 @@ from evaluation.stats import (
     ConfusionMatrix,
     exact_mcnemar,
     holm_bonferroni,
+    minimum_detectable_discordance,
 )
 from evaluation.tables import (
     NOT_ESTIMABLE,
@@ -48,6 +49,7 @@ from evaluation.tables import (
     emit_layer_table,
     emit_mcnemar_table,
     emit_performance_table,
+    emit_rates_table,
     emit_strictness_table,
     latex_defects,
 )
@@ -250,6 +252,11 @@ def pairwise_comparisons(
         result = exact_mcnemar(b, c, reference=reference, comparator=tool, n_total=len(shared))
         comparisons[tool] = result.to_dict()
         comparisons[tool]["n_paired_cases"] = len(shared)
+        # What this comparison could have detected, recorded alongside what it did
+        # detect. A non-significant exact test on few discordant pairs does not
+        # distinguish similar tools from an underpowered comparison, and the
+        # distinction is computable from b + c without further measurement.
+        comparisons[tool]["min_detectable_discordance"] = minimum_detectable_discordance(b + c)
         raw_p[tool] = result.p_exact
 
     if raw_p:
@@ -316,6 +323,7 @@ def all_pairwise_comparisons(
             row["left"] = left
             row["right"] = right
             row["n_paired_cases"] = len(shared)
+            row["min_detectable_discordance"] = minimum_detectable_discordance(b + c)
             rows.append(row)
             raw_p[key] = result.p_exact
 
@@ -498,6 +506,7 @@ def main(argv: list[str] | None = None) -> int:
             "performance.tex": emit_performance_table(
                 results, status, args.level, len(cases), n_positives, n_negatives
             ),
+            "rates.tex": emit_rates_table(results, status, args.level),
             "strictness.tex": emit_strictness_table(results, status),
             "latency.tex": emit_latency_table(results, status, manifest.get("repeats", 1)),
             "mcnemar.tex": emit_mcnemar_table(comparisons, args.reference),

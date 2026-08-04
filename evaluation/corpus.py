@@ -574,31 +574,60 @@ def emit_admissibility_table(cases: list[Case], results: list[ValidationResult],
         "\\begin{table}[!t]",
         "\\caption{Corpus admissibility. The admissible count is the corpus size "
         "reported throughout; catalogue entries without configuration are not "
-        "cases. Rejection reasons are determined mechanically by "
-        "\\texttt{evaluation/corpus.py}.}",
+        "cases. The declared and present counts are given per collection because "
+        "the two collections diverge by very different factors, and the external "
+        "collection is the one the generalization analysis rests on. Rejection "
+        "reasons are determined mechanically by \\texttt{evaluation/corpus.py}.}",
         "\\label{tab:admissibility}",
         "\\centering",
         "\\small",
-        "\\begin{tabularx}{\\columnwidth}{X r}",
+        "\\begin{tabularx}{\\linewidth}{X r r r}",
         "\\toprule",
-        "\\textbf{Corpus status} & \\textbf{Cases} \\\\",
+        "\\textbf{Corpus status} & \\textbf{Internal} & \\textbf{External} & "
+        "\\textbf{Total} \\\\",
         "\\midrule",
-        f"Catalogue entries declared & {gap['internal_declared'] + gap['external_declared']} \\\\",
-        f"Configurations present on disk & {len(cases)} \\\\",
+        # Split by collection. Reported only as a combined 520 against 48, the
+        # table let a reader compute a single ratio of 10.8 and no more, while the
+        # generalization argument turns on the external collection's own ratio of
+        # 43.8 -- a number the table did not contain.
+        f"Catalogue entries declared & {gap['internal_declared']} & "
+        f"{gap['external_declared']} & "
+        f"{gap['internal_declared'] + gap['external_declared']} \\\\",
+        f"Configurations present on disk & {gap['internal_on_disk']} & "
+        f"{gap['external_on_disk']} & {len(cases)} \\\\",
         "\\midrule",
     ]
+
+    # Rejections and admissions are split by the same collection boundary as the
+    # counts above, so every row of the table reads across consistently.
+    collection_of = {case.case_id: case.collection for case in cases}
+
+    def split(predicate: Any) -> tuple[int, int, int]:
+        internal = sum(1 for item in results if predicate(item) and collection_of.get(item.case_id) == "internal")
+        external = sum(1 for item in results if predicate(item) and collection_of.get(item.case_id) == "external")
+        return internal, external, internal + external
 
     for status in CaseStatus:
         count = counts.get(status, 0)
         if count == 0 or status is CaseStatus.OK:
             continue
-        lines.append(f"\\quad rejected: {STATUS_DESCRIPTIONS[status].lower()} & {count} \\\\")
+        i, e, t = split(lambda r, s=status: r.status is s)
+        lines.append(
+            f"\\quad rejected: {STATUS_DESCRIPTIONS[status].lower()} & {i} & {e} & {t} \\\\"
+        )
+
+    n_int = sum(1 for c in usable if c.collection == "internal")
+    n_ext = len(usable) - n_int
+    viol_int = sum(1 for c in usable if c.collection == "internal" and c.expected == "VIOLATION")
+    viol_ext = n_violation - viol_int
 
     lines += [
         "\\midrule",
-        f"\\textbf{{Admissible}} & \\textbf{{{len(usable)}}} \\\\",
-        f"\\quad vulnerable & {n_violation} \\\\",
-        f"\\quad compliant baseline & {len(usable) - n_violation} \\\\",
+        f"\\textbf{{Admissible}} & \\textbf{{{n_int}}} & \\textbf{{{n_ext}}} & "
+        f"\\textbf{{{len(usable)}}} \\\\",
+        f"\\quad vulnerable & {viol_int} & {viol_ext} & {n_violation} \\\\",
+        f"\\quad compliant baseline & {n_int - viol_int} & {n_ext - viol_ext} & "
+        f"{len(usable) - n_violation} \\\\",
         "\\bottomrule",
         "\\end{tabularx}",
         "\\end{table}",
