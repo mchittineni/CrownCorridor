@@ -30,7 +30,11 @@ tables:
 ## Typeset only. Fails if a result table is missing.
 paper: $(TEX).pdf
 
-$(TEX).pdf: $(TEX).tex refs.bib
+# The generated tables are prerequisites, not just inputs. Listing only the .tex
+# and .bib let a regenerated table sit on disk while `make paper' reported
+# "Nothing to be done" and left the old numbers in the PDF -- the precise drift
+# this build is supposed to prevent.
+$(TEX).pdf: $(TEX).tex refs.bib $(wildcard $(TABLES)/*.tex) $(wildcard figures/*.pdf)
 	@test -f $(TABLES)/performance.tex || { \
 	  echo "error: $(TABLES)/performance.tex missing."; \
 	  echo "       Run 'make tables' -- do not hand-write result tables."; \
