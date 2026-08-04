@@ -75,6 +75,30 @@ def test_detects_unterminated_environment():
     assert any(d.startswith("tabular:") for d in defects)
 
 
+def test_detects_tabularx_closed_as_tabular():
+    """A tabularx opened and closed as tabular must not report clean.
+
+    ``\\begin{tabular}`` is not a substring of ``\\begin{tabularx}{...}``, so
+    counting only ``tabular`` leaves both counts at zero for this mismatch and the
+    guard passes a file that will not typeset. The layer-attribution table uses
+    tabularx, so the mismatch is reachable from a one-character edit to a live
+    emitter.
+    """
+    mismatched = WELL_FORMED.replace(
+        r"\begin{tabular}{l r}", r"\begin{tabularx}{\columnwidth}{@{}X r@{}}"
+    )
+    defects = _latex_defects(mismatched)
+    assert any(d.startswith("tabularx:") for d in defects), defects
+
+
+def test_accepts_a_balanced_tabularx():
+    """The new environment must not be reported as a defect when it is balanced."""
+    balanced = WELL_FORMED.replace(
+        r"\begin{tabular}{l r}", r"\begin{tabularx}{\columnwidth}{@{}X r@{}}"
+    ).replace(r"\end{tabular}", r"\end{tabularx}")
+    assert _latex_defects(balanced) == []
+
+
 def test_detects_caption_without_label():
     """A caption with no label makes every \\ref to the table print '??'.
 

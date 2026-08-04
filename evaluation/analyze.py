@@ -244,19 +244,9 @@ def pairwise_comparisons(
     for tool, levels in results.items():
         if tool == reference:
             continue
-        other = levels[level].outcomes
-        shared = sorted(set(ref_outcomes) & set(other))
+        shared, b, c = _discordant(ref_outcomes, levels[level].outcomes)
         if not shared:
             continue
-
-        b = c = 0
-        for case_id in shared:
-            ref_correct = ref_outcomes[case_id] in ("TP", "TN")
-            other_correct = other[case_id] in ("TP", "TN")
-            if ref_correct and not other_correct:
-                b += 1
-            elif other_correct and not ref_correct:
-                c += 1
 
         result = exact_mcnemar(b, c, reference=reference, comparator=tool, n_total=len(shared))
         comparisons[tool] = result.to_dict()
@@ -269,6 +259,74 @@ def pairwise_comparisons(
             comparisons[tool]["holm"] = entry
 
     return comparisons
+
+
+def _discordant(
+    first: dict[str, str], second: dict[str, str]
+) -> tuple[list[str], int, int]:
+    """Discordant counts over the cases two tools share.
+
+    ``b`` counts cases the first tool classifies correctly and the second does not;
+    ``c`` is the converse. Both error types count: a comparator that emits a
+    spurious finding on a compliant case is as wrong as one that misses a
+    violation, and restricting the count to missed violations understates
+    disagreement.
+    """
+    shared = sorted(set(first) & set(second))
+    b = c = 0
+    for case_id in shared:
+        first_ok = first[case_id] in ("TP", "TN")
+        second_ok = second[case_id] in ("TP", "TN")
+        if first_ok and not second_ok:
+            b += 1
+        elif second_ok and not first_ok:
+            c += 1
+    return shared, b, c
+
+
+def all_pairwise_comparisons(
+    results: dict[str, dict[MatchLevel, ToolResult]],
+    status: dict[str, str],
+    level: MatchLevel,
+) -> list[dict[str, Any]]:
+    """Every unordered pair of tools, not just each tool against the reference.
+
+    Comparing only against the reference leaves the comparison a practitioner most
+    wants unmade: two third-party scanners against each other. It also puts the
+    tool this paper contributes at the centre of every test, which is a choice a
+    reader is entitled to see the alternative to.
+
+    Holm--Bonferroni is applied across the whole set of pairs. The family is
+    therefore larger than in :func:`pairwise_comparisons` and the correction
+    correspondingly stronger; that is the honest cost of asking more questions of
+    the same corpus, not a reason to ask fewer.
+    """
+    tools = sorted(t for t in results if status.get(t) == "run")
+    rows: list[dict[str, Any]] = []
+    raw_p: dict[str, float] = {}
+
+    for i, left in enumerate(tools):
+        for right in tools[i + 1 :]:
+            shared, b, c = _discordant(results[left][level].outcomes, results[right][level].outcomes)
+            if not shared:
+                continue
+            result = exact_mcnemar(b, c, reference=left, comparator=right, n_total=len(shared))
+            key = f"{left}|{right}"
+            row = result.to_dict()
+            row["pair"] = key
+            row["left"] = left
+            row["right"] = right
+            row["n_paired_cases"] = len(shared)
+            rows.append(row)
+            raw_p[key] = result.p_exact
+
+    if raw_p:
+        adjusted = holm_bonferroni(raw_p)
+        by_key = {r["pair"]: r for r in rows}
+        for key, entry in adjusted.items():
+            by_key[key]["holm"] = entry
+
+    return rows
 
 
 # --------------------------------------------------------------------------- #
@@ -311,7 +369,12 @@ def emit_performance_table(
         "\\centering",
         "\\small",
         "\\setlength{\\tabcolsep}{4pt}",
-        "\\begin{tabular}{l c c c c c l c l c}",
+        # Counts and percentages are right-aligned so their decimal points line up;
+        # each is emitted to a fixed number of decimal places below, which is what
+        # makes right alignment sufficient. Interval columns stay left-aligned:
+        # they are bracketed literals, not numbers, and right-aligning them would
+        # ragged the opening brackets.
+        "\\begin{tabular}{l r r r r r l r l r}",
         "\\toprule",
         "\\textbf{Tool} & \\textbf{TP} & \\textbf{FP} & \\textbf{TN} & \\textbf{FN} & "
         "\\textbf{Rec.\\ (\\%)} & \\textbf{Rec.\\ 95\\% CI} & "
@@ -388,7 +451,11 @@ def emit_layer_table(
         "\\label{tab:layers}",
         "\\centering",
         "\\small",
-        "\\begin{tabular}{l r r}",
+        # The configuration column is an X column so a long label wraps inside the
+        # cell instead of pushing the numeric columns off the edge of the float.
+        # tabularx needs an explicit target width; \columnwidth is the IEEE
+        # two-column measure this table is set in.
+        "\\begin{tabularx}{\\columnwidth}{@{}X r r@{}}",
         "\\toprule",
         "\\textbf{Configuration} & \\textbf{Detected} & \\textbf{Recall (\\%)} \\\\",
         "\\midrule",
@@ -407,8 +474,13 @@ def emit_layer_table(
         for i, first in enumerate(labels):
             for second in labels[i + 1 :]:
                 overlap = detected[first] & detected[second]
+                # Spelling both layers out in full ("L1 (repository edge) $\cap$
+                # L3 (compiled plan)") overran the column. The parenthetical
+                # gloss is already carried by the rows above, so the short
+                # identifier is unambiguous here and fits.
                 lines.append(
-                    f"\\quad overlap: {first} $\\cap$ {second} & {len(overlap)} & "
+                    f"\\quad {_layer_key(first)} $\\cap$ {_layer_key(second)} "
+                    f"(overlap) & {len(overlap)} & "
                     f"{(len(overlap) / n_positives * 100.0) if n_positives else 0.0:.2f} \\\\"
                 )
         union: set[str] = set()
@@ -420,8 +492,18 @@ def emit_layer_table(
             f"\\textbf{{{(len(union) / n_positives * 100.0) if n_positives else 0.0:.2f}}} \\\\"
         )
 
-    lines += ["\\bottomrule", "\\end{tabular}", "\\end{table}", ""]
+    lines += ["\\bottomrule", "\\end{tabularx}", "\\end{table}", ""]
     return "\n".join(lines)
+
+
+def _layer_key(label: str) -> str:
+    """Reduces ``"L1 (repository edge)"`` to ``"L1"`` for use in overlap rows.
+
+    Falls back to the full label when there is no parenthetical to strip, so an
+    added layer without the ``Ln (gloss)`` shape still names itself rather than
+    silently emitting an empty cell.
+    """
+    return label.split(" (", 1)[0].strip() or label
 
 
 def emit_strictness_table(
@@ -444,7 +526,11 @@ def emit_strictness_table(
         "\\label{tab:strictness}",
         "\\centering",
         "\\small",
-        "\\begin{tabular}{l c c c}",
+        # Right-aligned for the same reason as the performance table: fixed decimal
+        # places make right alignment line the decimal points up, and centring does
+        # not once a value crosses from one integer digit to two.
+        "\\setlength{\\tabcolsep}{4pt}",
+        "\\begin{tabular}{@{}l r r r@{}}",
         "\\toprule",
         "\\textbf{Tool} & \\textbf{Control (\\%)} & \\textbf{Resource (\\%)} & "
         "\\textbf{Any (\\%)} \\\\",
@@ -489,9 +575,21 @@ def emit_latency_table(
         "\\label{tab:latency}",
         "\\centering",
         "\\small",
-        "\\begin{tabular}{l l r}",
+        # Mean and standard deviation are separate right-aligned columns joined by
+        # a \pm placed in the inter-column gap, so the \pm signs form a vertical
+        # line and each side's decimal points align independently. Emitted as one
+        # right-flushed string ("$2371.0 \pm 85.8$") only the final glyph aligned:
+        # 2371.0 and 0.2 sat with their decimal points three places apart and the
+        # \pm signs wandered with them.
+        # tabularx, not tabular: as a fixed-width tabular this table ran 29pt past
+        # the column edge, because the paradigm labels are long and the widest mean
+        # is four digits. An X column absorbs the slack by wrapping the label rather
+        # than pushing the numbers out of the float.
+        "\\setlength{\\tabcolsep}{4pt}",
+        "\\begin{tabularx}{\\columnwidth}{@{}l X r@{\\,$\\pm$\\,}r@{}}",
         "\\toprule",
-        "\\textbf{Tool} & \\textbf{Evaluation layer} & \\textbf{Latency (ms)} \\\\",
+        "\\textbf{Tool} & \\textbf{Evaluation layer} & "
+        "\\multicolumn{2}{c}{\\textbf{Latency (ms)}} \\\\",
         "\\midrule",
     ]
     for tool in sorted(results):
@@ -500,11 +598,13 @@ def emit_latency_table(
         label, category = TOOL_LABELS.get(tool, (tool, "-"))
         summary = results[tool]["control"].latency_summary()
         if summary["mean_ms"] is None:
-            cell = NOT_ESTIMABLE
+            # Spans both numeric columns: an unmeasured tool has no \pm to place,
+            # and leaving the second cell empty would still typeset the separator.
+            cell = f"\\multicolumn{{2}}{{c}}{{{NOT_ESTIMABLE}}}"
         else:
-            cell = f"${summary['mean_ms']:.1f} \\pm {summary['sd_ms']:.1f}$"
+            cell = f"${summary['mean_ms']:.1f}$ & ${summary['sd_ms']:.1f}$"
         lines.append(f"{label} & {category} & {cell} \\\\")
-    lines += ["\\bottomrule", "\\end{tabular}", "\\end{table}", ""]
+    lines += ["\\bottomrule", "\\end{tabularx}", "\\end{table}", ""]
     return "\n".join(lines)
 
 
@@ -523,11 +623,20 @@ def emit_mcnemar_table(comparisons: dict[str, Any], reference: str) -> str:
         "\\label{tab:mcnemar}",
         "\\centering",
         "\\small",
-        "\\setlength{\\tabcolsep}{4pt}",
-        "\\begin{tabular}{l c c c c c c}",
+        "\\setlength{\\tabcolsep}{3pt}",
+        # Numeric columns are right-aligned, not centred. Each is emitted with a
+        # fixed number of decimal places below, so right alignment lines the
+        # decimal points up; centring did not, and 0.45 next to 14.33 in the OR
+        # column was the visible symptom.
+        "\\begin{tabular}{@{}l r r r r r r@{}}",
         "\\toprule",
-        "\\textbf{Comparator} & \\textbf{$b$} & \\textbf{$c$} & \\textbf{$p$} & "
-        "\\textbf{$p_{\\text{adj}}$} & \\textbf{OR} & \\textbf{Cohen's $g$} \\\\",
+        # \textbf around a math group does not bold the symbol -- math ignores the
+        # surrounding text font -- so the old \textbf{$b$} rendered unbold beside
+        # bold text headers. Bolding a math variable properly needs \bm, which is
+        # not loaded; plain italic math is the conventional alternative and is
+        # what these cells already displayed, so nothing moves visually.
+        "\\textbf{Comparator} & $b$ & $c$ & $p$ & "
+        "$p_{\\text{adj}}$ & \\textbf{OR} & Cohen's $g$ \\\\",
         "\\midrule",
     ]
     if "error" in comparisons:
@@ -547,7 +656,57 @@ def emit_mcnemar_table(comparisons: dict[str, Any], reference: str) -> str:
     return "\n".join(lines)
 
 
+def emit_allpairs_table(rows: list[dict[str, Any]], level: MatchLevel) -> str:
+    """Emits every pairwise comparison, with the correction applied across all of them."""
+    lines = [
+        "% Generated by evaluation/analyze.py -- do not edit by hand.",
+        "% Regenerate with: python -m evaluation.analyze",
+        f"% Matching strictness level: {level}",
+        "\\begin{table}[!t]",
+        "\\caption{Exact McNemar comparisons over every tool pair, with "
+        "Holm--Bonferroni applied across the full set of pairs rather than across "
+        "one tool's family. $b$ counts cases the left tool classifies correctly and "
+        "the right does not; $c$ is the converse. Both error types count. The "
+        "correction is stronger here than in Table~\\ref{tab:mcnemar} because the "
+        "family is larger.}",
+        "\\label{tab:allpairs}",
+        "\\centering",
+        "\\small",
+        "\\setlength{\\tabcolsep}{4pt}",
+        # Fixed columns with tight padding. As a plain tabular at the default
+        # 6pt tabcolsep this ran 13.7pt past the column; at 3pt the twelve
+        # inter-column gaps give back 36pt, which is ample. tabularx was tried
+        # first and rejected: X columns are wider than the tool names need, so
+        # every row came out badly underfull.
+        "\\setlength{\\tabcolsep}{3pt}",
+        "\\begin{tabular}{@{}l l r r r r@{}}",
+        "\\toprule",
+        "\\textbf{Tool A} & \\textbf{Tool B} & $b$ & $c$ & $p$ & "
+        "$p_{\\text{adj}}$ \\\\",
+        "\\midrule",
+    ]
+    if not rows:
+        lines.append("\\multicolumn{6}{l}{No tool pair produced comparable output.} \\\\")
+    for row in rows:
+        left = TOOL_LABELS.get(row["left"], (row["left"], ""))[0]
+        right = TOOL_LABELS.get(row["right"], (row["right"], ""))[0]
+        p_adj = row.get("holm", {}).get("p_adjusted", row["p_exact"])
+        lines.append(
+            f"{left} & {right} & {row['b']} & {row['c']} & "
+            f"{_fmt_p(row['p_exact'])} & {_fmt_p(p_adj)} \\\\"
+        )
+    lines += ["\\bottomrule", "\\end{tabular}", "\\end{table}", ""]
+    return "\n".join(lines)
+
+
 def _fmt_p(value: float) -> str:
+    """Formats a p-value for an ``S`` column.
+
+    Always three decimal places, so the column's decimal points align under right
+    alignment. ``<0.001`` is one glyph wider than a bare value; right alignment
+    still lines the decimals up because the comparator sits to the left of the
+    digits rather than displacing them.
+    """
     if value < 0.001:
         return "$<0.001$"
     return f"${value:.3f}$"
@@ -595,6 +754,7 @@ def main(argv: list[str] | None = None) -> int:
     n_positives = sum(1 for c in cases if c.expected == "VIOLATION")
     n_negatives = len(cases) - n_positives
     comparisons = pairwise_comparisons(results, args.reference, args.level)
+    all_pairs = all_pairwise_comparisons(results, status, args.level)
 
     # ---- console summary -------------------------------------------------- #
     print("=" * 78)
@@ -700,6 +860,7 @@ def main(argv: list[str] | None = None) -> int:
         },
         "matching_level": args.level,
         "reference_tool": args.reference,
+        "all_pairwise": all_pairs,
         "control_map_schema": manifest.get("control_map_schema"),
         "control_map_unverified": unverified,
         "tool_status": status,
@@ -724,6 +885,7 @@ def main(argv: list[str] | None = None) -> int:
             "strictness.tex": emit_strictness_table(results, status),
             "latency.tex": emit_latency_table(results, status, manifest.get("repeats", 1)),
             "mcnemar.tex": emit_mcnemar_table(comparisons, args.reference),
+            "allpairs.tex": emit_allpairs_table(all_pairs, args.level),
             "layers.tex": emit_layer_table(results, status, args.level, n_positives),
         }
         malformed = {n: p for n, c in tables.items() if (p := _latex_defects(c))}
@@ -843,7 +1005,12 @@ def _latex_defects(content: str) -> list[str]:
         if line.lstrip().startswith("\\caption") and bare.count("{") != bare.count("}"):
             defects.append(f"line {index}: caption braces do not balance on one line")
 
-    for environment in ("table", "tabular"):
+    # tabularx is counted separately rather than folded into the tabular check:
+    # "\\begin{tabular}" is not a substring of "\\begin{tabularx}{...}", so an
+    # emitter that opened tabularx and closed tabular would balance both counts at
+    # zero and report clean. The layer-attribution table uses tabularx to let a
+    # long configuration label wrap, so this is a live case, not a hypothetical.
+    for environment in ("table", "tabular", "tabularx"):
         opens = content.count(f"\\begin{{{environment}}}")
         closes = content.count(f"\\end{{{environment}}}")
         if opens != closes:
