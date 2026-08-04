@@ -9,7 +9,7 @@ The **IaC Security & Evaluation Benchmark Framework** is a modular, reusable fra
 ## 🌟 Key Capabilities
 
 - 🔍 **Multi-Repository & Multi-Module IaC Engine**: Generic scanning engine capable of evaluating arbitrary Terraform modules, provider constraints, and security standards.
-- 📊 **Comparative Benchmark Driver**: Measures **Checkov**, **tfsec**, **Trivy**, and **plan-level OPA** against the same admissible corpus. Trivy is tfsec's maintained successor and inherits its rule set, so these represent **three** independent third-party rule sets, not four. Sentinel and Terratest are _not_ evaluated — neither was ever executed here, and no number is reported for either.
+- 📊 **Comparative Benchmark Driver**: Measures **Checkov**, **tfsec**, **Trivy**, and **plan-level OPA** against the same admissible corpus. Trivy is tfsec's maintained successor and inherits its rule set, and plan-level OPA is this project's own reference layer rather than a third party, so the four columns represent **two** independent third-party rule sets: Checkov's, and the tfsec/Trivy lineage. Sentinel and Terratest are _not_ evaluated — neither was ever executed here, and no number is reported for either.
 - 📦 **Public Benchmark Datasets**: Standardized, annotated test case schema stored under `benchmark/datasets/benchmarks.json`.
 - 🧪 **Reproducible Experiments**: One-command measurement suite (`experiments/run_baselines.sh`) producing raw scanner output, latency samples, exact confidence intervals and LaTeX tables.
 - 🔒 **Zero-PII & Secret Compliance**: Automatic scanning for customer PII, AWS secret keys, hardcoded database credentials, and tokens.

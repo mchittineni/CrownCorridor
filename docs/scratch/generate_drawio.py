@@ -438,21 +438,22 @@ def create_aws_icon_drawio_xml():
         "sns",
     )
 
-    # Write files
+    # Write files.
+    #
+    # The second copy used to be written to terraform/, which is where the Terraform
+    # root module lived when this script was first added. The tracked copy is now at
+    # infrastructure/architecture.drawio, so writing to terraform/ created a third,
+    # untracked file and left the real one stale. Both destinations below are the
+    # paths git actually tracks; keep them in step with `git ls-files '*.drawio'`.
     xml_str = ET.tostring(mxfile, encoding="utf-8")
 
-    os.makedirs("docs", exist_ok=True)
-    os.makedirs("terraform", exist_ok=True)
+    targets = ("docs/architecture.drawio", "infrastructure/architecture.drawio")
+    for target in targets:
+        os.makedirs(os.path.dirname(target), exist_ok=True)
+        with open(target, "wb") as f:
+            f.write(xml_str)
 
-    with open("docs/architecture.drawio", "wb") as f:
-        f.write(xml_str)
-
-    with open("terraform/architecture.drawio", "wb") as f:
-        f.write(xml_str)
-
-    print(
-        "Official AWS Icons Draw.io XML successfully created at docs/architecture.drawio & terraform/architecture.drawio"
-    )
+    print("Draw.io XML written to: " + ", ".join(targets))
 
 
 if __name__ == "__main__":
