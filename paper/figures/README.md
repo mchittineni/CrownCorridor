@@ -2,11 +2,11 @@
 
 Two figures are drawings; the third is set as a listing in the manuscript source.
 
-| Figure | Source | Rendered | Size at 3.5in column |
-|---|---|---|---|
-| `fig:pipeline` | `pipeline_architecture.mmd` | `pipeline_architecture.pdf` | 3.5 x 4.24in |
-| `fig:normalization` | `normalization_workflow.mmd` | `normalization_workflow.pdf` | 3.5 x 2.83in |
-| `fig:artifact` | inline `verbatim` in `iacsecbench.tex` | n/a | n/a |
+| Figure              | Source                                 | Rendered                     | Size at 3.5in column |
+| ------------------- | -------------------------------------- | ---------------------------- | -------------------- |
+| `fig:pipeline`      | `pipeline_architecture.mmd`            | `pipeline_architecture.pdf`  | 3.5 x 4.24in         |
+| `fig:normalization` | `normalization_workflow.mmd`           | `normalization_workflow.pdf` | 3.5 x 2.83in         |
+| `fig:artifact`      | inline `verbatim` in `iacsecbench.tex` | n/a                          | n/a                  |
 
 Both rendered figures are **single-page vector PDFs with no raster content and no
 alpha channel**, set in Times to sit alongside the body text. Re-render after any
@@ -73,7 +73,7 @@ recording layer latencies of 0.2 ms and 18.1 ms.
 
 The 345 was not invented: it is `catalogue_gap.internal_declared` from
 `results/corpus_report.json`, the declared internal catalogue count. The paper
-argues at length that the *admissible* count is the corpus size and the declared
+argues at length that the _admissible_ count is the corpus size and the declared
 count is not. The figure showed the number the paper rejects, unlabelled.
 
 None of this was detectable from the figures, because they had no source in the
@@ -83,20 +83,14 @@ repository. `experiments/generate_figures.py` now reads every quantity from
 generator is wrong for both. `--check` fails if the committed sources are stale,
 which is suitable for CI.
 
-## `superseded/`
-
-The three original PNGs, retained for provenance and **not on `graphicspath`**, so
-they cannot be picked up by a build. Delete them once the replacements are
-rendered and reviewed.
-
 ## Print requirements when re-rendering
 
-- **Vector PDF** rather than PNG. The superseded PNGs rendered at 231–406 dpi;
+- **Vector PDF** rather than PNG. The removed PNGs rendered at 231-406 dpi;
   `pipeline_architecture.png` in particular was under IEEE's 300 dpi preference for
   raster images (600 for line art).
-- **No alpha channel.** All three superseded PNGs were RGBA. pdfTeX handles
+- **No alpha channel.** All three removed PNGs were RGBA. pdfTeX handles
   transparency, but IEEE PDF eXpress sometimes flags it. Vector output from
   `--pdfFit` avoids the question.
-- Check legibility at the *rendered* size: one column is 3.5 in, both columns
-  7.16 in. The superseded `artifact_structure.png` was a 10:1 strip whose labels
+- Check legibility at the _rendered_ size: one column is 3.5 in, both columns
+  7.16 in. The removed `artifact_structure.png` was a 10:1 strip whose labels
   fell to roughly 3 pt even across both columns, which is why it is now a listing.

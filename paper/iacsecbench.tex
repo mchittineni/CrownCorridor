@@ -71,8 +71,7 @@
 % results/run_manifest.json, so a figure cannot assert a corpus size or a tool
 % version that disagrees with a table. Both are committed as single-page vector
 % PDFs; re-render with the mmdc command in paper/figures/README.md after any
-% re-measurement. The superseded hand-drawn PNGs are kept in figures/superseded/,
-% deliberately off \graphicspath so they cannot be picked up by a build.
+% re-measurement.
 \newcommand{\paperfigure}[3]{%
   \begin{figure}[!t]\centering
     \IfFileExists{#1}{\includegraphics[width=\linewidth]{#1}}%
@@ -80,17 +79,6 @@
         \texttt{\detokenize{#1}}\\[4pt] figure not yet produced\vspace{2em}}}}
     \caption{#2}\label{#3}
   \end{figure}}
-
-% Both-columns variant, for a drawing whose aspect ratio makes it illegible at
-% the 3.5in column measure. Identical contract to \paperfigure; only the float
-% class differs, so a figure can be promoted or demoted by changing the call.
-\newcommand{\paperfigurewide}[3]{%
-  \begin{figure*}[!t]\centering
-    \IfFileExists{#1}{\includegraphics[width=\textwidth]{#1}}%
-      {\fbox{\parbox{0.9\textwidth}{\centering\vspace{2em}
-        \texttt{\detokenize{#1}}\\[4pt] figure not yet produced\vspace{2em}}}}
-    \caption{#2}\label{#3}
-  \end{figure*}}
 
 \begin{document}
 
