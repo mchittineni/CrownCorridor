@@ -1,0 +1,13 @@
+{
+  "theme": "base",
+  "themeVariables": {
+    "fontFamily": "\"Times New Roman\", Times, Georgia, serif",
+    "fontSize": "15px",
+    "primaryColor": "#e8eaf6",
+    "primaryTextColor": "#1a1a1a",
+    "primaryBorderColor": "#3949ab",
+    "lineColor": "#424242",
+    "tertiaryColor": "#fafafa"
+  },
+  "flowchart": { "curve": "linear", "nodeSpacing": 30, "rankSpacing": 34, "padding": 6 }
+}
