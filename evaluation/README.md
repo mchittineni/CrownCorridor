@@ -12,7 +12,8 @@ The `evaluation/` directory contains the evaluation protocol, statistical analys
 evaluation/
 ├── score.py               # Evaluation Protocol & Synthetic Leaderboard Guard Engine
 ├── run_baselines.py       # Baseline Evaluation Runner across IaC scanners
-├── analyze.py             # Evaluation Analysis & Metric Summary Aggregator
+├── analyze.py             # Evaluation Analysis & Metric Summary Aggregator (CLI entry point)
+├── tables.py              # LaTeX table emitters + the generated-table structural guard
 ├── corpus.py              # Infrastructure Corpus Analysis & Categorization
 ├── stats.py               # Statistical Significance & Confidence Interval Calculator
 ├── normalize.py           # Finding Normalization Engine & Canonical Schema Mapper
