@@ -1,4 +1,4 @@
-"""IaCSecBench — LaTeX table emission.
+r"""IaCSecBench — LaTeX table emission.
 
 Every result table in the manuscript is written from here. No table is
 hand-authored, so a number in the paper cannot drift from the measurement that
@@ -16,8 +16,14 @@ centring does not, once a value crosses from one integer digit to two.
 ``siunitx`` is deliberately not used: the fixed decimal places make it
 unnecessary, and its option names differ between versions 2 and 3.
 
-Interval and label columns stay left-aligned or wrap in an ``X`` column. They
-are not numbers, and right-aligning them ragged the opening brackets.
+Confidence intervals share a cell with the rate they qualify rather than
+occupying a column of their own: two columns per rate is wider than a
+single-column measure allows, and an interval is a bracketed literal whose own
+digits are already fixed-width, so it needs no column to align in. Label columns
+wrap in an ``X`` column.
+
+Every table states its target width as ``\linewidth``, so none can overrun the
+measure of a journal class this module cannot see.
 """
 
 from __future__ import annotations
@@ -98,10 +104,11 @@ def emit_performance_table(
 ) -> str:
     """Emits the confusion-matrix counts and MCC.
 
-    Counts and rates are separate tables. As one ten-column table this fitted a
-    two-column IEEE float only because such a float spans the page; at a
-    single-column journal measure it overran by more than an inch, and adding the
-    specificity column the compliant cases support would have made it worse. The
+    Counts and rates are separate tables. As one ten-column table this fitted
+    only because the earlier IEEE revision set it in a float spanning both
+    columns; at the single-column measure this journal uses it overran by more
+    than an inch, and adding the specificity column the compliant cases support
+    would have made it worse. The
     split is also the more readable arrangement: counts answer "what happened",
     :func:`emit_rates_table` answers "how precisely is it known".
     """
@@ -262,8 +269,9 @@ def emit_layer_table(
         "\\small",
         # The configuration column is an X column so a long label wraps inside the
         # cell instead of pushing the numeric columns off the edge of the float.
-        # tabularx needs an explicit target width; \columnwidth is the IEEE
-        # two-column measure this table is set in.
+        # tabularx needs an explicit target width, and \linewidth is whatever the
+        # journal class sets, so the table cannot overrun a measure this emitter
+        # does not know in advance.
         "\\begin{tabularx}{\\linewidth}{@{}X r r@{}}",
         "\\toprule",
         "\\textbf{Configuration} & \\textbf{Detected} & \\textbf{Recall (\\%)} \\\\",

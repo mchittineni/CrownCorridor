@@ -583,8 +583,7 @@ def emit_admissibility_table(cases: list[Case], results: list[ValidationResult],
         "\\small",
         "\\begin{tabularx}{\\linewidth}{X r r r}",
         "\\toprule",
-        "\\textbf{Corpus status} & \\textbf{Internal} & \\textbf{External} & "
-        "\\textbf{Total} \\\\",
+        "\\textbf{Corpus status} & \\textbf{Internal} & \\textbf{External} & \\textbf{Total} \\\\",
         "\\midrule",
         # Split by collection. Reported only as a combined 520 against 48, the
         # table let a reader compute a single ratio of 10.8 and no more, while the
@@ -603,8 +602,16 @@ def emit_admissibility_table(cases: list[Case], results: list[ValidationResult],
     collection_of = {case.case_id: case.collection for case in cases}
 
     def split(predicate: Any) -> tuple[int, int, int]:
-        internal = sum(1 for item in results if predicate(item) and collection_of.get(item.case_id) == "internal")
-        external = sum(1 for item in results if predicate(item) and collection_of.get(item.case_id) == "external")
+        internal = sum(
+            1
+            for item in results
+            if predicate(item) and collection_of.get(item.case_id) == "internal"
+        )
+        external = sum(
+            1
+            for item in results
+            if predicate(item) and collection_of.get(item.case_id) == "external"
+        )
         return internal, external, internal + external
 
     for status in CaseStatus:
@@ -835,8 +842,12 @@ def main(argv: list[str] | None = None) -> int:
     if args.latex:
         table_dir = ROOT / "results" / "tables"
         table_dir.mkdir(parents=True, exist_ok=True)
+        # Exactly one trailing newline, matching evaluation/analyze.py. Whatever the
+        # emitter ends with, the file on disk must be what pre-commit's
+        # end-of-file-fixer would leave, or every regeneration shows up as a diff.
         (table_dir / "corpus.tex").write_text(
-            emit_admissibility_table(cases, results, args.mode) + "\n", encoding="utf-8"
+            emit_admissibility_table(cases, results, args.mode).rstrip("\n") + "\n",
+            encoding="utf-8",
         )
         print(f"Wrote {(table_dir / 'corpus.tex').relative_to(ROOT)}")
 

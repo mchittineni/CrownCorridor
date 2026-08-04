@@ -63,9 +63,7 @@ def _load() -> tuple[dict, dict, dict]:
     evaluation = json.loads(EVALUATION.read_text(encoding="utf-8"))
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     report = (
-        json.loads(CORPUS_REPORT.read_text(encoding="utf-8"))
-        if CORPUS_REPORT.is_file()
-        else {}
+        json.loads(CORPUS_REPORT.read_text(encoding="utf-8")) if CORPUS_REPORT.is_file() else {}
     )
     return evaluation, manifest, report
 
@@ -79,7 +77,7 @@ def _version(manifest: dict, tool: str) -> str:
 
 
 def _mean_ms(evaluation: dict, tool: str, level: str) -> float | None:
-    entry = ((evaluation.get("results", {}).get(tool) or {}).get(level) or {})
+    entry = (evaluation.get("results", {}).get(tool) or {}).get(level) or {}
     return (entry.get("latency") or {}).get("mean_ms")
 
 
@@ -156,8 +154,7 @@ def normalization_workflow(evaluation: dict, manifest: dict, report: dict) -> st
     edges_out = "\n".join(f"    {t} --> norm" for t in COMPARATORS if t in ran)
 
     declared_line = (
-        f"<br/><i>from {declared} catalogue entries declared,"
-        f"<br/>{on_disk} present on disk</i>"
+        f"<br/><i>from {declared} catalogue entries declared,<br/>{on_disk} present on disk</i>"
         if declared
         else ""
     )
@@ -175,7 +172,7 @@ flowchart TD
 
     subgraph own["Pipeline layers"]
         l1["IaCSecBench L1<br/>repository-edge scanning"]
-        opa["OPA {_version(manifest, 'opa')}<br/>Rego over compiled plan"]
+        opa["OPA {_version(manifest, "opa")}<br/>Rego over compiled plan"]
     end
 
     subgraph engine["Finding normalization"]

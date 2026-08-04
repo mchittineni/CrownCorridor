@@ -216,6 +216,22 @@ def aggregate(
             for level in MATCH_LEVELS
         }
 
+        # Every case that produced usable output must land in exactly one cell of
+        # every level's matrix. ConfusionMatrix.assert_total existed to check
+        # precisely this and was never called, so the invariant was documented
+        # but not enforced. A case counted twice, or dropped between the scoring
+        # loop and the matrix, would otherwise surface only as an interval that
+        # is narrower than the evidence supports -- the same failure mode as the
+        # shared-directory defect disclosed in the manuscript, and equally
+        # invisible in aggregate.
+        n_scored = sum(
+            1
+            for case in cases
+            if (run := runs_by_key.get((tool, case.case_id))) is not None and run["status"] == "ok"
+        )
+        for level in MATCH_LEVELS:
+            results[tool][level].matrix.assert_total(n_scored)
+
     return results, status
 
 
@@ -267,9 +283,7 @@ def pairwise_comparisons(
     return comparisons
 
 
-def _discordant(
-    first: dict[str, str], second: dict[str, str]
-) -> tuple[list[str], int, int]:
+def _discordant(first: dict[str, str], second: dict[str, str]) -> tuple[list[str], int, int]:
     """Discordant counts over the cases two tools share.
 
     ``b`` counts cases the first tool classifies correctly and the second does not;
@@ -313,7 +327,9 @@ def all_pairwise_comparisons(
 
     for i, left in enumerate(tools):
         for right in tools[i + 1 :]:
-            shared, b, c = _discordant(results[left][level].outcomes, results[right][level].outcomes)
+            shared, b, c = _discordant(
+                results[left][level].outcomes, results[right][level].outcomes
+            )
             if not shared:
                 continue
             result = exact_mcnemar(b, c, reference=left, comparator=right, n_total=len(shared))
@@ -526,12 +542,19 @@ def main(argv: list[str] | None = None) -> int:
             )
             return 1
         for name, content in tables.items():
-            (TABLE_DIR / name).write_text(content + "\n", encoding="utf-8")
+            # Exactly one trailing newline. Several emitters end their line list
+            # with "" so that the table is followed by a blank line in the source,
+            # which combined with a bare `content + "\n"' wrote a trailing blank
+            # line. pre-commit's end-of-file-fixer then stripped it, so every
+            # regeneration left eight tables dirty in git and the freshness checks
+            # could not distinguish real drift from that churn.
+            (TABLE_DIR / name).write_text(content.rstrip("\n") + "\n", encoding="utf-8")
         print(f"Wrote {len(tables)} LaTeX tables to {TABLE_DIR.relative_to(ROOT)}/")
 
         LEADERBOARD_CSV.parent.mkdir(parents=True, exist_ok=True)
         LEADERBOARD_CSV.write_text(
-            emit_leaderboard_csv(results, status, args.level) + "\n", encoding="utf-8"
+            emit_leaderboard_csv(results, status, args.level).rstrip("\n") + "\n",
+            encoding="utf-8",
         )
         print(f"Wrote {LEADERBOARD_CSV.relative_to(ROOT)}")
 

@@ -153,16 +153,6 @@ class ControlMap:
         """Returns every canonical control a native rule maps to (possibly empty)."""
         return self._rule_to_controls.get((tool, rule_id.strip()), set())
 
-    def control_for(self, tool: str, rule_id: str) -> str | None:
-        """Returns one representative canonical control, or None if unmapped.
-
-        Retained for reporting a single label per finding. Scoring uses
-        :meth:`controls_for` so that a coarse rule is not penalised for mapping
-        to several controls.
-        """
-        mapped = self.controls_for(tool, rule_id)
-        return sorted(mapped)[0] if mapped else None
-
     def ambiguous_rules(self) -> dict[str, list[str]]:
         """Native rules covering more than one canonical control.
 

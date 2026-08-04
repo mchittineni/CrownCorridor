@@ -50,6 +50,7 @@ __all__ = [
     "balanced_accuracy",
     "exact_mcnemar",
     "mcnemar_chi2_corrected",
+    "minimum_detectable_discordance",
     "odds_ratio_haldane",
     "paired_proportion_diff_ci",
     "cohens_g",

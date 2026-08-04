@@ -85,12 +85,23 @@ which is suitable for CI.
 
 ## Print requirements when re-rendering
 
-- **Vector PDF** rather than PNG. The removed PNGs rendered at 231-406 dpi;
-  `pipeline_architecture.png` in particular was under IEEE's 300 dpi preference for
-  raster images (600 for line art).
-- **No alpha channel.** All three removed PNGs were RGBA. pdfTeX handles
-  transparency, but IEEE PDF eXpress sometimes flags it. Vector output from
-  `--pdfFit` avoids the question.
-- Check legibility at the _rendered_ size: one column is 3.5 in, both columns
-  7.16 in. The removed `artifact_structure.png` was a 10:1 strip whose labels
-  fell to roughly 3 pt even across both columns, which is why it is now a listing.
+The manuscript targets Empirical Software Engineering and is set **single
+column**. The figures were originally sized for a two-column IEEE measure, so the
+constraints below changed when the venue did.
+
+- **Vector PDF** rather than PNG. Vector output has no resolution to be wrong
+  about, which removes the whole class of problem the superseded PNGs had: they
+  rendered at 231-406 dpi, and `pipeline_architecture.png` fell below the 300 dpi
+  that raster images in print generally need.
+- **No alpha channel.** All three superseded PNGs were RGBA. pdfTeX handles
+  transparency, but publisher preflight tooling sometimes flags it, and `--pdfFit`
+  avoids the question entirely.
+- **Check legibility at the rendered size, which is now one measure, not two.**
+  Springer's `smallextended` text block is a single column, and the manuscript's
+  fallback build sets it to 117 mm; `\linewidth` is what `\paperfigure` scales to
+  in either. A figure wider than about 1.4:1 loses height at this measure, which
+  is why the replication-package layout is a `verbatim` listing rather than a
+  drawing: as a 10:1 strip its labels fell to roughly 3 pt.
+- **There is no `figure*` any more.** A both-columns float has no meaning in a
+  one-column class. If a diagram will not fit, redraw it taller rather than
+  reaching for a spanning float.

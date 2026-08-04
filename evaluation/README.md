@@ -14,6 +14,7 @@ evaluation/
 ├── run_baselines.py       # Baseline Evaluation Runner across IaC scanners
 ├── analyze.py             # Evaluation Analysis & Metric Summary Aggregator (CLI entry point)
 ├── tables.py              # LaTeX table emitters + the generated-table structural guard
+├── metrics.py             # Metric dataclass for the deprecated score.py path only
 ├── corpus.py              # Infrastructure Corpus Analysis & Categorization
 ├── stats.py               # Statistical Significance & Confidence Interval Calculator
 ├── normalize.py           # Finding Normalization Engine & Canonical Schema Mapper
@@ -37,10 +38,36 @@ evaluation/
 - A tool that is not installed is reported as absent and omitted from every table. It is never assigned an
   assumed detection rate.
 
-### 2. Evaluation Protocol & Synthetic Guard (`score.py`)
+### 2. Statistical Implementation (`stats.py`)
 
-- Computes Clopper-Pearson 95% confidence intervals (`CI_95%`) and McNemar's statistical significance.
-- Requires `IACSECBENCH_ALLOW_SYNTHETIC=1` when running synthetic leaderboard calculations to prevent accidental publication of non-measured metrics.
+Pure standard library, so the replication package runs on a bare interpreter. Every
+method is exact or explicitly labelled an approximation, and each is pinned by a
+test to independently derived values rather than to its own output.
+
+- Exact **Clopper-Pearson** intervals for recall, precision and specificity. Chosen
+  for the coverage guarantee, not for width: coverage is never below nominal,
+  whereas score and adjusted-Wald intervals undercover near the boundary, which is
+  where most of these estimates sit. `wilson` is also provided so a reader who
+  prefers the score interval can obtain it.
+- The **exact binomial McNemar** test, used in preference to the chi-square
+  approximation, which the module flags invalid when a discordant cell is small.
+- `minimum_detectable_discordance` — the smallest $|b-c|$ the exact test could have
+  called significant at a given discordant count, or `None` when no split could.
+  This distinguishes "the tools are similar" from "the comparison had no power":
+  at five or fewer discordant pairs the smallest attainable two-sided $p$ is
+  0.0625, so no outcome can reject. Both McNemar tables carry it as a $d_{\min}$
+  column.
+- **Holm-Bonferroni** correction, Haldane-Anscombe-corrected odds ratios so a zero
+  cell stays finite, Cohen's $g$, and MCC.
+
+### 2a. Deprecated Scoring Path (`score.py`, `metrics.py`)
+
+- `score.py` derives leaderboard metrics from hardcoded per-tool rates rather than
+  from measurement, and `metrics.py` is the metric implementation it uses. Both are
+  retained only so the gated path keeps working; **prefer `stats.py` and
+  `analyze.py` for anything reported.**
+- Running `score.py` requires `IACSECBENCH_ALLOW_SYNTHETIC=1`. CI asserts that it
+  **refuses** without the opt-in, so the guard cannot rot unnoticed.
 
 ### 3. Finding Normalization Engine (`normalize.py`)
 

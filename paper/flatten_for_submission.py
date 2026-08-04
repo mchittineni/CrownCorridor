@@ -4,7 +4,7 @@ r"""Rewrites a copied manuscript so its result tables resolve inside the bundle.
 The working tree keeps generated tables in ``results/tables/`` and reaches them
 with ``\input{../results/tables/...}``, so the generator owns them and the
 manuscript cannot drift from the measurements. That path does not survive
-submission: IEEE and arXiv unpack the source into a single directory, where the
+submission: Springer and arXiv unpack the source into a single directory, where the
 parent reference resolves to nothing and the build fails once per table.
 
 This appends a ``\renewcommand`` for ``\resulttable`` immediately before
