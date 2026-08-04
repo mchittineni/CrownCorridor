@@ -14,8 +14,8 @@
         },
         "code_block": null,
         "file_path": "/cis_3_1_cloudtrail.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-8mytbrvr/case/cis_3_1_cloudtrail.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-8mytbrvr/case/cis_3_1_cloudtrail.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-0bk8x124/case/cis_3_1_cloudtrail.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-0bk8x124/case/cis_3_1_cloudtrail.tf",
         "file_line_range": [
           3,
           9
@@ -38,7 +38,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-aws-cloudtrail-defines-an-sns-topic",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-8mytbrvr/case/cis_3_1_cloudtrail.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-0bk8x124/case/cis_3_1_cloudtrail.tf"
       },
       {
         "check_id": "CKV_AWS_36",
@@ -52,8 +52,8 @@
         },
         "code_block": null,
         "file_path": "/cis_3_1_cloudtrail.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-8mytbrvr/case/cis_3_1_cloudtrail.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-8mytbrvr/case/cis_3_1_cloudtrail.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-0bk8x124/case/cis_3_1_cloudtrail.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-0bk8x124/case/cis_3_1_cloudtrail.tf",
         "file_line_range": [
           3,
           9
@@ -76,7 +76,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-2",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-8mytbrvr/case/cis_3_1_cloudtrail.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-0bk8x124/case/cis_3_1_cloudtrail.tf"
       },
       {
         "check_id": "CKV_AWS_251",
@@ -90,8 +90,8 @@
         },
         "code_block": null,
         "file_path": "/cis_3_1_cloudtrail.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-8mytbrvr/case/cis_3_1_cloudtrail.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-8mytbrvr/case/cis_3_1_cloudtrail.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-0bk8x124/case/cis_3_1_cloudtrail.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-0bk8x124/case/cis_3_1_cloudtrail.tf",
         "file_line_range": [
           3,
           9
@@ -114,7 +114,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-aws-cloudtrail-logging-is-enabled",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-8mytbrvr/case/cis_3_1_cloudtrail.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-0bk8x124/case/cis_3_1_cloudtrail.tf"
       },
       {
         "check_id": "CKV_AWS_67",
@@ -128,8 +128,8 @@
         },
         "code_block": null,
         "file_path": "/cis_3_1_cloudtrail.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-8mytbrvr/case/cis_3_1_cloudtrail.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-8mytbrvr/case/cis_3_1_cloudtrail.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-0bk8x124/case/cis_3_1_cloudtrail.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-0bk8x124/case/cis_3_1_cloudtrail.tf",
         "file_line_range": [
           3,
           9
@@ -152,7 +152,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-1",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-8mytbrvr/case/cis_3_1_cloudtrail.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-0bk8x124/case/cis_3_1_cloudtrail.tf"
       },
       {
         "check_id": "CKV_AWS_35",
@@ -166,8 +166,8 @@
         },
         "code_block": null,
         "file_path": "/cis_3_1_cloudtrail.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-8mytbrvr/case/cis_3_1_cloudtrail.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-8mytbrvr/case/cis_3_1_cloudtrail.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-0bk8x124/case/cis_3_1_cloudtrail.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-0bk8x124/case/cis_3_1_cloudtrail.tf",
         "file_line_range": [
           3,
           9
@@ -190,7 +190,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-7",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-8mytbrvr/case/cis_3_1_cloudtrail.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-0bk8x124/case/cis_3_1_cloudtrail.tf"
       },
       {
         "check_id": "CKV2_AWS_10",
@@ -223,14 +223,14 @@
             }
           },
           "evaluated_keys": [
-            "resource_type",
-            "cloud_watch_logs_group_arn"
+            "cloud_watch_logs_group_arn",
+            "resource_type"
           ]
         },
         "code_block": null,
         "file_path": "/cis_3_1_cloudtrail.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-8mytbrvr/case/cis_3_1_cloudtrail.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-8mytbrvr/case/cis_3_1_cloudtrail.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-0bk8x124/case/cis_3_1_cloudtrail.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-0bk8x124/case/cis_3_1_cloudtrail.tf",
         "file_line_range": [
           3,
           9
@@ -253,7 +253,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/ensure-cloudtrail-trails-are-integrated-with-cloudwatch-logs",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-8mytbrvr/case/cis_3_1_cloudtrail.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_3_1_cloudtrail-0bk8x124/case/cis_3_1_cloudtrail.tf"
       }
     ]
   },

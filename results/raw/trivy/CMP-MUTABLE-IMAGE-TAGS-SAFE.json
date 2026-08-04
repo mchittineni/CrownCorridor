@@ -3,9 +3,9 @@
   "Trivy": {
     "Version": "0.73.0"
   },
-  "ReportID": "019fc98e-5ece-7182-b4ae-4a0eb2b12196",
-  "CreatedAt": "2026-08-03T22:36:18.638101+01:00",
-  "ArtifactName": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-MUTABLE-IMAGE-TAGS-SAFE-dzh6nmzh/case",
+  "ReportID": "019fcc86-02fd-7626-9365-1acd584ce3c8",
+  "CreatedAt": "2026-08-04T12:26:02.493404+01:00",
+  "ArtifactName": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-CMP-MUTABLE-IMAGE-TAGS-SAFE-80ig06no/case",
   "ArtifactType": "filesystem",
   "Results": [
     {
