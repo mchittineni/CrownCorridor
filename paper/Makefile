@@ -35,10 +35,16 @@ paper: $(TEX).pdf
 # "Nothing to be done" and left the old numbers in the PDF -- the precise drift
 # this build is supposed to prevent.
 $(TEX).pdf: $(TEX).tex refs.bib $(wildcard $(TABLES)/*.tex) $(wildcard figures/*.pdf)
-	@test -f $(TABLES)/performance.tex || { \
-	  echo "error: $(TABLES)/performance.tex missing."; \
-	  echo "       Run 'make tables' -- do not hand-write result tables."; \
-	  exit 1; }
+	@for t in performance rates strictness mcnemar allpairs latency layers corpus; do \
+	  test -f $(TABLES)/$$t.tex || { \
+	    echo "error: $(TABLES)/$$t.tex missing."; \
+	    echo "       Run 'make tables' -- do not hand-write result tables."; \
+	    exit 1; }; \
+	done
+	@# EMSE requires Springer's svjour3, which is not on CTAN and cannot be
+	@# fetched by a build. Say so once per build rather than let the author
+	@# discover at submission that the PDF was set in the fallback class.
+	@test -f svjour3.cls || echo "NOTE: svjour3.cls absent; building in the article fallback. See the header of $(TEX).tex."
 ifneq ($(HAVE_TECTONIC),)
 	tectonic -X compile --keep-intermediates $(TEX).tex
 else ifneq ($(HAVE_PDFLATEX),)
@@ -66,8 +72,14 @@ check:
 	@echo "== Markdown bold left in source =="
 	@grep -n '\*\*' $(TEX).tex || echo "  none"
 	@echo
+	@echo "== bare \\cite (ambiguous under natbib author-year; use \\citep/\\citet) =="
+	@grep -n '\\cite{' $(TEX).tex || echo "  none"
+	@echo
 	@echo "== citations in .tex absent from refs.bib =="
-	@for k in $$(grep -o '\\cite{[^}]*}' $(TEX).tex | sed 's/\\cite{//;s/}//' | tr ',' '\n' | tr -d ' ' | sort -u); do \
+	@# Matches \citep, \citet, \citeauthor and bare \cite. Matching only `\cite{'
+	@# made this check pass silently the moment the manuscript moved to author-year
+	@# citations, which is the failure mode a check like this exists to prevent.
+	@for k in $$(grep -oE '\\cite[a-z]*\{[^}]*\}' $(TEX).tex | sed 's/\\cite[a-z]*{//;s/}//' | tr ',' '\n' | tr -d ' ' | sort -u); do \
 	  grep -q "{$$k," refs.bib || echo "  MISSING: $$k"; done; echo "  (blank means all resolve)"
 	@echo
 	@echo "== refs.bib entries never cited =="
@@ -95,6 +107,12 @@ dist: $(TEX).pdf
 	@# reports. `find -exec' rather than a glob, so an empty match is not an error.
 	@find figures -maxdepth 1 -type f \( -name '*.pdf' -o -name '*.eps' \) \
 	  -exec cp {} $(DIST)/figures/ \;
+	@# Springer's class, .clo and .bst if the author has fetched them. EMSE wants
+	@# the source to build as submitted, and svjour3 is not in any TeX
+	@# distribution, so the bundle has to carry it. `find -exec' rather than a
+	@# glob, so an absent file is not an error.
+	@find . -maxdepth 1 -type f \( -name 'svjour3.cls' -o -name 'svglov3.clo' \
+	  -o -name 'spbasic.bst' \) -exec cp {} $(DIST)/ \;
 	@# Redirect \resulttable at the flattened copies. Delegated to a script because
 	@# the replacement text is backslashes, braces and a `#' parameter marker, each
 	@# of which make or the shell would consume first.
