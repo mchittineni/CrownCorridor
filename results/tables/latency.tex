@@ -5,15 +5,15 @@
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\columnwidth}{@{}l X r@{\,$\pm$\,}r@{}}
+\begin{tabularx}{\linewidth}{@{}l X r@{\,$\pm$\,}r@{}}
 \toprule
 \textbf{Tool} & \textbf{Evaluation layer} & \multicolumn{2}{c}{\textbf{Latency (ms)}} \\
 \midrule
-Checkov & AST static analysis & $1853.4$ & $58.9$ \\
-IaCSecBench L1 & Repository-edge scanning & $0.1$ & $0.1$ \\
-OPA (plan-level) & Rego over compiled plan & $12.9$ & $5.8$ \\
-tfsec & HCL lexical scanning & $275.4$ & $8.4$ \\
-Trivy & HCL scanning, tfsec successor & $405.5$ & $32.0$ \\
+Checkov & AST static analysis & $1853.42$ & $58.90$ \\
+IaCSecBench L1 & Repository-edge scanning & $0.15$ & $0.05$ \\
+OPA (plan-level) & Rego over compiled plan & $12.94$ & $5.79$ \\
+tfsec & HCL lexical scanning & $275.37$ & $8.35$ \\
+Trivy & HCL scanning, tfsec successor & $405.48$ & $31.97$ \\
 \bottomrule
 \end{tabularx}
 \end{table}
