@@ -105,7 +105,7 @@ drift apart silently again.
   `IAM-WILDCARD-ACTION-SAFE`, `STO-NO-ACCESS-LOGGING-SAFE` and
   `NET-UNRESTRICTED-INGRESS-VULN`. Their agreement is not blind. Excluding all
   five, agreement is 42/43 with the same single disagreement outside that set.
-- **One residual blinding leak.** `cis_examples/cis_3_1_cloudtrail` declares
+- **One residual blinding leak.** `external/cis_examples/aws/cis_3_1_cloudtrail` declares
   `resource "aws_cloudtrail" "insecure_trail"`. The name hints at the label. It is
   genuine upstream CIS-example content and was left unmodified rather than renamed,
   since renaming would alter the case under test.
