@@ -861,7 +861,7 @@ def main(argv: list[str] | None = None) -> int:
         }
         out_path = args.json if args.json.is_absolute() else (Path.cwd() / args.json)
         out_path.parent.mkdir(parents=True, exist_ok=True)
-        out_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+        out_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
         print(f"\nWrote {_display_path(out_path)}")
 
     return 0

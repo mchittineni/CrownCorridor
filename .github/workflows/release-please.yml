@@ -50,7 +50,6 @@ jobs:
             experiments/ \
             infrastructure/ \
             leaderboard/ \
-            paper/ \
             pipeline/ \
             results/ \
             security_framework/ \

@@ -62,6 +62,18 @@ Measure latency on an otherwise idle machine. It is the one metric that reflects
 the host rather than the tool: background load inflates the mean and can multiply
 the standard deviation several-fold, and no number of repeats corrects for it.
 
+## Regeneration is byte-stable
+
+Re-running the analysis over unchanged inputs must leave `git status` clean. Every
+generator here writes exactly one trailing newline, because pre-commit's
+`end-of-file-fixer` appends one to any file that lacks it: a writer that omits it
+puts the hook and the generator in a loop, and the file then reads as permanently
+modified whether or not a number actually moved. That churn is not cosmetic — it
+hides real drift, which is the whole signal these artefacts exist to carry.
+
+If a regeneration does show a diff, the numbers changed. Read it rather than
+committing it blind.
+
 ## Why this file exists
 
 A fabricated `benchmark_results.json` and a measured `evaluation.json` were

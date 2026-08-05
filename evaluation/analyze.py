@@ -513,7 +513,10 @@ def main(argv: list[str] | None = None) -> int:
         "caveats": _caveats(n_negatives, unverified, total_unmapped, total_unmapped_on_missed),
     }
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
-    OUT_JSON.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    # Trailing newline for the same reason the tables below carry one: without it
+    # the end-of-file-fixer pre-commit hook appends one, every analysis run strips
+    # it again, and the file reads as permanently modified.
+    OUT_JSON.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
     print(f"\nWrote {OUT_JSON.relative_to(ROOT)}")
 
     if not args.no_tables:
