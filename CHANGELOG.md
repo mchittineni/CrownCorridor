@@ -29,6 +29,14 @@ Releases are published automatically by [`release-please.yml`](.github/workflows
 - **`PATCH` (x.y.Z)** — Pipeline, validator, and ETL infrastructure changes (`pipeline/**`, `application/api/**`).
 - **`MAJOR` (X.0.0)** — Web application features, layout, and UI frontend changes (`application/app/**`).
 
+## [1.3.1](https://github.com/mchittineni/iacsecbench/compare/v1.3.0...v1.3.1) (2026-08-07)
+
+
+### Bug Fixes
+
+* **Readme:** Update README ([7bd9246](https://github.com/mchittineni/iacsecbench/commit/7bd92461283d4e3a09ed3923c13129fa74f69e06))
+* **workflows:** restore Trivy cache warming and the Pages artifact action ([6c17c56](https://github.com/mchittineni/iacsecbench/commit/6c17c56b64e7803aca58541c252e78c8f04cb869))
+
 ## [1.3.0](https://github.com/mchittineni/iacsecbench/compare/v1.2.0...v1.3.0) (2026-08-03)
 
 
