@@ -90,6 +90,16 @@ A regression test (`evaluation/tests/test_control_map.py`) now pins the CIS cita
 in the control map to the one in the generator specification, so the two cannot
 drift apart silently again.
 
+## Identity of the second rater
+
+Springer requires methodological use of a language model to be disclosed in the
+methods, and κ is unverifiable without it: the figure is a property of one model
+under one prompt. **This is not yet recorded.** [`rater_prompt.txt`](rater_prompt.txt)
+holds the two fields to fill (`rater2_model`, `rater2_access`) and the verbatim
+instruction to paste; the same values fill `\ratermodel` and `\rateraccess` in
+`paper/iacsecbench.tex`, where they currently render as visible TODO placeholders
+and `make check` blocks submission on them.
+
 ## Limitations — read before citing κ
 
 - **The second rater is an LLM, not an independent human investigator.** This does
