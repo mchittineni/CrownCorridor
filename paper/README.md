@@ -80,16 +80,16 @@ in `independent_relabelling.json`.
 Checked against Springer's [EMSE submission
 guidelines](https://link.springer.com/journal/10664/submission-guidelines):
 
-| Requirement                                              | Status                                       |
-| -------------------------------------------------------- | -------------------------------------------- |
-| Abstract 150–250 words                                   | 249, structured (Context…Conclusion)         |
-| 4–6 keywords                                             | 6                                            |
-| Single-blind review                                      | no anonymisation needed; author details stay |
-| Statements and Declarations (Springer's exact heading)    | present, all seven sub-statements            |
-| Affiliation as institution, city, country                | **open** — currently a job title, no city    |
-| ORCID                                                    | **absent** (recommended, not mandatory)      |
-| `svjour3` class files                                    | **absent** — fetch before `make dist`        |
-| DOIs as full links in references                         | 43 of 52; the other 9 are books and standards |
+| Requirement                                            | Status                                        |
+| ------------------------------------------------------ | --------------------------------------------- |
+| Abstract 150–250 words                                 | 249, structured (Context…Conclusion)          |
+| 4–6 keywords                                           | 6                                             |
+| Single-blind review                                    | no anonymisation needed; author details stay  |
+| Statements and Declarations (Springer's exact heading) | present, all seven sub-statements             |
+| Affiliation as institution, city, country              | **open** — currently a job title, no city     |
+| ORCID                                                  | **absent** (recommended, not mandatory)       |
+| `svjour3` class files                                  | **absent** — fetch before `make dist`         |
+| DOIs as full links in references                       | 43 of 52; the other 9 are books and standards |
 
 The abstract is 1 word under the ceiling. **Re-run the count after any edit to
 it** — an added clause is a format violation, not a style choice.
