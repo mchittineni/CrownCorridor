@@ -66,6 +66,19 @@ check:
 	@echo "== unresolved author TODOs =="
 	@grep -n 'TODO(author)' $(TEX).tex || echo "  none"
 	@echo
+	@# EMSE caps the abstract at 250 words and floors it at 150. The long form of
+	@# this abstract ran to 344, so this is a limit the manuscript has already
+	@# crossed once; a single added clause crosses it again, and the editorial
+	@# office checks it before the paper reaches a reviewer.
+	@echo "== abstract length (EMSE: 150-250 words) =="
+	@python3 -c 'import re,sys; \
+t=open("$(TEX).tex").read(); \
+a=re.search(r"\\begin\{abstract\}(.*?)\\end\{abstract\}",t,re.S).group(1); \
+a=re.sub(r"(?m)^\s*%.*$$","",a); \
+n=len(re.sub(r"\\textbf\{([^}]*)\}",r"\1",a).split()); \
+print("  %d words -- %s" % (n, "ok" if 150<=n<=250 else "OUT OF RANGE")); \
+sys.exit(0 if 150<=n<=250 else 1)' || echo "  fix the abstract before submitting"
+	@echo
 	@echo "== ampersands to review (tabular rows are fine; prose is not) =="
 	@grep -n '[^\\&]&[^&]' $(TEX).tex | grep -v '\\\\' | grep -v '^\s*[0-9]*:\s*%' || echo "  none found"
 	@echo

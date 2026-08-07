@@ -64,10 +64,35 @@ make clean    # remove intermediates
 under natbib author–year), ampersands loose in prose, Markdown bold left in the
 source, citations absent from `refs.bib`, and `refs.bib` entries never cited.
 
-**One `TODO(author)` is currently open and blocks submission:** the exact model
-identifier, version, and prompt of the large language model used as the second
-rater in the blind relabelling pass. Springer requires methodological AI use to be
-disclosed in the methods, and an unnamed automated rater is not reproducible.
+**Three `TODO(author)` markers are open and block submission**, all one fact: the
+identity of the large language model used as the second rater in the blind
+relabelling pass. Springer requires methodological AI use to be disclosed in the
+methods, and an unnamed automated rater is not reproducible. The disclosure
+paragraph is written and sits in Section 4.3; it draws the two missing values from
+`\ratermodel` and `\rateraccess`, defined together in the preamble, which render as
+visible placeholders in the PDF until filled. Paste the verbatim prompt into
+[`benchmark/labelling/rater_prompt.txt`](../benchmark/labelling/rater_prompt.txt),
+which the manuscript cites by path, and record the same two values under `method`
+in `independent_relabelling.json`.
+
+## ✅ EMSE format compliance
+
+Checked against Springer's [EMSE submission
+guidelines](https://link.springer.com/journal/10664/submission-guidelines):
+
+| Requirement                                              | Status                                       |
+| -------------------------------------------------------- | -------------------------------------------- |
+| Abstract 150–250 words                                   | 249, structured (Context…Conclusion)         |
+| 4–6 keywords                                             | 6                                            |
+| Single-blind review                                      | no anonymisation needed; author details stay |
+| Statements and Declarations (Springer's exact heading)    | present, all seven sub-statements            |
+| Affiliation as institution, city, country                | **open** — currently a job title, no city    |
+| ORCID                                                    | **absent** (recommended, not mandatory)      |
+| `svjour3` class files                                    | **absent** — fetch before `make dist`        |
+| DOIs as full links in references                         | 43 of 52; the other 9 are books and standards |
+
+The abstract is 1 word under the ceiling. **Re-run the count after any edit to
+it** — an added clause is a format violation, not a style choice.
 
 ## 📦 Submission bundle
 

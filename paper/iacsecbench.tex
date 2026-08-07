@@ -55,6 +55,21 @@
 % so a path cannot acquire a stray backslash in transcription.
 \usepackage[hidelinks,breaklinks]{hyperref}   % load last
 
+% The identity of the model used in the consistency audit of Section~\ref{sec:labelling}.
+% Springer's policy requires methodological use of a large language model to be
+% disclosed in the methods, and an unnamed rater is not reproducible in any case:
+% the reported agreement is a property of one model under one instruction.
+% Defined here so there is a single place to edit, and left as TODO(author) so
+% `make check' keeps blocking submission until the real values are supplied.
+% Each renders a visible placeholder in the PDF rather than silently omitting.
+% Kept short: a long bold placeholder with no hyphenation points overfulls the
+% line it lands on, and that warning would then be reported against the prose
+% rather than against the missing value. benchmark/labelling/rater_prompt.txt
+% carries the full statement of what each value must contain.
+\newcommand{\ratermodel}{\textbf{[TODO(author): model id, version]}}
+\newcommand{\rateraccess}{\textbf{[TODO(author): access route and decoding
+  parameters]}}
+
 % Author-year citation groups are long, and two or three in one parenthesis do not
 % fit a narrow measure at any breakpoint TeX would otherwise choose.
 % \emergencystretch is LaTeX's sanctioned last resort for exactly this: it widens
@@ -113,39 +128,37 @@ Harness for Evaluating Infrastructure-as-Code Security Validation}
 
 %------------------------------------------------------------------------------
 \begin{abstract}
+% Springer caps the abstract at 250 words. The long form of this abstract ran to
+% 344, so the cuts are load-bearing: the repository-edge 88.5-point figure, the
+% "two independent rule sets" gloss, and the normalization-engine enumeration in
+% the closing sentence all survive in the body and were dropped here first.
 \textbf{Context.} Infrastructure as Code (IaC) is the dominant mechanism for
 provisioning cloud platforms, and pre-deployment security validation is
-fragmented across static scanners, policy engines, and infrastructure test
-frameworks. Comparing these tools is impeded by two obstacles: they operate at
-incompatible abstraction levels, from lexical scanning of source templates to
-policy evaluation over resolved execution plans, and each reports findings in a
-bespoke schema whose rule identifiers carry no shared semantics. Benchmarks
-authored by tool developers compound the difficulty, because the same reading of
-a security control tends to define both the policy and the ground truth.
-\textbf{Objective.} We ask how much the evaluation procedure itself, meaning what
-counts as a correct detection and which cases are admitted, determines the
-conclusions such a comparison reaches.
-\textbf{Method.} We present IaCSecBench, an open harness that normalizes
-heterogeneous scanner output onto a canonical control taxonomy before any
-confusion matrix is formed, admits cases only through a mechanically enforced
-procedure, and scores detection at three explicit matching criteria. Over 48
-admissible cases (26 vulnerable, 22 compliant) we evaluate three third-party
-scanners spanning two independent rule sets, policy evaluation over compiled
-plan documents, and a repository-edge layer, reporting exact Clopper--Pearson
-intervals and exact binomial McNemar tests under Holm--Bonferroni correction.
+fragmented across static scanners, policy engines, and test frameworks.
+Comparing them is impeded by incompatible abstraction levels, from lexical
+template scanning to policy evaluation over resolved plans, and by bespoke
+schemas with no shared rule semantics. Developer-authored benchmarks compound
+this.
+\textbf{Objective.} We ask how far the evaluation procedure, what counts as a
+correct detection and which cases are admitted, determines a comparison's
+conclusions.
+\textbf{Method.} IaCSecBench is an open harness that normalizes heterogeneous
+scanner output onto a canonical control taxonomy before scoring, admits cases
+through a mechanically enforced procedure, and scores detection at three matching
+criteria. Over 48 admissible cases (26 vulnerable, 22 compliant) we evaluate
+three third-party scanners, plan-level policy evaluation, and a repository-edge
+layer, reporting exact Clopper--Pearson intervals and exact binomial McNemar
+tests under Holm--Bonferroni correction.
 \textbf{Results.} The matching criterion moves apparent recall by 7.7 to 11.5
-percentage points among the source-level and plan-level tools, which is the same
-magnitude as the entire spread between those tools, and it reorders them; on the
-repository-edge layer it moves recall by 88.5 points. No pairwise difference
-between scanners survives correction, and for three of the ten pairs no possible
-outcome could have reached significance at this many discordant cases, which we
-report rather than describing those tools as equivalent. A third-party scanner,
-not the pipeline this paper contributes, attains the highest point-estimate
-recall.
-\textbf{Conclusion.} A scanner comparison that does not state its matching
-criterion and its admissibility rule is not reproducible at any corpus size. The
-corpus, normalization engine, execution harness, and analysis code are released
-as a replication package in which every reported table is a generated artefact.
+percentage points among the source-level and plan-level tools, as much as the
+entire spread between them, and reorders them. No pairwise difference survives
+correction, and for three pairs no outcome could have been significant, which we
+report rather than calling them equivalent. A third-party scanner, not
+this paper's pipeline, attains the highest recall.
+\textbf{Conclusion.} A comparison that does not state its matching criterion and
+admissibility rule is not reproducible at any corpus size. The corpus, harness,
+and analysis code are released as a replication package whose every reported table is
+a generated artefact.
 \end{abstract}
 
 \keywords{Infrastructure as Code \and Security validation \and Benchmarking
@@ -538,12 +551,24 @@ coefficient computed over the generator's own output would measure its
 determinism, not concurrence, so we do not report one.
 
 We instead ran a blind second labelling pass against the threat that does apply.
-\textbf{The second rater is a large language model, not a second human
-investigator}, and that choice bounds the claim in ways set out below.
-% TODO(author): record the exact model identifier, version, and the labelling
-% prompt in benchmark/labelling/ and name them here. Springer's policy requires
-% methodological AI use to be disclosed in the methods; an unnamed automated
-% rater is also not reproducible.
+It is an \emph{automated consistency audit}, not a second rating in the
+inter-rater sense: \textbf{the second labeller is a large language model, not a
+second human investigator}. We name it that way throughout because the word
+\emph{rater} imports a reliability claim this design cannot support, and the
+distinction governs how the agreement below may be read.
+
+The auditing model was \ratermodel, accessed via \rateraccess. Its instruction is
+recorded verbatim in \path{benchmark/labelling/rater_prompt.txt}, and the labels
+and reasons it returned are recorded per case alongside it, in
+\path{independent_relabelling.json}. Each case was labelled in
+a separate session carrying no history from any other case. We state the identifier
+and the instruction because the agreement reported below is a property of one
+model under one prompt, and neither that figure nor the single disagreement it
+surfaces can be re-derived without both. The model was used as a measuring
+instrument here and nowhere else in the study's analysis; it is not an author, and
+the responsibility for the labels it produced rests with the author who chose to
+admit them as evidence.
+
 For each admissible case a review view was constructed containing only the
 Terraform configuration and the canonical control under test, with every comment
 line removed, since the generator writes the expected label and its rationale
@@ -555,7 +580,9 @@ control text alone, with a reason recorded before any comparison.
 
 Agreement is reported before reconciliation, since resolving disagreements
 guarantees consensus: 47 of 48 cases agreed, giving raw agreement of 97.92\% and
-Cohen's $\kappa = 0.958$ against a chance-agreement baseline of 50.17\%. With
+Cohen's $\kappa = 0.958$ against a chance-agreement baseline of 50.17\%. We report
+$\kappa$ as a consistency figure for one model under one prompt and not as an
+inter-rater reliability coefficient, for which this design supplies no evidence. With
 this class balance, 26 vulnerable against 22 compliant, expected agreement is
 close to one half, so $\kappa$ here carries little information beyond the raw
 count; the $2 \times 2$ agreement table is in the replication package.
@@ -581,11 +608,10 @@ CIS control it cites. No confusion-matrix entry changed. A regression test now
 pins the citation in the taxonomy to the one in the generator specification so
 the two cannot drift apart silently.
 
-Two properties bound what this pass establishes. The second rater is automated,
-so this is not human inter-rater reliability; and its reading of the control texts
-derives from the same public documentation the specifications were written from,
-so the two raters are not fully independent and agreement is biased upward
-accordingly. Five cases had been inspected during earlier debugging and their
+Two properties bound what this pass establishes. The audit reads the control texts
+from the same public documentation the specifications were written from, so the two
+readings are not fully independent and agreement is biased upward accordingly.
+Five cases had been inspected during earlier debugging and their
 agreement is not blind; excluding all five leaves 42 of 43 agreeing, with the
 disagreement outside that set. The full per-case labels, reasons, and these
 caveats are in the replication package.
@@ -615,6 +641,11 @@ required to express the corresponding assertions?
 \item \textbf{RQ5}: Does effectiveness persist on independently sourced
 configurations?
 \end{itemize}
+
+The inferential statistics that answer RQ2 are there to characterise uncertainty
+and to bound what a comparison at this corpus size could resolve. They are not
+there to establish that one tool is superior, and no claim of superiority or of
+equivalence is drawn from them anywhere in this paper.
 
 \subsection{Measurement Environment and Tool Versions}
 \label{sec:environment}
@@ -996,15 +1027,25 @@ label encoded, where the stricter reading matched the reference policy set. That
 the pass found such a case is evidence the mechanism is real rather than merely
 conceivable.
 
-It is not a sufficient mitigation, and we do not present it as one. The second
-rater is a language model, so no claim of human inter-rater reliability is made,
-and its reading of control texts derives from the same public documentation the
-specifications were written from, so the two raters share provenance and
-agreement is biased upward. A single investigator still wrote every
-specification. The external subset is the only part of the corpus outside this
-failure mode entirely, and four cases cannot estimate effectiveness. Independent
-relabelling by a second human who has not read the policy set remains the correct
-mitigation and remains outstanding.
+The audit is not a sufficient mitigation. Its second labeller is a language model
+whose reading of control texts derives from the same public documentation the
+specifications were written from, so the two readings share provenance, agreement
+is biased upward, and no claim of human inter-rater reliability is available from
+it. A single investigator still wrote every specification, and the external
+subset, the only part of the corpus outside this failure mode, is four cases.
+
+What would remove this threat rather than bound it is a separation of benchmark
+authorship from policy implementation, and we state it as a protocol because this
+corpus does not satisfy it: controls selected by someone other than the author of
+the detection rules; cases generated without reference to any detection
+implementation; labels fixed and recorded before the rules that detect them are
+written; and the corpus frozen, by commit, before any tool is executed against it.
+Only the last holds here, mechanically, since the run manifest records the
+repository commit each measurement was taken against. The first three are the
+substantive ones, and independent relabelling by a second human who has not read
+the policy set is the cheapest step toward them. A benchmark satisfying all four
+could offer its ground truth as independent evidence of detection capability;
+this one offers it as a stated and auditable assumption.
 
 Results on the controlled corpus should therefore be read as an upper bound on
 field performance. A high score on a developer-authored corpus is at least as
@@ -1118,6 +1159,49 @@ scenario corpus, and the policy sources are separate top-level artefacts, so a
 reader can substitute an independently authored label set without modifying the
 harness.
 
+Table~\ref{tab:repro} maps each reported result to the stage that emits it and the
+recorded artefact it is computed from. One command,
+\path{experiments/run_baselines.sh}, executes the scanners, writes the raw output,
+and regenerates every row; \path{paper/Makefile} then refuses to typeset if any
+generated table is absent, so a manuscript built from this package cannot contain a
+number that no recorded measurement supports. The mapping is given because
+describing a package as complete is not the same as telling a reader which file
+answers which question.
+
+\begin{table}[!t]
+\caption{Each reported result, the stage that emits it, and the recorded artefact
+it derives from.}
+\label{tab:repro}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{l l >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Result} & \textbf{Emitted by} & \textbf{Computed from} \\
+\midrule
+Corpus admissibility (Sec.~\ref{sec:admissibility}) & \texttt{corpus.py} &
+\path{benchmark/}, \path{results/corpus_report.json} \\
+\addlinespace[2pt]
+Criterion sensitivity (RQ1) & \texttt{analyze.py} & \path{results/raw/} \\
+\addlinespace[2pt]
+Effectiveness and intervals (RQ2) & \texttt{analyze.py} & \path{results/raw/} \\
+\addlinespace[2pt]
+Paired tests and $d_{\min}$ (RQ2) & \texttt{stats.py} &
+\path{results/evaluation.json} \\
+\addlinespace[2pt]
+Latency and suite size (RQ3) & \texttt{analyze.py} &
+\path{results/run_manifest.json} \\
+\addlinespace[2pt]
+Layer attribution (RQ4) & \texttt{analyze.py} & \path{results/raw/} \\
+\addlinespace[2pt]
+External subset (RQ5) & \texttt{corpus.py} & \path{benchmark/external/} \\
+\addlinespace[2pt]
+Both figures & \texttt{generate\_figures.py} &
+\path{results/evaluation.json}, \path{results/run_manifest.json} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
 % Set as a listing rather than a drawing. The diagram this replaces was a 10:1
 % horizontal strip: at the column measure it rendered 0.34in tall with unreadable
 % labels. A directory layout is conventionally a listing in any case, and
@@ -1153,11 +1237,12 @@ experiments/
   run_baselines.sh        full re-measurement
   generate_figures.py     figure sources
 \end{verbatim}
-\caption{Replication package layout. Ground-truth labels, the case corpus, and the
-policy sources are separate top-level artefacts, so an independently authored
-label set can be substituted without modifying the harness. The
-\texttt{pre\_opa\_polarity\_fix} directory retains the measurements taken before
-the policy correction disclosed in Section~\ref{sec:internal}.}
+% The caption said what the paragraph above it already says. Springer sets long
+% captions in the same small type as the listing, so the duplicate was the least
+% readable copy of the sentence; only the non-obvious directory is kept here.
+\caption{Replication package layout. \texttt{pre\_opa\_polarity\_fix} retains the
+measurements taken before the policy correction disclosed in
+Section~\ref{sec:internal}.}
 \label{fig:artifact}
 \end{figure}
 
@@ -1203,7 +1288,8 @@ extending the taxonomy beyond Terraform would establish whether the criterion
 sensitivity measured here is a property of IaC scanning or of this technology.
 
 %------------------------------------------------------------------------------
-\section*{Declarations}
+% Springer's own heading for this block is "Statements and Declarations".
+\section*{Statements and Declarations}
 
 \paragraph{Funding} This research received no external funding.
 
@@ -1232,15 +1318,17 @@ table in this paper is generated are openly available:
 the harness and the normalization engine, conducted the measurements, performed
 the analysis, and wrote the manuscript.
 
-\paragraph{Use of AI-assisted technologies} A large language model was used as
-the second rater in the blind relabelling pass of Section~\ref{sec:labelling}.
-That use is methodological and is described there, including its limitations and
-its effect on the reported agreement; the resulting per-case labels and reasons
-are in the replication package. A language model was additionally used for
-copy-editing of the manuscript text, which improves readability without
-generating content or making editorial decisions. All technical content,
-measurements, analysis and conclusions are the author's, who accepts full
-responsibility for the manuscript.
+\paragraph{Use of AI-assisted technologies} A large language model was used for
+two purposes, both bounded. Methodologically, it was the second labeller in the
+automated consistency audit of Section~\ref{sec:labelling}, which names the model,
+its access route, and its instruction, and states what the resulting agreement
+does and does not establish; the per-case labels and reasons are in the
+replication package. Editorially, a language model was used for language editing
+of the manuscript text. It was not used to design the study, generate the corpus
+or its labels, implement the harness or the policies, run or analyse the
+measurements, or draw any conclusion. All technical content, measurements,
+analysis and conclusions are the author's, who accepts full responsibility for the
+manuscript.
 
 %------------------------------------------------------------------------------
 \appendix
