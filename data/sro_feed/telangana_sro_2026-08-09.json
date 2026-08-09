@@ -1,0 +1,76 @@
+{
+  "fetched_at": "2026-08-09 02:54:45.338708+00:00",
+  "record_count": 5,
+  "records": [
+    {
+      "document_id": "DOC-SRO-2026-1000",
+      "registered_date": "2026-08-09",
+      "state": "Telangana",
+      "district": "Adilabad",
+      "mandal": "Gachibowli Mandal",
+      "village": "Gachibowli Sector",
+      "sro_office": "Gachibowli",
+      "property_type": "Residential Flat",
+      "consideration_value_inr": 3500000,
+      "total_duty_inr": 210000,
+      "seller_type": "Private Individual Owner",
+      "buyer_type": "Commercial Property Developer"
+    },
+    {
+      "document_id": "DOC-SRO-2026-1001",
+      "registered_date": "2026-08-09",
+      "state": "Telangana",
+      "district": "Bhadradri Kothagudem",
+      "mandal": "Serilingampally Mandal",
+      "village": "Serilingampally Sector",
+      "sro_office": "Serilingampally",
+      "property_type": "Residential Plot",
+      "consideration_value_inr": 5062500,
+      "total_duty_inr": 303750,
+      "seller_type": "Private Individual Owner",
+      "buyer_type": "Private Individual Owner"
+    },
+    {
+      "document_id": "DOC-SRO-2026-1002",
+      "registered_date": "2026-08-09",
+      "state": "Telangana",
+      "district": "Hanumakonda",
+      "mandal": "Khairatabad Mandal",
+      "village": "Khairatabad Sector",
+      "sro_office": "Khairatabad",
+      "property_type": "Commercial Space",
+      "consideration_value_inr": 6625000,
+      "total_duty_inr": 397500,
+      "seller_type": "Private Individual Owner",
+      "buyer_type": "Commercial Property Developer"
+    },
+    {
+      "document_id": "DOC-SRO-2026-1003",
+      "registered_date": "2026-08-09",
+      "state": "Telangana",
+      "district": "Hyderabad",
+      "mandal": "Kukatpally Mandal",
+      "village": "Kukatpally Sector",
+      "sro_office": "Kukatpally",
+      "property_type": "Independent Villa",
+      "consideration_value_inr": 8187500,
+      "total_duty_inr": 491250,
+      "seller_type": "Private Individual Owner",
+      "buyer_type": "Private Individual Owner"
+    },
+    {
+      "document_id": "DOC-SRO-2026-1004",
+      "registered_date": "2026-08-09",
+      "state": "Telangana",
+      "district": "Jagitial",
+      "mandal": "Karimnagar Mandal",
+      "village": "Karimnagar Sector",
+      "sro_office": "Karimnagar",
+      "property_type": "Residential Flat",
+      "consideration_value_inr": 9750000,
+      "total_duty_inr": 585000,
+      "seller_type": "Private Individual Owner",
+      "buyer_type": "Commercial Property Developer"
+    }
+  ]
+}
