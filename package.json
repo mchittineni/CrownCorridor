@@ -11,7 +11,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "docdash": "^2.0.2",
-    "eslint": "^10.8.0",
+    "eslint": "^10.8.1",
     "jsdoc": "^4.0.5",
     "prettier": "^3.9.6"
   }
