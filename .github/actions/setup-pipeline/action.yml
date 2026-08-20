@@ -11,14 +11,11 @@ runs:
         python-version: '3.11'
         cache: 'pip'
         cache-dependency-path: |
-          pipeline/requirements.txt
-          application/api/requirements.txt
+          experiments/requirements.txt
 
     - name: Install Python Dependencies
       run: |
         python -m pip install --upgrade pip
         pip install pytest-cov ruff black autoflake isort flake8 flake8-pytest-style flake8-bugbear flake8-comprehensions flake8-print darglint 'bandit[toml]' pylint
-        pip install -r pipeline/requirements.txt
-        if [ -f application/api/requirements.txt ]; then pip install -r application/api/requirements.txt; fi
-        if [ -f api/requirements.txt ]; then pip install -r api/requirements.txt; fi
+        pip install -r experiments/requirements.txt
       shell: bash

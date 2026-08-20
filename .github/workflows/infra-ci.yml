@@ -10,8 +10,6 @@ on:
       - 'evaluation/**'
       - 'leaderboard/**'
       - 'experiments/**'
-      - 'pipeline/validate_iac.py'
-      - 'pipeline/tests/test_validate_iac.py'
       - '.github/workflows/infra-ci.yml'
   push:
     branches: [main]
@@ -22,8 +20,6 @@ on:
       - 'evaluation/**'
       - 'leaderboard/**'
       - 'experiments/**'
-      - 'pipeline/validate_iac.py'
-      - 'pipeline/tests/test_validate_iac.py'
       - '.github/workflows/infra-ci.yml'
 
 concurrency:
@@ -63,9 +59,6 @@ jobs:
         run: |
           cd infrastructure
           terraform test
-
-      - name: Run IaC & CIS Benchmark Policy Validator
-        run: python pipeline/validate_iac.py
 
       # Conftest embeds Rego but does not expose `opa check` or `opa fmt`, and the
       # benchmark harness shells out to `opa` by name. Both binaries are needed.
@@ -119,7 +112,7 @@ jobs:
         run: python -m evaluation.corpus --report --mode terraform
 
       - name: Run Full Pytest Suite (Includes IaC & Policy Unit Tests)
-        run: pytest security_framework/tests/ pipeline/tests/ evaluation/tests/ -v --tb=short
+        run: pytest security_framework/tests/ evaluation/tests/ -v --tb=short
 
       - name: Verify Measurement Harness Wiring (no scan)
         run: python -m evaluation.run_baselines --list-tools

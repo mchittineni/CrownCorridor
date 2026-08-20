@@ -1,13 +1,13 @@
 name: "✨ Feature request"
 
-description: Suggest a new feature, dataset addition, or UX improvement for Crown Corridor
+description: Suggest a new feature, corpus addition, or workflow improvement for IaCSecBench
 
 labels: ["enhancement"]
 
 body:
   - type: markdown
     attributes:
-      value: "Thank you for suggesting an enhancement! Ideas from the community make Crown Corridor better."
+      value: "Thank you for suggesting an enhancement! Ideas from the community make IaCSecBench better."
 
   - type: textarea
     id: problem
