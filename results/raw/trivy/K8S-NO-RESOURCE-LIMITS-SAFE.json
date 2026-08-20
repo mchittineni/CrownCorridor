@@ -1,0 +1,21 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.73.0"
+  },
+  "ReportID": "01a01ec0-fbea-7a35-b5de-06e7ed5b84ce",
+  "CreatedAt": "2026-08-20T11:39:19.01867+01:00",
+  "ArtifactName": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-NO-RESOURCE-LIMITS-SAFE-iq3oymfi/case",
+  "ArtifactType": "filesystem",
+  "Results": [
+    {
+      "Target": ".",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 51,
+        "Failures": 0
+      }
+    }
+  ]
+}

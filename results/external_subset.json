@@ -1,0 +1,1709 @@
+{
+  "subset": "AWS Samples Terraform (unlabelled)",
+  "labelled": false,
+  "scoring": "excluded-from-accuracy",
+  "$comment": "Unlabelled. Contains no accuracy, precision or recall figure and must not be merged with results/evaluation.json.",
+  "control_map_schema_version": "1.0.0",
+  "repositories": [
+    {
+      "repo": "aws-samples/amazon-rds-db2-terraform",
+      "commit": "930937a8347784849f1d6c5ed93ebc4dcab9acea",
+      "sloc": 499,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/checkov__aws-samples_amazon-rds-db2-terraform.json",
+          "findings": 3,
+          "mapped": 0,
+          "unmapped": 3,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": [
+            "aws_db_instance.rdsdb2",
+            "aws_security_group.db2_sg"
+          ]
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/tfsec__aws-samples_amazon-rds-db2-terraform.json",
+          "findings": 3,
+          "mapped": 0,
+          "unmapped": 3,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": [
+            "aws_db_instance.rdsdb2",
+            "aws_security_group.db2_sg"
+          ]
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_amazon-rds-db2-terraform.json",
+          "findings": 3,
+          "mapped": 0,
+          "unmapped": 3,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": [
+            "aws_db_instance.rdsdb2",
+            "aws_security_group.db2_sg"
+          ]
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/amazon-serverless-knowyourcustomer-data",
+      "commit": "7f5116403857f91eac2f867dcb1b21340088730f",
+      "sloc": 449,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/checkov__aws-samples_amazon-serverless-knowyourcustomer-data.json",
+          "findings": 36,
+          "mapped": 12,
+          "unmapped": 24,
+          "in_module": 6,
+          "controls": [
+            "IAM_WILDCARD_ACTION",
+            "STO_NO_ACCESS_LOGGING",
+            "STO_PUBLIC_BUCKET",
+            "STO_UNENCRYPTED_BUCKET"
+          ],
+          "claims": [
+            "IAM_WILDCARD_ACTION|aws_iam_policy.lambda_basic_execution_policy",
+            "IAM_WILDCARD_ACTION|aws_iam_policy.lambda_s3_policy",
+            "IAM_WILDCARD_ACTION|aws_iam_policy.stepfunction_execution_policy",
+            "STO_NO_ACCESS_LOGGING|module.s3module",
+            "STO_PUBLIC_BUCKET|module.s3module",
+            "STO_UNENCRYPTED_BUCKET|module.s3module"
+          ],
+          "resources": [
+            "aws_cloudformation_stack.stepfunction_stack",
+            "aws_iam_policy.lambda_basic_execution_policy",
+            "aws_iam_policy.lambda_s3_policy",
+            "aws_iam_policy.stepfunction_execution_policy",
+            "aws_lambda_function.extract_data_lambda",
+            "aws_lambda_function.process_pdf_lambda",
+            "aws_lambda_function.s3eventlambda",
+            "aws_sns_topic.notifyusers",
+            "aws_sqs_queue.validated_queue",
+            "module.s3module"
+          ]
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/tfsec__aws-samples_amazon-serverless-knowyourcustomer-data.json",
+          "findings": 22,
+          "mapped": 19,
+          "unmapped": 3,
+          "in_module": 9,
+          "controls": [
+            "IAM_WILDCARD_ACTION",
+            "IAM_WILDCARD_TRUST",
+            "SRV_NO_FUNCTION_ENCRYPTION",
+            "STO_NO_ACCESS_LOGGING",
+            "STO_PUBLIC_BUCKET",
+            "STO_UNENCRYPTED_BUCKET"
+          ],
+          "claims": [
+            "IAM_WILDCARD_ACTION|aws_iam_policy.lambda_s3_policy",
+            "IAM_WILDCARD_TRUST|aws_iam_policy.lambda_s3_policy",
+            "SRV_NO_FUNCTION_ENCRYPTION|aws_lambda_function.extract_data_lambda",
+            "SRV_NO_FUNCTION_ENCRYPTION|aws_lambda_function.process_pdf_lambda",
+            "SRV_NO_FUNCTION_ENCRYPTION|aws_lambda_function.s3eventlambda",
+            "STO_NO_ACCESS_LOGGING|module.s3module",
+            "STO_PUBLIC_BUCKET|module.s3module",
+            "STO_UNENCRYPTED_BUCKET|module.s3module"
+          ],
+          "resources": [
+            "aws_iam_policy.lambda_s3_policy",
+            "aws_lambda_function.extract_data_lambda",
+            "aws_lambda_function.process_pdf_lambda",
+            "aws_lambda_function.s3eventlambda",
+            "aws_sns_topic.notifyusers",
+            "aws_sqs_queue.validated_queue",
+            "module.s3module"
+          ]
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_amazon-serverless-knowyourcustomer-data.json",
+          "findings": 18,
+          "mapped": 10,
+          "unmapped": 8,
+          "in_module": 8,
+          "controls": [
+            "SRV_NO_FUNCTION_ENCRYPTION",
+            "STO_NO_ACCESS_LOGGING",
+            "STO_PUBLIC_BUCKET",
+            "STO_UNENCRYPTED_BUCKET"
+          ],
+          "claims": [
+            "SRV_NO_FUNCTION_ENCRYPTION|aws_lambda_function.extract_data_lambda",
+            "SRV_NO_FUNCTION_ENCRYPTION|aws_lambda_function.process_pdf_lambda",
+            "SRV_NO_FUNCTION_ENCRYPTION|aws_lambda_function.s3eventlambda",
+            "STO_NO_ACCESS_LOGGING|module.s3module",
+            "STO_PUBLIC_BUCKET|module.s3module",
+            "STO_UNENCRYPTED_BUCKET|module.s3module"
+          ],
+          "resources": [
+            "aws_iam_policy.lambda_basic_execution_policy",
+            "aws_iam_policy.lambda_s3_policy",
+            "aws_iam_policy.stepfunction_execution_policy",
+            "aws_lambda_function.extract_data_lambda",
+            "aws_lambda_function.process_pdf_lambda",
+            "aws_lambda_function.s3eventlambda",
+            "aws_sns_topic.notifyusers",
+            "aws_sqs_queue.validated_queue",
+            "module.s3module"
+          ]
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/apigateway-deployment-lifecycle-management-terraform",
+      "commit": "95eeeae790239c08cae5481817faf71fdb5edf37",
+      "sloc": 222,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/checkov__aws-samples_apigateway-deployment-lifecycle-management-terraform.json",
+          "findings": 1,
+          "mapped": 0,
+          "unmapped": 1,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": [
+            "aws_api_gateway_rest_api.example"
+          ]
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/tfsec__aws-samples_apigateway-deployment-lifecycle-management-terraform.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_apigateway-deployment-lifecycle-management-terraform.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/aws-codepipeline-terraform-cicd-samples",
+      "commit": "af47dcea715a43bc199473a6840dde7ca21e5853",
+      "sloc": 957,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/checkov__aws-samples_aws-codepipeline-terraform-cicd-samples.json",
+          "findings": 6,
+          "mapped": 0,
+          "unmapped": 6,
+          "in_module": 6,
+          "controls": [],
+          "claims": [],
+          "resources": [
+            "module.codebuild_terraform",
+            "module.codepipeline_kms",
+            "module.s3_artifacts_bucket"
+          ]
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/tfsec__aws-samples_aws-codepipeline-terraform-cicd-samples.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_aws-codepipeline-terraform-cicd-samples.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/aws-control-tower-controls-terraform",
+      "commit": "e8ebe75cbc86462b2603de686a6bf71f619c4b63",
+      "sloc": 119,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/checkov__aws-samples_aws-control-tower-controls-terraform.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/tfsec__aws-samples_aws-control-tower-controls-terraform.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_aws-control-tower-controls-terraform.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/aws-network-hub-for-terraform",
+      "commit": "e95366a04a099a64cdda208814a6198854ac2e9c",
+      "sloc": 2122,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/checkov__aws-samples_aws-network-hub-for-terraform.json",
+          "findings": 21,
+          "mapped": 4,
+          "unmapped": 17,
+          "in_module": 15,
+          "controls": [
+            "IAM_WILDCARD_ACTION"
+          ],
+          "claims": [
+            "IAM_WILDCARD_ACTION|aws_iam_policy.central_network",
+            "IAM_WILDCARD_ACTION|aws_iam_role_policy.flow_logs",
+            "IAM_WILDCARD_ACTION|module.network"
+          ],
+          "resources": [
+            "aws_iam_policy.central_network",
+            "aws_iam_policy_document.policy_kms_logs_document",
+            "aws_iam_role_policy.flow_logs",
+            "module.dns",
+            "module.ipam",
+            "module.network",
+            "module.network_firewall_vpc",
+            "module.tgw",
+            "module.vpc_endpoints"
+          ]
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/tfsec__aws-samples_aws-network-hub-for-terraform.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_aws-network-hub-for-terraform.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/aws-security-services-with-terraform",
+      "commit": "d4c043f6e93f256fedbbaa5becfd247ad992061b",
+      "sloc": 2078,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/checkov__aws-samples_aws-security-services-with-terraform.json",
+          "findings": 82,
+          "mapped": 25,
+          "unmapped": 57,
+          "in_module": 81,
+          "controls": [
+            "IAM_WILDCARD_ACTION",
+            "MON_NO_LOG_ENCRYPTION",
+            "SRV_NO_FUNCTION_ENCRYPTION",
+            "STO_NO_ACCESS_LOGGING",
+            "STO_PUBLIC_BUCKET",
+            "STO_UNENCRYPTED_BUCKET"
+          ],
+          "claims": [
+            "IAM_WILDCARD_ACTION|aws_iam_role_policy.Cloudtrail_Firehose_Delivery_Policy",
+            "IAM_WILDCARD_ACTION|aws_iam_role_policy.ES_Cognito_Policy",
+            "IAM_WILDCARD_ACTION|aws_iam_role_policy.ES_Identity_Pool_Authenticated_Policy",
+            "IAM_WILDCARD_ACTION|aws_iam_role_policy.ES_Identity_Pool_Unauthenticated_Policy",
+            "IAM_WILDCARD_ACTION|aws_iam_role_policy.Firehose_Delivery_Policy",
+            "IAM_WILDCARD_ACTION|aws_iam_role_policy.VPCFlowLogs_Firehose_Delivery_Policy",
+            "MON_NO_LOG_ENCRYPTION|aws_cloudwatch_log_group.CIS_CloudWatch_LogsGroup",
+            "MON_NO_LOG_ENCRYPTION|aws_cloudwatch_log_group.CIS_FlowLogs_CWL_Group",
+            "MON_NO_LOG_ENCRYPTION|aws_cloudwatch_log_group.Kinesis_Firehose_Errors_LogsGroup",
+            "SRV_NO_FUNCTION_ENCRYPTION|aws_lambda_function.Cloudtrail_Lambda_To_Firehose_Function",
+            "SRV_NO_FUNCTION_ENCRYPTION|aws_lambda_function.VPCFlowLogs_Lambda_To_Firehose_Function",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.Config_Recorder_Bucket",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.Kinesis_Failed_Logs_Bucket",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.Server_Access_Log_S3_Bucket",
+            "STO_PUBLIC_BUCKET|aws_s3_bucket.CIS_CloudTrail_Logs_S3_Bucket",
+            "STO_PUBLIC_BUCKET|aws_s3_bucket.Config_Recorder_Bucket",
+            "STO_PUBLIC_BUCKET|aws_s3_bucket.Kinesis_Failed_Logs_Bucket",
+            "STO_PUBLIC_BUCKET|aws_s3_bucket.Server_Access_Log_S3_Bucket",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket.CIS_CloudTrail_Logs_S3_Bucket",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket.Config_Recorder_Bucket",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket.Kinesis_Failed_Logs_Bucket",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket.Server_Access_Log_S3_Bucket"
+          ],
+          "resources": [
+            "aws_cloudtrail.CIS_CloudTrail_Trail",
+            "aws_cloudwatch_log_group.CIS_CloudWatch_LogsGroup",
+            "aws_cloudwatch_log_group.CIS_FlowLogs_CWL_Group",
+            "aws_cloudwatch_log_group.Kinesis_Firehose_Errors_LogsGroup",
+            "aws_cognito_identity_pool.ES_Cognito_Identity_Pool",
+            "aws_eip.NATGW_Elastic_IPs[0]",
+            "aws_elasticsearch_domain.Security_Hub_Elasticsearch_Service",
+            "aws_guardduty_detector.GuardDuty_Detector",
+            "aws_iam_role_policy.Cloudtrail_Firehose_Delivery_Policy",
+            "aws_iam_role_policy.ES_Cognito_Policy",
+            "aws_iam_role_policy.ES_Identity_Pool_Authenticated_Policy",
+            "aws_iam_role_policy.ES_Identity_Pool_Unauthenticated_Policy",
+            "aws_iam_role_policy.Firehose_Delivery_Policy",
+            "aws_iam_role_policy.VPCFlowLogs_Firehose_Delivery_Policy",
+            "aws_kinesis_firehose_delivery_stream.Cloudtrail_Logs_Firehose",
+            "aws_kinesis_firehose_delivery_stream.VPCFlowLogs_Logs_Firehose",
+            "aws_lambda_function.Cloudtrail_Lambda_To_Firehose_Function",
+            "aws_lambda_function.VPCFlowLogs_Lambda_To_Firehose_Function",
+            "aws_lambda_permission.Cloudtrail_Logs_Lambda_Permission",
+            "aws_lambda_permission.VPCFlowLogs_Logs_Lambda_Permission",
+            "aws_s3_bucket.CIS_CloudTrail_Logs_S3_Bucket",
+            "aws_s3_bucket.Config_Recorder_Bucket",
+            "aws_s3_bucket.Kinesis_Failed_Logs_Bucket",
+            "aws_s3_bucket.Server_Access_Log_S3_Bucket",
+            "aws_security_group.CIS_Linux_SG",
+            "aws_sns_topic.CIS_Alerts_SNS_Topic",
+            "aws_subnet.CIS_Public_Subnets[0]",
+            "aws_waf_web_acl.AWS_Security_Blog_Blacklist_WACL"
+          ]
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/tfsec__aws-samples_aws-security-services-with-terraform.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_aws-security-services-with-terraform.json",
+          "findings": 41,
+          "mapped": 30,
+          "unmapped": 11,
+          "in_module": 41,
+          "controls": [
+            "MON_NO_LOG_ENCRYPTION",
+            "SRV_NO_FUNCTION_ENCRYPTION",
+            "STO_NO_ACCESS_LOGGING",
+            "STO_PUBLIC_BUCKET",
+            "STO_UNENCRYPTED_BUCKET"
+          ],
+          "claims": [
+            "MON_NO_LOG_ENCRYPTION|aws_cloudwatch_log_group.CIS_CloudWatch_LogsGroup",
+            "MON_NO_LOG_ENCRYPTION|aws_cloudwatch_log_group.CIS_FlowLogs_CWL_Group",
+            "MON_NO_LOG_ENCRYPTION|aws_cloudwatch_log_group.Kinesis_Firehose_Errors_LogsGroup",
+            "SRV_NO_FUNCTION_ENCRYPTION|aws_lambda_function.Cloudtrail_Lambda_To_Firehose_Function",
+            "SRV_NO_FUNCTION_ENCRYPTION|aws_lambda_function.VPCFlowLogs_Lambda_To_Firehose_Function",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.Config_Recorder_Bucket",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.Kinesis_Failed_Logs_Bucket",
+            "STO_PUBLIC_BUCKET|aws_s3_bucket.CIS_CloudTrail_Logs_S3_Bucket",
+            "STO_PUBLIC_BUCKET|aws_s3_bucket.Config_Recorder_Bucket",
+            "STO_PUBLIC_BUCKET|aws_s3_bucket.Kinesis_Failed_Logs_Bucket",
+            "STO_PUBLIC_BUCKET|aws_s3_bucket.Server_Access_Log_S3_Bucket",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket.CIS_CloudTrail_Logs_S3_Bucket",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket.Config_Recorder_Bucket",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket.Kinesis_Failed_Logs_Bucket"
+          ],
+          "resources": [
+            "aws_cloudwatch_log_group.CIS_CloudWatch_LogsGroup",
+            "aws_cloudwatch_log_group.CIS_FlowLogs_CWL_Group",
+            "aws_cloudwatch_log_group.Kinesis_Firehose_Errors_LogsGroup",
+            "aws_elasticsearch_domain.Security_Hub_Elasticsearch_Service",
+            "aws_lambda_function.Cloudtrail_Lambda_To_Firehose_Function",
+            "aws_lambda_function.VPCFlowLogs_Lambda_To_Firehose_Function",
+            "aws_lambda_permission.Cloudtrail_Logs_Lambda_Permission",
+            "aws_lambda_permission.VPCFlowLogs_Logs_Lambda_Permission",
+            "aws_s3_bucket.CIS_CloudTrail_Logs_S3_Bucket",
+            "aws_s3_bucket.Config_Recorder_Bucket",
+            "aws_s3_bucket.Kinesis_Failed_Logs_Bucket",
+            "aws_s3_bucket.Server_Access_Log_S3_Bucket",
+            "aws_security_group.CIS_Linux_SG",
+            "aws_sns_topic.CIS_Alerts_SNS_Topic",
+            "aws_subnet.CIS_Public_Subnets[0]"
+          ]
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/aws-tf-prowler-fargate",
+      "commit": "8a3e18cadac6777763508f5d1c3457fd64ba4c43",
+      "sloc": 669,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/checkov__aws-samples_aws-tf-prowler-fargate.json",
+          "findings": 11,
+          "mapped": 3,
+          "unmapped": 8,
+          "in_module": 11,
+          "controls": [
+            "MON_NO_LOG_ENCRYPTION",
+            "STO_NO_ACCESS_LOGGING",
+            "STO_UNENCRYPTED_BUCKET"
+          ],
+          "claims": [
+            "MON_NO_LOG_ENCRYPTION|module.prowler_ecs_instance_deployment",
+            "STO_NO_ACCESS_LOGGING|module.prowler_ecs_instance_deployment",
+            "STO_UNENCRYPTED_BUCKET|module.prowler_ecs_instance_deployment"
+          ],
+          "resources": [
+            "module.prowler_ecs_instance_deployment",
+            "module.prowler_iam_cross_account_role_1",
+            "module.prowler_iam_cross_account_role_2"
+          ]
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/tfsec__aws-samples_aws-tf-prowler-fargate.json",
+          "findings": 36,
+          "mapped": 36,
+          "unmapped": 0,
+          "in_module": 36,
+          "controls": [
+            "IAM_WILDCARD_ACTION",
+            "IAM_WILDCARD_TRUST",
+            "MON_NO_LOG_ENCRYPTION",
+            "STO_NO_ACCESS_LOGGING",
+            "STO_UNENCRYPTED_BUCKET"
+          ],
+          "claims": [
+            "IAM_WILDCARD_ACTION|module.prowler_ecs_instance_deployment",
+            "IAM_WILDCARD_TRUST|module.prowler_ecs_instance_deployment",
+            "MON_NO_LOG_ENCRYPTION|module.prowler_ecs_instance_deployment",
+            "STO_NO_ACCESS_LOGGING|module.prowler_ecs_instance_deployment",
+            "STO_UNENCRYPTED_BUCKET|module.prowler_ecs_instance_deployment"
+          ],
+          "resources": [
+            "module.prowler_ecs_instance_deployment"
+          ]
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_aws-tf-prowler-fargate.json",
+          "findings": 4,
+          "mapped": 3,
+          "unmapped": 1,
+          "in_module": 3,
+          "controls": [
+            "MON_NO_LOG_ENCRYPTION",
+            "STO_NO_ACCESS_LOGGING",
+            "STO_UNENCRYPTED_BUCKET"
+          ],
+          "claims": [
+            "MON_NO_LOG_ENCRYPTION|module.prowler_ecs_instance_deployment",
+            "STO_NO_ACCESS_LOGGING|module.prowler_ecs_instance_deployment",
+            "STO_UNENCRYPTED_BUCKET|module.prowler_ecs_instance_deployment"
+          ],
+          "resources": [
+            "module.prowler_ecs_instance_deployment"
+          ]
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/centralized-backup-with-aws-backup-and-terraform",
+      "commit": "0d0867d50c3ad2f8ee45cbe872b86b52fe946e49",
+      "sloc": 1027,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/checkov__aws-samples_centralized-backup-with-aws-backup-and-terraform.json",
+          "findings": 19,
+          "mapped": 5,
+          "unmapped": 14,
+          "in_module": 19,
+          "controls": [
+            "MON_NO_LOG_ENCRYPTION",
+            "SRV_NO_FUNCTION_ENCRYPTION",
+            "STO_NO_ACCESS_LOGGING"
+          ],
+          "claims": [
+            "MON_NO_LOG_ENCRYPTION|module.backup-account",
+            "SRV_NO_FUNCTION_ENCRYPTION|module.backup-account",
+            "STO_NO_ACCESS_LOGGING|module.backup-account"
+          ],
+          "resources": [
+            "module.backup-account"
+          ]
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/tfsec__aws-samples_centralized-backup-with-aws-backup-and-terraform.json",
+          "findings": 5,
+          "mapped": 5,
+          "unmapped": 0,
+          "in_module": 5,
+          "controls": [
+            "MON_NO_LOG_ENCRYPTION",
+            "SRV_NO_FUNCTION_ENCRYPTION",
+            "STO_NO_ACCESS_LOGGING"
+          ],
+          "claims": [
+            "MON_NO_LOG_ENCRYPTION|module.backup-account",
+            "SRV_NO_FUNCTION_ENCRYPTION|module.backup-account",
+            "STO_NO_ACCESS_LOGGING|module.backup-account"
+          ],
+          "resources": [
+            "module.backup-account"
+          ]
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_centralized-backup-with-aws-backup-and-terraform.json",
+          "findings": 5,
+          "mapped": 5,
+          "unmapped": 0,
+          "in_module": 5,
+          "controls": [
+            "MON_NO_LOG_ENCRYPTION",
+            "SRV_NO_FUNCTION_ENCRYPTION",
+            "STO_NO_ACCESS_LOGGING"
+          ],
+          "claims": [
+            "MON_NO_LOG_ENCRYPTION|module.backup-account",
+            "SRV_NO_FUNCTION_ENCRYPTION|module.backup-account",
+            "STO_NO_ACCESS_LOGGING|module.backup-account"
+          ],
+          "resources": [
+            "module.backup-account"
+          ]
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/docker-ecr-actions-workflow",
+      "commit": "6cda4e2d12430b5b5e81313f9f7d48df81892b5c",
+      "sloc": 98,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/checkov__aws-samples_docker-ecr-actions-workflow.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/tfsec__aws-samples_docker-ecr-actions-workflow.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_docker-ecr-actions-workflow.json",
+          "findings": 3,
+          "mapped": 0,
+          "unmapped": 3,
+          "in_module": 3,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/manage-terraform-statefiles-in-aws-pipeline",
+      "commit": "c987dfeb376bd33dea11fc808923908b304ef69e",
+      "sloc": 279,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/checkov__aws-samples_manage-terraform-statefiles-in-aws-pipeline.json",
+          "findings": 5,
+          "mapped": 2,
+          "unmapped": 3,
+          "in_module": 0,
+          "controls": [
+            "MON_NO_LOG_ENCRYPTION"
+          ],
+          "claims": [
+            "MON_NO_LOG_ENCRYPTION|aws_cloudwatch_log_group.codebuild_loggroup",
+            "MON_NO_LOG_ENCRYPTION|aws_cloudwatch_log_group.lambda_loggroup"
+          ],
+          "resources": [
+            "aws_cloudwatch_log_group.codebuild_loggroup",
+            "aws_cloudwatch_log_group.lambda_loggroup",
+            "aws_s3_bucket_ownership_controls.s3_bucket_acl_ownership"
+          ]
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/tfsec__aws-samples_manage-terraform-statefiles-in-aws-pipeline.json",
+          "findings": 9,
+          "mapped": 9,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [
+            "IAM_WILDCARD_ACTION",
+            "IAM_WILDCARD_TRUST",
+            "MON_NO_LOG_ENCRYPTION",
+            "STO_NO_ACCESS_LOGGING",
+            "STO_UNENCRYPTED_BUCKET"
+          ],
+          "claims": [
+            "IAM_WILDCARD_ACTION|data.aws_iam_policy_document",
+            "IAM_WILDCARD_TRUST|data.aws_iam_policy_document",
+            "MON_NO_LOG_ENCRYPTION|aws_cloudwatch_log_group.codebuild_loggroup",
+            "MON_NO_LOG_ENCRYPTION|aws_cloudwatch_log_group.lambda_loggroup",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.s3_bucket_backend",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket.s3_bucket_backend"
+          ],
+          "resources": [
+            "aws_cloudwatch_log_group.codebuild_loggroup",
+            "aws_cloudwatch_log_group.lambda_loggroup",
+            "aws_s3_bucket.s3_bucket_backend",
+            "data.aws_iam_policy_document"
+          ]
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_manage-terraform-statefiles-in-aws-pipeline.json",
+          "findings": 4,
+          "mapped": 4,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [
+            "MON_NO_LOG_ENCRYPTION",
+            "STO_NO_ACCESS_LOGGING",
+            "STO_UNENCRYPTED_BUCKET"
+          ],
+          "claims": [
+            "MON_NO_LOG_ENCRYPTION|aws_cloudwatch_log_group.codebuild_loggroup",
+            "MON_NO_LOG_ENCRYPTION|aws_cloudwatch_log_group.lambda_loggroup",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.s3_bucket_backend",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket.s3_bucket_backend"
+          ],
+          "resources": [
+            "aws_cloudwatch_log_group.codebuild_loggroup",
+            "aws_cloudwatch_log_group.lambda_loggroup",
+            "aws_s3_bucket.s3_bucket_backend"
+          ]
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/sample-aws-backup-lag-vaults-with-terraform",
+      "commit": "4e95481c57ba7634b6d97d69a20fd92476cc4d66",
+      "sloc": 491,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/checkov__aws-samples_sample-aws-backup-lag-vaults-with-terraform.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/tfsec__aws-samples_sample-aws-backup-lag-vaults-with-terraform.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_sample-aws-backup-lag-vaults-with-terraform.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/sample-aws-security-hub-cspm-control-tower",
+      "commit": "bda2b7bd6d3a3bf91d590ce52f2e3e30f43dc84d",
+      "sloc": 223,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/checkov__aws-samples_sample-aws-security-hub-cspm-control-tower.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/tfsec__aws-samples_sample-aws-security-hub-cspm-control-tower.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_sample-aws-security-hub-cspm-control-tower.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/sample-cross-region-bedrock-private-endpoint",
+      "commit": "47cb2f089b5ddaa1165c82c507114d05de4ac367",
+      "sloc": 669,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/checkov__aws-samples_sample-cross-region-bedrock-private-endpoint.json",
+          "findings": 7,
+          "mapped": 2,
+          "unmapped": 5,
+          "in_module": 7,
+          "controls": [
+            "NET_NO_FLOW_LOGS"
+          ],
+          "claims": [
+            "NET_NO_FLOW_LOGS|module.vpc"
+          ],
+          "resources": [
+            "module.vpc"
+          ]
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/tfsec__aws-samples_sample-cross-region-bedrock-private-endpoint.json",
+          "findings": 5,
+          "mapped": 2,
+          "unmapped": 3,
+          "in_module": 5,
+          "controls": [
+            "NET_NO_FLOW_LOGS"
+          ],
+          "claims": [
+            "NET_NO_FLOW_LOGS|module.vpc"
+          ],
+          "resources": [
+            "module.vpc"
+          ]
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_sample-cross-region-bedrock-private-endpoint.json",
+          "findings": 5,
+          "mapped": 2,
+          "unmapped": 3,
+          "in_module": 5,
+          "controls": [
+            "NET_NO_FLOW_LOGS"
+          ],
+          "claims": [
+            "NET_NO_FLOW_LOGS|module.vpc"
+          ],
+          "resources": [
+            "module.vpc"
+          ]
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/sample-ecs-adot-centralised-gateway",
+      "commit": "9dd42adc84ece2934064c1d6b2fe4ce448772c61",
+      "sloc": 1214,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/checkov__aws-samples_sample-ecs-adot-centralised-gateway.json",
+          "findings": 8,
+          "mapped": 0,
+          "unmapped": 8,
+          "in_module": 6,
+          "controls": [],
+          "claims": [],
+          "resources": [
+            "aws_cloudwatch_log_group.flow_logs",
+            "aws_security_group_rule.ecs_hosts_egress",
+            "module.adot_collector"
+          ]
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/tfsec__aws-samples_sample-ecs-adot-centralised-gateway.json",
+          "findings": 4,
+          "mapped": 2,
+          "unmapped": 2,
+          "in_module": 1,
+          "controls": [
+            "IAM_WILDCARD_ACTION",
+            "IAM_WILDCARD_TRUST"
+          ],
+          "claims": [
+            "IAM_WILDCARD_ACTION|aws_iam_role_policy.flow_logs",
+            "IAM_WILDCARD_TRUST|aws_iam_role_policy.flow_logs"
+          ],
+          "resources": [
+            "aws_iam_role_policy.flow_logs",
+            "aws_security_group_rule.ecs_hosts_egress",
+            "module.adot_collector"
+          ]
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_sample-ecs-adot-centralised-gateway.json",
+          "findings": 2,
+          "mapped": 0,
+          "unmapped": 2,
+          "in_module": 1,
+          "controls": [],
+          "claims": [],
+          "resources": [
+            "aws_security_group_rule.ecs_hosts_egress",
+            "module.adot_collector"
+          ]
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/sample-iam-roles-innersource",
+      "commit": "efc40336fbdf153cb42d477caa1d055b7c0574f9",
+      "sloc": 241,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/checkov__aws-samples_sample-iam-roles-innersource.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/tfsec__aws-samples_sample-iam-roles-innersource.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_sample-iam-roles-innersource.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/sample-ssm-multi-user-session-manager-terraform",
+      "commit": "20de1a8cc2f1ddeda39a6749c29444554f4cf580",
+      "sloc": 348,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/checkov__aws-samples_sample-ssm-multi-user-session-manager-terraform.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/tfsec__aws-samples_sample-ssm-multi-user-session-manager-terraform.json",
+          "findings": 8,
+          "mapped": 6,
+          "unmapped": 2,
+          "in_module": 0,
+          "controls": [
+            "IAM_WILDCARD_ACTION",
+            "IAM_WILDCARD_TRUST",
+            "STO_NO_ACCESS_LOGGING",
+            "STO_UNENCRYPTED_BUCKET"
+          ],
+          "claims": [
+            "IAM_WILDCARD_ACTION|aws_iam_role_policy.kms_policy",
+            "IAM_WILDCARD_ACTION|aws_iam_role_policy.session_logging_policy",
+            "IAM_WILDCARD_TRUST|aws_iam_role_policy.kms_policy",
+            "IAM_WILDCARD_TRUST|aws_iam_role_policy.session_logging_policy",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.session_logs",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket_server_side_encryption_configuration.session_logs"
+          ],
+          "resources": [
+            "aws_iam_role_policy.kms_policy",
+            "aws_iam_role_policy.session_logging_policy",
+            "aws_s3_bucket.session_logs",
+            "aws_s3_bucket_server_side_encryption_configuration.session_logs",
+            "aws_security_group.ssm_sg"
+          ]
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_sample-ssm-multi-user-session-manager-terraform.json",
+          "findings": 4,
+          "mapped": 2,
+          "unmapped": 2,
+          "in_module": 0,
+          "controls": [
+            "STO_NO_ACCESS_LOGGING",
+            "STO_UNENCRYPTED_BUCKET"
+          ],
+          "claims": [
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.session_logs",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket_server_side_encryption_configuration.session_logs"
+          ],
+          "resources": [
+            "aws_s3_bucket.session_logs",
+            "aws_s3_bucket_server_side_encryption_configuration.session_logs",
+            "aws_security_group.ssm_sg"
+          ]
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/sample-terraform-aws-organizational-units",
+      "commit": "fb16545d0f4d2ed2c43e0f1eafd1000c56239e3a",
+      "sloc": 113,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/checkov__aws-samples_sample-terraform-aws-organizational-units.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/tfsec__aws-samples_sample-terraform-aws-organizational-units.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_sample-terraform-aws-organizational-units.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/terraform-aws-codecommit-s3-backups",
+      "commit": "a7475eced46fad81120010e7219465fc9ad2519d",
+      "sloc": 334,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/checkov__aws-samples_terraform-aws-codecommit-s3-backups.json",
+          "findings": 6,
+          "mapped": 1,
+          "unmapped": 5,
+          "in_module": 0,
+          "controls": [
+            "IAM_WILDCARD_ACTION"
+          ],
+          "claims": [
+            "IAM_WILDCARD_ACTION|aws_iam_policy_document.cloudwatch"
+          ],
+          "resources": [
+            "aws_cloudwatch_log_group.this",
+            "aws_iam_policy_document.cloudwatch",
+            "aws_s3_bucket.this"
+          ]
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/tfsec__aws-samples_terraform-aws-codecommit-s3-backups.json",
+          "findings": 3,
+          "mapped": 3,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [
+            "IAM_WILDCARD_ACTION",
+            "IAM_WILDCARD_TRUST",
+            "STO_NO_ACCESS_LOGGING"
+          ],
+          "claims": [
+            "IAM_WILDCARD_ACTION|data.aws_iam_policy_document",
+            "IAM_WILDCARD_TRUST|data.aws_iam_policy_document",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.this"
+          ],
+          "resources": [
+            "aws_s3_bucket.this",
+            "data.aws_iam_policy_document"
+          ]
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_terraform-aws-codecommit-s3-backups.json",
+          "findings": 1,
+          "mapped": 1,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [
+            "STO_NO_ACCESS_LOGGING"
+          ],
+          "claims": [
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.this"
+          ],
+          "resources": [
+            "aws_s3_bucket.this"
+          ]
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/terraform-aws-identity-center",
+      "commit": "0ace990cac9b4367e4e243700de015448865e415",
+      "sloc": 256,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/checkov__aws-samples_terraform-aws-identity-center.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/tfsec__aws-samples_terraform-aws-identity-center.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_terraform-aws-identity-center.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/terraform-aws-identity-center-users-and-groups",
+      "commit": "45b02304a0f2e60ae417c01a9daef4013d529541",
+      "sloc": 71,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/checkov__aws-samples_terraform-aws-identity-center-users-and-groups.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/tfsec__aws-samples_terraform-aws-identity-center-users-and-groups.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_terraform-aws-identity-center-users-and-groups.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/terraform-aws-multi-account-pipeline",
+      "commit": "6f5a3d6e3cb54da34508c43ef416c99f85ee67ed",
+      "sloc": 1005,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/checkov__aws-samples_terraform-aws-multi-account-pipeline.json",
+          "findings": 34,
+          "mapped": 12,
+          "unmapped": 22,
+          "in_module": 24,
+          "controls": [
+            "IAM_WILDCARD_ACTION",
+            "STO_NO_ACCESS_LOGGING",
+            "STO_PUBLIC_BUCKET",
+            "STO_UNENCRYPTED_BUCKET"
+          ],
+          "claims": [
+            "IAM_WILDCARD_ACTION|aws_iam_policy_document.codebuild",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.bar",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.baz",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.foo",
+            "STO_PUBLIC_BUCKET|aws_s3_bucket.bar",
+            "STO_PUBLIC_BUCKET|aws_s3_bucket.baz",
+            "STO_PUBLIC_BUCKET|aws_s3_bucket.foo",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket.bar",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket.baz",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket.foo"
+          ],
+          "resources": [
+            "aws_cloudwatch_log_group.this",
+            "aws_codepipeline.this",
+            "aws_iam_policy_document.codebuild",
+            "aws_s3_bucket.bar",
+            "aws_s3_bucket.baz",
+            "aws_s3_bucket.foo",
+            "aws_s3_bucket.this",
+            "aws_s3_bucket_lifecycle_configuration.this",
+            "module.apply",
+            "module.plan",
+            "module.validation"
+          ]
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/tfsec__aws-samples_terraform-aws-multi-account-pipeline.json",
+          "findings": 9,
+          "mapped": 8,
+          "unmapped": 1,
+          "in_module": 0,
+          "controls": [
+            "IAM_WILDCARD_ACTION",
+            "IAM_WILDCARD_TRUST",
+            "STO_NO_ACCESS_LOGGING"
+          ],
+          "claims": [
+            "IAM_WILDCARD_ACTION|data.aws_iam_policy_document",
+            "IAM_WILDCARD_TRUST|data.aws_iam_policy_document",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.this"
+          ],
+          "resources": [
+            "aws_s3_bucket.this",
+            "data.aws_iam_policy_document"
+          ]
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_terraform-aws-multi-account-pipeline.json",
+          "findings": 42,
+          "mapped": 36,
+          "unmapped": 6,
+          "in_module": 40,
+          "controls": [
+            "STO_NO_ACCESS_LOGGING",
+            "STO_PUBLIC_BUCKET",
+            "STO_UNENCRYPTED_BUCKET"
+          ],
+          "claims": [
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.bar",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.baz",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.baz[0]",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.foo",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.foo[0]",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.this",
+            "STO_PUBLIC_BUCKET|aws_s3_bucket.bar",
+            "STO_PUBLIC_BUCKET|aws_s3_bucket.baz",
+            "STO_PUBLIC_BUCKET|aws_s3_bucket.baz[0]",
+            "STO_PUBLIC_BUCKET|aws_s3_bucket.foo",
+            "STO_PUBLIC_BUCKET|aws_s3_bucket.foo[0]",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket.bar",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket.baz",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket.baz[0]",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket.foo",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket.foo[0]"
+          ],
+          "resources": [
+            "aws_s3_bucket.bar",
+            "aws_s3_bucket.baz",
+            "aws_s3_bucket.baz[0]",
+            "aws_s3_bucket.foo",
+            "aws_s3_bucket.foo[0]",
+            "aws_s3_bucket.this"
+          ]
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/terraform-aws-organization-policies",
+      "commit": "155f8fa8d9cd54d5bffbfb6558546296855cfd9c",
+      "sloc": 76,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/checkov__aws-samples_terraform-aws-organization-policies.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/tfsec__aws-samples_terraform-aws-organization-policies.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_terraform-aws-organization-policies.json",
+          "findings": 0,
+          "mapped": 0,
+          "unmapped": 0,
+          "in_module": 0,
+          "controls": [],
+          "claims": [],
+          "resources": []
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/terraform-aws-pipeline",
+      "commit": "eda4c2f3ca38bf3f3a1260ea25e6fd087cba8699",
+      "sloc": 795,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/checkov__aws-samples_terraform-aws-pipeline.json",
+          "findings": 11,
+          "mapped": 1,
+          "unmapped": 10,
+          "in_module": 3,
+          "controls": [
+            "IAM_WILDCARD_ACTION"
+          ],
+          "claims": [
+            "IAM_WILDCARD_ACTION|aws_iam_policy_document.codebuild"
+          ],
+          "resources": [
+            "aws_cloudwatch_log_group.this",
+            "aws_codepipeline.this",
+            "aws_iam_policy_document.codebuild",
+            "aws_s3_bucket.this",
+            "aws_s3_bucket_lifecycle_configuration.this",
+            "module.apply",
+            "module.plan",
+            "module.validation"
+          ]
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/tfsec__aws-samples_terraform-aws-pipeline.json",
+          "findings": 6,
+          "mapped": 5,
+          "unmapped": 1,
+          "in_module": 0,
+          "controls": [
+            "IAM_WILDCARD_ACTION",
+            "IAM_WILDCARD_TRUST",
+            "STO_NO_ACCESS_LOGGING"
+          ],
+          "claims": [
+            "IAM_WILDCARD_ACTION|data.aws_iam_policy_document",
+            "IAM_WILDCARD_TRUST|data.aws_iam_policy_document",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.this"
+          ],
+          "resources": [
+            "aws_s3_bucket.this",
+            "data.aws_iam_policy_document"
+          ]
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_terraform-aws-pipeline.json",
+          "findings": 2,
+          "mapped": 1,
+          "unmapped": 1,
+          "in_module": 0,
+          "controls": [
+            "STO_NO_ACCESS_LOGGING"
+          ],
+          "claims": [
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.this"
+          ],
+          "resources": [
+            "aws_s3_bucket.this"
+          ]
+        }
+      }
+    },
+    {
+      "repo": "aws-samples/terraform-ec2-image-builder-container-hardening-pipeline",
+      "commit": "1ab22e45e9e586f952272a636e6a706fca197a35",
+      "sloc": 871,
+      "tools": {
+        "checkov": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/checkov__aws-samples_terraform-ec2-image-builder-container-hardening-pipeline.json",
+          "findings": 14,
+          "mapped": 5,
+          "unmapped": 9,
+          "in_module": 0,
+          "controls": [
+            "IAM_WILDCARD_ACTION",
+            "NET_UNRESTRICTED_INGRESS",
+            "STO_UNENCRYPTED_BUCKET"
+          ],
+          "claims": [
+            "IAM_WILDCARD_ACTION|aws_iam_policy_document.this",
+            "NET_UNRESTRICTED_INGRESS|aws_security_group.image_builder_sg",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket.s3_pipeline_bucket",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket.s3_pipeline_logging_bucket_logs"
+          ],
+          "resources": [
+            "aws_iam_policy_document.this",
+            "aws_s3_bucket.s3_pipeline_bucket",
+            "aws_s3_bucket.s3_pipeline_logging_bucket_logs",
+            "aws_security_group.image_builder_sg",
+            "aws_subnet.hardening_pipeline_public"
+          ]
+        },
+        "tfsec": {
+          "status": "ok",
+          "exit_code": 1,
+          "raw_path": "results/raw/external/tfsec__aws-samples_terraform-ec2-image-builder-container-hardening-pipeline.json",
+          "findings": 8,
+          "mapped": 6,
+          "unmapped": 2,
+          "in_module": 0,
+          "controls": [
+            "NET_PUBLIC_INSTANCE",
+            "NET_UNRESTRICTED_INGRESS",
+            "STO_NO_ACCESS_LOGGING",
+            "STO_UNENCRYPTED_BUCKET"
+          ],
+          "claims": [
+            "NET_PUBLIC_INSTANCE|aws_subnet.hardening_pipeline_public",
+            "NET_UNRESTRICTED_INGRESS|aws_security_group.image_builder_sg",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.s3_pipeline_logging_bucket_logs",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket_server_side_encryption_configuration.s3_pipeline_bucket_enc",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket_server_side_encryption_configuration.s3_pipeline_logging_bucket_enc"
+          ],
+          "resources": [
+            "aws_s3_bucket.s3_pipeline_logging_bucket_logs",
+            "aws_s3_bucket_server_side_encryption_configuration.s3_pipeline_bucket_enc",
+            "aws_s3_bucket_server_side_encryption_configuration.s3_pipeline_logging_bucket_enc",
+            "aws_security_group.image_builder_sg",
+            "aws_subnet.hardening_pipeline_public"
+          ]
+        },
+        "trivy": {
+          "status": "ok",
+          "exit_code": 0,
+          "raw_path": "results/raw/external/trivy__aws-samples_terraform-ec2-image-builder-container-hardening-pipeline.json",
+          "findings": 7,
+          "mapped": 4,
+          "unmapped": 3,
+          "in_module": 0,
+          "controls": [
+            "NET_UNRESTRICTED_INGRESS",
+            "STO_NO_ACCESS_LOGGING",
+            "STO_UNENCRYPTED_BUCKET"
+          ],
+          "claims": [
+            "NET_UNRESTRICTED_INGRESS|aws_security_group.image_builder_sg",
+            "STO_NO_ACCESS_LOGGING|aws_s3_bucket.s3_pipeline_logging_bucket_logs",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket_server_side_encryption_configuration.s3_pipeline_bucket_enc",
+            "STO_UNENCRYPTED_BUCKET|aws_s3_bucket_server_side_encryption_configuration.s3_pipeline_logging_bucket_enc"
+          ],
+          "resources": [
+            "aws_s3_bucket.s3_pipeline_logging_bucket_logs",
+            "aws_s3_bucket_server_side_encryption_configuration.s3_pipeline_bucket_enc",
+            "aws_s3_bucket_server_side_encryption_configuration.s3_pipeline_logging_bucket_enc",
+            "aws_security_group.image_builder_sg",
+            "aws_subnet.hardening_pipeline_public"
+          ]
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "per_tool": {
+      "checkov": {
+        "repositories_scanned": 25,
+        "findings": 264,
+        "mapped": 72,
+        "unmapped": 192,
+        "unmapped_share": 0.7273,
+        "in_module": 178,
+        "in_module_share": 0.6742,
+        "findings_per_kloc": 17.34,
+        "controls": [
+          "IAM_WILDCARD_ACTION",
+          "MON_NO_LOG_ENCRYPTION",
+          "NET_NO_FLOW_LOGS",
+          "NET_UNRESTRICTED_INGRESS",
+          "SRV_NO_FUNCTION_ENCRYPTION",
+          "STO_NO_ACCESS_LOGGING",
+          "STO_PUBLIC_BUCKET",
+          "STO_UNENCRYPTED_BUCKET"
+        ]
+      },
+      "tfsec": {
+        "repositories_scanned": 25,
+        "findings": 118,
+        "mapped": 101,
+        "unmapped": 17,
+        "unmapped_share": 0.1441,
+        "in_module": 56,
+        "in_module_share": 0.4746,
+        "findings_per_kloc": 7.75,
+        "controls": [
+          "IAM_WILDCARD_ACTION",
+          "IAM_WILDCARD_TRUST",
+          "MON_NO_LOG_ENCRYPTION",
+          "NET_NO_FLOW_LOGS",
+          "NET_PUBLIC_INSTANCE",
+          "NET_UNRESTRICTED_INGRESS",
+          "SRV_NO_FUNCTION_ENCRYPTION",
+          "STO_NO_ACCESS_LOGGING",
+          "STO_PUBLIC_BUCKET",
+          "STO_UNENCRYPTED_BUCKET"
+        ]
+      },
+      "trivy": {
+        "repositories_scanned": 25,
+        "findings": 141,
+        "mapped": 98,
+        "unmapped": 43,
+        "unmapped_share": 0.305,
+        "in_module": 106,
+        "in_module_share": 0.7518,
+        "findings_per_kloc": 9.26,
+        "controls": [
+          "MON_NO_LOG_ENCRYPTION",
+          "NET_NO_FLOW_LOGS",
+          "NET_UNRESTRICTED_INGRESS",
+          "SRV_NO_FUNCTION_ENCRYPTION",
+          "STO_NO_ACCESS_LOGGING",
+          "STO_PUBLIC_BUCKET",
+          "STO_UNENCRYPTED_BUCKET"
+        ]
+      }
+    },
+    "agreement": {
+      "checkov|tfsec": {
+        "shared_claims": 14,
+        "union_claims": 87,
+        "jaccard": 0.1609,
+        "shared_resources": 22,
+        "union_resources": 104,
+        "resource_jaccard": 0.2115
+      },
+      "checkov|trivy": {
+        "shared_claims": 36,
+        "union_claims": 75,
+        "jaccard": 0.48,
+        "shared_resources": 42,
+        "union_resources": 99,
+        "resource_jaccard": 0.4242
+      },
+      "tfsec|trivy": {
+        "shared_claims": 26,
+        "union_claims": 74,
+        "jaccard": 0.3514,
+        "shared_resources": 28,
+        "union_resources": 57,
+        "resource_jaccard": 0.4912
+      }
+    }
+  }
+}

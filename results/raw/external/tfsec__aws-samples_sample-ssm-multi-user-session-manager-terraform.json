@@ -1,0 +1,188 @@
+{
+	"results": [
+		{
+			"rule_id": "AVD-AWS-0104",
+			"long_id": "aws-ec2-no-public-egress-sgr",
+			"rule_description": "An egress security group rule allows traffic to /0.",
+			"rule_provider": "aws",
+			"rule_service": "ec2",
+			"impact": "Your port is egressing data to the internet",
+			"resolution": "Set a more restrictive cidr range",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/ec2/no-public-egress-sgr/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group"
+			],
+			"description": "Security group rule allows egress to multiple public internet addresses.",
+			"severity": "CRITICAL",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_security_group.ssm_sg",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-ssm-multi-user-session-manager-terraform/ec2.tf",
+				"start_line": 69,
+				"end_line": 69
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0104",
+			"long_id": "aws-ec2-no-public-egress-sgr",
+			"rule_description": "An egress security group rule allows traffic to /0.",
+			"rule_provider": "aws",
+			"rule_service": "ec2",
+			"impact": "Your port is egressing data to the internet",
+			"resolution": "Set a more restrictive cidr range",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/ec2/no-public-egress-sgr/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group"
+			],
+			"description": "Security group rule allows egress to multiple public internet addresses.",
+			"severity": "CRITICAL",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_security_group.ssm_sg",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-ssm-multi-user-session-manager-terraform/ec2.tf",
+				"start_line": 60,
+				"end_line": 60
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0057",
+			"long_id": "aws-iam-no-policy-wildcards",
+			"rule_description": "IAM policy should avoid use of wildcards and instead apply the principle of least privilege",
+			"rule_provider": "aws",
+			"rule_service": "iam",
+			"impact": "Overly permissive policies may grant access to sensitive resources",
+			"resolution": "Specify the exact permissions required, and to which resources they should apply instead of using wildcards.",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/iam/no-policy-wildcards/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document"
+			],
+			"description": "IAM policy document uses sensitive action 'logs:CreateLogStream' on wildcarded resource '7dcf5e7f-27ca-4b17-9471-98bed34b148a'",
+			"severity": "HIGH",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_iam_role_policy.session_logging_policy",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-ssm-multi-user-session-manager-terraform/iam_roles.tf",
+				"start_line": 81,
+				"end_line": 81
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0057",
+			"long_id": "aws-iam-no-policy-wildcards",
+			"rule_description": "IAM policy should avoid use of wildcards and instead apply the principle of least privilege",
+			"rule_provider": "aws",
+			"rule_service": "iam",
+			"impact": "Overly permissive policies may grant access to sensitive resources",
+			"resolution": "Specify the exact permissions required, and to which resources they should apply instead of using wildcards.",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/iam/no-policy-wildcards/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document"
+			],
+			"description": "IAM policy document uses sensitive action 's3:PutObject' on wildcarded resource '2a22af64-97a7-483b-b8a7-e0675f01a0f7/*'",
+			"severity": "HIGH",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_iam_role_policy.session_logging_policy",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-ssm-multi-user-session-manager-terraform/iam_roles.tf",
+				"start_line": 81,
+				"end_line": 81
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0057",
+			"long_id": "aws-iam-no-policy-wildcards",
+			"rule_description": "IAM policy should avoid use of wildcards and instead apply the principle of least privilege",
+			"rule_provider": "aws",
+			"rule_service": "iam",
+			"impact": "Overly permissive policies may grant access to sensitive resources",
+			"resolution": "Specify the exact permissions required, and to which resources they should apply instead of using wildcards.",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/iam/no-policy-wildcards/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document"
+			],
+			"description": "IAM policy document uses wildcarded action 'kms:Encrypt'",
+			"severity": "HIGH",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_iam_role_policy.kms_policy",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-ssm-multi-user-session-manager-terraform/iam_roles.tf",
+				"start_line": 126,
+				"end_line": 126
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0057",
+			"long_id": "aws-iam-no-policy-wildcards",
+			"rule_description": "IAM policy should avoid use of wildcards and instead apply the principle of least privilege",
+			"rule_provider": "aws",
+			"rule_service": "iam",
+			"impact": "Overly permissive policies may grant access to sensitive resources",
+			"resolution": "Specify the exact permissions required, and to which resources they should apply instead of using wildcards.",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/iam/no-policy-wildcards/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document"
+			],
+			"description": "IAM policy document uses wildcarded action 'kms:Encrypt'",
+			"severity": "HIGH",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_iam_role_policy.kms_policy",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-ssm-multi-user-session-manager-terraform/iam_roles.tf",
+				"start_line": 126,
+				"end_line": 126
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0089",
+			"long_id": "aws-s3-enable-bucket-logging",
+			"rule_description": "S3 Bucket does not have logging enabled.",
+			"rule_provider": "aws",
+			"rule_service": "s3",
+			"impact": "There is no way to determine the access to this bucket",
+			"resolution": "Add a logging block to the resource to enable access logging",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/s3/enable-bucket-logging/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket"
+			],
+			"description": "Bucket does not have logging enabled",
+			"severity": "MEDIUM",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_s3_bucket.session_logs",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-ssm-multi-user-session-manager-terraform/ssm_config.tf",
+				"start_line": 54,
+				"end_line": 61
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0132",
+			"long_id": "aws-s3-encryption-customer-key",
+			"rule_description": "S3 encryption should use Customer Managed Keys",
+			"rule_provider": "aws",
+			"rule_service": "s3",
+			"impact": "Using AWS managed keys does not allow for fine grained control",
+			"resolution": "Enable encryption using customer managed keys",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/s3/encryption-customer-key/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#enable-default-server-side-encryption"
+			],
+			"description": "Bucket does not encrypt data with a customer managed key.",
+			"severity": "HIGH",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_s3_bucket_server_side_encryption_configuration.session_logs",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-ssm-multi-user-session-manager-terraform/ssm_config.tf",
+				"start_line": 78,
+				"end_line": 86
+			}
+		}
+	]
+}

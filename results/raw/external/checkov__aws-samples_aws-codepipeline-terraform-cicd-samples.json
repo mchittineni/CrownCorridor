@@ -1,0 +1,417 @@
+{
+    "check_type": "terraform",
+    "results": {
+        "failed_checks": [
+            {
+                "check_id": "CKV_AWS_316",
+                "bc_check_id": "BC_AWS_GENERAL_227",
+                "check_name": "Ensure CodeBuild project environments do not have privileged mode enabled",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "environment/[0]/privileged_mode"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/modules/codebuild/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/modules/codebuild/main.tf",
+                "repo_file_path": "/modules/codebuild/main.tf",
+                "file_line_range": [
+                    7,
+                    34
+                ],
+                "resource": "module.codebuild_terraform.aws_codebuild_project.terraform_codebuild_project",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.CodeBuildPrivilegedMode",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/main.tf",
+                "caller_file_line_range": [
+                    54,
+                    76
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-316",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/modules/codebuild/main.tf",
+                "breadcrumbs": {
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "codebuild_terraform",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/main.tf",
+                            "idx": 15,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_356",
+                "bc_check_id": "BC_AWS_IAM_89",
+                "check_name": "Ensure no IAM policies documents allow \"*\" as a statement's resource for restrictable actions",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "statement/[0]/actions"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/modules/kms/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/modules/kms/main.tf",
+                "repo_file_path": "/modules/kms/main.tf",
+                "file_line_range": [
+                    19,
+                    91
+                ],
+                "resource": "module.codepipeline_kms.aws_iam_policy_document.kms_key_policy_doc",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.data.aws.ResourcePolicyDocument",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/main.tf",
+                "caller_file_line_range": [
+                    78,
+                    88
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-356",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/modules/kms/main.tf",
+                "breadcrumbs": {
+                    "statement.0.principals.identifiers.0": [
+                        {
+                            "type": "locals",
+                            "name": "account_id",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/modules/kms/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.0.principals.identifiers": [
+                        {
+                            "type": "locals",
+                            "name": "account_id",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/modules/kms/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.0.principals": [
+                        {
+                            "type": "locals",
+                            "name": "account_id",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/modules/kms/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.0": [
+                        {
+                            "type": "locals",
+                            "name": "account_id",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/modules/kms/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "codepipeline_kms",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/main.tf",
+                            "idx": 16,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV2_AWS_61",
+                "bc_check_id": "BC_AWS_LOGGING_35",
+                "check_name": "Ensure that an S3 bucket has a lifecycle configuration",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "replication_bucket": {
+                                "__end_line__": 77,
+                                "__start_line__": 74,
+                                "bucket_prefix": [
+                                    "regex(\"[a-z0-9.-]+\", lower(var.project_name))-rpl"
+                                ],
+                                "provider": [
+                                    "aws.replication"
+                                ],
+                                "__address__": "module.s3_artifacts_bucket.aws_s3_bucket.replication_bucket",
+                                "__provider_address__": "module.s3_artifacts_bucket.aws.replication"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "lifecycle_rule",
+                        "resource_type"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/modules/s3/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/modules/s3/main.tf",
+                "repo_file_path": "/modules/s3/main.tf",
+                "file_line_range": [
+                    74,
+                    77
+                ],
+                "resource": "module.s3_artifacts_bucket.aws_s3_bucket.replication_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/modules/s3/main.tf",
+                "breadcrumbs": {
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "s3_artifacts_bucket",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/main.tf",
+                            "idx": 13,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV2_AWS_61",
+                "bc_check_id": "BC_AWS_LOGGING_35",
+                "check_name": "Ensure that an S3 bucket has a lifecycle configuration",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "codepipeline_bucket": {
+                                "__end_line__": 159,
+                                "__start_line__": 155,
+                                "bucket_prefix": [
+                                    "regex(\"[a-z0-9.-]+\",lower(var.project_name))"
+                                ],
+                                "force_destroy": [
+                                    true
+                                ],
+                                "tags": [
+                                    "var.tags"
+                                ],
+                                "__address__": "module.s3_artifacts_bucket.aws_s3_bucket.codepipeline_bucket"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "lifecycle_rule",
+                        "resource_type"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/modules/s3/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/modules/s3/main.tf",
+                "repo_file_path": "/modules/s3/main.tf",
+                "file_line_range": [
+                    155,
+                    159
+                ],
+                "resource": "module.s3_artifacts_bucket.aws_s3_bucket.codepipeline_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/modules/s3/main.tf",
+                "breadcrumbs": {
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "s3_artifacts_bucket",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/main.tf",
+                            "idx": 13,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV2_AWS_62",
+                "bc_check_id": "BC_AWS_LOGGING_36",
+                "check_name": "Ensure S3 buckets should have event notifications enabled",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "replication_bucket": {
+                                "__end_line__": 77,
+                                "__start_line__": 74,
+                                "bucket_prefix": [
+                                    "regex(\"[a-z0-9.-]+\", lower(var.project_name))-rpl"
+                                ],
+                                "provider": [
+                                    "aws.replication"
+                                ],
+                                "__address__": "module.s3_artifacts_bucket.aws_s3_bucket.replication_bucket",
+                                "__provider_address__": "module.s3_artifacts_bucket.aws.replication"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "resource_type"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/modules/s3/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/modules/s3/main.tf",
+                "repo_file_path": "/modules/s3/main.tf",
+                "file_line_range": [
+                    74,
+                    77
+                ],
+                "resource": "module.s3_artifacts_bucket.aws_s3_bucket.replication_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-62",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/modules/s3/main.tf",
+                "breadcrumbs": {
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "s3_artifacts_bucket",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/main.tf",
+                            "idx": 13,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV2_AWS_62",
+                "bc_check_id": "BC_AWS_LOGGING_36",
+                "check_name": "Ensure S3 buckets should have event notifications enabled",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "codepipeline_bucket": {
+                                "__end_line__": 159,
+                                "__start_line__": 155,
+                                "bucket_prefix": [
+                                    "regex(\"[a-z0-9.-]+\",lower(var.project_name))"
+                                ],
+                                "force_destroy": [
+                                    true
+                                ],
+                                "tags": [
+                                    "var.tags"
+                                ],
+                                "__address__": "module.s3_artifacts_bucket.aws_s3_bucket.codepipeline_bucket"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "resource_type"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/modules/s3/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/modules/s3/main.tf",
+                "repo_file_path": "/modules/s3/main.tf",
+                "file_line_range": [
+                    155,
+                    159
+                ],
+                "resource": "module.s3_artifacts_bucket.aws_s3_bucket.codepipeline_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-62",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/modules/s3/main.tf",
+                "breadcrumbs": {
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "s3_artifacts_bucket",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples/main.tf",
+                            "idx": 13,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "summary": {
+        "passed": 104,
+        "failed": 6,
+        "skipped": 2,
+        "parsing_errors": 0,
+        "resource_count": 27,
+        "checkov_version": "3.3.8"
+    }
+}

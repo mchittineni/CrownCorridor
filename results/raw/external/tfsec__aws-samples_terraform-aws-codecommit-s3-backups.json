@@ -1,0 +1,73 @@
+{
+	"results": [
+		{
+			"rule_id": "AVD-AWS-0057",
+			"long_id": "aws-iam-no-policy-wildcards",
+			"rule_description": "IAM policy should avoid use of wildcards and instead apply the principle of least privilege",
+			"rule_provider": "aws",
+			"rule_service": "iam",
+			"impact": "Overly permissive policies may grant access to sensitive resources",
+			"resolution": "Specify the exact permissions required, and to which resources they should apply instead of using wildcards.",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/iam/no-policy-wildcards/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document"
+			],
+			"description": "IAM policy document uses sensitive action 's3:PutObjectAcl' on wildcarded resource '9760e58b-760c-4942-91cc-882e7b912745'",
+			"severity": "HIGH",
+			"warning": false,
+			"status": 0,
+			"resource": "data.aws_iam_policy_document.codebuild",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-codecommit-s3-backups/codebuild.tf",
+				"start_line": 83,
+				"end_line": 86
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0057",
+			"long_id": "aws-iam-no-policy-wildcards",
+			"rule_description": "IAM policy should avoid use of wildcards and instead apply the principle of least privilege",
+			"rule_provider": "aws",
+			"rule_service": "iam",
+			"impact": "Overly permissive policies may grant access to sensitive resources",
+			"resolution": "Specify the exact permissions required, and to which resources they should apply instead of using wildcards.",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/iam/no-policy-wildcards/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document"
+			],
+			"description": "IAM policy document uses sensitive action 'batch:SubmitJob' on wildcarded resource '*'",
+			"severity": "HIGH",
+			"warning": false,
+			"status": 0,
+			"resource": "data.aws_iam_policy_document.cloudwatch",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-codecommit-s3-backups/cloudwatch.tf",
+				"start_line": 134,
+				"end_line": 136
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0089",
+			"long_id": "aws-s3-enable-bucket-logging",
+			"rule_description": "S3 Bucket does not have logging enabled.",
+			"rule_provider": "aws",
+			"rule_service": "s3",
+			"impact": "There is no way to determine the access to this bucket",
+			"resolution": "Add a logging block to the resource to enable access logging",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/s3/enable-bucket-logging/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket"
+			],
+			"description": "Bucket does not have logging enabled",
+			"severity": "MEDIUM",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_s3_bucket.this",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-codecommit-s3-backups/s3.tf",
+				"start_line": 4,
+				"end_line": 6
+			}
+		}
+	]
+}

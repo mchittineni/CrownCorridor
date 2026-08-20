@@ -9,11 +9,11 @@
 \toprule
 \textbf{Tool} & \textbf{Evaluation layer} & \multicolumn{2}{c}{\textbf{Latency (ms)}} \\
 \midrule
-Checkov & AST static analysis & $1853.42$ & $58.90$ \\
+Checkov & AST static analysis & $1913.58$ & $60.57$ \\
 IaCSecBench L1 & Repository-edge scanning & $0.15$ & $0.05$ \\
-OPA (plan-level) & Rego over compiled plan & $12.94$ & $5.79$ \\
-tfsec & HCL lexical scanning & $275.37$ & $8.35$ \\
-Trivy & HCL scanning, tfsec successor & $405.48$ & $31.97$ \\
+OPA (plan-level) & Rego over compiled plan & $12.82$ & $2.16$ \\
+tfsec & HCL lexical scanning & $275.22$ & $7.58$ \\
+Trivy & HCL scanning, tfsec successor & $400.71$ & $26.67$ \\
 \bottomrule
 \end{tabularx}
 \end{table}

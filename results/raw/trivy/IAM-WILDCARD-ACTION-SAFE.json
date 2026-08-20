@@ -3,9 +3,9 @@
   "Trivy": {
     "Version": "0.73.0"
   },
-  "ReportID": "019fcc86-3aeb-7301-9b78-cb7ca21b3c2b",
-  "CreatedAt": "2026-08-04T12:26:16.811198+01:00",
-  "ArtifactName": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-SAFE-5degrovm/case",
+  "ReportID": "01a01ec0-e948-773b-a475-880f6662555c",
+  "CreatedAt": "2026-08-20T11:39:14.248475+01:00",
+  "ArtifactName": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-IAM-WILDCARD-ACTION-SAFE-_xju0at_/case",
   "ArtifactType": "filesystem",
   "Results": [
     {

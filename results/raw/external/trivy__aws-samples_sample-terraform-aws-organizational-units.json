@@ -1,0 +1,29 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.73.0"
+  },
+  "ReportID": "01a01e5e-e83e-77b4-bee1-e6fc1841afff",
+  "CreatedAt": "2026-08-20T09:52:11.454507+01:00",
+  "ArtifactID": "sha256:e930caa1534d30157bbe7bc6a06cc174a8ce9277ebce20e96f4ace6a7abca452",
+  "ArtifactName": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-terraform-aws-organizational-units",
+  "ArtifactType": "repository",
+  "Metadata": {
+    "RepoURL": "https://github.com/aws-samples/sample-terraform-aws-organizational-units.git",
+    "Commit": "fb16545d0f4d2ed2c43e0f1eafd1000c56239e3a",
+    "CommitMsg": "Merge pull request #2 from aws-samples/readme\n\nreadme",
+    "Author": "Jake \u003c94998878+jakebark@users.noreply.github.com\u003e",
+    "Committer": "GitHub \u003cnoreply@github.com\u003e"
+  },
+  "Results": [
+    {
+      "Target": ".",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 51,
+        "Failures": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.73.0"
+  },
+  "ReportID": "01a01e5e-5392-7e1d-b32d-2209007e4aab",
+  "CreatedAt": "2026-08-20T09:51:33.394926+01:00",
+  "ArtifactID": "sha256:f6f477274ccabda7bfa438b3b6d42d646618e3fdd635421dc9bb4ede1dac34b2",
+  "ArtifactName": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-codepipeline-terraform-cicd-samples",
+  "ArtifactType": "repository",
+  "Metadata": {
+    "RepoURL": "https://github.com/aws-samples/aws-codepipeline-terraform-cicd-samples.git",
+    "Commit": "af47dcea715a43bc199473a6840dde7ca21e5853",
+    "CommitMsg": "Merge pull request #18 from aws-samples/aromal-amzn-patch-1\n\nUpdate README.md",
+    "Author": "Aromal Raj Jayarajan \u003caromalr@amazon.com\u003e",
+    "Committer": "GitHub \u003cnoreply@github.com\u003e"
+  },
+  "Results": [
+    {
+      "Target": ".",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 63,
+        "Failures": 0
+      }
+    }
+  ]
+}

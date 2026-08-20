@@ -1,0 +1,96 @@
+{
+	"results": [
+		{
+			"rule_id": "AVD-AWS-0104",
+			"long_id": "aws-ec2-no-public-egress-sgr",
+			"rule_description": "An egress security group rule allows traffic to /0.",
+			"rule_provider": "aws",
+			"rule_service": "ec2",
+			"impact": "Your port is egressing data to the internet",
+			"resolution": "Set a more restrictive cidr range",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/ec2/no-public-egress-sgr/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group"
+			],
+			"description": "Security group rule allows egress to multiple public internet addresses.",
+			"severity": "CRITICAL",
+			"warning": false,
+			"status": 0,
+			"resource": "module.adot_collector",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-ecs-adot-centralised-gateway/modules/adot-collector/main.tf",
+				"start_line": 226,
+				"end_line": 226
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0104",
+			"long_id": "aws-ec2-no-public-egress-sgr",
+			"rule_description": "An egress security group rule allows traffic to /0.",
+			"rule_provider": "aws",
+			"rule_service": "ec2",
+			"impact": "Your port is egressing data to the internet",
+			"resolution": "Set a more restrictive cidr range",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/ec2/no-public-egress-sgr/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group"
+			],
+			"description": "Security group rule allows egress to multiple public internet addresses.",
+			"severity": "CRITICAL",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_security_group_rule.ecs_hosts_egress",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-ecs-adot-centralised-gateway/main.tf",
+				"start_line": 293,
+				"end_line": 293
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0057",
+			"long_id": "aws-iam-no-policy-wildcards",
+			"rule_description": "IAM policy should avoid use of wildcards and instead apply the principle of least privilege",
+			"rule_provider": "aws",
+			"rule_service": "iam",
+			"impact": "Overly permissive policies may grant access to sensitive resources",
+			"resolution": "Specify the exact permissions required, and to which resources they should apply instead of using wildcards.",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/iam/no-policy-wildcards/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document"
+			],
+			"description": "IAM policy document uses sensitive action 'logs:CreateLogStream' on wildcarded resource 'e760b90e-4f6d-4000-972f-9221d19a2292'",
+			"severity": "HIGH",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_iam_role_policy.flow_logs",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-ecs-adot-centralised-gateway/main.tf",
+				"start_line": 194,
+				"end_line": 194
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0057",
+			"long_id": "aws-iam-no-policy-wildcards",
+			"rule_description": "IAM policy should avoid use of wildcards and instead apply the principle of least privilege",
+			"rule_provider": "aws",
+			"rule_service": "iam",
+			"impact": "Overly permissive policies may grant access to sensitive resources",
+			"resolution": "Specify the exact permissions required, and to which resources they should apply instead of using wildcards.",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/iam/no-policy-wildcards/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document"
+			],
+			"description": "IAM policy document uses sensitive action 'logs:DescribeLogGroups' on wildcarded resource '*'",
+			"severity": "HIGH",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_iam_role_policy.flow_logs",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-ecs-adot-centralised-gateway/main.tf",
+				"start_line": 194,
+				"end_line": 194
+			}
+		}
+	]
+}

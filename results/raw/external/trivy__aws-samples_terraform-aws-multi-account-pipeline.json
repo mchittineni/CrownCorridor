@@ -1,0 +1,2688 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.73.0"
+  },
+  "ReportID": "01a01e5f-13e0-7c1d-956a-3e0fbc8063af",
+  "CreatedAt": "2026-08-20T09:52:22.624795+01:00",
+  "ArtifactID": "sha256:dce048aa2599861d005f293e9dd866ad9229b268bd0a0a46edb81c4c8b389944",
+  "ArtifactName": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-multi-account-pipeline",
+  "ArtifactType": "repository",
+  "Metadata": {
+    "RepoURL": "https://github.com/aws-samples/terraform-aws-multi-account-pipeline.git",
+    "Commit": "6f5a3d6e3cb54da34508c43ef416c99f85ee67ed",
+    "CommitMsg": "Bump actions/checkout from 6 to 7 (#40)\n\nBumps [actions/checkout](https://github.com/actions/checkout) from 6 to 7.\n- [Release notes](https://github.com/actions/checkout/releases)\n- [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/actions/checkout/compare/v6...v7)\n\n---\nupdated-dependencies:\n- dependency-name: actions/checkout\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] \u003csupport@github.com\u003e\nCo-authored-by: dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e",
+    "Author": "dependabot[bot] \u003c49699333+dependabot[bot]@users.noreply.github.com\u003e",
+    "Committer": "GitHub \u003cnoreply@github.com\u003e"
+  },
+  "Results": [
+    {
+      "Target": ".",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 61,
+        "Failures": 0
+      }
+    },
+    {
+      "Target": "example-code",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 53,
+        "Failures": 0
+      }
+    },
+    {
+      "Target": "example-code/main.tf",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 0,
+        "Failures": 40
+      },
+      "Misconfigurations": [
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0086",
+          "Title": "S3 Access block should block public ACL",
+          "Description": "S3 buckets should block public ACLs on buckets and any objects they contain. By blocking, PUTs with fail if the object has any public ACL a.\n",
+          "Message": "No public access block so not blocking public acls",
+          "Namespace": "builtin.aws.s3.aws0086",
+          "Query": "data.builtin.aws.s3.aws0086.deny",
+          "Resolution": "Enable blocking any PUT calls with a public ACL specified",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0086",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0086"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.bar",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 10,
+            "EndLine": 12,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 10,
+                  "Content": "resource \"aws_s3_bucket\" \"bar\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"bar\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 11,
+                  "Content": "  bucket = \"bucket-${data.aws_caller_identity.current.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mdata\u001b[0m.aws_caller_identity.current.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 12,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0086",
+          "Title": "S3 Access block should block public ACL",
+          "Description": "S3 buckets should block public ACLs on buckets and any objects they contain. By blocking, PUTs with fail if the object has any public ACL a.\n",
+          "Message": "No public access block so not blocking public acls",
+          "Namespace": "builtin.aws.s3.aws0086",
+          "Query": "data.builtin.aws.s3.aws0086.deny",
+          "Resolution": "Enable blocking any PUT calls with a public ACL specified",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0086",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0086"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.baz",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 14,
+            "EndLine": 16,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 14,
+                  "Content": "resource \"aws_s3_bucket\" \"baz\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"baz\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 15,
+                  "Content": "  bucket = \"bucket-${var.account_name}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_name\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 16,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0086",
+          "Title": "S3 Access block should block public ACL",
+          "Description": "S3 buckets should block public ACLs on buckets and any objects they contain. By blocking, PUTs with fail if the object has any public ACL a.\n",
+          "Message": "No public access block so not blocking public acls",
+          "Namespace": "builtin.aws.s3.aws0086",
+          "Query": "data.builtin.aws.s3.aws0086.deny",
+          "Resolution": "Enable blocking any PUT calls with a public ACL specified",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0086",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0086"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.baz[0]",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 46,
+            "EndLine": 49,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 46,
+                  "Content": "resource \"aws_s3_bucket\" \"baz\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"baz\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 47,
+                  "Content": "  count  = var.account_name == \"workload3\" ? 1 : 0",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mcount\u001b[0m  = \u001b[38;5;33mvar\u001b[0m.\u001b[38;5;245maccount_name\u001b[0m =\u001b[38;5;245m=\u001b[0m \u001b[38;5;37m\"workload3\"\u001b[0m \u001b[38;5;245m?\u001b[0m \u001b[38;5;37m1\u001b[0m \u001b[38;5;245m:\u001b[0m \u001b[38;5;37m0",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 48,
+                  "Content": "  bucket = \"conditional-bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"conditional-bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 49,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0086",
+          "Title": "S3 Access block should block public ACL",
+          "Description": "S3 buckets should block public ACLs on buckets and any objects they contain. By blocking, PUTs with fail if the object has any public ACL a.\n",
+          "Message": "No public access block so not blocking public acls",
+          "Namespace": "builtin.aws.s3.aws0086",
+          "Query": "data.builtin.aws.s3.aws0086.deny",
+          "Resolution": "Enable blocking any PUT calls with a public ACL specified",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0086",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0086"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.foo",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 6,
+            "EndLine": 8,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 6,
+                  "Content": "resource \"aws_s3_bucket\" \"foo\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"foo\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 7,
+                  "Content": "  bucket = \"bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 8,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0086",
+          "Title": "S3 Access block should block public ACL",
+          "Description": "S3 buckets should block public ACLs on buckets and any objects they contain. By blocking, PUTs with fail if the object has any public ACL a.\n",
+          "Message": "No public access block so not blocking public acls",
+          "Namespace": "builtin.aws.s3.aws0086",
+          "Query": "data.builtin.aws.s3.aws0086.deny",
+          "Resolution": "Enable blocking any PUT calls with a public ACL specified",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0086",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0086"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.foo[0]",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 36,
+            "EndLine": 39,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 36,
+                  "Content": "resource \"aws_s3_bucket\" \"foo\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"foo\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 37,
+                  "Content": "  count  = var.account_id == \"112233445566\" ? 1 : 0",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mcount\u001b[0m  = \u001b[38;5;33mvar\u001b[0m.\u001b[38;5;245maccount_id\u001b[0m =\u001b[38;5;245m=\u001b[0m \u001b[38;5;37m\"112233445566\"\u001b[0m \u001b[38;5;245m?\u001b[0m \u001b[38;5;37m1\u001b[0m \u001b[38;5;245m:\u001b[0m \u001b[38;5;37m0",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 38,
+                  "Content": "  bucket = \"conditional-bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"conditional-bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 39,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0087",
+          "Title": "S3 Access block should block public policy",
+          "Description": "S3 bucket policy should have block public policy to prevent users from putting a policy that enable public access.\n",
+          "Message": "No public access block so not blocking public policies",
+          "Namespace": "builtin.aws.s3.aws0087",
+          "Query": "data.builtin.aws.s3.aws0087.deny",
+          "Resolution": "Prevent policies that allow public access being PUT",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0087",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/dev-retired/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0087"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.bar",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 10,
+            "EndLine": 12,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 10,
+                  "Content": "resource \"aws_s3_bucket\" \"bar\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"bar\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 11,
+                  "Content": "  bucket = \"bucket-${data.aws_caller_identity.current.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mdata\u001b[0m.aws_caller_identity.current.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 12,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0087",
+          "Title": "S3 Access block should block public policy",
+          "Description": "S3 bucket policy should have block public policy to prevent users from putting a policy that enable public access.\n",
+          "Message": "No public access block so not blocking public policies",
+          "Namespace": "builtin.aws.s3.aws0087",
+          "Query": "data.builtin.aws.s3.aws0087.deny",
+          "Resolution": "Prevent policies that allow public access being PUT",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0087",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/dev-retired/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0087"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.baz",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 14,
+            "EndLine": 16,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 14,
+                  "Content": "resource \"aws_s3_bucket\" \"baz\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"baz\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 15,
+                  "Content": "  bucket = \"bucket-${var.account_name}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_name\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 16,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0087",
+          "Title": "S3 Access block should block public policy",
+          "Description": "S3 bucket policy should have block public policy to prevent users from putting a policy that enable public access.\n",
+          "Message": "No public access block so not blocking public policies",
+          "Namespace": "builtin.aws.s3.aws0087",
+          "Query": "data.builtin.aws.s3.aws0087.deny",
+          "Resolution": "Prevent policies that allow public access being PUT",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0087",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/dev-retired/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0087"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.baz[0]",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 46,
+            "EndLine": 49,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 46,
+                  "Content": "resource \"aws_s3_bucket\" \"baz\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"baz\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 47,
+                  "Content": "  count  = var.account_name == \"workload3\" ? 1 : 0",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mcount\u001b[0m  = \u001b[38;5;33mvar\u001b[0m.\u001b[38;5;245maccount_name\u001b[0m =\u001b[38;5;245m=\u001b[0m \u001b[38;5;37m\"workload3\"\u001b[0m \u001b[38;5;245m?\u001b[0m \u001b[38;5;37m1\u001b[0m \u001b[38;5;245m:\u001b[0m \u001b[38;5;37m0",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 48,
+                  "Content": "  bucket = \"conditional-bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"conditional-bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 49,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0087",
+          "Title": "S3 Access block should block public policy",
+          "Description": "S3 bucket policy should have block public policy to prevent users from putting a policy that enable public access.\n",
+          "Message": "No public access block so not blocking public policies",
+          "Namespace": "builtin.aws.s3.aws0087",
+          "Query": "data.builtin.aws.s3.aws0087.deny",
+          "Resolution": "Prevent policies that allow public access being PUT",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0087",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/dev-retired/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0087"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.foo",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 6,
+            "EndLine": 8,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 6,
+                  "Content": "resource \"aws_s3_bucket\" \"foo\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"foo\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 7,
+                  "Content": "  bucket = \"bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 8,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0087",
+          "Title": "S3 Access block should block public policy",
+          "Description": "S3 bucket policy should have block public policy to prevent users from putting a policy that enable public access.\n",
+          "Message": "No public access block so not blocking public policies",
+          "Namespace": "builtin.aws.s3.aws0087",
+          "Query": "data.builtin.aws.s3.aws0087.deny",
+          "Resolution": "Prevent policies that allow public access being PUT",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0087",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/dev-retired/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0087"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.foo[0]",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 36,
+            "EndLine": 39,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 36,
+                  "Content": "resource \"aws_s3_bucket\" \"foo\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"foo\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 37,
+                  "Content": "  count  = var.account_id == \"112233445566\" ? 1 : 0",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mcount\u001b[0m  = \u001b[38;5;33mvar\u001b[0m.\u001b[38;5;245maccount_id\u001b[0m =\u001b[38;5;245m=\u001b[0m \u001b[38;5;37m\"112233445566\"\u001b[0m \u001b[38;5;245m?\u001b[0m \u001b[38;5;37m1\u001b[0m \u001b[38;5;245m:\u001b[0m \u001b[38;5;37m0",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 38,
+                  "Content": "  bucket = \"conditional-bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"conditional-bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 39,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0089",
+          "Title": "S3 Bucket Logging",
+          "Description": "Ensures S3 bucket logging is enabled for S3 buckets",
+          "Message": "Bucket has logging disabled",
+          "Namespace": "builtin.aws.s3.aws0089",
+          "Query": "data.builtin.aws.s3.aws0089.deny",
+          "Resolution": "Add a logging block to the resource to enable access logging",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0089",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerLogs.html",
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html",
+            "https://avd.aquasec.com/misconfig/aws-0089"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.bar",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 10,
+            "EndLine": 12,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 10,
+                  "Content": "resource \"aws_s3_bucket\" \"bar\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"bar\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 11,
+                  "Content": "  bucket = \"bucket-${data.aws_caller_identity.current.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mdata\u001b[0m.aws_caller_identity.current.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 12,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0089",
+          "Title": "S3 Bucket Logging",
+          "Description": "Ensures S3 bucket logging is enabled for S3 buckets",
+          "Message": "Bucket has logging disabled",
+          "Namespace": "builtin.aws.s3.aws0089",
+          "Query": "data.builtin.aws.s3.aws0089.deny",
+          "Resolution": "Add a logging block to the resource to enable access logging",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0089",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerLogs.html",
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html",
+            "https://avd.aquasec.com/misconfig/aws-0089"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.baz",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 14,
+            "EndLine": 16,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 14,
+                  "Content": "resource \"aws_s3_bucket\" \"baz\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"baz\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 15,
+                  "Content": "  bucket = \"bucket-${var.account_name}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_name\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 16,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0089",
+          "Title": "S3 Bucket Logging",
+          "Description": "Ensures S3 bucket logging is enabled for S3 buckets",
+          "Message": "Bucket has logging disabled",
+          "Namespace": "builtin.aws.s3.aws0089",
+          "Query": "data.builtin.aws.s3.aws0089.deny",
+          "Resolution": "Add a logging block to the resource to enable access logging",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0089",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerLogs.html",
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html",
+            "https://avd.aquasec.com/misconfig/aws-0089"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.baz[0]",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 46,
+            "EndLine": 49,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 46,
+                  "Content": "resource \"aws_s3_bucket\" \"baz\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"baz\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 47,
+                  "Content": "  count  = var.account_name == \"workload3\" ? 1 : 0",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mcount\u001b[0m  = \u001b[38;5;33mvar\u001b[0m.\u001b[38;5;245maccount_name\u001b[0m =\u001b[38;5;245m=\u001b[0m \u001b[38;5;37m\"workload3\"\u001b[0m \u001b[38;5;245m?\u001b[0m \u001b[38;5;37m1\u001b[0m \u001b[38;5;245m:\u001b[0m \u001b[38;5;37m0",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 48,
+                  "Content": "  bucket = \"conditional-bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"conditional-bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 49,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0089",
+          "Title": "S3 Bucket Logging",
+          "Description": "Ensures S3 bucket logging is enabled for S3 buckets",
+          "Message": "Bucket has logging disabled",
+          "Namespace": "builtin.aws.s3.aws0089",
+          "Query": "data.builtin.aws.s3.aws0089.deny",
+          "Resolution": "Add a logging block to the resource to enable access logging",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0089",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerLogs.html",
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html",
+            "https://avd.aquasec.com/misconfig/aws-0089"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.foo",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 6,
+            "EndLine": 8,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 6,
+                  "Content": "resource \"aws_s3_bucket\" \"foo\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"foo\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 7,
+                  "Content": "  bucket = \"bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 8,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0089",
+          "Title": "S3 Bucket Logging",
+          "Description": "Ensures S3 bucket logging is enabled for S3 buckets",
+          "Message": "Bucket has logging disabled",
+          "Namespace": "builtin.aws.s3.aws0089",
+          "Query": "data.builtin.aws.s3.aws0089.deny",
+          "Resolution": "Add a logging block to the resource to enable access logging",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0089",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerLogs.html",
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html",
+            "https://avd.aquasec.com/misconfig/aws-0089"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.foo[0]",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 36,
+            "EndLine": 39,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 36,
+                  "Content": "resource \"aws_s3_bucket\" \"foo\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"foo\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 37,
+                  "Content": "  count  = var.account_id == \"112233445566\" ? 1 : 0",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mcount\u001b[0m  = \u001b[38;5;33mvar\u001b[0m.\u001b[38;5;245maccount_id\u001b[0m =\u001b[38;5;245m=\u001b[0m \u001b[38;5;37m\"112233445566\"\u001b[0m \u001b[38;5;245m?\u001b[0m \u001b[38;5;37m1\u001b[0m \u001b[38;5;245m:\u001b[0m \u001b[38;5;37m0",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 38,
+                  "Content": "  bucket = \"conditional-bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"conditional-bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 39,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0090",
+          "Title": "S3 Data should be versioned",
+          "Description": "Versioning in Amazon S3 is a means of keeping multiple variants of an object in the same bucket.\n\nYou can use the S3 Versioning feature to preserve, retrieve, and restore every version of every object stored in your buckets.\n\nWith versioning you can recover more easily from both unintended user actions and application failures.\n\nWhen you enable versioning, also keep in mind the potential costs of storing noncurrent versions of objects. To help manage those costs, consider setting up an S3 Lifecycle configuration.\n",
+          "Message": "Bucket does not have versioning enabled",
+          "Namespace": "builtin.aws.s3.aws0090",
+          "Query": "data.builtin.aws.s3.aws0090.deny",
+          "Resolution": "Enable versioning to protect against accidental/malicious removal or modification",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0090",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html",
+            "https://aws.amazon.com/blogs/storage/reduce-storage-costs-with-fewer-noncurrent-versions-using-amazon-s3-lifecycle/",
+            "https://avd.aquasec.com/misconfig/aws-0090"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.bar",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 10,
+            "EndLine": 12,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 10,
+                  "Content": "resource \"aws_s3_bucket\" \"bar\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"bar\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 11,
+                  "Content": "  bucket = \"bucket-${data.aws_caller_identity.current.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mdata\u001b[0m.aws_caller_identity.current.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 12,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0090",
+          "Title": "S3 Data should be versioned",
+          "Description": "Versioning in Amazon S3 is a means of keeping multiple variants of an object in the same bucket.\n\nYou can use the S3 Versioning feature to preserve, retrieve, and restore every version of every object stored in your buckets.\n\nWith versioning you can recover more easily from both unintended user actions and application failures.\n\nWhen you enable versioning, also keep in mind the potential costs of storing noncurrent versions of objects. To help manage those costs, consider setting up an S3 Lifecycle configuration.\n",
+          "Message": "Bucket does not have versioning enabled",
+          "Namespace": "builtin.aws.s3.aws0090",
+          "Query": "data.builtin.aws.s3.aws0090.deny",
+          "Resolution": "Enable versioning to protect against accidental/malicious removal or modification",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0090",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html",
+            "https://aws.amazon.com/blogs/storage/reduce-storage-costs-with-fewer-noncurrent-versions-using-amazon-s3-lifecycle/",
+            "https://avd.aquasec.com/misconfig/aws-0090"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.baz",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 14,
+            "EndLine": 16,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 14,
+                  "Content": "resource \"aws_s3_bucket\" \"baz\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"baz\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 15,
+                  "Content": "  bucket = \"bucket-${var.account_name}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_name\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 16,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0090",
+          "Title": "S3 Data should be versioned",
+          "Description": "Versioning in Amazon S3 is a means of keeping multiple variants of an object in the same bucket.\n\nYou can use the S3 Versioning feature to preserve, retrieve, and restore every version of every object stored in your buckets.\n\nWith versioning you can recover more easily from both unintended user actions and application failures.\n\nWhen you enable versioning, also keep in mind the potential costs of storing noncurrent versions of objects. To help manage those costs, consider setting up an S3 Lifecycle configuration.\n",
+          "Message": "Bucket does not have versioning enabled",
+          "Namespace": "builtin.aws.s3.aws0090",
+          "Query": "data.builtin.aws.s3.aws0090.deny",
+          "Resolution": "Enable versioning to protect against accidental/malicious removal or modification",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0090",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html",
+            "https://aws.amazon.com/blogs/storage/reduce-storage-costs-with-fewer-noncurrent-versions-using-amazon-s3-lifecycle/",
+            "https://avd.aquasec.com/misconfig/aws-0090"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.baz[0]",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 46,
+            "EndLine": 49,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 46,
+                  "Content": "resource \"aws_s3_bucket\" \"baz\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"baz\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 47,
+                  "Content": "  count  = var.account_name == \"workload3\" ? 1 : 0",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mcount\u001b[0m  = \u001b[38;5;33mvar\u001b[0m.\u001b[38;5;245maccount_name\u001b[0m =\u001b[38;5;245m=\u001b[0m \u001b[38;5;37m\"workload3\"\u001b[0m \u001b[38;5;245m?\u001b[0m \u001b[38;5;37m1\u001b[0m \u001b[38;5;245m:\u001b[0m \u001b[38;5;37m0",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 48,
+                  "Content": "  bucket = \"conditional-bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"conditional-bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 49,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0090",
+          "Title": "S3 Data should be versioned",
+          "Description": "Versioning in Amazon S3 is a means of keeping multiple variants of an object in the same bucket.\n\nYou can use the S3 Versioning feature to preserve, retrieve, and restore every version of every object stored in your buckets.\n\nWith versioning you can recover more easily from both unintended user actions and application failures.\n\nWhen you enable versioning, also keep in mind the potential costs of storing noncurrent versions of objects. To help manage those costs, consider setting up an S3 Lifecycle configuration.\n",
+          "Message": "Bucket does not have versioning enabled",
+          "Namespace": "builtin.aws.s3.aws0090",
+          "Query": "data.builtin.aws.s3.aws0090.deny",
+          "Resolution": "Enable versioning to protect against accidental/malicious removal or modification",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0090",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html",
+            "https://aws.amazon.com/blogs/storage/reduce-storage-costs-with-fewer-noncurrent-versions-using-amazon-s3-lifecycle/",
+            "https://avd.aquasec.com/misconfig/aws-0090"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.foo",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 6,
+            "EndLine": 8,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 6,
+                  "Content": "resource \"aws_s3_bucket\" \"foo\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"foo\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 7,
+                  "Content": "  bucket = \"bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 8,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0090",
+          "Title": "S3 Data should be versioned",
+          "Description": "Versioning in Amazon S3 is a means of keeping multiple variants of an object in the same bucket.\n\nYou can use the S3 Versioning feature to preserve, retrieve, and restore every version of every object stored in your buckets.\n\nWith versioning you can recover more easily from both unintended user actions and application failures.\n\nWhen you enable versioning, also keep in mind the potential costs of storing noncurrent versions of objects. To help manage those costs, consider setting up an S3 Lifecycle configuration.\n",
+          "Message": "Bucket does not have versioning enabled",
+          "Namespace": "builtin.aws.s3.aws0090",
+          "Query": "data.builtin.aws.s3.aws0090.deny",
+          "Resolution": "Enable versioning to protect against accidental/malicious removal or modification",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0090",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html",
+            "https://aws.amazon.com/blogs/storage/reduce-storage-costs-with-fewer-noncurrent-versions-using-amazon-s3-lifecycle/",
+            "https://avd.aquasec.com/misconfig/aws-0090"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.foo[0]",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 36,
+            "EndLine": 39,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 36,
+                  "Content": "resource \"aws_s3_bucket\" \"foo\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"foo\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 37,
+                  "Content": "  count  = var.account_id == \"112233445566\" ? 1 : 0",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mcount\u001b[0m  = \u001b[38;5;33mvar\u001b[0m.\u001b[38;5;245maccount_id\u001b[0m =\u001b[38;5;245m=\u001b[0m \u001b[38;5;37m\"112233445566\"\u001b[0m \u001b[38;5;245m?\u001b[0m \u001b[38;5;37m1\u001b[0m \u001b[38;5;245m:\u001b[0m \u001b[38;5;37m0",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 38,
+                  "Content": "  bucket = \"conditional-bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"conditional-bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 39,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0091",
+          "Title": "S3 Access Block should Ignore Public ACL",
+          "Description": "S3 buckets should ignore public ACLs on buckets and any objects they contain. By ignoring rather than blocking, PUT calls with public ACLs will still be applied but the ACL will be ignored.\n",
+          "Message": "No public access block so not blocking public acls",
+          "Namespace": "builtin.aws.s3.aws0091",
+          "Query": "data.builtin.aws.s3.aws0091.deny",
+          "Resolution": "Enable ignoring the application of public ACLs in PUT calls",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0091",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0091"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.bar",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 10,
+            "EndLine": 12,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 10,
+                  "Content": "resource \"aws_s3_bucket\" \"bar\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"bar\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 11,
+                  "Content": "  bucket = \"bucket-${data.aws_caller_identity.current.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mdata\u001b[0m.aws_caller_identity.current.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 12,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0091",
+          "Title": "S3 Access Block should Ignore Public ACL",
+          "Description": "S3 buckets should ignore public ACLs on buckets and any objects they contain. By ignoring rather than blocking, PUT calls with public ACLs will still be applied but the ACL will be ignored.\n",
+          "Message": "No public access block so not blocking public acls",
+          "Namespace": "builtin.aws.s3.aws0091",
+          "Query": "data.builtin.aws.s3.aws0091.deny",
+          "Resolution": "Enable ignoring the application of public ACLs in PUT calls",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0091",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0091"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.baz",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 14,
+            "EndLine": 16,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 14,
+                  "Content": "resource \"aws_s3_bucket\" \"baz\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"baz\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 15,
+                  "Content": "  bucket = \"bucket-${var.account_name}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_name\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 16,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0091",
+          "Title": "S3 Access Block should Ignore Public ACL",
+          "Description": "S3 buckets should ignore public ACLs on buckets and any objects they contain. By ignoring rather than blocking, PUT calls with public ACLs will still be applied but the ACL will be ignored.\n",
+          "Message": "No public access block so not blocking public acls",
+          "Namespace": "builtin.aws.s3.aws0091",
+          "Query": "data.builtin.aws.s3.aws0091.deny",
+          "Resolution": "Enable ignoring the application of public ACLs in PUT calls",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0091",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0091"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.baz[0]",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 46,
+            "EndLine": 49,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 46,
+                  "Content": "resource \"aws_s3_bucket\" \"baz\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"baz\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 47,
+                  "Content": "  count  = var.account_name == \"workload3\" ? 1 : 0",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mcount\u001b[0m  = \u001b[38;5;33mvar\u001b[0m.\u001b[38;5;245maccount_name\u001b[0m =\u001b[38;5;245m=\u001b[0m \u001b[38;5;37m\"workload3\"\u001b[0m \u001b[38;5;245m?\u001b[0m \u001b[38;5;37m1\u001b[0m \u001b[38;5;245m:\u001b[0m \u001b[38;5;37m0",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 48,
+                  "Content": "  bucket = \"conditional-bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"conditional-bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 49,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0091",
+          "Title": "S3 Access Block should Ignore Public ACL",
+          "Description": "S3 buckets should ignore public ACLs on buckets and any objects they contain. By ignoring rather than blocking, PUT calls with public ACLs will still be applied but the ACL will be ignored.\n",
+          "Message": "No public access block so not blocking public acls",
+          "Namespace": "builtin.aws.s3.aws0091",
+          "Query": "data.builtin.aws.s3.aws0091.deny",
+          "Resolution": "Enable ignoring the application of public ACLs in PUT calls",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0091",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0091"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.foo",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 6,
+            "EndLine": 8,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 6,
+                  "Content": "resource \"aws_s3_bucket\" \"foo\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"foo\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 7,
+                  "Content": "  bucket = \"bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 8,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0091",
+          "Title": "S3 Access Block should Ignore Public ACL",
+          "Description": "S3 buckets should ignore public ACLs on buckets and any objects they contain. By ignoring rather than blocking, PUT calls with public ACLs will still be applied but the ACL will be ignored.\n",
+          "Message": "No public access block so not blocking public acls",
+          "Namespace": "builtin.aws.s3.aws0091",
+          "Query": "data.builtin.aws.s3.aws0091.deny",
+          "Resolution": "Enable ignoring the application of public ACLs in PUT calls",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0091",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0091"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.foo[0]",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 36,
+            "EndLine": 39,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 36,
+                  "Content": "resource \"aws_s3_bucket\" \"foo\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"foo\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 37,
+                  "Content": "  count  = var.account_id == \"112233445566\" ? 1 : 0",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mcount\u001b[0m  = \u001b[38;5;33mvar\u001b[0m.\u001b[38;5;245maccount_id\u001b[0m =\u001b[38;5;245m=\u001b[0m \u001b[38;5;37m\"112233445566\"\u001b[0m \u001b[38;5;245m?\u001b[0m \u001b[38;5;37m1\u001b[0m \u001b[38;5;245m:\u001b[0m \u001b[38;5;37m0",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 38,
+                  "Content": "  bucket = \"conditional-bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"conditional-bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 39,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0093",
+          "Title": "S3 Access block should restrict public bucket to limit access",
+          "Description": "S3 buckets should restrict public policies for the bucket. By enabling, the restrict_public_buckets, only the bucket owner and AWS Services can access if it has a public policy.\n",
+          "Message": "No public access block so not restricting public buckets",
+          "Namespace": "builtin.aws.s3.aws0093",
+          "Query": "data.builtin.aws.s3.aws0093.deny",
+          "Resolution": "Limit the access to public buckets to only the owner or AWS Services (eg; CloudFront)",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0093",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/dev-retired/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0093"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.bar",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 10,
+            "EndLine": 12,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 10,
+                  "Content": "resource \"aws_s3_bucket\" \"bar\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"bar\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 11,
+                  "Content": "  bucket = \"bucket-${data.aws_caller_identity.current.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mdata\u001b[0m.aws_caller_identity.current.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 12,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0093",
+          "Title": "S3 Access block should restrict public bucket to limit access",
+          "Description": "S3 buckets should restrict public policies for the bucket. By enabling, the restrict_public_buckets, only the bucket owner and AWS Services can access if it has a public policy.\n",
+          "Message": "No public access block so not restricting public buckets",
+          "Namespace": "builtin.aws.s3.aws0093",
+          "Query": "data.builtin.aws.s3.aws0093.deny",
+          "Resolution": "Limit the access to public buckets to only the owner or AWS Services (eg; CloudFront)",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0093",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/dev-retired/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0093"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.baz",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 14,
+            "EndLine": 16,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 14,
+                  "Content": "resource \"aws_s3_bucket\" \"baz\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"baz\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 15,
+                  "Content": "  bucket = \"bucket-${var.account_name}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_name\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 16,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0093",
+          "Title": "S3 Access block should restrict public bucket to limit access",
+          "Description": "S3 buckets should restrict public policies for the bucket. By enabling, the restrict_public_buckets, only the bucket owner and AWS Services can access if it has a public policy.\n",
+          "Message": "No public access block so not restricting public buckets",
+          "Namespace": "builtin.aws.s3.aws0093",
+          "Query": "data.builtin.aws.s3.aws0093.deny",
+          "Resolution": "Limit the access to public buckets to only the owner or AWS Services (eg; CloudFront)",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0093",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/dev-retired/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0093"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.baz[0]",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 46,
+            "EndLine": 49,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 46,
+                  "Content": "resource \"aws_s3_bucket\" \"baz\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"baz\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 47,
+                  "Content": "  count  = var.account_name == \"workload3\" ? 1 : 0",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mcount\u001b[0m  = \u001b[38;5;33mvar\u001b[0m.\u001b[38;5;245maccount_name\u001b[0m =\u001b[38;5;245m=\u001b[0m \u001b[38;5;37m\"workload3\"\u001b[0m \u001b[38;5;245m?\u001b[0m \u001b[38;5;37m1\u001b[0m \u001b[38;5;245m:\u001b[0m \u001b[38;5;37m0",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 48,
+                  "Content": "  bucket = \"conditional-bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"conditional-bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 49,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0093",
+          "Title": "S3 Access block should restrict public bucket to limit access",
+          "Description": "S3 buckets should restrict public policies for the bucket. By enabling, the restrict_public_buckets, only the bucket owner and AWS Services can access if it has a public policy.\n",
+          "Message": "No public access block so not restricting public buckets",
+          "Namespace": "builtin.aws.s3.aws0093",
+          "Query": "data.builtin.aws.s3.aws0093.deny",
+          "Resolution": "Limit the access to public buckets to only the owner or AWS Services (eg; CloudFront)",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0093",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/dev-retired/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0093"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.foo",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 6,
+            "EndLine": 8,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 6,
+                  "Content": "resource \"aws_s3_bucket\" \"foo\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"foo\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 7,
+                  "Content": "  bucket = \"bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 8,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0093",
+          "Title": "S3 Access block should restrict public bucket to limit access",
+          "Description": "S3 buckets should restrict public policies for the bucket. By enabling, the restrict_public_buckets, only the bucket owner and AWS Services can access if it has a public policy.\n",
+          "Message": "No public access block so not restricting public buckets",
+          "Namespace": "builtin.aws.s3.aws0093",
+          "Query": "data.builtin.aws.s3.aws0093.deny",
+          "Resolution": "Limit the access to public buckets to only the owner or AWS Services (eg; CloudFront)",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0093",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/dev-retired/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0093"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.foo[0]",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 36,
+            "EndLine": 39,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 36,
+                  "Content": "resource \"aws_s3_bucket\" \"foo\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"foo\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 37,
+                  "Content": "  count  = var.account_id == \"112233445566\" ? 1 : 0",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mcount\u001b[0m  = \u001b[38;5;33mvar\u001b[0m.\u001b[38;5;245maccount_id\u001b[0m =\u001b[38;5;245m=\u001b[0m \u001b[38;5;37m\"112233445566\"\u001b[0m \u001b[38;5;245m?\u001b[0m \u001b[38;5;37m1\u001b[0m \u001b[38;5;245m:\u001b[0m \u001b[38;5;37m0",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 38,
+                  "Content": "  bucket = \"conditional-bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"conditional-bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 39,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0094",
+          "Title": "S3 buckets should each define an aws_s3_bucket_public_access_block",
+          "Description": "The \"block public access\" settings in S3 override individual policies that apply to a given bucket, meaning that all public access can be controlled in one central types for that bucket. It is therefore good practice to define these settings for each bucket in order to clearly define the public access that can be allowed for it.\n",
+          "Message": "Bucket does not have a corresponding public access block.",
+          "Namespace": "builtin.aws.s3.aws0094",
+          "Query": "data.builtin.aws.s3.aws0094.deny",
+          "Resolution": "Define a aws_s3_bucket_public_access_block for the given bucket to control public access policies",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0094",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0094"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.bar",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 10,
+            "EndLine": 12,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 10,
+                  "Content": "resource \"aws_s3_bucket\" \"bar\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"bar\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 11,
+                  "Content": "  bucket = \"bucket-${data.aws_caller_identity.current.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mdata\u001b[0m.aws_caller_identity.current.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 12,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0094",
+          "Title": "S3 buckets should each define an aws_s3_bucket_public_access_block",
+          "Description": "The \"block public access\" settings in S3 override individual policies that apply to a given bucket, meaning that all public access can be controlled in one central types for that bucket. It is therefore good practice to define these settings for each bucket in order to clearly define the public access that can be allowed for it.\n",
+          "Message": "Bucket does not have a corresponding public access block.",
+          "Namespace": "builtin.aws.s3.aws0094",
+          "Query": "data.builtin.aws.s3.aws0094.deny",
+          "Resolution": "Define a aws_s3_bucket_public_access_block for the given bucket to control public access policies",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0094",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0094"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.baz",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 14,
+            "EndLine": 16,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 14,
+                  "Content": "resource \"aws_s3_bucket\" \"baz\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"baz\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 15,
+                  "Content": "  bucket = \"bucket-${var.account_name}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_name\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 16,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0094",
+          "Title": "S3 buckets should each define an aws_s3_bucket_public_access_block",
+          "Description": "The \"block public access\" settings in S3 override individual policies that apply to a given bucket, meaning that all public access can be controlled in one central types for that bucket. It is therefore good practice to define these settings for each bucket in order to clearly define the public access that can be allowed for it.\n",
+          "Message": "Bucket does not have a corresponding public access block.",
+          "Namespace": "builtin.aws.s3.aws0094",
+          "Query": "data.builtin.aws.s3.aws0094.deny",
+          "Resolution": "Define a aws_s3_bucket_public_access_block for the given bucket to control public access policies",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0094",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0094"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.baz[0]",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 46,
+            "EndLine": 49,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 46,
+                  "Content": "resource \"aws_s3_bucket\" \"baz\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"baz\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 47,
+                  "Content": "  count  = var.account_name == \"workload3\" ? 1 : 0",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mcount\u001b[0m  = \u001b[38;5;33mvar\u001b[0m.\u001b[38;5;245maccount_name\u001b[0m =\u001b[38;5;245m=\u001b[0m \u001b[38;5;37m\"workload3\"\u001b[0m \u001b[38;5;245m?\u001b[0m \u001b[38;5;37m1\u001b[0m \u001b[38;5;245m:\u001b[0m \u001b[38;5;37m0",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 48,
+                  "Content": "  bucket = \"conditional-bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"conditional-bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 49,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0094",
+          "Title": "S3 buckets should each define an aws_s3_bucket_public_access_block",
+          "Description": "The \"block public access\" settings in S3 override individual policies that apply to a given bucket, meaning that all public access can be controlled in one central types for that bucket. It is therefore good practice to define these settings for each bucket in order to clearly define the public access that can be allowed for it.\n",
+          "Message": "Bucket does not have a corresponding public access block.",
+          "Namespace": "builtin.aws.s3.aws0094",
+          "Query": "data.builtin.aws.s3.aws0094.deny",
+          "Resolution": "Define a aws_s3_bucket_public_access_block for the given bucket to control public access policies",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0094",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0094"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.foo",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 6,
+            "EndLine": 8,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 6,
+                  "Content": "resource \"aws_s3_bucket\" \"foo\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"foo\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 7,
+                  "Content": "  bucket = \"bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 8,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0094",
+          "Title": "S3 buckets should each define an aws_s3_bucket_public_access_block",
+          "Description": "The \"block public access\" settings in S3 override individual policies that apply to a given bucket, meaning that all public access can be controlled in one central types for that bucket. It is therefore good practice to define these settings for each bucket in order to clearly define the public access that can be allowed for it.\n",
+          "Message": "Bucket does not have a corresponding public access block.",
+          "Namespace": "builtin.aws.s3.aws0094",
+          "Query": "data.builtin.aws.s3.aws0094.deny",
+          "Resolution": "Define a aws_s3_bucket_public_access_block for the given bucket to control public access policies",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0094",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
+            "https://avd.aquasec.com/misconfig/aws-0094"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.foo[0]",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 36,
+            "EndLine": 39,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 36,
+                  "Content": "resource \"aws_s3_bucket\" \"foo\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"foo\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 37,
+                  "Content": "  count  = var.account_id == \"112233445566\" ? 1 : 0",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mcount\u001b[0m  = \u001b[38;5;33mvar\u001b[0m.\u001b[38;5;245maccount_id\u001b[0m =\u001b[38;5;245m=\u001b[0m \u001b[38;5;37m\"112233445566\"\u001b[0m \u001b[38;5;245m?\u001b[0m \u001b[38;5;37m1\u001b[0m \u001b[38;5;245m:\u001b[0m \u001b[38;5;37m0",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 38,
+                  "Content": "  bucket = \"conditional-bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"conditional-bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 39,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0132",
+          "Title": "S3 encryption should use Customer Managed Keys",
+          "Description": "Encryption using AWS keys provides protection for your S3 buckets. To gain greater control over encryption, such as key rotation, access policies, and auditability, use customer managed keys (CMKs) with SSE-KMS.\nNote that SSE-KMS is not supported for S3 server access logging destination buckets; in such cases, use SSE-S3 instead.\n",
+          "Message": "Bucket does not encrypt data with a customer managed key.",
+          "Namespace": "builtin.aws.s3.aws0132",
+          "Query": "data.builtin.aws.s3.aws0132.deny",
+          "Resolution": "Use SSE-KMS with a customer managed key (CMK)",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0132",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html",
+            "https://avd.aquasec.com/misconfig/aws-0132"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.bar",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 10,
+            "EndLine": 12,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 10,
+                  "Content": "resource \"aws_s3_bucket\" \"bar\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"bar\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 11,
+                  "Content": "  bucket = \"bucket-${data.aws_caller_identity.current.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mdata\u001b[0m.aws_caller_identity.current.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 12,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0132",
+          "Title": "S3 encryption should use Customer Managed Keys",
+          "Description": "Encryption using AWS keys provides protection for your S3 buckets. To gain greater control over encryption, such as key rotation, access policies, and auditability, use customer managed keys (CMKs) with SSE-KMS.\nNote that SSE-KMS is not supported for S3 server access logging destination buckets; in such cases, use SSE-S3 instead.\n",
+          "Message": "Bucket does not encrypt data with a customer managed key.",
+          "Namespace": "builtin.aws.s3.aws0132",
+          "Query": "data.builtin.aws.s3.aws0132.deny",
+          "Resolution": "Use SSE-KMS with a customer managed key (CMK)",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0132",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html",
+            "https://avd.aquasec.com/misconfig/aws-0132"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.baz",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 14,
+            "EndLine": 16,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 14,
+                  "Content": "resource \"aws_s3_bucket\" \"baz\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"baz\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 15,
+                  "Content": "  bucket = \"bucket-${var.account_name}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_name\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 16,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0132",
+          "Title": "S3 encryption should use Customer Managed Keys",
+          "Description": "Encryption using AWS keys provides protection for your S3 buckets. To gain greater control over encryption, such as key rotation, access policies, and auditability, use customer managed keys (CMKs) with SSE-KMS.\nNote that SSE-KMS is not supported for S3 server access logging destination buckets; in such cases, use SSE-S3 instead.\n",
+          "Message": "Bucket does not encrypt data with a customer managed key.",
+          "Namespace": "builtin.aws.s3.aws0132",
+          "Query": "data.builtin.aws.s3.aws0132.deny",
+          "Resolution": "Use SSE-KMS with a customer managed key (CMK)",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0132",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html",
+            "https://avd.aquasec.com/misconfig/aws-0132"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.baz[0]",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 46,
+            "EndLine": 49,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 46,
+                  "Content": "resource \"aws_s3_bucket\" \"baz\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"baz\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 47,
+                  "Content": "  count  = var.account_name == \"workload3\" ? 1 : 0",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mcount\u001b[0m  = \u001b[38;5;33mvar\u001b[0m.\u001b[38;5;245maccount_name\u001b[0m =\u001b[38;5;245m=\u001b[0m \u001b[38;5;37m\"workload3\"\u001b[0m \u001b[38;5;245m?\u001b[0m \u001b[38;5;37m1\u001b[0m \u001b[38;5;245m:\u001b[0m \u001b[38;5;37m0",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 48,
+                  "Content": "  bucket = \"conditional-bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"conditional-bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 49,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0132",
+          "Title": "S3 encryption should use Customer Managed Keys",
+          "Description": "Encryption using AWS keys provides protection for your S3 buckets. To gain greater control over encryption, such as key rotation, access policies, and auditability, use customer managed keys (CMKs) with SSE-KMS.\nNote that SSE-KMS is not supported for S3 server access logging destination buckets; in such cases, use SSE-S3 instead.\n",
+          "Message": "Bucket does not encrypt data with a customer managed key.",
+          "Namespace": "builtin.aws.s3.aws0132",
+          "Query": "data.builtin.aws.s3.aws0132.deny",
+          "Resolution": "Use SSE-KMS with a customer managed key (CMK)",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0132",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html",
+            "https://avd.aquasec.com/misconfig/aws-0132"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.foo",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 6,
+            "EndLine": 8,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 6,
+                  "Content": "resource \"aws_s3_bucket\" \"foo\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"foo\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 7,
+                  "Content": "  bucket = \"bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 8,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0132",
+          "Title": "S3 encryption should use Customer Managed Keys",
+          "Description": "Encryption using AWS keys provides protection for your S3 buckets. To gain greater control over encryption, such as key rotation, access policies, and auditability, use customer managed keys (CMKs) with SSE-KMS.\nNote that SSE-KMS is not supported for S3 server access logging destination buckets; in such cases, use SSE-S3 instead.\n",
+          "Message": "Bucket does not encrypt data with a customer managed key.",
+          "Namespace": "builtin.aws.s3.aws0132",
+          "Query": "data.builtin.aws.s3.aws0132.deny",
+          "Resolution": "Use SSE-KMS with a customer managed key (CMK)",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0132",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html",
+            "https://avd.aquasec.com/misconfig/aws-0132"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.foo[0]",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 36,
+            "EndLine": 39,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 36,
+                  "Content": "resource \"aws_s3_bucket\" \"foo\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"foo\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 37,
+                  "Content": "  count  = var.account_id == \"112233445566\" ? 1 : 0",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mcount\u001b[0m  = \u001b[38;5;33mvar\u001b[0m.\u001b[38;5;245maccount_id\u001b[0m =\u001b[38;5;245m=\u001b[0m \u001b[38;5;37m\"112233445566\"\u001b[0m \u001b[38;5;245m?\u001b[0m \u001b[38;5;37m1\u001b[0m \u001b[38;5;245m:\u001b[0m \u001b[38;5;37m0",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 38,
+                  "Content": "  bucket = \"conditional-bucket-${var.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;37m\"conditional-bucket-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 39,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Target": "s3.tf",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 0,
+        "Failures": 2
+      },
+      "Misconfigurations": [
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0089",
+          "Title": "S3 Bucket Logging",
+          "Description": "Ensures S3 bucket logging is enabled for S3 buckets",
+          "Message": "Bucket has logging disabled",
+          "Namespace": "builtin.aws.s3.aws0089",
+          "Query": "data.builtin.aws.s3.aws0089.deny",
+          "Resolution": "Add a logging block to the resource to enable access logging",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0089",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerLogs.html",
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html",
+            "https://avd.aquasec.com/misconfig/aws-0089"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.this",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 4,
+            "EndLine": 7,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 4,
+                  "Content": "resource \"aws_s3_bucket\" \"this\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"this\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 5,
+                  "Content": "  bucket        = \"${var.pipeline_name}-artifacts-${data.aws_caller_identity.current.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m        = \u001b[38;5;37m\"\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.pipeline_name\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m-artifacts-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mdata\u001b[0m.aws_caller_identity.current.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 6,
+                  "Content": "  force_destroy = true",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mforce_destroy\u001b[0m = \u001b[38;5;166mtrue",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 7,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0090",
+          "Title": "S3 Data should be versioned",
+          "Description": "Versioning in Amazon S3 is a means of keeping multiple variants of an object in the same bucket.\n\nYou can use the S3 Versioning feature to preserve, retrieve, and restore every version of every object stored in your buckets.\n\nWith versioning you can recover more easily from both unintended user actions and application failures.\n\nWhen you enable versioning, also keep in mind the potential costs of storing noncurrent versions of objects. To help manage those costs, consider setting up an S3 Lifecycle configuration.\n",
+          "Message": "Bucket does not have versioning enabled",
+          "Namespace": "builtin.aws.s3.aws0090",
+          "Query": "data.builtin.aws.s3.aws0090.deny",
+          "Resolution": "Enable versioning to protect against accidental/malicious removal or modification",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0090",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html",
+            "https://aws.amazon.com/blogs/storage/reduce-storage-costs-with-fewer-noncurrent-versions-using-amazon-s3-lifecycle/",
+            "https://avd.aquasec.com/misconfig/aws-0090"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.this",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 4,
+            "EndLine": 7,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 4,
+                  "Content": "resource \"aws_s3_bucket\" \"this\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"this\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 5,
+                  "Content": "  bucket        = \"${var.pipeline_name}-artifacts-${data.aws_caller_identity.current.account_id}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m        = \u001b[38;5;37m\"\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.pipeline_name\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m-artifacts-\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mdata\u001b[0m.aws_caller_identity.current.account_id\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 6,
+                  "Content": "  force_destroy = true",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mforce_destroy\u001b[0m = \u001b[38;5;166mtrue",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 7,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

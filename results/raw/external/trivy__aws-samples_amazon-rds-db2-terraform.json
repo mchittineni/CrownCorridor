@@ -1,0 +1,346 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.73.0"
+  },
+  "ReportID": "01a01e5e-3443-7d1b-b967-d869b08aaf27",
+  "CreatedAt": "2026-08-20T09:51:25.379861+01:00",
+  "ArtifactID": "sha256:f04240c7e9ef18835dc29708463863d213b73e89688e0e9b605aeee740f91787",
+  "ArtifactName": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-rds-db2-terraform",
+  "ArtifactType": "repository",
+  "Metadata": {
+    "RepoURL": "https://github.com/aws-samples/amazon-rds-db2-terraform.git",
+    "Commit": "930937a8347784849f1d6c5ed93ebc4dcab9acea",
+    "CommitMsg": "Add files via upload",
+    "Author": "divakergoel \u003c66658382+divakergoel@users.noreply.github.com\u003e",
+    "Committer": "GitHub \u003cnoreply@github.com\u003e"
+  },
+  "Results": [
+    {
+      "Target": ".",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 80,
+        "Failures": 0
+      }
+    },
+    {
+      "Target": "main.tf",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 0,
+        "Failures": 3
+      },
+      "Misconfigurations": [
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0104",
+          "Title": "A security group rule should not allow unrestricted egress to any IP address.",
+          "Description": "Opening up ports to connect out to the public internet is generally to be avoided. You should restrict access to IP addresses or ranges that are explicitly required where possible.\n",
+          "Message": "Security group rule allows unrestricted egress to any IP address.",
+          "Namespace": "builtin.aws.ec2.aws0104",
+          "Query": "data.builtin.aws.ec2.aws0104.deny",
+          "Resolution": "Set a more restrictive cidr range",
+          "Severity": "CRITICAL",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0104",
+          "References": [
+            "https://docs.aws.amazon.com/whitepapers/latest/building-scalable-secure-multi-vpc-network-infrastructure/centralized-egress-to-internet.html",
+            "https://avd.aquasec.com/misconfig/aws-0104"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_security_group.db2_sg",
+            "Provider": "AWS",
+            "Service": "ec2",
+            "StartLine": 79,
+            "EndLine": 79,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 50,
+                  "Content": "resource \"aws_security_group\" \"db2_sg\" {",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_security_group\"\u001b[0m \u001b[38;5;37m\"db2_sg\"\u001b[0m {",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 51,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 79,
+                  "Content": "    cidr_blocks = [\"0.0.0.0/0\"]",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m    \u001b[38;5;245mcidr_blocks\u001b[0m = [\u001b[38;5;37m\"0.0.0.0/0\"\u001b[0m]",
+                  "FirstCause": true,
+                  "LastCause": true
+                },
+                {
+                  "Number": 82,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 83,
+                  "Content": "}",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "}",
+                  "FirstCause": false,
+                  "LastCause": false
+                }
+              ]
+            },
+            "Occurrences": [
+              {
+                "Resource": "egress",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 74,
+                  "EndLine": 80
+                }
+              },
+              {
+                "Resource": "aws_security_group.db2_sg",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 50,
+                  "EndLine": 83
+                }
+              }
+            ]
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0133",
+          "Title": "Enable Performance Insights to detect potential problems",
+          "Description": "Enabling Performance insights allows for greater depth in monitoring data.\nFor example, information about active sessions could help diagose a compromise or assist in the investigation\n",
+          "Message": "Instance does not have performance insights enabled.",
+          "Namespace": "builtin.aws.rds.aws0133",
+          "Query": "data.builtin.aws.rds.aws0133.deny",
+          "Resolution": "Enable performance insights",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0133",
+          "References": [
+            "https://aws.amazon.com/rds/performance-insights/",
+            "https://avd.aquasec.com/misconfig/aws-0133"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_db_instance.rdsdb2",
+            "Provider": "AWS",
+            "Service": "rds",
+            "StartLine": 140,
+            "EndLine": 199,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 140,
+                  "Content": "resource \"aws_db_instance\" \"rdsdb2\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_db_instance\"\u001b[0m \u001b[38;5;37m\"rdsdb2\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 141,
+                  "Content": "  identifier             = var.identifier  # Name of the RDS instance",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245midentifier\u001b[0m             = \u001b[38;5;33mvar\u001b[0m.identifier\u001b[38;5;239m  # Name of the RDS instance",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 142,
+                  "Content": "  engine                 = var.db_engine      # Database engine, e.g., \"db2-se, db2-ae\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mengine\u001b[0m                 = \u001b[38;5;33mvar\u001b[0m.db_engine\u001b[38;5;239m      # Database engine, e.g., \"db2-se, db2-ae\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 143,
+                  "Content": "  engine_version         = var.db_engine_version # Version of the DB engine",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mengine_version\u001b[0m         = \u001b[38;5;33mvar\u001b[0m.db_engine_version\u001b[38;5;239m # Version of the DB engine",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 144,
+                  "Content": "  instance_class         = var.instance_class # Instance type",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245minstance_class\u001b[0m         = \u001b[38;5;33mvar\u001b[0m.instance_class\u001b[38;5;239m # Instance type",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 145,
+                  "Content": "  license_model          = var.license_model  # License model, e.g., \"license-included, marketplace-license\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mlicense_model\u001b[0m          = \u001b[38;5;33mvar\u001b[0m.license_model\u001b[38;5;239m  # License model, e.g., \"license-included, marketplace-license\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 146,
+                  "Content": "  multi_az               = var.multi_az       # Whether to deploy in multiple AZs for HA",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mmulti_az\u001b[0m               = \u001b[38;5;33mvar\u001b[0m.multi_az\u001b[38;5;239m       # Whether to deploy in multiple AZs for HA",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 147,
+                  "Content": "",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 148,
+                  "Content": "  storage_type           = var.storage_type   # Storage type, e.g., \"gp3, io1, io2\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mstorage_type\u001b[0m           = \u001b[38;5;33mvar\u001b[0m.storage_type\u001b[38;5;239m   # Storage type, e.g., \"gp3, io1, io2\"",
+                  "FirstCause": false,
+                  "LastCause": true
+                },
+                {
+                  "Number": 149,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0177",
+          "Title": "RDS Deletion Protection Disabled",
+          "Description": "Ensure deletion protection is enabled for RDS database instances.",
+          "Message": "Instance does not have Deletion Protection enabled",
+          "Namespace": "builtin.aws.rds.aws0177",
+          "Query": "data.builtin.aws.rds.aws0177.deny",
+          "Resolution": "Modify the RDS instances to enable deletion protection.",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0177",
+          "References": [
+            "https://aws.amazon.com/about-aws/whats-new/2018/09/amazon-rds-now-provides-database-deletion-protection/",
+            "https://avd.aquasec.com/misconfig/aws-0177"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_db_instance.rdsdb2",
+            "Provider": "AWS",
+            "Service": "rds",
+            "StartLine": 195,
+            "EndLine": 195,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 140,
+                  "Content": "resource \"aws_db_instance\" \"rdsdb2\" {",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_db_instance\"\u001b[0m \u001b[38;5;37m\"rdsdb2\"\u001b[0m {",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 141,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 195,
+                  "Content": "  deletion_protection       = var.deletion_protection  # Enable deletion protection",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mdeletion_protection\u001b[0m       = \u001b[38;5;33mvar\u001b[0m.deletion_protection\u001b[38;5;239m  # Enable deletion protection",
+                  "FirstCause": true,
+                  "LastCause": true
+                },
+                {
+                  "Number": 198,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 199,
+                  "Content": "}",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": false
+                }
+              ]
+            },
+            "Occurrences": [
+              {
+                "Resource": "aws_db_instance.rdsdb2",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 140,
+                  "EndLine": 199
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

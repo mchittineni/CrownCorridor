@@ -1,0 +1,433 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.73.0"
+  },
+  "ReportID": "01a01e5e-9e3b-7013-a7d3-1f0da5b13ff0",
+  "CreatedAt": "2026-08-20T09:51:52.507006+01:00",
+  "ArtifactID": "sha256:301d9f975bc5d45fd190e5f618fcb93e170f253b0672738e21f3672a3d67e236",
+  "ArtifactName": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_manage-terraform-statefiles-in-aws-pipeline",
+  "ArtifactType": "repository",
+  "Metadata": {
+    "RepoURL": "https://github.com/aws-samples/manage-terraform-statefiles-in-aws-pipeline.git",
+    "Commit": "c987dfeb376bd33dea11fc808923908b304ef69e",
+    "CommitMsg": "Merge pull request #2 from aws-sakufuyu/sakufuyu\n\nMigrate state locking from deprecated DynamoDB to S3 native locking",
+    "Author": "Arun Kumar Selvaraj \u003c103064054+arunskum@users.noreply.github.com\u003e",
+    "Committer": "GitHub \u003cnoreply@github.com\u003e"
+  },
+  "Results": [
+    {
+      "Target": ".",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 60,
+        "Failures": 0
+      }
+    },
+    {
+      "Target": "main.tf",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 0,
+        "Failures": 4
+      },
+      "Misconfigurations": [
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0017",
+          "Title": "CloudWatch log groups should be encrypted using CMK",
+          "Description": "CloudWatch log groups are encrypted by default, however, to get the full benefit of controlling key rotation and other KMS aspects a KMS CMK should be used.\n",
+          "Message": "Log group is not encrypted.",
+          "Namespace": "builtin.aws.cloudwatch.aws0017",
+          "Query": "data.builtin.aws.cloudwatch.aws0017.deny",
+          "Resolution": "Enable CMK encryption of CloudWatch Log Groups",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0017",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html",
+            "https://avd.aquasec.com/misconfig/aws-0017"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_cloudwatch_log_group.codebuild_loggroup",
+            "Provider": "AWS",
+            "Service": "cloudwatch",
+            "StartLine": 151,
+            "EndLine": 154,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 151,
+                  "Content": "resource \"aws_cloudwatch_log_group\" \"codebuild_loggroup\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_cloudwatch_log_group\"\u001b[0m \u001b[38;5;37m\"codebuild_loggroup\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 152,
+                  "Content": "  name              = \"/aws/codebuild/logs\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mname\u001b[0m              = \u001b[38;5;37m\"/aws/codebuild/logs\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 153,
+                  "Content": "  retention_in_days = 14",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mretention_in_days\u001b[0m = \u001b[38;5;37m14",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 154,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0017",
+          "Title": "CloudWatch log groups should be encrypted using CMK",
+          "Description": "CloudWatch log groups are encrypted by default, however, to get the full benefit of controlling key rotation and other KMS aspects a KMS CMK should be used.\n",
+          "Message": "Log group is not encrypted.",
+          "Namespace": "builtin.aws.cloudwatch.aws0017",
+          "Query": "data.builtin.aws.cloudwatch.aws0017.deny",
+          "Resolution": "Enable CMK encryption of CloudWatch Log Groups",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0017",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html",
+            "https://avd.aquasec.com/misconfig/aws-0017"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_cloudwatch_log_group.lambda_loggroup",
+            "Provider": "AWS",
+            "Service": "cloudwatch",
+            "StartLine": 146,
+            "EndLine": 149,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 146,
+                  "Content": "resource \"aws_cloudwatch_log_group\" \"lambda_loggroup\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_cloudwatch_log_group\"\u001b[0m \u001b[38;5;37m\"lambda_loggroup\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 147,
+                  "Content": "  name              = \"/aws/lambda/logs\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mname\u001b[0m              = \u001b[38;5;37m\"/aws/lambda/logs\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 148,
+                  "Content": "  retention_in_days = 14",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mretention_in_days\u001b[0m = \u001b[38;5;37m14",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 149,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0089",
+          "Title": "S3 Bucket Logging",
+          "Description": "Ensures S3 bucket logging is enabled for S3 buckets",
+          "Message": "Bucket has logging disabled",
+          "Namespace": "builtin.aws.s3.aws0089",
+          "Query": "data.builtin.aws.s3.aws0089.deny",
+          "Resolution": "Add a logging block to the resource to enable access logging",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0089",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerLogs.html",
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html",
+            "https://avd.aquasec.com/misconfig/aws-0089"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.s3_bucket_backend",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 3,
+            "EndLine": 12,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 3,
+                  "Content": "resource \"aws_s3_bucket\" \"s3_bucket_backend\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"s3_bucket_backend\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 4,
+                  "Content": "  #checkov:skip=CKV_AWS_145: Lifecycle configuration not required for TF state bucket",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;239m  #checkov:skip=CKV_AWS_145: Lifecycle configuration not required for TF state bucket",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 5,
+                  "Content": "  #checkov:skip=CKV2_AWS_61: Lifecycle configuration not required for TF state bucket",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  #checkov:skip=CKV2_AWS_61: Lifecycle configuration not required for TF state bucket",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 6,
+                  "Content": "  #checkov:skip=CKV_AWS_144: Cross-region replication not required for TF state bucket",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  #checkov:skip=CKV_AWS_144: Cross-region replication not required for TF state bucket",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 7,
+                  "Content": "  #checkov:skip=CKV2_AWS_62: Event notifications not required for TF state bucket",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  #checkov:skip=CKV2_AWS_62: Event notifications not required for TF state bucket",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 8,
+                  "Content": "  #checkov:skip=CKV_AWS_145: No KMS encryption needed for TF state bucket",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  #checkov:skip=CKV_AWS_145: No KMS encryption needed for TF state bucket",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 9,
+                  "Content": "  #checkov:skip=CKV_AWS_21: No versioning needed for TF state bucket",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  #checkov:skip=CKV_AWS_21: No versioning needed for TF state bucket",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 10,
+                  "Content": "  #checkov:skip=CKV_AWS_18: No logging needed for TF state bucket",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  #checkov:skip=CKV_AWS_18: No logging needed for TF state bucket",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 11,
+                  "Content": "  bucket = var.s3_bucket_name",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;33mvar\u001b[0m.s3_bucket_name",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 12,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0132",
+          "Title": "S3 encryption should use Customer Managed Keys",
+          "Description": "Encryption using AWS keys provides protection for your S3 buckets. To gain greater control over encryption, such as key rotation, access policies, and auditability, use customer managed keys (CMKs) with SSE-KMS.\nNote that SSE-KMS is not supported for S3 server access logging destination buckets; in such cases, use SSE-S3 instead.\n",
+          "Message": "Bucket does not encrypt data with a customer managed key.",
+          "Namespace": "builtin.aws.s3.aws0132",
+          "Query": "data.builtin.aws.s3.aws0132.deny",
+          "Resolution": "Use SSE-KMS with a customer managed key (CMK)",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0132",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html",
+            "https://avd.aquasec.com/misconfig/aws-0132"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_s3_bucket.s3_bucket_backend",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 3,
+            "EndLine": 12,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 3,
+                  "Content": "resource \"aws_s3_bucket\" \"s3_bucket_backend\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"s3_bucket_backend\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 4,
+                  "Content": "  #checkov:skip=CKV_AWS_145: Lifecycle configuration not required for TF state bucket",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;239m  #checkov:skip=CKV_AWS_145: Lifecycle configuration not required for TF state bucket",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 5,
+                  "Content": "  #checkov:skip=CKV2_AWS_61: Lifecycle configuration not required for TF state bucket",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  #checkov:skip=CKV2_AWS_61: Lifecycle configuration not required for TF state bucket",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 6,
+                  "Content": "  #checkov:skip=CKV_AWS_144: Cross-region replication not required for TF state bucket",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  #checkov:skip=CKV_AWS_144: Cross-region replication not required for TF state bucket",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 7,
+                  "Content": "  #checkov:skip=CKV2_AWS_62: Event notifications not required for TF state bucket",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  #checkov:skip=CKV2_AWS_62: Event notifications not required for TF state bucket",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 8,
+                  "Content": "  #checkov:skip=CKV_AWS_145: No KMS encryption needed for TF state bucket",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  #checkov:skip=CKV_AWS_145: No KMS encryption needed for TF state bucket",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 9,
+                  "Content": "  #checkov:skip=CKV_AWS_21: No versioning needed for TF state bucket",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  #checkov:skip=CKV_AWS_21: No versioning needed for TF state bucket",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 10,
+                  "Content": "  #checkov:skip=CKV_AWS_18: No logging needed for TF state bucket",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  #checkov:skip=CKV_AWS_18: No logging needed for TF state bucket",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 11,
+                  "Content": "  bucket = var.s3_bucket_name",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;33mvar\u001b[0m.s3_bucket_name",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 12,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

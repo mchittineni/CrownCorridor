@@ -17,8 +17,8 @@
         },
         "code_block": null,
         "file_path": "/cis_4_1_security_group.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_4_1_security_group-zua64m0j/case/cis_4_1_security_group.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_4_1_security_group-zua64m0j/case/cis_4_1_security_group.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_4_1_security_group-krtpszi5/case/cis_4_1_security_group.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_4_1_security_group-krtpszi5/case/cis_4_1_security_group.tf",
         "file_line_range": [
           3,
           15
@@ -41,7 +41,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_4_1_security_group-zua64m0j/case/cis_4_1_security_group.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_4_1_security_group-krtpszi5/case/cis_4_1_security_group.tf"
       },
       {
         "check_id": "CKV2_AWS_5",
@@ -91,14 +91,14 @@
             }
           },
           "evaluated_keys": [
-            "resource_type",
-            "networking"
+            "networking",
+            "resource_type"
           ]
         },
         "code_block": null,
         "file_path": "/cis_4_1_security_group.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_4_1_security_group-zua64m0j/case/cis_4_1_security_group.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_4_1_security_group-zua64m0j/case/cis_4_1_security_group.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_4_1_security_group-krtpszi5/case/cis_4_1_security_group.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_4_1_security_group-krtpszi5/case/cis_4_1_security_group.tf",
         "file_line_range": [
           3,
           15
@@ -121,7 +121,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-that-security-groups-are-attached-to-ec2-instances-or-elastic-network-interfaces-enis",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_4_1_security_group-zua64m0j/case/cis_4_1_security_group.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_4_1_security_group-krtpszi5/case/cis_4_1_security_group.tf"
       }
     ]
   },

@@ -24,21 +24,21 @@
             }
           },
           "evaluated_keys": [
-            "egress/to_port",
-            "resource_type",
-            "ingress/from_port",
-            "egress/cidr_blocks",
-            "ingress/protocol",
-            "ingress/self",
-            "egress/protocol",
             "ingress/to_port",
-            "egress/from_port"
+            "egress/from_port",
+            "egress/cidr_blocks",
+            "ingress/from_port",
+            "egress/to_port",
+            "ingress/protocol",
+            "egress/protocol",
+            "resource_type",
+            "ingress/self"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-VULN-3h9czall/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-VULN-3h9czall/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-VULN-csd6ikbr/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-VULN-csd6ikbr/case/main.tf",
         "file_line_range": [
           20,
           23
@@ -61,7 +61,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-4",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-VULN-3h9czall/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-VULN-csd6ikbr/case/main.tf"
       },
       {
         "check_id": "CKV2_AWS_11",
@@ -85,14 +85,14 @@
             }
           },
           "evaluated_keys": [
-            "resource_type",
-            "networking"
+            "networking",
+            "resource_type"
           ]
         },
         "code_block": null,
         "file_path": "/main.tf",
-        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-VULN-3h9czall/case/main.tf",
-        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-VULN-3h9czall/case/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-VULN-csd6ikbr/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-VULN-csd6ikbr/case/main.tf",
         "file_line_range": [
           20,
           23
@@ -115,7 +115,7 @@
         "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-9-enable-vpc-flow-logging",
         "details": [],
         "check_len": null,
-        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-VULN-3h9czall/case/main.tf"
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-FLOW-LOGS-VULN-csd6ikbr/case/main.tf"
       }
     ]
   },

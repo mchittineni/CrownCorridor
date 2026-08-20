@@ -1,0 +1,2156 @@
+{
+    "check_type": "terraform",
+    "results": {
+        "failed_checks": [
+            {
+                "check_id": "CKV_AWS_288",
+                "bc_check_id": "BC_AWS_IAM_83",
+                "check_name": "Ensure IAM policies does not allow data exfiltration",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "policy/Statement/[4]/Action"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    41,
+                    91
+                ],
+                "resource": "aws_iam_policy.lambda_basic_execution_policy",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.IAMDataExfiltration",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-288",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf"
+            },
+            {
+                "check_id": "CKV_AWS_290",
+                "bc_check_id": "BC_AWS_IAM_85",
+                "check_name": "Ensure IAM policies does not allow write access without constraints",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "policy/Statement/[0]/Action"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    41,
+                    91
+                ],
+                "resource": "aws_iam_policy.lambda_basic_execution_policy",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.IAMWriteAccess",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-290",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf"
+            },
+            {
+                "check_id": "CKV_AWS_289",
+                "bc_check_id": "BC_AWS_IAM_84",
+                "check_name": "Ensure IAM policies does not allow permissions management / resource exposure without constraints",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "policy/Statement/[4]/Action"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    41,
+                    91
+                ],
+                "resource": "aws_iam_policy.lambda_basic_execution_policy",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.IAMPermissionsManagement",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-289",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf"
+            },
+            {
+                "check_id": "CKV_AWS_355",
+                "bc_check_id": "BC_AWS_IAM_88",
+                "check_name": "Ensure no IAM policies documents allow \"*\" as a statement's resource for restrictable actions",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "policy/Statement/[0]/Action"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    41,
+                    91
+                ],
+                "resource": "aws_iam_policy.lambda_basic_execution_policy",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.IAMStarResourcePolicyDocument",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-355",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf"
+            },
+            {
+                "check_id": "CKV_AWS_290",
+                "bc_check_id": "BC_AWS_IAM_85",
+                "check_name": "Ensure IAM policies does not allow write access without constraints",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "policy/Statement/[1]/Action"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    98,
+                    128
+                ],
+                "resource": "aws_iam_policy.lambda_s3_policy",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.IAMWriteAccess",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-290",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "policy": [
+                        {
+                            "type": "output",
+                            "name": "bucket_arn",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/output.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_289",
+                "bc_check_id": "BC_AWS_IAM_84",
+                "check_name": "Ensure IAM policies does not allow permissions management / resource exposure without constraints",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "policy/Statement/[3]/Action"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    98,
+                    128
+                ],
+                "resource": "aws_iam_policy.lambda_s3_policy",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.IAMPermissionsManagement",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-289",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "policy": [
+                        {
+                            "type": "output",
+                            "name": "bucket_arn",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/output.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_355",
+                "bc_check_id": "BC_AWS_IAM_88",
+                "check_name": "Ensure no IAM policies documents allow \"*\" as a statement's resource for restrictable actions",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "policy/Statement/[1]/Action"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    98,
+                    128
+                ],
+                "resource": "aws_iam_policy.lambda_s3_policy",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.IAMStarResourcePolicyDocument",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-355",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "policy": [
+                        {
+                            "type": "output",
+                            "name": "bucket_arn",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/output.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_50",
+                "bc_check_id": "BC_AWS_SERVERLESS_4",
+                "check_name": "X-Ray tracing is enabled for Lambda",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "tracing_config/[0]/mode"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    136,
+                    144
+                ],
+                "resource": "aws_lambda_function.s3eventlambda",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.LambdaXrayEnabled",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-serverless-policies/bc-aws-serverless-4",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "function_name": [
+                        {
+                            "type": "variable",
+                            "name": "lambda_function_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_lambda_function.s3eventlambda",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "runtime": [
+                        {
+                            "type": "variable",
+                            "name": "runtime",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "filename": [
+                        {
+                            "type": "variable",
+                            "name": "filename",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_117",
+                "bc_check_id": "BC_AWS_GENERAL_65",
+                "check_name": "Ensure that AWS Lambda function is configured inside a VPC",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "vpc_config"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    136,
+                    144
+                ],
+                "resource": "aws_lambda_function.s3eventlambda",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.LambdaInVPC",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-aws-lambda-function-is-configured-inside-a-vpc-1",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "function_name": [
+                        {
+                            "type": "variable",
+                            "name": "lambda_function_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_lambda_function.s3eventlambda",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "runtime": [
+                        {
+                            "type": "variable",
+                            "name": "runtime",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "filename": [
+                        {
+                            "type": "variable",
+                            "name": "filename",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_116",
+                "bc_check_id": "BC_AWS_GENERAL_64",
+                "check_name": "Ensure that AWS Lambda function is configured for a Dead Letter Queue(DLQ)",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "dead_letter_config/[0]/target_arn"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    136,
+                    144
+                ],
+                "resource": "aws_lambda_function.s3eventlambda",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.LambdaDLQConfigured",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-aws-lambda-function-is-configured-for-a-dead-letter-queue-dlq",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "function_name": [
+                        {
+                            "type": "variable",
+                            "name": "lambda_function_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_lambda_function.s3eventlambda",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "runtime": [
+                        {
+                            "type": "variable",
+                            "name": "runtime",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "filename": [
+                        {
+                            "type": "variable",
+                            "name": "filename",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_272",
+                "bc_check_id": "BC_AWS_General_201",
+                "check_name": "Ensure AWS Lambda function is configured to validate code-signing",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "code_signing_config_arn"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    136,
+                    144
+                ],
+                "resource": "aws_lambda_function.s3eventlambda",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.LambdaCodeSigningConfigured",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-272",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "function_name": [
+                        {
+                            "type": "variable",
+                            "name": "lambda_function_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_lambda_function.s3eventlambda",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "runtime": [
+                        {
+                            "type": "variable",
+                            "name": "runtime",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "filename": [
+                        {
+                            "type": "variable",
+                            "name": "filename",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_115",
+                "bc_check_id": "BC_AWS_GENERAL_63",
+                "check_name": "Ensure that AWS Lambda function is configured for function-level concurrent execution limit",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "reserved_concurrent_executions/[0]"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    136,
+                    144
+                ],
+                "resource": "aws_lambda_function.s3eventlambda",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.LambdaFunctionLevelConcurrentExecutionLimit",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-aws-lambda-function-is-configured-for-function-level-concurrent-execution-limit",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "function_name": [
+                        {
+                            "type": "variable",
+                            "name": "lambda_function_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_lambda_function.s3eventlambda",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "runtime": [
+                        {
+                            "type": "variable",
+                            "name": "runtime",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "filename": [
+                        {
+                            "type": "variable",
+                            "name": "filename",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_50",
+                "bc_check_id": "BC_AWS_SERVERLESS_4",
+                "check_name": "X-Ray tracing is enabled for Lambda",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "tracing_config/[0]/mode"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    146,
+                    154
+                ],
+                "resource": "aws_lambda_function.process_pdf_lambda",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.LambdaXrayEnabled",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-serverless-policies/bc-aws-serverless-4",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "runtime": [
+                        {
+                            "type": "variable",
+                            "name": "runtime",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "filename": [
+                        {
+                            "type": "variable",
+                            "name": "process_pdf_lambda",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_117",
+                "bc_check_id": "BC_AWS_GENERAL_65",
+                "check_name": "Ensure that AWS Lambda function is configured inside a VPC",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "vpc_config"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    146,
+                    154
+                ],
+                "resource": "aws_lambda_function.process_pdf_lambda",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.LambdaInVPC",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-aws-lambda-function-is-configured-inside-a-vpc-1",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "runtime": [
+                        {
+                            "type": "variable",
+                            "name": "runtime",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "filename": [
+                        {
+                            "type": "variable",
+                            "name": "process_pdf_lambda",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_116",
+                "bc_check_id": "BC_AWS_GENERAL_64",
+                "check_name": "Ensure that AWS Lambda function is configured for a Dead Letter Queue(DLQ)",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "dead_letter_config/[0]/target_arn"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    146,
+                    154
+                ],
+                "resource": "aws_lambda_function.process_pdf_lambda",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.LambdaDLQConfigured",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-aws-lambda-function-is-configured-for-a-dead-letter-queue-dlq",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "runtime": [
+                        {
+                            "type": "variable",
+                            "name": "runtime",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "filename": [
+                        {
+                            "type": "variable",
+                            "name": "process_pdf_lambda",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_272",
+                "bc_check_id": "BC_AWS_General_201",
+                "check_name": "Ensure AWS Lambda function is configured to validate code-signing",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "code_signing_config_arn"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    146,
+                    154
+                ],
+                "resource": "aws_lambda_function.process_pdf_lambda",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.LambdaCodeSigningConfigured",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-272",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "runtime": [
+                        {
+                            "type": "variable",
+                            "name": "runtime",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "filename": [
+                        {
+                            "type": "variable",
+                            "name": "process_pdf_lambda",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_115",
+                "bc_check_id": "BC_AWS_GENERAL_63",
+                "check_name": "Ensure that AWS Lambda function is configured for function-level concurrent execution limit",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "reserved_concurrent_executions/[0]"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    146,
+                    154
+                ],
+                "resource": "aws_lambda_function.process_pdf_lambda",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.LambdaFunctionLevelConcurrentExecutionLimit",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-aws-lambda-function-is-configured-for-function-level-concurrent-execution-limit",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "runtime": [
+                        {
+                            "type": "variable",
+                            "name": "runtime",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "filename": [
+                        {
+                            "type": "variable",
+                            "name": "process_pdf_lambda",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_50",
+                "bc_check_id": "BC_AWS_SERVERLESS_4",
+                "check_name": "X-Ray tracing is enabled for Lambda",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "tracing_config/[0]/mode"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    156,
+                    164
+                ],
+                "resource": "aws_lambda_function.extract_data_lambda",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.LambdaXrayEnabled",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-serverless-policies/bc-aws-serverless-4",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "runtime": [
+                        {
+                            "type": "variable",
+                            "name": "runtime",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "filename": [
+                        {
+                            "type": "variable",
+                            "name": "extract_data_lambda",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_117",
+                "bc_check_id": "BC_AWS_GENERAL_65",
+                "check_name": "Ensure that AWS Lambda function is configured inside a VPC",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "vpc_config"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    156,
+                    164
+                ],
+                "resource": "aws_lambda_function.extract_data_lambda",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.LambdaInVPC",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-aws-lambda-function-is-configured-inside-a-vpc-1",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "runtime": [
+                        {
+                            "type": "variable",
+                            "name": "runtime",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "filename": [
+                        {
+                            "type": "variable",
+                            "name": "extract_data_lambda",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_116",
+                "bc_check_id": "BC_AWS_GENERAL_64",
+                "check_name": "Ensure that AWS Lambda function is configured for a Dead Letter Queue(DLQ)",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "dead_letter_config/[0]/target_arn"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    156,
+                    164
+                ],
+                "resource": "aws_lambda_function.extract_data_lambda",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.LambdaDLQConfigured",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-aws-lambda-function-is-configured-for-a-dead-letter-queue-dlq",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "runtime": [
+                        {
+                            "type": "variable",
+                            "name": "runtime",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "filename": [
+                        {
+                            "type": "variable",
+                            "name": "extract_data_lambda",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_272",
+                "bc_check_id": "BC_AWS_General_201",
+                "check_name": "Ensure AWS Lambda function is configured to validate code-signing",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "code_signing_config_arn"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    156,
+                    164
+                ],
+                "resource": "aws_lambda_function.extract_data_lambda",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.LambdaCodeSigningConfigured",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-272",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "runtime": [
+                        {
+                            "type": "variable",
+                            "name": "runtime",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "filename": [
+                        {
+                            "type": "variable",
+                            "name": "extract_data_lambda",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_115",
+                "bc_check_id": "BC_AWS_GENERAL_63",
+                "check_name": "Ensure that AWS Lambda function is configured for function-level concurrent execution limit",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "reserved_concurrent_executions/[0]"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    156,
+                    164
+                ],
+                "resource": "aws_lambda_function.extract_data_lambda",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.LambdaFunctionLevelConcurrentExecutionLimit",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-aws-lambda-function-is-configured-for-function-level-concurrent-execution-limit",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "runtime": [
+                        {
+                            "type": "variable",
+                            "name": "runtime",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "filename": [
+                        {
+                            "type": "variable",
+                            "name": "extract_data_lambda",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_288",
+                "bc_check_id": "BC_AWS_IAM_83",
+                "check_name": "Ensure IAM policies does not allow data exfiltration",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "policy/Statement/[0]/Action"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    234,
+                    259
+                ],
+                "resource": "aws_iam_policy.stepfunction_execution_policy",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.IAMDataExfiltration",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-288",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "policy": [
+                        {
+                            "type": "variable",
+                            "name": "extract_data_lambda",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_290",
+                "bc_check_id": "BC_AWS_IAM_85",
+                "check_name": "Ensure IAM policies does not allow write access without constraints",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "policy/Statement/[0]/Action"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    234,
+                    259
+                ],
+                "resource": "aws_iam_policy.stepfunction_execution_policy",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.IAMWriteAccess",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-290",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "policy": [
+                        {
+                            "type": "variable",
+                            "name": "extract_data_lambda",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_289",
+                "bc_check_id": "BC_AWS_IAM_84",
+                "check_name": "Ensure IAM policies does not allow permissions management / resource exposure without constraints",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "policy/Statement/[0]/Action"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    234,
+                    259
+                ],
+                "resource": "aws_iam_policy.stepfunction_execution_policy",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.IAMPermissionsManagement",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-289",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "policy": [
+                        {
+                            "type": "variable",
+                            "name": "extract_data_lambda",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_355",
+                "bc_check_id": "BC_AWS_IAM_88",
+                "check_name": "Ensure no IAM policies documents allow \"*\" as a statement's resource for restrictable actions",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "policy/Statement/[0]/Action"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    234,
+                    259
+                ],
+                "resource": "aws_iam_policy.stepfunction_execution_policy",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.IAMStarResourcePolicyDocument",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-355",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "policy": [
+                        {
+                            "type": "variable",
+                            "name": "extract_data_lambda",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_286",
+                "bc_check_id": "BC_AWS_IAM_81",
+                "check_name": "Ensure IAM policies does not allow privilege escalation",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "policy/Statement/[0]/Action"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    234,
+                    259
+                ],
+                "resource": "aws_iam_policy.stepfunction_execution_policy",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.IAMPrivilegeEscalation",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-286",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "policy": [
+                        {
+                            "type": "variable",
+                            "name": "extract_data_lambda",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_124",
+                "bc_check_id": "BC_AWS_LOGGING_25",
+                "check_name": "Ensure that CloudFormation stacks are sending event notifications to an SNS topic",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "notification_arns"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    269,
+                    314
+                ],
+                "resource": "aws_cloudformation_stack.stepfunction_stack",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.CloudformationStackNotificationArns",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/ensure-that-cloudformation-stacks-are-sending-event-notifications-to-an-sns-topic",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "breadcrumbs": {
+                    "template_body": [
+                        {
+                            "type": "variable",
+                            "name": "aws_region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "name": [
+                        {
+                            "type": "variable",
+                            "name": "stepfunction_stack_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_cloudformation_stack.stepfunction_stack",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_27",
+                "bc_check_id": "BC_AWS_GENERAL_16",
+                "check_name": "Ensure all data stored in the SQS queue is encrypted",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "sqs_managed_sse_enabled",
+                        "kms_master_key_id"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    316,
+                    319
+                ],
+                "resource": "aws_sqs_queue.validated_queue",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SQSQueueEncryption",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/general-16-encrypt-sqs-queue",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf"
+            },
+            {
+                "check_id": "CKV_AWS_26",
+                "bc_check_id": "BC_AWS_GENERAL_15",
+                "check_name": "Ensure all data stored in the SNS topic is encrypted",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "kms_master_key_id"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                "repo_file_path": "/main.tf",
+                "file_line_range": [
+                    371,
+                    373
+                ],
+                "resource": "aws_sns_topic.notifyusers",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SNSTopicEncryption",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/general-15",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf"
+            },
+            {
+                "check_id": "CKV2_AWS_61",
+                "bc_check_id": "BC_AWS_LOGGING_35",
+                "check_name": "Ensure that an S3 bucket has a lifecycle configuration",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "example_bucket": {
+                                "__end_line__": 4,
+                                "__start_line__": 1,
+                                "acl": [
+                                    "private"
+                                ],
+                                "bucket": [
+                                    "mykycdemotf"
+                                ],
+                                "__address__": "module.s3module.aws_s3_bucket.example_bucket",
+                                "__provider_address__": "aws.default"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "lifecycle_rule",
+                        "resource_type"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/s3module/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/main.tf",
+                "repo_file_path": "/s3module/main.tf",
+                "file_line_range": [
+                    1,
+                    4
+                ],
+                "resource": "module.s3module.aws_s3_bucket.example_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/main.tf",
+                "breadcrumbs": {
+                    "bucket": [
+                        {
+                            "type": "module",
+                            "name": "s3module",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "bucket_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_s3_bucket.example_bucket",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "output",
+                            "name": "bucket_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/output.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "s3module",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                            "idx": 3,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_18",
+                "bc_check_id": "BC_AWS_S3_13",
+                "check_name": "Ensure the S3 bucket has access logging enabled",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "example_bucket": {
+                                "__end_line__": 4,
+                                "__start_line__": 1,
+                                "acl": [
+                                    "private"
+                                ],
+                                "bucket": [
+                                    "mykycdemotf"
+                                ],
+                                "__address__": "module.s3module.aws_s3_bucket.example_bucket",
+                                "__provider_address__": "aws.default"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "logging",
+                        "resource_type"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/s3module/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/main.tf",
+                "repo_file_path": "/s3module/main.tf",
+                "file_line_range": [
+                    1,
+                    4
+                ],
+                "resource": "module.s3module.aws_s3_bucket.example_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-13-enable-logging",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/main.tf",
+                "breadcrumbs": {
+                    "bucket": [
+                        {
+                            "type": "module",
+                            "name": "s3module",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "bucket_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_s3_bucket.example_bucket",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "output",
+                            "name": "bucket_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/output.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "s3module",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                            "idx": 3,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV2_AWS_6",
+                "bc_check_id": "BC_AWS_NETWORKING_52",
+                "check_name": "Ensure that S3 bucket has a Public Access block",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "example_bucket": {
+                                "__end_line__": 4,
+                                "__start_line__": 1,
+                                "acl": [
+                                    "private"
+                                ],
+                                "bucket": [
+                                    "mykycdemotf"
+                                ],
+                                "__address__": "module.s3module.aws_s3_bucket.example_bucket",
+                                "__provider_address__": "aws.default"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "block_public_acls",
+                        "resource_type",
+                        "block_public_policy"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/s3module/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/main.tf",
+                "repo_file_path": "/s3module/main.tf",
+                "file_line_range": [
+                    1,
+                    4
+                ],
+                "resource": "module.s3module.aws_s3_bucket.example_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/s3-bucket-should-have-public-access-blocks-defaults-to-false-if-the-public-access-block-is-not-attached",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/main.tf",
+                "breadcrumbs": {
+                    "bucket": [
+                        {
+                            "type": "module",
+                            "name": "s3module",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "bucket_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_s3_bucket.example_bucket",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "output",
+                            "name": "bucket_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/output.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "s3module",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                            "idx": 3,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_21",
+                "bc_check_id": "BC_AWS_S3_16",
+                "check_name": "Ensure all data stored in the S3 bucket have versioning enabled",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "example_bucket": {
+                                "__end_line__": 4,
+                                "__start_line__": 1,
+                                "acl": [
+                                    "private"
+                                ],
+                                "bucket": [
+                                    "mykycdemotf"
+                                ],
+                                "__address__": "module.s3module.aws_s3_bucket.example_bucket",
+                                "__provider_address__": "aws.default"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "versioning/enabled",
+                        "versioning_configuration/status",
+                        "resource_type"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/s3module/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/main.tf",
+                "repo_file_path": "/s3module/main.tf",
+                "file_line_range": [
+                    1,
+                    4
+                ],
+                "resource": "module.s3module.aws_s3_bucket.example_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-16-enable-versioning",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/main.tf",
+                "breadcrumbs": {
+                    "bucket": [
+                        {
+                            "type": "module",
+                            "name": "s3module",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "bucket_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_s3_bucket.example_bucket",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "output",
+                            "name": "bucket_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/output.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "s3module",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                            "idx": 3,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_145",
+                "bc_check_id": "BC_AWS_GENERAL_56",
+                "check_name": "Ensure that S3 buckets are encrypted with KMS by default",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "example_bucket": {
+                                "__end_line__": 4,
+                                "__start_line__": 1,
+                                "acl": [
+                                    "private"
+                                ],
+                                "bucket": [
+                                    "mykycdemotf"
+                                ],
+                                "__address__": "module.s3module.aws_s3_bucket.example_bucket",
+                                "__provider_address__": "aws.default"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "resource_type",
+                        "rule/apply_server_side_encryption_by_default/sse_algorithm",
+                        "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/s3module/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/main.tf",
+                "repo_file_path": "/s3module/main.tf",
+                "file_line_range": [
+                    1,
+                    4
+                ],
+                "resource": "module.s3module.aws_s3_bucket.example_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/main.tf",
+                "breadcrumbs": {
+                    "bucket": [
+                        {
+                            "type": "module",
+                            "name": "s3module",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "bucket_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_s3_bucket.example_bucket",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "output",
+                            "name": "bucket_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/output.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "s3module",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                            "idx": 3,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_144",
+                "bc_check_id": "BC_AWS_GENERAL_72",
+                "check_name": "Ensure that S3 bucket has cross-region replication enabled",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "example_bucket": {
+                                "__end_line__": 4,
+                                "__start_line__": 1,
+                                "acl": [
+                                    "private"
+                                ],
+                                "bucket": [
+                                    "mykycdemotf"
+                                ],
+                                "__address__": "module.s3module.aws_s3_bucket.example_bucket",
+                                "__provider_address__": "aws.default"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "resource_type",
+                        "rule/*/status",
+                        "replication_configuration/rules/*/status"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/s3module/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/main.tf",
+                "repo_file_path": "/s3module/main.tf",
+                "file_line_range": [
+                    1,
+                    4
+                ],
+                "resource": "module.s3module.aws_s3_bucket.example_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-bucket-has-cross-region-replication-enabled",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/main.tf",
+                "breadcrumbs": {
+                    "bucket": [
+                        {
+                            "type": "module",
+                            "name": "s3module",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "bucket_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_s3_bucket.example_bucket",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "output",
+                            "name": "bucket_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/s3module/output.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "s3module",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-serverless-knowyourcustomer-data/main.tf",
+                            "idx": 3,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "summary": {
+        "passed": 69,
+        "failed": 36,
+        "skipped": 0,
+        "parsing_errors": 0,
+        "resource_count": 26,
+        "checkov_version": "3.3.8"
+    }
+}

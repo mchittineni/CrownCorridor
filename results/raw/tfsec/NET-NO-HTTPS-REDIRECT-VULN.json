@@ -18,7 +18,7 @@
       "status": 0,
       "resource": "aws_cloudfront_distribution.target",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-VULN-_okmagns/case/main.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-VULN-sqg_4vc8/case/main.tf",
         "start_line": 20,
         "end_line": 58
       }
@@ -41,7 +41,7 @@
       "status": 0,
       "resource": "aws_cloudfront_distribution.target",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-VULN-_okmagns/case/main.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-VULN-sqg_4vc8/case/main.tf",
         "start_line": 20,
         "end_line": 58
       }
@@ -64,7 +64,7 @@
       "status": 0,
       "resource": "aws_cloudfront_distribution.target",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-VULN-_okmagns/case/main.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-VULN-sqg_4vc8/case/main.tf",
         "start_line": 39,
         "end_line": 39
       }
@@ -87,7 +87,7 @@
       "status": 0,
       "resource": "aws_cloudfront_distribution.target",
       "location": {
-        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-VULN-_okmagns/case/main.tf",
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-NET-NO-HTTPS-REDIRECT-VULN-sqg_4vc8/case/main.tf",
         "start_line": 55,
         "end_line": 57
       }

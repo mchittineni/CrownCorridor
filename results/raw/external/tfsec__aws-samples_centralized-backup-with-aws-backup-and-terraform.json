@@ -1,0 +1,119 @@
+{
+	"results": [
+		{
+			"rule_id": "AVD-AWS-0017",
+			"long_id": "aws-cloudwatch-log-group-customer-key",
+			"rule_description": "CloudWatch log groups should be encrypted using CMK",
+			"rule_provider": "aws",
+			"rule_service": "cloudwatch",
+			"impact": "Log data may be leaked if the logs are compromised. No auditing of who have viewed the logs.",
+			"resolution": "Enable CMK encryption of CloudWatch Log Groups",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/cloudwatch/log-group-customer-key/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#kms_key_id"
+			],
+			"description": "Log group is not encrypted.",
+			"severity": "LOW",
+			"warning": false,
+			"status": 0,
+			"resource": "module.backup-account",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_centralized-backup-with-aws-backup-and-terraform/modules/backup-account/main.tf",
+				"start_line": 354,
+				"end_line": 357
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0017",
+			"long_id": "aws-cloudwatch-log-group-customer-key",
+			"rule_description": "CloudWatch log groups should be encrypted using CMK",
+			"rule_provider": "aws",
+			"rule_service": "cloudwatch",
+			"impact": "Log data may be leaked if the logs are compromised. No auditing of who have viewed the logs.",
+			"resolution": "Enable CMK encryption of CloudWatch Log Groups",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/cloudwatch/log-group-customer-key/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#kms_key_id"
+			],
+			"description": "Log group is not encrypted.",
+			"severity": "LOW",
+			"warning": false,
+			"status": 0,
+			"resource": "module.backup-account",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_centralized-backup-with-aws-backup-and-terraform/modules/backup-account/main.tf",
+				"start_line": 348,
+				"end_line": 351
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0066",
+			"long_id": "aws-lambda-enable-tracing",
+			"rule_description": "Lambda functions should have X-Ray tracing enabled",
+			"rule_provider": "aws",
+			"rule_service": "lambda",
+			"impact": "Without full tracing enabled it is difficult to trace the flow of logs",
+			"resolution": "Enable tracing",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/lambda/enable-tracing/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function#mode"
+			],
+			"description": "Function does not have tracing enabled.",
+			"severity": "LOW",
+			"warning": false,
+			"status": 0,
+			"resource": "module.backup-account",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_centralized-backup-with-aws-backup-and-terraform/modules/backup-account/main.tf",
+				"start_line": 316,
+				"end_line": 338
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0066",
+			"long_id": "aws-lambda-enable-tracing",
+			"rule_description": "Lambda functions should have X-Ray tracing enabled",
+			"rule_provider": "aws",
+			"rule_service": "lambda",
+			"impact": "Without full tracing enabled it is difficult to trace the flow of logs",
+			"resolution": "Enable tracing",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/lambda/enable-tracing/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function#mode"
+			],
+			"description": "Function does not have tracing enabled.",
+			"severity": "LOW",
+			"warning": false,
+			"status": 0,
+			"resource": "module.backup-account",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_centralized-backup-with-aws-backup-and-terraform/modules/backup-account/main.tf",
+				"start_line": 295,
+				"end_line": 314
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0089",
+			"long_id": "aws-s3-enable-bucket-logging",
+			"rule_description": "S3 Bucket does not have logging enabled.",
+			"rule_provider": "aws",
+			"rule_service": "s3",
+			"impact": "There is no way to determine the access to this bucket",
+			"resolution": "Add a logging block to the resource to enable access logging",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/s3/enable-bucket-logging/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket"
+			],
+			"description": "Bucket does not have logging enabled",
+			"severity": "MEDIUM",
+			"warning": false,
+			"status": 0,
+			"resource": "module.backup-account",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_centralized-backup-with-aws-backup-and-terraform/modules/backup-account/main.tf",
+				"start_line": 174,
+				"end_line": 180
+			}
+		}
+	]
+}

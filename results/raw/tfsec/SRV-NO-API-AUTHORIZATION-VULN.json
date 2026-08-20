@@ -1,0 +1,27 @@
+{
+  "results": [
+    {
+      "rule_id": "AVD-AWS-0004",
+      "long_id": "aws-api-gateway-no-public-access",
+      "rule_description": "No unauthorized access to API Gateway methods",
+      "rule_provider": "aws",
+      "rule_service": "api-gateway",
+      "impact": "API gateway methods can be accessed without authorization.",
+      "resolution": "Use and authorization method or require API Key",
+      "links": [
+        "https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/api-gateway/no-public-access/",
+        "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_method#authorization"
+      ],
+      "description": "Authorization is not enabled for this method.",
+      "severity": "LOW",
+      "warning": false,
+      "status": 0,
+      "resource": "aws_api_gateway_method.target",
+      "location": {
+        "filename": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-API-AUTHORIZATION-VULN-tqkyu0xr/case/main.tf",
+        "start_line": 34,
+        "end_line": 34
+      }
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "check_type": "terraform",
+  "results": {
+    "failed_checks": [
+      {
+        "check_id": "CKV_AWS_237",
+        "bc_check_id": "BC_AWS_GENERAL_152",
+        "check_name": "Ensure Create before destroy for API Gateway",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "lifecycle/[0]/create_before_destroy"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-API-AUTHORIZATION-SAFE-mm7mioyn/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-API-AUTHORIZATION-SAFE-mm7mioyn/case/main.tf",
+        "file_line_range": [
+          20,
+          22
+        ],
+        "resource": "aws_api_gateway_rest_api.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.aws.APIGatewayCreateBeforeDestroy",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-aws-api-gateway-enables-create-before-destroy",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-API-AUTHORIZATION-SAFE-mm7mioyn/case/main.tf",
+        "breadcrumbs": {
+          "name": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-API-AUTHORIZATION-SAFE-mm7mioyn/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV2_AWS_53",
+        "bc_check_id": "BC_AWS_GENERAL_190",
+        "check_name": "Ensure AWS API gateway request is validated",
+        "check_result": {
+          "result": "FAILED",
+          "entity": {
+            "aws_api_gateway_method": {
+              "target": {
+                "__end_line__": 35,
+                "__start_line__": 30,
+                "authorization": [
+                  "AWS_IAM"
+                ],
+                "http_method": [
+                  "GET"
+                ],
+                "resource_id": [
+                  "aws_api_gateway_resource.target.id"
+                ],
+                "rest_api_id": [
+                  "aws_api_gateway_rest_api.target.id"
+                ],
+                "__address__": "aws_api_gateway_method.target"
+              }
+            }
+          },
+          "evaluated_keys": [
+            "request_validator_id"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-API-AUTHORIZATION-SAFE-mm7mioyn/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-API-AUTHORIZATION-SAFE-mm7mioyn/case/main.tf",
+        "file_line_range": [
+          30,
+          35
+        ],
+        "resource": "aws_api_gateway_method.target",
+        "evaluations": null,
+        "check_class": "checkov.common.graph.checks_infra.base_check",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-2-53",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-API-AUTHORIZATION-SAFE-mm7mioyn/case/main.tf"
+      }
+    ]
+  },
+  "summary": {
+    "passed": 2,
+    "failed": 2,
+    "skipped": 0,
+    "parsing_errors": 0,
+    "resource_count": 3,
+    "checkov_version": "3.3.8"
+  }
+}

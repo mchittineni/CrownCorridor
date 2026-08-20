@@ -3,9 +3,9 @@
   "Trivy": {
     "Version": "0.73.0"
   },
-  "ReportID": "019fcc86-d335-75d4-9a06-2ccfbc7a4026",
-  "CreatedAt": "2026-08-04T12:26:55.797384+01:00",
-  "ArtifactName": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-bkhix0ob/case",
+  "ReportID": "01a01ec1-a470-7007-b7ce-599d447d9afa",
+  "CreatedAt": "2026-08-20T11:40:02.160003+01:00",
+  "ArtifactName": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-cis_examples__cis_2_1_s3_public-s0h8gqld/case",
   "ArtifactType": "filesystem",
   "Results": [
     {

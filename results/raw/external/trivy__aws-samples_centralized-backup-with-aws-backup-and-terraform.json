@@ -1,0 +1,579 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.73.0"
+  },
+  "ReportID": "01a01e5e-89f0-721e-a02d-0b5d9e4a6143",
+  "CreatedAt": "2026-08-20T09:51:47.31214+01:00",
+  "ArtifactID": "sha256:c673b1944548938cb3d604f539d8ed75a2d4aa870e5dd70f186728a1f5b543e9",
+  "ArtifactName": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_centralized-backup-with-aws-backup-and-terraform",
+  "ArtifactType": "repository",
+  "Metadata": {
+    "RepoURL": "https://github.com/aws-samples/centralized-backup-with-aws-backup-and-terraform.git",
+    "Commit": "0d0867d50c3ad2f8ee45cbe872b86b52fe946e49",
+    "CommitMsg": "Improved formatting and comments (#1)\n\n* Format indentation on root module\r\n\r\n* Comments and indentation on backup-account module\r\n\r\n* Format indentiation on member-account module",
+    "Author": "PeskyPotato \u003c35942108+PeskyPotato@users.noreply.github.com\u003e",
+    "Committer": "GitHub \u003cnoreply@github.com\u003e"
+  },
+  "Results": [
+    {
+      "Target": ".",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 67,
+        "Failures": 0
+      }
+    },
+    {
+      "Target": "modules/backup-account/main.tf",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 0,
+        "Failures": 5
+      },
+      "Misconfigurations": [
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0017",
+          "Title": "CloudWatch log groups should be encrypted using CMK",
+          "Description": "CloudWatch log groups are encrypted by default, however, to get the full benefit of controlling key rotation and other KMS aspects a KMS CMK should be used.\n",
+          "Message": "Log group is not encrypted.",
+          "Namespace": "builtin.aws.cloudwatch.aws0017",
+          "Query": "data.builtin.aws.cloudwatch.aws0017.deny",
+          "Resolution": "Enable CMK encryption of CloudWatch Log Groups",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0017",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html",
+            "https://avd.aquasec.com/misconfig/aws-0017"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "module.backup-account",
+            "Provider": "AWS",
+            "Service": "cloudwatch",
+            "StartLine": 348,
+            "EndLine": 351,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 348,
+                  "Content": "resource \"aws_cloudwatch_log_group\" \"s3_policy_mapper_log_group\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_cloudwatch_log_group\"\u001b[0m \u001b[38;5;37m\"s3_policy_mapper_log_group\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 349,
+                  "Content": "  name              = \"/aws/lambda/${var.s3_lambda_name}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mname\u001b[0m              = \u001b[38;5;37m\"/aws/lambda/\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.s3_lambda_name\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 350,
+                  "Content": "  retention_in_days = var.log_retention_days",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mretention_in_days\u001b[0m = \u001b[38;5;33mvar\u001b[0m.log_retention_days",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 351,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            },
+            "Occurrences": [
+              {
+                "Resource": "module.backup-account",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 1,
+                  "EndLine": 10
+                }
+              }
+            ]
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0017",
+          "Title": "CloudWatch log groups should be encrypted using CMK",
+          "Description": "CloudWatch log groups are encrypted by default, however, to get the full benefit of controlling key rotation and other KMS aspects a KMS CMK should be used.\n",
+          "Message": "Log group is not encrypted.",
+          "Namespace": "builtin.aws.cloudwatch.aws0017",
+          "Query": "data.builtin.aws.cloudwatch.aws0017.deny",
+          "Resolution": "Enable CMK encryption of CloudWatch Log Groups",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0017",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html",
+            "https://avd.aquasec.com/misconfig/aws-0017"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "module.backup-account",
+            "Provider": "AWS",
+            "Service": "cloudwatch",
+            "StartLine": 354,
+            "EndLine": 357,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 354,
+                  "Content": "resource \"aws_cloudwatch_log_group\" \"org_policy_manager_log_group\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_cloudwatch_log_group\"\u001b[0m \u001b[38;5;37m\"org_policy_manager_log_group\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 355,
+                  "Content": "  name              = \"/aws/lambda/${var.org_policy_lambda_name}\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mname\u001b[0m              = \u001b[38;5;37m\"/aws/lambda/\u001b[0m\u001b[38;5;37m${\u001b[0m\u001b[38;5;33mvar\u001b[0m.org_policy_lambda_name\u001b[38;5;37m}\u001b[0m\u001b[38;5;37m\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 356,
+                  "Content": "  retention_in_days = var.log_retention_days",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mretention_in_days\u001b[0m = \u001b[38;5;33mvar\u001b[0m.log_retention_days",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 357,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            },
+            "Occurrences": [
+              {
+                "Resource": "module.backup-account",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 1,
+                  "EndLine": 10
+                }
+              }
+            ]
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0066",
+          "Title": "Lambda functions should have X-Ray tracing enabled",
+          "Description": "X-Ray tracing enables end-to-end debugging and analysis of all function activity. This will allow for identifying bottlenecks, slow downs and timeouts.\n",
+          "Message": "Function does not have tracing enabled.",
+          "Namespace": "builtin.aws.lambda.aws0066",
+          "Query": "data.builtin.aws.lambda.aws0066.deny",
+          "Resolution": "Enable tracing",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0066",
+          "References": [
+            "https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html",
+            "https://avd.aquasec.com/misconfig/aws-0066"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "module.backup-account",
+            "Provider": "AWS",
+            "Service": "lambda",
+            "StartLine": 295,
+            "EndLine": 314,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 295,
+                  "Content": "resource \"aws_lambda_function\" \"s3_policy_mapper\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_lambda_function\"\u001b[0m \u001b[38;5;37m\"s3_policy_mapper\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 296,
+                  "Content": "  filename      = var.s3_lambda_source",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mfilename\u001b[0m      = \u001b[38;5;33mvar\u001b[0m.s3_lambda_source",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 297,
+                  "Content": "  function_name = var.s3_lambda_name",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mfunction_name\u001b[0m = \u001b[38;5;33mvar\u001b[0m.s3_lambda_name",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 298,
+                  "Content": "  description   = var.s3_lambda_description",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mdescription\u001b[0m   = \u001b[38;5;33mvar\u001b[0m.s3_lambda_description",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 299,
+                  "Content": "  role          = aws_iam_role.s3_policy_mapper_role.arn",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mrole\u001b[0m          = aws_iam_role.s3_policy_mapper_role.arn",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 300,
+                  "Content": "  timeout       = var.s3_lambda_timeout",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mtimeout\u001b[0m       = \u001b[38;5;33mvar\u001b[0m.s3_lambda_timeout",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 301,
+                  "Content": "  handler       = var.s3_lambda_handler",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mhandler\u001b[0m       = \u001b[38;5;33mvar\u001b[0m.s3_lambda_handler",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 302,
+                  "Content": "  runtime       = var.lambda_runtime",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mruntime\u001b[0m       = \u001b[38;5;33mvar\u001b[0m.lambda_runtime",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 303,
+                  "Content": "  memory_size   = var.memory_size",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mmemory_size\u001b[0m   = \u001b[38;5;33mvar\u001b[0m.memory_size",
+                  "FirstCause": false,
+                  "LastCause": true
+                },
+                {
+                  "Number": 304,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                }
+              ]
+            },
+            "Occurrences": [
+              {
+                "Resource": "module.backup-account",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 1,
+                  "EndLine": 10
+                }
+              }
+            ]
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0066",
+          "Title": "Lambda functions should have X-Ray tracing enabled",
+          "Description": "X-Ray tracing enables end-to-end debugging and analysis of all function activity. This will allow for identifying bottlenecks, slow downs and timeouts.\n",
+          "Message": "Function does not have tracing enabled.",
+          "Namespace": "builtin.aws.lambda.aws0066",
+          "Query": "data.builtin.aws.lambda.aws0066.deny",
+          "Resolution": "Enable tracing",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0066",
+          "References": [
+            "https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html",
+            "https://avd.aquasec.com/misconfig/aws-0066"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "module.backup-account",
+            "Provider": "AWS",
+            "Service": "lambda",
+            "StartLine": 316,
+            "EndLine": 338,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 316,
+                  "Content": "resource \"aws_lambda_function\" \"org_policy_manager\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_lambda_function\"\u001b[0m \u001b[38;5;37m\"org_policy_manager\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 317,
+                  "Content": "  filename      = var.org_policy_lambda_source",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mfilename\u001b[0m      = \u001b[38;5;33mvar\u001b[0m.org_policy_lambda_source",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 318,
+                  "Content": "  function_name = var.org_policy_lambda_name",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mfunction_name\u001b[0m = \u001b[38;5;33mvar\u001b[0m.org_policy_lambda_name",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 319,
+                  "Content": "  description   = var.org_policy_lambda_description",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mdescription\u001b[0m   = \u001b[38;5;33mvar\u001b[0m.org_policy_lambda_description",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 320,
+                  "Content": "  role          = aws_iam_role.org_policy_manager_role.arn",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mrole\u001b[0m          = aws_iam_role.org_policy_manager_role.arn",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 321,
+                  "Content": "  timeout       = var.org_policy_lambda_timeout",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mtimeout\u001b[0m       = \u001b[38;5;33mvar\u001b[0m.org_policy_lambda_timeout",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 322,
+                  "Content": "  handler       = var.org_policy_lambda_handler",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mhandler\u001b[0m       = \u001b[38;5;33mvar\u001b[0m.org_policy_lambda_handler",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 323,
+                  "Content": "  runtime       = var.lambda_runtime",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mruntime\u001b[0m       = \u001b[38;5;33mvar\u001b[0m.lambda_runtime",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 324,
+                  "Content": "  memory_size   = var.memory_size",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mmemory_size\u001b[0m   = \u001b[38;5;33mvar\u001b[0m.memory_size",
+                  "FirstCause": false,
+                  "LastCause": true
+                },
+                {
+                  "Number": 325,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                }
+              ]
+            },
+            "Occurrences": [
+              {
+                "Resource": "module.backup-account",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 1,
+                  "EndLine": 10
+                }
+              }
+            ]
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0089",
+          "Title": "S3 Bucket Logging",
+          "Description": "Ensures S3 bucket logging is enabled for S3 buckets",
+          "Message": "Bucket has logging disabled",
+          "Namespace": "builtin.aws.s3.aws0089",
+          "Query": "data.builtin.aws.s3.aws0089.deny",
+          "Resolution": "Add a logging block to the resource to enable access logging",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0089",
+          "References": [
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerLogs.html",
+            "https://docs.aws.amazon.com/AmazonS3/latest/userguide/enable-server-access-logging.html",
+            "https://avd.aquasec.com/misconfig/aws-0089"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "module.backup-account",
+            "Provider": "AWS",
+            "Service": "s3",
+            "StartLine": 174,
+            "EndLine": 180,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 174,
+                  "Content": "resource \"aws_s3_bucket\" \"backup_policy_repository\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_s3_bucket\"\u001b[0m \u001b[38;5;37m\"backup_policy_repository\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 175,
+                  "Content": "  bucket = var.policy_bucket_name",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mbucket\u001b[0m = \u001b[38;5;33mvar\u001b[0m.policy_bucket_name",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 176,
+                  "Content": "  tags   = var.tags",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mtags\u001b[0m   = \u001b[38;5;33mvar\u001b[0m.tags",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 177,
+                  "Content": "  depends_on = [",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mdepends_on\u001b[0m = [",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 178,
+                  "Content": "    aws_kms_key.backup_automation_key",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "    aws_kms_key.backup_automation_key",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 179,
+                  "Content": "  ]",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  ]",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 180,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            },
+            "Occurrences": [
+              {
+                "Resource": "module.backup-account",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 1,
+                  "EndLine": 10
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
