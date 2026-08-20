@@ -9,7 +9,7 @@
 [![Control coverage 26/26](https://img.shields.io/badge/control_coverage-26%2F26_exercised-brightgreen.svg)](evaluation/control_map.json)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21645016-purple.svg)](https://doi.org/10.5281/zenodo.21645016)
 
-<!-- The four badges above are the live workflow-status ones plus two measured facts.
+<!-- The six badges above are the four live workflow-status ones plus two measured facts.
      Four static shields were removed rather than kept: "Tests Passing" and
      "Benchmark Reproducible" were hardcoded literals that stayed green regardless of
      the actual state, "Security Zero-PII Validated" asserted an outcome no badge can

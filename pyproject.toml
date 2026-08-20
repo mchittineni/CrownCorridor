@@ -8,23 +8,48 @@ version = "1.0.0"
 description = "IaCSecBench: a reproducible benchmark for Infrastructure-as-Code security scanners"
 authors = [{ name = "IaCSecBench" }]
 requires-python = ">=3.11"
-dependencies = [
-    "fastapi>=0.110.0",
-    "uvicorn>=0.28.0",
-    "pydantic>=2.6.0",
-    "typesense>=1.0.0",
-    "requests>=2.31.0",
-    "httpx>=0.27.0",
-]
+# Deliberately empty. Every module under evaluation/, experiments/, benchmark/,
+# scripts/ and security_framework/ imports only the standard library; the tools
+# under comparison are invoked as subprocesses and pinned by
+# results/run_manifest.json, not resolved as Python packages. The web framework
+# and search-client dependencies listed here previously belonged to an
+# application that has moved to its own repository, and nothing in this one
+# imported them.
+dependencies = []
 
 [project.optional-dependencies]
+# The gates, and nothing else: ci.yml runs ruff, flake8, bandit and pytest, and
+# .pre-commit-config.yaml adds autoflake, isort and pylint. Kept in step with
+# those two files so that `pip install -e .[dev]` reproduces the checks a
+# contributor's PR will actually face.
 dev = [
     "pytest>=7.0.0",
     "pytest-cov>=4.0.0",
-    "anyio>=4.0.0",
-    "ruff>=0.1.0",
-    "black>=24.0.0",
+    "pre-commit>=3.0.0",
+    "ruff>=0.16.0",
+    "flake8>=7.0.0",
+    "flake8-pytest-style",
+    "flake8-bugbear",
+    "flake8-comprehensions",
+    "flake8-print",
+    "darglint",
+    "isort>=5.0.0",
+    "autoflake>=2.0.0",
+    "bandit[toml]>=1.9.0",
+    "pylint>=3.0.0",
 ]
+
+# Only security_framework is a distributable package. benchmark, evaluation and
+# experiments are deliberately not: they are run from a checkout as `python -m
+# evaluation.corpus` and friends, and their paths are baked into the recorded
+# artefacts under results/. Declaring them here would be the first step towards
+# a measurement whose provenance is an installed wheel rather than this tree.
+#
+# Without this section setuptools refuses the flat layout outright ("Multiple
+# top-level packages discovered"), which made `pip install -e '.[dev]'` -- and so
+# the dev extras above -- impossible to use.
+[tool.setuptools]
+packages = ["security_framework", "security_framework.engine"]
 
 [tool.pytest.ini_options]
 minversion = "7.0"
@@ -46,7 +71,7 @@ exclude = [
     ".git",
     ".venv",
     "__pycache__",
-    "node_modules",
+    ".external-corpus",
 ]
 
 [tool.ruff.lint]
@@ -57,19 +82,18 @@ ignore = ["E501", "UP042", "E402", "N806", "E701"]
 profile = "black"
 line_length = 100
 
-[tool.black]
-line-length = 100
-target-version = ['py311']
-
-
-[tool.flake8]
-max-line-length = 112
-extend-ignore = ["E203", "E501", "B008", "T201", "DAR101", "DAR201", "DAR401", "E402", "PT018"]
-exclude = [".git", ".venv", "__pycache__", "node_modules"]
+# No [tool.black] section: ruff-format is the formatter in both ci.yml and
+# .pre-commit-config.yaml, and nothing invoked black.
+# No [tool.flake8] section either: flake8 does not read pyproject.toml, so the one
+# that used to live here was dead configuration that read as live. The settings
+# flake8 obeys are in .flake8.
 
 [tool.bandit]
 skips = ["B101", "B404", "B405", "B603"]
-exclude_dirs = ["docs/scratch", ".venv"]
+# docs/scratch left with the application it documented. .external-corpus holds
+# third-party working trees fetched by commit; their findings are not this
+# project's to triage.
+exclude_dirs = [".venv", ".external-corpus"]
 
 [tool.pylint.messages_control]
 max-line-length = 112
