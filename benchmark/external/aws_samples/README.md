@@ -15,7 +15,7 @@ invented rather than measured. `evaluation/tests/test_external.py` asserts that 
 scored-metric field appears in the recorded output.
 
 They earn their place by answering questions the labelled corpus structurally
-cannot. Every one of its 48 cases is a single flat directory with a median of 36
+cannot. Every one of its 56 cases is a single flat directory with a median of 51
 lines and no module indirection at all, so it cannot say whether a scanner
 resolves a value across a `module` boundary, nor how many alerts adopting one
 costs on production-shaped code. This subset carries 15,226 lines across 285
