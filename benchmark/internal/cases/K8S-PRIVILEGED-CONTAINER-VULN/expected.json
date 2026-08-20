@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "K8S-PRIVILEGED-CONTAINER-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "K8S_PRIVILEGED_CONTAINER"
+  ],
+  "severity": "CRITICAL",
+  "violations": [
+    {
+      "resource": "kubernetes_pod.target",
+      "control": "K8S_PRIVILEGED_CONTAINER"
+    }
+  ]
+}

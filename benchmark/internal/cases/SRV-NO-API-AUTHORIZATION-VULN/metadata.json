@@ -1,0 +1,27 @@
+{
+  "id": "SRV-NO-API-AUTHORIZATION-VULN",
+  "title": "API method authorization (VIOLATION)",
+  "description": "API method accepts unauthenticated invocation.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "SRV_NO_API_AUTHORIZATION"
+  ],
+  "benchmark_category": "SRV",
+  "cis_control": "n/a",
+  "severity": "CRITICAL",
+  "provider": "aws",
+  "benchmark_features": [
+    "resource references"
+  ],
+  "pair_id": "SRV_NO_API_AUTHORIZATION",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "aws_api_gateway_method.target",
+      "control": "SRV_NO_API_AUTHORIZATION",
+      "description": "API method accepts unauthenticated invocation."
+    }
+  ]
+}

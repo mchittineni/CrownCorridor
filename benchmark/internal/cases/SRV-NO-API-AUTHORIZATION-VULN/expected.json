@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "SRV-NO-API-AUTHORIZATION-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "SRV_NO_API_AUTHORIZATION"
+  ],
+  "severity": "CRITICAL",
+  "violations": [
+    {
+      "resource": "aws_api_gateway_method.target",
+      "control": "SRV_NO_API_AUTHORIZATION"
+    }
+  ]
+}

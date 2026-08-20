@@ -1,0 +1,20 @@
+{
+  "id": "SRV-NO-API-AUTHORIZATION-SAFE",
+  "title": "API method authorization (COMPLIANT)",
+  "description": "API method requires IAM authorization.",
+  "expected_result": "PASS",
+  "has_violation": false,
+  "canonical_controls": [
+    "SRV_NO_API_AUTHORIZATION"
+  ],
+  "benchmark_category": "SRV",
+  "cis_control": "n/a",
+  "severity": "NONE",
+  "provider": "aws",
+  "benchmark_features": [
+    "resource references"
+  ],
+  "pair_id": "SRV_NO_API_AUTHORIZATION",
+  "pair_variant": "compliant",
+  "generated_by": "benchmark/generate_corpus.py"
+}

@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "K8S-ROOT-CONTAINER-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "K8S_ROOT_CONTAINER"
+  ],
+  "severity": "HIGH",
+  "violations": [
+    {
+      "resource": "kubernetes_pod_security_policy.target",
+      "control": "K8S_ROOT_CONTAINER"
+    }
+  ]
+}

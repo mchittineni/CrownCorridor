@@ -31,8 +31,43 @@ benchmark/
 
 ### 1. Internal Controlled Benchmark (`benchmark/internal/`)
 
-- Contains **44 labelled cases present on disk** (22 vulnerable / 22 compliant) across 8 domains: IAM, NET, STO, ENC, CMP, MON, SEC, SRV. The designed taxonomy targets 345 cases across 12 domains; the four remaining domains (K8S, ID, PII, TF) have no cases yet and nothing is measured over them.
+- Contains **52 labelled cases present on disk** (26 vulnerable / 26 compliant) across 9 domains: IAM, NET, STO, ENC, CMP, MON, SEC, SRV, K8S. Every one of the 26 canonical controls in `evaluation/control_map.json` now has a vulnerable/compliant pair; before, four controls had none, so no tool could be credited or faulted on them. The designed taxonomy targets 345 cases across 12 domains; the three remaining domains (ID, PII, TF) have no cases yet and nothing is measured over them.
 - **Metadata Annotation Schema (`metadata.json`)**: Formats each case with canonical attributes: `case_id`, `domain`, `severity`, `target_resource_urn`, and ground-truth `status` (`VIOLATION` vs. `COMPLIANT`).
+- Cases are generated from the specifications in `benchmark/generate_corpus.py`; edit those rather than the emitted files. Regenerate with `python -m benchmark.generate_corpus --write`.
+
+#### Tool scope
+
+A tool that does not read a resource type cannot be said to have missed a
+misconfiguration in it, but the confusion matrix cannot tell the two apart:
+`evaluation/normalize.py:score_case` records both as a non-detection, and both
+land in the false-negative cell.
+
+This is live for the three K8S controls. Measured, not assumed: **neither tfsec
+1.28.14 nor Trivy 0.73.0 emits any finding on any `kubernetes_*` Terraform
+resource** — not a different finding, none at all — on `kubernetes_pod` or
+`kubernetes_pod_security_policy`, vulnerable and compliant variants alike. Only
+Checkov inspects them, and only under `--framework terraform`, which is how the
+harness invokes it.
+
+The consequence is large enough to state numerically. Adding the four missing
+pairs moves control-level recall by:
+
+| Tool | Before | After | Change |
+| --- | --- | --- | --- |
+| checkov | 88.5% | 90.0% | +1.5% |
+| tfsec | 84.6% | 76.7% | **−7.9%** |
+| trivy | 80.8% | 73.3% | **−7.4%** |
+
+Almost all of the tfsec and Trivy movement is scope, not detection quality. The
+affected controls therefore carry `inapplicable_tools` in the control map, and
+`evaluation/analyze.py` emits a caveat naming them in `results/evaluation.json`.
+Any report of these figures must carry that caveat, or state the K8S controls
+separately from the AWS ones.
+
+Checkov's own K8S rule bindings are narrower than they look: `CKV_K8S_6`
+(root containers) is bound to `kubernetes_pod_security_policy`, not
+`kubernetes_pod` — setting `run_as_non_root = false` on a pod fires nothing —
+which is why that pair is written against the resource the check inspects.
 
 ### 2. External Validation Collection (`benchmark/external/`)
 
