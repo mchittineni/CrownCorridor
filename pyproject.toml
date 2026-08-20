@@ -8,6 +8,13 @@ version = "1.0.0"
 description = "IaCSecBench: a reproducible benchmark for Infrastructure-as-Code security scanners"
 authors = [{ name = "IaCSecBench" }]
 requires-python = ">=3.11"
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Security",
+    "Intended Audience :: Science/Research",
+]
 # Deliberately empty. Every module under evaluation/, experiments/, benchmark/,
 # scripts/ and security_framework/ imports only the standard library; the tools
 # under comparison are invoked as subprocesses and pinned by

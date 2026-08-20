@@ -169,4 +169,12 @@ than asserted. No personal data is stored in this repository.
 
 ## 📄 License
 
-Code: [LICENSE](LICENSE)
+MIT — see [LICENSE](LICENSE).
+
+No third-party source file is vendored in this repository, so the MIT grant covers
+all of it. The `LICENSE` file records what the benchmark refers to without
+redistributing: the 25 MIT-0 repositories of the unlabelled external subset, which
+are pinned by commit and fetched into a gitignored directory; the CIS control
+identifiers the corpus cites without reproducing CIS Benchmark text; and the five
+scanners, which are invoked as external subprocesses and pinned in
+`results/run_manifest.json`.
