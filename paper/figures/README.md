@@ -11,7 +11,10 @@ Two figures are drawings; the third is set as a listing in the manuscript source
 Both rendered figures are **single-page vector PDFs with no raster content and no
 alpha channel**, set in Times to sit alongside the body text. Re-render after any
 re-measurement; `experiments/generate_figures.py --check` fails if the committed
-`.mmd` sources no longer match the recorded results, which is suitable for CI.
+`.mmd` sources no longer match the recorded results, which is suitable for CI. It
+ignores a change confined to the pipeline figure's two latency labels, which follow
+the measuring host rather than the results; add `--strict` on the idle machine that
+produces publishable latency.
 
 If a `.pdf` is ever missing, `\paperfigure` prints a visible placeholder box naming
 the file rather than letting the build appear complete.

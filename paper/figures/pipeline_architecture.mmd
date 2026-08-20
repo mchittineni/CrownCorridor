@@ -13,7 +13,7 @@ flowchart TD
     commit --> l1
     l1 -- "pass, 0.15 ms" --> l2
     l2 -- "pass" --> l3
-    l3 -- "pass, 12.9 ms" --> ok
+    l3 -- "pass, 12.8 ms" --> ok
     l1 -. "leak or schema failure" .-> no
     l2 -. "assertion failure" .-> no
     l3 -. "policy violation" .-> no

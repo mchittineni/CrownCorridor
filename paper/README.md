@@ -125,7 +125,10 @@ python -m experiments.generate_figures      # refresh figures/*.mmd
 ```
 
 `generate_figures.py --check` exits non-zero if the committed sources no longer
-match the recorded results, and runs in CI for that reason.
+match the recorded results, and runs in CI for that reason. It passes when the only
+difference is the pipeline figure's two measured latency labels, because those
+describe the measuring host and CI's host is not the one the paper reports; add
+`--strict` when re-measuring on that machine.
 
 ## ✍️ Conventions worth knowing before editing
 
