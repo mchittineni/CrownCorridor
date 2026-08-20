@@ -22,6 +22,7 @@ are pinned here.
 from __future__ import annotations
 
 import json
+import tempfile
 from pathlib import Path
 
 from evaluation.external import (
@@ -32,7 +33,13 @@ from evaluation.external import (
     resource_key,
 )
 
-REPO = Path("/tmp/iacsb-fixture/aws-samples_example")
+# Derived from the platform temp directory rather than written as a literal
+# "/tmp/...", for two reasons. Bandit flags a hardcoded /tmp path (B108), and on
+# macOS gettempdir() sits under /var, which is itself a symlink to /private/var --
+# so ``resolve()`` diverges from the raw string here, which is precisely the
+# condition repo_relative() has to survive. Nothing is created at this path; it is
+# only ever compared against.
+REPO = Path(tempfile.gettempdir()) / "iacsb-fixture" / "aws-samples_example"
 
 
 class TestPathDialects:
@@ -67,6 +74,41 @@ class TestPathDialects:
     def test_empty_path_is_not_a_module(self):
         assert repo_relative("", REPO) == ""
         assert in_module("", REPO) is False
+
+    def test_symlinked_root_still_strips_the_prefix(self, tmp_path):
+        """A real symlink, so the divergence is exercised on every platform.
+
+        repo_relative() matches both the raw and the resolved spelling of the root.
+        Whether those two differ for REPO depends on the platform -- they do on
+        macOS, where the temp directory lives under the /var symlink, and do not on
+        a Linux runner with a real /tmp. This builds the symlink itself so the case
+        the both-prefixes loop exists for is covered wherever the suite runs.
+
+        tfsec reports the path it walked, which is the symlinked spelling; matching
+        only the resolved form would leave the prefix in place and read every root
+        finding as nested.
+        """
+        real = tmp_path / "real-checkout"
+        (real / "modules" / "vpc").mkdir(parents=True)
+        link = tmp_path / "linked-checkout"
+        link.symlink_to(real, target_is_directory=True)
+        assert str(link) != str(link.resolve())
+
+        # Root handed to the scanner in its symlinked spelling: findings come back in
+        # either spelling, and both must strip.
+        assert repo_relative(str(link / "main.tf"), link) == "main.tf"
+        assert repo_relative(str(real / "main.tf"), link) == "main.tf"
+        assert in_module(str(link / "main.tf"), link) is False
+        assert in_module(str(real / "main.tf"), link) is False
+        assert in_module(str(link / "modules" / "vpc" / "main.tf"), link) is True
+
+        # The reverse -- root handed over in its real spelling, finding reported
+        # through the symlink -- is deliberately NOT asserted. resolve() collapses a
+        # symlink towards its target, so a root can be normalised to its real path,
+        # but no amount of resolving discovers which symlinks point back at it. That
+        # direction cannot occur in practice either: a scanner reports the path it
+        # was told to walk, or that path resolved, never a third spelling.
+        assert repo_relative(str(real / "main.tf"), real) == "main.tf"
 
 
 class TestResourceKey:

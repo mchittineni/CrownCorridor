@@ -99,7 +99,9 @@ def repo_relative(path: str, repo_dir: Path) -> str:
     # ``/private/tmp`` -- so matching only the resolved form silently fails to strip
     # the prefix whenever any component of the path is a symlink, and every root
     # finding then reads as nested.
-    for prefix in {str(repo_dir), str(repo_dir.resolve())}:
+    # A tuple, not a set: when the two spellings coincide the loop simply breaks on
+    # the first, so deduplicating buys nothing and costs the reader the ordering.
+    for prefix in (str(repo_dir), str(repo_dir.resolve())):
         if text.startswith(prefix):
             text = text[len(prefix) :]
             break
@@ -300,10 +302,10 @@ def _aggregate(per_repo: list[dict], tools: tuple[str, ...]) -> dict[str, Any]:
                 ra, rb = r["tools"].get(a, {}), r["tools"].get(b, {})
                 if ra.get("status") != "ok" or rb.get("status") != "ok":
                     continue
-                for key in counts:
+                for key, totals in counts.items():
                     sa, sb = set(ra[key]), set(rb[key])
-                    counts[key][0] += len(sa & sb)
-                    counts[key][1] += len(sa | sb)
+                    totals[0] += len(sa & sb)
+                    totals[1] += len(sa | sb)
             ci, cu = counts["claims"]
             ri, ru = counts["resources"]
             agg["agreement"][f"{a}|{b}"] = {
