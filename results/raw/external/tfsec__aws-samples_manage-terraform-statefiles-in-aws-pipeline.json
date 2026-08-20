@@ -1,0 +1,211 @@
+{
+	"results": [
+		{
+			"rule_id": "AVD-AWS-0017",
+			"long_id": "aws-cloudwatch-log-group-customer-key",
+			"rule_description": "CloudWatch log groups should be encrypted using CMK",
+			"rule_provider": "aws",
+			"rule_service": "cloudwatch",
+			"impact": "Log data may be leaked if the logs are compromised. No auditing of who have viewed the logs.",
+			"resolution": "Enable CMK encryption of CloudWatch Log Groups",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/cloudwatch/log-group-customer-key/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#kms_key_id"
+			],
+			"description": "Log group is not encrypted.",
+			"severity": "LOW",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_cloudwatch_log_group.codebuild_loggroup",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_manage-terraform-statefiles-in-aws-pipeline/main.tf",
+				"start_line": 151,
+				"end_line": 154
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0017",
+			"long_id": "aws-cloudwatch-log-group-customer-key",
+			"rule_description": "CloudWatch log groups should be encrypted using CMK",
+			"rule_provider": "aws",
+			"rule_service": "cloudwatch",
+			"impact": "Log data may be leaked if the logs are compromised. No auditing of who have viewed the logs.",
+			"resolution": "Enable CMK encryption of CloudWatch Log Groups",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/cloudwatch/log-group-customer-key/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group#kms_key_id"
+			],
+			"description": "Log group is not encrypted.",
+			"severity": "LOW",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_cloudwatch_log_group.lambda_loggroup",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_manage-terraform-statefiles-in-aws-pipeline/main.tf",
+				"start_line": 146,
+				"end_line": 149
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0057",
+			"long_id": "aws-iam-no-policy-wildcards",
+			"rule_description": "IAM policy should avoid use of wildcards and instead apply the principle of least privilege",
+			"rule_provider": "aws",
+			"rule_service": "iam",
+			"impact": "Overly permissive policies may grant access to sensitive resources",
+			"resolution": "Specify the exact permissions required, and to which resources they should apply instead of using wildcards.",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/iam/no-policy-wildcards/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document"
+			],
+			"description": "IAM policy document uses sensitive action 'logs:*' on wildcarded resource 'arn:aws:logs:*:*:*'",
+			"severity": "HIGH",
+			"warning": false,
+			"status": 0,
+			"resource": "data.aws_iam_policy_document.codebuild_policy_document",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_manage-terraform-statefiles-in-aws-pipeline/iam.tf",
+				"start_line": 6,
+				"end_line": 6
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0057",
+			"long_id": "aws-iam-no-policy-wildcards",
+			"rule_description": "IAM policy should avoid use of wildcards and instead apply the principle of least privilege",
+			"rule_provider": "aws",
+			"rule_service": "iam",
+			"impact": "Overly permissive policies may grant access to sensitive resources",
+			"resolution": "Specify the exact permissions required, and to which resources they should apply instead of using wildcards.",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/iam/no-policy-wildcards/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document"
+			],
+			"description": "IAM policy document uses wildcarded action 'logs:*'",
+			"severity": "HIGH",
+			"warning": false,
+			"status": 0,
+			"resource": "data.aws_iam_policy_document.codebuild_policy_document",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_manage-terraform-statefiles-in-aws-pipeline/iam.tf",
+				"start_line": 5,
+				"end_line": 5
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0057",
+			"long_id": "aws-iam-no-policy-wildcards",
+			"rule_description": "IAM policy should avoid use of wildcards and instead apply the principle of least privilege",
+			"rule_provider": "aws",
+			"rule_service": "iam",
+			"impact": "Overly permissive policies may grant access to sensitive resources",
+			"resolution": "Specify the exact permissions required, and to which resources they should apply instead of using wildcards.",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/iam/no-policy-wildcards/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document"
+			],
+			"description": "IAM policy document uses sensitive action 'logs:PutLogEvents' on wildcarded resource 'arn:aws:logs:eu-central-1:*:*'",
+			"severity": "HIGH",
+			"warning": false,
+			"status": 0,
+			"resource": "data.aws_iam_policy_document.lambda_policy_document",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_manage-terraform-statefiles-in-aws-pipeline/iam.tf",
+				"start_line": 106,
+				"end_line": 106
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0057",
+			"long_id": "aws-iam-no-policy-wildcards",
+			"rule_description": "IAM policy should avoid use of wildcards and instead apply the principle of least privilege",
+			"rule_provider": "aws",
+			"rule_service": "iam",
+			"impact": "Overly permissive policies may grant access to sensitive resources",
+			"resolution": "Specify the exact permissions required, and to which resources they should apply instead of using wildcards.",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/iam/no-policy-wildcards/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document"
+			],
+			"description": "IAM policy document uses sensitive action 'logs:PutLogEvents' on wildcarded resource 'arn:aws:logs:eu-central-1:*:*'",
+			"severity": "HIGH",
+			"warning": false,
+			"status": 0,
+			"resource": "data.aws_iam_policy_document.lambda_policy_document",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_manage-terraform-statefiles-in-aws-pipeline/iam.tf",
+				"start_line": 106,
+				"end_line": 106
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0088",
+			"long_id": "aws-s3-enable-bucket-encryption",
+			"rule_description": "Unencrypted S3 bucket.",
+			"rule_provider": "aws",
+			"rule_service": "s3",
+			"impact": "The bucket objects could be read if compromised",
+			"resolution": "Configure bucket encryption",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/s3/enable-bucket-encryption/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#enable-default-server-side-encryption"
+			],
+			"description": "Bucket does not have encryption enabled",
+			"severity": "HIGH",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_s3_bucket.s3_bucket_backend",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_manage-terraform-statefiles-in-aws-pipeline/main.tf",
+				"start_line": 3,
+				"end_line": 12
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0089",
+			"long_id": "aws-s3-enable-bucket-logging",
+			"rule_description": "S3 Bucket does not have logging enabled.",
+			"rule_provider": "aws",
+			"rule_service": "s3",
+			"impact": "There is no way to determine the access to this bucket",
+			"resolution": "Add a logging block to the resource to enable access logging",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/s3/enable-bucket-logging/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket"
+			],
+			"description": "Bucket does not have logging enabled",
+			"severity": "MEDIUM",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_s3_bucket.s3_bucket_backend",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_manage-terraform-statefiles-in-aws-pipeline/main.tf",
+				"start_line": 3,
+				"end_line": 12
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0132",
+			"long_id": "aws-s3-encryption-customer-key",
+			"rule_description": "S3 encryption should use Customer Managed Keys",
+			"rule_provider": "aws",
+			"rule_service": "s3",
+			"impact": "Using AWS managed keys does not allow for fine grained control",
+			"resolution": "Enable encryption using customer managed keys",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/s3/encryption-customer-key/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#enable-default-server-side-encryption"
+			],
+			"description": "Bucket does not encrypt data with a customer managed key.",
+			"severity": "HIGH",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_s3_bucket.s3_bucket_backend",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_manage-terraform-statefiles-in-aws-pipeline/main.tf",
+				"start_line": 3,
+				"end_line": 12
+			}
+		}
+	]
+}

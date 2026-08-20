@@ -1,0 +1,463 @@
+{
+  "check_type": "terraform",
+  "results": {
+    "failed_checks": [
+      {
+        "check_id": "CKV_K8S_8",
+        "bc_check_id": "BC_K8S_7",
+        "check_name": "Liveness Probe Should be Configured",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "spec/[0]/container/[0]/liveness_probe/[0]"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "file_line_range": [
+          20,
+          43
+        ],
+        "resource": "kubernetes_pod.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.kubernetes.LivenessProbe",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/kubernetes-policies/kubernetes-policy-index/bc-k8s-7",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "breadcrumbs": {
+          "metadata.name": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/variables.tf",
+              "module_connection": false
+            }
+          ],
+          "metadata.namespace": [
+            {
+              "type": "variable",
+              "name": "environment",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_K8S_13",
+        "bc_check_id": "BC_K8S_12",
+        "check_name": "Memory requests should be set",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "spec/[0]/container/[0]/resources"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "file_line_range": [
+          20,
+          43
+        ],
+        "resource": "kubernetes_pod.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.kubernetes.MemoryRequests",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/kubernetes-policies/kubernetes-policy-index/bc-k8s-12",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "breadcrumbs": {
+          "metadata.name": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/variables.tf",
+              "module_connection": false
+            }
+          ],
+          "metadata.namespace": [
+            {
+              "type": "variable",
+              "name": "environment",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_K8S_22",
+        "bc_check_id": "BC_K8S_21",
+        "check_name": "Use read-only filesystem for containers where possible",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "spec/[0]/container/[0]/security_context/[0]/read_only_root_filesystem"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "file_line_range": [
+          20,
+          43
+        ],
+        "resource": "kubernetes_pod.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.kubernetes.ReadonlyRootFilesystem",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/kubernetes-policies/kubernetes-policy-index/bc-k8s-21",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "breadcrumbs": {
+          "metadata.name": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/variables.tf",
+              "module_connection": false
+            }
+          ],
+          "metadata.namespace": [
+            {
+              "type": "variable",
+              "name": "environment",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_K8S_15",
+        "bc_check_id": "BC_K8S_14",
+        "check_name": "Image Pull Policy should be Always",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "spec/[0]/container/[0]"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "file_line_range": [
+          20,
+          43
+        ],
+        "resource": "kubernetes_pod.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.kubernetes.ImagePullPolicyAlways",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/kubernetes-policies/kubernetes-policy-index/bc-k8s-14",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "breadcrumbs": {
+          "metadata.name": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/variables.tf",
+              "module_connection": false
+            }
+          ],
+          "metadata.namespace": [
+            {
+              "type": "variable",
+              "name": "environment",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_K8S_10",
+        "bc_check_id": "BC_K8S_9",
+        "check_name": "CPU requests should be set",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "spec/[0]/container/[0]/resources"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "file_line_range": [
+          20,
+          43
+        ],
+        "resource": "kubernetes_pod.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.kubernetes.CPURequests",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/kubernetes-policies/kubernetes-policy-index/bc-k8s-9",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "breadcrumbs": {
+          "metadata.name": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/variables.tf",
+              "module_connection": false
+            }
+          ],
+          "metadata.namespace": [
+            {
+              "type": "variable",
+              "name": "environment",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_K8S_9",
+        "bc_check_id": "BC_K8S_8",
+        "check_name": "Readiness Probe Should be Configured",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "spec/[0]/container/[0]/readiness_probe/[0]"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "file_line_range": [
+          20,
+          43
+        ],
+        "resource": "kubernetes_pod.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.kubernetes.ReadinessProbe",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/kubernetes-policies/kubernetes-policy-index/bc-k8s-8",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "breadcrumbs": {
+          "metadata.name": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/variables.tf",
+              "module_connection": false
+            }
+          ],
+          "metadata.namespace": [
+            {
+              "type": "variable",
+              "name": "environment",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_K8S_28",
+        "bc_check_id": "BC_K8S_27",
+        "check_name": "Minimize the admission of containers with the NET_RAW capability",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "spec/[0]/container/0/security_context"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "file_line_range": [
+          20,
+          43
+        ],
+        "resource": "kubernetes_pod.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.kubernetes.DropCapabilities",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/kubernetes-policies/kubernetes-policy-index/bc-k8s-27",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "breadcrumbs": {
+          "metadata.name": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/variables.tf",
+              "module_connection": false
+            }
+          ],
+          "metadata.namespace": [
+            {
+              "type": "variable",
+              "name": "environment",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_K8S_43",
+        "bc_check_id": "BC_K8S_39",
+        "check_name": "Image should use digest",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "spec/[0]/container/[0]/image"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "file_line_range": [
+          20,
+          43
+        ],
+        "resource": "kubernetes_pod.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.kubernetes.ImageDigest",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/kubernetes-policies/kubernetes-policy-index/bc-k8s-39",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/main.tf",
+        "breadcrumbs": {
+          "metadata.name": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/variables.tf",
+              "module_connection": false
+            }
+          ],
+          "metadata.namespace": [
+            {
+              "type": "variable",
+              "name": "environment",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-PRIVILEGED-CONTAINER-SAFE-mfz6lbun/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "summary": {
+    "passed": 19,
+    "failed": 8,
+    "skipped": 0,
+    "parsing_errors": 0,
+    "resource_count": 1,
+    "checkov_version": "3.3.8"
+  }
+}

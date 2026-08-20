@@ -1,0 +1,649 @@
+{
+    "check_type": "terraform",
+    "results": {
+        "failed_checks": [
+            {
+                "check_id": "CKV_AWS_135",
+                "bc_check_id": "BC_AWS_GENERAL_68",
+                "check_name": "Ensure that EC2 is EBS optimized",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "ebs_optimized"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/module/vpc/test_ec2.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/test_ec2.tf",
+                "repo_file_path": "/module/vpc/test_ec2.tf",
+                "file_line_range": [
+                    35,
+                    55
+                ],
+                "resource": "module.vpc.aws_instance.ec2_dev",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.EC2EBSOptimized",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Name": "bpe-sh-an2-ec2"
+                },
+                "caller_file_path": "/main.tf",
+                "caller_file_line_range": [
+                    1,
+                    8
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-ec2-is-ebs-optimized",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/test_ec2.tf",
+                "breadcrumbs": {
+                    "iam_instance_profile": [
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_instance_profile.ssm_instance_profile",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/test_ec2.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags.Name": [
+                        {
+                            "type": "module",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "region_abbr",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/main.tf",
+                            "idx": 6,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_382",
+                "bc_check_id": "BC_AWS_IAM_93",
+                "check_name": "Ensure no security groups allow egress from 0.0.0.0:0 to port -1",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "egress/[0]/from_port",
+                        "egress/[0]/to_port",
+                        "egress/[0]/cidr_blocks",
+                        "egress/[0]/ipv6_cidr_blocks"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/module/vpc/test_ec2.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/test_ec2.tf",
+                "repo_file_path": "/module/vpc/test_ec2.tf",
+                "file_line_range": [
+                    92,
+                    118
+                ],
+                "resource": "module.vpc.aws_security_group.sg-ssm-endpoint",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SecurityGroupUnrestrictedEgressAny",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Name": "bpe-sh-sg-ssm-endpoint"
+                },
+                "caller_file_path": "/main.tf",
+                "caller_file_line_range": [
+                    1,
+                    8
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/test_ec2.tf",
+                "breadcrumbs": {
+                    "name": [
+                        {
+                            "type": "module",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "project_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags.Name": [
+                        {
+                            "type": "module",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "project_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "ingress.cidr_blocks.0": [
+                        {
+                            "type": "resource",
+                            "name": "aws_vpc.sh-vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/vpc_shared.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "ingress.cidr_blocks": [
+                        {
+                            "type": "resource",
+                            "name": "aws_vpc.sh-vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/vpc_shared.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/main.tf",
+                            "idx": 6,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_382",
+                "bc_check_id": "BC_AWS_IAM_93",
+                "check_name": "Ensure no security groups allow egress from 0.0.0.0:0 to port -1",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "egress/[0]/from_port",
+                        "egress/[0]/to_port",
+                        "egress/[0]/cidr_blocks",
+                        "egress/[0]/ipv6_cidr_blocks"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/module/vpc/vpc_shared_oregon.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/vpc_shared_oregon.tf",
+                "repo_file_path": "/module/vpc/vpc_shared_oregon.tf",
+                "file_line_range": [
+                    132,
+                    159
+                ],
+                "resource": "module.vpc.aws_security_group.uw2-sg-bedrock-endpoint",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SecurityGroupUnrestrictedEgressAny",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Name": "bpe-sh-uw2-sg-bedrock-endpoint"
+                },
+                "caller_file_path": "/main.tf",
+                "caller_file_line_range": [
+                    1,
+                    8
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/vpc_shared_oregon.tf",
+                "breadcrumbs": {
+                    "name": [
+                        {
+                            "type": "module",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "project_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags.Name": [
+                        {
+                            "type": "module",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "project_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/main.tf",
+                            "idx": 6,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV2_AWS_12",
+                "bc_check_id": "BC_AWS_NETWORKING_4",
+                "check_name": "Ensure the default security group of every VPC restricts all traffic",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_vpc": {
+                            "sh-vpc": {
+                                "__end_line__": 12,
+                                "__start_line__": 4,
+                                "cidr_block": [
+                                    "10.120.201.0/26"
+                                ],
+                                "enable_dns_hostnames": [
+                                    true
+                                ],
+                                "tags": [
+                                    {
+                                        "Name": "bpe-sh-an2-vpc",
+                                        "VPC_Flow_logs": "Enabled"
+                                    }
+                                ],
+                                "__address__": "module.vpc.aws_vpc.sh-vpc"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "ingress/from_port",
+                        "egress/to_port",
+                        "egress/cidr_blocks",
+                        "resource_type",
+                        "egress/protocol",
+                        "ingress/self",
+                        "ingress/to_port",
+                        "egress/from_port",
+                        "ingress/protocol"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/module/vpc/vpc_shared.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/vpc_shared.tf",
+                "repo_file_path": "/module/vpc/vpc_shared.tf",
+                "file_line_range": [
+                    4,
+                    12
+                ],
+                "resource": "module.vpc.aws_vpc.sh-vpc",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Name": "bpe-sh-an2-vpc",
+                    "VPC_Flow_logs": "Enabled"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-4",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/vpc_shared.tf",
+                "breadcrumbs": {
+                    "tags.Name": [
+                        {
+                            "type": "module",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "account_abbr",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/main.tf",
+                            "idx": 6,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV2_AWS_12",
+                "bc_check_id": "BC_AWS_NETWORKING_4",
+                "check_name": "Ensure the default security group of every VPC restricts all traffic",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_vpc": {
+                            "sh-uw2-vpc": {
+                                "__end_line__": 13,
+                                "__start_line__": 4,
+                                "cidr_block": [
+                                    "10.120.201.128/26"
+                                ],
+                                "enable_dns_hostnames": [
+                                    true
+                                ],
+                                "provider": [
+                                    "aws.oregon"
+                                ],
+                                "tags": [
+                                    {
+                                        "Name": "bpe-sh-uw2-vpc",
+                                        "VPC_Flow_logs": "Enabled"
+                                    }
+                                ],
+                                "__address__": "module.vpc.aws_vpc.sh-uw2-vpc"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "ingress/from_port",
+                        "egress/to_port",
+                        "egress/cidr_blocks",
+                        "resource_type",
+                        "egress/protocol",
+                        "ingress/self",
+                        "ingress/to_port",
+                        "egress/from_port",
+                        "ingress/protocol"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/module/vpc/vpc_shared_oregon.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/vpc_shared_oregon.tf",
+                "repo_file_path": "/module/vpc/vpc_shared_oregon.tf",
+                "file_line_range": [
+                    4,
+                    13
+                ],
+                "resource": "module.vpc.aws_vpc.sh-uw2-vpc",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Name": "bpe-sh-uw2-vpc",
+                    "VPC_Flow_logs": "Enabled"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-4",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/vpc_shared_oregon.tf",
+                "breadcrumbs": {
+                    "tags.Name": [
+                        {
+                            "type": "module",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "project_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/main.tf",
+                            "idx": 6,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV2_AWS_11",
+                "bc_check_id": "BC_AWS_LOGGING_9",
+                "check_name": "Ensure VPC flow logging is enabled in all VPCs",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_vpc": {
+                            "sh-vpc": {
+                                "__end_line__": 12,
+                                "__start_line__": 4,
+                                "cidr_block": [
+                                    "10.120.201.0/26"
+                                ],
+                                "enable_dns_hostnames": [
+                                    true
+                                ],
+                                "tags": [
+                                    {
+                                        "Name": "bpe-sh-an2-vpc",
+                                        "VPC_Flow_logs": "Enabled"
+                                    }
+                                ],
+                                "__address__": "module.vpc.aws_vpc.sh-vpc"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "networking",
+                        "resource_type"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/module/vpc/vpc_shared.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/vpc_shared.tf",
+                "repo_file_path": "/module/vpc/vpc_shared.tf",
+                "file_line_range": [
+                    4,
+                    12
+                ],
+                "resource": "module.vpc.aws_vpc.sh-vpc",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Name": "bpe-sh-an2-vpc",
+                    "VPC_Flow_logs": "Enabled"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-9-enable-vpc-flow-logging",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/vpc_shared.tf",
+                "breadcrumbs": {
+                    "tags.Name": [
+                        {
+                            "type": "module",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "account_abbr",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/main.tf",
+                            "idx": 6,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV2_AWS_11",
+                "bc_check_id": "BC_AWS_LOGGING_9",
+                "check_name": "Ensure VPC flow logging is enabled in all VPCs",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_vpc": {
+                            "sh-uw2-vpc": {
+                                "__end_line__": 13,
+                                "__start_line__": 4,
+                                "cidr_block": [
+                                    "10.120.201.128/26"
+                                ],
+                                "enable_dns_hostnames": [
+                                    true
+                                ],
+                                "provider": [
+                                    "aws.oregon"
+                                ],
+                                "tags": [
+                                    {
+                                        "Name": "bpe-sh-uw2-vpc",
+                                        "VPC_Flow_logs": "Enabled"
+                                    }
+                                ],
+                                "__address__": "module.vpc.aws_vpc.sh-uw2-vpc"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "networking",
+                        "resource_type"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/module/vpc/vpc_shared_oregon.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/vpc_shared_oregon.tf",
+                "repo_file_path": "/module/vpc/vpc_shared_oregon.tf",
+                "file_line_range": [
+                    4,
+                    13
+                ],
+                "resource": "module.vpc.aws_vpc.sh-uw2-vpc",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Name": "bpe-sh-uw2-vpc",
+                    "VPC_Flow_logs": "Enabled"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-9-enable-vpc-flow-logging",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/vpc_shared_oregon.tf",
+                "breadcrumbs": {
+                    "tags.Name": [
+                        {
+                            "type": "module",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "project_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/module/vpc/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_sample-cross-region-bedrock-private-endpoint/main.tf",
+                            "idx": 6,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "summary": {
+        "passed": 72,
+        "failed": 7,
+        "skipped": 0,
+        "parsing_errors": 0,
+        "resource_count": 71,
+        "checkov_version": "3.3.8"
+    }
+}

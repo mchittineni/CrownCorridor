@@ -1,0 +1,1105 @@
+{
+    "check_type": "terraform",
+    "results": {
+        "failed_checks": [
+            {
+                "check_id": "CKV_AWS_130",
+                "bc_check_id": "BC_AWS_NETWORKING_53",
+                "check_name": "Ensure VPC subnets do not assign public IP by default",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "map_public_ip_on_launch"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/infra-network-config.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/infra-network-config.tf",
+                "repo_file_path": "/infra-network-config.tf",
+                "file_line_range": [
+                    24,
+                    36
+                ],
+                "resource": "aws_subnet.hardening_pipeline_public",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SubnetPublicIP",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Name": "${var.vpc_name}-public"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-vpc-subnets-do-not-assign-public-ip-by-default",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/infra-network-config.tf",
+                "breadcrumbs": {
+                    "availability_zone": [
+                        {
+                            "type": "variable",
+                            "name": "aws_region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_111",
+                "bc_check_id": "BC_AWS_IAM_57",
+                "check_name": "Ensure IAM policies does not allow write access without constraints",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "statement/[0]/actions"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/kms-key.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/kms-key.tf",
+                "repo_file_path": "/kms-key.tf",
+                "file_line_range": [
+                    3,
+                    74
+                ],
+                "resource": "aws_iam_policy_document.this",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.data.aws.IAMWriteAccess",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-iam-policies-do-not-allow-write-access-without-constraint",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/kms-key.tf",
+                "breadcrumbs": {
+                    "statement.2.principals.identifiers.0": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.2.principals.identifiers": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.2.principals": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.2": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.3.principals.identifiers.0": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.3.principals.identifiers": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.3.principals": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.3": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.1.principals.identifiers.0": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.1.principals.identifiers": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.1.principals": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.1": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_356",
+                "bc_check_id": "BC_AWS_IAM_89",
+                "check_name": "Ensure no IAM policies documents allow \"*\" as a statement's resource for restrictable actions",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "statement/[0]/actions"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/kms-key.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/kms-key.tf",
+                "repo_file_path": "/kms-key.tf",
+                "file_line_range": [
+                    3,
+                    74
+                ],
+                "resource": "aws_iam_policy_document.this",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.data.aws.ResourcePolicyDocument",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-356",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/kms-key.tf",
+                "breadcrumbs": {
+                    "statement.2.principals.identifiers.0": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.2.principals.identifiers": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.2.principals": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.2": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.3.principals.identifiers.0": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.3.principals.identifiers": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.3.principals": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.3": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.1.principals.identifiers.0": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.1.principals.identifiers": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.1.principals": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.1": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_109",
+                "bc_check_id": "BC_AWS_IAM_56",
+                "check_name": "Ensure IAM policies does not allow permissions management / resource exposure without constraints",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "statement/[0]/actions"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/kms-key.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/kms-key.tf",
+                "repo_file_path": "/kms-key.tf",
+                "file_line_range": [
+                    3,
+                    74
+                ],
+                "resource": "aws_iam_policy_document.this",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.data.aws.IAMPermissionsManagement",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-iam-policies-do-not-allow-permissions-management-resource-exposure-without-constraint",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/kms-key.tf",
+                "breadcrumbs": {
+                    "statement.2.principals.identifiers.0": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.2.principals.identifiers": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.2.principals": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.2": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.3.principals.identifiers.0": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.3.principals.identifiers": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.3.principals": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.3": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.1.principals.identifiers.0": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.1.principals.identifiers": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.1.principals": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.1": [
+                        {
+                            "type": "locals",
+                            "name": "kms_admin_role_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_25",
+                "bc_check_id": "BC_AWS_NETWORKING_2",
+                "check_name": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "ingress/[1]/from_port",
+                        "ingress/[1]/to_port",
+                        "ingress/[1]/cidr_blocks",
+                        "ingress/[1]/ipv6_cidr_blocks"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/sec-groups.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/sec-groups.tf",
+                "repo_file_path": "/sec-groups.tf",
+                "file_line_range": [
+                    1,
+                    35
+                ],
+                "resource": "aws_security_group.image_builder_sg",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SecurityGroupUnrestrictedIngress3389",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "ManagedBy": "Terraform"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/sec-groups.tf",
+                "breadcrumbs": {
+                    "name": [
+                        {
+                            "type": "variable",
+                            "name": "image_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "type": "locals",
+                            "name": "core_tags",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_382",
+                "bc_check_id": "BC_AWS_IAM_93",
+                "check_name": "Ensure no security groups allow egress from 0.0.0.0:0 to port -1",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "egress/[0]/from_port",
+                        "egress/[0]/to_port",
+                        "egress/[0]/cidr_blocks",
+                        "egress/[0]/ipv6_cidr_blocks"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/sec-groups.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/sec-groups.tf",
+                "repo_file_path": "/sec-groups.tf",
+                "file_line_range": [
+                    1,
+                    35
+                ],
+                "resource": "aws_security_group.image_builder_sg",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SecurityGroupUnrestrictedEgressAny",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "ManagedBy": "Terraform"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/sec-groups.tf",
+                "breadcrumbs": {
+                    "name": [
+                        {
+                            "type": "variable",
+                            "name": "image_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "type": "locals",
+                            "name": "core_tags",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV2_AWS_62",
+                "bc_check_id": "BC_AWS_LOGGING_36",
+                "check_name": "Ensure S3 buckets should have event notifications enabled",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "s3_pipeline_logging_bucket_logs": {
+                                "__end_line__": 12,
+                                "__start_line__": 5,
+                                "bucket": [
+                                    "${var.aws_s3_ami_resources_bucket}-logs"
+                                ],
+                                "force_destroy": [
+                                    true
+                                ],
+                                "tags": [
+                                    {
+                                        "Name": "var.aws_s3_ami_resources_bucket"
+                                    }
+                                ],
+                                "__address__": "aws_s3_bucket.s3_pipeline_logging_bucket_logs"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "resource_type"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/pipeline.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/pipeline.tf",
+                "repo_file_path": "/pipeline.tf",
+                "file_line_range": [
+                    5,
+                    12
+                ],
+                "resource": "aws_s3_bucket.s3_pipeline_logging_bucket_logs",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Name": "var.aws_s3_ami_resources_bucket"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-62",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/pipeline.tf"
+            },
+            {
+                "check_id": "CKV2_AWS_62",
+                "bc_check_id": "BC_AWS_LOGGING_36",
+                "check_name": "Ensure S3 buckets should have event notifications enabled",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "s3_pipeline_bucket": {
+                                "__end_line__": 55,
+                                "__start_line__": 45,
+                                "bucket": [
+                                    "var.aws_s3_ami_resources_bucket"
+                                ],
+                                "depends_on": [
+                                    [
+                                        "aws_s3_bucket.s3_pipeline_logging_bucket_logs"
+                                    ]
+                                ],
+                                "force_destroy": [
+                                    true
+                                ],
+                                "tags": [
+                                    {
+                                        "Name": "var.aws_s3_ami_resources_bucket"
+                                    }
+                                ],
+                                "__address__": "aws_s3_bucket.s3_pipeline_bucket"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "resource_type"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/pipeline.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/pipeline.tf",
+                "repo_file_path": "/pipeline.tf",
+                "file_line_range": [
+                    45,
+                    55
+                ],
+                "resource": "aws_s3_bucket.s3_pipeline_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Name": "var.aws_s3_ami_resources_bucket"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-62",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/pipeline.tf"
+            },
+            {
+                "check_id": "CKV2_AWS_61",
+                "bc_check_id": "BC_AWS_LOGGING_35",
+                "check_name": "Ensure that an S3 bucket has a lifecycle configuration",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "s3_pipeline_logging_bucket_logs": {
+                                "__end_line__": 12,
+                                "__start_line__": 5,
+                                "bucket": [
+                                    "${var.aws_s3_ami_resources_bucket}-logs"
+                                ],
+                                "force_destroy": [
+                                    true
+                                ],
+                                "tags": [
+                                    {
+                                        "Name": "var.aws_s3_ami_resources_bucket"
+                                    }
+                                ],
+                                "__address__": "aws_s3_bucket.s3_pipeline_logging_bucket_logs"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "lifecycle_rule",
+                        "resource_type"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/pipeline.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/pipeline.tf",
+                "repo_file_path": "/pipeline.tf",
+                "file_line_range": [
+                    5,
+                    12
+                ],
+                "resource": "aws_s3_bucket.s3_pipeline_logging_bucket_logs",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Name": "var.aws_s3_ami_resources_bucket"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/pipeline.tf"
+            },
+            {
+                "check_id": "CKV2_AWS_61",
+                "bc_check_id": "BC_AWS_LOGGING_35",
+                "check_name": "Ensure that an S3 bucket has a lifecycle configuration",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "s3_pipeline_bucket": {
+                                "__end_line__": 55,
+                                "__start_line__": 45,
+                                "bucket": [
+                                    "var.aws_s3_ami_resources_bucket"
+                                ],
+                                "depends_on": [
+                                    [
+                                        "aws_s3_bucket.s3_pipeline_logging_bucket_logs"
+                                    ]
+                                ],
+                                "force_destroy": [
+                                    true
+                                ],
+                                "tags": [
+                                    {
+                                        "Name": "var.aws_s3_ami_resources_bucket"
+                                    }
+                                ],
+                                "__address__": "aws_s3_bucket.s3_pipeline_bucket"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "lifecycle_rule",
+                        "resource_type"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/pipeline.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/pipeline.tf",
+                "repo_file_path": "/pipeline.tf",
+                "file_line_range": [
+                    45,
+                    55
+                ],
+                "resource": "aws_s3_bucket.s3_pipeline_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Name": "var.aws_s3_ami_resources_bucket"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/pipeline.tf"
+            },
+            {
+                "check_id": "CKV_AWS_144",
+                "bc_check_id": "BC_AWS_GENERAL_72",
+                "check_name": "Ensure that S3 bucket has cross-region replication enabled",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "s3_pipeline_logging_bucket_logs": {
+                                "__end_line__": 12,
+                                "__start_line__": 5,
+                                "bucket": [
+                                    "${var.aws_s3_ami_resources_bucket}-logs"
+                                ],
+                                "force_destroy": [
+                                    true
+                                ],
+                                "tags": [
+                                    {
+                                        "Name": "var.aws_s3_ami_resources_bucket"
+                                    }
+                                ],
+                                "__address__": "aws_s3_bucket.s3_pipeline_logging_bucket_logs"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "replication_configuration/rules/*/status",
+                        "resource_type",
+                        "rule/*/status"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/pipeline.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/pipeline.tf",
+                "repo_file_path": "/pipeline.tf",
+                "file_line_range": [
+                    5,
+                    12
+                ],
+                "resource": "aws_s3_bucket.s3_pipeline_logging_bucket_logs",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Name": "var.aws_s3_ami_resources_bucket"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-bucket-has-cross-region-replication-enabled",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/pipeline.tf"
+            },
+            {
+                "check_id": "CKV_AWS_144",
+                "bc_check_id": "BC_AWS_GENERAL_72",
+                "check_name": "Ensure that S3 bucket has cross-region replication enabled",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "s3_pipeline_bucket": {
+                                "__end_line__": 55,
+                                "__start_line__": 45,
+                                "bucket": [
+                                    "var.aws_s3_ami_resources_bucket"
+                                ],
+                                "depends_on": [
+                                    [
+                                        "aws_s3_bucket.s3_pipeline_logging_bucket_logs"
+                                    ]
+                                ],
+                                "force_destroy": [
+                                    true
+                                ],
+                                "tags": [
+                                    {
+                                        "Name": "var.aws_s3_ami_resources_bucket"
+                                    }
+                                ],
+                                "__address__": "aws_s3_bucket.s3_pipeline_bucket"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "replication_configuration/rules/*/status",
+                        "resource_type",
+                        "rule/*/status"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/pipeline.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/pipeline.tf",
+                "repo_file_path": "/pipeline.tf",
+                "file_line_range": [
+                    45,
+                    55
+                ],
+                "resource": "aws_s3_bucket.s3_pipeline_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Name": "var.aws_s3_ami_resources_bucket"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-bucket-has-cross-region-replication-enabled",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/pipeline.tf"
+            },
+            {
+                "check_id": "CKV_AWS_145",
+                "bc_check_id": "BC_AWS_GENERAL_56",
+                "check_name": "Ensure that S3 buckets are encrypted with KMS by default",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "s3_pipeline_logging_bucket_logs": {
+                                "__end_line__": 12,
+                                "__start_line__": 5,
+                                "bucket": [
+                                    "${var.aws_s3_ami_resources_bucket}-logs"
+                                ],
+                                "force_destroy": [
+                                    true
+                                ],
+                                "tags": [
+                                    {
+                                        "Name": "var.aws_s3_ami_resources_bucket"
+                                    }
+                                ],
+                                "__address__": "aws_s3_bucket.s3_pipeline_logging_bucket_logs"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm",
+                        "rule/apply_server_side_encryption_by_default/sse_algorithm",
+                        "resource_type"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/pipeline.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/pipeline.tf",
+                "repo_file_path": "/pipeline.tf",
+                "file_line_range": [
+                    5,
+                    12
+                ],
+                "resource": "aws_s3_bucket.s3_pipeline_logging_bucket_logs",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Name": "var.aws_s3_ami_resources_bucket"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/pipeline.tf"
+            },
+            {
+                "check_id": "CKV_AWS_145",
+                "bc_check_id": "BC_AWS_GENERAL_56",
+                "check_name": "Ensure that S3 buckets are encrypted with KMS by default",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "s3_pipeline_bucket": {
+                                "__end_line__": 55,
+                                "__start_line__": 45,
+                                "bucket": [
+                                    "var.aws_s3_ami_resources_bucket"
+                                ],
+                                "depends_on": [
+                                    [
+                                        "aws_s3_bucket.s3_pipeline_logging_bucket_logs"
+                                    ]
+                                ],
+                                "force_destroy": [
+                                    true
+                                ],
+                                "tags": [
+                                    {
+                                        "Name": "var.aws_s3_ami_resources_bucket"
+                                    }
+                                ],
+                                "__address__": "aws_s3_bucket.s3_pipeline_bucket"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "server_side_encryption_configuration/rule/apply_server_side_encryption_by_default/sse_algorithm",
+                        "rule/apply_server_side_encryption_by_default/sse_algorithm",
+                        "resource_type"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/pipeline.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/pipeline.tf",
+                "repo_file_path": "/pipeline.tf",
+                "file_line_range": [
+                    45,
+                    55
+                ],
+                "resource": "aws_s3_bucket.s3_pipeline_bucket",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Name": "var.aws_s3_ami_resources_bucket"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/pipeline.tf"
+            }
+        ]
+    },
+    "summary": {
+        "passed": 100,
+        "failed": 14,
+        "skipped": 0,
+        "parsing_errors": 0,
+        "resource_count": 44,
+        "checkov_version": "3.3.8"
+    }
+}

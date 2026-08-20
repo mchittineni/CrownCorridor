@@ -1,0 +1,188 @@
+{
+	"results": [
+		{
+			"rule_id": "AVD-AWS-0104",
+			"long_id": "aws-ec2-no-public-egress-sgr",
+			"rule_description": "An egress security group rule allows traffic to /0.",
+			"rule_provider": "aws",
+			"rule_service": "ec2",
+			"impact": "Your port is egressing data to the internet",
+			"resolution": "Set a more restrictive cidr range",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/ec2/no-public-egress-sgr/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group"
+			],
+			"description": "Security group rule allows egress to multiple public internet addresses.",
+			"severity": "CRITICAL",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_security_group.image_builder_sg",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/sec-groups.tf",
+				"start_line": 31,
+				"end_line": 31
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0104",
+			"long_id": "aws-ec2-no-public-egress-sgr",
+			"rule_description": "An egress security group rule allows traffic to /0.",
+			"rule_provider": "aws",
+			"rule_service": "ec2",
+			"impact": "Your port is egressing data to the internet",
+			"resolution": "Set a more restrictive cidr range",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/ec2/no-public-egress-sgr/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group"
+			],
+			"description": "Security group rule allows egress to multiple public internet addresses.",
+			"severity": "CRITICAL",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_security_group.image_builder_sg",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/sec-groups.tf",
+				"start_line": 30,
+				"end_line": 30
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0107",
+			"long_id": "aws-ec2-no-public-ingress-sgr",
+			"rule_description": "An ingress security group rule allows traffic from /0.",
+			"rule_provider": "aws",
+			"rule_service": "ec2",
+			"impact": "Your port exposed to the internet",
+			"resolution": "Set a more restrictive cidr range",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/ec2/no-public-ingress-sgr/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule#cidr_blocks"
+			],
+			"description": "Security group rule allows ingress from public internet.",
+			"severity": "CRITICAL",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_security_group.image_builder_sg",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/sec-groups.tf",
+				"start_line": 22,
+				"end_line": 22
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0107",
+			"long_id": "aws-ec2-no-public-ingress-sgr",
+			"rule_description": "An ingress security group rule allows traffic from /0.",
+			"rule_provider": "aws",
+			"rule_service": "ec2",
+			"impact": "Your port exposed to the internet",
+			"resolution": "Set a more restrictive cidr range",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/ec2/no-public-ingress-sgr/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule#cidr_blocks"
+			],
+			"description": "Security group rule allows ingress from public internet.",
+			"severity": "CRITICAL",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_security_group.image_builder_sg",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/sec-groups.tf",
+				"start_line": 14,
+				"end_line": 14
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0164",
+			"long_id": "aws-ec2-no-public-ip-subnet",
+			"rule_description": "Instances in a subnet should not receive a public IP address by default.",
+			"rule_provider": "aws",
+			"rule_service": "ec2",
+			"impact": "The instance is publicly accessible",
+			"resolution": "Set the instance to not be publicly accessible",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/ec2/no-public-ip-subnet/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet#map_public_ip_on_launch"
+			],
+			"description": "Subnet associates public IP address.",
+			"severity": "HIGH",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_subnet.hardening_pipeline_public",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/infra-network-config.tf",
+				"start_line": 32,
+				"end_line": 32
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0089",
+			"long_id": "aws-s3-enable-bucket-logging",
+			"rule_description": "S3 Bucket does not have logging enabled.",
+			"rule_provider": "aws",
+			"rule_service": "s3",
+			"impact": "There is no way to determine the access to this bucket",
+			"resolution": "Add a logging block to the resource to enable access logging",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/s3/enable-bucket-logging/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket"
+			],
+			"description": "Bucket does not have logging enabled",
+			"severity": "MEDIUM",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_s3_bucket.s3_pipeline_logging_bucket_logs",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/pipeline.tf",
+				"start_line": 5,
+				"end_line": 12
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0132",
+			"long_id": "aws-s3-encryption-customer-key",
+			"rule_description": "S3 encryption should use Customer Managed Keys",
+			"rule_provider": "aws",
+			"rule_service": "s3",
+			"impact": "Using AWS managed keys does not allow for fine grained control",
+			"resolution": "Enable encryption using customer managed keys",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/s3/encryption-customer-key/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#enable-default-server-side-encryption"
+			],
+			"description": "Bucket does not encrypt data with a customer managed key.",
+			"severity": "HIGH",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_s3_bucket_server_side_encryption_configuration.s3_pipeline_bucket_enc",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/pipeline.tf",
+				"start_line": 63,
+				"end_line": 70
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0132",
+			"long_id": "aws-s3-encryption-customer-key",
+			"rule_description": "S3 encryption should use Customer Managed Keys",
+			"rule_provider": "aws",
+			"rule_service": "s3",
+			"impact": "Using AWS managed keys does not allow for fine grained control",
+			"resolution": "Enable encryption using customer managed keys",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/s3/encryption-customer-key/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#enable-default-server-side-encryption"
+			],
+			"description": "Bucket does not encrypt data with a customer managed key.",
+			"severity": "HIGH",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_s3_bucket_server_side_encryption_configuration.s3_pipeline_logging_bucket_enc",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-ec2-image-builder-container-hardening-pipeline/pipeline.tf",
+				"start_line": 14,
+				"end_line": 21
+			}
+		}
+	]
+}

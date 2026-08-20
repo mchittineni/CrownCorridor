@@ -2,7 +2,7 @@
   "mode": "terraform",
   "catalogue_gap": {
     "internal_declared": 345,
-    "internal_on_disk": 44,
+    "internal_on_disk": 52,
     "internal_missing": [
       "CMP-001",
       "CMP-002",
@@ -729,6 +729,144 @@
       ]
     },
     {
+      "case_id": "K8S-NO-RESOURCE-LIMITS-SAFE",
+      "path": "benchmark/internal/cases/K8S-NO-RESOURCE-LIMITS-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "K8S",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "K8S_NO_RESOURCE_LIMITS"
+      ],
+      "expected_resources": [],
+      "cis_control": "n/a",
+      "severity": "NONE",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 44,
+      "resource_types": [
+        "kubernetes_pod"
+      ]
+    },
+    {
+      "case_id": "K8S-NO-RESOURCE-LIMITS-VULN",
+      "path": "benchmark/internal/cases/K8S-NO-RESOURCE-LIMITS-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "K8S",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "K8S_NO_RESOURCE_LIMITS"
+      ],
+      "expected_resources": [
+        "kubernetes_pod.target"
+      ],
+      "cis_control": "n/a",
+      "severity": "MEDIUM",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 38,
+      "resource_types": [
+        "kubernetes_pod"
+      ]
+    },
+    {
+      "case_id": "K8S-PRIVILEGED-CONTAINER-SAFE",
+      "path": "benchmark/internal/cases/K8S-PRIVILEGED-CONTAINER-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "K8S",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "K8S_PRIVILEGED_CONTAINER"
+      ],
+      "expected_resources": [],
+      "cis_control": "n/a",
+      "severity": "NONE",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 44,
+      "resource_types": [
+        "kubernetes_pod"
+      ]
+    },
+    {
+      "case_id": "K8S-PRIVILEGED-CONTAINER-VULN",
+      "path": "benchmark/internal/cases/K8S-PRIVILEGED-CONTAINER-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "K8S",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "K8S_PRIVILEGED_CONTAINER"
+      ],
+      "expected_resources": [
+        "kubernetes_pod.target"
+      ],
+      "cis_control": "n/a",
+      "severity": "CRITICAL",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 44,
+      "resource_types": [
+        "kubernetes_pod"
+      ]
+    },
+    {
+      "case_id": "K8S-ROOT-CONTAINER-SAFE",
+      "path": "benchmark/internal/cases/K8S-ROOT-CONTAINER-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "K8S",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "K8S_ROOT_CONTAINER"
+      ],
+      "expected_resources": [],
+      "cis_control": "n/a",
+      "severity": "NONE",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 44,
+      "resource_types": [
+        "kubernetes_pod_security_policy"
+      ]
+    },
+    {
+      "case_id": "K8S-ROOT-CONTAINER-VULN",
+      "path": "benchmark/internal/cases/K8S-ROOT-CONTAINER-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "K8S",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "K8S_ROOT_CONTAINER"
+      ],
+      "expected_resources": [
+        "kubernetes_pod_security_policy.target"
+      ],
+      "cis_control": "n/a",
+      "severity": "HIGH",
+      "n_resources": 1,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 44,
+      "resource_types": [
+        "kubernetes_pod_security_policy"
+      ]
+    },
+    {
       "case_id": "MON-NO-LOG-ENCRYPTION-SAFE",
       "path": "benchmark/internal/cases/MON-NO-LOG-ENCRYPTION-SAFE",
       "collection": "internal",
@@ -1170,6 +1308,56 @@
       ]
     },
     {
+      "case_id": "SRV-NO-API-AUTHORIZATION-SAFE",
+      "path": "benchmark/internal/cases/SRV-NO-API-AUTHORIZATION-SAFE",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "SRV",
+      "expected": "COMPLIANT",
+      "canonical_controls": [
+        "SRV_NO_API_AUTHORIZATION"
+      ],
+      "expected_resources": [],
+      "cis_control": "n/a",
+      "severity": "NONE",
+      "n_resources": 3,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 37,
+      "resource_types": [
+        "aws_api_gateway_method",
+        "aws_api_gateway_resource",
+        "aws_api_gateway_rest_api"
+      ]
+    },
+    {
+      "case_id": "SRV-NO-API-AUTHORIZATION-VULN",
+      "path": "benchmark/internal/cases/SRV-NO-API-AUTHORIZATION-VULN",
+      "collection": "internal",
+      "subset": "controlled",
+      "domain": "SRV",
+      "expected": "VIOLATION",
+      "canonical_controls": [
+        "SRV_NO_API_AUTHORIZATION"
+      ],
+      "expected_resources": [
+        "aws_api_gateway_method.target"
+      ],
+      "cis_control": "n/a",
+      "severity": "CRITICAL",
+      "n_resources": 3,
+      "n_variables": 2,
+      "n_modules": 0,
+      "n_data_sources": 0,
+      "sloc": 37,
+      "resource_types": [
+        "aws_api_gateway_method",
+        "aws_api_gateway_resource",
+        "aws_api_gateway_rest_api"
+      ]
+    },
+    {
       "case_id": "SRV-NO-FUNCTION-ENCRYPTION-SAFE",
       "path": "benchmark/internal/cases/SRV-NO-FUNCTION-ENCRYPTION-SAFE",
       "collection": "internal",
@@ -1583,6 +1771,36 @@
       "detail": ""
     },
     {
+      "case_id": "K8S-NO-RESOURCE-LIMITS-SAFE",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "K8S-NO-RESOURCE-LIMITS-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "K8S-PRIVILEGED-CONTAINER-SAFE",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "K8S-PRIVILEGED-CONTAINER-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "K8S-ROOT-CONTAINER-SAFE",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "K8S-ROOT-CONTAINER-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
       "case_id": "MON-NO-LOG-ENCRYPTION-SAFE",
       "status": "ok",
       "detail": ""
@@ -1669,6 +1887,16 @@
     },
     {
       "case_id": "SEC-HARDCODED-CREDENTIAL-VULN",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "SRV-NO-API-AUTHORIZATION-SAFE",
+      "status": "ok",
+      "detail": ""
+    },
+    {
+      "case_id": "SRV-NO-API-AUTHORIZATION-VULN",
       "status": "ok",
       "detail": ""
     },
@@ -1760,6 +1988,12 @@
     "IAM-WILDCARD-ACTION-VULN",
     "IAM-WILDCARD-TRUST-SAFE",
     "IAM-WILDCARD-TRUST-VULN",
+    "K8S-NO-RESOURCE-LIMITS-SAFE",
+    "K8S-NO-RESOURCE-LIMITS-VULN",
+    "K8S-PRIVILEGED-CONTAINER-SAFE",
+    "K8S-PRIVILEGED-CONTAINER-VULN",
+    "K8S-ROOT-CONTAINER-SAFE",
+    "K8S-ROOT-CONTAINER-VULN",
     "MON-NO-LOG-ENCRYPTION-SAFE",
     "MON-NO-LOG-ENCRYPTION-VULN",
     "MON-NO-TRAIL-VALIDATION-SAFE",
@@ -1778,6 +2012,8 @@
     "NET-UNRESTRICTED-INGRESS-VULN",
     "SEC-HARDCODED-CREDENTIAL-SAFE",
     "SEC-HARDCODED-CREDENTIAL-VULN",
+    "SRV-NO-API-AUTHORIZATION-SAFE",
+    "SRV-NO-API-AUTHORIZATION-VULN",
     "SRV-NO-FUNCTION-ENCRYPTION-SAFE",
     "SRV-NO-FUNCTION-ENCRYPTION-VULN",
     "STO-NO-ACCESS-LOGGING-SAFE",

@@ -1,0 +1,21 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.73.0"
+  },
+  "ReportID": "01a01ec1-6c30-73d0-bc97-32114e5f3fc4",
+  "CreatedAt": "2026-08-20T11:39:47.760251+01:00",
+  "ArtifactName": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-API-AUTHORIZATION-SAFE-a999ax4k/case",
+  "ArtifactType": "filesystem",
+  "Results": [
+    {
+      "Target": ".",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 57,
+        "Failures": 0
+      }
+    }
+  ]
+}

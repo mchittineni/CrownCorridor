@@ -1,0 +1,159 @@
+{
+  "check_type": "terraform",
+  "results": {
+    "failed_checks": [
+      {
+        "check_id": "CKV_K8S_7",
+        "bc_check_id": "BC_K8S_6",
+        "check_name": "Do not admit containers with the NET_RAW capability",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "spec"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-ROOT-CONTAINER-SAFE-6owmdc4j/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-ROOT-CONTAINER-SAFE-6owmdc4j/case/main.tf",
+        "file_line_range": [
+          20,
+          45
+        ],
+        "resource": "kubernetes_pod_security_policy.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.kubernetes.DropCapabilitiesPSP",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/kubernetes-policies/kubernetes-policy-index/bc-k8s-6",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-ROOT-CONTAINER-SAFE-6owmdc4j/case/main.tf",
+        "breadcrumbs": {
+          "metadata.name": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-ROOT-CONTAINER-SAFE-6owmdc4j/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_K8S_36",
+        "bc_check_id": "BC_K8S_44",
+        "check_name": "Minimise the admission of containers with capabilities assigned",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "spec"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-ROOT-CONTAINER-SAFE-6owmdc4j/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-ROOT-CONTAINER-SAFE-6owmdc4j/case/main.tf",
+        "file_line_range": [
+          20,
+          45
+        ],
+        "resource": "kubernetes_pod_security_policy.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.kubernetes.MinimiseCapabilitiesPSP",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/kubernetes-policies/kubernetes-policy-index/minimize-the-admission-of-containers-with-capabilities-assigned",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-ROOT-CONTAINER-SAFE-6owmdc4j/case/main.tf",
+        "breadcrumbs": {
+          "metadata.name": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-ROOT-CONTAINER-SAFE-6owmdc4j/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      },
+      {
+        "check_id": "CKV_K8S_32",
+        "bc_check_id": "BC_K8S_30",
+        "check_name": "Ensure default seccomp profile set to docker/default or runtime/default",
+        "check_result": {
+          "result": "FAILED",
+          "evaluated_keys": [
+            "metadata"
+          ]
+        },
+        "code_block": null,
+        "file_path": "/main.tf",
+        "file_abs_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-ROOT-CONTAINER-SAFE-6owmdc4j/case/main.tf",
+        "repo_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-ROOT-CONTAINER-SAFE-6owmdc4j/case/main.tf",
+        "file_line_range": [
+          20,
+          45
+        ],
+        "resource": "kubernetes_pod_security_policy.target",
+        "evaluations": null,
+        "check_class": "checkov.terraform.checks.resource.kubernetes.SeccompPSP",
+        "fixed_definition": null,
+        "entity_tags": null,
+        "caller_file_path": null,
+        "caller_file_line_range": null,
+        "resource_address": null,
+        "severity": null,
+        "bc_category": null,
+        "benchmarks": null,
+        "description": null,
+        "short_description": null,
+        "vulnerability_details": null,
+        "connected_node": null,
+        "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/kubernetes-policies/kubernetes-policy-index/bc-k8s-30",
+        "details": [],
+        "check_len": null,
+        "definition_context_file_path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-ROOT-CONTAINER-SAFE-6owmdc4j/case/main.tf",
+        "breadcrumbs": {
+          "metadata.name": [
+            {
+              "type": "variable",
+              "name": "name_prefix",
+              "path": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-K8S-ROOT-CONTAINER-SAFE-6owmdc4j/case/variables.tf",
+              "module_connection": false
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "summary": {
+    "passed": 7,
+    "failed": 3,
+    "skipped": 0,
+    "parsing_errors": 0,
+    "resource_count": 1,
+    "checkov_version": "3.3.8"
+  }
+}

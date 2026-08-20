@@ -1,0 +1,73 @@
+{
+	"results": [
+		{
+			"rule_id": "AVD-AWS-0104",
+			"long_id": "aws-ec2-no-public-egress-sgr",
+			"rule_description": "An egress security group rule allows traffic to /0.",
+			"rule_provider": "aws",
+			"rule_service": "ec2",
+			"impact": "Your port is egressing data to the internet",
+			"resolution": "Set a more restrictive cidr range",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/ec2/no-public-egress-sgr/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group"
+			],
+			"description": "Security group rule allows egress to multiple public internet addresses.",
+			"severity": "CRITICAL",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_security_group.db2_sg",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-rds-db2-terraform/main.tf",
+				"start_line": 79,
+				"end_line": 79
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0177",
+			"long_id": "aws-rds-enable-deletion-protection",
+			"rule_description": "RDS Deletion Protection Disabled",
+			"rule_provider": "aws",
+			"rule_service": "rds",
+			"impact": "",
+			"resolution": "Modify the RDS instances to enable deletion protection.",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/rds/enable-deletion-protection/"
+			],
+			"description": "Instance does not have Deletion Protection enabled",
+			"severity": "MEDIUM",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_db_instance.rdsdb2.deletion_protection",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-rds-db2-terraform/main.tf",
+				"start_line": 195,
+				"end_line": 195
+			}
+		},
+		{
+			"rule_id": "AVD-AWS-0133",
+			"long_id": "aws-rds-enable-performance-insights",
+			"rule_description": "Enable Performance Insights to detect potential problems",
+			"rule_provider": "aws",
+			"rule_service": "rds",
+			"impact": "Without adequate monitoring, performance related issues may go unreported and potentially lead to compromise.",
+			"resolution": "Enable performance insights",
+			"links": [
+				"https://aquasecurity.github.io/tfsec/v1.28.14/checks/aws/rds/enable-performance-insights/",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster_instance#performance_insights_kms_key_id",
+				"https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance#performance_insights_kms_key_id"
+			],
+			"description": "Instance does not have performance insights enabled.",
+			"severity": "LOW",
+			"warning": false,
+			"status": 0,
+			"resource": "aws_db_instance.rdsdb2",
+			"location": {
+				"filename": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_amazon-rds-db2-terraform/main.tf",
+				"start_line": 140,
+				"end_line": 199
+			}
+		}
+	]
+}

@@ -1,0 +1,129 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.73.0"
+  },
+  "ReportID": "01a01ec1-70d6-7724-9a93-92dd2eb7f450",
+  "CreatedAt": "2026-08-20T11:39:48.950469+01:00",
+  "ArtifactName": "/var/folders/1r/dyld9lr16h1d2gdlpb4wjz_00000gn/T/iacsb-run-SRV-NO-API-AUTHORIZATION-VULN-ps0mi7rh/case",
+  "ArtifactType": "filesystem",
+  "Results": [
+    {
+      "Target": ".",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 56,
+        "Failures": 0
+      }
+    },
+    {
+      "Target": "main.tf",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 0,
+        "Failures": 1
+      },
+      "Misconfigurations": [
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AWS-0004",
+          "Title": "No unauthorized access to API Gateway methods",
+          "Description": "API Gateway methods should generally be protected by authorization or api key. OPTION verb calls can be used without authorization\n",
+          "Message": "Authorization is not enabled for this method.",
+          "Namespace": "builtin.aws.apigateway.aws0004",
+          "Query": "data.builtin.aws.apigateway.aws0004.deny",
+          "Resolution": "Use and authorization method or require API Key",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/aws-0004",
+          "References": [
+            "https://avd.aquasec.com/misconfig/aws-0004"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "aws_api_gateway_method.target",
+            "Provider": "AWS",
+            "Service": "apigateway",
+            "StartLine": 34,
+            "EndLine": 34,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 30,
+                  "Content": "resource \"aws_api_gateway_method\" \"target\" {",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"aws_api_gateway_method\"\u001b[0m \u001b[38;5;37m\"target\"\u001b[0m {",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 31,
+                  "Content": "  rest_api_id   = aws_api_gateway_rest_api.target.id",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mrest_api_id\u001b[0m   = aws_api_gateway_rest_api.target.id",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 32,
+                  "Content": "  resource_id   = aws_api_gateway_resource.target.id",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mresource_id\u001b[0m   = aws_api_gateway_resource.target.id",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 33,
+                  "Content": "  http_method   = \"GET\"",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mhttp_method\u001b[0m   = \u001b[38;5;37m\"GET\"",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 34,
+                  "Content": "  authorization = \"NONE\"",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m  \u001b[38;5;245mauthorization\u001b[0m = \u001b[38;5;37m\"NONE\"",
+                  "FirstCause": true,
+                  "LastCause": true
+                },
+                {
+                  "Number": 35,
+                  "Content": "}",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[0m}",
+                  "FirstCause": false,
+                  "LastCause": false
+                }
+              ]
+            },
+            "Occurrences": [
+              {
+                "Resource": "aws_api_gateway_method.target",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 30,
+                  "EndLine": 35
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

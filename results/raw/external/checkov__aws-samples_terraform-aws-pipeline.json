@@ -1,0 +1,1539 @@
+{
+    "check_type": "terraform",
+    "results": {
+        "failed_checks": [
+            {
+                "check_id": "CKV_AWS_338",
+                "bc_check_id": "BC_AWS_LOGGING_46",
+                "check_name": "Ensure CloudWatch log groups retains logs for at least 1 year",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "retention_in_days"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/codebuild.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                "repo_file_path": "/codebuild.tf",
+                "file_line_range": [
+                    219,
+                    223
+                ],
+                "resource": "aws_cloudwatch_log_group.this",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.CloudWatchLogGroupRetentionYear",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-338",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                "breadcrumbs": {
+                    "retention_in_days": [
+                        {
+                            "type": "variable",
+                            "name": "log_retention",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_111",
+                "bc_check_id": "BC_AWS_IAM_57",
+                "check_name": "Ensure IAM policies does not allow write access without constraints",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "statement/[3]/actions"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/codebuild.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                "repo_file_path": "/codebuild.tf",
+                "file_line_range": [
+                    103,
+                    199
+                ],
+                "resource": "aws_iam_policy_document.codebuild",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.data.aws.IAMWriteAccess",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-iam-policies-do-not-allow-write-access-without-constraint",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                "breadcrumbs": {
+                    "dynamic.1.statement.content.resources.0": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "dynamic.1.statement.content.resources": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "dynamic.1.statement.content": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "dynamic.1.statement": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "dynamic.1": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "dynamic.1.statement.content.condition.1.values": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "dynamic.1.statement.content.condition.1": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "dynamic.1.statement.content.condition": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.0.resources.0": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.0.resources": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.0": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_356",
+                "bc_check_id": "BC_AWS_IAM_89",
+                "check_name": "Ensure no IAM policies documents allow \"*\" as a statement's resource for restrictable actions",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "statement/[3]/actions"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/codebuild.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                "repo_file_path": "/codebuild.tf",
+                "file_line_range": [
+                    103,
+                    199
+                ],
+                "resource": "aws_iam_policy_document.codebuild",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.data.aws.ResourcePolicyDocument",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-356",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                "breadcrumbs": {
+                    "dynamic.1.statement.content.resources.0": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "dynamic.1.statement.content.resources": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "dynamic.1.statement.content": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "dynamic.1.statement": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "dynamic.1": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "dynamic.1.statement.content.condition.1.values": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "dynamic.1.statement.content.condition.1": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "dynamic.1.statement.content.condition": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.0.resources.0": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.0.resources": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "statement.0": [
+                        {
+                            "type": "locals",
+                            "name": "region",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/locals.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_219",
+                "bc_check_id": "BC_AWS_GENERAL_160",
+                "check_name": "Ensure CodePipeline Artifact store is using a KMS CMK",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "artifact_store/[0]/encryption_key/[0]/id"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/codepipeline.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codepipeline.tf",
+                "repo_file_path": "/codepipeline.tf",
+                "file_line_range": [
+                    4,
+                    99
+                ],
+                "resource": "aws_codepipeline.this",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.CodePipelineArtifactsEncrypted",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-aws-codepipeline-artifactstore-is-not-encrypted-by-key-management-service-kms-using-a-customer-managed-key-cmk",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codepipeline.tf",
+                "breadcrumbs": {
+                    "stage.0.action.configuration.BranchName": [
+                        {
+                            "type": "variable",
+                            "name": "branch",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "stage.0.action.configuration": [
+                        {
+                            "type": "variable",
+                            "name": "detect_changes",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "stage.0.action": [
+                        {
+                            "type": "variable",
+                            "name": "detect_changes",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "stage.0": [
+                        {
+                            "type": "variable",
+                            "name": "detect_changes",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "stage.0.action.configuration.DetectChanges": [
+                        {
+                            "type": "variable",
+                            "name": "detect_changes",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "execution_mode": [
+                        {
+                            "type": "variable",
+                            "name": "mode",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "stage.1.dynamic.action.for_each": [
+                        {
+                            "type": "variable",
+                            "name": "tags",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "stage.1.dynamic.action": [
+                        {
+                            "type": "variable",
+                            "name": "tags",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "stage.1.dynamic": [
+                        {
+                            "type": "variable",
+                            "name": "tags",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "stage.1": [
+                        {
+                            "type": "variable",
+                            "name": "tags",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_147",
+                "bc_check_id": "BC_AWS_GENERAL_78",
+                "check_name": "Ensure that CodeBuild projects are encrypted using CMK",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "artifacts/[0]/type",
+                        "encryption_key"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/modules/codebuild/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/main.tf",
+                "repo_file_path": "/modules/codebuild/main.tf",
+                "file_line_range": [
+                    4,
+                    51
+                ],
+                "resource": "module.apply.aws_codebuild_project.this",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.CodebuildUsesCMK",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/codebuild.tf",
+                "caller_file_line_range": [
+                    29,
+                    39
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-codebuild-projects-are-encrypted-1",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/main.tf",
+                "breadcrumbs": {
+                    "environment.image": [
+                        {
+                            "type": "module",
+                            "name": "apply",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "image",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "build_timeout": [
+                        {
+                            "type": "module",
+                            "name": "apply",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "build_timeout",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "logs_config.cloudwatch_logs.group_name": [
+                        {
+                            "type": "module",
+                            "name": "apply",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "log_group",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "logs_config.cloudwatch_logs": [
+                        {
+                            "type": "module",
+                            "name": "apply",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "codebuild_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "name": [
+                        {
+                            "type": "module",
+                            "name": "apply",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "codebuild_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "environment.dynamic.environment_variable.for_each": [
+                        {
+                            "type": "module",
+                            "name": "apply",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "environment_variables",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "environment_variable.value": [
+                        {
+                            "type": "module",
+                            "name": "apply",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "environment_variables",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "environment.dynamic.environment_variable": [
+                        {
+                            "type": "module",
+                            "name": "apply",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "environment_variables",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "environment.dynamic": [
+                        {
+                            "type": "module",
+                            "name": "apply",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "environment_variables",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "logs_config.cloudwatch_logs.stream_name": [
+                        {
+                            "type": "module",
+                            "name": "apply",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "codebuild_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "dynamic.vpc_config.for_each": [
+                        {
+                            "type": "module",
+                            "name": "apply",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "vpc_config.security_group_ids": [
+                        {
+                            "type": "module",
+                            "name": "apply",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "vpc_config.subnets": [
+                        {
+                            "type": "module",
+                            "name": "apply",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "vpc_config.vpc_id": [
+                        {
+                            "type": "module",
+                            "name": "apply",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "dynamic.vpc_config": [
+                        {
+                            "type": "module",
+                            "name": "apply",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source.buildspec": [
+                        {
+                            "type": "module",
+                            "name": "apply",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "build_spec",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "service_role": [
+                        {
+                            "type": "module",
+                            "name": "apply",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "codebuild_role",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "apply",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "idx": 5,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_147",
+                "bc_check_id": "BC_AWS_GENERAL_78",
+                "check_name": "Ensure that CodeBuild projects are encrypted using CMK",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "artifacts/[0]/type",
+                        "encryption_key"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/modules/codebuild/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/main.tf",
+                "repo_file_path": "/modules/codebuild/main.tf",
+                "file_line_range": [
+                    4,
+                    51
+                ],
+                "resource": "module.plan.aws_codebuild_project.this",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.CodebuildUsesCMK",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/codebuild.tf",
+                "caller_file_line_range": [
+                    17,
+                    27
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-codebuild-projects-are-encrypted-1",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/main.tf",
+                "breadcrumbs": {
+                    "dynamic.vpc_config.for_each": [
+                        {
+                            "type": "module",
+                            "name": "plan",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "vpc_config.security_group_ids": [
+                        {
+                            "type": "module",
+                            "name": "plan",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "vpc_config.subnets": [
+                        {
+                            "type": "module",
+                            "name": "plan",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "vpc_config.vpc_id": [
+                        {
+                            "type": "module",
+                            "name": "plan",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "dynamic.vpc_config": [
+                        {
+                            "type": "module",
+                            "name": "plan",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "environment.dynamic.environment_variable.for_each": [
+                        {
+                            "type": "module",
+                            "name": "plan",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "environment_variables",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "environment_variable.value": [
+                        {
+                            "type": "module",
+                            "name": "plan",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "environment_variables",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "environment.dynamic.environment_variable": [
+                        {
+                            "type": "module",
+                            "name": "plan",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "environment_variables",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "environment.dynamic": [
+                        {
+                            "type": "module",
+                            "name": "plan",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "environment_variables",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source.buildspec": [
+                        {
+                            "type": "module",
+                            "name": "plan",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "build_spec",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "logs_config.cloudwatch_logs.group_name": [
+                        {
+                            "type": "module",
+                            "name": "plan",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "log_group",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "logs_config.cloudwatch_logs": [
+                        {
+                            "type": "module",
+                            "name": "plan",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "codebuild_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "name": [
+                        {
+                            "type": "module",
+                            "name": "plan",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "codebuild_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "environment.image": [
+                        {
+                            "type": "module",
+                            "name": "plan",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "image",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "build_timeout": [
+                        {
+                            "type": "module",
+                            "name": "plan",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "build_timeout",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "service_role": [
+                        {
+                            "type": "module",
+                            "name": "plan",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "codebuild_role",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "logs_config.cloudwatch_logs.stream_name": [
+                        {
+                            "type": "module",
+                            "name": "plan",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "codebuild_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "plan",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "idx": 4,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_147",
+                "bc_check_id": "BC_AWS_GENERAL_78",
+                "check_name": "Ensure that CodeBuild projects are encrypted using CMK",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "artifacts/[0]/type",
+                        "encryption_key"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/modules/codebuild/main.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/main.tf",
+                "repo_file_path": "/modules/codebuild/main.tf",
+                "file_line_range": [
+                    4,
+                    51
+                ],
+                "resource": "module.validation.aws_codebuild_project.this",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.CodebuildUsesCMK",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": "/codebuild.tf",
+                "caller_file_line_range": [
+                    4,
+                    15
+                ],
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-codebuild-projects-are-encrypted-1",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/main.tf",
+                "breadcrumbs": {
+                    "service_role": [
+                        {
+                            "type": "module",
+                            "name": "validation",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "codebuild_role",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "dynamic.vpc_config.for_each": [
+                        {
+                            "type": "module",
+                            "name": "validation",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "vpc_config.security_group_ids": [
+                        {
+                            "type": "module",
+                            "name": "validation",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "vpc_config.subnets": [
+                        {
+                            "type": "module",
+                            "name": "validation",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "vpc_config.vpc_id": [
+                        {
+                            "type": "module",
+                            "name": "validation",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "dynamic.vpc_config": [
+                        {
+                            "type": "module",
+                            "name": "validation",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "build_timeout": [
+                        {
+                            "type": "module",
+                            "name": "validation",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "build_timeout",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "environment.image": [
+                        {
+                            "type": "module",
+                            "name": "validation",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "image",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "logs_config.cloudwatch_logs.group_name": [
+                        {
+                            "type": "module",
+                            "name": "validation",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "log_group",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "logs_config.cloudwatch_logs": [
+                        {
+                            "type": "module",
+                            "name": "validation",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "codebuild_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source.buildspec": [
+                        {
+                            "type": "module",
+                            "name": "validation",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "build_spec",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "environment.dynamic.environment_variable.for_each": [
+                        {
+                            "type": "module",
+                            "name": "validation",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "environment_variables",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "environment_variable.value": [
+                        {
+                            "type": "module",
+                            "name": "validation",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "environment_variables",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "environment.dynamic.environment_variable": [
+                        {
+                            "type": "module",
+                            "name": "validation",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "environment_variables",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "environment.dynamic": [
+                        {
+                            "type": "module",
+                            "name": "validation",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "environment_variables",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "name": [
+                        {
+                            "type": "module",
+                            "name": "validation",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "codebuild_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "logs_config.cloudwatch_logs.stream_name": [
+                        {
+                            "type": "module",
+                            "name": "validation",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "codebuild_name",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/modules/codebuild/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "source_module_": [
+                        {
+                            "type": "module",
+                            "name": "validation",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/codebuild.tf",
+                            "idx": 3,
+                            "source_module_object": null
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_300",
+                "bc_check_id": "BC_AWS_GENERAL_214",
+                "check_name": "Ensure S3 lifecycle configuration sets period for aborting failed uploads",
+                "check_result": {
+                    "result": "FAILED",
+                    "evaluated_keys": [
+                        "rule"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/s3.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/s3.tf",
+                "repo_file_path": "/s3.tf",
+                "file_line_range": [
+                    58,
+                    72
+                ],
+                "resource": "aws_s3_bucket_lifecycle_configuration.this",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.S3AbortIncompleteUploads",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-300",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/s3.tf",
+                "breadcrumbs": {
+                    "rule.expiration.days": [
+                        {
+                            "type": "variable",
+                            "name": "artifact_retention",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "rule.expiration": [
+                        {
+                            "type": "variable",
+                            "name": "artifact_retention",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "rule.id": [
+                        {
+                            "type": "variable",
+                            "name": "artifact_retention",
+                            "path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/variables.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV2_AWS_62",
+                "bc_check_id": "BC_AWS_LOGGING_36",
+                "check_name": "Ensure S3 buckets should have event notifications enabled",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "this": {
+                                "__end_line__": 7,
+                                "__start_line__": 4,
+                                "bucket": [
+                                    "${var.pipeline_name}-artifacts-${data.aws_caller_identity.current.account_id}"
+                                ],
+                                "force_destroy": [
+                                    true
+                                ],
+                                "__address__": "aws_s3_bucket.this"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "resource_type"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/s3.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/s3.tf",
+                "repo_file_path": "/s3.tf",
+                "file_line_range": [
+                    4,
+                    7
+                ],
+                "resource": "aws_s3_bucket.this",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-62",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/s3.tf"
+            },
+            {
+                "check_id": "CKV_AWS_21",
+                "bc_check_id": "BC_AWS_S3_16",
+                "check_name": "Ensure all data stored in the S3 bucket have versioning enabled",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "this": {
+                                "__end_line__": 7,
+                                "__start_line__": 4,
+                                "bucket": [
+                                    "${var.pipeline_name}-artifacts-${data.aws_caller_identity.current.account_id}"
+                                ],
+                                "force_destroy": [
+                                    true
+                                ],
+                                "__address__": "aws_s3_bucket.this"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "resource_type",
+                        "versioning/enabled",
+                        "versioning_configuration/status"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/s3.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/s3.tf",
+                "repo_file_path": "/s3.tf",
+                "file_line_range": [
+                    4,
+                    7
+                ],
+                "resource": "aws_s3_bucket.this",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-16-enable-versioning",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/s3.tf"
+            },
+            {
+                "check_id": "CKV_AWS_144",
+                "bc_check_id": "BC_AWS_GENERAL_72",
+                "check_name": "Ensure that S3 bucket has cross-region replication enabled",
+                "check_result": {
+                    "result": "FAILED",
+                    "entity": {
+                        "aws_s3_bucket": {
+                            "this": {
+                                "__end_line__": 7,
+                                "__start_line__": 4,
+                                "bucket": [
+                                    "${var.pipeline_name}-artifacts-${data.aws_caller_identity.current.account_id}"
+                                ],
+                                "force_destroy": [
+                                    true
+                                ],
+                                "__address__": "aws_s3_bucket.this"
+                            }
+                        }
+                    },
+                    "evaluated_keys": [
+                        "resource_type",
+                        "rule/*/status",
+                        "replication_configuration/rules/*/status"
+                    ]
+                },
+                "code_block": null,
+                "file_path": "/s3.tf",
+                "file_abs_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/s3.tf",
+                "repo_file_path": "/s3.tf",
+                "file_line_range": [
+                    4,
+                    7
+                ],
+                "resource": "aws_s3_bucket.this",
+                "evaluations": null,
+                "check_class": "checkov.common.graph.checks_infra.base_check",
+                "fixed_definition": null,
+                "entity_tags": null,
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-bucket-has-cross-region-replication-enabled",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_terraform-aws-pipeline/s3.tf"
+            }
+        ]
+    },
+    "summary": {
+        "passed": 139,
+        "failed": 11,
+        "skipped": 0,
+        "parsing_errors": 0,
+        "resource_count": 26,
+        "checkov_version": "3.3.8"
+    }
+}

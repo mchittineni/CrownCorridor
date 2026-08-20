@@ -1,0 +1,38 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.73.0"
+  },
+  "ReportID": "01a01e5e-6957-761e-b14a-0cab323b2b2e",
+  "CreatedAt": "2026-08-20T09:51:38.967403+01:00",
+  "ArtifactID": "sha256:3784f03aaac261efea81fc90399a84301721cb94d86c90ccc90718e91bf83c9c",
+  "ArtifactName": "/Users/manideepchittineni/Desktop/GitHub/Personal/iacsecbench/.external-corpus/aws-samples_aws-network-hub-for-terraform",
+  "ArtifactType": "repository",
+  "Metadata": {
+    "RepoURL": "https://github.com/aws-samples/aws-network-hub-for-terraform.git",
+    "Commit": "e95366a04a099a64cdda208814a6198854ac2e9c",
+    "CommitMsg": "rm lock",
+    "Author": "jakebark \u003cjakebark@amazon.co.uk\u003e",
+    "Committer": "jakebark \u003cjakebark@amazon.co.uk\u003e"
+  },
+  "Results": [
+    {
+      "Target": ".",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 73,
+        "Failures": 0
+      }
+    },
+    {
+      "Target": "example-spoke-vpc",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 73,
+        "Failures": 0
+      }
+    }
+  ]
+}
