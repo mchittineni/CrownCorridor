@@ -3,10 +3,10 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "crowncorridor"
+name = "iacsecbench"
 version = "1.0.0"
-description = "CrownCorridor Fast-Read API & Data Pipeline for AP & TS Real Estate Records"
-authors = [{ name = "CrownCorridor Team" }]
+description = "IaCSecBench: a reproducible benchmark for Infrastructure-as-Code security scanners"
+authors = [{ name = "IaCSecBench" }]
 requires-python = ">=3.11"
 dependencies = [
     "fastapi>=0.110.0",
@@ -30,9 +30,7 @@ dev = [
 minversion = "7.0"
 addopts = "-v --strict-markers"
 testpaths = [
-    "application/api/tests",
     "evaluation/tests",
-    "pipeline/tests",
     "security_framework/tests",
 ]
 
@@ -41,9 +39,6 @@ python_files = [
     "test_*.py",
     "*_test.py",
 ]
-[tool.pyright]
-extraPaths = ["application"]
-
 [tool.ruff]
 line-length = 100
 target-version = "py311"
@@ -74,7 +69,7 @@ exclude = [".git", ".venv", "__pycache__", "node_modules"]
 
 [tool.bandit]
 skips = ["B101", "B404", "B405", "B603"]
-exclude_dirs = ["api/tests", "pipeline/tests", "docs/scratch", ".venv"]
+exclude_dirs = ["docs/scratch", ".venv"]
 
 [tool.pylint.messages_control]
 max-line-length = 112

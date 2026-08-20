@@ -23,11 +23,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 > `results/evaluation.json`. See [`results/README.md`](results/README.md) for which
 > artefacts are measurements and which are not.
 
-Releases are published automatically by [`release-please.yml`](.github/workflows/release-please.yml) adhering to CrownCorridor Semantic Versioning:
+Releases are published automatically by [`release-please.yml`](.github/workflows/release-please.yml) adhering to Semantic Versioning:
 
-- **`MINOR` (x.Y.0)** — SRO dataset updates & historical data expansions (`data/**`).
-- **`PATCH` (x.y.Z)** — Pipeline, validator, and ETL infrastructure changes (`pipeline/**`, `application/api/**`).
-- **`MAJOR` (X.0.0)** — Web application features, layout, and UI frontend changes (`application/app/**`).
+- **`PATCH` (x.y.Z)** — Re-measurement on an unchanged corpus, tooling and documentation (`results/**`, `leaderboard/**`, `docs/**`, `paper/**`).
+- **`MINOR` (x.Y.0)** — New corpus cases, new canonical controls, or new rule mappings (`benchmark/**`, `evaluation/control_map.json`).
+- **`MAJOR` (X.0.0)** — Changes to what a reported number means: the control taxonomy, the matching criteria, or the admissibility gate.
 
 ## [1.3.1](https://github.com/mchittineni/iacsecbench/compare/v1.3.0...v1.3.1) (2026-08-07)
 
@@ -300,5 +300,5 @@ Crown Corridor is a next-generation real-time real estate discovery and property
 
 ---
 
-[1.0.0]: https://github.com/mchittineni/CrownCorridor/releases/tag/v1.0.0
-[releases]: https://github.com/mchittineni/CrownCorridor/releases
+[1.0.0]: https://github.com/mchittineni/iacsecbench/releases/tag/v1.0.0
+[releases]: https://github.com/mchittineni/iacsecbench/releases

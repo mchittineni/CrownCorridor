@@ -1,4 +1,4 @@
-# Checkov Configuration for Crown Corridor Infrastructure
+# Checkov configuration for the IaCSecBench repository
 # Output format options: cli, json, junitxml, github_failed_check, sarif, cyclonedx
 
 # --- Output Settings ---
