@@ -174,7 +174,7 @@
       "domain": "NET",
       "cis_aws": "5.2",
       "severity": "CRITICAL",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_AWS_24",
@@ -193,9 +193,7 @@
           "security_group_unrestricted_ingress"
         ]
       },
-      "unverified_identifiers": [
-        "tfsec:aws-vpc-no-public-ingress-sgr"
-      ]
+      "verification": "Confirmed: tfsec aws-ec2-no-public-ingress-sgr and trivy AWS-0107 fire on NET-UNRESTRICTED-INGRESS-VULN; checkov CKV_AWS_24 fires on cis_examples/cis_4_1_security_group."
     },
     "NET_PUBLIC_INSTANCE": {
       "title": "Compute instance assigned a public address",
@@ -216,7 +214,8 @@
       },
       "unverified_identifiers": [
         "tfsec:aws-ec2-no-public-ip"
-      ]
+      ],
+      "verification": "NOT confirmed for tfsec or trivy. checkov CKV_AWS_88 fires on NET-PUBLIC-INSTANCE-VULN. tfsec 1.28.14 emits nothing for associate_public_ip_address on aws_instance; it flags only the subnet-level form (aws-ec2-no-public-ip-subnet, AVD-AWS-0164) when map_public_ip_on_launch = true, which this case does not set. The aws-ec2-no-public-ip identifier is retained because the rule exists and may fire on other configurations, but it has never appeared in recorded output."
     },
     "NET_NO_FLOW_LOGS": {
       "title": "Virtual network lacks flow logging",
@@ -299,7 +298,7 @@
       "domain": "ENC",
       "cis_aws": "2.2.1",
       "severity": "HIGH",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_AWS_3",
@@ -316,9 +315,7 @@
           "ebs_encryption"
         ]
       },
-      "unverified_identifiers": [
-        "tfsec:aws-ec2-encryption-customer-key"
-      ]
+      "verification": "Confirmed on ENC-UNENCRYPTED-VOLUME-VULN: checkov CKV_AWS_3, tfsec aws-ec2-enable-volume-encryption and trivy AWS-0026 all fire."
     },
     "ENC_UNENCRYPTED_DATABASE": {
       "title": "Managed database storage unencrypted at rest",
@@ -534,7 +531,7 @@
       "domain": "SRV",
       "cis_aws": "n/a",
       "severity": "CRITICAL",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_AWS_59"
@@ -542,12 +539,12 @@
         "tfsec": [
           "aws-api-gateway-no-public-access"
         ],
-        "trivy": [],
+        "trivy": [
+          "AWS-0004"
+        ],
         "opa": []
       },
-      "unverified_identifiers": [
-        "tfsec:aws-api-gateway-no-public-access"
-      ]
+      "verification": "Confirmed against SRV-NO-API-AUTHORIZATION-{VULN,SAFE}: checkov CKV_AWS_59, tfsec aws-api-gateway-no-public-access (AVD-AWS-0004) and trivy AWS-0004 each fire on the vulnerable variant only."
     },
     "SEC_HARDCODED_CREDENTIAL": {
       "title": "Credential material embedded in configuration source",
@@ -573,69 +570,88 @@
       },
       "unverified_identifiers": [
         "tfsec:general-secrets-no-plaintext-exposure"
-      ]
+      ],
+      "verification": "NOT confirmed for any comparator. On SEC-HARDCODED-CREDENTIAL-VULN no checkov, tfsec or trivy rule fires: checkov's CKV_SECRET_* checks belong to its secrets framework, and the harness runs --framework terraform, so they cannot fire at all. Only the reference pipeline's Layer 1 detects this case (layer1_secret_pattern). That asymmetry favours the reference and must be disclosed wherever this control is reported."
     },
     "K8S_PRIVILEGED_CONTAINER": {
       "title": "Container runs in privileged mode",
       "domain": "K8S",
       "cis_aws": "n/a",
       "severity": "CRITICAL",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_K8S_16",
           "CKV_K8S_20"
         ],
-        "tfsec": [
-          "kubernetes-no-privileged-containers"
-        ],
+        "tfsec": [],
         "trivy": [],
         "opa": []
       },
-      "unverified_identifiers": [
-        "tfsec:kubernetes-no-privileged-containers"
-      ]
+      "out_of_scope_identifiers": {
+        "tfsec": [
+          "kubernetes-no-privileged-containers"
+        ]
+      },
+      "inapplicable_tools": [
+        "tfsec",
+        "trivy"
+      ],
+      "inapplicable_reason": "tfsec and trivy emit no findings on kubernetes_* Terraform resources; only checkov inspects them. A non-detection by those two on a K8S case is a scope limitation, not a missed detection.",
+      "verification": "CKV_K8S_16 fires on K8S-PRIVILEGED-CONTAINER-VULN only."
     },
     "K8S_ROOT_CONTAINER": {
       "title": "Container permitted to run as root",
       "domain": "K8S",
       "cis_aws": "n/a",
       "severity": "HIGH",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_K8S_6"
         ],
-        "tfsec": [
-          "kubernetes-no-root-containers"
-        ],
+        "tfsec": [],
         "trivy": [],
         "opa": []
       },
-      "unverified_identifiers": [
-        "tfsec:kubernetes-no-root-containers"
-      ]
+      "out_of_scope_identifiers": {
+        "tfsec": [
+          "kubernetes-no-root-containers"
+        ]
+      },
+      "inapplicable_tools": [
+        "tfsec",
+        "trivy"
+      ],
+      "inapplicable_reason": "tfsec and trivy emit no findings on kubernetes_* Terraform resources; only checkov inspects them. A non-detection by those two on a K8S case is a scope limitation, not a missed detection.",
+      "verification": "CKV_K8S_6 fires on K8S-ROOT-CONTAINER-VULN only. It is bound to kubernetes_pod_security_policy, not kubernetes_pod."
     },
     "K8S_NO_RESOURCE_LIMITS": {
       "title": "Container lacks CPU or memory limits",
       "domain": "K8S",
       "cis_aws": "n/a",
       "severity": "MEDIUM",
-      "verified": false,
+      "verified": true,
       "tools": {
         "checkov": [
           "CKV_K8S_11",
           "CKV_K8S_12"
         ],
-        "tfsec": [
-          "kubernetes-set-resource-limits"
-        ],
+        "tfsec": [],
         "trivy": [],
         "opa": []
       },
-      "unverified_identifiers": [
-        "tfsec:kubernetes-set-resource-limits"
-      ]
+      "out_of_scope_identifiers": {
+        "tfsec": [
+          "kubernetes-set-resource-limits"
+        ]
+      },
+      "inapplicable_tools": [
+        "tfsec",
+        "trivy"
+      ],
+      "inapplicable_reason": "tfsec and trivy emit no findings on kubernetes_* Terraform resources; only checkov inspects them. A non-detection by those two on a K8S case is a scope limitation, not a missed detection.",
+      "verification": "CKV_K8S_11 and CKV_K8S_12 fire on K8S-NO-RESOURCE-LIMITS-VULN only."
     },
     "NET_NO_HTTPS_REDIRECT": {
       "title": "Content delivery endpoint does not enforce HTTPS redirection",

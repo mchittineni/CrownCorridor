@@ -44,14 +44,27 @@ ROOT = Path(__file__).resolve().parent.parent
 MIRROR_DIR = ROOT / ".terraform-provider-mirror"
 LOCK_FILE = ROOT / ".terraform-provider-mirror.lock"
 
-# The corpus pins a single provider. Kept in one place so the mirror and the
-# generated cases cannot drift apart.
+# Every provider the corpus declares, kept in one place so the mirror and the
+# generated cases cannot drift apart. The version constraints must match the ones
+# benchmark/generate_corpus.py emits in HEADERS: a case constraining a provider
+# the mirror does not hold at a satisfying version fails `terraform init`, and the
+# admissibility pass records that as INVALID_HCL -- a corpus defect, indistinct
+# from malformed HCL, rather than a missing download.
+#
+# Kubernetes was added for the three K8S controls, whose settings the AWS provider
+# cannot express. Adding a provider here widens what `terraform providers mirror`
+# downloads, so it is not free; it is justified only when a control cannot be
+# stated without it.
 MIRROR_CONFIG = """\
 terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 5.0"
+    }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "~> 2.0"
     }
   }
 }

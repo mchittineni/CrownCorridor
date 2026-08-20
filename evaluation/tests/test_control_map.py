@@ -231,3 +231,76 @@ def test_unverified_controls_are_reported_not_hidden(control_map: ControlMap) ->
     assert all(cid in control_map.controls for cid in unverified)
     for control_id in unverified:
         assert control_map.controls[control_id].get("verified") is not True
+
+
+def test_every_control_has_a_case_exercising_it(control_map: ControlMap) -> None:
+    """No control may sit in the map with nothing measuring it.
+
+    Four controls previously had no case at all -- SRV_NO_API_AUTHORIZATION and the
+    three K8S controls -- so every tool scored identically on them: not at all.
+    A mapped control with no case is a claim the benchmark never tests, and it is
+    invisible in the results because an absent case produces no row.
+    """
+    import benchmark.generate_corpus as generator
+
+    specified = {spec.control_id for spec in generator.SPECS}
+    orphaned = sorted(set(control_map.controls) - specified)
+    assert not orphaned, f"controls with no case pair specified: {orphaned}"
+
+
+def test_inapplicable_tools_carry_a_reason_and_no_identifiers(
+    control_map: ControlMap,
+) -> None:
+    """A tool declared out of scope must not also claim rules for the control.
+
+    Listing both would let the control be credited to a tool the same file says
+    cannot see it, and `coverage()` would count it -- overstating that tool's
+    breadth by exactly the controls it is documented not to read.
+    """
+    for control_id, spec in control_map.controls.items():
+        inapplicable = spec.get("inapplicable_tools") or []
+        if not inapplicable:
+            continue
+        assert spec.get("inapplicable_reason"), f"{control_id}: no reason recorded"
+        for tool in inapplicable:
+            claimed = spec.get("tools", {}).get(tool) or []
+            assert not claimed, (
+                f"{control_id}: {tool} is declared inapplicable but still claims {claimed}"
+            )
+
+
+def test_controls_verified_by_measurement_record_their_evidence(
+    control_map: ControlMap,
+) -> None:
+    """The controls confirmed against real tool output must say what confirmed it.
+
+    `verified: true` with no evidence is indistinguishable from an unreviewed
+    default, which is how an unverified mapping becomes a published one. These six
+    were flipped from false after their identifiers were observed firing, so each
+    must carry the observation that justified the flip.
+    """
+    confirmed_by_measurement = [
+        "SRV_NO_API_AUTHORIZATION",
+        "K8S_PRIVILEGED_CONTAINER",
+        "K8S_ROOT_CONTAINER",
+        "K8S_NO_RESOURCE_LIMITS",
+        "ENC_UNENCRYPTED_VOLUME",
+        "NET_UNRESTRICTED_INGRESS",
+    ]
+    for control_id in confirmed_by_measurement:
+        spec = control_map.controls[control_id]
+        assert spec.get("verified") is True, f"{control_id} is no longer verified"
+        assert spec.get("verification"), f"{control_id}: verified with no evidence recorded"
+
+
+def test_controls_still_unverified_say_why(control_map: ControlMap) -> None:
+    """An unverified control must record what was observed instead.
+
+    Both survivors are genuine comparator gaps rather than mapping errors, and one
+    of them -- SEC_HARDCODED_CREDENTIAL, which only the reference pipeline's Layer 1
+    detects -- flatters the reference. An unexplained `verified: false` hides that.
+    """
+    for control_id in control_map.unverified_controls:
+        assert control_map.controls[control_id].get("verification"), (
+            f"{control_id}: unverified with no explanation of what was observed"
+        )
