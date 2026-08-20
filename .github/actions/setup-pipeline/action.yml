@@ -1,5 +1,5 @@
 name: Setup Pipeline Toolchain
-description: 'Sets up Python + Node toolchain, caches packages, and installs dependencies'
+description: 'Sets up the Python toolchain, caches packages, and installs the gate dependencies'
 
 runs:
   using: 'composite'
@@ -13,9 +13,13 @@ runs:
         cache-dependency-path: |
           experiments/requirements.txt
 
+    # The gate tools come from the dev extras in pyproject.toml rather than an
+    # inline list, so CI and a contributor's `pip install -e '.[dev]'` cannot drift.
+    # The previous list installed black, which no gate here invokes -- ruff-format is
+    # the formatter in both ci.yml and .pre-commit-config.yaml.
     - name: Install Python Dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pytest-cov ruff black autoflake isort flake8 flake8-pytest-style flake8-bugbear flake8-comprehensions flake8-print darglint 'bandit[toml]' pylint
+        pip install -e '.[dev]'
         pip install -r experiments/requirements.txt
       shell: bash
