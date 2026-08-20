@@ -48,10 +48,39 @@ scanner the paper excludes; that is the class of defect this removes.
 ```bash
 python -m experiments.generate_figures          # refresh paper/figures/*.mmd
 python -m experiments.generate_figures --check  # exit 1 if they are stale (CI gate)
+python -m experiments.generate_figures --check --strict   # ... also on latency drift
 ```
+
+`--check` tolerates a difference confined to the pipeline figure's two measured
+latency labels. Those track the host that ran the measurement, not the recorded
+results, and CI measures on a shared runner whose latency the harness itself
+declares unpublishable — so failing on them would force runner noise into the
+published figures. Everything a table could contradict still fails the check. Use
+`--strict` on the idle machine that produces publishable latency.
 
 Rendering the `.mmd` to vector PDF is a separate manual step; see
 `paper/figures/README.md`.
+
+### 2a. External Subset Fetcher (`fetch_external.py`)
+
+Materialises the unlabelled external subset at the exact commits pinned in
+`benchmark/external/aws_samples/manifest.json`, and refuses to proceed on any
+mismatch — so a measurement cannot quietly run against a moved upstream branch.
+
+The working trees are **not** vendored into this repository. A pinned commit is
+smaller and stronger evidence than a subtree: anyone can fetch the same bytes and
+verify the hash, whereas vendored third-party code becomes indistinguishable, after
+the fact, from code this project wrote. All 25 repositories are MIT-0, so vendoring
+would be permitted; provenance is the reason not to.
+
+```bash
+python -m experiments.fetch_external          # clone or verify every repository
+python -m experiments.fetch_external --check  # verify only; exit 1 if absent or moved
+```
+
+Fetched trees land in `.external-corpus/`, which is gitignored. See
+`evaluation/external.py` for what is then measured, and why none of it may enter
+the accuracy tables.
 
 ### 3. Baseline Evaluation Shell Script (`run_baselines.sh`)
 

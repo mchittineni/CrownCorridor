@@ -18,7 +18,11 @@ cannot disagree with a table unless the generator is wrong for both.
 Usage
 -----
     python -m experiments.generate_figures          # write paper/figures/*.mmd
-    python -m experiments.generate_figures --check  # exit 1 if regeneration would change them
+    python -m experiments.generate_figures --check  # exit 1 if a figure's substance is stale
+    python -m experiments.generate_figures --check --strict   # ... or its latency labels moved
+
+``--check`` deliberately tolerates a change confined to the two measured latency
+labels; see ``_without_latency`` for why.
 
 Rendering requires the Mermaid CLI, which this repository does not vendor:
 
@@ -34,6 +38,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -50,6 +55,24 @@ COMPARATORS = {
     "tfsec": "HCL lexical scanning",
     "trivy": "HCL scanning, tfsec successor",
 }
+
+
+# The pipeline figure carries two measured latencies as edge labels. Everything else
+# in both figures is deterministic given the recorded results -- counts, versions, which
+# tools ran -- so a difference there means a figure now contradicts a table. Latency is
+# not deterministic: it is a property of the host that measured it, and the measurement
+# workflow says as much in its own summary ("latency in this run is not publishable. It
+# was measured on a shared GitHub-hosted runner"). Comparing it byte-for-byte made the
+# CI gate fail on every scheduled re-measurement, and the remedy it printed -- regenerate
+# and commit -- would have replaced the published idle-machine figures with runner noise.
+# So --check ignores these labels by default, and --strict restores the exact comparison
+# for the machine that produces publishable latency.
+_LATENCY_LABEL = re.compile(r'(pass, )[^"]*')
+
+
+def _without_latency(text: str) -> str:
+    """``text`` with the measured latency edge labels blanked out."""
+    return _LATENCY_LABEL.sub(r"\1<latency>", text)
 
 
 def _load() -> tuple[dict, dict, dict]:
@@ -213,7 +236,15 @@ def main() -> int:
     ap.add_argument(
         "--check",
         action="store_true",
-        help="do not write; exit 1 if regeneration would change any file",
+        help="do not write; exit 1 if regeneration would change a figure's substance",
+    )
+    ap.add_argument(
+        "--strict",
+        action="store_true",
+        help=(
+            "with --check, also fail when only the measured latency labels differ "
+            "(for the idle machine that produces publishable latency)"
+        ),
     )
     args = ap.parse_args()
 
@@ -224,13 +255,17 @@ def main() -> int:
     }
 
     FIGURES.mkdir(parents=True, exist_ok=True)
-    stale = []
+    stale = []  # differs in something a table could contradict
+    latency_only = []  # differs only in the host-dependent latency labels
     for name, content in wanted.items():
         path = FIGURES / name
         current = path.read_text(encoding="utf-8") if path.is_file() else None
         if current == content:
             continue
-        stale.append(name)
+        if current is not None and _without_latency(current) == _without_latency(content):
+            latency_only.append(name)
+        else:
+            stale.append(name)
         if not args.check:
             path.write_text(content, encoding="utf-8")
 
@@ -239,10 +274,24 @@ def main() -> int:
             print("figure sources are stale: " + ", ".join(stale), file=sys.stderr)
             print("run: python -m experiments.generate_figures", file=sys.stderr)
             return 1
+        if latency_only and args.strict:
+            print(
+                "figure latency labels no longer match this run: " + ", ".join(latency_only),
+                file=sys.stderr,
+            )
+            print("run: python -m experiments.generate_figures", file=sys.stderr)
+            return 1
+        if latency_only:
+            print(
+                "figure sources match the recorded results; only the measured latency "
+                "labels differ (" + ", ".join(latency_only) + "), which track the host "
+                "that measured them. Pass --strict to treat that as stale."
+            )
+            return 0
         print("figure sources match the recorded results.")
         return 0
 
-    print(f"wrote {len(stale) or 0} of {len(wanted)} figure sources to {FIGURES}")
+    print(f"wrote {len(stale) + len(latency_only)} of {len(wanted)} figure sources to {FIGURES}")
     for name in wanted:
         rendered = (FIGURES / name).with_suffix(".pdf")
         if not rendered.is_file():
