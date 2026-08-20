@@ -49,7 +49,7 @@ body:
     id: url
     attributes:
       label: Page URL (if relevant)
-      placeholder: https://mchittineni.github.io/CrownCorridor/application/app/
+      placeholder: https://mchittineni.github.io/iacsecbench/
 
   - type: input
     id: env

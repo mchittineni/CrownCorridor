@@ -139,8 +139,14 @@ jobs:
 
       - name: Check Figure Sources Match Measured Results
         run: |
+          # Not --strict. The pipeline figure carries two measured latencies, and this
+          # runner's latency is not publishable (see the summary step below), so a
+          # latency-only difference here is expected and is not a stale figure. This
+          # still fails on anything a table could contradict: corpus counts, tool
+          # versions, which tools ran.
           python -m experiments.generate_figures --check || {
-            echo "::error::paper/figures/*.mmd are stale after this measurement."
+            echo "::error::paper/figures/*.mmd disagree with this measurement in something"
+            echo "::error::other than latency -- a count, a version, or which tools ran."
             echo "::error::Run 'python -m experiments.generate_figures', re-render per"
             echo "::error::paper/figures/README.md, and commit both."
             exit 1

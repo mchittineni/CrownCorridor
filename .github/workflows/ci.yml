@@ -22,21 +22,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Setup Node.js Toolchain
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          node-version: '24'
-          cache: 'npm'
-
-      - name: Install Node Dependencies
-        run: npm ci
-
-      - name: Run ESLint Code Quality Check
-        run: npm run lint
-
-      - name: Run Prettier Formatting Check
-        run: npm run format:check
-
       - name: Setup Python Pipeline Toolchain
         uses: ./.github/actions/setup-pipeline
 
@@ -44,16 +29,13 @@ jobs:
         run: |
           ruff check .
           ruff format --check .
-          flake8 application/api pipeline security_framework evaluation experiments
+          flake8 security_framework evaluation experiments benchmark scripts
 
       - name: Run Security Audit (Bandit)
-        run: bandit -c pyproject.toml -r application/api/ pipeline/ security_framework/ evaluation/ experiments/
-
-      - name: Run Data Integrity & Zero-PII Validator
-        run: python pipeline/validate_data.py
+        run: bandit -c pyproject.toml -r security_framework/ evaluation/ experiments/ benchmark/ scripts/
 
       - name: Run Pytest Suite & Coverage
-        run: pytest security_framework/tests/ pipeline/tests/ application/api/tests/ evaluation/tests/ -v --tb=short --cov=security_framework
+        run: pytest security_framework/tests/ evaluation/tests/ -v --tb=short --cov=security_framework
 
       - name: Check Corpus Admissibility (structural)
         run: python -m evaluation.corpus --report --mode structural
@@ -62,7 +44,7 @@ jobs:
         run: |
           set -u
           status=0
-          for module in evaluation/score.py pipeline/run_experiments.py experiments/generate_charts.py; do
+          for module in evaluation/score.py experiments/generate_charts.py; do
             if python "$module" >/dev/null 2>&1; then
               echo "::error file=${module}::ran without IACSECBENCH_ALLOW_SYNTHETIC=1; the synthetic guard is not in effect"
               status=1

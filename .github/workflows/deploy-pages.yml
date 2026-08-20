@@ -1,8 +1,16 @@
-name: Deploy to GitHub Pages
+name: Deploy Documentation to GitHub Pages
+
+# Publishes docs/ only. The previous version of this workflow also assembled a
+# web portal and a property-record dataset belonging to an unrelated project that
+# shared this repository; both moved out with it, along with the Node toolchain
+# that existed solely to lint and document that portal.
 
 on:
   push:
     branches: [main]
+    paths:
+      - 'docs/**'
+      - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 
 permissions:
@@ -16,71 +24,32 @@ concurrency:
 
 jobs:
   build:
-    name: Build Site for Pages
+    name: Build Documentation Site
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Overlay Data Branches
-        uses: ./.github/actions/overlay-data-branches
-        with:
-          branches: 'data/andhra_pradesh,data/telangana'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Setup Pipeline Toolchain
-        uses: ./.github/actions/setup-pipeline
-
-      - name: Validate Data PII Compliance
-        run: python pipeline/validate_data.py
-
-      - name: Setup Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          node-version: '24'
-          cache: 'npm'
-
-      - name: Install Node Dependencies
-        run: npm ci
-
-      - name: Build JSDoc API Reference
-        run: npx jsdoc -c jsdoc.json --pedantic
-
       - name: Assemble Site Root
         run: |
+          set -eu
           mkdir -p _site
-          cp -r application/app/ _site/app
-          cp -r data/ _site/data
-          cp -r docs/ _site/docs
+          cp -r docs/. _site/
           touch _site/.nojekyll
-          # Place a redirect at the site root → /app/
-          cat > _site/index.html <<'EOF'
-          <!doctype html>
-          <html lang="en">
-            <head>
-              <meta charset="UTF-8" />
-              <meta http-equiv="refresh" content="0; url=app/" />
-              <title>Crown Corridor</title>
-            </head>
-            <body><a href="app/">Crown Corridor Portal →</a></body>
-          </html>
-          EOF
 
       - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4.0.0
         with:
           path: _site
 
   deploy:
-    name: Deploy to GitHub Pages
+    name: Deploy to Pages
     needs: build
     runs-on: ubuntu-latest
-
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5

@@ -46,6 +46,14 @@ versions, and their Mermaid sources are generated from `results/evaluation.json`
 `results/run_manifest.json`. A re-measurement that moves any of those values makes
 the committed sources stale, so the job fails and names the fix.
 
+The gate is deliberately not `--strict`. The pipeline figure also carries two
+per-case latency means, and this job measures on a shared runner whose latency the
+step above declares unpublishable. Comparing those byte-for-byte failed the job on
+every scheduled run, and the fix it printed — regenerate and commit — would have
+overwritten the published idle-machine figures with runner noise. Latency-only
+drift now passes with a notice; a corpus count, a tool version, or a change in
+which tools ran still fails.
+
 This exists because an earlier hand-drawn figure set claimed 345 cases, listed a
 scanner the paper excludes, omitted one it evaluates, and quoted four tool versions
 that no longer matched the manifest. None of it was detectable from the figures,
