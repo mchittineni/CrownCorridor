@@ -99,6 +99,34 @@ sys.exit(0 if 150<=n<=250 else 1)' || echo "  fix the abstract before submitting
 	@for k in $$(grep -o '^@[a-z]*{[^,]*' refs.bib | sed 's/^@[a-z]*{//'); do \
 	  grep -q "$$k" $(TEX).tex || echo "  UNCITED: $$k"; done; echo "  (uncited entries are citation padding; remove them)"
 
+## Refuse to assemble a submission bundle that still carries author placeholders.
+##
+## `check' reports them and `paper' prints a NOTE, but both exit 0, so neither
+## stops anything: the placeholders render as visible bold [TODO(author): ...]
+## boxes in the PDF body and would have travelled to the editorial office intact.
+## The two that exist name the model and access route of the labelling audit's
+## second labeller (Section 4.3), which Springer's policy on methodological use of
+## a language model requires be disclosed, and without which the reported
+## agreement is a property of an unnamed instrument and cannot be re-derived.
+## benchmark/labelling/rater_prompt.txt is checked with them, because the
+## manuscript asserts that file holds the instruction verbatim; while it holds a
+## TODO note instead, that assertion is false.
+.PHONY: nodraft
+nodraft:
+	@fail=0; \
+	if grep -q 'TODO(author)' $(TEX).tex; then \
+	  echo "error: unresolved TODO(author) markers in $(TEX).tex:"; \
+	  grep -n 'TODO(author)' $(TEX).tex | sed 's/^/       /'; \
+	  fail=1; fi; \
+	if grep -q 'TODO(author)' ../benchmark/labelling/rater_prompt.txt 2>/dev/null; then \
+	  echo "error: ../benchmark/labelling/rater_prompt.txt is still the placeholder note."; \
+	  echo "       $(TEX).tex cites it as the verbatim audit instruction."; \
+	  fail=1; fi; \
+	test $$fail -eq 0 || { \
+	  echo; \
+	  echo "       Supply the values, or run 'make dist FORCE_DRAFT=1' for a draft bundle."; \
+	  test -n "$(FORCE_DRAFT)"; }
+
 ## Build a self-contained submission bundle.
 ##
 ## The working tree keeps the result tables in ../results/tables/ so that the
@@ -108,7 +136,7 @@ sys.exit(0 if 150<=n<=250 else 1)' || echo "  fix the abstract before submitting
 ## build dies with six missing-file errors. So the bundle flattens the tables in
 ## and redefines \resulttable to read them locally. The manuscript source is not
 ## edited -- the redefinition is appended to a copy.
-dist: $(TEX).pdf
+dist: nodraft $(TEX).pdf
 	rm -rf $(DIST)
 	mkdir -p $(DIST)/figures $(DIST)/tables
 	cp $(TEX).tex refs.bib $(DIST)/
