@@ -56,10 +56,6 @@ jobs:
       - name: Setup Terraform CLI
         uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
         with:
-          # Pinned to the version recorded in results/run_manifest.json. This said
-          # 1.15.0 while the published measurement was made with 1.15.8, so every run
-          # of this harness produced a manifest that disagreed with the committed one
-          # and the figure gate below failed on a version string, permanently.
           terraform_version: "1.15.8"
           terraform_wrapper: false
 
@@ -69,9 +65,6 @@ jobs:
       - name: Install OPA
         run: |
           set -eu
-          # Pinned to the version recorded in results/run_manifest.json. 1.9.0 is a
-          # different, older release than 1.19.0 -- easy to transpose, and it would
-          # silently measure a different engine than the published results.
           OPA_VERSION="1.19.0"
           curl -fsSL "https://github.com/open-policy-agent/opa/releases/download/v${OPA_VERSION}/opa_linux_amd64_static" -o opa
           chmod +x opa
@@ -99,13 +92,6 @@ jobs:
       - name: Warm Trivy Checks Bundle
         run: |
           set -eu
-          # One real scan with the update enabled populates the checks cache. There
-          # is no download-only subcommand for `trivy config`; the DB flags belong
-          # to the vulnerability scanners, not the misconfiguration one.
-          trivy config benchmark/internal/cases --format json --quiet > /dev/null
-          # Prove the cache is warm by doing what the harness will do. If this
-          # finds nothing, the measurement would have silently scored every case
-          # as clean rather than failing.
           findings=$(trivy config benchmark/internal/cases --format json --quiet --skip-check-update \
             | python -c 'import json,sys; d=json.load(sys.stdin); print(sum(len(r.get("Misconfigurations") or []) for r in d.get("Results") or []))')
           echo "cached bundle reports ${findings} misconfigurations on the corpus"
@@ -117,15 +103,6 @@ jobs:
       - name: Install Checkov
         run: |
           set -eu
-          # Pinned like OPA, tfsec and Trivy above, and for the same reason: this
-          # harness re-runs the published measurement, so the comparator has to be the
-          # comparator that was published. Unpinned, pip installed whatever was current
-          # -- 3.3.13 against the recorded 3.3.8 -- which is a different scanner with
-          # different rules, and the figure gate correctly refused it.
-          #
-          # Upgrading is deliberate: bump this pin, re-run the harness on an idle
-          # machine, regenerate the figures and tables, and update the manuscript's
-          # reported versions in the same change.
           CHECKOV_VERSION="3.3.8"
           pip install "checkov==${CHECKOV_VERSION}"
           checkov --version
@@ -153,14 +130,6 @@ jobs:
 
       - name: Check Figure Sources Match Measured Results
         run: |
-          # The committed figures are generated from a control-criterion run: the
-          # criterion the manuscript reports as primary, and the one the normalization
-          # figure names in its "(primary: ...)" box. A dispatch at resource or any
-          # level measures something those figures do not claim to describe, so
-          # comparing the two reports a stale figure for a run that did exactly what
-          # it was asked to do. Same shape of mistake as the latency labels below:
-          # comparing an artefact from one configuration against a measurement from
-          # another.
           if [ "$INPUT_LEVEL" != "control" ]; then
             echo "::notice::level=${INPUT_LEVEL}: the committed figures describe the"
             echo "::notice::control criterion, so they are not comparable with this run."
@@ -168,11 +137,6 @@ jobs:
             exit 0
           fi
 
-          # Not --strict. The pipeline figure carries two measured latencies, and this
-          # runner's latency is not publishable (see the summary step below), so a
-          # latency-only difference here is expected and is not a stale figure. This
-          # still fails on anything a table could contradict: corpus counts, tool
-          # versions, which tools ran.
           python -m experiments.generate_figures --check || {
             echo "::error::paper/figures/*.mmd disagree with this measurement in something"
             echo "::error::other than latency -- a count, a version, or which tools ran."
