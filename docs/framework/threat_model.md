@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document describes the primary threat model for the IaCSecBench security benchmark framework and the Crown Corridor infrastructure reference architecture.
+This document describes the primary threat model for the IaCSecBench security benchmark framework and the reference deployment under infrastructure/.
 
 ## Assets
 
