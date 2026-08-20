@@ -6,7 +6,7 @@ resource "aws_wafv2_web_acl" "main" {
 
   name = "${var.app_name}-${var.environment}-web-acl"
 
-  description = "CloudFront WAF protecting Crown Corridor against OWASP Top 10, malicious IPs, SQL injection and abuse"
+  description = "CloudFront WAF protecting IaCSecBench against OWASP Top 10, malicious IPs, SQL injection and abuse"
 
   scope = "CLOUDFRONT"
 

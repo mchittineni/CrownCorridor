@@ -39,7 +39,7 @@ variable "app_name" {
 
   type = string
 
-  default = "crowncorridor"
+  default = "iacsecbench"
 }
 
 ##############################################
@@ -154,7 +154,7 @@ variable "tags" {
 
   default = {
 
-    Project = "CrownCorridor"
+    Project = "IaCSecBench"
 
   }
 }

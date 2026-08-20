@@ -20,7 +20,7 @@ variable "environment" {
 variable "app_name" {
   description = "Name of the application"
   type        = string
-  default     = "crowncorridor"
+  default     = "iacsecbench"
 }
 
 #############################################
@@ -113,6 +113,6 @@ variable "tags" {
 
   default = {
     ManagedBy = "Terraform"
-    Project   = "CrownCorridor"
+    Project   = "IaCSecBench"
   }
 }

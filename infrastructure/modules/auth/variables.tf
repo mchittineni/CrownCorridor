@@ -27,7 +27,7 @@ variable "app_name" {
 variable "cognito_domain_prefix" {
   description = "Globally unique Cognito hosted UI domain prefix"
   type        = string
-  default     = "crowncorridor-dev-auth"
+  default     = "iacsecbench-dev-auth"
 
   validation {
     condition     = can(regex("^[a-z0-9-]+$", var.cognito_domain_prefix))

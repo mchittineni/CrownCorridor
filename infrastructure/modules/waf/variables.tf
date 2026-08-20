@@ -51,6 +51,6 @@ variable "tags" {
 
   default = {
     ManagedBy = "Terraform"
-    Project   = "CrownCorridor"
+    Project   = "IaCSecBench"
   }
 }
