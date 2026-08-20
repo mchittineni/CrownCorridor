@@ -29,6 +29,26 @@ Releases are published automatically by [`release-please.yml`](.github/workflows
 - **`MINOR` (x.Y.0)** — New corpus cases, new canonical controls, or new rule mappings (`benchmark/**`, `evaluation/control_map.json`).
 - **`MAJOR` (X.0.0)** — Changes to what a reported number means: the control taxonomy, the matching criteria, or the admissibility gate.
 
+## [2.0.0](https://github.com/mchittineni/iacsecbench/compare/v1.3.1...v2.0.0) (2026-08-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **license:** Update license to MIT
+
+### Features
+
+* **benchmark:** cover all 26 controls and add an unlabelled external subset ([5dc59cd](https://github.com/mchittineni/iacsecbench/commit/5dc59cd7d516bfca8f0080a77d05d5c90488d3c2))
+* **evaluation:** measure the external subset and cut unverified mappings to two ([1117ec6](https://github.com/mchittineni/iacsecbench/commit/1117ec6898fe2b6ff63f18f037e83cb14d356021))
+
+
+### Bug Fixes
+
+* **evaluation:** clear the bandit and pylint findings in the external subset ([f2aea3e](https://github.com/mchittineni/iacsecbench/commit/f2aea3ebd5dbe003c6181167b1b43edab991a2ea))
+* **experiments:** resolve git absolutely and split the fetch out of fetch_one ([eeaa790](https://github.com/mchittineni/iacsecbench/commit/eeaa790d1a2bf4b14e7e2b86f9f113eed4856521))
+* **experiments:** stop the figure gate failing on host-dependent latency ([a95e28b](https://github.com/mchittineni/iacsecbench/commit/a95e28b95a256764ee431e09a24af64bc6f01c5c))
+* **license:** Update license to MIT ([7fb9574](https://github.com/mchittineni/iacsecbench/commit/7fb95742267c3f0e35636f86a6be2c3ef7df36a0))
+
 ## [1.3.1](https://github.com/mchittineni/iacsecbench/compare/v1.3.0...v1.3.1) (2026-08-07)
 
 
