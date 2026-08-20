@@ -1,0 +1,14 @@
+{
+  "benchmark_id": "K8S-NO-RESOURCE-LIMITS-VULN",
+  "expected_result": "FAIL",
+  "canonical_controls": [
+    "K8S_NO_RESOURCE_LIMITS"
+  ],
+  "severity": "MEDIUM",
+  "violations": [
+    {
+      "resource": "kubernetes_pod.target",
+      "control": "K8S_NO_RESOURCE_LIMITS"
+    }
+  ]
+}

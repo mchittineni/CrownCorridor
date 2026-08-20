@@ -55,17 +55,33 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 CASES_DIR = ROOT / "benchmark" / "internal" / "cases"
 
-TERRAFORM_HEADER = """\
-terraform {
-  required_version = ">= 1.9.0"
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
+
+def _header(provider: str, source: str, version: str) -> str:
+    return (
+        "terraform {\n"
+        '  required_version = ">= 1.9.0"\n'
+        "  required_providers {\n"
+        f"    {provider} = {{\n"
+        f'      source  = "{source}"\n'
+        f'      version = "{version}"\n'
+        "    }\n"
+        "  }\n"
+        "}\n"
+    )
+
+
+# One header per provider a case may declare. The corpus was AWS-only until the
+# Kubernetes controls were added; those govern resources the AWS provider cannot
+# express, so they declare the Kubernetes provider instead. Any provider named
+# here must also be vendored by evaluation/tfenv.py, or `terraform init` against
+# the offline mirror fails and the case is rejected as invalid HCL rather than
+# reported as needing a provider.
+HEADERS = {
+    "aws": _header("aws", "hashicorp/aws", "~> 5.0"),
+    "kubernetes": _header("kubernetes", "hashicorp/kubernetes", "~> 2.0"),
 }
-"""
+
+TERRAFORM_HEADER = HEADERS["aws"]
 
 VARIABLES_TF = """\
 variable "name_prefix" {
@@ -106,6 +122,8 @@ class ControlSpec:
     resources: list[str] = field(default_factory=list)
     # Terraform language features exercised, for the complexity table.
     features: list[str] = field(default_factory=list)
+    # Provider the case declares. Must be a key of HEADERS.
+    provider: str = "aws"
 
 
 # --------------------------------------------------------------------------- #
@@ -1230,6 +1248,262 @@ resource "aws_lambda_function" "target" {
 }
 """,
     ),
+    # ------------------------------ serverless ---------------------------- #
+    # Added to close a coverage gap: the control existed in the map with no case
+    # exercising it, so no tool could be credited or faulted on it. All three
+    # source-level scanners were confirmed to discriminate this pair before it
+    # was added -- Checkov CKV_AWS_59, tfsec aws-api-gateway-no-public-access,
+    # Trivy AVD-AWS-0004 fire on the vulnerable variant and none on the compliant.
+    ControlSpec(
+        control_id="SRV_NO_API_AUTHORIZATION",
+        domain="SRV",
+        cis_control="n/a",
+        severity="CRITICAL",
+        title="API method authorization",
+        vulnerable_summary="API method accepts unauthenticated invocation.",
+        compliant_summary="API method requires IAM authorization.",
+        resources=["aws_api_gateway_method.target"],
+        features=["resource references"],
+        vulnerable_hcl="""
+resource "aws_api_gateway_rest_api" "target" {
+  name = "${var.name_prefix}-srv-api"
+}
+
+resource "aws_api_gateway_resource" "target" {
+  rest_api_id = aws_api_gateway_rest_api.target.id
+  parent_id   = aws_api_gateway_rest_api.target.root_resource_id
+  path_part   = "items"
+}
+
+resource "aws_api_gateway_method" "target" {
+  rest_api_id   = aws_api_gateway_rest_api.target.id
+  resource_id   = aws_api_gateway_resource.target.id
+  http_method   = "GET"
+  authorization = "NONE"
+}
+""",
+        compliant_hcl="""
+resource "aws_api_gateway_rest_api" "target" {
+  name = "${var.name_prefix}-srv-api"
+}
+
+resource "aws_api_gateway_resource" "target" {
+  rest_api_id = aws_api_gateway_rest_api.target.id
+  parent_id   = aws_api_gateway_rest_api.target.root_resource_id
+  path_part   = "items"
+}
+
+resource "aws_api_gateway_method" "target" {
+  rest_api_id   = aws_api_gateway_rest_api.target.id
+  resource_id   = aws_api_gateway_resource.target.id
+  http_method   = "GET"
+  authorization = "AWS_IAM"
+}
+""",
+    ),
+    # ------------------------------ kubernetes ---------------------------- #
+    # These three controls govern Kubernetes workload settings, which the AWS
+    # provider cannot express, so they declare the Kubernetes provider.
+    #
+    # IMPORTANT, and measured rather than assumed: neither tfsec 1.28.14 nor
+    # Trivy 0.73.0 emits any finding on any `kubernetes_*` Terraform resource --
+    # not a different finding, none at all. Only Checkov inspects them. A
+    # non-detection by those two here is therefore a scope limitation, not a
+    # missed detection, and must not be read off the confusion matrix as though
+    # it were one. See "Tool scope" in benchmark/README.md.
+    ControlSpec(
+        control_id="K8S_PRIVILEGED_CONTAINER",
+        domain="K8S",
+        cis_control="n/a",
+        severity="CRITICAL",
+        title="Container privileged mode",
+        vulnerable_summary="Container requests privileged execution.",
+        compliant_summary="Container runs unprivileged.",
+        resources=["kubernetes_pod.target"],
+        features=["nested blocks"],
+        provider="kubernetes",
+        vulnerable_hcl="""
+resource "kubernetes_pod" "target" {
+  metadata {
+    name      = "${var.name_prefix}-k8s-privileged"
+    namespace = var.environment
+  }
+
+  spec {
+    container {
+      name  = "app"
+      image = "nginx:1.27.3"
+
+      security_context {
+        privileged = true
+      }
+
+      resources {
+        limits = {
+          cpu    = "500m"
+          memory = "512Mi"
+        }
+      }
+    }
+  }
+}
+""",
+        compliant_hcl="""
+resource "kubernetes_pod" "target" {
+  metadata {
+    name      = "${var.name_prefix}-k8s-privileged"
+    namespace = var.environment
+  }
+
+  spec {
+    container {
+      name  = "app"
+      image = "nginx:1.27.3"
+
+      security_context {
+        privileged = false
+      }
+
+      resources {
+        limits = {
+          cpu    = "500m"
+          memory = "512Mi"
+        }
+      }
+    }
+  }
+}
+""",
+    ),
+    ControlSpec(
+        control_id="K8S_ROOT_CONTAINER",
+        domain="K8S",
+        cis_control="n/a",
+        severity="HIGH",
+        title="Root container admission",
+        vulnerable_summary="Policy admits containers running as any user, including root.",
+        compliant_summary="Policy requires containers to run as a non-root user.",
+        resources=["kubernetes_pod_security_policy.target"],
+        features=["nested blocks"],
+        provider="kubernetes",
+        # Checkov's root-container check (CKV_K8S_6) is bound to
+        # kubernetes_pod_security_policy, not kubernetes_pod: setting
+        # run_as_non_root = false on a pod fires nothing at all. The pair is
+        # written against the resource the check actually inspects.
+        vulnerable_hcl="""
+resource "kubernetes_pod_security_policy" "target" {
+  metadata {
+    name = "${var.name_prefix}-k8s-root"
+  }
+
+  spec {
+    privileged                 = false
+    allow_privilege_escalation = false
+
+    run_as_user {
+      rule = "RunAsAny"
+    }
+
+    fs_group {
+      rule = "RunAsAny"
+    }
+
+    supplemental_groups {
+      rule = "RunAsAny"
+    }
+
+    se_linux {
+      rule = "RunAsAny"
+    }
+  }
+}
+""",
+        compliant_hcl="""
+resource "kubernetes_pod_security_policy" "target" {
+  metadata {
+    name = "${var.name_prefix}-k8s-root"
+  }
+
+  spec {
+    privileged                 = false
+    allow_privilege_escalation = false
+
+    run_as_user {
+      rule = "MustRunAsNonRoot"
+    }
+
+    fs_group {
+      rule = "RunAsAny"
+    }
+
+    supplemental_groups {
+      rule = "RunAsAny"
+    }
+
+    se_linux {
+      rule = "RunAsAny"
+    }
+  }
+}
+""",
+    ),
+    ControlSpec(
+        control_id="K8S_NO_RESOURCE_LIMITS",
+        domain="K8S",
+        cis_control="n/a",
+        severity="MEDIUM",
+        title="Container resource limits",
+        vulnerable_summary="Container declares no CPU or memory limit.",
+        compliant_summary="Container declares both a CPU and a memory limit.",
+        resources=["kubernetes_pod.target"],
+        features=["nested blocks"],
+        provider="kubernetes",
+        vulnerable_hcl="""
+resource "kubernetes_pod" "target" {
+  metadata {
+    name      = "${var.name_prefix}-k8s-limits"
+    namespace = var.environment
+  }
+
+  spec {
+    container {
+      name  = "app"
+      image = "nginx:1.27.3"
+
+      security_context {
+        privileged = false
+      }
+    }
+  }
+}
+""",
+        compliant_hcl="""
+resource "kubernetes_pod" "target" {
+  metadata {
+    name      = "${var.name_prefix}-k8s-limits"
+    namespace = var.environment
+  }
+
+  spec {
+    container {
+      name  = "app"
+      image = "nginx:1.27.3"
+
+      security_context {
+        privileged = false
+      }
+
+      resources {
+        limits = {
+          cpu    = "500m"
+          memory = "512Mi"
+        }
+      }
+    }
+  }
+}
+""",
+    ),
 ]
 
 
@@ -1261,7 +1535,7 @@ def render_case(spec: ControlSpec, variant: str) -> dict[str, str]:
         f"# Generated by benchmark/generate_corpus.py. Edit the specification\n"
         f"# there rather than this file, so the vulnerable/compliant pair stays\n"
         f"# minimal and the annotation stays consistent.\n"
-        f"\n{TERRAFORM_HEADER}{body}"
+        f"\n{HEADERS[spec.provider]}{body}"
     )
 
     metadata = {
@@ -1274,7 +1548,7 @@ def render_case(spec: ControlSpec, variant: str) -> dict[str, str]:
         "benchmark_category": spec.domain,
         "cis_control": spec.cis_control,
         "severity": spec.severity if is_vulnerable else "NONE",
-        "provider": "aws",
+        "provider": spec.provider,
         "benchmark_features": spec.features,
         "pair_id": spec.control_id,
         "pair_variant": variant,

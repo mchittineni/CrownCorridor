@@ -1,0 +1,9 @@
+{
+  "benchmark_id": "K8S-NO-RESOURCE-LIMITS-SAFE",
+  "expected_result": "PASS",
+  "canonical_controls": [
+    "K8S_NO_RESOURCE_LIMITS"
+  ],
+  "severity": "NONE",
+  "violations": []
+}

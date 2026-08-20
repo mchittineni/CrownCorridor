@@ -1,0 +1,27 @@
+{
+  "id": "K8S-ROOT-CONTAINER-VULN",
+  "title": "Root container admission (VIOLATION)",
+  "description": "Policy admits containers running as any user, including root.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "K8S_ROOT_CONTAINER"
+  ],
+  "benchmark_category": "K8S",
+  "cis_control": "n/a",
+  "severity": "HIGH",
+  "provider": "kubernetes",
+  "benchmark_features": [
+    "nested blocks"
+  ],
+  "pair_id": "K8S_ROOT_CONTAINER",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "kubernetes_pod_security_policy.target",
+      "control": "K8S_ROOT_CONTAINER",
+      "description": "Policy admits containers running as any user, including root."
+    }
+  ]
+}

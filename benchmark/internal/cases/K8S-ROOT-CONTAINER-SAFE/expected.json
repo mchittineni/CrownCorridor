@@ -1,0 +1,9 @@
+{
+  "benchmark_id": "K8S-ROOT-CONTAINER-SAFE",
+  "expected_result": "PASS",
+  "canonical_controls": [
+    "K8S_ROOT_CONTAINER"
+  ],
+  "severity": "NONE",
+  "violations": []
+}

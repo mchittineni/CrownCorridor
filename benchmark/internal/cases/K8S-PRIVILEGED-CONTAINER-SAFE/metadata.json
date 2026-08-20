@@ -1,0 +1,20 @@
+{
+  "id": "K8S-PRIVILEGED-CONTAINER-SAFE",
+  "title": "Container privileged mode (COMPLIANT)",
+  "description": "Container runs unprivileged.",
+  "expected_result": "PASS",
+  "has_violation": false,
+  "canonical_controls": [
+    "K8S_PRIVILEGED_CONTAINER"
+  ],
+  "benchmark_category": "K8S",
+  "cis_control": "n/a",
+  "severity": "NONE",
+  "provider": "kubernetes",
+  "benchmark_features": [
+    "nested blocks"
+  ],
+  "pair_id": "K8S_PRIVILEGED_CONTAINER",
+  "pair_variant": "compliant",
+  "generated_by": "benchmark/generate_corpus.py"
+}

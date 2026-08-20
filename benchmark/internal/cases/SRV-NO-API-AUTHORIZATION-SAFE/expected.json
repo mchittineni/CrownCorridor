@@ -1,0 +1,9 @@
+{
+  "benchmark_id": "SRV-NO-API-AUTHORIZATION-SAFE",
+  "expected_result": "PASS",
+  "canonical_controls": [
+    "SRV_NO_API_AUTHORIZATION"
+  ],
+  "severity": "NONE",
+  "violations": []
+}

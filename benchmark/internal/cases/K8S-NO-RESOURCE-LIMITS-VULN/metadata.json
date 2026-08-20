@@ -1,0 +1,27 @@
+{
+  "id": "K8S-NO-RESOURCE-LIMITS-VULN",
+  "title": "Container resource limits (VIOLATION)",
+  "description": "Container declares no CPU or memory limit.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "K8S_NO_RESOURCE_LIMITS"
+  ],
+  "benchmark_category": "K8S",
+  "cis_control": "n/a",
+  "severity": "MEDIUM",
+  "provider": "kubernetes",
+  "benchmark_features": [
+    "nested blocks"
+  ],
+  "pair_id": "K8S_NO_RESOURCE_LIMITS",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "kubernetes_pod.target",
+      "control": "K8S_NO_RESOURCE_LIMITS",
+      "description": "Container declares no CPU or memory limit."
+    }
+  ]
+}

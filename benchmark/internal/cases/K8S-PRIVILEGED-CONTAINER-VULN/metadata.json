@@ -1,0 +1,27 @@
+{
+  "id": "K8S-PRIVILEGED-CONTAINER-VULN",
+  "title": "Container privileged mode (VIOLATION)",
+  "description": "Container requests privileged execution.",
+  "expected_result": "FAIL",
+  "has_violation": true,
+  "canonical_controls": [
+    "K8S_PRIVILEGED_CONTAINER"
+  ],
+  "benchmark_category": "K8S",
+  "cis_control": "n/a",
+  "severity": "CRITICAL",
+  "provider": "kubernetes",
+  "benchmark_features": [
+    "nested blocks"
+  ],
+  "pair_id": "K8S_PRIVILEGED_CONTAINER",
+  "pair_variant": "vulnerable",
+  "generated_by": "benchmark/generate_corpus.py",
+  "expected_violations": [
+    {
+      "resource": "kubernetes_pod.target",
+      "control": "K8S_PRIVILEGED_CONTAINER",
+      "description": "Container requests privileged execution."
+    }
+  ]
+}

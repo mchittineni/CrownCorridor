@@ -1,0 +1,20 @@
+{
+  "id": "K8S-NO-RESOURCE-LIMITS-SAFE",
+  "title": "Container resource limits (COMPLIANT)",
+  "description": "Container declares both a CPU and a memory limit.",
+  "expected_result": "PASS",
+  "has_violation": false,
+  "canonical_controls": [
+    "K8S_NO_RESOURCE_LIMITS"
+  ],
+  "benchmark_category": "K8S",
+  "cis_control": "n/a",
+  "severity": "NONE",
+  "provider": "kubernetes",
+  "benchmark_features": [
+    "nested blocks"
+  ],
+  "pair_id": "K8S_NO_RESOURCE_LIMITS",
+  "pair_variant": "compliant",
+  "generated_by": "benchmark/generate_corpus.py"
+}
