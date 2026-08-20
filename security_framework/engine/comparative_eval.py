@@ -5,7 +5,7 @@ Compares IaC evaluation approaches across standard security benchmarks, evaluati
 - tfsec (HCL AST security scanner)
 - Sentinel / OPA Rego (Policy-as-code evaluation engines)
 - Terratest / Native HCL (.tftest.hcl) (Integration test suites)
-- Crown Corridor Framework Engine (Native combined policy, test & zero-PII scanner)
+- IaCSecBench Framework Engine (Native combined policy, test & zero-PII scanner)
 """
 
 import json

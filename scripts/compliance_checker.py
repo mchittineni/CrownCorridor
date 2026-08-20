@@ -11,7 +11,7 @@ CHECKS = {
         ("security_policy", ["SECURITY.md", "security_framework"]),
         ("ci_security_checks", [".github/workflows/ci.yml"]),
         ("precommit_hooks", [".pre-commit-config.yaml"]),
-        ("secret_scanning", ["pipeline/validate_iac.py", "security_framework/engine/engine.py"]),
+        ("secret_scanning", ["security_framework/engine/engine.py"]),
     ],
     "pci-dss": [
         ("security_policy", ["SECURITY.md"]),
@@ -26,7 +26,7 @@ CHECKS = {
     ],
     "gdpr": [
         ("privacy_policy", ["SECURITY.md"]),
-        ("data_inventory", ["data/", "benchmark/", "infrastructure/"]),
+        ("data_inventory", ["benchmark/", "infrastructure/"]),
         ("incident_response", ["SECURITY.md"]),
     ],
 }

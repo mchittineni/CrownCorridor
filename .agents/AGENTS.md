@@ -1,4 +1,4 @@
-# Crown Corridor — Workspace Coding & Quality Rules
+# IaCSecBench — Workspace Coding & Quality Rules
 
 ## 1. Code Formatting & Style Standards
 
