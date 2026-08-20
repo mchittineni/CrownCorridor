@@ -74,6 +74,41 @@ test to independently derived values rather than to its own output.
 - Maps heterogeneous scanner output formats (SARIF, JSON, custom CLI text) into a canonical security finding taxonomy:
   $$\mathcal{F} = \langle \text{Case\_ID}, \text{Domain}, \text{Severity}, \text{Resource\_URN}, \text{Status} \rangle$$
 
+### 4. Unlabelled External Subset (`external.py`)
+
+Measures the three source-level scanners over the 25 third-party repositories
+pinned in `benchmark/external/aws_samples/manifest.json`.
+
+**These repositories carry no ground-truth label, and that is the point.** Nothing
+in this module computes accuracy, precision, recall or a confusion matrix, and its
+output must never be merged into `results/evaluation.json`; there is no key to
+score against, so any such figure would be invented. `test_external.py` asserts
+that no scored-metric field appears in the recorded output.
+
+What it does measure needs no key:
+
+| Measure | Question it answers |
+| --- | --- |
+| Alerts per kLOC | How much triage does adopting this scanner cost on real code? |
+| Unmapped share | How much of a tool's real-world output falls outside the 26-control map? |
+| In-module share | Does the scanner see past the top-level directory at all? |
+| Pairwise Jaccard | How far do the scanners corroborate each other, by control and by resource? |
+
+It deliberately does **not** reuse `run_baselines.run_tool_on_case`, which copies
+`case_dir.glob("*.tf")` — flat, non-recursive — into a temporary directory. On a
+real repository that silently discards every module subtree, which is exactly the
+structure under test. The scanners are invoked on the work tree in place, using the
+same command flags `TOOL_SPECS` records.
+
+```bash
+python -m experiments.fetch_external     # materialise the pinned commits first
+python -m evaluation.external            # measure; writes results + two tables
+```
+
+Output is byte-reproducible: scan duration is neither timed nor recorded, because
+latency describes the measuring host rather than the subset, and every other field
+is deterministic.
+
 ---
 
 ## 🧪 Testing & Execution

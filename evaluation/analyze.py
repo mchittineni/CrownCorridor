@@ -510,7 +510,9 @@ def main(argv: list[str] | None = None) -> int:
             if status[tool] == "run"
         },
         "pairwise_mcnemar": comparisons,
-        "caveats": _caveats(n_negatives, unverified, total_unmapped, total_unmapped_on_missed),
+        "caveats": _caveats(
+            n_negatives, unverified, total_unmapped, total_unmapped_on_missed, control_map
+        ),
     }
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     # Trailing newline for the same reason the tables below carry one: without it
@@ -635,13 +637,44 @@ def emit_leaderboard_csv(
     return "\n".join(lines)
 
 
+def _scope_caveats(control_map: Any) -> list[str]:
+    """Caveats for controls a tool cannot detect because it does not read the input.
+
+    This is not the same failure as missing a misconfiguration, and the confusion
+    matrix cannot tell them apart: both appear as a non-detection, and
+    :func:`normalize.score_case` counts both as a false negative. The Kubernetes
+    controls are the live case -- neither tfsec nor Trivy emits any finding on any
+    ``kubernetes_*`` Terraform resource, so their zero on those cases measures
+    scope, not accuracy. Stating it is the difference between a reader concluding
+    "Trivy missed this" and "Trivy does not look at this".
+    """
+    by_tool: dict[str, list[str]] = {}
+    for control_id, spec in control_map.controls.items():
+        for tool in spec.get("inapplicable_tools") or []:
+            by_tool.setdefault(tool, []).append(control_id)
+
+    out = []
+    for tool, controls in sorted(by_tool.items()):
+        listed = ", ".join(sorted(controls))
+        out.append(
+            f"{tool} is out of scope for {len(controls)} controls ({listed}): it emits "
+            "no finding on the resources they govern, so its non-detections there "
+            "measure scope rather than recall and must not be read as missed "
+            "detections."
+        )
+    return out
+
+
 def _caveats(
     n_negatives: int,
     unverified: list[str],
     n_unmapped: int,
     n_unmapped_on_missed: int,
+    control_map: Any | None = None,
 ) -> list[str]:
     caveats = []
+    if control_map is not None:
+        caveats.extend(_scope_caveats(control_map))
     if n_negatives == 0:
         caveats.append(
             "The corpus has no compliant baselines, so no false-positive rate, "
