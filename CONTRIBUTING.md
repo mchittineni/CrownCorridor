@@ -1,6 +1,6 @@
-# Contributing to IaCSecBench & Crown Corridor
+# Contributing to IaCSecBench
 
-Thank you for your interest in contributing to **IaCSecBench: An Infrastructure-as-Code Security Benchmark Framework** and the **Crown Corridor** platform!
+Thank you for your interest in contributing to **IaCSecBench: An Infrastructure-as-Code Security Benchmark Framework**!
 
 ---
 

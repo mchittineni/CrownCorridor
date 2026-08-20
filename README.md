@@ -1,13 +1,12 @@
-# IaCSecBench & Crown Corridor
+# IaCSecBench
 
 > **An Open Framework and Empirical Benchmark for Evaluating Infrastructure-as-Code Security Gates**
-> _Validated via Crown Corridor — A Next-Generation Geospatial Property Discovery Portal for Andhra Pradesh & Telangana._
 
 [![CI](https://github.com/mchittineni/IaCSecBench/actions/workflows/ci.yml/badge.svg)](https://github.com/mchittineni/IaCSecBench/actions/workflows/ci.yml)
 [![Infra CI](https://github.com/mchittineni/IaCSecBench/actions/workflows/infra-ci.yml/badge.svg)](https://github.com/mchittineni/IaCSecBench/actions/workflows/infra-ci.yml)
 [![Benchmark](https://github.com/mchittineni/IaCSecBench/actions/workflows/benchmark.yml/badge.svg)](https://github.com/mchittineni/IaCSecBench/actions/workflows/benchmark.yml)
 [![Deploy](https://github.com/mchittineni/IaCSecBench/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/mchittineni/IaCSecBench/actions/workflows/deploy-pages.yml)
-[![Control coverage 22/26](https://img.shields.io/badge/control_coverage-22%2F26_exercised-yellow.svg)](evaluation/control_map.json)
+[![Control coverage 26/26](https://img.shields.io/badge/control_coverage-26%2F26_exercised-brightgreen.svg)](evaluation/control_map.json)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21645016-purple.svg)](https://doi.org/10.5281/zenodo.21645016)
 
 <!-- The four badges above are the live workflow-status ones plus two measured facts.
@@ -15,13 +14,13 @@
      "Benchmark Reproducible" were hardcoded literals that stayed green regardless of
      the actual state, "Security Zero-PII Validated" asserted an outcome no badge can
      establish, and "IaC Coverage 100%" was simply false -- 22 of 26 canonical controls
-     are exercised by the corpus and 8 rule mappings remain unverified. A badge that
+     were exercised by the corpus at the time and rule mappings remained unverified. A badge that
      cannot change is decoration, and one that overstates coverage is worse. The
      coverage badge above is a hand-maintained number; re-derive it with
      `python -m evaluation.analyze` and see `results/evaluation.json`. -->
 
-> **Measured state.** 48 admissible cases (26 vulnerable / 22 compliant); 22 of 26
-> canonical controls exercised; 8 rule mappings unverified. Every figure in
+> **Measured state.** 56 admissible cases (30 vulnerable / 26 compliant); all 26
+> canonical controls exercised; 2 rule mappings unverified. Every figure in
 > `results/` and in the paper is generated from recorded scanner output by
 > `evaluation/analyze.py` — see [`results/`](results/) and the caveat list in
 > `results/evaluation.json`.
@@ -30,10 +29,18 @@
 
 ## 📌 Project Overview
 
-Crown Corridor contains two independent components:
+IaCSecBench is an open-source Infrastructure-as-Code security evaluation framework
+that benchmarks static analysis tools, policy engines, and secret detection suites
+against a labelled corpus, under a mechanically enforced admission procedure.
 
-1. **Cloud Application Platform (Crown Corridor)**: A real estate discovery portal featuring verified listings, geospatial maps, state-modular SRO property sale histories, CAGR analytics, and an AWS Terraform reference architecture.
-2. **IaCSecBench Security Evaluation Framework**: An open-source Infrastructure-as-Code security evaluation framework designed to benchmark static analysis tools, policy engines, and secret detection suites.
+It guards a reference deployment under [`infrastructure/`](infrastructure/) — an
+AWS Terraform stack with native `terraform test` suites — which is what the
+pipeline's module-testing layer validates.
+
+> **Note.** This repository previously also held a real-estate discovery portal
+> and its data pipeline, developed alongside the benchmark but sharing no code
+> with it. That project now lives separately as `crowncorridor`; nothing it
+> contained produced a number reported here.
 
 ---
 
@@ -50,287 +57,113 @@ This repository provides **IaCSecBench**, a unified evaluation framework to meas
 
 ---
 
-## ✨ Features
+## ✨ What it provides
 
-| Feature                                     | Description                                                                                                                                                          |
-| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 🔴 **Live SRO Feed**                        | Real-time property registration ticker with pause/resume and speed controls                                                                                          |
-| 🚗 **Search by Commute**                    | Filter properties by driving time to workplace hubs (HITECH City, Financial District, Amaravati)                                                                     |
-| 📈 **Regional Market Trends**               | Time-series price trajectory charts (2016-2026) and top appreciating localities leaderboard                                                                          |
-| 🔍 **Global Smart Search**                  | Persistent header bar with instant autocomplete for properties, listings, and districts                                                                              |
-| ⚖️ **Property Comparison**                  | Side-by-side spec comparison modal for up to 3 properties (Valuation, CAGR, Rate/SqFt, Metro)                                                                        |
-| 🏰 **Complete State Property History**      | Full state historical property records for 24,484 villages (15,197 AP, 9,287 TS) across all 61 districts                                                             |
-| 🗂️ **Hierarchical Location Query**          | Filter properties via State ➔ District ➔ Mandal / Taluk ➔ Property List (Fast-Read API & Web UI)                                                                     |
-| 🖨️ **Valuation Audit Report**               | One-click printable PDF/audit summary with transaction logs and infrastructure scores                                                                                |
-| 📍 **Infrastructure Explorer**              | Nearby schools, hospitals, metro/railway stations with Focus Map and Google Maps turn-by-turn links                                                                  |
-| 🔒 **Zero-PII Compliance**                  | Strict privacy protections — no customer names or personal data stored (automated CI check)                                                                          |
-| 🏗️ **AWS Terraform Reference Architecture** | Modular Terraform (>= 1.15.0, AWS ~> 6.56.0) reference architecture with WAF, CloudFront, API Gateway, Fargate & PostGIS                                             |
-| 🛡️ **CIS AWS Benchmark Security**           | OPA / Rego policy engine, VPC Flow Logs, S3 TLS-Only, ALB Header Dropping, and native `.tftest.hcl` suites                                                           |
-| 🔬 **IaCSecBench Evaluation Framework**     | Open-source framework, comparative benchmarking (Checkov, tfsec, Trivy, plan-level OPA), public datasets & reproducible experiments (`experiments/run_baselines.sh`) |
-
----
-
-## 🏛️ Infrastructure Architecture Diagram
-
-> [!NOTE]
-> The primary production deployment for Crown Corridor is hosted on **GitHub Pages** (built via `.github/workflows/deploy-pages.yml`). The AWS cloud topology depicted below codified under `infrastructure/` represents a validated **Reference Architecture** for production scale-out.
-
-```
-[ Web / Mobile Clients ]
-           │
-           ▼
-[ AWS WAF Web ACL ] (Rate Limiting, OWASP Top 10)
-           │
-           ▼
-[ Amazon CloudFront CDN ] (TLS 1.3, HTTPS Redirection)
-           │
- ┌─────────┴─────────────────────────────┐
- ▼                                       ▼
-[ Amazon S3 (Web UI) ]        [ Amazon API Gateway v2 ]
-(KMS Encrypted, OAC, TLS)     (Cognito JWT Authorizer, Throttling, CORS)
-                                         │
-                                         ▼
-                            [ AWS ECS Fargate Cluster ]
-                            ┌────────────────────────────┐
-                            │ • FastAPI Microservice     │
-                            │ • Typesense (EFS Volume)   │
-                            └────────────┬───────────────┘
-                                         │
-                                         ▼
-                           [ Amazon RDS PostGIS (Private) ]
-                           (Multi-AZ Subnet Group, KMS Encrypted)
-
-─────────────────────────────────────────────────────────────────────────────────────────────
-                             SECURITY, AUDITING & EVENT LAYER
-─────────────────────────────────────────────────────────────────────────────────────────────
-┌──────────────────┐  ┌─────────────────┐  ┌──────────────────┐  ┌──────────────────┐
-│  AWS CloudTrail  │  │  AWS GuardDuty  │  │ AWS Security Hub │  │ AWS Secrets Mgr  │
-│ (API Audit Logs) │  │(Threat Detection│  │ (Posture & CIS)  │  │ (DB Creds + KMS) │
-└────────┬─────────┘  └────────┬────────┘  └────────┬─────────┘  └────────┬─────────┘
-         │                     │                    │                     │
-         └─────────────────────┴─────────┬──────────┴─────────────────────┘
-                                         ▼
-                              [ Amazon EventBridge ]
-                                         │
-                 ┌───────────────────────┴───────────────────────┐
-                 ▼                                               ▼
-   [ Weekly ETL Pipeline Cron ]                    [ SNS Alerting Topic ]
-```
+| Capability | Description |
+| --- | --- |
+| 🎯 **Canonical control taxonomy** | 26 controls that heterogeneous scanner output is normalized onto, so tools reporting different rule identifiers for the same misconfiguration are compared on equal terms ([`evaluation/control_map.json`](evaluation/control_map.json)) |
+| 🧪 **Labelled corpus** | 56 admissible cases — 30 vulnerable, 26 compliant — each a minimal vulnerable/compliant pair generated from a specification, plus four third-party CIS examples |
+| 🚪 **Mechanical admission gate** | Every case must carry a ground-truth label, resolve to a canonical control, and pass `terraform init` + `validate` before it can enter a measurement |
+| 📐 **Three matching criteria** | Control attribution, resource attribution, and any-finding — reported side by side, because which one is chosen moves apparent recall |
+| 📊 **Exact statistics** | Clopper–Pearson intervals and exact McNemar tests under Holm–Bonferroni correction; metrics that are not estimable are reported as such rather than as zero |
+| 🔬 **Unlabelled external subset** | 25 third-party AWS Terraform repositories pinned by commit, used for alert volume, cross-tool agreement, and module-boundary reach — never for accuracy |
+| 🏗️ **Three-layer reference pipeline** | Repository-edge scanning, native `terraform test` module validation, and plan-level OPA policy over compiled plan JSON |
+| ♻️ **Generated artefacts only** | Every table and figure in the manuscript is emitted from recorded scanner output; nothing is hand-copied |
 
 ---
 
 ## 📁 Project Structure
 
 ```
-CrownCorridor/
-├── application/             # Application platform (SPA Web UI & FastAPI microservice)
-│   ├── app/                 # Front-end SPA web application (index.html, portal.js, styles.css)
-│   └── api/                 # Fast-Read API Microservice (main.py, search.py)
+iacsecbench/
+├── benchmark/               # The corpus
+│   ├── generate_corpus.py   # case specifications — edit these, not the emitted cases
+│   ├── internal/cases/      # 52 generated vulnerable/compliant cases
+│   ├── external/            # third-party collections, incl. the unlabelled subset manifest
+│   └── labelling/           # blind second-rater record for the labelling audit
 │
-├── infrastructure/          # AWS Terraform Reference Architecture (>= 1.15.0, AWS ~> 6.56.0)
-│   ├── main.tf, outputs.tf, variables.tf
-│   ├── modules/             # Child modules (vpc, security, waf, cdn, auth, api_gateway, compute, database, secrets_ssm, events_alerting)
-│   └── tests/               # Native Terraform test suite (.tftest.hcl)
+├── evaluation/              # Normalization, scoring, statistics, table emission
+│   ├── control_map.json     # native rule identifiers → canonical controls
+│   ├── corpus.py            # loading and the admission gate
+│   ├── normalize.py         # per-tool parsers and case scoring
+│   ├── analyze.py           # confusion matrices, intervals, tests, LaTeX tables
+│   ├── external.py          # the unlabelled subset measurement
+│   ├── stats.py             # Clopper–Pearson, exact McNemar, Holm–Bonferroni
+│   └── tfenv.py             # offline provider mirror
 │
-├── security_framework/      # IaCSecBench Security Evaluation Engine
-│   ├── engine/              # engine.py, comparative_eval.py
-│   ├── policies/            # OPA / Rego policy definitions
-│   └── tests/               # Framework unit tests
+├── experiments/             # Measurement entry points
+│   ├── run_baselines.sh     # the only script that produces results
+│   ├── generate_figures.py  # figure sources, generated from recorded results
+│   └── fetch_external.py    # materialises the pinned external subset
 │
-├── evaluation/              # Measurement harness (this is the pipeline that produces results)
-│   ├── corpus.py            # Corpus admissibility: label, provider and validation checks
-│   ├── run_baselines.py     # Executes each installed scanner; records raw output & latency
-│   ├── normalize.py         # Maps native rule IDs onto the canonical control taxonomy
-│   ├── control_map.json     # Native rule ID -> canonical control, with per-entry verified flag
-│   ├── stats.py             # Clopper-Pearson, exact McNemar, Holm-Bonferroni, bootstrap, MCC
-│   ├── analyze.py           # Aggregation; emits results/tables/*.tex and leaderboard/results.csv
-│   ├── metrics.py           # Precision, Recall, Accuracy, F1, FPR, FNR calculation engine
-│   ├── synthetic_guard.py   # One opt-in gate shared by every stage that fabricates numbers
-│   └── score.py             # DEPRECATED: fabricates a leaderboard from assumed rates; gated
-│
-├── benchmark/               # Benchmark Datasets & Scenarios
-│   ├── internal/            # IaCSecBench Controlled Benchmark (cases/, one dir per case)
-│   ├── external/            # External collections. Each metadata.json DECLARES more
-│   │   │                    # cases than there are configurations on disk; the gap is
-│   │   │                    # reported, not hidden -- see results/corpus_report.json.
-│   │   ├── terraform_registry/ # declares 50; modules/ is empty
-│   │   ├── secureflag/      # declares 75; terraform/ is empty
-│   │   └── cis_examples/    # declares 50; aws/ holds 4 usable configurations
-│   └── golden_results/      # Golden baseline JSON outputs for Checkov, tfsec, Trivy, OPA, IaCSecBench
-│
-├── pipeline/                # Zero-PII Data Pipeline & Validators
-│   ├── fetch_sro.py         # SRO data fetcher with sanitize_and_anonymize_record() PII scrubbing
-│   ├── validate_data.py     # Eight-section data integrity & zero-PII validator
-│   ├── validate_iac.py      # IaC structure & CIS AWS Benchmark policy validator
-│   └── tests/               # Pipeline unit tests
-│
-├── data/                    # AP & TS geographic datasets and property histories
-│
-├── leaderboard/             # Published Baseline Leaderboard
-│   └── results.csv          # MEASURED leaderboard, generated by evaluation/analyze.py
-│
-├── docs/                    # Architectural & Framework Documentation
-│   ├── taxonomy.md          # Canonical control taxonomy
-│   ├── benchmark_protocol.md # Evaluation methodology & ground truth guidelines
-│   └── framework/           # IaCSecBench docs (architecture.md, benchmark-methodology.md, metrics.md)
-│
-├── experiments/             # Experiment Reproducibility Package
-│   ├── run_all.sh           # One-command experiment execution script
-│   └── generate_charts.py   # Benchmark chart generator
-│
-└── results/                 # Measured outputs. See results/README.md.
-    ├── run_manifest.json    # Authoritative record of a run: versions, env, latency samples
-    ├── evaluation.json      # Confusion matrices, exact intervals, McNemar tests, caveats
-    ├── corpus_report.json   # Admissibility per case; declared vs present counts
-    ├── raw/<tool>/          # Unmodified scanner output; everything else derives from these
-    ├── tables/              # Generated LaTeX tables consumed by paper/
-    └── pre_opa_polarity_fix/ # Measured results before a disclosed policy correction
+├── security_framework/      # Layer 1: repository-edge secret and personal-data scanner
+├── infrastructure/          # Reference deployment: AWS Terraform + native tests (Layer 2)
+├── results/                 # Recorded output: raw scanner JSON, evaluation.json, tables
+├── leaderboard/             # Measured leaderboard CSV
+├── paper/                   # Manuscript source and generated figures
+├── scripts/                 # Local review utilities (not gates, not measured)
+└── docs/                    # Protocol, taxonomy, framework documentation
 ```
-
-Nothing under `results/` is synthetic. The stages that fabricate metrics
-(`evaluation/score.py`, `pipeline/run_experiments.py`,
-`experiments/generate_charts.py`) refuse to run without
-`IACSECBENCH_ALLOW_SYNTHETIC=1`, and their previous output has been deleted rather
-than left where a reader would mistake it for a measurement.
 
 ---
 
-## 💻 Running Locally
+## 💻 Reproducing a measurement
 
 ```bash
-# Option 1: Serve web app from repo root
-python3 -m http.server 8080
+python -m venv .venv && source .venv/bin/activate
+pip install -r experiments/requirements.txt
 
-# Option 2: Start Fast-Read Search API microservice
-pip install -r application/api/requirements.txt
-uvicorn application.api.main:app --reload --port 8000
+# Scanners under comparison must be on PATH; a missing tool is reported as
+# not_run and omitted, never assigned an assumed detection rate.
+python -m evaluation.run_baselines --list-tools
 
-# Option 3: Run the IaCSecBench benchmark engine in Docker
-docker build -t iacsecbench .
-docker run iacsecbench                 # scans infrastructure/ by default
-docker compose up                      # runs full experiment suite (pipeline/run_experiments.py)
+python -m evaluation.corpus --report --mode terraform   # admission gate
+./experiments/run_baselines.sh                          # full measurement
 ```
 
-Open **[http://localhost:8080/application/app/](http://localhost:8080/application/app/)** for the Web Portal and **[http://localhost:8000/docs](http://localhost:8000/docs)** for Interactive OpenAPI Docs.
+Outputs land in `results/`: `corpus_report.json`, `raw/<tool>/`,
+`run_manifest.json`, `evaluation.json`, and `tables/*.tex`. Read the `caveats`
+list in `evaluation.json` before quoting any number from it.
 
-## 🛠️ Repository Tooling Scripts
-
-This repository includes helper scripts under `scripts/` for security, compliance, PR analysis, code quality, and combined review reporting.
+The unlabelled external subset is measured separately, and never mixed into the
+accuracy tables:
 
 ```bash
-python scripts/security_scanner.py . --severity high --json --output security_report.json
-python scripts/compliance_checker.py . --framework soc2 --json --output compliance_report.json
-python scripts/pr_analyzer.py . --base main --head feature-branch --json --output pr_report.json
-python scripts/code_quality_checker.py . --language python --json --output quality_report.json
-python scripts/review_report_generator.py . --format markdown --output review_report.md
+python -m experiments.fetch_external      # clone the pinned commits
+python -m evaluation.external             # measure alert volume and agreement
 ```
-
-> Note: these helper scripts use standard shell exit codes. `0` means the command completed successfully, while any non-zero exit code indicates an error or failure during script execution.
 
 ---
 
-## 🧪 Development, Infrastructure & Native Testing
+## 🧪 Testing
 
 ```bash
-# Install Node dev dependencies (Prettier, ESLint, JSDoc)
-npm install
-
-# Run ESLint JavaScript code quality check
-npm run lint
-
-# Run Prettier code formatting check
-npm run format:check
-
-# Install Python dependencies & run data validators
-pip install -r pipeline/requirements.txt -r application/api/requirements.txt
-python pipeline/validate_data.py
-
-# Run IaC & CIS AWS Benchmark Security Validator
-python pipeline/validate_iac.py
-
-# Run Evaluation Scoring Protocol & Leaderboard Export
-python evaluation/score.py
-
-# Run Reproducible IaC Benchmark Experiments
-./experiments/run_all.sh
-
-# Run full pytest test suite (62 tests: application/api, pipeline & security_framework)
-.venv/bin/pytest -v
-
-# Run Checkov
-checkov -d infrastructure --framework terraform
-
-# Native Terraform Tests (11 .tftest.hcl suites, 26 assertions; no coverage metric is computed)
-cd infrastructure
-terraform fmt -check -recursive .
-terraform init -backend=false
-terraform validate
-terraform test
-
-# Run Pre-commit Hooks
-pre-commit run --all-files
-
+pytest                                    # evaluation and security_framework suites
+cd infrastructure && terraform test       # Layer 2: native module tests
 ```
 
 ---
 
-## 🔬 Open-Source IaC Security Benchmark Framework
+## 🏗️ Reference deployment
 
-Crown Corridor serves as the reference implementation for the **IaCSecBench Research Benchmark Framework**, a publication-grade evaluation suite designed to evaluate IaC security tools, OPA policies, and zero-PII/secret prevention across cloud repositories.
+[`infrastructure/`](infrastructure/) holds the AWS Terraform stack the pipeline
+guards — VPC, compute, database, API gateway, CDN, WAF, auth, secrets, and
+alerting modules — with native `terraform test` suites under
+`infrastructure/tests/`. It is what the module-testing layer validates, and the
+subject of the engineering-effort measurement reported in the manuscript.
 
-### Comparative Research Matrix
-
-The matrix is generated, not written here — a table copied into a README cannot be
-regenerated and becomes wrong without looking wrong. Measure it yourself:
-
-```bash
-experiments/run_baselines.sh    # writes leaderboard/results.csv + results/evaluation.json
-```
-
-Read the output with two facts in hand:
-
-- **The reference implementation ranks last on this corpus.** Layer 1 is a
-  repository-edge secret and PII scanner; the corpus is cloud misconfigurations.
-  It is reported as measured, not adjusted to flatter the framework.
-- **Latency reflects the host, not the tool.** Background load inflates the mean
-  and roughly doubles the standard deviation. Measure on an idle machine.
-
-For full setup, schemas, taxonomy, and reproducible experiment guides, see:
-
-- 📖 [Benchmark Taxonomy](docs/taxonomy.md)
-- 📜 [Evaluation Protocol & Methodology](docs/benchmark_protocol.md)
-- 📊 [Leaderboard Dataset](leaderboard/results.csv)
-- 📂 [Master Benchmark JSON Catalog](benchmark/benchmark.json)
-- 🧪 [Reproducible Experiments Guide](docs/framework/reproducible_experiments.md)
+This Terraform was originally authored as the deployment for a separate
+application that once shared this repository. It is retained here as the
+reference deployment because the pipeline needs real infrastructure to guard;
+the application itself lives in its own project.
 
 ---
 
-## 🏷️ Semantic Versioning Model
+## 🔒 Privacy
 
-Crown Corridor strictly follows this versioning strategy:
-
-- 🟡 **`MINOR` (x.Y.0)** — **Data Updates**: Triggered whenever state datasets (`data/**`), property histories, or SRO records are refreshed/expanded.
-- 🟢 **`PATCH` (x.y.Z)** — **Pipeline & Infrastructure Updates**: Triggered for data pipelines, validators, APIs, or CI toolchains (`pipeline/**`, `application/api/**`, `infrastructure/**`).
-- 🔵 **`MAJOR` (X.0.0)** — **Web Application Updates**: Triggered for UI/UX frontend features, design changes, and portal functionality (`application/app/**`).
-
-Releases are cut automatically by [`release-please.yml`](.github/workflows/release-please.yml) from Conventional Commit messages — see [CHANGELOG.md](CHANGELOG.md).
-
----
-
-## 🔒 Privacy & Zero-PII Compliance
-
-Crown Corridor adheres strictly to zero-PII privacy rules:
-
-- **No Customer PII**: Customer personal names and personal identity numbers are strictly scrubbed from dataset files.
-- **Anonymized Classifications**: Transactions exclusively use role-based classifications (`Private Individual Owner`, `Commercial Property Developer`, `Institutional Realty Fund`).
-- **Automated CI PII & Secret Guard**: Both `pipeline/validate_data.py` and `pipeline/validate_iac.py` inspect all datasets and infrastructure files on pull requests to block personal data or secret commits.
-
----
-
-## 🌐 Data Sources & Documentation Hosting
-
-- **Geographic Data**: Sourced from the **Government of India's [Local Government Directory (LGD)](https://lgdirectory.gov.in)** via [data.gov.in](https://data.gov.in).
-- **Documentation Website**: Deployed to GitHub Pages under the **`/docs`** path.
+The repository-edge layer refuses commits carrying secret material or personal
+data, and its detections are scored on the same basis as every other tool rather
+than asserted. No personal data is stored in this repository.
 
 ---
 

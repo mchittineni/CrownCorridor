@@ -64,6 +64,11 @@ results.sarif
 .terraform-provider-mirror/
 .terraform-provider-mirror.lock
 
+# Third-party working trees for the unlabelled external subset. Pinned by commit
+# in benchmark/external/aws_samples/manifest.json and fetched on demand; never
+# vendored, so the corpus's provenance stays verifiable by hash.
+.external-corpus/
+
 # Logs & Temporary Scratch Files
 *.log
 .env
