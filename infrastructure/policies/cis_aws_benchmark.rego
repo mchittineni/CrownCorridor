@@ -1,5 +1,5 @@
 # OPA / Rego Policy Definition for CIS AWS Foundations & Well-Architected Security Benchmark Compliance
-# Scope: Crown Corridor Infrastructure as Code
+# Scope: the reference deployment under infrastructure/
 
 package aws.cis.benchmark
 

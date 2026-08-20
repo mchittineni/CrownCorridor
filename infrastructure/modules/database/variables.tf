@@ -51,7 +51,7 @@ variable "kms_key_arn" {
 variable "db_name" {
   description = "Initial PostgreSQL database name"
   type        = string
-  default     = "crowncorridor_db"
+  default     = "iacsecbench_db"
 }
 
 variable "db_username" {

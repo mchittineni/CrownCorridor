@@ -24,7 +24,7 @@ run "validate_vpc_module_full_coverage" {
   }
 
   assert {
-    condition     = module.vpc.db_subnet_group_name == "crowncorridor-dev-db-subnet-group"
+    condition     = module.vpc.db_subnet_group_name == "iacsecbench-dev-db-subnet-group"
     error_message = "DB subnet group name must match dev naming convention"
   }
 }

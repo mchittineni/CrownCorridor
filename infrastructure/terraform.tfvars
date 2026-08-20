@@ -1,6 +1,6 @@
 aws_region        = "us-east-1"
 environment       = "dev"
-app_name          = "crowncorridor"
+app_name          = "iacsecbench"
 vpc_cidr          = "10.0.0.0/16"
 typesense_api_key = "change-me-to-a-secure-random-key-32-chars"
-alert_email       = "devops-alerts@crowncorridor.com"
+alert_email       = "devops-alerts@example.invalid"

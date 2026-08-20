@@ -4,8 +4,8 @@ run "validate_database_module_full_coverage" {
   command = plan
 
   assert {
-    condition     = module.database.db_name == "crowncorridor_db"
-    error_message = "Initial database name must be crowncorridor_db"
+    condition     = module.database.db_name == "iacsecbench_db"
+    error_message = "Initial database name must be iacsecbench_db"
   }
 
   assert {

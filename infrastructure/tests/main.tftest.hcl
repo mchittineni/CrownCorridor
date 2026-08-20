@@ -26,8 +26,8 @@ run "verify_root_module_integration" {
 
   # 2. Database Outputs
   assert {
-    condition     = module.database.db_name == "crowncorridor_db"
-    error_message = "Root RDS Database name must be crowncorridor_db"
+    condition     = module.database.db_name == "iacsecbench_db"
+    error_message = "Root RDS Database name must be iacsecbench_db"
   }
 
   assert {
@@ -37,24 +37,24 @@ run "verify_root_module_integration" {
 
   # 3. Compute Outputs
   assert {
-    condition     = module.compute.typesense_endpoint == "typesense.crowncorridor.internal:8108"
-    error_message = "Typesense service discovery endpoint must match crowncorridor.internal:8108"
+    condition     = module.compute.typesense_endpoint == "typesense.iacsecbench.internal:8108"
+    error_message = "Typesense service discovery endpoint must match iacsecbench.internal:8108"
   }
 
   assert {
-    condition     = module.compute.cluster_name == "crowncorridor-dev-cluster"
+    condition     = module.compute.cluster_name == "iacsecbench-dev-cluster"
     error_message = "ECS cluster name must match dev naming convention"
   }
 
   # 4. Secrets & SSM Outputs
   assert {
-    condition     = module.secrets_ssm.ssm_env_param_name == "/crowncorridor/dev/ENVIRONMENT"
+    condition     = module.secrets_ssm.ssm_env_param_name == "/iacsecbench/dev/ENVIRONMENT"
     error_message = "SSM environment parameter name must match default dev path"
   }
 
   # 5. Events & Alerting Outputs
   assert {
-    condition     = module.events_alerting.eventbridge_rule_name == "crowncorridor-dev-weekly-etl-cron"
+    condition     = module.events_alerting.eventbridge_rule_name == "iacsecbench-dev-weekly-etl-cron"
     error_message = "EventBridge weekly ETL cron rule name must match dev naming convention"
   }
 }

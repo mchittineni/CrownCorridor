@@ -127,7 +127,7 @@ resource "aws_ecr_lifecycle_policy" "fastapi" {
 #
 # Used for internal ECS service discovery:
 #
-# FastAPI ---> typesense.crowncorridor.internal
+# FastAPI ---> typesense.iacsecbench.internal
 #
 ################################################################################
 

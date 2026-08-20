@@ -23,7 +23,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Project     = "CrownCorridor"
+      Project     = "IaCSecBench"
       Environment = var.environment
       ManagedBy   = "Terraform"
     }
