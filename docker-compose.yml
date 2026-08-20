@@ -9,4 +9,10 @@ services:
     container_name: iacsecbench_eval
     volumes:
       - .:/app
-    command: python3 pipeline/run_experiments.py
+    # The structural admissibility report, because it is the most useful thing this
+    # image can actually run: the Dockerfile installs Python and git but not
+    # Checkov, tfsec, Trivy, OPA or Terraform, so the full measurement
+    # (experiments/run_baselines.sh) cannot execute here and would report every
+    # tool as not_run. The previous command invoked pipeline/run_experiments.py,
+    # which left with the application.
+    command: python3 -m evaluation.corpus --report --mode structural

@@ -2,10 +2,21 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
+      # The whitespace fixers skip results/ and leaderboard/. Those files are
+      # written by evaluation/analyze.py and compared byte-for-byte across runs to
+      # establish that a measurement is reproducible. analyze.py emits no trailing
+      # newline, so end-of-file-fixer adds one, the next measurement removes it, and
+      # the two fight forever -- manufacturing a 280-file diff that reads as though
+      # the measurements changed when nothing did. Whitespace in a recorded artefact
+      # is part of the artefact.
       - id: end-of-file-fixer
+        exclude: ^(results/|leaderboard/)
       - id: trailing-whitespace
+        exclude: ^(results/|leaderboard/)
       - id: fix-byte-order-marker
+        exclude: ^(results/|leaderboard/)
       - id: mixed-line-ending
+        exclude: ^(results/|leaderboard/)
       - id: name-tests-test
         args: ["--pytest-test-first"]
       - id: no-commit-to-branch
