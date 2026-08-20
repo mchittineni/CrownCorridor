@@ -1,21 +1,4 @@
-This project has TWO licences, because it combines original software with
-Government of India open data:
-
-  • SOFTWARE (all code in app/ and pipeline/) ............... MIT License (below)
-  • DATA (everything derived from the Local Government Directory and boundary
-    datasets, i.e. the JSON / GeoJSON files under data/) ...... Government Open
-    Data License – India (GODL-India).
-    Canonical text: https://data.gov.in/government-open-data-license-india
-
-When reusing the data files, you must attribute the source:
-
-  Contains administrative data from the Local Government Directory (LGD),
-  Ministry of Panchayati Raj, Government of India, used under the Government
-  Open Data License – India (GODL-India), accessed via the data.gov.in
-  open-data API.
-
---------------------------------------------------------------------------------
-MIT License (software)
+MIT License
 
 Copyright (c) 2026 Manideep Chittineni
 
@@ -36,3 +19,67 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+================================================================================
+THIRD-PARTY MATERIAL
+================================================================================
+
+The MIT grant above covers everything in this repository, because no
+third-party source file is vendored here. What the benchmark measures, and what
+it merely refers to, are separated deliberately, and this section records which
+is which.
+
+1. Unlabelled external subset — benchmark/external/aws_samples/
+   25 Terraform repositories published by AWS under the MIT No Attribution
+   licence (MIT-0), identified in manifest.json by owner, name and full commit
+   SHA. None of their content is copied into this repository. They are fetched
+   on demand by experiments/fetch_external.py into .external-corpus/, which is
+   gitignored, so this repository redistributes nothing of theirs and the MIT
+   grant above extends to none of it. Each repository is governed by the licence
+   in its own tree at the pinned commit. MIT-0 would have permitted vendoring;
+   the reason for not doing so is provenance rather than licensing, and is set
+   out in experiments/fetch_external.py.
+
+2. CIS-mapped examples — benchmark/external/cis_examples/
+   Four Terraform files, 42 lines in total, written for this benchmark to
+   exercise controls named in the CIS AWS Foundations Benchmark. Each carries a
+   comment naming the control it exercises, for example "CIS AWS 2.1". No text,
+   table, remediation step or other content from a CIS Benchmark document is
+   reproduced here: a control identifier is cited, not copied. The CIS
+   Benchmarks are published by the Center for Internet Security under its own
+   terms, which govern the documents themselves and not this reference to them.
+   The same applies to infrastructure/policies/cis_aws_benchmark.rego.
+
+3. Catalogue records without files — benchmark/external/secureflag/ and
+   benchmark/external/terraform_registry/
+   These directories hold metadata.json only: case identifiers, expected
+   verdicts and descriptions. The corresponding Terraform files are not present
+   and are not distributed here, which is why the corpus report records 175
+   externally declared cases against 4 actually loaded. That gap is reported
+   rather than closed, and no measurement is attributed to a file this
+   repository does not contain.
+
+4. Tools under comparison
+   Checkov, tfsec, Trivy, OPA and Terraform are invoked as external
+   subprocesses and are not bundled, redistributed or derived from. Their
+   versions are recorded in results/run_manifest.json. Each is governed by its
+   own licence. Their recorded output under results/raw/ is factual observation
+   of program behaviour.
+
+5. Manuscript
+   paper/ is typeset with Springer's svjour3 document class, which is not
+   included in this repository and is obtained from the reader's own TeX
+   distribution.
+
+--------------------------------------------------------------------------------
+Note on a licence that used to be here
+
+Earlier revisions of this file carried a second licence, the Government Open
+Data License – India (GODL-India), covering JSON and GeoJSON files derived from
+the Local Government Directory of the Ministry of Panchayati Raj. Those files
+belonged to a real-estate application that shared this repository and has since
+moved to its own project; none of them produced any number reported here. The
+GODL-India terms and their attribution requirement travelled with the data and
+apply in that project, not this one. This is recorded so that anyone who
+obtained those files under the old dual-licence text can see where the
+obligation now lives.

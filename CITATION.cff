@@ -6,6 +6,7 @@ authors:
     orcid: "https://orcid.org/0009-0003-9709-5842"
 title: "IaCSecBench: An Open Framework and Empirical Benchmark for Evaluating Infrastructure-as-Code Security Gates"
 version: 1.0.0
+license: MIT
 identifiers:
   - type: doi
     value: 10.5281/zenodo.21645016
